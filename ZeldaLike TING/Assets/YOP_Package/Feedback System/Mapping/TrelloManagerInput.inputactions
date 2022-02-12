@@ -1,0 +1,40 @@
+{
+    "name": "TrelloManagerInput",
+    "maps": [
+        {
+            "name": "Interface",
+            "id": "799a5df1-3719-4b2f-8362-482ac4579d8d",
+            "actions": [
+                {
+                    "name": "OpenClosePanel",
+                    "type": "Value",
+                    "id": "402cc11c-77af-425e-a76e-b0bc696c1d39",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e93db6c8-f335-4330-bb4c-e697095be106",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "InterfaceControls",
+                    "action": "OpenClosePanel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "InterfaceControls",
+            "bindingGroup": "InterfaceControls",
+            "devices": []
+        }
+    ]
+}
