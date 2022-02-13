@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -191,7 +191,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c1f2b7b86e31e0c459b2eba943695d02, type: 2}
+  - {fileID: 2100000, guid: 7a03082e5dc9e544997af962512dfc57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -274,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: edfac6956c26c9844aefe904460b87b8, type: 2}
+  - {fileID: 2100000, guid: 69c37fc2ecb13ee4f83ea2c06e359b57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -329,6 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -413,6 +414,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +445,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -497,6 +519,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1056588035
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +611,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -599,27 +655,33 @@ MonoBehaviour:
   - angleInterval:
       min: 1
       max: 60
-    sprite: {fileID: -6730086746868623763, guid: 487ad3cb2a7f7ab4aaadf9e4d0fe021a, type: 3}
+    sprite: {fileID: -6730086746868623763, guid: 487ad3cb2a7f7ab4aaadf9e4d0fe021a,
+      type: 3}
   - angleInterval:
       min: 61
       max: 120
-    sprite: {fileID: -664019055998492505, guid: bf708bc5d102d0f49bbb07e8aaebf597, type: 3}
+    sprite: {fileID: -664019055998492505, guid: bf708bc5d102d0f49bbb07e8aaebf597,
+      type: 3}
   - angleInterval:
       min: 121
       max: 180
-    sprite: {fileID: -7067799555160694668, guid: c2546aa2cf900874b84129831b39d4d0, type: 3}
+    sprite: {fileID: -7067799555160694668, guid: c2546aa2cf900874b84129831b39d4d0,
+      type: 3}
   - angleInterval:
       min: 181
       max: 240
-    sprite: {fileID: -5593029669436493604, guid: 158a2ab4a2f2df44b80b66eee19c6b4f, type: 3}
+    sprite: {fileID: -5593029669436493604, guid: 158a2ab4a2f2df44b80b66eee19c6b4f,
+      type: 3}
   - angleInterval:
       min: 241
       max: 300
-    sprite: {fileID: -5865013764097800047, guid: 320ee7a675c757e479f79a60782490c4, type: 3}
+    sprite: {fileID: -5865013764097800047, guid: 320ee7a675c757e479f79a60782490c4,
+      type: 3}
   - angleInterval:
       min: 301
       max: 360
-    sprite: {fileID: 7835885773241654564, guid: c4a68fe0641255940b344f73c3d22808, type: 3}
+    sprite: {fileID: 7835885773241654564, guid: c4a68fe0641255940b344f73c3d22808,
+      type: 3}
   moveTransform: {fileID: 1875038784}
   Debugger: {fileID: 1287011615}
 --- !u!1 &1233307514
@@ -674,7 +736,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 69c37fc2ecb13ee4f83ea2c06e359b57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -921,7 +983,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c1f2b7b86e31e0c459b2eba943695d02, type: 2}
+  - {fileID: 2100000, guid: 7a03082e5dc9e544997af962512dfc57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1003,7 +1065,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 69c37fc2ecb13ee4f83ea2c06e359b57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
     [SerializeField] Transform moveTransform;
 
     private float angleView;
-    private Interval currentInterval = new Interval{ min=61, max=120};
+    private Interval currentInterval = new Interval{ min=61, max=120 };
 
     [SerializeField] private TextMeshProUGUI Debugger;
     private SpriteRenderer sprite;
@@ -53,14 +53,13 @@ public class Controller : MonoBehaviour
         Vector2 rotation = obj.ReadValue<Vector2>().normalized;
         angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
-        Debugger.text = angleView.ToString();
-        moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+            if (Debugger != null)
+                Debugger.text = angleView.ToString();
+            
+            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         
         UpdateSprite();
     }
-    
-    
-
     #endregion
 
     void Start()
@@ -82,7 +81,6 @@ public class Controller : MonoBehaviour
         if (angleView>currentInterval.max || angleView < currentInterval.min)
         {
             SpriteAngle newSA = spriteDictionary.First(sw => sw.Key(angleView)).Value;
-            Debug.Log(newSA.sprite);
             sprite.sprite = newSA.sprite;
             currentInterval = newSA.angleInterval;
         }  
