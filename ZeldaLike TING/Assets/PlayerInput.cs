@@ -35,6 +35,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""29323a58-cdf5-4474-87c1-ff2104f7c2d4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d33e53d0-7972-48a7-856b-285f257cfab6"",
+                    ""path"": ""<XInputController>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -85,6 +105,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Rotation = m_Movement.FindAction("Rotation", throwIfNotFound: true);
+        m_Movement_Position = m_Movement.FindAction("Position", throwIfNotFound: true);
         // Action
         m_Action = asset.FindActionMap("Action", throwIfNotFound: true);
         m_Action_A = m_Action.FindAction("A", throwIfNotFound: true);
@@ -148,11 +169,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private IMovementActions m_MovementActionsCallbackInterface;
     private readonly InputAction m_Movement_Rotation;
+    private readonly InputAction m_Movement_Position;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
         public MovementActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotation => m_Wrapper.m_Movement_Rotation;
+        public InputAction @Position => m_Wrapper.m_Movement_Position;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -165,6 +188,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Rotation.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnRotation;
                 @Rotation.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnRotation;
                 @Rotation.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnRotation;
+                @Position.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPosition;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -172,6 +198,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Rotation.started += instance.OnRotation;
                 @Rotation.performed += instance.OnRotation;
                 @Rotation.canceled += instance.OnRotation;
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
             }
         }
     }
@@ -212,6 +241,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IMovementActions
     {
         void OnRotation(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
     }
     public interface IActionActions
     {
