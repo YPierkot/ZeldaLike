@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1056588037}
   - component: {fileID: 1056588036}
   - component: {fileID: 1056588038}
+  - component: {fileID: 1056588039}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Untagged
@@ -683,7 +684,24 @@ MonoBehaviour:
     sprite: {fileID: 7835885773241654564, guid: c4a68fe0641255940b344f73c3d22808,
       type: 3}
   moveTransform: {fileID: 1875038784}
+  moveSpeed: 50
   Debugger: {fileID: 1287011615}
+--- !u!54 &1056588039
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056588035}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!1 &1233307514
 GameObject:
   m_ObjectHideFlags: 0
