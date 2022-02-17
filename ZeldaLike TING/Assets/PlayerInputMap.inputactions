@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInputMap",
     "maps": [
         {
             "name": "Movement",
@@ -64,7 +64,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBord",
+                    "groups": "Keybord",
                     "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -75,7 +75,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBord",
+                    "groups": "Keybord",
                     "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -86,7 +86,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBord",
+                    "groups": "Keybord",
                     "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -97,7 +97,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBord",
+                    "groups": "Keybord",
                     "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -146,8 +146,8 @@
             ]
         },
         {
-            "name": "KeyBord",
-            "bindingGroup": "KeyBord",
+            "name": "Keybord",
+            "bindingGroup": "Keybord",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",

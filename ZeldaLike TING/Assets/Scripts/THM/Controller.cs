@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.Users;
 
 public class Controller : MonoBehaviour
 {
+    #region CLASS & Other
+
     [Serializable]
     class SpriteAngle
     {
@@ -15,7 +17,6 @@ public class Controller : MonoBehaviour
         
         public Sprite sprite;
     }
-
     [Serializable]
     struct Interval
     {
@@ -23,14 +24,23 @@ public class Controller : MonoBehaviour
         public float max;
     }
     
+
+    #endregion
+    
+    
     private SpriteRenderer sprite;
     private Rigidbody rb;
+    private PlayerInput _playerInput;
+    
+  
+    private bool moving = false;
+    private bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
     private Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new Dictionary<Func<float, bool>, SpriteAngle>();
 
 
-    private PlayerInput Input;
+    private PlayerInputMap InputMap;
     [SerializeField] Transform moveTransform;
 
     private float angleView;
@@ -40,14 +50,15 @@ public class Controller : MonoBehaviour
     [SerializeField] private float moveSpeed;
     
     [SerializeField] private TextMeshProUGUI Debugger;
-    private Sprite defaulft;
+    [SerializeField] private Transform transformDebugger;
 
     void Awake()
     {
-        Input = new PlayerInput();
-        Input.Enable();
-        Input.Movement.Rotation.performed += RotationOnperformed;
-        Input.Movement.Position.performed += Move;
+        InputMap = new PlayerInputMap();
+        InputMap.Enable();
+        InputMap.Movement.Rotation.performed += RotationOnperformed;
+        InputMap.Movement.Position.started += context => moving = true;
+        InputMap.Movement.Position.canceled += context => moving = false;
     }
     #region Input Methode
 
@@ -64,39 +75,58 @@ public class Controller : MonoBehaviour
         UpdateSprite();
     }
 
-    void Move(InputAction.CallbackContext obj)
-    {
-        Vector3 dir = new Vector3(obj.ReadValue<Vector2>().x, 0, obj.ReadValue<Vector2>().y).normalized * moveSpeed;
-        rb.AddForce(dir);
-    }
-    
-    void CheckController(InputUser user, InputUserChange change, InputDevice device) {
-        if (change == InputUserChange.ControlSchemeChanged) {
-            Debug.Log(user.controlScheme.Value.name);
-            switch (user.controlScheme.Value.name)
-            {
-                
-            }
-        }
-    }
-    
+
     #endregion
 
+    
     void Start()
     {
+        _playerInput = GetComponent<PlayerInput>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
-        
-        InputUser.onChange += CheckController;
+
         foreach (SpriteAngle SA in spriteArray)
         {
             spriteDictionary.Add(x => x < SA.angleInterval.max, SA);
         }
+        
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-         
+        transformDebugger.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (canMove)
+        {
+            if (moving)
+            {
+                Move();
+
+                if (GameManager.Instance.currentContorller.ToString() != _playerInput.currentControlScheme)
+                {
+                    switch (_playerInput.currentControlScheme)
+                    {
+                        case "Xbox" :
+                            GameManager.Instance.currentContorller = GameManager.controller.Xbox;
+                            break;
+                        
+                        case "Keybord" : 
+                            GameManager.Instance.currentContorller = GameManager.controller.Keybord;
+                            break;
+                        
+                        default: Debug.Log($"Add {_playerInput.currentControlScheme} to controller enum in GameManager and Here "); 
+                            break;
+                    }
+                } // Change current Controller in GameManager
+            }
+        }
+
+        ;
+    }
+    
+    void Move()
+    {
+        Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized * moveSpeed;
+        rb.AddForce(dir);
     }
 
     void UpdateSprite()
@@ -108,4 +138,5 @@ public class Controller : MonoBehaviour
             currentInterval = newSA.angleInterval;
         }  
     }
+    
 }

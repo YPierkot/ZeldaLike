@@ -1,9 +1,23 @@
+using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    #region Instance
 
-    enum controller
+    public static GameManager Instance;
+
+    private void Awake()
     {
-        mouse, xbox, ps
+        Instance = this;
     }
+
+    #endregion
+
+    public enum controller
+    {
+        Keybord, Xbox, ps
+    }
+
+    public controller currentContorller;
 }
