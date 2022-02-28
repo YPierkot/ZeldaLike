@@ -151,7 +151,7 @@ SphereCollider:
   m_GameObject: {fileID: 46786385}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7a03082e5dc9e544997af962512dfc57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 46786385}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.596945, y: 3.8039637, z: -0.63391113}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -784,6 +784,30 @@ MonoBehaviour:
       type: 3}
   moveTransform: {fileID: 1875038784}
   moveSpeed: 100
+  dashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 3
+      inSlope: 0.20823652
+      outSlope: 0.20823652
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.20324996
+    - serializedVersion: 3
+      time: 0.15
+      value: 1
+      inSlope: -13.333333
+      outSlope: -13.333333
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   Debugger: {fileID: 1287011615}
   transformDebugger: {fileID: 46786389}
 --- !u!54 &1056588039

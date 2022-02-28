@@ -44,6 +44,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d80e28b-2390-48e5-95d6-06cdef95b2e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -123,6 +132,17 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2835f29-4877-44ac-b36c-08f53dae3798"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -184,6 +204,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Rotation = m_Movement.FindAction("Rotation", throwIfNotFound: true);
         m_Movement_Position = m_Movement.FindAction("Position", throwIfNotFound: true);
+        m_Movement_Dash = m_Movement.FindAction("Dash", throwIfNotFound: true);
         // Action
         m_Action = asset.FindActionMap("Action", throwIfNotFound: true);
         m_Action_A = m_Action.FindAction("A", throwIfNotFound: true);
@@ -248,12 +269,14 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private IMovementActions m_MovementActionsCallbackInterface;
     private readonly InputAction m_Movement_Rotation;
     private readonly InputAction m_Movement_Position;
+    private readonly InputAction m_Movement_Dash;
     public struct MovementActions
     {
         private @PlayerInputMap m_Wrapper;
         public MovementActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotation => m_Wrapper.m_Movement_Rotation;
         public InputAction @Position => m_Wrapper.m_Movement_Position;
+        public InputAction @Dash => m_Wrapper.m_Movement_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -269,6 +292,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Position.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPosition;
                 @Position.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPosition;
                 @Position.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPosition;
+                @Dash.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -279,6 +305,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Position.started += instance.OnPosition;
                 @Position.performed += instance.OnPosition;
                 @Position.canceled += instance.OnPosition;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -338,6 +367,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     {
         void OnRotation(InputAction.CallbackContext context);
         void OnPosition(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IActionActions
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -34,7 +35,10 @@ public class Controller : MonoBehaviour
     
   
     private bool moving = false;
+    private bool dashing;
     private bool canMove = true;
+
+    private float dashTimer;
     
     [SerializeField] private SpriteAngle[] spriteArray;
     private Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new Dictionary<Func<float, bool>, SpriteAngle>();
@@ -42,12 +46,15 @@ public class Controller : MonoBehaviour
 
     private PlayerInputMap InputMap;
     [SerializeField] Transform moveTransform;
+    private Vector3 lastDir;
 
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
+    [SerializeField] private AnimationCurve dashCurve;
+    
     
     [SerializeField] private TextMeshProUGUI Debugger;
     [SerializeField] private Transform transformDebugger;
@@ -57,23 +64,21 @@ public class Controller : MonoBehaviour
         InputMap = new PlayerInputMap();
         InputMap.Enable();
         InputMap.Movement.Rotation.performed += RotationOnperformed;
+        InputMap.Movement.Dash.performed += context => Dash();
         InputMap.Movement.Position.started += context => moving = true;
         InputMap.Movement.Position.canceled += context => moving = false;
     }
+
+
     #region Input Methode
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
         Vector2 rotation = obj.ReadValue<Vector2>().normalized;
-        angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
-            if (angleView < 0) angleView = 360 + angleView;
-            if (Debugger != null)
-                Debugger.text = angleView.ToString();
-            
-            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+        Rotate(rotation);
         
-        UpdateSprite();
     }
+
 
 
     #endregion
@@ -92,9 +97,35 @@ public class Controller : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit);
+            transformDebugger.position = hit.point;
+            Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+            Rotate(vector);
+        }
+        
+        if (dashing) 
+        {
+            if (dashTimer > 0.15f)
+            {
+                dashing = false;
+                canMove = true;
+            }
+            
+            rb.AddForce(lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
+            dashTimer += Time.deltaTime;
+
+        }
+    }
+
     private void FixedUpdate()
     {
-        transformDebugger.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
         if (canMove)
         {
             if (moving)
@@ -125,8 +156,32 @@ public class Controller : MonoBehaviour
     
     void Move()
     {
-        Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized * moveSpeed;
-        rb.AddForce(dir);
+        Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
+        lastDir = dir;
+        rb.AddForce(dir * moveSpeed);
+    }
+
+    void Dash()
+    {
+        Debug.Log("Dash");
+        if (!dashing && canMove)
+        {
+            dashing = true;
+            dashTimer = 0;
+            canMove = false;
+        }
+    }
+
+    void Rotate(Vector2 rotation)
+    {
+        
+        angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
+        if (angleView < 0) angleView = 360 + angleView;
+        if (Debugger != null)
+            Debugger.text = angleView.ToString();
+            
+        moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+        UpdateSprite();
     }
 
     void UpdateSprite()
