@@ -34,8 +34,17 @@ public class PlayerStat : MonoBehaviour
       {
          Debug.Log("Ennemy");
          TakeDamage();
+         StartCoroutine("HitCD");
+         control.canMove = false;
          Vector3 repulse = (transform.position - other.contacts[0].point).normalized*repulseForce;
          control.rb.velocity = repulse;
       }
+   }
+
+   IEnumerator HitCD()
+   {
+      control.canMove = false;
+      yield return new WaitForSeconds(0.3f);
+      control.canMove = true;
    }
 }

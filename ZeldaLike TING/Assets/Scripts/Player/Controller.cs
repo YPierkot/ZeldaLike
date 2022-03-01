@@ -34,9 +34,9 @@ public class Controller : MonoBehaviour
     private PlayerInput _playerInput;
     
   
-    private bool moving = false;
+    private bool moving;
     private bool dashing;
-    private bool canMove = true;
+    [SerializeField] public bool canMove = true;
 
     private float dashTimer;
     
@@ -121,6 +121,7 @@ public class Controller : MonoBehaviour
             dashTimer += Time.deltaTime;
 
         }
+
     }
 
     private void FixedUpdate()
