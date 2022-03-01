@@ -30,7 +30,7 @@ public class Controller : MonoBehaviour
     
     
     private SpriteRenderer sprite;
-    private Rigidbody rb;
+    [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
     
   
