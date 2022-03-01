@@ -115,7 +115,7 @@ public class CardsController : MonoBehaviour
     {
         Debug.Log("Fireball Long Range Shoot");
         GameObject cd = Instantiate(fireCard, new Vector3(m_tranform.position.x, m_tranform.position.y, m_tranform.position.z), Quaternion.identity);
-        cd.GetComponent<Rigidbody>().velocity = Vector3.forward * Time.deltaTime * projectileSpeed;
+        cd.GetComponent<Rigidbody>().velocity = m_tranform.forward * Time.deltaTime * projectileSpeed;
     }
     
     // Ice Card
@@ -123,7 +123,7 @@ public class CardsController : MonoBehaviour
     {
         Debug.Log("IceBall Long Range Shoot");
         GameObject cd = Instantiate(iceCard, new Vector3(m_tranform.position.x, m_tranform.position.y, m_tranform.position.z), Quaternion.identity);
-        cd.GetComponent<Rigidbody>().velocity = Vector3.forward * Time.deltaTime * projectileSpeed;
+        cd.GetComponent<Rigidbody>().velocity = m_tranform.forward * Time.deltaTime * projectileSpeed;
     }
     
     // Wall Card
@@ -136,7 +136,7 @@ public class CardsController : MonoBehaviour
     {
         Debug.Log("IceBall Long Range Shoot");
         GameObject wCd = Instantiate(windCard, new Vector3(m_tranform.position.x, m_tranform.position.y, m_tranform.position.z), Quaternion.identity);
-        wCd.GetComponent<Rigidbody>().velocity = Vector3.forward * Time.deltaTime * projectileSpeed;
+        wCd.GetComponent<Rigidbody>().velocity = m_tranform.forward * Time.deltaTime * projectileSpeed;
     }
     
     #endregion
