@@ -151,9 +151,27 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
             ""id"": ""7531efdc-aeeb-4c26-80ba-dde850b44dbd"",
             ""actions"": [
                 {
-                    ""name"": ""A"",
+                    ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""04b5785d-fb4e-4b49-8a83-be4fa8923317"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shortCard"",
+                    ""type"": ""Button"",
+                    ""id"": ""c378e838-7fec-41ff-a419-cad94584c253"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""longCard"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8c33c70-f1a9-4bff-b265-1358f1152b65"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -168,7 +186,29 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""332030e1-728b-40e4-85d9-a93afcc6d63c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord"",
+                    ""action"": ""shortCard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0e1d293-5a07-412c-a9b2-74acf968f407"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord"",
+                    ""action"": ""longCard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -195,6 +235,11 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
                 }
             ]
         }
@@ -207,7 +252,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Movement_Dash = m_Movement.FindAction("Dash", throwIfNotFound: true);
         // Action
         m_Action = asset.FindActionMap("Action", throwIfNotFound: true);
-        m_Action_A = m_Action.FindAction("A", throwIfNotFound: true);
+        m_Action_Interaction = m_Action.FindAction("Interaction", throwIfNotFound: true);
+        m_Action_shortCard = m_Action.FindAction("shortCard", throwIfNotFound: true);
+        m_Action_longCard = m_Action.FindAction("longCard", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -316,12 +363,16 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     // Action
     private readonly InputActionMap m_Action;
     private IActionActions m_ActionActionsCallbackInterface;
-    private readonly InputAction m_Action_A;
+    private readonly InputAction m_Action_Interaction;
+    private readonly InputAction m_Action_shortCard;
+    private readonly InputAction m_Action_longCard;
     public struct ActionActions
     {
         private @PlayerInputMap m_Wrapper;
         public ActionActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
-        public InputAction @A => m_Wrapper.m_Action_A;
+        public InputAction @Interaction => m_Wrapper.m_Action_Interaction;
+        public InputAction @shortCard => m_Wrapper.m_Action_shortCard;
+        public InputAction @longCard => m_Wrapper.m_Action_longCard;
         public InputActionMap Get() { return m_Wrapper.m_Action; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -331,16 +382,28 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_ActionActionsCallbackInterface != null)
             {
-                @A.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnA;
-                @A.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnA;
-                @A.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnA;
+                @Interaction.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnInteraction;
+                @shortCard.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnShortCard;
+                @shortCard.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnShortCard;
+                @shortCard.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnShortCard;
+                @longCard.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnLongCard;
+                @longCard.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnLongCard;
+                @longCard.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnLongCard;
             }
             m_Wrapper.m_ActionActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @A.started += instance.OnA;
-                @A.performed += instance.OnA;
-                @A.canceled += instance.OnA;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
+                @shortCard.started += instance.OnShortCard;
+                @shortCard.performed += instance.OnShortCard;
+                @shortCard.canceled += instance.OnShortCard;
+                @longCard.started += instance.OnLongCard;
+                @longCard.performed += instance.OnLongCard;
+                @longCard.canceled += instance.OnLongCard;
             }
         }
     }
@@ -371,6 +434,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     }
     public interface IActionActions
     {
-        void OnA(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
+        void OnShortCard(InputAction.CallbackContext context);
+        void OnLongCard(InputAction.CallbackContext context);
     }
 }

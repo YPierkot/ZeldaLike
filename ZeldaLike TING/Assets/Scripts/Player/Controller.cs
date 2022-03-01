@@ -31,6 +31,7 @@ public class Controller : MonoBehaviour
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
+    private CardsController cardControl;
     
   
     private bool moving;
@@ -66,6 +67,9 @@ public class Controller : MonoBehaviour
         InputMap.Movement.Dash.performed += context => Dash();
         InputMap.Movement.Position.started += context => moving = true;
         InputMap.Movement.Position.canceled += context => moving = false;
+
+        InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
+        InputMap.Action.longCard.performed += context => cardControl.LongRange();
     }
 
 
@@ -85,6 +89,7 @@ public class Controller : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
+        cardControl = GetComponent<CardsController>();
 
         foreach (SpriteAngle SA in spriteArray)
         {
