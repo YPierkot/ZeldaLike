@@ -940,8 +940,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -664019055998492505, guid: bf708bc5d102d0f49bbb07e8aaebf597,
-    type: 3}
+  m_Sprite: {fileID: 1727543212, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -960,7 +959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056588035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41, y: 0.732, z: -1.18}
+  m_LocalPosition: {x: -0.41, y: 1.04, z: -1.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -986,34 +985,40 @@ MonoBehaviour:
   spriteArray:
   - angleInterval:
       min: 1
+      max: 30
+    sprite: {fileID: 1578382671, guid: 7022a277cd75b704cb188058f664959f, type: 3}
+  - angleInterval:
+      min: 31
       max: 60
-    sprite: {fileID: -6730086746868623763, guid: 487ad3cb2a7f7ab4aaadf9e4d0fe021a,
-      type: 3}
+    sprite: {fileID: 1517946746, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   - angleInterval:
       min: 61
       max: 120
-    sprite: {fileID: -664019055998492505, guid: bf708bc5d102d0f49bbb07e8aaebf597,
-      type: 3}
+    sprite: {fileID: 1727543212, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   - angleInterval:
       min: 121
-      max: 180
-    sprite: {fileID: -7067799555160694668, guid: c2546aa2cf900874b84129831b39d4d0,
-      type: 3}
+      max: 150
+    sprite: {fileID: -369898315, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   - angleInterval:
-      min: 181
+      min: 151
+      max: 210
+    sprite: {fileID: 146765477, guid: 7022a277cd75b704cb188058f664959f, type: 3}
+  - angleInterval:
+      min: 211
       max: 240
-    sprite: {fileID: -5593029669436493604, guid: 158a2ab4a2f2df44b80b66eee19c6b4f,
-      type: 3}
+    sprite: {fileID: -1588148700, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   - angleInterval:
       min: 241
       max: 300
-    sprite: {fileID: -5865013764097800047, guid: 320ee7a675c757e479f79a60782490c4,
-      type: 3}
+    sprite: {fileID: 236042663, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   - angleInterval:
       min: 301
+      max: 330
+    sprite: {fileID: 223803042, guid: 7022a277cd75b704cb188058f664959f, type: 3}
+  - angleInterval:
+      min: 331
       max: 360
-    sprite: {fileID: 7835885773241654564, guid: c4a68fe0641255940b344f73c3d22808,
-      type: 3}
+    sprite: {fileID: 1578382671, guid: 7022a277cd75b704cb188058f664959f, type: 3}
   moveTransform: {fileID: 1875038784}
   moveSpeed: 100
   dashCurve:
@@ -1499,7 +1504,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1594,7 +1599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1390524243
 Transform:
   m_ObjectHideFlags: 0
@@ -2301,7 +2306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875038783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.008, y: -0.489, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
