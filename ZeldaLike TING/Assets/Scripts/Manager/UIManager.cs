@@ -22,10 +22,8 @@ public class UIManager : MonoBehaviour
    {
       for (int i = 0; i < lifeArray.Length; i++)
       {
-         if (i >= life)
-         {
-            lifeArray[i].enabled = false;
-         }
+         if (i >= life)lifeArray[i].enabled = false;
+         else lifeArray[i].enabled = true;
       }
    }
    
