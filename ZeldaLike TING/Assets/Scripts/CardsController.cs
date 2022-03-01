@@ -1,15 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
 
 public class CardsController : MonoBehaviour
 {
-    // Controller Variables
-    [SerializeField] private float m_speed = 100;
-    
     // Cards Variables 
     public bool canUseCards;
     
@@ -44,11 +36,7 @@ public class CardsController : MonoBehaviour
     public GameObject windCardGrounded;
     public GameObject groundWindCard;
     public bool canUseWindCard;
-
     
-    public bool isSmallWallActive;
-    //public GameObject WallLR;
-
 
     public Transform m_tranform;
     public LayerMask Ennemy;
@@ -64,7 +52,6 @@ public class CardsController : MonoBehaviour
     private void Start()
     {
         canUseCards = true;
-        isSmallWallActive = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
     }
@@ -72,7 +59,6 @@ public class CardsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ManageMove();
         LaunchCard();
     }
 
@@ -80,7 +66,7 @@ public class CardsController : MonoBehaviour
     {
         if (!canUseCards) return;
         
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0)) // LA C'est POSER UNE CARTE AU SOL
         {
             switch(State)
             {
@@ -92,7 +78,7 @@ public class CardsController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1)) // ICI C'EST POUR LE TRUC QUI VA LOIN
         {
             switch(State)
             {
@@ -104,36 +90,7 @@ public class CardsController : MonoBehaviour
             }
         }
     }
-    
-    private void ManageMove()
-    {
-        var speed = m_speed;
 
-        int nbInputs = (Input.GetKey(KeyCode.Z) ? 1 : 0) + (Input.GetKey(KeyCode.Q) ? 1 : 0) +
-                       (Input.GetKey(KeyCode.S) ? 1 : 0) + (Input.GetKey(KeyCode.D) ? 1 : 0);
-        if (nbInputs > 1) speed *= 0.75f;
-        
-        if (Input.GetKey(KeyCode.Z))
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(Vector3.back * speed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-    }
-    
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 4f);
@@ -246,11 +203,6 @@ public class CardsController : MonoBehaviour
         }
     }
     #endregion
-
-    private IEnumerator WallActive(float wallahDuration)
-    {
-        yield return new WaitForSeconds(wallahDuration);
-        isSmallWallActive = false;
-    }
+    
 }
 

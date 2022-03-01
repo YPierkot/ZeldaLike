@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -78,9 +77,6 @@ public class Controller : MonoBehaviour
         Rotate(rotation);
         
     }
-
-
-
     #endregion
 
     
@@ -119,9 +115,7 @@ public class Controller : MonoBehaviour
             
             rb.AddForce(lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
-
         }
-
     }
 
     private void FixedUpdate()
