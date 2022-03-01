@@ -470,6 +470,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &689773535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689773536}
+  m_Layer: 0
+  m_Name: transformLaunchCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &689773536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689773535}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.08425111, y: -1.82, z: 0.01}
+  m_LocalScale: {x: 7.0209293, y: 11.37488, z: 4.494179}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1153415305}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +768,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125999361}
   m_CullTransparentMesh: 1
+--- !u!4 &1153415305 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7337217463896534133, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+    type: 3}
+  m_PrefabInstance: {fileID: 7337217463788531564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1179158474
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +936,7 @@ GameObject:
   - component: {fileID: 1233307517}
   - component: {fileID: 1233307516}
   - component: {fileID: 1233307515}
+  - component: {fileID: 1233307519}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Ennemy
@@ -984,6 +1022,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1233307519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233307514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad7fd8192847384fa946faaed82e55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1287011613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1968,47 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7337217462935629414, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.4955975
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629414, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.1916632
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: State
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: m_tranform
+      value: 
+      objectReference: {fileID: 689773536}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: Ennemy.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: wallCardGrounded
+      value: 
+      objectReference: {fileID: 8479553354742785972, guid: 7d93a1f92ec75bf47a2168b10b2f9858,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: windCardGrounded
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629417, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_RootOrder

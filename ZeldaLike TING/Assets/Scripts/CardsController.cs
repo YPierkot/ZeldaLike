@@ -68,32 +68,44 @@ public class CardsController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Mouse0)) // LA C'est POSER UNE CARTE AU SOL
         {
-            switch(State)
-            {
-                case CardsState.Null: break;
-                case CardsState.Fire: FireballShortRange(); break;
-                case CardsState.Ice: IceShortRange(); break;
-                case CardsState.Wall: WallShortRange(); break;
-                case CardsState.Wind: WindShortRange(); break;
-            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1)) // ICI C'EST POUR LE TRUC QUI VA LOIN
         {
-            switch(State)
-            {
-                case CardsState.Null: break;
-                case CardsState.Fire: FireballLongRange(); break;
-                case CardsState.Ice: IceLongRange(); break;
-                case CardsState.Wall: WallLongRange(); break;
-                case CardsState.Wind: WindLongRange(); break;
-            }
+            
         }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 4f);
+    }
+
+    public void ShortRange()
+    {
+        Debug.Log("short Effect");
+        switch(State)
+        {
+            case CardsState.Null: break;
+            case CardsState.Fire: FireballShortRange(); break;
+            case CardsState.Ice: IceShortRange(); break;
+            case CardsState.Wall: WallShortRange(); break;
+            case CardsState.Wind: WindShortRange(); break;
+        }
+    }
+
+    public void LongRange()
+    {
+        Debug.Log("long Effect");
+        switch(State)
+        {
+            case CardsState.Null: break;
+            case CardsState.Fire: FireballLongRange(); break;
+            case CardsState.Ice: IceLongRange(); break;
+            case CardsState.Wall: WallLongRange(); break;
+            case CardsState.Wind: WindLongRange(); break;
+        }
     }
 
     #region CardEffectsLongRange
