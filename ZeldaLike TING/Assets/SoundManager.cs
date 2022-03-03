@@ -9,12 +9,9 @@ public class SoundManager : MonoBehaviour
     private AudioSource _audioSource;
     public static SoundManager Instance;
 
-    private void Start()
+    private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
+        Instance = this;
         _audioSource = GetComponent<AudioSource>();
     }
 

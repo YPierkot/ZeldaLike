@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     private int currentDialogue;
     private float defaultDelay = 2f;
     private int sentenceIndex;
+    [SerializeField] private DialogueScriptable tutorialDialogue;
 
     private void Start()
     {
@@ -20,8 +21,10 @@ public class DialogueManager : MonoBehaviour
         {
             Instance = this;
         }
+        
         sentences = new Queue<string>();
         DialogueLines = new DialogueLine[1];
+        Tutorial();
     }
 
     public void AssignDialogue(DialogueLine[] dialogue)
@@ -33,6 +36,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueLine dialogueLine)
     {
         sentenceIndex = 0;
+        Debug.Log(dialogueLine.voiceLine);
         SoundManager.Instance.PlayVoiceline(dialogueLine.voiceLine);
         sentences.Clear();
         Debug.Log("The dialogue started");
@@ -86,6 +90,11 @@ public class DialogueManager : MonoBehaviour
             sentenceIndex = 0;
             dialogueDisplay.text = null;
         }
+    }
+
+    private void Tutorial()
+    {
+        AssignDialogue(tutorialDialogue.dialogue);
     }
     
 }

@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: TutorialKell
+  m_EditorClassIdentifier: 
+  dialogue:
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Une roulotte de magicien ?
+      delay: 1.5
+    - name: 
+      line: C'est mon jour de chance !
+      delay: 1.5
+    - name: 
+      line: "J'esp\xE8re qu'il a de la nourriture..."
+      delay: 3
+    - name: 
+      line: "Attention, il s'arr\xEAte !"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: d395be3886b8b2f459e65c960215b60b, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Parfait, il ne fait pas attention
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 9f9b533eacd61d54d9510b6b4c8a5f4e, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Allez allez, ouvre toi !
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: aafb6c22f98ed8948964485236e25dbc, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Enfin ! Voyons voir...
+      delay: 3
+    - name: 
+      line: "Ouah ! C'est quoi \xE7a ?!"
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 010ef7943d70fa146ad6ab507afe5691, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Qu'est ce que...
+      delay: 0
+    - name: 
+      line: "Je suis o\xF9 l\xE0"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 1e5320ecac0720f4a83bf1cb38c9ca57, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Ouaaaah
+      delay: 0
+    - name: 
+      line: Il en a de la place dans sa roulotte...
+      delay: 0
+    - name: 
+      line: "Qu'est ce qui fait toute cette lumi\xE8re ?"
+      delay: 3
+    - name: 
+      line: Un objet magique ?
+      delay: 0
+    - name: 
+      line: Je le vole ?
+      delay: 0
+    - name: 
+      line: "Ca serait l'occasion de marquer le coup aupr\xE8s des autres..."
+      delay: 0
+    - name: 
+      line: "C'est peut-\xEAtre dangereux..."
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: a3cefd3dee3aa944797760fa79919e87, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: "Il faudrait que je r\xE9ussisse \xE0 m'en approcher !"
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 73c7d9dde04690046b30aeb90d34c42f, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: Je peux escalader ici !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 44f299f608417c94c826726d1b40338b, type: 3}
+  - startingDelay: 0
+    dialogLines:
+    - name: 
+      line: C'est si beau...
+      delay: 0
+    - name: 
+      line: C'est si brillant...
+      delay: 3
+    - name: 
+      line: Wowwww...
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 5fa608740b9f98348a21afdd4595592e, type: 3}
