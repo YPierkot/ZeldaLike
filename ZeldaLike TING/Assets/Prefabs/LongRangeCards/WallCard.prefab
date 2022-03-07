@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8479553354742785975}
   - component: {fileID: 8479553354742785974}
   - component: {fileID: 8479553354742785973}
-  - component: {fileID: -1625099241093580970}
+  - component: {fileID: -1064635356531176019}
+  - component: {fileID: -5718756698348428085}
   m_Layer: 8
-  m_Name: CardWindGround
+  m_Name: WallCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8479553354742785972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.35, z: 0.05}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +99,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1625099241093580970
+--- !u!54 &-1064635356531176019
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479553354742785972}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!114 &-5718756698348428085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,12 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8479553354742785972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c533471c0f65f440ade7e22f9d30e77, type: 3}
+  m_Script: {fileID: 11500000, guid: a924b3527031b244da6b79bb81cb4856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ennemy:
-    serializedVersion: 2
-    m_Bits: 64
-  repulsivePower: 500
-  repulsiveRadius: 4
-  repulsivePoint: {x: 0, y: 0, z: 0}
+  WallLR: {fileID: 3698724175964973669, guid: 839009a4c2d03fd4c95bfbb92452dc7a, type: 3}
