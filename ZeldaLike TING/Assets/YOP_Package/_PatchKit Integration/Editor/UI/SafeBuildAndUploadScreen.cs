@@ -10,7 +10,7 @@ using UnityEngine.Assertions;
 
 namespace PatchKit.UnityEditorExtension.UI {
     public class SafeBuildAndUploadScreen : Screen {
-        private static string downloadLink = "https://dl.patchkit.net/d/6s76bamvlq1v13jo8etzx/direct";
+        private static string downloadLink = "https://dl.patchkit.net/d/2iif7aoys76h62mzr5qf7/direct";
 
         #region GUI
 
@@ -396,7 +396,7 @@ namespace PatchKit.UnityEditorExtension.UI {
                 }
 
                 EditorUtility.DisplayDialog("Uploading", "Your game has been successfully built and is being uploaded right now.\n\n" + "You can track the progress in console window.", "OK");
-                DiscordWebHook.SendDiscordMessage($":partying_face: THE VERSION **{_versionLabel.ToUpper()}** IS AVAILABLE ON THE LAUNCHER :partying_face: ! \n(*If you don't have the launcher yet, follow the link : {downloadLink}*) \n\n**CHANGELOG :** \n{_versionChangelog}", " Launcher Update Bot", "https://discord.com/api/webhooks/937758535608045578/a1GEnuVRV3kKrGIH_NbFovColFH6bD6Z95Ls0jqP8UaTc_RqKBe-Cz780tCWEj4M2kU4");
+                DiscordWebHook.SendDiscordMessage($":partying_face: THE VERSION **{_versionLabel.ToUpper()}** IS AVAILABLE ON THE LAUNCHER :partying_face: ! \n(*If you don't have the launcher yet, follow the link : {downloadLink}*) \n\n**CHANGELOG :** \n{_versionChangelog}", " Launcher Update Bot", "https://discord.com/api/webhooks/947517637234139157/5U2rXB6HyqlMHryurzye2Kk6AH59E-xSX217weKk5UO8hvk1YcQJ8KMzm2p_W5NTdKz1");
                 Close();
             }
         }

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using CustomizeEditor.HierarchySO;
 using UnityEditor;
 using UnityEngine;
@@ -11,3 +12,4 @@ public class HierarchySettingsSOEditor : Editor{
         }
     }
 }
+#endif
