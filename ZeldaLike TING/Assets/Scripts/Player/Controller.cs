@@ -67,6 +67,9 @@ public class Controller : MonoBehaviour
         InputMap.Movement.Dash.performed += context => Dash();
         InputMap.Movement.Position.started += context => moving = true;
         InputMap.Movement.Position.canceled += context => moving = false;
+
+        InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
+        InputMap.Action.longCard.performed += context => cardControl.LongRange();
     }
 
 

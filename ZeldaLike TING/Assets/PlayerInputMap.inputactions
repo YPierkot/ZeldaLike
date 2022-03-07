@@ -129,9 +129,27 @@
             "id": "7531efdc-aeeb-4c26-80ba-dde850b44dbd",
             "actions": [
                 {
-                    "name": "A",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "04b5785d-fb4e-4b49-8a83-be4fa8923317",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "shortCard",
+                    "type": "Button",
+                    "id": "c378e838-7fec-41ff-a419-cad94584c253",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "longCard",
+                    "type": "Button",
+                    "id": "e8c33c70-f1a9-4bff-b265-1358f1152b65",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -146,7 +164,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "A",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "332030e1-728b-40e4-85d9-a93afcc6d63c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keybord",
+                    "action": "shortCard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c0e1d293-5a07-412c-a9b2-74acf968f407",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keybord",
+                    "action": "longCard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -171,6 +211,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

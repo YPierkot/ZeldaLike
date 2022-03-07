@@ -1,7 +1,6 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UI;
 using YOPHelper;
 
 [CustomEditor(typeof(TrelloSO))]
@@ -144,3 +143,4 @@ public class TrelloSOEditor : Editor {
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif
