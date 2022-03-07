@@ -37,7 +37,7 @@ public class WindCardLongRange : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Collider"))
+        if (!other.transform.CompareTag("Ennemy"))
         {
             WindCardLongEffect();
         }
@@ -48,5 +48,9 @@ public class WindCardLongRange : MonoBehaviour
         yield return new WaitForSeconds(timeToStopMovement);
         DOTween.Kill(sequence);
     }
-    
+
+    private void OnDestroy()
+    {
+        CardsController.isWindGround = false;
+    }
 }

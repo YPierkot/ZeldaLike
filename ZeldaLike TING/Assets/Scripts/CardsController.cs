@@ -1,16 +1,18 @@
+using System;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardsController : MonoBehaviour
 {
+    public static CardsController instance;
     // Cards Variables 
     public bool canUseCards;
     
     [Space(10)]
     [Header("Fire Card")]
     public GameObject fireCard;
-    public bool isFireGround;
+    public static bool isFireGround;
     public GameObject groundFireCard;
     public GameObject fireCardGrounded;
     public bool canUseFireCard;
@@ -19,7 +21,7 @@ public class CardsController : MonoBehaviour
     [Space(10)]
     [Header("Ice Card")] // IceCard
     public GameObject iceCard;
-    public bool isIceGround;
+    public static bool isIceGround;
     public GameObject groundIceCard;
     public GameObject iceCardGrounded;
     public bool canUseIceCard;
@@ -29,21 +31,20 @@ public class CardsController : MonoBehaviour
     [Header("Wall Card")] // Wall Card
     public GameObject wallCard;
     public GameObject wallCardGrounded;
-    public bool isWallGround;
+    public static bool isWallGround;
     public GameObject groundWallCard;
     public bool canUseWallCard;
     public bool canUseLongWallCard;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")]
-    public bool isWindGround;
+    public static bool isWindGround;
     public GameObject windCard;
     public GameObject windCardGrounded;
     public GameObject groundWindCard;
     public bool canUseWindCard;
     public bool canUseLongWindCard;
-    
-    
+
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
@@ -55,33 +56,20 @@ public class CardsController : MonoBehaviour
     }
     
     public CardsState State = CardsState.Null;
-    
+
+    private void Awake()
+    {
+        if (instance != null)
+            instance = this;
+        else 
+            instance = this;
+    }
+
     private void Start()
     {
         canUseCards = true;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = canUseLongFireCard = canUseLongIceCard = canUseLongWallCard = canUseLongWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        LaunchCard();
-    }
-
-    private void LaunchCard()
-    {
-        if (!canUseCards) return;
-        
-        if (Input.GetKeyDown(KeyCode.Mouse0)) // LA C'est POSER UNE CARTE AU SOL
-        {
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1)) // ICI C'EST POUR LE TRUC QUI VA LOIN
-        {
-            
-        }
     }
 
     private void OnDrawGizmos()
@@ -91,6 +79,8 @@ public class CardsController : MonoBehaviour
 
     public void ShortRange()
     {
+        if (!canUseCards) return;
+        
         Debug.Log("short Effect");
         switch(State)
         {
@@ -104,6 +94,8 @@ public class CardsController : MonoBehaviour
 
     public void LongRange()
     {
+        if (!canUseCards) return;
+        
         Debug.Log("long Effect");
         switch(State)
         {

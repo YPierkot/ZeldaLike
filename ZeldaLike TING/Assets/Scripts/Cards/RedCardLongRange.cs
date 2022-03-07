@@ -28,10 +28,15 @@ public class RedCardLongRange : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Collider"))
+        if (!other.transform.CompareTag("Ennemy"))
         {
             FireCardLongEffect();
         }
         Destroy(gameObject, 0.3f);
+    }
+
+    private void OnDestroy()
+    {
+        CardsController.isFireGround = false;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class WallCardLongRange : MonoBehaviour
 {
     public GameObject WallLR;
+    public CardsController cardsController;
     
     public void WallCardLongEffect()
     {
@@ -22,9 +24,14 @@ public class WallCardLongRange : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Collider"))
+        if (!other.transform.CompareTag("Ennemy"))
         {
             WallCardLongEffect();
         }
+    }
+
+    private void OnDestroy()
+    {
+        CardsController.isWallGround = false;
     }
 }
