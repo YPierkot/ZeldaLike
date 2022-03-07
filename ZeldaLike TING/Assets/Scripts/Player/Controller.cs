@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -32,6 +31,7 @@ public class Controller : MonoBehaviour
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
+    private CardsController cardControl;
     
   
     private bool moving;
@@ -78,9 +78,6 @@ public class Controller : MonoBehaviour
         Rotate(rotation);
         
     }
-
-
-
     #endregion
 
     
@@ -89,6 +86,7 @@ public class Controller : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
+        cardControl = GetComponent<CardsController>();
 
         foreach (SpriteAngle SA in spriteArray)
         {
@@ -108,20 +106,21 @@ public class Controller : MonoBehaviour
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
         }
-        
-        if (dashing) 
+
+        if (dashing)
         {
-            if (dashTimer > 0.15f)
-            {
+
+            if (dashTimer > dashCurve[dashCurve.length-1].time)
+
+        {
                 dashing = false;
                 canMove = true;
+                sprite.color = Color.white;
             }
             
-            rb.AddForce(lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
+            rb.velocity = lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed; 
             dashTimer += Time.deltaTime;
-
         }
-
     }
 
     private void FixedUpdate()
@@ -170,6 +169,8 @@ public class Controller : MonoBehaviour
             dashing = true;
             dashTimer = 0;
             canMove = false;
+            sprite.color = new Color(87, 19, 140, 0.9f);
+
         }
     }
 

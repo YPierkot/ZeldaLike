@@ -46,5 +46,6 @@ public class PlayerStat : MonoBehaviour
       control.canMove = false;
       yield return new WaitForSeconds(0.3f);
       control.canMove = true;
+      
    }
 }
