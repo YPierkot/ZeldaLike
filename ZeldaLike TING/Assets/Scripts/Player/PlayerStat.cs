@@ -21,7 +21,7 @@ public class PlayerStat : MonoBehaviour
       UIManager.Instance.UpdateLife(life);
    }
    
-   void TakeDamage(int damage = 1)
+   public void TakeDamage(int damage = 1)
    {
       life -= damage;
       UIManager.Instance.UpdateLife(life);

@@ -15,6 +15,7 @@ public class RedCardGroundEffect : MonoBehaviour
             col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
             col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
         }
-        Destroy(gameObject, 0.2f);
+        
+        Destroy(gameObject);
     }
 }
