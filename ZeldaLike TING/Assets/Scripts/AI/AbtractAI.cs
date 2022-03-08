@@ -13,7 +13,8 @@ namespace AI
         
         [Header("Commom Values"), Space]
         [SerializeField] private int e_hp = 1; // Enemy Health Points
-        [SerializeField] private int e_rangeSight = 10; // Enemy Attack Range
+        [SerializeField] public int e_rangeSight = 10; // Enemy Attack Range
+        [SerializeField] public int e_rangeAttack = 10; // Enemy Attack Range
         [SerializeField] protected float e_speed = 10; // Enemy Speed
         [SerializeField] private SpriteRenderer e_sprite; // Enemy Sprite Renderer
         
@@ -133,6 +134,8 @@ namespace AI
         {
             Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(transform.position, e_rangeSight);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, e_rangeAttack);
         }
     }
 }

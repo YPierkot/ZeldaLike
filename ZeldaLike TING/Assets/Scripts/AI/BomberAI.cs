@@ -12,7 +12,7 @@ namespace AI
         [Header("Specific values"), Space]
         [SerializeField] private GameObject bombPrefab;
         [SerializeField] private float e_rangeWander = 2;
-        private Vector2 basePosition;
+        private Vector3 basePosition;
         
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
@@ -42,22 +42,24 @@ namespace AI
             
             isMoving = true;
             
-            Vector2 newMoveTarget = new Vector2(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander),
-                Random.Range(basePosition.y - e_rangeWander, basePosition.y + e_rangeWander));
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (1), 
+                Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
-            e_transform.DOMove(newMoveTarget, 1f).OnComplete(() => isMoving = false);
+            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
         }
         
         protected override void Attack()
         {
             base.Attack();
+
+            
+            
             if (isAttacking)
                 return;
             isAttacking = true;
-
-            StartCoroutine(DoDropBomb());
             
             // Attack Pattern
+            StartCoroutine(DoDropBomb());
         }
 
         private IEnumerator DoDropBomb()
@@ -71,14 +73,18 @@ namespace AI
             //yield return new WaitForSeconds(0.15f);
             // Add Screen Shake
             
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             isAttacking = false;
+            
+            ChangeState(AIStates.walking);
         }
         
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, e_rangeWander);
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(transform.position, e_rangeSight);
         }
     }
 }
