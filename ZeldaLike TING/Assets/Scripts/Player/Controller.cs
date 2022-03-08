@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -17,28 +18,34 @@ public class Controller : MonoBehaviour
         
         public Sprite sprite;
     }
+    
     [Serializable]
     struct Interval
     {
         public float min;
         public float max;
     }
-    
 
     #endregion
     
-    
+    // --- COMPONENTS ---
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
-    private CardsController cardControl;
     
-  
+    private CardsController cardControl;
+    [SerializeField] private Animator attackZone;
+    
+   // --- STATES ---
     private bool moving;
     private bool dashing;
-    [SerializeField] public bool canMove = true;
+    private bool inAttack;
 
     private float dashTimer;
+    public int attackCounter;
+    [SerializeField] public bool nextCombo;
+    [SerializeField] public bool waitForCombo;
+    [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
     private Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new Dictionary<Func<float, bool>, SpriteAngle>();
@@ -56,6 +63,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private AnimationCurve dashCurve;
     
     
+    [Header("--- DEBUG ---")] 
     [SerializeField] private TextMeshProUGUI Debugger;
     [SerializeField] private Transform transformDebugger;
 
@@ -70,6 +78,7 @@ public class Controller : MonoBehaviour
 
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
+        InputMap.Action.Attack.performed += context => Attack();
     }
 
 
@@ -163,7 +172,6 @@ public class Controller : MonoBehaviour
 
     void Dash()
     {
-        Debug.Log("Dash");
         if (!dashing && canMove)
         {
             dashing = true;
@@ -172,16 +180,57 @@ public class Controller : MonoBehaviour
         }
     }
 
+    void Attack()
+    {
+        if (attackCounter < 3)
+        {
+            if (!inAttack)
+            {
+                StopCoroutine("ComboWait");
+                canMove = false;
+                inAttack = true;
+                nextCombo = false;
+                Debug.Log("Attack");
+                //attackZone.collider.enabled = true;
+                attackCounter++;
+                attackZone.Play($"Attack{attackCounter}");
+                if (attackCounter != 3)
+                {
+                    rb.AddForce(moveTransform.forward*-700);
+                }
+            }
+            else
+            {
+                nextCombo = true;
+            }
+        }
+    }
+
+    public void CheckAttack()
+    {
+        inAttack = false;
+        if (!nextCombo || attackCounter == 3)
+        {
+            StartCoroutine("ComboWait");
+        }
+        else
+        {
+            Attack();
+        }
+    }
+
     void Rotate(Vector2 rotation)
     {
-        
-        angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
-        if (angleView < 0) angleView = 360 + angleView;
-        if (Debugger != null)
-            Debugger.text = angleView.ToString();
+        if (!inAttack)
+        {
+            angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
+            if (angleView < 0) angleView = 360 + angleView;
+            if (Debugger != null)
+                Debugger.text = angleView.ToString();
             
-        moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
-        UpdateSprite();
+            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+            UpdateSprite();
+        }
     }
 
     void UpdateSprite()
@@ -192,6 +241,14 @@ public class Controller : MonoBehaviour
             sprite.sprite = newSA.sprite;
             currentInterval = newSA.angleInterval;
         }  
+    }
+
+
+    public IEnumerator ComboWait()
+    {
+        yield return new WaitForSeconds(0.15f);
+        attackCounter = 0;
+        canMove = true;
     }
     
 }

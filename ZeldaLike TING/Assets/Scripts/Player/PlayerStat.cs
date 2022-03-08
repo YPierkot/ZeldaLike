@@ -29,10 +29,9 @@ public class PlayerStat : MonoBehaviour
 
    private void OnCollisionEnter(Collision other)
    {
-      Debug.Log("Collide");
+      
       if (other.transform.CompareTag("Ennemy")) 
       {
-         Debug.Log("Ennemy");
          TakeDamage();
          StartCoroutine("HitCD");
          control.canMove = false;
