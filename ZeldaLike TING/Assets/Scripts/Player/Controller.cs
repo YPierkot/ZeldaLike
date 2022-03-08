@@ -121,13 +121,13 @@ public class Controller : MonoBehaviour
         
         if (dashing) 
         {
-            if (dashTimer > 0.15f)
+            if (dashTimer > dashCurve[dashCurve.length-1].time)
             {
                 dashing = false;
                 canMove = true;
             }
             
-            rb.AddForce(lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
+            rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
     }
