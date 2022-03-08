@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &689773535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689773536}
+  m_Layer: 7
+  m_Name: transformLaunchCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &689773536
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689773535}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.08425111, y: -1.82, z: 0.01}
+  m_LocalScale: {x: 7.0209293, y: 11.37488, z: 4.494179}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7337217463896534133}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7337217462859022877
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +43,7 @@ GameObject:
   - component: {fileID: 7337217462859022879}
   - component: {fileID: 7337217462859022878}
   - component: {fileID: 7337217462859022873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -134,7 +165,7 @@ GameObject:
   - component: {fileID: 7337217462935629413}
   - component: {fileID: 7337217462935629414}
   - component: {fileID: 7337217462935629415}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: --- PLAYER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,9 +393,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.47
-  m_Height: 1.4889103
+  m_Height: 1.4955975
   m_Direction: 1
-  m_Center: {x: 0, y: 0.045544803, z: 0}
+  m_Center: {x: 0, y: -0.1916632, z: 0}
 --- !u!114 &7337217462935629415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,18 +416,22 @@ MonoBehaviour:
     type: 3}
   fireCardGrounded: {fileID: 0}
   canUseFireCard: 0
+  canUseLongFireCard: 0
   iceCard: {fileID: 8479553354742785972, guid: e07938c057bbe18428fe3571889a80d8, type: 3}
   isIceGround: 0
   groundIceCard: {fileID: 8479553354742785972, guid: fc136b71843c0dc4aa5742e91b9f59f6,
     type: 3}
   iceCardGrounded: {fileID: 0}
   canUseIceCard: 0
-  wallCard: {fileID: 0}
+  canUseLongIceCard: 0
+  wallCard: {fileID: 8479553354742785972, guid: 0dd8fc4492fde0d4d971dce2508581fd,
+    type: 3}
   wallCardGrounded: {fileID: 0}
   isWallGround: 0
   groundWallCard: {fileID: 8479553354742785972, guid: 7d93a1f92ec75bf47a2168b10b2f9858,
     type: 3}
   canUseWallCard: 0
+  canUseLongWallCard: 0
   isWindGround: 0
   windCard: {fileID: 8479553354742785972, guid: 93a05bf5758e84f45b22adb664ddc335,
     type: 3}
@@ -404,12 +439,14 @@ MonoBehaviour:
   groundWindCard: {fileID: 8479553354742785972, guid: c3bb207d1a53eef4e9cbdb298cdca9f1,
     type: 3}
   canUseWindCard: 0
-  m_tranform: {fileID: 0}
+  canUseLongWindCard: 0
+  m_tranform: {fileID: 689773536}
   Ennemy:
     serializedVersion: 2
-    m_Bits: 0
-  projectileSpeed: 0
-  State: 0
+    m_Bits: 64
+  projectileSpeed: 200
+  DebugTransform: {fileID: 0}
+  State: 1
 --- !u!1 &7337217463896534132
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +459,7 @@ GameObject:
   - component: {fileID: 7337217463896534128}
   - component: {fileID: 7337217463896534135}
   - component: {fileID: 7337217463896534134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +477,8 @@ Transform:
   m_LocalPosition: {x: 0.465, y: 0, z: 0}
   m_LocalScale: {x: 0.14243129, y: 0.22251001, z: 0.087913}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 689773536}
   m_Father: {fileID: 7337217464296193324}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -517,7 +555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7337217464296193324}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MoveTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +591,7 @@ GameObject:
   - component: {fileID: 7337217464612804666}
   - component: {fileID: 7337217464612804665}
   - component: {fileID: 7337217464612804664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

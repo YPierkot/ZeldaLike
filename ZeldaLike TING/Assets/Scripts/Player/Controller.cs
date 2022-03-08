@@ -67,8 +67,18 @@ public class Controller : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Debugger;
     [SerializeField] private Transform transformDebugger;
 
+    public static Controller instance;
+    
     void Awake()
     {
+        if (instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        instance = this;
+        
         InputMap = new PlayerInputMap();
         InputMap.Enable();
         InputMap.Movement.Rotation.performed += RotationOnperformed;
@@ -91,7 +101,7 @@ public class Controller : MonoBehaviour
         
     }
     #endregion
-
+    
     
     void Start()
     {

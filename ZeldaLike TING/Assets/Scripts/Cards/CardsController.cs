@@ -1,46 +1,54 @@
+using System;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardsController : MonoBehaviour
 {
+    public static CardsController instance;
     // Cards Variables 
     public bool canUseCards;
     
     [Space(10)]
     [Header("Fire Card")]
     public GameObject fireCard;
-    public bool isFireGround;
+    public static bool isFireGround;
     public GameObject groundFireCard;
     public GameObject fireCardGrounded;
     public bool canUseFireCard;
+    public bool canUseLongFireCard;
     
     [Space(10)]
     [Header("Ice Card")] // IceCard
     public GameObject iceCard;
-    public bool isIceGround;
+    public static bool isIceGround;
     public GameObject groundIceCard;
     public GameObject iceCardGrounded;
     public bool canUseIceCard;
+    public bool canUseLongIceCard;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
     public GameObject wallCard;
     public GameObject wallCardGrounded;
-    public bool isWallGround;
+    public static bool isWallGround;
     public GameObject groundWallCard;
     public bool canUseWallCard;
+    public bool canUseLongWallCard;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")]
-    public bool isWindGround;
+    public static bool isWindGround;
     public GameObject windCard;
     public GameObject windCardGrounded;
     public GameObject groundWindCard;
     public bool canUseWindCard;
-    
+    public bool canUseLongWindCard;
 
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
+    public Transform DebugTransform;
     
     public enum CardsState
     {
@@ -48,33 +56,20 @@ public class CardsController : MonoBehaviour
     }
     
     public CardsState State = CardsState.Null;
-    
+
+    private void Awake()
+    {
+        if (instance != null)
+            instance = this;
+        else 
+            instance = this;
+    }
+
     private void Start()
     {
         canUseCards = true;
-        canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
+        canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = canUseLongFireCard = canUseLongIceCard = canUseLongWallCard = canUseLongWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        LaunchCard();
-    }
-
-    private void LaunchCard()
-    {
-        if (!canUseCards) return;
-        
-        if (Input.GetKeyDown(KeyCode.Mouse0)) // LA C'est POSER UNE CARTE AU SOL
-        {
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1)) // ICI C'EST POUR LE TRUC QUI VA LOIN
-        {
-            
-        }
     }
 
     private void OnDrawGizmos()
@@ -84,6 +79,8 @@ public class CardsController : MonoBehaviour
 
     public void ShortRange()
     {
+        if (!canUseCards) return;
+        
         Debug.Log("short Effect");
         switch(State)
         {
@@ -97,6 +94,8 @@ public class CardsController : MonoBehaviour
 
     public void LongRange()
     {
+        if (!canUseCards) return;
+        
         Debug.Log("long Effect");
         switch(State)
         {
@@ -110,33 +109,88 @@ public class CardsController : MonoBehaviour
 
     #region CardEffectsLongRange
 
+    private const float radiusShootPoint = 0.35f;
     // Fire Card
     private void FireballLongRange()
     {
-        Debug.Log("Fireball Long Range Shoot");
-        GameObject cd = Instantiate(fireCard, new Vector3(m_tranform.position.x, m_tranform.position.y, m_tranform.position.z), Quaternion.identity);
-        cd.GetComponent<Rigidbody>().velocity = Vector3.forward * Time.deltaTime * projectileSpeed;
+        if (canUseLongFireCard)
+        {
+            if (!isFireGround)
+            {
+                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                shootPointPos.Normalize();
+                Destroy(fireCardGrounded = Instantiate(fireCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
+                fireCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                isFireGround = true;
+            }
+            else
+            {
+                fireCardGrounded.GetComponent<RedCardLongRange>().FireCardLongEffect();
+                isFireGround = false;
+            }
+        }
     }
     
     // Ice Card
     private void IceLongRange()
     {
-        Debug.Log("IceBall Long Range Shoot");
-        GameObject cd = Instantiate(iceCard, new Vector3(m_tranform.position.x, m_tranform.position.y, m_tranform.position.z), Quaternion.identity);
-        cd.GetComponent<Rigidbody>().velocity = Vector3.forward * Time.deltaTime * projectileSpeed;
+        if (canUseLongIceCard)
+        {
+            if (!isIceGround)
+            {
+                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                shootPointPos.Normalize();
+                Destroy(iceCardGrounded = Instantiate(iceCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
+                iceCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                isIceGround = true;
+            }
+            else
+            {
+                iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet();
+                isIceGround = false;
+            }
+        }
     }
     
     // Wall Card
     private void WallLongRange()
     {
-        
+        if (canUseWallCard)
+        {
+            if (!isWallGround)
+            {
+                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                shootPointPos.Normalize();
+                Destroy(wallCardGrounded = Instantiate(wallCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
+                wallCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                isWallGround = true;
+            }
+            else
+            {
+                wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect();
+                isWallGround = false;
+            }
+        }
     }
     
     private void WindLongRange()
     {
-        Debug.Log("IceBall Long Range Shoot");
-        GameObject wCd = Instantiate(windCard, new Vector3(m_tranform.position.x, m_tranform.position.y, m_tranform.position.z), Quaternion.identity);
-        wCd.GetComponent<Rigidbody>().velocity = Vector3.forward * Time.deltaTime * projectileSpeed;
+        if (canUseWindCard)
+        {
+            if (!isWindGround)
+            {
+                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                shootPointPos.Normalize();
+                Destroy(windCardGrounded = Instantiate(windCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
+                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                isWindGround = true;
+            }
+            else
+            {
+                windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect();
+                isWindGround = false;
+            }
+        }
     }
     
     #endregion
@@ -217,4 +271,3 @@ public class CardsController : MonoBehaviour
     #endregion
     
 }
-
