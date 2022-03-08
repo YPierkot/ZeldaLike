@@ -13,8 +13,8 @@ namespace AI
         
         [Header("Commom Values"), Space]
         [SerializeField] private int e_hp = 1; // Enemy Health Points
-        [SerializeField] public int e_rangeSight = 10; // Enemy Attack Range
-        [SerializeField] public int e_rangeAttack = 10; // Enemy Attack Range
+        [SerializeField] public float e_rangeSight = 10f; // Enemy Attack Range
+        [SerializeField] public float e_rangeAttack = 10f; // Enemy Attack Range
         [SerializeField] protected float e_speed = 10; // Enemy Speed
         [SerializeField] private SpriteRenderer e_sprite; // Enemy Sprite Renderer
         
