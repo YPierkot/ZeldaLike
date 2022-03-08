@@ -411,14 +411,12 @@ MonoBehaviour:
   canUseCards: 0
   fireCard: {fileID: 8479553354742785972, guid: 70ebc9619449d2b4c8e60f876b51c755,
     type: 3}
-  isFireGround: 0
   groundFireCard: {fileID: 8479553354742785972, guid: dbf3923e075453146b911fa71af45ba6,
     type: 3}
   fireCardGrounded: {fileID: 0}
   canUseFireCard: 0
   canUseLongFireCard: 0
   iceCard: {fileID: 8479553354742785972, guid: e07938c057bbe18428fe3571889a80d8, type: 3}
-  isIceGround: 0
   groundIceCard: {fileID: 8479553354742785972, guid: fc136b71843c0dc4aa5742e91b9f59f6,
     type: 3}
   iceCardGrounded: {fileID: 0}
@@ -427,12 +425,10 @@ MonoBehaviour:
   wallCard: {fileID: 8479553354742785972, guid: 0dd8fc4492fde0d4d971dce2508581fd,
     type: 3}
   wallCardGrounded: {fileID: 0}
-  isWallGround: 0
   groundWallCard: {fileID: 8479553354742785972, guid: 7d93a1f92ec75bf47a2168b10b2f9858,
     type: 3}
   canUseWallCard: 0
   canUseLongWallCard: 0
-  isWindGround: 0
   windCard: {fileID: 8479553354742785972, guid: 93a05bf5758e84f45b22adb664ddc335,
     type: 3}
   windCardGrounded: {fileID: 0}
@@ -444,7 +440,7 @@ MonoBehaviour:
   Ennemy:
     serializedVersion: 2
     m_Bits: 64
-  projectileSpeed: 200
+  projectileSpeed: 400
   DebugTransform: {fileID: 0}
   State: 1
 --- !u!1 &7337217463896534132
