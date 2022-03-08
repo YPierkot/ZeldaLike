@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -17,50 +18,75 @@ public class Controller : MonoBehaviour
         
         public Sprite sprite;
     }
+    
     [Serializable]
     struct Interval
     {
         public float min;
         public float max;
     }
-    
 
     #endregion
     
-    
+    // --- COMPONENTS ---
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
+    
     private CardsController cardControl;
     
-  
+   // --- STATES ---
     private bool moving;
     private bool dashing;
-    [SerializeField] public bool canMove = true;
+    private bool inAttack;
 
     private float dashTimer;
+    [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
     private Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new Dictionary<Func<float, bool>, SpriteAngle>();
 
 
     private PlayerInputMap InputMap;
+    [SerializeField] private LayerMask pointerMask;
     [SerializeField] Transform moveTransform;
     private Vector3 lastDir;
+    
+    [Header("--- CAMERA ---")] 
+    [SerializeField] private CameraController camera;
+    [SerializeField] private Transform PlayerCameraPoint;
+    private Vector3 cameraOffset;
+    private bool cameraOnPlayer = true;
 
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
+    
+    [Header("--- ATTAQUE ---")] 
+    [SerializeField] private Animator attackZone;
+    public int attackCounter;
+    [SerializeField] public bool nextCombo;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
     
     
+    [Header("--- DEBUG ---")] 
     [SerializeField] private TextMeshProUGUI Debugger;
     [SerializeField] private Transform transformDebugger;
 
+    public static Controller instance;
+    
     void Awake()
     {
+        if (instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        instance = this;
+        
         InputMap = new PlayerInputMap();
         InputMap.Enable();
         InputMap.Movement.Rotation.performed += RotationOnperformed;
@@ -70,6 +96,7 @@ public class Controller : MonoBehaviour
 
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
+        InputMap.Action.Attack.performed += context => Attack();
     }
 
 
@@ -82,7 +109,7 @@ public class Controller : MonoBehaviour
         
     }
     #endregion
-
+    
     
     void Start()
     {
@@ -104,7 +131,7 @@ public class Controller : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit);
+            Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
             transformDebugger.position = hit.point;
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
@@ -112,13 +139,15 @@ public class Controller : MonoBehaviour
         
         if (dashing) 
         {
-            if (dashTimer > 0.15f)
+            if (dashTimer > dashCurve[dashCurve.length-1].time)
             {
                 dashing = false;
                 canMove = true;
+                camera.dashing = false;
             }
-            
-            rb.AddForce(lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
+
+            if(cameraOnPlayer) camera.transform.position = transform.position + cameraOffset;
+            rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
     }
@@ -163,25 +192,67 @@ public class Controller : MonoBehaviour
 
     void Dash()
     {
-        Debug.Log("Dash");
         if (!dashing && canMove)
         {
             dashing = true;
             dashTimer = 0;
             canMove = false;
+            cameraOffset = camera.transform.position - transform.position;
+            camera.dashing = true;
+        }
+    }
+
+    void Attack()
+    {
+        if (attackCounter < 3)
+        {
+            if (!inAttack)
+            {
+                StopCoroutine("ComboWait");
+                canMove = false;
+                inAttack = true;
+                nextCombo = false;
+                Debug.Log("Attack");
+                //attackZone.collider.enabled = true;
+                attackCounter++;
+                attackZone.Play($"Attack{attackCounter}");
+                if (attackCounter != 3)
+                {
+                    rb.AddForce(moveTransform.forward*-700);
+                }
+            }
+            else
+            {
+                nextCombo = true;
+            }
+        }
+    }
+
+    public void CheckAttack()
+    {
+        inAttack = false;
+        if (!nextCombo || attackCounter == 3)
+        {
+            StartCoroutine("ComboWait");
+        }
+        else
+        {
+            Attack();
         }
     }
 
     void Rotate(Vector2 rotation)
     {
-        
-        angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
-        if (angleView < 0) angleView = 360 + angleView;
-        if (Debugger != null)
-            Debugger.text = angleView.ToString();
+        if (!inAttack)
+        {
+            angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
+            if (angleView < 0) angleView = 360 + angleView;
+            if (Debugger != null)
+                Debugger.text = angleView.ToString();
             
-        moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
-        UpdateSprite();
+            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+            UpdateSprite();
+        }
     }
 
     void UpdateSprite()
@@ -193,5 +264,31 @@ public class Controller : MonoBehaviour
             currentInterval = newSA.angleInterval;
         }  
     }
-    
+
+
+    public IEnumerator ComboWait()
+    {
+        yield return new WaitForSeconds(0.15f);
+        attackCounter = 0;
+        canMove = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Camera"))
+        {
+            camera.ChangePoint(other.transform);
+            cameraOnPlayer = false;
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Camera"))
+        {
+            camera.ChangePoint(PlayerCameraPoint, true);
+            cameraOnPlayer = true;
+        }
+    }
 }

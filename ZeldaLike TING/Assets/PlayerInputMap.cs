@@ -176,6 +176,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""6039ff49-f929-469c-8cc8-ceae49ef8e78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -209,6 +218,17 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keybord"",
                     ""action"": ""longCard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31bfda7e-383b-4994-a42d-47f0714f019d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -255,6 +275,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Action_Interaction = m_Action.FindAction("Interaction", throwIfNotFound: true);
         m_Action_shortCard = m_Action.FindAction("shortCard", throwIfNotFound: true);
         m_Action_longCard = m_Action.FindAction("longCard", throwIfNotFound: true);
+        m_Action_Attack = m_Action.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -366,6 +387,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Action_Interaction;
     private readonly InputAction m_Action_shortCard;
     private readonly InputAction m_Action_longCard;
+    private readonly InputAction m_Action_Attack;
     public struct ActionActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -373,6 +395,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @Interaction => m_Wrapper.m_Action_Interaction;
         public InputAction @shortCard => m_Wrapper.m_Action_shortCard;
         public InputAction @longCard => m_Wrapper.m_Action_longCard;
+        public InputAction @Attack => m_Wrapper.m_Action_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Action; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -391,6 +414,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @longCard.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnLongCard;
                 @longCard.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnLongCard;
                 @longCard.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnLongCard;
+                @Attack.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_ActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -404,6 +430,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @longCard.started += instance.OnLongCard;
                 @longCard.performed += instance.OnLongCard;
                 @longCard.canceled += instance.OnLongCard;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -437,5 +466,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnInteraction(InputAction.CallbackContext context);
         void OnShortCard(InputAction.CallbackContext context);
         void OnLongCard(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

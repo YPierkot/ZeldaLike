@@ -9,7 +9,9 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] private int lifeMax;
    [SerializeField] private int life;
 
-   [Header("Debug")] [SerializeField] private float repulseForce = 1;
+   [Header("Debug")] 
+   [SerializeField] private float repulseForce = 1;
+   [SerializeField] private CameraShakeScriptable HitShake;
 
    private Controller control;
 
@@ -21,18 +23,18 @@ public class PlayerStat : MonoBehaviour
       UIManager.Instance.UpdateLife(life);
    }
    
-   void TakeDamage(int damage = 1)
+   public void TakeDamage(int damage = 1)
    {
       life -= damage;
       UIManager.Instance.UpdateLife(life);
+      CameraShake.Instance.AddShakeEvent(HitShake);
    }
 
    private void OnCollisionEnter(Collision other)
    {
-      Debug.Log("Collide");
+      
       if (other.transform.CompareTag("Ennemy")) 
       {
-         Debug.Log("Ennemy");
          TakeDamage();
          StartCoroutine("HitCD");
          control.canMove = false;
