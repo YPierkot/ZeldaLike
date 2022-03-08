@@ -287,7 +287,7 @@ public class Controller : MonoBehaviour
     {
         if (other.transform.CompareTag("Camera"))
         {
-            camera.ChangePoint(PlayerCameraPoint);
+            camera.ChangePoint(PlayerCameraPoint, true);
             cameraOnPlayer = true;
         }
     }
