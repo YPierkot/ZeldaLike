@@ -5,7 +5,6 @@ using UnityEngine;
 using DG.Tweening;
 using static AI.AbtractAI.AIStates;
 
-
 namespace AI
 {
     public class AbtractAI : MonoBehaviour
@@ -13,10 +12,10 @@ namespace AI
         #region Variables
         
         [Header("Commom Values"), Space]
-        [SerializeField] private int e_hp = 1;
-        [SerializeField] private int e_rangeSight = 10;
-        [SerializeField] protected float e_speed = 10;
-        [SerializeField] private SpriteRenderer e_sprite;
+        [SerializeField] private int e_hp = 1; // Enemy Health Points
+        [SerializeField] private int e_rangeSight = 10; // Enemy Attack Range
+        [SerializeField] protected float e_speed = 10; // Enemy Speed
+        [SerializeField] private SpriteRenderer e_sprite; // Enemy Sprite Renderer
         
         [Header("Effects"), Space]
         [SerializeField] private float e_stuntValue = 0;
@@ -67,8 +66,7 @@ namespace AI
         {
             if (!init) Init();
             
-            if (e_currentAiState == dead)
-                return;
+            if (e_currentAiState == dead) return;
             
             e_currentAiState = aiState;
         }
@@ -91,7 +89,7 @@ namespace AI
         protected virtual void Walk()
         {
             if (Vector2.Distance(playerTransform.position, e_transform.position) < e_rangeSight)
-                ChangeState(attacking);
+                ChangeState(attacking); // Skip in attack state if player is in sight range
         }
 
         protected virtual void Attack()
@@ -107,7 +105,6 @@ namespace AI
         #endregion
 
         #region Public Method
-
         public void LooseHp(int count)
         {
             e_hp -= count;
@@ -128,11 +125,13 @@ namespace AI
         private void OnDestroy()
         {
             e_sprite.DOKill();
+            e_transform.DOKill();
         }
         #endregion
         
         private void OnDrawGizmos()
         {
+            Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(transform.position, e_rangeSight);
         }
     }
