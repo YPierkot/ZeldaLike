@@ -51,10 +51,12 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] Transform moveTransform;
     private Vector3 lastDir;
-
+    
+    [Header("--- CAMERA ---")] 
     [SerializeField] private CameraController camera;
     [SerializeField] private Transform PlayerCameraPoint;
     private Vector3 cameraOffset;
+    private bool cameraOnPlayer = true;
 
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
@@ -144,7 +146,7 @@ public class Controller : MonoBehaviour
                 camera.dashing = false;
             }
 
-            camera.transform.position = transform.position + cameraOffset;
+            if(cameraOnPlayer) camera.transform.position = transform.position + cameraOffset;
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
@@ -276,6 +278,7 @@ public class Controller : MonoBehaviour
         if (other.transform.CompareTag("Camera"))
         {
             camera.ChangePoint(other.transform);
+            cameraOnPlayer = false;
         }
         
     }
@@ -285,6 +288,7 @@ public class Controller : MonoBehaviour
         if (other.transform.CompareTag("Camera"))
         {
             camera.ChangePoint(PlayerCameraPoint);
+            cameraOnPlayer = true;
         }
     }
 }

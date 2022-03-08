@@ -9,7 +9,9 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] private int lifeMax;
    [SerializeField] private int life;
 
-   [Header("Debug")] [SerializeField] private float repulseForce = 1;
+   [Header("Debug")] 
+   [SerializeField] private float repulseForce = 1;
+   [SerializeField] private CameraShakeScriptable HitShake;
 
    private Controller control;
 
@@ -25,6 +27,7 @@ public class PlayerStat : MonoBehaviour
    {
       life -= damage;
       UIManager.Instance.UpdateLife(life);
+      CameraShake.Instance.AddShakeEvent(HitShake);
    }
 
    private void OnCollisionEnter(Collision other)
