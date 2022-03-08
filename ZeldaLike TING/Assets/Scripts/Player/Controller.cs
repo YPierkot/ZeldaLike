@@ -34,7 +34,6 @@ public class Controller : MonoBehaviour
     private PlayerInput _playerInput;
     
     private CardsController cardControl;
-    [SerializeField] private Animator attackZone;
     
    // --- STATES ---
     private bool moving;
@@ -42,9 +41,6 @@ public class Controller : MonoBehaviour
     private bool inAttack;
 
     private float dashTimer;
-    public int attackCounter;
-    [SerializeField] public bool nextCombo;
-    [SerializeField] public bool waitForCombo;
     [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
@@ -52,11 +48,21 @@ public class Controller : MonoBehaviour
 
 
     private PlayerInputMap InputMap;
+    [SerializeField] private LayerMask pointerMask;
     [SerializeField] Transform moveTransform;
     private Vector3 lastDir;
 
+    [SerializeField] private CameraController camera;
+    [SerializeField] private Transform PlayerCameraPoint;
+    private Vector3 cameraOffset;
+
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
+    
+    [Header("--- ATTAQUE ---")] 
+    [SerializeField] private Animator attackZone;
+    public int attackCounter;
+    [SerializeField] public bool nextCombo;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
@@ -123,7 +129,7 @@ public class Controller : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit);
+            Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
             transformDebugger.position = hit.point;
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
@@ -135,8 +141,10 @@ public class Controller : MonoBehaviour
             {
                 dashing = false;
                 canMove = true;
+                camera.dashing = false;
             }
-            
+
+            camera.transform.position = transform.position + cameraOffset;
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
@@ -187,6 +195,8 @@ public class Controller : MonoBehaviour
             dashing = true;
             dashTimer = 0;
             canMove = false;
+            cameraOffset = camera.transform.position - transform.position;
+            camera.dashing = true;
         }
     }
 
@@ -260,5 +270,21 @@ public class Controller : MonoBehaviour
         attackCounter = 0;
         canMove = true;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Camera"))
+        {
+            camera.ChangePoint(other.transform);
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Camera"))
+        {
+            camera.ChangePoint(PlayerCameraPoint);
+        }
+    }
 }
