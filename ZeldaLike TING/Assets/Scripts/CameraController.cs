@@ -21,23 +21,21 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!dashing)
-        {
-            if (!changingPoint) transform.position = Vector3.Lerp(transform.position, cameraPoint.position, cameraSpeed*0.1f);
-            else
-            {
-                transform.position = Vector3.Lerp(transform.position, cameraPoint.position, changePointSpeed*0.1f*(1/Vector3.Distance(transform.position, cameraPoint.position)*2));
-                Debug.Log("Slow change");
-            }
-        }
-
         if (changingPoint)
         {
+            transform.position = Vector3.Lerp(transform.position, cameraPoint.position, changePointSpeed*0.1f*(1/Vector3.Distance(transform.position, cameraPoint.position)*2));
+            Debug.Log("Slow change");
+            
             if (Vector3.Distance(transform.position, cameraPoint.position) < 0.5f)
             {
                 changingPoint = false;
             }
         }
+        else if (!dashing)
+        {
+            transform.position = Vector3.Lerp(transform.position, cameraPoint.position, cameraSpeed*0.1f);
+        }
+
     }
 
     public void ChangePoint(Transform newTransform)
