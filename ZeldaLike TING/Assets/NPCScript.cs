@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCScript : MonoBehaviour
@@ -11,7 +8,6 @@ public class NPCScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         playerIn = true;
-        Debug.Log("je suis dedans");
     }
 
     private void OnTriggerExit(Collider other)
@@ -23,7 +19,6 @@ public class NPCScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("ca marche wsh");
             DialogueManager.Instance.AssignDialogue(dialogue.dialogue);
         }
     }

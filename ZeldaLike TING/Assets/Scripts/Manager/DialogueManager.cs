@@ -1,8 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class DialogueManager : MonoBehaviour
     private float defaultDelay = 2f;
     private int sentenceIndex;
     [SerializeField] private DialogueScriptable tutorialDialogue;
+    [SerializeField] private Image characterEmotion;
+    private int lastDialogueStopIndex;
+    private int lastSentenceStopIndex;
+    private DialogueLine[] StoppedDialogue;
 
     private void Start()
     {
@@ -23,12 +28,18 @@ public class DialogueManager : MonoBehaviour
         }
         
         sentences = new Queue<string>();
-        DialogueLines = new DialogueLine[1];
         Tutorial();
     }
 
     public void AssignDialogue(DialogueLine[] dialogue)
     {
+        if (DialogueLines != null)
+        {
+            lastDialogueStopIndex = currentDialogue;
+            lastSentenceStopIndex = sentenceIndex;
+            StoppedDialogue = DialogueLines;
+            CancelInvoke("DisplayNextSentence");
+        }
         currentDialogue = 0;
         DialogueLines = dialogue;
         StartDialogue(DialogueLines[currentDialogue]);
@@ -36,7 +47,6 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueLine dialogueLine)
     {
         sentenceIndex = 0;
-        Debug.Log(dialogueLine.voiceLine);
         SoundManager.Instance.PlayVoiceline(dialogueLine.voiceLine);
         sentences.Clear();
         Debug.Log("The dialogue started");
@@ -49,30 +59,31 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        Debug.Log($"Il reste {sentences.Count} phrases" );
-
-        
+        //Debug.Log($"Il reste {sentences.Count} phrases" );
+        Debug.Log("Je lance une nouvelle phrase");
         float delay;
+        
         if (sentences.Count <= 0)
         {
-            Debug.Log("fin du dialogue");
+            Debug.Log("C'est la fin");
             EndDialogue();
         }
         else
         {
             string currentLine = sentences.Dequeue();
             dialogueDisplay.text = currentLine;
+            SetCharacterEmotion();
+            //Debug.Log(sentenceIndex);
             if (DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay == 0)
             {
-                Debug.Log(DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay);
                 delay = defaultDelay;
             }
             else
             {
-                Debug.Log(DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay);
                 delay = DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay;
             }
             sentenceIndex++;
+            //Debug.Log(delay);
             Invoke("DisplayNextSentence", delay);
         }
     }
@@ -81,12 +92,23 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogue != DialogueLines.Length - 1)
         {
+            Debug.Log("je lance la suite");
             currentDialogue++;
+            sentenceIndex = 0;
             StartDialogue(DialogueLines[currentDialogue]);
         }
-        else
+        else if (StoppedDialogue != null)
+        {
+            Debug.Log("Je lance le dialogue arrêté");
+            //Debug.Log(lastDialogueStopIndex);
+            DialogueLines = StoppedDialogue;
+            StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
+            StoppedDialogue = null;
+        }
+        else 
         {
             Debug.Log("fin du dialogue");
+            DialogueLines = null;
             sentenceIndex = 0;
             dialogueDisplay.text = null;
         }
@@ -96,5 +118,35 @@ public class DialogueManager : MonoBehaviour
     {
         AssignDialogue(tutorialDialogue.dialogue);
     }
-    
+
+    private void SetCharacterEmotion()
+    {
+        switch (DialogueLines[currentDialogue].dialogLines[sentenceIndex].expressions)
+        {
+            case dialogueProp.Expressions.Angry:
+                characterEmotion.sprite = DialogueLines[currentDialogue].character.Angry;
+                //Debug.Log("Angry");
+                break;
+            
+            case dialogueProp.Expressions.Sad:
+                characterEmotion.sprite = DialogueLines[currentDialogue].character.Sad;
+                //Debug.Log("Sad");
+                break;
+            
+            case dialogueProp.Expressions.Laughing:
+                characterEmotion.sprite = DialogueLines[currentDialogue].character.Laughing;
+                //Debug.Log("Laughing");
+                break;
+            
+            case dialogueProp.Expressions.Confused:
+                characterEmotion.sprite = DialogueLines[currentDialogue].character.Confused;
+                //Debug.Log("Confused");
+                break;
+            
+            case dialogueProp.Expressions.Neutral:
+                characterEmotion.sprite = DialogueLines[currentDialogue].character.Neutral;
+                //Debug.Log("Neutral");
+                break;
+        }
+    }
 }

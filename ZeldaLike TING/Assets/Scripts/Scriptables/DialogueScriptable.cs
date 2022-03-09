@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Dialogue", menuName = "DialogueScriptable")]
@@ -11,6 +9,7 @@ public class DialogueScriptable : ScriptableObject
 [System.Serializable]
 public class DialogueLine
 {
+    public CharacterScriptable character;
     public float startingDelay;
     public dialogueProp[] dialogLines;
     public AudioClip voiceLine;
@@ -19,8 +18,15 @@ public class DialogueLine
 [System.Serializable]
 public class dialogueProp
 {
+    public enum Expressions
+    {
+        Neutral, Sad, Confused, Angry, Laughing
+    }
+
+    public Expressions expressions;
     public string name;
     [TextArea(4, 10)]
     public string line;
+    
     public float delay;
 }
