@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RedCardLongRange : MonoBehaviour
 {
-    public LayerMask Ennemy;
+    public LayerMask mask; //Ennemy & Interact
     
     private void OnDrawGizmos()
     {
@@ -16,11 +16,21 @@ public class RedCardLongRange : MonoBehaviour
     { 
         Debug.Log("Oui alors");
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, Ennemy);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, mask);
         foreach (var col in colliders)
         {
-            col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-            col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
+            switch (col.transform.tag)
+            {
+                case "Interactable":
+                    col.GetComponent<InteracteObject>().Burn();
+                    break;
+                
+                case "Ennemy" :
+                    col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+                    col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
+                    break;
+                    
+            }
         }
         
         Destroy(gameObject);

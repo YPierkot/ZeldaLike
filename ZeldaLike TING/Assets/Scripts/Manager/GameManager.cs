@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,10 +8,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+        private void Awake()
+        {
+            Instance = this;
+        }
 
     #endregion
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
     {
         Keybord, Xbox, ps
     }
-
+    
+    
     public controller currentContorller;
 }

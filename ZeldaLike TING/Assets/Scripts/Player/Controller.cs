@@ -57,6 +57,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private Transform PlayerCameraPoint;
     private Vector3 cameraOffset;
     private bool cameraOnPlayer = true;
+    private bool dashCamera;
 
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
@@ -144,9 +145,10 @@ public class Controller : MonoBehaviour
                 dashing = false;
                 canMove = true;
                 camera.dashing = false;
+                dashCamera = false;
             }
 
-            if(cameraOnPlayer) camera.transform.position = transform.position + cameraOffset;
+            if(dashCamera) camera.transform.position = transform.position + cameraOffset;
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
@@ -197,7 +199,11 @@ public class Controller : MonoBehaviour
             dashing = true;
             dashTimer = 0;
             canMove = false;
-            cameraOffset = camera.transform.position - transform.position;
+            if (cameraOnPlayer)
+            {
+                dashCamera = true;
+                cameraOffset = camera.transform.position - transform.position;
+            }
             camera.dashing = true;
         }
     }
