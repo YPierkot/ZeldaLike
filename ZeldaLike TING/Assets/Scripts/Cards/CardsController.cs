@@ -96,7 +96,7 @@ public class CardsController : MonoBehaviour
     {
         if (!canUseCards) return;
         
-        Debug.Log("long Effect");
+        //Debug.Log("long Effect");
         switch(State)
         {
             case CardsState.Null: break;
