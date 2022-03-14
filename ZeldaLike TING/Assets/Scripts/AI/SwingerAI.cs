@@ -19,7 +19,6 @@ namespace AI
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
         [Space(2)] [SerializeField] private Animator swingerAnimator;
-        [SerializeField] private Rigidbody rb;
         private bool debugBool;
         private Vector3 dir;
         private float spriteDir;
@@ -58,8 +57,11 @@ namespace AI
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             
-            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false)
-                .OnComplete(() => swingerAnimator.SetBool("isWalk", false));
+            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
+            if (!isMoving)
+            {
+                swingerAnimator.SetBool("isWalk", false);
+            }
         }
 
         protected override void Attack()
@@ -79,24 +81,31 @@ namespace AI
             }
             else
             {
-                transform.DOKill();
-                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
-                    e_speed * Time.deltaTime);
-
+                if (!isAttacking)
+                {
+                    transform.DOKill();
+                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                        e_speed * Time.deltaTime);
+                    swingerAnimator.SetBool("isWalk", true);
+                }
+                else
+                {
+                    swingerAnimator.SetBool("isWalk", false);
+                }
+                
                 spriteDir = playerTransform.position.x - transform.position.x;
 
                 if (spriteDir < 0)
                     e_sprite.flipX = true;
                 else
                     e_sprite.flipX = false;
-                
             }
         }
 
         private const float radiusShootPoint = 1.9f;
         private IEnumerator DoAttack()
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            e_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             
             dir = playerTransform.position - transform.position;
             dir.Normalize();
@@ -123,7 +132,7 @@ namespace AI
             swingerAnimator.SetBool("isAttack", false);
             CanMove();  
             
-            yield return new WaitForSeconds(3f); // Temps avant de pouvoir ré attaqué
+            yield return new WaitForSeconds(1.5f); // Temps avant de pouvoir ré attaqué
             isAttacking = false;
         }
 
@@ -143,9 +152,9 @@ namespace AI
 
         private void CanMove()
         {
-            rb.constraints = RigidbodyConstraints.None;
-            rb.constraints = RigidbodyConstraints.FreezePositionY;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            e_rigidbody.constraints = RigidbodyConstraints.None;
+            e_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+            e_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 }

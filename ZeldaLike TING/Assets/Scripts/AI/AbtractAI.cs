@@ -53,7 +53,7 @@ namespace AI
             player = Controller.instance;
             playerTransform = player.transform;
             e_transform = transform;
-            e_rigidbody = GetComponent<Rigidbody2D>();
+            e_rigidbody = GetComponent<Rigidbody>();
         }
         
         public void Update()
