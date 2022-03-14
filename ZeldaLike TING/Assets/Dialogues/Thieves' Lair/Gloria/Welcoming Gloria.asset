@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Welcoming Gloria
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Hi! You're Gloria, right?
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: d6f48da5c7933894980ef329679bf5ba, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Guilty!
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Great, welcome to the village!
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: d6f48da5c7933894980ef329679bf5ba, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Thank you so much! '
+      delay: 0
+    - expressions: 1
+      name: 
+      line: You have all been so kind with me...
+      delay: 0
+    - expressions: 1
+      name: 
+      line: I had nowhere to go...
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: That's what we do.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Welcome the lost and the castaways.
+      delay: 0
+    - expressions: 4
+      name: 
+      line: Glad you like it here
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: d6f48da5c7933894980ef329679bf5ba, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I do.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: The integration test is quite harsh tho,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Having to build your own house...
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: We've all been there.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: You're gonna be fine.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Human small talk... Pathethic
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Don't complain, you chose to curse me
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Now you're stuck with me
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I'm not complaing, I'm amused.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You're an odd being, that's for sure.
+      delay: 0
+    voiceLine: {fileID: 0}

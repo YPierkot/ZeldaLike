@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Brent Welcome
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: Kell?!
+      delay: 0
+    - expressions: 4
+      name: 
+      line: Long time no see!
+      delay: 0
+    - expressions: 4
+      name: 
+      line: How's my favorite thief?
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Could be better...
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I can see that,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: You look like a dead body
+      delay: 0
+    - expressions: 2
+      name: 
+      line: What happened to you?
+      delay: 0
+    - expressions: 2
+      name: 
+      line: That purple mark on your face?
+      delay: 0
+    - expressions: 2
+      name: 
+      line: And that hor...
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Nothing Brent,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Don't worry about me.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: What's new?
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Well, odd things are starting
+      delay: 0
+    - expressions: 0
+      name: 
+      line: To happen all over the island.
+      delay: 0
+    - expressions: 2
+      name: 
+      line: Apparently, there are spirit attacks very often
+      delay: 0
+    - expressions: 2
+      name: 
+      line: Which is odd, because it usually is pretty rare.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 1
+      name: 
+      line: Right...
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You're to blame for that human.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 3
+      name: 
+      line: Shut it Mist.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Did the village get attacked?
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Fortunately we were spared
+      delay: 0
+    - expressions: 1
+      name: 
+      line: But the farmers of the East weren't as lucky
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I'll go check on them.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Oh, and there''s a newcomer! '
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Really? That's great!
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yeah, her name is Gloria
+      delay: 0
+    - expressions: 0
+      name: 
+      line: She got cast away from the
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Wind's Edge village. She's currently
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Trying to pass the integration test
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I'll go say I if I see her.
+      delay: 0
+    voiceLine: {fileID: 0}
