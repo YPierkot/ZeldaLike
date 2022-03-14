@@ -596,8 +596,11 @@ public class CustomHierarchy {
         sceneGamInformations.Clear();
         actualInstanceData = new InstanceInfo();
 
-        List<GameObject> sceneRootsGameObject = new List<GameObject>(SceneManager.GetSceneAt(0).GetRootGameObjects());
-
+        List<GameObject> sceneRootsGameObject = new List<GameObject>();
+        for (int i = 0; i < SceneManager.sceneCount; i++) {
+            sceneRootsGameObject.AddRange(SceneManager.GetSceneAt(i).GetRootGameObjects());
+        }
+        
         for (int i = 0; i < sceneRootsGameObject.Count; i++) {
             AddInstanceInfo(sceneRootsGameObject[i], sceneRootsGameObject[i].GetInstanceID(), 0, i);
         }
