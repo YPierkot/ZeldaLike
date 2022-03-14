@@ -16,7 +16,8 @@ namespace AI
         [SerializeField] public float e_rangeSight = 10f; // Enemy Attack Range
         [SerializeField] public float e_rangeAttack = 10f; // Enemy Attack Range
         [SerializeField] protected float e_speed = 10; // Enemy Speed
-        [SerializeField] private SpriteRenderer e_sprite; // Enemy Sprite Renderer
+        [SerializeField] public SpriteRenderer e_sprite; // Enemy Sprite Renderer
+        [SerializeField] public LayerMask playerLayerMask; // Player Layer
         
         [Header("Effects"), Space]
         [SerializeField] private float e_stuntValue = 0;
@@ -34,7 +35,7 @@ namespace AI
         protected Controller player;
         protected Transform playerTransform;
         protected Transform e_transform;
-        protected Rigidbody2D e_rigidbody;
+        protected Rigidbody e_rigidbody;
         
         private bool init;
         #endregion

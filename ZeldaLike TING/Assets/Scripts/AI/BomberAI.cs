@@ -45,7 +45,7 @@ namespace AI
             
             isMoving = true;
             
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (1), 
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (transform.position.y), 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
@@ -101,7 +101,7 @@ namespace AI
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, e_rangeAttack); // Zone of attack range
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, e_fliRange);
+            Gizmos.DrawWireSphere(transform.position, e_fliRange); // Zone of the flie range
         }
     }
 }

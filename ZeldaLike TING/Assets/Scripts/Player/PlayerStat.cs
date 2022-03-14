@@ -25,6 +25,7 @@ public class PlayerStat : MonoBehaviour
    {
       life -= damage;
       UIManager.Instance.UpdateLife(life);
+      Debug.Log("Player Hit");
    }
 
    private void OnCollisionEnter(Collision other)

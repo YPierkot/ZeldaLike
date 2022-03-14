@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using DG.Tweening;
 using Random = UnityEngine.Random;
@@ -10,12 +11,18 @@ namespace AI
     {
         #region Variables
 
-        [Header("Specific Values"), Space] [SerializeField]
-        private float e_rangeWander = 4f;
+        [Header("Specific Values"), Space]
+        [SerializeField] private float e_rangeWander = 4f;
+        [SerializeField] private float e_aoeRange = 1f;
         private Vector3 basePosition;
         
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
+        [Space(2)] [SerializeField] private Animator swingerAnimator;
+        [SerializeField] private Rigidbody rb;
+        private bool debugBool;
+        private Vector3 dir;
+        private float spriteDir;
         #endregion
 
 
@@ -36,17 +43,23 @@ namespace AI
         
         protected override void Walk()
         {
+            if(isAttacking)
+                return;
+            
             base.Walk();
             
             if(isMoving)
                 return;
             
             isMoving = true;
+            swingerAnimator.SetBool("isWalk", true);
             
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (1), 
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
-            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
+            
+            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false)
+                .OnComplete(() => swingerAnimator.SetBool("isWalk", false));
         }
 
         protected override void Attack()
@@ -57,7 +70,9 @@ namespace AI
             {
                 if (isAttacking)
                     return;
+                
                 isAttacking = true;
+                isMoving = false;
                 
                 // Attack Pattern
                 StartCoroutine(DoAttack());
@@ -67,13 +82,48 @@ namespace AI
                 transform.DOKill();
                 transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                     e_speed * Time.deltaTime);
+
+                spriteDir = playerTransform.position.x - transform.position.x;
+
+                if (spriteDir < 0)
+                    e_sprite.flipX = true;
+                else
+                    e_sprite.flipX = false;
+                
             }
         }
 
+        private const float radiusShootPoint = 1.9f;
         private IEnumerator DoAttack()
         {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             
-            yield return new WaitForSeconds(1.5f);
+            dir = playerTransform.position - transform.position;
+            dir.Normalize();
+            
+            if (dir.x < 0)
+                e_sprite.flipX = true;
+            else
+                e_sprite.flipX = false;
+            
+            swingerAnimator.SetBool("isAttack", true);
+
+            Debug.Log($"AH OUI VRAIMENT LA: {dir}");
+            Debug.DrawRay(transform.position, dir*2, Color.green, 1f);
+            
+            yield return new WaitForSeconds(.53f); // Temps de l'animation avant hit 
+
+            Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
+            foreach (var player in playercol)
+            {
+                player.GetComponent<PlayerStat>().TakeDamage();
+            }
+
+            yield return new WaitForSeconds(1.17f); // Anim fini 
+            swingerAnimator.SetBool("isAttack", false);
+            CanMove();  
+            
+            yield return new WaitForSeconds(3f); // Temps avant de pouvoir ré attaqué
             isAttacking = false;
         }
 
@@ -85,7 +135,17 @@ namespace AI
             Gizmos.DrawWireSphere(transform.position, e_rangeSight); // Zone of player detection
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, e_rangeAttack); // Zone of attack range
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, radiusShootPoint); // Zone de spawn de l'aoe
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position + dir * radiusShootPoint, e_aoeRange); // Zone aoe
         }
 
+        private void CanMove()
+        {
+            rb.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 }
