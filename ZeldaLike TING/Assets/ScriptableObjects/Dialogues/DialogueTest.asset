@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: DialogueTest
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 1.5
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Cette voiceline est cool
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Le dialogue est plut\xF4t int\xE9ressant"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Merci d'avoir \xE9cout\xE9"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: SIUUUUUUUU
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 6a778413ec7ae914bbcca261810329e9, type: 3}
