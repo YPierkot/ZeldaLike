@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using TreeEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Transform player;
+    private RaycastHit[] hits;
+    [Space]
     public Transform cameraPoint;
 
     [SerializeField] private float cameraSpeed;
@@ -18,6 +22,22 @@ public class CameraController : MonoBehaviour
 
     [NonSerialized] public bool dashing = false;
     private bool moveToPlayer;
+
+    private void Update()
+    {
+       hits = Physics.RaycastAll(transform.position, (player.position - transform.position), Vector3.Distance(player.position, transform.position));
+       if (hits.Length != 0)
+       {
+           foreach (RaycastHit hit in hits)
+           {
+               if (hit.transform.GetComponent<MeshRenderer>() != null)
+               {
+                   MeshRenderer mesh = hit.collider.transform.GetComponent<MeshRenderer>();
+                   //mesh.color.a = 0.3f;
+               }
+           }
+       }
+    }
 
     // Update is called once per frame
     void FixedUpdate()

@@ -40,7 +40,6 @@ public class InteracteObject : MonoBehaviour
                     indexDebug++;
                     
                     meshC.material.color = new Color(meshC.material.color.r+(1f/255), meshC.material.color.g-(1f/255), meshC.material.color.b-(1f/255));
-                    if (indexDebug == meshChilds.Length) Debug.Log($"Mat : {meshC.material.name}, color :{meshC.material.color}");
                     if (meshC.material.color.r >= 1)
                     {
                         DestroyGM();
@@ -55,7 +54,7 @@ public class InteracteObject : MonoBehaviour
     {
         if (burning)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 2, destroyInteract);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f, destroyInteract);
             foreach (var col in colliders)
             {
                 if (col.CompareTag("Interactable"))

@@ -152,8 +152,10 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
+
     }
 
+    
     private void FixedUpdate()
     {
         
@@ -182,9 +184,18 @@ public class Controller : MonoBehaviour
             }
         }
 
-        ;
+        RaycastHit groundHit;
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, pointerMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+        else transform.position += new Vector3(0, -0.1f, 0);
+
     }
     
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
+    }
+
     void Move()
     {
         Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
