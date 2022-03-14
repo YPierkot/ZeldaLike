@@ -1,29 +1,46 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.Users;
 
 public class Button : MonoBehaviour
 {
-    private UnityEvent activateEvent;
+    [SerializeField] private UnityEvent activateEvent;
     private MeshRenderer mesh;
+
+    private bool inRange;
 
     void Start()
     {
         mesh = GetComponent<MeshRenderer>();
     }
-    
-    
-    void OnTriggerEnter()
+
+    private void Update()
     {
-        mesh.material.color = Color.yellow;
+        if (inRange && Input.GetKeyDown(KeyCode.E))
+        {
+            activateEvent.Invoke();
+        }
     }
 
-    
-    
-    void OnTriggerExit()
+    private void OnTriggerEnter(Collider other)
     {
-        mesh.material.color = Color.white;
+        if (other.CompareTag("Player"))
+        {
+            mesh.material.color = Color.yellow;
+            inRange = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            mesh.material.color = Color.white;
+            inRange = false;
+        }
     }
 }

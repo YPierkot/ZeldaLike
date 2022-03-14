@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,10 @@ public class Elevetor : MonoBehaviour
     [SerializeField] private float waitingTime = 2f;
     [SerializeField] private float speed = 0.05f;
     [SerializeField] private bool auto;
+    [Space] 
+    [SerializeField] private float boxHeight = 1;
     private int pointIndex = 0;
+    private List<Transform> eleveteList = new List<Transform>();
 
     private bool waiting;
     private bool moving;
@@ -24,7 +28,21 @@ public class Elevetor : MonoBehaviour
     {
         if (Vector3.Distance(platform.transform.position, passPoint[pointIndex].position)> speed)
         {
-            platform.transform.position += (passPoint[pointIndex].position - platform.transform.position).normalized * speed;
+            Vector3 movement = (passPoint[pointIndex].position - platform.position).normalized * speed;
+            platform.position += movement;
+            //Debug.Log($"New Position : {platform.position}");
+            foreach (Transform obj in eleveteList)
+            {
+                if (!obj.CompareTag("Player"))
+                {
+                    if (obj != null) obj.position += movement;
+                    else eleveteList.Remove(obj);
+                }
+                else
+                {
+                    obj.position += new Vector3(movement.x, 0, movement.y);
+                }
+            }
         }
         else if (!waiting && auto) StartCoroutine("Waiter");
         else
@@ -32,18 +50,31 @@ public class Elevetor : MonoBehaviour
             moving = false;
         }
     }
-
-    void Move()
+    
+    private void OnDrawGizmos()
     {
+        Gizmos.DrawWireCube(new Vector3(platform.position.x, platform.position.y+boxHeight, platform.position.z), transform.localScale);
+    }
+
+    public void Move()
+    {
+        Debug.Log("Move Launch");
         if (!moving)
         {
             if (pointIndex == passPoint.Length - 1) pointIndex = 0;
             else pointIndex++;
             waiting = false;
             moving = true;
+            eleveteList.Clear();
+           Collider[] eleveteObject= Physics.OverlapBox(new Vector3(platform.position.x, platform.position.y+boxHeight, platform.position.z), transform.localScale/2);
+           foreach (Collider col in eleveteObject)
+           {
+              if(col.transform != platform) eleveteList.Add(col.transform );
+           }
         }
 
     }
+
 
     IEnumerator Waiter()
     {

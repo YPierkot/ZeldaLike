@@ -12,8 +12,19 @@ public class RedCardGroundEffect : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, 5, Ennemy);
         foreach (var col in colliders)
         {
-            col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-            col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
+            switch (col.transform.tag)
+            {
+                case "Interactable":
+                    col.GetComponent<InteracteObject>().Burn();
+                    break;
+                
+                case "Ennemy" :
+                    col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+                    col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
+                    break;
+                    
+            }
+            
         }
         
         Destroy(gameObject);

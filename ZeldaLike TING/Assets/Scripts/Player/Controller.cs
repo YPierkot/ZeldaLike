@@ -152,6 +152,12 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
+
+        if (rb.velocity.y < 0 && rb.velocity.y > 10)
+        {
+           rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y*1.5f, rb.velocity.z);
+            Debug.Log("Falling");
+        }
     }
 
     private void FixedUpdate()
