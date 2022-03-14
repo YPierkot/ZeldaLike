@@ -40,7 +40,7 @@ public class Elevetor : MonoBehaviour
                 }
                 else
                 {
-                    obj.position += new Vector3(movement.x, 0, movement.y);
+                    obj.position += new Vector3(movement.x, 0, movement.z);
                 }
             }
         }
