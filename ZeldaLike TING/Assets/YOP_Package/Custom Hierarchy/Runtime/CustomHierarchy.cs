@@ -313,9 +313,8 @@ public class CustomHierarchy {
         else {
             string[] endName = actualInstanceData.gam.name.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
             if (endName.Length == 0) return;
-            if (endName[endName.Length - 1] == "(hasSpawnGam)") {
-                string objName = endName.Where(name => name != "(hasSpawnGam)")
-                    .Aggregate("", (current, name) => current + name);
+            if (endName[^1] == "(hasSpawnGam)") {
+                string objName = endName.Where(name => name != "(hasSpawnGam)").Aggregate("", (current, name) => current + name);
                 actualInstanceData.gam.name = objName;
 
                 if (lastInstanceData.gam.name == " ") UnityEngine.Object.DestroyImmediate(lastInstanceData.gam);
@@ -374,8 +373,7 @@ public class CustomHierarchy {
 
         if (actualInstanceData.isSeparator) {
             string[] endName = actualInstanceData.gam.name.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
-            string objName = endName.Where(name => name != "(hasSpawnGam)")
-                .Aggregate("", (current, name) => current + name);
+            string objName = endName.Where(name => name != "(hasSpawnGam)").Aggregate("", (current, name) => current + (current != ""? " " : "") + name);
 
             GUI.Label(instanceRect, objName.ToUpper(), newStyle);
         }
