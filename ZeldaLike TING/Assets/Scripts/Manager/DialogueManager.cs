@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
     private int lastSentenceStopIndex;
     private DialogueLine[] StoppedDialogue;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
         }
         
         sentences = new Queue<string>();
-        Tutorial();
+        //Tutorial();
     }
 
     public void AssignDialogue(DialogueLine[] dialogue)
