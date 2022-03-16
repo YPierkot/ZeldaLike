@@ -53,7 +53,7 @@ namespace AI
             isMoving = true;
             swingerAnimator.SetBool("isWalk", true);
             
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), 1, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             

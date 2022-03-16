@@ -13,7 +13,7 @@ namespace AI
         
         [Header("Commom Values"), Space]
         [SerializeField] private int e_hp = 1; // Enemy Health Points
-        [SerializeField] public float e_rangeSight = 10f; // Enemy Attack Range
+        [SerializeField] public float e_rangeSight = 10f; // Enemy Detect Range
         [SerializeField] public float e_rangeAttack = 10f; // Enemy Attack Range
         [SerializeField] protected float e_speed = 10; // Enemy Speed
         [SerializeField] public SpriteRenderer e_sprite; // Enemy Sprite Renderer
@@ -59,6 +59,7 @@ namespace AI
         public void Update()
         {
             BehaviourAI();
+            Debug.Log($"Sight range: {e_rangeSight}, distance with player: {Vector3.Distance(playerTransform.position, e_transform.position) < e_rangeSight}");
         }
         
         
@@ -90,7 +91,7 @@ namespace AI
 
         protected virtual void Walk()
         {
-            if (Vector2.Distance(playerTransform.position, e_transform.position) < e_rangeSight)
+            if (Vector3.Distance(playerTransform.position, e_transform.position) < e_rangeSight)
                 ChangeState(attacking); // Skip in attack state if player is in sight range
         }
 
