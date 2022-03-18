@@ -7,7 +7,7 @@ public class NPCDialogue : MonoBehaviour{
     [SerializeField] private DialogueScriptable[] fillingDialogues;
     private bool playerIn;
     [SerializeField] private int currentDialogue = 0;
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -49,7 +49,7 @@ public class NPCDialogue : MonoBehaviour{
     
     #if UNITY_EDITOR
     private void OnDrawGizmos() {
-        if (!CustomLDData.showGizmos) return;
+        if (!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, GetComponent<SphereCollider>().radius);
     }
