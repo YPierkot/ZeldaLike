@@ -42,6 +42,8 @@ public class CustomHierarchy {
     private static List<CustomRect> rectToDraw = new List<CustomRect>();
     private static int whichInstanceDraw;
 
+    private static bool lastItem = true;
+
     #endregion Variables
 
     /// <summary>
@@ -84,7 +86,18 @@ public class CustomHierarchy {
         if (EditorUtility.InstanceIDToObject(instanceID) == null) {
             changeBackgroundColor = false;
             changeBackgroundGroupColor = false;
+            lastGroupBackground = 0;
             DrawSettingsIcon(selectionRect);
+        }
+
+        if (lastItem) {
+            lastItem = false;
+            changeBackgroundColor = false;
+            changeBackgroundGroupColor = false;
+            lastGroupBackground = 0;
+        }
+        else {
+            if (instanceID == sceneGamInformations[^1].instanceID) lastItem = true;
         }
         
         if (!data.ActivScene.Contains(AssetDatabase.LoadAssetAtPath<SceneAsset>(SceneManager.GetActiveScene().path))) return;
@@ -284,12 +297,9 @@ public class CustomHierarchy {
         if (EditorUtility.InstanceIDToObject(actualInstanceData.instanceID) == null) return;
 
         //If the gameObject has no child and he doesn't belong to the lastGroup value
-        if (actualInstanceData.gam.transform.childCount == 0 &&
-            (actualInstanceData.nestingGroup != lastGroupBackground ||
-             EditorUtility.InstanceIDToObject(lastInstanceData.instanceID) == null)) return;
+        if (actualInstanceData.gam.transform.childCount == 0 && (actualInstanceData.nestingGroup != lastGroupBackground || EditorUtility.InstanceIDToObject(lastInstanceData.instanceID) == null)) return;
 
-        if (actualInstanceData.nestingGroup != lastGroupBackground)
-            changeBackgroundGroupColor = !changeBackgroundGroupColor;
+        if (actualInstanceData.nestingGroup != lastGroupBackground) changeBackgroundGroupColor = !changeBackgroundGroupColor;
 
         Color colorToUse = changeBackgroundGroupColor ? data.BackgroundGroupA : data.BackgroundGroupB;
 
@@ -371,13 +381,17 @@ public class CustomHierarchy {
             alignment = TextAnchor.MiddleCenter
         };
 
+        string finalName = actualInstanceData.name;
         if (actualInstanceData.isSeparator) {
             string[] endName = actualInstanceData.gam.name.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
             string objName = endName.Where(name => name != "(hasSpawnGam)").Aggregate("", (current, name) => current + (current != ""? " " : "") + name);
-
+            finalName = objName;
             GUI.Label(instanceRect, objName.ToUpper(), newStyle);
         }
-        else GUI.Label(selectionRect, actualInstanceData.name, backUpStyle);
+        else GUI.Label(selectionRect, finalName, backUpStyle);
+
+        //Draw strikeout
+        if (!actualInstanceData.gam.activeSelf) EditorGUI.DrawRect(new Rect(selectionRect.x, selectionRect.y + selectionRect.height / 2 + 1, GUI.skin.label.CalcSize(new GUIContent(finalName)).x - 1, 1), new Color(1,1,1,.75f));
 
         EditorStyles.label.alignment = backUpStyle.alignment;
         EditorStyles.label.fontStyle = backUpStyle.fontStyle;

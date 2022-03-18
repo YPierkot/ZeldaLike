@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomizeEditor.HierarchySO;
 using UnityEditor;
+using UnityEditor.Overlays;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,7 +52,7 @@ static class HierarchySettingsProvider {
     /// Draw property of the serializedObject
     /// </summary>
     /// <param name="serializedObject"></param>
-    private static void DrawProperty(SerializedObject serializedObject) {
+    public static void DrawProperty(SerializedObject serializedObject) {
         using (new GUILayout.HorizontalScope(EditorStyles.helpBox)) {
             DrawProperty(serializedObject.FindProperty("useCustomHierarchy"), "USE CUSTOM HIERARCHY", true);
 
@@ -88,6 +89,8 @@ static class HierarchySettingsProvider {
 
         //Draw Separator Data
         DrawSeparatorBox(serializedObject);
+
+        serializedObject.ApplyModifiedProperties();
     }
 
     #region DrawPropertyMethods
@@ -585,6 +588,18 @@ static class HierarchySettingsProvider {
         List<GameObject> selectedGam = new List<GameObject>(Selection.gameObjects);
         List<string> selectedGamContent = selectedGam.Select(gam => EditorGUIUtility.ObjectContent(gam, null).image.name).ToList();
         return selectedGamContent;
+    }
+}
+
+[Icon("Assets/Art/Sprites/Icon/settingsIcon.png")]
+[Overlay(typeof(SceneView), overlayID, overlayName)]
+public class CustomHierarchyOverlay : IMGUIOverlay{
+    private const string overlayID = "my-custom-hierarchy-overlay";
+    private const string overlayName = "Custom Hierarchy Overlay";
+    
+    public override void OnGUI() {
+        var settings = new SerializedObject(AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/CustomHierarchy.asset"));
+        HierarchySettingsProvider.DrawProperty(settings);
     }
 }
 #endif
