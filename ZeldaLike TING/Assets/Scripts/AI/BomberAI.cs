@@ -66,7 +66,9 @@ namespace AI
             {
                 if (isAttacking)
                     return;
+                
                 isAttacking = true;
+                isMoving = false;
             
                 // Attack Pattern
                 StartCoroutine(DoDropBomb());
@@ -86,26 +88,22 @@ namespace AI
                 spriteDir = playerTransform.position.x - transform.position.x;
 
                 if (spriteDir < 0)
-                    e_sprite.flipX = true;
-                else
                     e_sprite.flipX = false;
+                else
+                    e_sprite.flipX = true;
             }
         }
 
         private IEnumerator DoDropBomb()
         {
-            bomberAnimator.SetBool("isAttack", true);
+            bomberAnimator.SetBool("isAttack", isAttacking);
+            yield return new WaitForSeconds(0.9f);
             Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
             var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
-            
-            yield return new WaitForSeconds(0.4f);
             bomb.GetComponent<Bomb>().ExploseBomb();
             bomberAnimator.SetBool("isAttack", false);
-
-            //yield return new WaitForSeconds(0.15f);
-            // Add Screen Shake
             
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
             isAttacking = false;
         }
         

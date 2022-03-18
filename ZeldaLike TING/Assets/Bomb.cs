@@ -16,7 +16,7 @@ public class Bomb : MonoBehaviour
             player.transform.GetComponent<PlayerStat>().TakeDamage(1);
         }
         
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject, 0.1f);
     }
 
     private void OnDrawGizmos()
