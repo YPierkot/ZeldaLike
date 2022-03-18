@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Elevetor : MonoBehaviour
 {
+    private BoxCollider collider;
+    
     [SerializeField] private Transform platform;
     [SerializeField] private Transform[] passPoint;
     [SerializeField] private float waitingTime = 2f;
@@ -22,6 +24,7 @@ public class Elevetor : MonoBehaviour
     void Start()
     {
        if(auto)Move();
+       collider = GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()
@@ -30,6 +33,7 @@ public class Elevetor : MonoBehaviour
         {
             Vector3 movement = (passPoint[pointIndex].position - platform.position).normalized * speed;
             platform.position += movement;
+            collider.center += movement;
             //Debug.Log($"New Position : {platform.position}");
             foreach (Transform obj in eleveteList)
             {
@@ -58,24 +62,23 @@ public class Elevetor : MonoBehaviour
 
     public void Move()
     {
-        Debug.Log("Move Launch");
+        //Debug.Log("Move Launch");
         if (!moving)
         {
             if (pointIndex == passPoint.Length - 1) pointIndex = 0;
             else pointIndex++;
             waiting = false;
             moving = true;
-            eleveteList.Clear();
+            /*eleveteList.Clear();
            Collider[] eleveteObject= Physics.OverlapBox(new Vector3(platform.position.x, platform.position.y+boxHeight, platform.position.z), transform.localScale/2);
            foreach (Collider col in eleveteObject)
            {
               if(col.transform != platform) eleveteList.Add(col.transform );
-           }
+           }*/
         }
 
     }
-
-
+    
     IEnumerator Waiter()
     {
         waiting = true;
@@ -83,4 +86,16 @@ public class Elevetor : MonoBehaviour
         Move();
         
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+       if(other.transform != platform) eleveteList.Add(other.transform);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        eleveteList.Remove(other.transform);
+    }
 }
+

@@ -183,6 +183,7 @@ public class CardsController : MonoBehaviour
                 shootPointPos.Normalize();
                 Destroy(windCardGrounded = Instantiate(windCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
                 windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                windCardGrounded.GetComponent<WindCardLongRange>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
                 isWindGround = true;
             }
             else
