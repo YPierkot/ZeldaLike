@@ -12,8 +12,13 @@ namespace AI
         [Header("Specific values"), Space]
         [SerializeField] private GameObject bombPrefab;
         [SerializeField] private float e_rangeWander = 2;
-        private Vector3 basePosition;
         
+        [SerializeField] private float e_fliSpeed = 1.7f;
+        [SerializeField] private float e_fliRange = 1.7f;
+        private Vector3 basePosition;
+        private float spriteDir;
+
+        [SerializeField] private Animator bomberAnimator;
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
         #endregion
@@ -42,7 +47,7 @@ namespace AI
             
             isMoving = true;
             
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (1), 
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (basePosition.y), 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
@@ -52,39 +57,66 @@ namespace AI
         {
             base.Attack();
 
+            if (Vector3.Distance(playerTransform.position, transform.position) <= e_fliRange)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, -playerTransform.position, e_fliSpeed * Time.deltaTime);
+            }
             
+            if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
+            {
+                if (isAttacking)
+                    return;
+                
+                isAttacking = true;
+                isMoving = false;
             
-            if (isAttacking)
-                return;
-            isAttacking = true;
-            
-            // Attack Pattern
-            StartCoroutine(DoDropBomb());
+                // Attack Pattern
+                StartCoroutine(DoDropBomb());
+            }
+            else
+            {
+                if (!isAttacking)
+                {
+                    transform.DOKill();
+                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                        e_speed * Time.deltaTime);
+                }
+                else
+                {
+                }
+                
+                spriteDir = playerTransform.position.x - transform.position.x;
+
+                if (spriteDir < 0)
+                    e_sprite.flipX = false;
+                else
+                    e_sprite.flipX = true;
+            }
         }
 
         private IEnumerator DoDropBomb()
         {
-            Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.x);
+            bomberAnimator.SetBool("isAttack", isAttacking);
+            yield return new WaitForSeconds(0.9f);
+            Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
             var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
-            
-            yield return new WaitForSeconds(0.4f);
             bomb.GetComponent<Bomb>().ExploseBomb();
-
-            //yield return new WaitForSeconds(0.15f);
-            // Add Screen Shake
+            bomberAnimator.SetBool("isAttack", false);
             
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             isAttacking = false;
-            
-            ChangeState(AIStates.walking);
         }
         
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, e_rangeWander);
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(transform.position, e_rangeSight);
+            Gizmos.DrawWireSphere(transform.position, e_rangeWander); // Zone of Wandering
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, e_rangeSight); // Zone of player detection
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, e_rangeAttack); // Zone of attack range
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, e_fliRange); // Zone of the flie range
         }
     }
 }

@@ -180,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2642377944615720106}
   - component: {fileID: 2642377944615720107}
-  - component: {fileID: 2642377944615720108}
   m_Layer: 0
   m_Name: Graphs
   m_TagString: Untagged
@@ -255,26 +254,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2642377944615720108
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2642377944615720105}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2642377944677528717
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +469,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2642377945956058365}
   - component: {fileID: 2642377945956058367}
-  - component: {fileID: 2642377945956058366}
   - component: {fileID: 2642377945956058304}
   - component: {fileID: 2642377945956058305}
   m_Layer: 6
@@ -533,19 +511,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!65 &2642377945956058366
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2642377945956058364}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7060318, y: 2.0579429, z: 0.5425081}
-  m_Center: {x: 0.10197353, y: 0.43269992, z: 0.032877445}
 --- !u!65 &2642377945956058304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -572,13 +537,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_hp: 2
-  e_rangeSight: 3
+  e_rangeSight: 7
+  e_rangeAttack: 5
   e_speed: 10
   e_sprite: {fileID: 2642377944615720107}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   e_stuntValue: 0
   e_FreezeValue: 0
   bombPrefab: {fileID: 9214266994308807322, guid: d370767ac97a8f94c8146a12cde3f617,
     type: 3}
-  e_rangeWander: 2.2
+  e_rangeWander: 4
+  e_fliSpeed: 1.7
+  e_fliRange: 1.7
   isMoving: 0
   isAttacking: 0
