@@ -117,7 +117,6 @@ namespace AI
             
             swingerAnimator.SetBool("isAttack", true);
 
-            Debug.Log($"AH OUI VRAIMENT LA: {dir}");
             Debug.DrawRay(transform.position, dir*2, Color.green, 1f);
             
             yield return new WaitForSeconds(.53f); // Temps de l'animation avant hit 

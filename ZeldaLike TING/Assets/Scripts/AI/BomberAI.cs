@@ -16,7 +16,9 @@ namespace AI
         [SerializeField] private float e_fliSpeed = 1.7f;
         [SerializeField] private float e_fliRange = 1.7f;
         private Vector3 basePosition;
-        
+        private float spriteDir;
+
+        [SerializeField] private Animator bomberAnimator;
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
         #endregion
@@ -45,7 +47,7 @@ namespace AI
             
             isMoving = true;
             
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (transform.position.y), 
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (basePosition.y), 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
@@ -71,25 +73,40 @@ namespace AI
             }
             else
             {
-                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, e_speed * Time.deltaTime);
+                if (!isAttacking)
+                {
+                    transform.DOKill();
+                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                        e_speed * Time.deltaTime);
+                }
+                else
+                {
+                }
+                
+                spriteDir = playerTransform.position.x - transform.position.x;
+
+                if (spriteDir < 0)
+                    e_sprite.flipX = true;
+                else
+                    e_sprite.flipX = false;
             }
         }
 
         private IEnumerator DoDropBomb()
         {
+            bomberAnimator.SetBool("isAttack", true);
             Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
             var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
             
             yield return new WaitForSeconds(0.4f);
             bomb.GetComponent<Bomb>().ExploseBomb();
+            bomberAnimator.SetBool("isAttack", false);
 
             //yield return new WaitForSeconds(0.15f);
             // Add Screen Shake
             
             yield return new WaitForSeconds(1.5f);
             isAttacking = false;
-            
-            ChangeState(AIStates.walking);
         }
         
         private void OnDrawGizmos()

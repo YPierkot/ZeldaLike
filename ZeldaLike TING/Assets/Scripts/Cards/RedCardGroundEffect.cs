@@ -8,7 +8,6 @@ public class RedCardGroundEffect : MonoBehaviour
     
     public void ActivateRedGroundEffect()
     {
-        Debug.Log("Fireball Short Range Shoot");
         Collider[] colliders = Physics.OverlapSphere(transform.position, 5, Ennemy);
         foreach (var col in colliders)
         {
