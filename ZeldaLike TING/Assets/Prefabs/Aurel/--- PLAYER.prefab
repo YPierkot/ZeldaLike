@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 7337217462935629415}
   m_Layer: 7
   m_Name: --- PLAYER
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -610,10 +610,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  attackZone: {fileID: 1587232428}
-  attackCounter: 0
-  nextCombo: 0
-  waitForCombo: 0
   canMove: 1
   spriteArray:
   - angleInterval:
@@ -652,7 +648,15 @@ MonoBehaviour:
       min: 331
       max: 360
     sprite: {fileID: 1578382671, guid: 7022a277cd75b704cb188058f664959f, type: 3}
+  pointerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   moveTransform: {fileID: 7337217464296193324}
+  camera: {fileID: 0}
+  PlayerCameraPoint: {fileID: 6699838829042073399}
+  attackZone: {fileID: 1587232428}
+  attackCounter: 0
+  nextCombo: 0
   moveSpeed: 100
   dashCurve:
     serializedVersion: 2
@@ -713,6 +717,7 @@ MonoBehaviour:
   lifeMax: 6
   life: 0
   repulseForce: 25
+  HitShake: {fileID: 11400000, guid: fdb7dddd4478ba54ba13be9ee408d09c, type: 2}
 --- !u!136 &7337217462935629414
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -726,7 +731,7 @@ CapsuleCollider:
   m_Radius: 0.47
   m_Height: 1.4955975
   m_Direction: 1
-  m_Center: {x: 0, y: -0.1916632, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7337217462935629415
 MonoBehaviour:
   m_ObjectHideFlags: 0
