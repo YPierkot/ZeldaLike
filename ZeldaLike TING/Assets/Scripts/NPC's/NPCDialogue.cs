@@ -1,13 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Random;
 
-public class NPCDialogue : MonoBehaviour
-{
+public class NPCDialogue : MonoBehaviour{
     public List<DialogueScriptable> dialogues;
     [SerializeField] private DialogueScriptable[] fillingDialogues;
     private bool playerIn;
     [SerializeField] private int currentDialogue = 0;
+    [SerializeField] private DialogueScriptable testDialogue;
+
+    private void Start()
+    {
+        if (testDialogue!= null)
+        {
+            AssignDialogue(testDialogue);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,4 +56,12 @@ public class NPCDialogue : MonoBehaviour
     {
         DialogueManager.Instance.AssignDialogue(dialogueToAdd.dialogue);
     }
+    
+    #if UNITY_EDITOR
+    private void OnDrawGizmos() {
+        if (!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, GetComponent<SphereCollider>().radius);
+    }
+    #endif
 }
