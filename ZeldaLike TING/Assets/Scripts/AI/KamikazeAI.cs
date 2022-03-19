@@ -112,15 +112,6 @@ namespace AI
             
             Destroy(gameObject);
         }
-
-        private IEnumerator StopMob()
-        {
-            canMove = false;
-            Debug.Log(canMove);
-            yield return new WaitForSeconds(1f);
-            canMove = true;
-            Debug.Log(canMove);
-        }
         
         private void OnDrawGizmos()
         {
@@ -132,7 +123,6 @@ namespace AI
             Gizmos.DrawWireSphere(transform.position, e_rangeAttack);
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(transform.position, e_aoeRange);
-            
         }
     }
 }
