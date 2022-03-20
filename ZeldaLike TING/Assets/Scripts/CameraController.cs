@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-       hits = Physics.RaycastAll(transform.position, (player.position - transform.position), Vector3.Distance(player.position, transform.position));
+       /*hits = Physics.RaycastAll(transform.position, (player.position - transform.position), Vector3.Distance(player.position, transform.position));
        if (hits.Length != 0)
        {
            foreach (RaycastHit hit in hits)
@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
                    //mesh.color.a = 0.3f;
                }
            }
-       }
+       }*/
     }
 
     // Update is called once per frame
