@@ -5,11 +5,22 @@ using UnityEngine;
 
 public class InteracteObject : MonoBehaviour
 {
-    [SerializeField] private bool canBurn;
-    [SerializeField] private LayerMask destroyInteract;
 
+    [Header("--- FIRE")]
+    [SerializeField] private bool canBurn;
     private bool burning;
 
+    [Header("--- WIND")] 
+    public bool windAffect;
+    public bool windThrough;
+    
+    //[Header("--- ICE")]
+    
+    
+    //[Header("--- HEARTH")]
+    
+    [Space]
+    [SerializeField] private LayerMask destroyInteract;
     private MeshRenderer mesh;
     private MeshRenderer[] meshChilds;
     // Start is called before the first frame update
