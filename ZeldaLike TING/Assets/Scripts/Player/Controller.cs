@@ -60,6 +60,7 @@ public class Controller : MonoBehaviour
     private bool cameraOnPlayer = true;
     private bool dashCamera;
 
+    [NonSerialized] public Vector3 pointerPosition;
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
     
@@ -128,6 +129,7 @@ public class Controller : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
+            pointerPosition = hit.point;
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
         }
@@ -187,7 +189,8 @@ public class Controller : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
+       if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
+       Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
     }
 
     void Move()

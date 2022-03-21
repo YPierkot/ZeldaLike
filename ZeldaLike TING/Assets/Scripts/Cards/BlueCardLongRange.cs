@@ -10,7 +10,7 @@ public class BlueCardLongRange : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 4f);
+        Gizmos.DrawWireSphere(transform.position, 3f);
     }
 
     public void IceCardLongEffet()
@@ -20,11 +20,10 @@ public class BlueCardLongRange : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, 3, Ennemy);
         foreach (var col in colliders)
         {
-            col.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-            col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
-            if (col.gameObject.GetComponent<MoveForTest>())
+            Debug.Log(col.name);
+            if (col.transform.CompareTag("Interactable"))
             {
-                col.gameObject.GetComponent<MoveForTest>().StartCoroutine(col.gameObject.GetComponent<MoveForTest>().FreezePos());
+                col.GetComponent<InteracteObject>().Freeze(transform.position);
             }
         }
         
