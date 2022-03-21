@@ -42,6 +42,7 @@ public class NPCDialogue : MonoBehaviour{
         {
             if (currentDialogue > dialogues.Count || dialogues == null)
             {
+                Debug.Log("Ya pas de dialogues");
                 AssignDialogue(fillingDialogues[Range(0, fillingDialogues.Length)]);
             }
             else
