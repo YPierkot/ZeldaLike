@@ -18,6 +18,7 @@ namespace AI
         [SerializeField] protected float e_speed = 10; // Enemy Speed
         [SerializeField] public SpriteRenderer e_sprite; // Enemy Sprite Renderer
         [SerializeField] public LayerMask playerLayerMask; // Player Layer
+        [SerializeField] public LayerMask groundLayerMask; // Player Layer
         
         [Header("Effects"), Space]
         [SerializeField] private float e_stuntValue = 0;

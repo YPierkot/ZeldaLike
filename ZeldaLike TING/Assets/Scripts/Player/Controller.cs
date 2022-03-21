@@ -219,7 +219,7 @@ public class Controller : MonoBehaviour
         {
             if (!inAttack)
             {
-                StopCoroutine("ComboWait");
+                StopCoroutine(ComboWait());
                 canMove = false;
                 inAttack = true;
                 nextCombo = false;

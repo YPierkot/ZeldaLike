@@ -81,7 +81,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
@@ -97,6 +97,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cd250559784654cabd6d10ac8b1cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  e_hp: 1
+  e_rangeSight: 11.655
+  e_rangeAttack: 8.97
+  e_speed: 2.07
+  e_sprite: {fileID: 3913864874531748772}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  e_stuntValue: 0
+  e_FreezeValue: 0
+  e_rangeWander: 3
+  isMoving: 0
+  isAttacking: 0
+  canMove: 0
+  mageAnimator: {fileID: 3913864874531748775}
+  eyePosOffset: {x: 1.154, y: 3.842}
+  eyeGameObject: {fileID: 5665831862857445516, guid: e24dd8d954556f0419d4fbe7510a31d5,
+    type: 3}
+  eyeCounter: 3
 --- !u!65 &3913864873762027158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -234,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3913864874531748769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,7 +301,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1da8c7bde07d2224a9a20a3a3f6eba1d, type: 3}
+  m_Sprite: {fileID: -1464318150, guid: c598c795ae17880459126e952e5a7bef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -303,7 +322,7 @@ Animator:
   m_GameObject: {fileID: 3913864874531748769}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5c1ca0b74ed6fb4294d1f0d3a91d442, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

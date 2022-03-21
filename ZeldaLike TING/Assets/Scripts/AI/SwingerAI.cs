@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -39,7 +40,14 @@ namespace AI
             if (aiState == AIStates.walking)
                 basePosition = transform.position;
         }
-        
+
+        private void FixedUpdate()
+        {
+            RaycastHit groundHit;
+            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+            else transform.position += new Vector3(0, -0.1f, 0);
+        }
+
         protected override void Walk()
         {
             if(isAttacking)
@@ -53,7 +61,7 @@ namespace AI
             isMoving = true;
             swingerAnimator.SetBool("isWalk", true);
             
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), 1, 
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             
