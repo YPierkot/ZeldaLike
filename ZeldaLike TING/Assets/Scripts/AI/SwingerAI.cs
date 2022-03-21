@@ -44,8 +44,10 @@ namespace AI
         private void FixedUpdate()
         {
             RaycastHit groundHit;
-            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.1f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
             else transform.position += new Vector3(0, -0.1f, 0);
+            
+            Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
         }
 
         protected override void Walk()

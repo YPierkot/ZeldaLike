@@ -12,6 +12,7 @@ public class EyeBehavior : MonoBehaviour
     public Controller player;
     public bool goRoll;
     public Rigidbody rb;
+    public LayerMask groundMask;
     
     private void Awake()
     {
@@ -27,7 +28,13 @@ public class EyeBehavior : MonoBehaviour
             
         StartCoroutine(InitEye());
     }
-    
+
+    private void FixedUpdate()
+    {
+        RaycastHit groundHit;
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
+        else transform.position += new Vector3(0, -0.1f, 0);
+    }
 
     private IEnumerator InitEye()
     {
@@ -37,7 +44,7 @@ public class EyeBehavior : MonoBehaviour
         
         Debug.DrawRay(transform.position, shootPointDir, Color.green, 2f);
 
-        Vector3 newMoveTarget = new Vector3((transform.position.x + shootPointDir.x), playerPos.y, (transform.position.z + shootPointDir.z));
+        Vector3 newMoveTarget = new Vector3((transform.position.x + shootPointDir.x), playerPos.y + 0.4f, (transform.position.z + shootPointDir.z));
         
         yield return new WaitForSeconds(0.3f);
 

@@ -179,7 +179,7 @@ public class Controller : MonoBehaviour
         }
 
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.4f, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
 
     }
