@@ -114,7 +114,7 @@ namespace AI
                         transform.position.z), Quaternion.identity);
             }
 
-            //eyeCounter -= 1;
+            eyeCounter -= 1;
             yield return new WaitForSeconds(2f);
             isAttacking = false;
         }
