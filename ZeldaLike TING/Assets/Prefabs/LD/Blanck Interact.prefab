@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4497446610206066640}
   - component: {fileID: 4948888991859835134}
   - component: {fileID: 3980677378826503500}
+  - component: {fileID: 5864193700759897021}
   m_Layer: 11
   m_Name: Blanck Interact
   m_TagString: Interactable
@@ -97,3 +98,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5864193700759897021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4216967772109984948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5f6f5e7b36cee49987e0da311292ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBurn: 0
+  windAffect: 0
+  windThrough: 0
+  destroyInteract:
+    serializedVersion: 2
+    m_Bits: 0
