@@ -49,6 +49,7 @@ public class Controller : MonoBehaviour
 
     private PlayerInputMap InputMap;
     [SerializeField] private LayerMask pointerMask;
+    [SerializeField] private LayerMask groundMask;
     [SerializeField] Transform moveTransform;
     private Vector3 lastDir;
     
@@ -70,11 +71,6 @@ public class Controller : MonoBehaviour
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
-    
-    
-    [Header("--- DEBUG ---")] 
-    [SerializeField] private TextMeshProUGUI Debugger;
-    [SerializeField] private Transform transformDebugger;
 
     public static Controller instance;
     
@@ -107,7 +103,6 @@ public class Controller : MonoBehaviour
     {
         Vector2 rotation = obj.ReadValue<Vector2>().normalized;
         Rotate(rotation);
-        
     }
     #endregion
     
@@ -133,7 +128,6 @@ public class Controller : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
-            transformDebugger.position = hit.point;
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
         }
@@ -185,7 +179,7 @@ public class Controller : MonoBehaviour
         }
 
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, pointerMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
 
     }
@@ -262,10 +256,8 @@ public class Controller : MonoBehaviour
     {
         if (!inAttack)
         {
-            angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
+            angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg) + 180;
             if (angleView < 0) angleView = 360 + angleView;
-            if (Debugger != null)
-                Debugger.text = angleView.ToString();
             
             moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
             UpdateSprite();
