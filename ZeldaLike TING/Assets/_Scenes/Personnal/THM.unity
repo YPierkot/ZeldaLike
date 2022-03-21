@@ -443,12 +443,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7526492104201920091}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &164022564 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7337217462935629417, guid: d9d30125b4f2a6c47bb999c02a3ff083,
-    type: 3}
-  m_PrefabInstance: {fileID: 7337217463788531564}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &381701224
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,12 +748,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &542033859 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7337217462935629417, guid: d9d30125b4f2a6c47bb999c02a3ff083,
-    type: 3}
-  m_PrefabInstance: {fileID: 7337217463788531564}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &689773535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477308f3cc9565044a8c7055edcd4f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 542033859}
+  player: {fileID: 0}
   cameraPoint: {fileID: 1652106034}
   cameraSpeed: 5
   changePointSpeed: 0.3
