@@ -13,9 +13,11 @@ public class InteracteObject : MonoBehaviour
     [Header("--- WIND")] 
     public bool windAffect;
     public bool windThrough;
-    
-    //[Header("--- ICE")]
-    
+
+    [Header("--- ICE")] 
+    public bool canFreeze;
+    [SerializeField] private GameObject freezeCollider;
+    [SerializeField] private float freezeTime; 
     
     //[Header("--- HEARTH")]
     
@@ -84,6 +86,26 @@ public class InteracteObject : MonoBehaviour
             burning = true;
             //Debug.LogError($"Start color : {meshChilds[0].material.color}" );
         }
+        
+    }
+
+    public void Freeze(Vector3 cardPos)
+    {
+        Debug.Log("Freeze");
+        if (canFreeze)
+        {
+            freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
+            freezeCollider.transform.position = new Vector3(cardPos.x, freezeCollider.transform.position.y, cardPos.z);
+            StartCoroutine(FreezeTimer());
+        }
+    }
+
+    private IEnumerator FreezeTimer()
+    {
+        Debug.Log("start freeze CD");
+        yield return new WaitForSeconds(freezeTime);
+        freezeCollider.SetActive(false);
+        mesh.material.color = Color.gray;
         
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class CardsController : MonoBehaviour
 {
     public static CardsController instance;
+    private Controller controller;
     // Cards Variables 
     public bool canUseCards;
     
@@ -48,7 +49,6 @@ public class CardsController : MonoBehaviour
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
-    public Transform DebugTransform;
     
     public enum CardsState
     {
@@ -67,6 +67,7 @@ public class CardsController : MonoBehaviour
 
     private void Start()
     {
+        controller = GetComponent<Controller>();
         canUseCards = true;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = canUseLongFireCard = canUseLongIceCard = canUseLongWallCard = canUseLongWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
@@ -117,7 +118,7 @@ public class CardsController : MonoBehaviour
         {
             if (!isFireGround)
             {
-                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
                 Destroy(fireCardGrounded = Instantiate(fireCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
                 fireCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
@@ -138,7 +139,7 @@ public class CardsController : MonoBehaviour
         {
             if (!isIceGround)
             {
-                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
                 Destroy(iceCardGrounded = Instantiate(iceCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
                 iceCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
@@ -159,7 +160,7 @@ public class CardsController : MonoBehaviour
         {
             if (!isWallGround)
             {
-                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
                 Destroy(wallCardGrounded = Instantiate(wallCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
@@ -179,7 +180,7 @@ public class CardsController : MonoBehaviour
         {
             if (!isWindGround)
             {
-                Vector3 shootPointPos = (DebugTransform.position - transform.position);
+                Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
                 Destroy(windCardGrounded = Instantiate(windCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
                 windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
