@@ -17,6 +17,12 @@ namespace AI
         [SerializeField] private bool canMove;
         [Space(2)] [SerializeField] private Animator mageAnimator;
         private float spriteDir;
+
+        [Header("Eye Spawning"), Space] 
+        [SerializeField] private Vector2 eyePosOffset;
+        [SerializeField] private GameObject eyeGameObject;
+        [SerializeField] private byte eyeCounter; 
+        
         #endregion
         
         protected override void Init()
@@ -24,6 +30,7 @@ namespace AI
             base.Init();
             basePosition = transform.position;
             isAttacking = false;
+            eyeCounter = 3;
         }
         
         public override void ChangeState(AIStates aiState)
@@ -65,7 +72,10 @@ namespace AI
                 isAttacking = true;
                 
                 // Attack Pattern
-                //StartCoroutine(DoAttack());
+                if (eyeCounter > 0)
+                {
+                    StartCoroutine(DoAttack());
+                }
             }
             else
             {
@@ -74,11 +84,6 @@ namespace AI
                     transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
-                    mageAnimator.SetBool("isWalk", true);
-                }
-                else
-                {
-                    mageAnimator.SetBool("isWalk", false);
                 }
                 
                 spriteDir = playerTransform.position.x - transform.position.x;
@@ -92,9 +97,26 @@ namespace AI
 
         private IEnumerator DoAttack()
         {
+           
             mageAnimator.SetBool("isAttack", true);
-            yield return new WaitForSeconds(0.5f); // Temps de l'anim
-            //Vector3 eyePos = 
+            yield return new WaitForSeconds(1.75f); // Temps de l'anim
+            mageAnimator.SetBool("isAttack", false);
+            if (e_sprite.flipX == true)
+            { 
+                Instantiate(eyeGameObject,
+                    new Vector3(transform.position.x - eyePosOffset.x, transform.position.y + eyePosOffset.y,
+                        transform.position.z), Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(eyeGameObject,
+                    new Vector3(transform.position.x + eyePosOffset.x, transform.position.y + eyePosOffset.y,
+                        transform.position.z), Quaternion.identity);
+            }
+
+            //eyeCounter -= 1;
+            yield return new WaitForSeconds(2f);
+            isAttacking = false;
         }
         
         

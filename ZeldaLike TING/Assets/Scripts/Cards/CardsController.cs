@@ -269,5 +269,4 @@ public class CardsController : MonoBehaviour
         }
     }
     #endregion
-    
 }
