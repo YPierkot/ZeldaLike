@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace AI
         
         [SerializeField] private float e_fliSpeed = 1.7f;
         [SerializeField] private float e_fliRange = 1.7f;
+        
         private Vector3 basePosition;
         private float spriteDir;
 
@@ -22,7 +24,7 @@ namespace AI
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
         #endregion
-
+        
         protected override void Init()
         {
             base.Init();
@@ -60,6 +62,19 @@ namespace AI
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_fliRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, -playerTransform.position, e_fliSpeed * Time.deltaTime);
+                
+                
+                RaycastHit groundHit;
+                if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundLayerMask))
+                {
+                    transform.position = groundHit.point + new Vector3(0, 0.5f, 0);
+                    Debug.DrawRay(transform.position, Vector3.down, Color.green);
+                }
+                else
+                {
+                    transform.position += new Vector3(0, -0.5f, 0);
+                    Debug.DrawRay(transform.position, Vector3.down, Color.red);
+                }
             }
             
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
@@ -81,10 +96,7 @@ namespace AI
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
                 }
-                else
-                {
-                }
-                
+
                 spriteDir = playerTransform.position.x - transform.position.x;
 
                 if (spriteDir < 0)

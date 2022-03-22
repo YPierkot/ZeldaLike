@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 namespace AI
 {
@@ -32,7 +34,7 @@ namespace AI
             isAttacking = false;
             eyeCounter = 3;
         }
-        
+
         public override void ChangeState(AIStates aiState)
         {
             base.ChangeState(aiState);

@@ -126,6 +126,9 @@ MonoBehaviour:
   player: {fileID: 0}
   goRoll: 0
   rb: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!65 &5665831862857445520
 BoxCollider:
   m_ObjectHideFlags: 0

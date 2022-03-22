@@ -13,15 +13,18 @@ public class InteracteObject : MonoBehaviour
     [Header("--- WIND")] 
     public bool windAffect;
     public bool windThrough;
-    
-    //[Header("--- ICE")]
-    
+
+    [Header("--- ICE")] 
+    public bool canFreeze;
+    [SerializeField] protected GameObject freezeCollider;
+    [SerializeField] protected float freezeTime; 
     
     //[Header("--- HEARTH")]
     
     [Space]
     [SerializeField] private LayerMask destroyInteract;
-    private MeshRenderer mesh;
+
+    protected MeshRenderer mesh;
     private MeshRenderer[] meshChilds;
     // Start is called before the first frame update
     void Start()
@@ -84,6 +87,25 @@ public class InteracteObject : MonoBehaviour
             burning = true;
             //Debug.LogError($"Start color : {meshChilds[0].material.color}" );
         }
+        
+    }
+
+    virtual public void Freeze(Vector3 cardPos)
+    {
+        Debug.Log("Freeze");
+        if (canFreeze)
+        {
+            freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
+            freezeCollider.transform.position = new Vector3(cardPos.x, freezeCollider.transform.position.y, cardPos.z);
+            StartCoroutine(FreezeTimer());
+        }
+    }
+
+    virtual public IEnumerator FreezeTimer()
+    {
+        yield return new WaitForSeconds(freezeTime);
+        freezeCollider.SetActive(false);
+        mesh.material.color = Color.gray;
         
     }
 }
