@@ -53,18 +53,6 @@ namespace AI
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
-            
-            RaycastHit groundHit;
-            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundLayerMask))
-            {
-                transform.position = groundHit.point + new Vector3(0, 0.5f, 0);
-                Debug.DrawRay(transform.position, Vector3.down, Color.green);
-            }
-            else
-            {
-                transform.position += new Vector3(0, -0.5f, 0);
-                Debug.DrawRay(transform.position, Vector3.down, Color.red);
-            }
         }
         
         protected override void Attack()
