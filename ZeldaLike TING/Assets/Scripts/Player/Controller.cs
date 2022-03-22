@@ -32,8 +32,10 @@ public class Controller : MonoBehaviour
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
+    [SerializeField] private Animator animatorPlayer;
     
     private CardsController cardControl;
+    public static Controller instance;
     
    // --- STATES ---
     private bool moving;
@@ -73,7 +75,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
 
-    public static Controller instance;
+    
     
     void Awake()
     {
@@ -130,8 +132,8 @@ public class Controller : MonoBehaviour
             RaycastHit hit;
             Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
             pointerPosition = hit.point;
-            Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
-            Rotate(vector);
+            //Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+            //Rotate(vector);
         }
         
         if (dashing) 
@@ -148,7 +150,7 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
-
+        
     }
 
     
@@ -180,8 +182,10 @@ public class Controller : MonoBehaviour
             }
         }
 
+        Animations();
+        
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.4f, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
 
     }
@@ -292,7 +296,6 @@ public class Controller : MonoBehaviour
             camera.ChangePoint(other.transform);
             cameraOnPlayer = false;
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -301,6 +304,28 @@ public class Controller : MonoBehaviour
         {
             camera.ChangePoint(PlayerCameraPoint, true);
             cameraOnPlayer = true;
+        }
+    }
+
+    private void Animations()
+    {
+        var animDir = pointerPosition;
+        animDir.Normalize();
+        Debug.Log(animDir);
+        
+        if (!inAttack)
+        {
+            animatorPlayer.SetFloat("X-Axis", animDir.z);
+            animatorPlayer.SetFloat("Z-Axis", animDir.x);
+            animatorPlayer.SetBool("isAttack", inAttack);
+            animatorPlayer.SetBool("isWalk", moving);
+        }
+        else
+        {
+            animatorPlayer.SetFloat("X-Axis", animDir.z);
+            animatorPlayer.SetFloat("Z-Axis", animDir.x);
+            animatorPlayer.SetBool("isAttack", inAttack);
+            animatorPlayer.SetBool("isRun", moving);
         }
     }
 }
