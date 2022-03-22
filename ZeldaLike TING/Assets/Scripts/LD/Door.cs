@@ -12,7 +12,6 @@ public class Door : InteracteObject
     [Space] 
     [SerializeField] private float speed = 0.3f;
 
-    [SerializeField] private bool canFreeze;
     private bool frozen = false;
     private bool open = false;
     private bool move = false;
@@ -44,7 +43,9 @@ public class Door : InteracteObject
 
     public void Switch()
     {
+        
         open = !open;
+        Debug.Log("open : " + open);
         if (open) moveToPosition = openPosition.position;
         else moveToPosition = closePosition.position;
 
