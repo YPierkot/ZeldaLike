@@ -18,7 +18,9 @@ namespace AI
         [SerializeField] private float e_fliRange = 1.7f;
         
         private Vector3 basePosition;
+        private Vector3 wanderDir;
         private float spriteDir;
+        private  bool goMove;
 
         [SerializeField] private Animator bomberAnimator;
         [SerializeField] private bool isMoving;
@@ -30,6 +32,7 @@ namespace AI
             base.Init();
             basePosition = transform.position;
             isAttacking = false;
+            goMove = false;
         }
         
         public override void ChangeState(AIStates aiState)
@@ -48,12 +51,12 @@ namespace AI
                 return;
             
             isMoving = true;
-            
-            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), (basePosition.y), 
+
+            Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
-        }
+        }   
         
         protected override void Attack()
         {
@@ -62,19 +65,6 @@ namespace AI
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_fliRange)
             {
                 transform.position = Vector3.MoveTowards(transform.position, -playerTransform.position, e_fliSpeed * Time.deltaTime);
-                
-                
-                RaycastHit groundHit;
-                if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundLayerMask))
-                {
-                    transform.position = groundHit.point + new Vector3(0, 0.5f, 0);
-                    Debug.DrawRay(transform.position, Vector3.down, Color.green);
-                }
-                else
-                {
-                    transform.position += new Vector3(0, -0.5f, 0);
-                    Debug.DrawRay(transform.position, Vector3.down, Color.red);
-                }
             }
             
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
@@ -95,6 +85,11 @@ namespace AI
                     transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
+                    
+                    RaycastHit groundHit;
+                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
+                    else transform.position += new Vector3(0, -0.1f, 0);
+                    Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
                 }
 
                 spriteDir = playerTransform.position.x - transform.position.x;
@@ -109,7 +104,7 @@ namespace AI
         private IEnumerator DoDropBomb()
         {
             bomberAnimator.SetBool("isAttack", isAttacking);
-            yield return new WaitForSeconds(0.9f);
+            yield return new WaitForSeconds(0.85f);
             Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
             var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
             bomb.GetComponent<Bomb>().ExploseBomb();
@@ -129,6 +124,13 @@ namespace AI
             Gizmos.DrawWireSphere(transform.position, e_rangeAttack); // Zone of attack range
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, e_fliRange); // Zone of the flie range
+        }
+
+        private IEnumerator GoWander()
+        {
+            goMove = true;
+            yield return new WaitForSeconds(3.5f);
+            goMove = false;
         }
     }
 }

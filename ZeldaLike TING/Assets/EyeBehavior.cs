@@ -32,8 +32,8 @@ public class EyeBehavior : MonoBehaviour
     private void FixedUpdate()
     {
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
-        else transform.position += new Vector3(0, -0.1f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.3f, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
+        else transform.position += new Vector3(0, -0.2f, 0);
     }
 
     private IEnumerator InitEye()
@@ -48,7 +48,7 @@ public class EyeBehavior : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
 
-        transform.DOMove(newMoveTarget, 4f).OnComplete(() => Destroy(gameObject));
+        transform.DOMove(newMoveTarget, 2f).OnComplete(() => Destroy(gameObject));
     }
 
     private void OnCollisionEnter(Collision other)

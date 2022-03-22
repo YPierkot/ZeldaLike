@@ -36,7 +36,7 @@ public class PlayerStat : MonoBehaviour
       if (other.transform.CompareTag("Ennemy")) 
       {
          TakeDamage();
-         StartCoroutine("HitCD");
+         StartCoroutine(HitCD());
          control.canMove = false;
          Vector3 repulse = (transform.position - other.contacts[0].point).normalized*repulseForce;
          control.rb.velocity = repulse;
