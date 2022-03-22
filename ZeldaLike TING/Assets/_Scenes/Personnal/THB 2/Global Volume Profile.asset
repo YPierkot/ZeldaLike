@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
   m_Name: ShadowsMidtonesHighlights
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   shadows:
-    m_OverrideState: 0
-    m_Value: {x: 0.18027192, y: 0.45892838, z: 1, w: -0.1724138}
+    m_OverrideState: 1
+    m_Value: {x: 0.75034565, y: 0.8105931, z: 1, w: -0.1724138}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 0.997123, z: 0.62926465, w: -0.13793103}
+    m_OverrideState: 1
+    m_Value: {x: 0.94528437, y: 0.91601646, z: 1, w: -0.13793103}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 0.9962236, y: 1, z: 0.2966566, w: 0}
+    m_Value: {x: 0.98649395, y: 1, z: 0.70438814, w: 0}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
@@ -62,10 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 0.05
 --- !u!114 &2474913028381106531
 MonoBehaviour:
   m_ObjectHideFlags: 3
