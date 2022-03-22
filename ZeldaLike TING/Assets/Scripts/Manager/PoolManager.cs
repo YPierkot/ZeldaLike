@@ -49,8 +49,9 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public void PoolInstantiate(Object typeOfObject, out GameObject GM)
+    public GameObject PoolInstantiate(Object typeOfObject)
     {
+        GameObject GM;
         Queue<GameObject> queue = queueDictionary[typeOfObject];
         if (queue.Count == 0)
         {
@@ -59,7 +60,10 @@ public class PoolManager : MonoBehaviour
         else
         {
             GM = queue.Dequeue();
+            GM.SetActive(true);
         }
+
+        return GM;
     }
 
 }

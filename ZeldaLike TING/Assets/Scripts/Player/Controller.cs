@@ -181,8 +181,9 @@ public class Controller : MonoBehaviour
         }
 
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.4f, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
-        else transform.position += new Vector3(0, -0.1f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+        //if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundMask)) {transform.position = groundHit.point + new Vector3(0, 0.3f, 0); Debug.Log("walk on " + groundHit.transform.name+ " at " + groundHit.point);}
+        else transform.position += new Vector3(0, -0.2f, 0);
 
     }
     
@@ -190,7 +191,7 @@ public class Controller : MonoBehaviour
     private void OnDrawGizmos()
     {
        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
-       Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
+       Debug.DrawRay(transform.position, Vector3.down*2, Color.blue);
     }
 
     void Move()
@@ -272,7 +273,7 @@ public class Controller : MonoBehaviour
         if (angleView>currentInterval.max || angleView < currentInterval.min)
         {
             SpriteAngle newSA = spriteDictionary.First(sw => sw.Key(angleView)).Value;
-            sprite.sprite = newSA.sprite;
+            //sprite.sprite = newSA.sprite;
             currentInterval = newSA.angleInterval;
         }  
     }
