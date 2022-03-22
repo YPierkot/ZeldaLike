@@ -16,14 +16,15 @@ public class InteracteObject : MonoBehaviour
 
     [Header("--- ICE")] 
     public bool canFreeze;
-    [SerializeField] private GameObject freezeCollider;
-    [SerializeField] private float freezeTime; 
+    [SerializeField] protected GameObject freezeCollider;
+    [SerializeField] protected float freezeTime; 
     
     //[Header("--- HEARTH")]
     
     [Space]
     [SerializeField] private LayerMask destroyInteract;
-    private MeshRenderer mesh;
+
+    protected MeshRenderer mesh;
     private MeshRenderer[] meshChilds;
     // Start is called before the first frame update
     void Start()
@@ -89,7 +90,7 @@ public class InteracteObject : MonoBehaviour
         
     }
 
-    public void Freeze(Vector3 cardPos)
+    virtual public void Freeze(Vector3 cardPos)
     {
         Debug.Log("Freeze");
         if (canFreeze)
@@ -100,9 +101,8 @@ public class InteracteObject : MonoBehaviour
         }
     }
 
-    private IEnumerator FreezeTimer()
+    virtual public IEnumerator FreezeTimer()
     {
-        Debug.Log("start freeze CD");
         yield return new WaitForSeconds(freezeTime);
         freezeCollider.SetActive(false);
         mesh.material.color = Color.gray;

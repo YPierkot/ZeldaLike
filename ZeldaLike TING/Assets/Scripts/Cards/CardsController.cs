@@ -120,7 +120,8 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(fireCardGrounded = Instantiate(fireCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
+                fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
+                fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 fireCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
                 isFireGround = true;
             }
