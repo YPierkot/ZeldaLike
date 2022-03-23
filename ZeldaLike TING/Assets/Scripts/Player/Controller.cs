@@ -189,7 +189,7 @@ public class Controller : MonoBehaviour
         Animations();
         
         RaycastHit groundHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1, groundMask)) transform.position = groundHit.point + new Vector3(0, 0.95f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 2, groundMask)) transform.position = groundHit.point + new Vector3(0, 1.95f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
 
     }
@@ -198,7 +198,7 @@ public class Controller : MonoBehaviour
     private void OnDrawGizmos()
     {
        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
-       Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
+       Debug.DrawRay(transform.position, Vector3.down*2, Color.blue);
     }
 
     void Move()
@@ -318,8 +318,6 @@ public class Controller : MonoBehaviour
     {
         var animDir = pointerPosition - transform.position;
         animDir.Normalize();
-
-        Debug.Log(animDir);
 
         if (!inAttack)
         {
