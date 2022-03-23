@@ -76,6 +76,10 @@ public class Controller : MonoBehaviour
     [SerializeField] private AnimationCurve dashCurve;
 
     
+    [Header("--- DEBUG ---")] 
+    [SerializeField] private TextMeshProUGUI Debugger;
+    [SerializeField] private Transform transformDebugger;
+    
     
     void Awake()
     {
@@ -131,9 +135,10 @@ public class Controller : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
+            //transformDebugger.position = hit.point;
             pointerPosition = hit.point;
-            //Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
-            //Rotate(vector);
+            Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+            Rotate(vector);
         }
         
         if (dashing) 
@@ -263,11 +268,14 @@ public class Controller : MonoBehaviour
     {
         if (!inAttack)
         {
-            angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg) + 180;
+            angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
+            Debug.Log(Debugger);
+            if (Debugger != null)
+                Debugger.text = angleView.ToString();
             
             moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
-            UpdateSprite();
+            //UpdateSprite();
         }
     }
 
@@ -311,7 +319,7 @@ public class Controller : MonoBehaviour
     {
         var animDir = pointerPosition;
         animDir.Normalize();
-        Debug.Log(animDir);
+        //Debug.Log(animDir);
         
         if (!inAttack)
         {
