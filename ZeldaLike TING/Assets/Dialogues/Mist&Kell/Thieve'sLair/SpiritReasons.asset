@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: SpiritReasons
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Tell me Mist, why do your spirit siblings
+      delay: 1
+    - expressions: 0
+      name: 
+      line: Attack humans ?
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: ffa283907d5ed1847b97516d8a9aad9c, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: So, you're asking me to talk now ?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'Great progress. Your curiosity always '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: surprises me, human.
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: a20f7907dc4f6ab4a88c215f61a8cd25, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Just answer and quit being a jerk.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: f5bddfbb28eab8145af1a5c27e3de3aa, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Well, it all happened a very long time ago,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Way before I was born, even if time
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Doesn't work the same way in our dimension
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Some curious and ingenious spirits managed
+      delay: 3
+    - expressions: 0
+      name: 
+      line: To use the core energy of our dimension
+      delay: 3
+    - expressions: 0
+      name: 
+      line: To create breaches to yours.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: df198cd19769ca44da9be300aff3e6be, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Just like Ithar ?
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 3c88680782708334cbfc4e429d9d6db7, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yes, but the other way around.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: So, the curious spirits sometimes decided
+      delay: 0
+    - expressions: 0
+      name: 
+      line: To visit your dimension, to explore and discover
+      delay: 3
+    - expressions: 0
+      name: 
+      line: A new environment and new species.
+      delay: 3
+    - expressions: 0
+      name: 
+      line: But when they met you foolish humans,
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Were afraid of the spirits, and immediatly started to attack them
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Even if they came in peace, and as we
+      delay: 2
+    - expressions: 0
+      name: 
+      line: 'Didn''t speak the same language, '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: We couldn't negociate.
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: ee21371f2f61d5743b9099f40592a757, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: If I understand correctly, it is all about revenge then.
+      delay: 3
+    - expressions: 0
+      name: 
+      line: 'Even after thousands of years? '
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: Feels a bit childish to me.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: f6431720750061d4289c4137e768071d, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Watch your mouth human. And it was too far gone
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Even when we managed to communicate
+      delay: 3
+    - expressions: 0
+      name: 
+      line: The spirits were too angry to ask for peace
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 159b9bf60b5fc30419c8f540a6b4eff6, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: And now Ithar is using this resentment
+      delay: 0
+    - expressions: 0
+      name: 
+      line: To spread chaoes all over the place.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 75aa6c4ffe713f54f84bcbda9e62075f, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: See!? Your brain works correctly when you try.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 6f6de153e8231d54090bc7f29d001923, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I'm never talking to you again.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: bddbdef0ac23f8a43840036a062c580b, type: 3}
