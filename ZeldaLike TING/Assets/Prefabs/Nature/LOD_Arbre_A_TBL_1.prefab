@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8557527777888833858}
   - component: {fileID: 554245367748297030}
   m_Layer: 0
-  m_Name: Arbre LOD
+  m_Name: LOD_Arbre_A_TBL_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,8 +130,9 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.249
+  - screenRelativeHeight: 0.25
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 8507198076319077825}
+    - renderer: {fileID: 746470518317822054, guid: a67bb52835a9e3640850b2465aaa768d,
+        type: 3}
   m_Enabled: 1
