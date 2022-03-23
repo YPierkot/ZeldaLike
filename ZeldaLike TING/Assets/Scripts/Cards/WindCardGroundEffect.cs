@@ -38,6 +38,5 @@ public class WindCardGroundEffect : MonoBehaviour
                     .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 2);
             }
         }
-        Destroy(gameObject, 0.2f);
     }
 }

@@ -1341,6 +1341,11 @@ PrefabInstance:
       propertyPath: Ennemy.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: interactMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629417, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_RootOrder
@@ -4583,30 +4588,28 @@ MonoBehaviour:
   canUseCards: 1
   fireCard: {fileID: 8479553354742785972, guid: 70ebc9619449d2b4c8e60f876b51c755,
     type: 3}
-  isFireGround: 0
-  groundFireCard: {fileID: 8479553354742785972, guid: dbf3923e075453146b911fa71af45ba6,
-    type: 3}
+  fireBall: {fileID: 0}
   fireCardGrounded: {fileID: 0}
   canUseFireCard: 1
   iceCard: {fileID: 8479553354742785972, guid: e07938c057bbe18428fe3571889a80d8, type: 3}
-  isIceGround: 0
-  groundIceCard: {fileID: 8479553354742785972, guid: fc136b71843c0dc4aa5742e91b9f59f6,
-    type: 3}
   iceCardGrounded: {fileID: 0}
   canUseIceCard: 0
   wallCard: {fileID: 0}
   wallCardGrounded: {fileID: 0}
-  isWallGround: 0
-  groundWallCard: {fileID: 8479553354742785972, guid: 7d93a1f92ec75bf47a2168b10b2f9858,
-    type: 3}
+  WallSR: {fileID: 0}
   canUseWallCard: 0
-  isWindGround: 0
   windCard: {fileID: 8479553354742785972, guid: 93a05bf5758e84f45b22adb664ddc335,
     type: 3}
   windCardGrounded: {fileID: 0}
   groundWindCard: {fileID: 8479553354742785972, guid: c3bb207d1a53eef4e9cbdb298cdca9f1,
     type: 3}
   canUseWindCard: 0
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 0
+  repulsivePower: 500
+  repulsiveRadius: 4
+  repulsivePoint: {x: 0, y: 0, z: 0}
   m_tranform: {fileID: 104507897}
   Ennemy:
     serializedVersion: 2
