@@ -92,7 +92,13 @@ namespace AI
                     transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
+                    
                     kamikazeAnimator.SetBool("isWalk", true);
+
+                    RaycastHit groundHit;
+                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
+                    else transform.position += new Vector3(0, -0.1f, 0);
+                    Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
                 }
                 else
                 {

@@ -106,9 +106,12 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
   e_stuntValue: 0
   e_FreezeValue: 0
-  e_rangeWander: 3.3
+  e_rangeWander: 2.4
   e_aoeRange: 0.9
   isMoving: 0
   isAttacking: 0

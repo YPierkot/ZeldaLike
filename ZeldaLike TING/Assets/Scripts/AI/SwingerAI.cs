@@ -24,8 +24,7 @@ namespace AI
         private Vector3 dir;
         private float spriteDir;
         #endregion
-
-
+        
         protected override void Init()
         {
             base.Init();
@@ -40,16 +39,7 @@ namespace AI
             if (aiState == AIStates.walking)
                 basePosition = transform.position;
         }
-
-        private void FixedUpdate()
-        {
-            RaycastHit groundHit;
-            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.1f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
-            else transform.position += new Vector3(0, -0.1f, 0);
-            
-            Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
-        }
-
+        
         protected override void Walk()
         {
             if(isAttacking)
@@ -66,8 +56,8 @@ namespace AI
             Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
-            
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
+            
             if (!isMoving)
             {
                 swingerAnimator.SetBool("isWalk", false);
@@ -97,6 +87,11 @@ namespace AI
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
                     swingerAnimator.SetBool("isWalk", true);
+                    
+                    RaycastHit groundHit;
+                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
+                    else transform.position += new Vector3(0, -0.1f, 0);
+                    Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
                 }
                 else
                 {

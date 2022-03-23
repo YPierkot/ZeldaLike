@@ -86,6 +86,11 @@ namespace AI
                     transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
+                    
+                    RaycastHit groundHit;
+                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.5f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
+                    else transform.position += new Vector3(0, -0.2f, 0);
+                    Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
                 }
                 
                 spriteDir = playerTransform.position.x - transform.position.x;

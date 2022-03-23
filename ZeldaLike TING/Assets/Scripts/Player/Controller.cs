@@ -155,7 +155,6 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
-        
     }
 
     
@@ -256,7 +255,7 @@ public class Controller : MonoBehaviour
         inAttack = false;
         if (!nextCombo || attackCounter == 3)
         {
-            StartCoroutine("ComboWait");
+            StartCoroutine(("ComboWait"));
         }
         else
         {
@@ -317,21 +316,24 @@ public class Controller : MonoBehaviour
 
     private void Animations()
     {
-        var animDir = pointerPosition;
+        var animDir = pointerPosition - transform.position;
         animDir.Normalize();
+<<<<<<< HEAD
         //Debug.Log(animDir);
+=======
+>>>>>>> AUC_ProtoScene
         
         if (!inAttack)
         {
-            animatorPlayer.SetFloat("X-Axis", animDir.z);
-            animatorPlayer.SetFloat("Z-Axis", animDir.x);
+            animatorPlayer.SetFloat("X-Axis", animDir.x);
+            animatorPlayer.SetFloat("Z-Axis", animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
-            animatorPlayer.SetBool("isWalk", moving);
+            animatorPlayer.SetBool("isRun", moving);
         }
         else
         {
-            animatorPlayer.SetFloat("X-Axis", animDir.z);
-            animatorPlayer.SetFloat("Z-Axis", animDir.x);
+            animatorPlayer.SetFloat("X-Axis", animDir.x);
+            animatorPlayer.SetFloat("Z-Axis", animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
         }
