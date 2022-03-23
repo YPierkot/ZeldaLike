@@ -792,6 +792,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
+  groundDistance: 0
   moveTransform: {fileID: 7337217464296193324}
   camera: {fileID: 0}
   PlayerCameraPoint: {fileID: 6699838829042073399}
@@ -841,6 +842,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  Debugger: {fileID: 0}
+  transformDebugger: {fileID: 0}
 --- !u!114 &7337217462935629413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,7 +919,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   projectileSpeed: 400
-  State: 2
+  State: 1
 --- !u!1 &7337217463896534132
 GameObject:
   m_ObjectHideFlags: 0
