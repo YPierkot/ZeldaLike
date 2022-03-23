@@ -19,8 +19,8 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: What's up Will?
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 7a48238c26aa6a44f9aa446a4e0f2a81, type: 3}
   - character: {fileID: 11400000, guid: e17ca90299fe6cd4ca829b2662376ccf, type: 2}
     startingDelay: 0
     dialogLines:
@@ -30,17 +30,21 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: We have nothing to steal... Famine is upon us.
-      delay: 0
-    voiceLine: {fileID: 0}
+      line: We have nothing to steal... Spirits kill the fish!
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: Famine is upon us.
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 27de0f81be6fd684f9d6e1d5a5c61f3d, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: It'll get better Will, I promise I'll fix it.
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 6e2b3927367a9c240abb60d225e3af26, type: 3}
   - character: {fileID: 11400000, guid: e17ca90299fe6cd4ca829b2662376ccf, type: 2}
     startingDelay: 0
     dialogLines:
@@ -52,15 +56,19 @@ MonoBehaviour:
       name: 
       line: You're as powerless as we all are
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 0aab3055d36896a47ac6db865392e52a, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: See!? He says it too! I'm not the only one to think that.
+      line: 'See!? He says it too! '
       delay: 0
-    voiceLine: {fileID: 0}
+    - expressions: 0
+      name: 
+      line: I'm not the only one to think that.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 9afda50373a40ad40bc137386d2db3f0, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -68,4 +76,4 @@ MonoBehaviour:
       name: 
       line: I'm fed up with you Mist.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 521bfdd8821887540be4c2a9986582c9, type: 3}
