@@ -1,3 +1,4 @@
+using AI;
 using UnityEngine;
 
 public class AttackControl : MonoBehaviour
@@ -15,8 +16,23 @@ public class AttackControl : MonoBehaviour
         if (other.transform.CompareTag("Ennemy"))
         {
             Debug.Log("Touch " + other.name);
+
+            if (other.gameObject.GetComponent<SwingerAI>())
+            {
+                other.gameObject.GetComponent<SwingerAI>().LooseHp(1);
+            }
+            else if (other.gameObject.GetComponent<KamikazeAI>())
+            {
+                other.gameObject.GetComponent<KamikazeAI>().LooseHp(1);
+            }
+            else if (other.gameObject.GetComponent<MageAI>())
+            {
+                other.gameObject.GetComponent<MageAI>().LooseHp(1);
+            }
+            else if (other.gameObject.GetComponent<BomberAI>())
+            {
+                other.gameObject.GetComponent<BomberAI>().LooseHp(1);
+            }
         }
     }
-
-   
 }

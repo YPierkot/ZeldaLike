@@ -318,11 +318,9 @@ public class Controller : MonoBehaviour
     {
         var animDir = pointerPosition - transform.position;
         animDir.Normalize();
-<<<<<<< HEAD
-        //Debug.Log(animDir);
-=======
->>>>>>> AUC_ProtoScene
-        
+
+        Debug.Log(animDir);
+
         if (!inAttack)
         {
             animatorPlayer.SetFloat("X-Axis", animDir.x);
