@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rocher_B
+  m_Name: MAT_Barriere
   m_Shader: {fileID: -6465566751694194690, guid: c22c48d3a27caca458810524fa481e98,
     type: 3}
   m_ShaderKeywords: 
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 983d875ba22c09145a10ec0ee832e7d1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 790cbc11c4fbd5b4c82457732d25746d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -120,18 +120,18 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LightProbeContribution: 3
+    - _LightProbeContribution: 5
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthSensitivity: 0.333
+    - _OutlineDepthSensitivity: 0.224
     - _OutlineNormalsSensitivity: 1
-    - _OutlineThickness: 1
+    - _OutlineThickness: 3
     - _Parallax: 0.005
     - _QueueControl: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SkyFade: 0
-    - _Smoothness: 1
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
