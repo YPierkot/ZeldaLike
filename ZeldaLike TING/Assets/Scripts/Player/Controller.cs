@@ -197,7 +197,7 @@ public class Controller : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-       if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
+       if(!CustomLDData.showGizmos || !CustomLDData.showGizmosGameplay) return;
        Debug.DrawRay(transform.position, Vector3.down*groundDistance, Color.blue);
     }
 

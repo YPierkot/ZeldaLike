@@ -75,6 +75,7 @@ public class CardsController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosGameplay) return;
         Gizmos.DrawWireSphere(transform.position, 4f);
     }
 

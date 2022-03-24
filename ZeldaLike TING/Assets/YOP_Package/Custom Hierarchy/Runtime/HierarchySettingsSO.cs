@@ -42,7 +42,7 @@ namespace CustomizeEditor.HierarchySO {
 
         //ICONS COMPONENT
         [SerializeField] private List<string> componentIcontype = new List<string>() {
-            "UnityEngine.BoxCollider", "UnityEngine.BoxCollider2D",
+            "UnityEngine.BoxCollider", "UnityEngine.BoxCollider2D", "UnityEngine.MeshCollider", "UnityEngine.SphereCollider",
             "UnityEngine.Rigidbody", "UnityEngine.Rigidbody2D",
             "UnityEngine.Camera",
             "UnityEngine.Light",
@@ -127,7 +127,7 @@ namespace CustomizeEditor.HierarchySO {
             useIconGam = true;
             
             //Icons Component
-            componentIcontype = new List<string>() {"UnityEngine.BoxCollider", "UnityEngine.BoxCollider2D", "UnityEngine.Rigidbody", "UnityEngine.Rigidbody2D", "UnityEngine.Camera", "UnityEngine.Light", "UnityEngine.Animator", "UnityEngine.Canvas"};
+            componentIcontype = new List<string>() {"UnityEngine.BoxCollider", "UnityEngine.BoxCollider2D",  "UnityEngine.MeshCollider", "UnityEngine.SphereCollider","UnityEngine.Rigidbody", "UnityEngine.Rigidbody2D", "UnityEngine.Camera", "UnityEngine.Light", "UnityEngine.Animator", "UnityEngine.Canvas"};
             drawMonobehaviourScriptIcon = true;
             useIconComponent = true;
             

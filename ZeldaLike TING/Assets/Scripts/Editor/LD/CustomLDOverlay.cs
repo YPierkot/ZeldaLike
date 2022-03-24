@@ -18,9 +18,7 @@ public class CustomLDOverlay : IMGUIOverlay {
     /// Show or Hide the Gizmos
     /// </summary>
     [MenuItem("Tools/LD/Enable or Disable Gizmos &a")]
-    private static void ShowOrHideGizmos() {
-        CustomLDData.showGizmos = !CustomLDData.showGizmos;
-    }
+    private static void ShowOrHideGizmos() => CustomLDData.showGizmos = !CustomLDData.showGizmos;
     
     /// <summary>
     /// Enable Or Disable the LD Plan with a menu item. It allows to use an input to quiclky change the visibility of the plan
@@ -31,6 +29,18 @@ public class CustomLDOverlay : IMGUIOverlay {
         isPlanActiv = !isPlanActiv;
         SceneVisibilityManager.instance.ToggleVisibility(LDPlan, isPlanActiv);
     }
+    
+    /// <summary>
+    /// Reorder all the children inside the gameobject selected
+    /// </summary>
+    [MenuItem("Tools/LD/Reorder child inside Gam &r")]
+    private static void ReorderChildInsideGam() => GameObjectOrderHierarchy.ReorderChildsInsideparent();
+
+    /// <summary>
+    /// Reorder all the children inside a new created gameobject
+    /// </summary>
+    [MenuItem("Tools/LD/Reorder child inside New Gam &t")]
+    private static void ReorderChildInsideNewGam() => GameObjectOrderHierarchy.ArrangeChildInsideGam();
     #endregion
     
     public override void OnGUI() {
@@ -38,15 +48,42 @@ public class CustomLDOverlay : IMGUIOverlay {
             LDPlan = GameObject.FindGameObjectWithTag("Plan");
             if (LDPlan != null) isPlanActiv = !SceneVisibilityManager.instance.IsHidden(LDPlan);
         }
+
+        DrawTiTle();
         
+        GUILayout.Space(4);
+        
+        DrawGizmosBox();
+        DrawLdPlanBox();
+        
+        GUILayout.Space(4);
+        
+        DrawReorderChildButton();
+        
+        GUILayout.Space(4);
+        
+        DrawLoadSceneButton();
+        DrawWindowSizeButton();
+
+    }
+    
+    #region GUIDrawer
+    /// <summary>
+    /// Draw the title of the overlay
+    /// </summary>
+    private void DrawTiTle() {
         using (new GUILayout.HorizontalScope()) {
             GUILayout.BeginVertical();
             GUILayout.Label("Custom LD Overlay".ToUpper(), new GUIStyle(GUI.skin.label) {fontStyle = FontStyle.Bold, fontSize = 12});
             GUILayout.EndVertical();
             GUILayout.Space(10);
         }
-        
-        GUILayout.Space(4);
+    }
+
+    /// <summary>
+    /// Draw the gizmos box
+    /// </summary>
+    private void DrawGizmosBox() {
         using (new GUILayout.HorizontalScope()) {
             GUIStyle buttonStyle = new GUIStyle(EditorStyles.label) {
                 padding = new RectOffset(0, 0, 0, 0),
@@ -58,10 +95,16 @@ public class CustomLDOverlay : IMGUIOverlay {
                 GenericMenu menu = new GenericMenu();
                 menu.AddItem(new GUIContent("Narrativ Gizmos"), CustomLDData.showGizmosDialogue, c => CustomLDData.showGizmosDialogue =! CustomLDData.showGizmosDialogue, null);
                 menu.AddItem(new GUIContent("Object Relation Gizmos"), CustomLDData.showGizmosRelation, c => CustomLDData.showGizmosRelation =! CustomLDData.showGizmosRelation, null);
+                menu.AddItem(new GUIContent("Gameplay Gizmos"), CustomLDData.showGizmosGameplay, c => CustomLDData.showGizmosGameplay =! CustomLDData.showGizmosGameplay, null);
                 menu.ShowAsContext();
             }
         }
-        
+    }
+
+    /// <summary>
+    /// Draw LD Plan Box
+    /// </summary>
+    private void DrawLdPlanBox() {
         if (LDPlan != null) {
             EditorGUI.BeginChangeCheck();
             isPlanActiv = GUILayout.Toggle(isPlanActiv, "Show Plan (alt+z)");
@@ -69,12 +112,23 @@ public class CustomLDOverlay : IMGUIOverlay {
                 SceneVisibilityManager.instance.ToggleVisibility(LDPlan, isPlanActiv);
             }
         }
-
-        DrawLoadSceneButton();
-        DrawWindowSizeButton();
-
     }
 
+    /// <summary>
+    /// Reorder the child based on their names
+    /// </summary>
+    private void DrawReorderChildButton() {
+        if (GUILayout.Button("Reorder Child Inside Gam (alt+r)")) {
+            GameObjectOrderHierarchy.ReorderChildsInsideparent();
+        }
+
+        if (GUILayout.Button("Create Parent & Reorder (alt+t)")) {
+            GameObjectOrderHierarchy.ArrangeChildInsideGam();
+        }
+    }
+
+    #endregion GUIDrawer
+    
     /// <summary>
     /// Maximize or Minimize the SceneView
     /// </summary>
