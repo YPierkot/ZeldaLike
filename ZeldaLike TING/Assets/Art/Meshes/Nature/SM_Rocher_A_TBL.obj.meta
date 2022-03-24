@@ -3,9 +3,14 @@ guid: fc1ac9ac506aad842a0ed73a3de3c52c
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rocher_AMat
+    second: {fileID: 2100000, guid: 1f2870c519363f643b7effbbe3230bfc, type: 2}
   materials:
-    materialImportMode: 0
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
