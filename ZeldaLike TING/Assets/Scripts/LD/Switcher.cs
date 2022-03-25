@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Switcher : MonoBehaviour
+public class Switcher : InteracteObject
 {
     private MeshRenderer mesh;
 

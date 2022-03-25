@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Arbre_A_1
+  m_Name: MAT_Drap_A
   m_Shader: {fileID: -6465566751694194690, guid: c22c48d3a27caca458810524fa481e98,
     type: 3}
   m_ShaderKeywords: 
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: ba4ad1bcd14053c4a95afbd52446beac, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2b32fa7c004146940b6e794046578f3c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -120,10 +120,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LightProbeContribution: 3
+    - _LightProbeContribution: 5
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthSensitivity: 0.333
+    - _OutlineDepthSensitivity: 0.224
     - _OutlineNormalsSensitivity: 1
     - _OutlineThickness: 3
     - _Parallax: 0.005
@@ -131,7 +131,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SkyFade: 0
-    - _Smoothness: 1
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class debugPerlin : MonoBehaviour
+public class PerlinMap : MonoBehaviour
 {
     // Width and height of the texture in pixels.
     public int pixWidth;
