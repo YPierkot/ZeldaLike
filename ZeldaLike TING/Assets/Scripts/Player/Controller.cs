@@ -241,7 +241,6 @@ public class Controller : MonoBehaviour
                 canMove = false;
                 inAttack = true;
                 nextCombo = false;
-                Debug.Log("Attack");
                 //attackZone.collider.enabled = true;
                 attackCounter++;
                 attackZone.Play($"Attack{attackCounter}");
@@ -298,8 +297,11 @@ public class Controller : MonoBehaviour
     public IEnumerator ComboWait()
     {
         yield return new WaitForSeconds(0.15f);
-        attackCounter = 0;
-        canMove = true;
+        if (!inAttack)
+        {
+            attackCounter = 0;
+            canMove = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
