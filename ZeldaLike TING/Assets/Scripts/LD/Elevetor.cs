@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Elevetor : MonoBehaviour
+public class Elevetor : InteracteObject
 {
     private BoxCollider collider;
     
+    [Header("==== ELEVETOR ====")]
     [SerializeField] private Transform platform;
     [SerializeField] private Transform[] passPoint;
     [SerializeField] private float waitingTime = 2f;

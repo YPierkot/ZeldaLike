@@ -33,6 +33,7 @@ public class Controller : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
     [SerializeField] private Animator animatorPlayer;
+    [SerializeField] private Animator animatorMovePlayer;
     
     private CardsController cardControl;
     public static Controller instance;
@@ -102,6 +103,8 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
+
+        InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
     }
 
 
@@ -156,6 +159,10 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
+        
+        if(Input.GetAxis("Mouse ScrollWheel")> 0f) UIManager.Instance.ChangeCard(1);
+        if(Input.GetAxis("Mouse ScrollWheel")< 0f) UIManager.Instance.ChangeCard(-1);
+        
     }
 
     
@@ -269,7 +276,6 @@ public class Controller : MonoBehaviour
         {
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
-            Debug.Log(Debugger);
             if (Debugger != null)
                 Debugger.text = angleView.ToString();
             
@@ -325,6 +331,7 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetFloat("Z-Axis", animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
+            animatorMovePlayer.SetBool("isWalk", moving);
         }
         else
         {
