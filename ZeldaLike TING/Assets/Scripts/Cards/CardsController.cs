@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using AI;
 using Unity.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -35,7 +36,7 @@ public class CardsController : MonoBehaviour
     public bool canUseWallCard;
     
     [Space(10)] // Wind Card
-    [Header("Wind Card")]
+    [Header("Wind Card")] [SerializeField]
     public static bool isWindGround;
     public GameObject windCard;
     public GameObject windCardGrounded;
@@ -76,7 +77,10 @@ public class CardsController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 4f);
+        Gizmos.color = Color.cyan;
+        Vector3 mousePos = controller.pointerPosition - transform.position;
+        mousePos.Normalize();
+        Gizmos.DrawWireSphere(transform.position + mousePos * radiusShootPoint, 0.7f);
     }
 
     public void ShortRange()
@@ -111,7 +115,7 @@ public class CardsController : MonoBehaviour
 
     #region CardEffectsLongRange
 
-    private const float radiusShootPoint = 0.35f;
+    private const float radiusShootPoint = 0.55f;
     // Fire Card
     private void FireballLongRange()
     {
@@ -203,16 +207,18 @@ public class CardsController : MonoBehaviour
     {
         if (canUseFireCard)
         {
-            fireCardGrounded = Instantiate(fireBall, new Vector3(transform.position.x, transform.position.y - 0.6f, transform.position.z), Quaternion.Euler(0,0,0f));
+            ActivateFireShortEffect();
+            StartCoroutine(LaunchCardCD(1));
         }
     }
-    
+
     // Ice Card
     private void IceShortRange()
     {
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
+            StartCoroutine(LaunchCardCD(2));
         }   
     }
 
@@ -222,6 +228,7 @@ public class CardsController : MonoBehaviour
         if (canUseWallCard)
         {
             ActivateWallGroundEffect();
+            StartCoroutine(LaunchCardCD(3));
         }
     }
     
@@ -231,60 +238,114 @@ public class CardsController : MonoBehaviour
         if (canUseWindCard)
         {
             ActivateWindGroundEffect();
+            StartCoroutine(LaunchCardCD(4));
         }
     }
-    #endregion
+    
 
-    
-    
-    public void ActivateIceGroundEffect()
+    // EFFECTS CODE
+    private void ActivateFireShortEffect()
     {
-        float zTransform = transform.position.z;
-        float xTransform = transform.position.x;
-        float yTransform = transform.position.y;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
+        foreach (var col in colliders)
+        {
+            switch (col.transform.tag)
+            {
+                case "Interactable": col.GetComponent<InteracteObject>().Burn();
+                    break;
+
+                case "Ennemy":
+                    if (col.transform.GetComponent<SwingerAI>())
+                        col.transform.GetComponent<SwingerAI>().LooseHp(2);
+                    else if (col.transform.GetComponent<KamikazeAI>())
+                        col.transform.GetComponent<KamikazeAI>().LooseHp(2);
+                    else if (col.transform.GetComponent<MageAI>())
+                        col.transform.GetComponent<MageAI>().LooseHp(2);
+                    else if (col.transform.GetComponent<BomberAI>())
+                        col.transform.GetComponent<BomberAI>().LooseHp(2);
+                    break;
+                default: break;
+            }
+        }
+    }
+    
+    
+    public void ActivateIceGroundEffect() // OK
+    {
+        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        shootPointPos.Normalize();
+
+        var tempoV31 = new Vector3(0, 0, 2);
+        var tempoV32 = new Vector3(0, 0, 6);
         
-        Debug.Log("Ice Spike Launch");
-        Collider[] cols = Physics.OverlapCapsule(new Vector3(xTransform, yTransform, zTransform + 3.7f), new Vector3(xTransform, yTransform, zTransform + 8), 2.5f, Ennemy);
+        var GoDir1 = transform.position + shootPointPos * radiusShootPoint;
+        
+        var GoDir2 = transform.position + shootPointPos * radiusShootPoint;
+
+        Debug.DrawRay(GoDir1, GoDir2, Color.green, 3f);
+        
+        
+        
+        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir2 + tempoV32, 2.5f, Ennemy);
         foreach (var ennemy in cols)
         {
-            // Effect
+            if (ennemy.transform.GetComponent<SwingerAI>())
+            {
+                //ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
+                ennemy.transform.GetComponent<SwingerAI>().FreezeEnnemy();
+            }
+            else if (ennemy.transform.GetComponent<KamikazeAI>())
+            {
+                //ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
+                ennemy.transform.GetComponent<KamikazeAI>().FreezeEnnemy();
+            }
+            else if (ennemy.transform.GetComponent<MageAI>())
+            {
+                //ennemy.transform.GetComponent<MageAI>().LooseHp(1);
+                ennemy.transform.GetComponent<MageAI>().FreezeEnnemy();
+            }
+            else if (ennemy.transform.GetComponent<BomberAI>())
+            {
+                //ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
+                ennemy.transform.GetComponent<BomberAI>().FreezeEnnemy();
+            }
         }
     }
     
     
-    public void ActivateWallGroundEffect()
+    public void ActivateWallGroundEffect() // C'est OK
     {
         float zTransform = transform.position.z;
         float xTransform = transform.position.x;
         float yTransform = transform.position.y;
 
         Debug.Log("Wall Short Range Launched");
-        GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 1.3f, zTransform), Quaternion.identity);
-        wall.transform.DOMove(new Vector3(xTransform, yTransform + .4f, zTransform), 1.8f);
+        GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.6f, zTransform), Quaternion.identity);
+        wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 2f);
         Destroy(wall, 4f);
     }
     
-    public void ActivateWindGroundEffect()
+    public void ActivateWindGroundEffect() // EN COURS DE VERIF
     {
         repulsivePoint = transform.position;
-        Collider[] cols = Physics.OverlapSphere(transform.position, 3, interactMask);
+        Collider[] cols = Physics.OverlapSphere(transform.position, 3);
         foreach (var col in cols)
         {
-            if (col.transform.CompareTag("Interactable"))
+            switch (col.transform.tag)
             {
-                if (col.GetComponent<GemWindPuzzle>() != null)
-                {
-                    col.GetComponent<GemWindPuzzle>().WindInteract();
-                }
-            }
-            else 
-            {
-                col.gameObject.GetComponent<Rigidbody>()
-                    .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1.7f);
+                case "Interactable": if (col.GetComponent<GemWindPuzzle>() != null) col.GetComponent<GemWindPuzzle>().WindInteract();
+                    break;
+
+                case "Ennemy":
+                    col.gameObject.GetComponent<Rigidbody>()
+                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1.7f);
+                    break;
+                default: break;
             }
         }
     }
     
+    #endregion
     
     public IEnumerator LaunchCardCD(byte cardType) // INT 1 = Fire / 2 = Ice / 3 = Wall / 4 = Wind
     {
@@ -307,6 +368,5 @@ public class CardsController : MonoBehaviour
             case 4: canUseWindCard = true; break;
             default: break;
         }
-
     }
 }

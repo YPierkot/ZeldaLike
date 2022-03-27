@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -66,8 +67,9 @@ public class Controller : MonoBehaviour
     [NonSerialized] public Vector3 pointerPosition;
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
-    
+
     [Header("--- ATTAQUE ---")] 
+    public int attackDamage = 1;
     [SerializeField] private Animator attackZone;
     public int attackCounter;
     [SerializeField] public bool nextCombo;
@@ -197,7 +199,7 @@ public class Controller : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-       if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
+        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
        Debug.DrawRay(transform.position, Vector3.down*groundDistance, Color.blue);
     }
 
@@ -321,8 +323,8 @@ public class Controller : MonoBehaviour
 
         if (!inAttack)
         {
-            animatorPlayer.SetFloat("X-Axis", animDir.x);
-            animatorPlayer.SetFloat("Z-Axis", animDir.z);
+            animatorPlayer.SetFloat("X-Axis", lastDir.x);
+            animatorPlayer.SetFloat("Z-Axis", lastDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
         }

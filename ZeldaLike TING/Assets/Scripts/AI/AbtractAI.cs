@@ -126,6 +126,21 @@ namespace AI
         }
 
 
+        public void FreezeEnnemy()
+        {
+            Debug.Log("Coroutine se lance");
+            StartCoroutine(fE());
+        }
+
+        private IEnumerator fE()
+        {
+            Debug.Log("OUAIS çA FONCTIONNE LE SANG");
+            e_speed -= 2;
+            yield return new WaitForSeconds(4f);
+            e_speed += 2;
+        }
+        
+
         private void OnDestroy()
         {
             e_sprite.DOKill();

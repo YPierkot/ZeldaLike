@@ -1,9 +1,16 @@
+using System;
 using AI;
 using UnityEngine;
 
 public class AttackControl : MonoBehaviour
 {
     [SerializeField] Controller control;
+    [SerializeField] private int playerDamage;
+
+    private void Awake()
+    {
+        UpdateDMG();
+    }
 
     public void AttackFinish() //Call In Animations
     {
@@ -19,20 +26,25 @@ public class AttackControl : MonoBehaviour
 
             if (other.gameObject.GetComponent<SwingerAI>())
             {
-                other.gameObject.GetComponent<SwingerAI>().LooseHp(1);
+                other.gameObject.GetComponent<SwingerAI>().LooseHp(playerDamage);
             }
             else if (other.gameObject.GetComponent<KamikazeAI>())
             {
-                other.gameObject.GetComponent<KamikazeAI>().LooseHp(1);
+                other.gameObject.GetComponent<KamikazeAI>().LooseHp(playerDamage);
             }
             else if (other.gameObject.GetComponent<MageAI>())
             {
-                other.gameObject.GetComponent<MageAI>().LooseHp(1);
+                other.gameObject.GetComponent<MageAI>().LooseHp(playerDamage);
             }
             else if (other.gameObject.GetComponent<BomberAI>())
             {
-                other.gameObject.GetComponent<BomberAI>().LooseHp(1);
+                other.gameObject.GetComponent<BomberAI>().LooseHp(playerDamage);
             }
         }
+    }
+
+    public void UpdateDMG()
+    {
+        playerDamage = control.attackDamage;
     }
 }

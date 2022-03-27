@@ -25,6 +25,7 @@ namespace AI
         private float spriteDir;
         #endregion
         
+
         protected override void Init()
         {
             base.Init();
