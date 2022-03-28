@@ -1,6 +1,7 @@
 # This .gitignore file should be placed at the root of your Unity project directory
+#
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
-
+#
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -8,16 +9,11 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Uu]serSettings/
 
-/[Uu]serSettings/Layouts/
-/[Uu]serSettings/EditorUserSettings.asset
-/[Uu]serSettings/EditorUserSettings.asset
-/[Uu]serSettings/Layouts/default-2021.dwlt
+/[Aa]ssets/Resources/ScriptableObject/CustomHierarchy.*
 
-/[Aa]ssets/AUC_Package.unitypackage.meta
-/[Aa]ssets/Resources/ScriptableObject/CustomHierarchy.asset
-
-# Asset meta data should only be ignored when the corresponding asset is also ignored
+# Force les fichiers meta a se mettre dans le git
 !/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
@@ -49,8 +45,6 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.dwlt
-*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
