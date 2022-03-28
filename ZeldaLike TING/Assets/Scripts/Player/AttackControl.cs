@@ -8,7 +8,6 @@ public class AttackControl : MonoBehaviour
     public void AttackFinish() //Call In Animations
     {
         control.CheckAttack();
-        Debug.Log("AttackFinish");
     }
 
     private void OnTriggerEnter(Collider other)
