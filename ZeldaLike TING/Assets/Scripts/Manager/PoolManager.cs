@@ -19,7 +19,7 @@ public class PoolManager : MonoBehaviour
     
     public enum Object
     {
-        None, fireCard, iceCard, wallCard, windCard
+        None, fireCard, iceCard, wallCard, windCard, fireBall
     }
     
     [Serializable]

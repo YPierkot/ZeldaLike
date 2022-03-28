@@ -9,20 +9,19 @@ public class CardsController : MonoBehaviour
 {
     public static CardsController instance;
     private Controller controller;
+    
+    
     // Cards Variables 
     public bool canUseCards;
     
-    [Space(10)]
-    [Header("Fire Card")]
+    [Header("FireCard")]
+    [SerializeField] GameObject fireCardGrounded;
     public static bool isFireGround;
-    public GameObject fireBall;
-    public GameObject fireCardGrounded;
     public bool canUseFireCard;
     
-    [Space(10)]
-    [Header("Ice Card")] // IceCard
+    // IceCard
+    [Header("Ice Card")] public GameObject iceCardGrounded;
     public static bool isIceGround;
-    public GameObject iceCardGrounded;
     public bool canUseIceCard;
     
     [Space(10)]
@@ -131,7 +130,7 @@ public class CardsController : MonoBehaviour
             }
             else
             {
-                fireCardGrounded.GetComponent<RedCardLongRange>().FireCardLongEffect();
+                fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect();
                 isFireGround = false;
             }
         }
@@ -257,29 +256,14 @@ public class CardsController : MonoBehaviour
     
 
     // EFFECTS CODE
-    private void ActivateFireShortEffect()
+    private void ActivateFireShortEffect() // A VERIF
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
-        foreach (var col in colliders)
-        {
-            switch (col.transform.tag)
-            {
-                case "Interactable": col.GetComponent<InteracteObject>().Burn();
-                    break;
+        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        shootPointPos.Normalize();
 
-                case "Ennemy":
-                    if (col.transform.GetComponent<SwingerAI>())
-                        col.transform.GetComponent<SwingerAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<KamikazeAI>())
-                        col.transform.GetComponent<KamikazeAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<MageAI>())
-                        col.transform.GetComponent<MageAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<BomberAI>())
-                        col.transform.GetComponent<BomberAI>().LooseHp(2);
-                    break;
-                default: break;
-            }
-        }
+        GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
+        fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
+        fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
     }
     
     
