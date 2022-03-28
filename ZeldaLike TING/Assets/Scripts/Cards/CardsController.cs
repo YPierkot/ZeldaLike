@@ -70,14 +70,6 @@ public class CardsController : MonoBehaviour
         isFireGround = isIceGround = isWallGround = isWindGround = false;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Vector3 mousePos = controller.pointerPosition - transform.position;
-        mousePos.Normalize();
-        Gizmos.DrawWireSphere(transform.position + mousePos * radiusShootPoint, 0.7f);
-    }
-
     public void ShortRange()
     {
         if (!canUseCards) return;
