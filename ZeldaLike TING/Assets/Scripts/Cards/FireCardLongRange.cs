@@ -5,7 +5,7 @@ using AI;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RedCardLongRange : MonoBehaviour
+public class FireCardLongRange : MonoBehaviour
 {
     public LayerMask mask; //Ennemy & Interact
     
@@ -28,34 +28,24 @@ public class RedCardLongRange : MonoBehaviour
                 
                 case "Ennemy" :
                     if (col.transform.GetComponent<SwingerAI>())
-                    {
                         col.transform.GetComponent<SwingerAI>().LooseHp(2);
-                    }
                     else if (col.transform.GetComponent<KamikazeAI>())
-                    {
                         col.transform.GetComponent<KamikazeAI>().LooseHp(2);
-                    }
                     else if (col.transform.GetComponent<MageAI>())
-                    {
                         col.transform.GetComponent<MageAI>().LooseHp(2);
-                    }
                     else if (col.transform.GetComponent<BomberAI>())
-                    {
                         col.transform.GetComponent<BomberAI>().LooseHp(2);
-                    }
                     break;
             }
         }
-        
         Destroy(gameObject);
     }
     
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.transform.CompareTag("Ennemy") || other.transform.CompareTag("Ennemy"))
+        if (!other.transform.CompareTag("Ennemy") && !other.transform.CompareTag("Player"))
         {
-            FireCardLongEffect();
-            Destroy(gameObject, 0.3f);
+            transform.position = Vector3.zero;
         }
     }
 

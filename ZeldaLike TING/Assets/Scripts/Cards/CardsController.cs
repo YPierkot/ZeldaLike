@@ -9,27 +9,23 @@ public class CardsController : MonoBehaviour
 {
     public static CardsController instance;
     private Controller controller;
+    
+    
     // Cards Variables 
     public bool canUseCards;
     
-    [Space(10)]
-    [Header("Fire Card")]
-    public GameObject fireCard;
+    [Header("FireCard")]
+    [SerializeField] GameObject fireCardGrounded;
     public static bool isFireGround;
-    public GameObject fireBall;
-    public GameObject fireCardGrounded;
     public bool canUseFireCard;
     
-    [Space(10)]
-    [Header("Ice Card")] // IceCard
-    public GameObject iceCard;
+    // IceCard
+    [Header("Ice Card")] public GameObject iceCardGrounded;
     public static bool isIceGround;
-    public GameObject iceCardGrounded;
     public bool canUseIceCard;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
-    public GameObject wallCard;
     public GameObject wallCardGrounded;
     public static bool isWallGround;
     public GameObject WallSR;
@@ -38,7 +34,6 @@ public class CardsController : MonoBehaviour
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
     public static bool isWindGround;
-    public GameObject windCard;
     public GameObject windCardGrounded;
     public GameObject groundWindCard;
     public bool canUseWindCard;
@@ -130,7 +125,13 @@ public class CardsController : MonoBehaviour
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
                     shootPointPos * Time.deltaTime * projectileSpeed * 2;
 
+                isFireGround = true;
                 StartCoroutine(LaunchCardCD(1));
+            }
+            else
+            {
+                fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect();
+                isFireGround = false;
             }
         }
     }
@@ -144,9 +145,13 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
-                Destroy(iceCardGrounded = Instantiate(iceCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                iceCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
+                iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                iceCardGrounded.GetComponent<Rigidbody>().velocity = 
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
                 isIceGround = true;
+                
+                StartCoroutine(LaunchCardCD(2));
             }
             else
             {
@@ -165,9 +170,14 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(wallCardGrounded = Instantiate(wallCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                wallCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                
+                wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
+                wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                wallCardGrounded.GetComponent<Rigidbody>().velocity = 
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
                 isWallGround = true;
+
+                StartCoroutine(LaunchCardCD(3));
             }
             else
             {
@@ -185,10 +195,12 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(windCardGrounded = Instantiate(windCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
+                windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 windCardGrounded.GetComponent<WindCardLongRange>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
                 isWindGround = true;
+
+                StartCoroutine(LaunchCardCD(4));
             }
             else
             {
@@ -244,29 +256,14 @@ public class CardsController : MonoBehaviour
     
 
     // EFFECTS CODE
-    private void ActivateFireShortEffect()
+    private void ActivateFireShortEffect() // A VERIF
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
-        foreach (var col in colliders)
-        {
-            switch (col.transform.tag)
-            {
-                case "Interactable": col.GetComponent<InteracteObject>().Burn();
-                    break;
+        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        shootPointPos.Normalize();
 
-                case "Ennemy":
-                    if (col.transform.GetComponent<SwingerAI>())
-                        col.transform.GetComponent<SwingerAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<KamikazeAI>())
-                        col.transform.GetComponent<KamikazeAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<MageAI>())
-                        col.transform.GetComponent<MageAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<BomberAI>())
-                        col.transform.GetComponent<BomberAI>().LooseHp(2);
-                    break;
-                default: break;
-            }
-        }
+        GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
+        fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
+        fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
     }
     
     

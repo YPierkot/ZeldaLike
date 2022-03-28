@@ -1,15 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AI;
 using UnityEngine;
 
-public class RedCardGroundEffect : MonoBehaviour
+public class FireBallEffect : MonoBehaviour
 {
     [SerializeField] private LayerMask Ennemy;
     
     public void ActivateRedGroundEffect()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, Ennemy);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
         foreach (var col in colliders)
         {
             switch (col.transform.tag)
@@ -38,7 +39,14 @@ public class RedCardGroundEffect : MonoBehaviour
                     break;
             }
         }
-        
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!other.transform.CompareTag("Player"))
+        {
+            ActivateRedGroundEffect();
+        }
     }
 }

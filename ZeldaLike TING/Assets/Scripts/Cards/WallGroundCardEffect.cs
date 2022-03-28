@@ -19,4 +19,9 @@ public class WallGroundCardEffect : MonoBehaviour
         Destroy(wall, 4f);
         Destroy(gameObject, 0.2f);
     }
+    
+    private void OnDestroy()
+    {
+        CardsController.isWallGround = false;
+    }
 }

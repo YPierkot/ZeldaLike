@@ -46,7 +46,7 @@ public class WindCardLongRange : MonoBehaviour
                     Sequence objectSequence = DOTween.Sequence();
                     objectSequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
                         new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));
-                    StartCoroutine(StopMovement(2.5f, objectSequence)); 
+                    StartCoroutine(StopMovement(2.5f, col.gameObject)); 
                 }
             }
             else
@@ -57,7 +57,7 @@ public class WindCardLongRange : MonoBehaviour
                 Sequence mySequence = DOTween.Sequence();
                 mySequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
                     new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));
-                StartCoroutine(StopMovement(2.5f, mySequence));
+                StartCoroutine(StopMovement(2.5f, col.gameObject));
             }
         }
         
@@ -77,9 +77,9 @@ public class WindCardLongRange : MonoBehaviour
             }
             else WindCardLongEffect();
         }
-        else if (!other.transform.CompareTag("Ennemy"))
+        else if (!other.transform.CompareTag("Ennemy") || !other.transform.CompareTag("Player"))
         {
-            WindCardLongEffect();
+            transform.position = Vector3.zero;
         }
     }
 
@@ -88,10 +88,10 @@ public class WindCardLongRange : MonoBehaviour
         collider.isTrigger = false;
     }
 
-    private IEnumerator StopMovement(float timeToStopMovement, Sequence sequence)
+    private IEnumerator StopMovement(float timeToStopMovement, GameObject objTransform)
     {
         yield return new WaitForSeconds(timeToStopMovement);
-        DOTween.Kill(sequence);
+        objTransform.transform.DOKill();
     }
 
     private void OnDestroy()
