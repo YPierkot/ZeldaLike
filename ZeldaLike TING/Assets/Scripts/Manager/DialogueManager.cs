@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image characterEmotion;
     private int lastDialogueStopIndex;
     private int lastSentenceStopIndex;
-    private List<DialogueLine> StoppedDialogue;
+    [SerializeField] private List<DialogueLine> StoppedDialogue;
     [SerializeField] private List<DialogueScriptable> ThievesLairMS;
     [SerializeField] private List<DialogueScriptable> ClearingRune;
     private bool isPlayingDialogue;
@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
     public void AssignDialogue(List<DialogueLine> dialogue)
     {
         Debug.Log(DialogueLines.Count);
-        if (DialogueLines.Count == 0 && isPlayingDialogue)
+        if (DialogueLines.Count != 0 && isPlayingDialogue)
         {
             Debug.Log("j'assigne le dialogue arrêté");
             lastDialogueStopIndex = currentDialogue;
@@ -123,8 +123,10 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Je lance le dialogue arrêté");
             //Debug.Log(lastDialogueStopIndex);
             DialogueLines = StoppedDialogue;
-            StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
-            StoppedDialogue = null;
+            //StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
+            StoppedDialogue.Clear();
+            currentDialogue = lastDialogueStopIndex;
+            StartDialogue(DialogueLines[currentDialogue]);
         }
         else
         {
