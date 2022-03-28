@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
@@ -34,6 +33,7 @@ public class Controller : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
     [SerializeField] private Animator animatorPlayer;
+    [SerializeField] private Animator animatorMovePlayer;
     
     private CardsController cardControl;
     public static Controller instance;
@@ -67,9 +67,8 @@ public class Controller : MonoBehaviour
     [NonSerialized] public Vector3 pointerPosition;
     private float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
-
+    
     [Header("--- ATTAQUE ---")] 
-    public int attackDamage = 1;
     [SerializeField] private Animator attackZone;
     public int attackCounter;
     [SerializeField] public bool nextCombo;
@@ -104,6 +103,8 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
+
+        InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
     }
 
 
@@ -158,6 +159,10 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
+        
+        if(Input.GetAxis("Mouse ScrollWheel")> 0f) UIManager.Instance.ChangeCard(1);
+        if(Input.GetAxis("Mouse ScrollWheel")< 0f) UIManager.Instance.ChangeCard(-1);
+        
     }
 
     
@@ -199,7 +204,7 @@ public class Controller : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
+       if(!CustomLDData.showGizmos || !CustomLDData.showGizmosGameplay) return;
        Debug.DrawRay(transform.position, Vector3.down*groundDistance, Color.blue);
     }
 
@@ -236,7 +241,6 @@ public class Controller : MonoBehaviour
                 canMove = false;
                 inAttack = true;
                 nextCombo = false;
-                Debug.Log("Attack");
                 //attackZone.collider.enabled = true;
                 attackCounter++;
                 attackZone.Play($"Attack{attackCounter}");
@@ -271,7 +275,6 @@ public class Controller : MonoBehaviour
         {
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
-            Debug.Log(Debugger);
             if (Debugger != null)
                 Debugger.text = angleView.ToString();
             
@@ -294,8 +297,11 @@ public class Controller : MonoBehaviour
     public IEnumerator ComboWait()
     {
         yield return new WaitForSeconds(0.15f);
-        attackCounter = 0;
-        canMove = true;
+        if (!inAttack)
+        {
+            attackCounter = 0;
+            canMove = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -323,10 +329,11 @@ public class Controller : MonoBehaviour
 
         if (!inAttack)
         {
-            animatorPlayer.SetFloat("X-Axis", lastDir.x);
-            animatorPlayer.SetFloat("Z-Axis", lastDir.z);
+            animatorPlayer.SetFloat("X-Axis", animDir.x);
+            animatorPlayer.SetFloat("Z-Axis", animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
+            animatorMovePlayer.SetBool("isWalk", moving);
         }
         else
         {

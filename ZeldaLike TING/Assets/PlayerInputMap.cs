@@ -233,6 +233,56 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""425e44f1-3dc9-4178-8277-7f73a50e4d27"",
+            ""actions"": [
+                {
+                    ""name"": ""CardMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""64339e01-92b9-4581-a93d-af0334cb9e1d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""b4775ba6-b6d5-4d48-8200-b72c3a15ea31"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CardMenu"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5d85bad8-056a-4e92-9d90-0dc447f32622"",
+                    ""path"": ""<Mouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CardMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""c97f1d7e-19d0-4ee6-9e95-323a733c4d93"",
+                    ""path"": ""<Mouse>/forwardButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CardMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -276,6 +326,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Action_shortCard = m_Action.FindAction("shortCard", throwIfNotFound: true);
         m_Action_longCard = m_Action.FindAction("longCard", throwIfNotFound: true);
         m_Action_Attack = m_Action.FindAction("Attack", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_CardMenu = m_Menu.FindAction("CardMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -437,6 +490,39 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         }
     }
     public ActionActions @Action => new ActionActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_CardMenu;
+    public struct MenuActions
+    {
+        private @PlayerInputMap m_Wrapper;
+        public MenuActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CardMenu => m_Wrapper.m_Menu_CardMenu;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @CardMenu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCardMenu;
+                @CardMenu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCardMenu;
+                @CardMenu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCardMenu;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CardMenu.started += instance.OnCardMenu;
+                @CardMenu.performed += instance.OnCardMenu;
+                @CardMenu.canceled += instance.OnCardMenu;
+            }
+        }
+    }
+    public MenuActions @Menu => new MenuActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -467,5 +553,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnShortCard(InputAction.CallbackContext context);
         void OnLongCard(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
+        void OnCardMenu(InputAction.CallbackContext context);
     }
 }

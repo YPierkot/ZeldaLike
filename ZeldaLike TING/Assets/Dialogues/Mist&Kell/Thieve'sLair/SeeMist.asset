@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: SeeMist
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: So, Mist, I've been wondering
+      delay: 1
+    - expressions: 0
+      name: 
+      line: Why can't anyone see nor hear you except for me
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 7e7320efbbb8aee4299309421e333530, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Remember that one time '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: I sent you in that projection, that dream?
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: eef5cf3d1e455ad4b83f4f40f11a89e9, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yeah. You wouldn't let me spawn unicorns
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: ed9d7eae5c8d6964a9148e98ea4d1c33, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Well, that's basically it
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: I'm simply a projection in your head
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: You're simply dreaming of me all the time
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Except I'm the one controlling the dream.
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: bd295d5ba3a6d064ea12bba36ebebf08, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Right, and how do you do that ?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0df7da1ab0499dc4d8bb1855bd203d29, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'I''m a spirit human, '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: I can do stuff beyond human understanding
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: And even further beyond yours.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: d39b78343c1a89f47b8e5e5915de4df7, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Are you implying that my understanding
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Of things is lower than the average human?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 421779f951fc5a848b4aa49c966d3473, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yes indeed.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: a0c181f6694cd3a43bc47577fa5d2da0, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'You''re so dislikable. '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Anyway, another question for you.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0c12d007b5905f5448ad5abe9fa00b24, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I'm not your encyclopedia human.
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 96384781fa8449742b20a254dfffee77, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Why did you curse me ?
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: Your brothers and sisters can easily live
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: Whithout a host so...
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: d473e9cec7de8a044b86ed7e6a6c5be2, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Clever question human.
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: 'You see, I''m a lower spirit, meaning '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: I'm weaker than my siblings that come
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Attack your island and much more reliant on
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: 'The energy core of our dimension. '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: When I'm in your dimension, I'm cut off the core
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: And I need an energy source to sustain on.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 54c92fa4e8d84894cb7cce025c9eff55, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You're basically sucking my energy?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 13a8dc82260b8f445a5ca6a80cc1b21e, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: It's not like you needed it in the first place.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 93a299d4063602d41b1d1de04b8deb0a, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I hate you Mist.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 114cc2d2560d1e94eafe733f5d4fb4ee, type: 3}

@@ -60,7 +60,7 @@ namespace AI
         public void Update()
         {
             BehaviourAI();
-            Debug.Log($"Sight range: {e_rangeSight}, distance with player: {Vector3.Distance(playerTransform.position, e_transform.position) < e_rangeSight}");
+            //Debug.Log($"Sight range: {e_rangeSight}, distance with player: {Vector3.Distance(playerTransform.position, e_transform.position) < e_rangeSight}");
         }
         
         

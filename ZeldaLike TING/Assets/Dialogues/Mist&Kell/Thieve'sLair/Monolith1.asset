@@ -1,0 +1,251 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Monolith1
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Wow, a Monolith, they still exist
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 25ff20e0f5370b14693277132be0e1cc, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'A monolith? '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: I just thought they were big pretty rocks.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 2cff6e78a0ab695409075ddf1eb7f048, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I'm not even surprised anymore...
+      delay: 0
+    - expressions: 0
+      name: 
+      line: It isn't a "pretty rock", it is a monolith
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: A magical build destined to store runic
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Information in its unbreakable structure
+      delay: 0
+    - expressions: 0
+      name: 
+      line: So that it is never lost.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: It is made of obsidian
+      delay: 0
+    - expressions: 0
+      name: 
+      line: The most magic-reactive material.
+      delay: 2
+    voiceLine: {fileID: 8300000, guid: 4c42632566a535649951c3e8e47eb94f, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Sorry for bothering you with my ignorance
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Mr I know it all.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 04070bb24e6420d47a13b19172f72ad6, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Quit being ungrateful, I'm trying to educate you
+      delay: 3
+    - expressions: 0
+      name: 
+      line: First lesson about monoliths
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Don't ever try and touch them, they are protected
+      delay: 3
+    - expressions: 0
+      name: 
+      line: 'By a powerful magic forcefield that '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Would fry you in a second.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 327d5140ddd41fd45982dff518bff4f4, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: So if I touch it, you die ?
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: f893f4baee97ac243b1d6c475f6317e1, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yes.
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 82d85e29b75cdb34690ce44f7aef3ead, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Haha ! I finally have a mean of pressure on you !
+      delay: 0
+    - expressions: 0
+      name: 
+      line: I'm going to touch it Mist, you can't stop me !
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 03624357f3b3cd243a0c736d4dc162a9, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You really plan on killing yourself to kill me?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'Your brain is even more rotten than '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: I had imagined.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: And on the other hand, I can actually
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Stop you from touching it.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 036ed0bced56188478b2d03435245e1a, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You're no fun Mist.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 8cb53c9bac16b6942999243d9fe5fd6f, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Anyway, second lesson
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Ithar needs these Monoliths for his plan
+      delay: 0
+    - expressions: 0
+      name: 
+      line: So if I interact with it, I might be able
+      delay: 3
+    - expressions: 0
+      name: 
+      line: To know if he came here already or not
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 78f065fc139525146911f1b958dc438c, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Be my guest.
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 3e12ef1e4030fb04faf61ef5cfbd520d, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Another facilitator ! It's giving me its location.
+      delay: 4
+    - expressions: 0
+      name: 
+      line: It's in the Windy Mountain !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 417fb48026c3a6c4b946c325b010d363, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Oh great... I''m about to become a '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Poker Dealer with all those cards.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: aa1c0cc05b084b140b6a42e27f1af697, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Indeed you are, and, by the way
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Good new, Ithar didn't activate
+      delay: 0
+    - expressions: 0
+      name: 
+      line: This monolith yet, so we still have time !
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 5b65ed43986ce604195b19ba0d88a98f, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Youhou... Great news.... Thank you monolith
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Give me five !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 838312a9f71703248bdaeed6f6e87440, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Don't you dare touch it.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 220a78823fd1d104e888ed1fd7094f04, type: 3}

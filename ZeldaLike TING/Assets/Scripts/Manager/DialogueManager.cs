@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,6 +18,11 @@ public class DialogueManager : MonoBehaviour
     private int lastDialogueStopIndex;
     private int lastSentenceStopIndex;
     private DialogueLine[] StoppedDialogue;
+    [SerializeField] private List<DialogueScriptable> ThievesLairMS;
+    [SerializeField] private List<DialogueScriptable> ClearingRune;
+    private bool isPlayingDialogue;
+    private int dialogueMistKellTimer = 30;
+    private float timeSinceLastDialogue;
 
     private void Awake()
     {
@@ -28,11 +32,23 @@ public class DialogueManager : MonoBehaviour
         }
         
         sentences = new Queue<string>();
+        timeSinceLastDialogue = Time.time;
         //Tutorial();
+    }
+
+    private void Update()
+    {
+        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0)
+        {
+            var dialogueToPlay = ThievesLairMS[Range(0, ThievesLairMS.Count)];
+            AssignDialogue(dialogueToPlay.dialogue);
+            ThievesLairMS.Remove(dialogueToPlay);
+        }
     }
 
     public void AssignDialogue(DialogueLine[] dialogue)
     {
+        isPlayingDialogue = true;
         if (DialogueLines != null)
         {
             lastDialogueStopIndex = currentDialogue;
@@ -105,8 +121,10 @@ public class DialogueManager : MonoBehaviour
             StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
             StoppedDialogue = null;
         }
-        else 
+        else
         {
+            isPlayingDialogue = false;
+            timeSinceLastDialogue = Time.time;
             Debug.Log("fin du dialogue");
             DialogueLines = null;
             sentenceIndex = 0;
