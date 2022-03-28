@@ -137,13 +137,14 @@ public class CustomHierarchy {
     private static object DoesScriptableExist() {
         CreateFolderIfNull("Assets", "Resources");
         CreateFolderIfNull("Assets/Resources", "ScriptableObject");
+        CreateFolderIfNull("Assets/Resources/ScriptableObject", "Custom-Hierarchy");
 
-        HierarchySettingsSO hierarchySO = Resources.Load<HierarchySettingsSO>("ScriptableObject/CustomHierarchy");
+        HierarchySettingsSO hierarchySO = Resources.Load<HierarchySettingsSO>("ScriptableObject/Custom-Hierarchy/CustomHierarchy");
         if (hierarchySO != null) return hierarchySO;
         
         hierarchySO = ScriptableObject.CreateInstance<HierarchySettingsSO>();
-        AssetDatabase.CreateAsset(hierarchySO, "Assets/Resources/ScriptableObject/CustomHierarchy.asset");
-        hierarchySO = Resources.Load<HierarchySettingsSO>("ScriptableObject/CustomHierarchy");
+        AssetDatabase.CreateAsset(hierarchySO, "Assets/Resources/ScriptableObject/Custom-Hierarchy/CustomHierarchy.asset");
+        hierarchySO = Resources.Load<HierarchySettingsSO>("ScriptableObject/Custom-Hierarchy/CustomHierarchy");
         
         return hierarchySO;
     }

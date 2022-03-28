@@ -30,7 +30,7 @@ static class HierarchySettingsProvider {
 
             guiHandler = (searchContext) => {
                 //Get the scriptableAsset and transform it into a SerializedObject
-                var settings = new SerializedObject(AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/CustomHierarchy.asset"));
+                var settings = new SerializedObject(AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/Custom-Hierarchy/CustomHierarchy.asset"));
                 DrawProperty(settings);
 
                 settings.ApplyModifiedPropertiesWithoutUndo();
@@ -58,7 +58,7 @@ static class HierarchySettingsProvider {
 
             GUI.backgroundColor = Color.red;
             if (GUILayout.Button("Reset Variables")) {
-                AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/CustomHierarchy.asset").ResetVariables();
+                AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/Custom-Hierarchy/CustomHierarchy.asset").ResetVariables();
             }
 
             serializedObject.ApplyModifiedProperties();
@@ -598,7 +598,7 @@ public class CustomHierarchyOverlay : IMGUIOverlay{
     private const string overlayName = "Custom Hierarchy Overlay";
     
     public override void OnGUI() {
-        var settings = new SerializedObject(AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/CustomHierarchy.asset"));
+        var settings = new SerializedObject(AssetDatabase.LoadAssetAtPath<HierarchySettingsSO>("Assets/Resources/ScriptableObject/Custom-Hierarchy/CustomHierarchy.asset"));
         HierarchySettingsProvider.DrawProperty(settings);
     }
 }
