@@ -52,10 +52,9 @@ public class RedCardLongRange : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.transform.CompareTag("Ennemy") || other.transform.CompareTag("Ennemy"))
+        if (!other.transform.CompareTag("Ennemy") && !other.transform.CompareTag("Player"))
         {
-            FireCardLongEffect();
-            Destroy(gameObject, 0.3f);
+            transform.position = Vector3.zero;
         }
     }
 

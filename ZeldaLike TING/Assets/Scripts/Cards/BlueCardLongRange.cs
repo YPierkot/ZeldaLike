@@ -44,9 +44,9 @@ public class BlueCardLongRange : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.transform.CompareTag("Ennemy"))
+        if (!other.transform.CompareTag("Ennemy")|| !other.transform.CompareTag("Player"))
         {
-            IceCardLongEffet();
+            transform.position = Vector3.zero;
         }
         
         Destroy(gameObject, 0.3f);

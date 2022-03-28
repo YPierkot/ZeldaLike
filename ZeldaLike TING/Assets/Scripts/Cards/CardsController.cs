@@ -14,7 +14,6 @@ public class CardsController : MonoBehaviour
     
     [Space(10)]
     [Header("Fire Card")]
-    public GameObject fireCard;
     public static bool isFireGround;
     public GameObject fireBall;
     public GameObject fireCardGrounded;
@@ -22,14 +21,12 @@ public class CardsController : MonoBehaviour
     
     [Space(10)]
     [Header("Ice Card")] // IceCard
-    public GameObject iceCard;
     public static bool isIceGround;
     public GameObject iceCardGrounded;
     public bool canUseIceCard;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
-    public GameObject wallCard;
     public GameObject wallCardGrounded;
     public static bool isWallGround;
     public GameObject WallSR;
@@ -38,7 +35,6 @@ public class CardsController : MonoBehaviour
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
     public static bool isWindGround;
-    public GameObject windCard;
     public GameObject windCardGrounded;
     public GameObject groundWindCard;
     public bool canUseWindCard;
@@ -130,7 +126,13 @@ public class CardsController : MonoBehaviour
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
                     shootPointPos * Time.deltaTime * projectileSpeed * 2;
 
+                isFireGround = true;
                 StartCoroutine(LaunchCardCD(1));
+            }
+            else
+            {
+                fireCardGrounded.GetComponent<RedCardLongRange>().FireCardLongEffect();
+                isFireGround = false;
             }
         }
     }
@@ -144,9 +146,13 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
-                Destroy(iceCardGrounded = Instantiate(iceCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                iceCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
+                iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                iceCardGrounded.GetComponent<Rigidbody>().velocity = 
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
                 isIceGround = true;
+                
+                StartCoroutine(LaunchCardCD(2));
             }
             else
             {
@@ -165,9 +171,14 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(wallCardGrounded = Instantiate(wallCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                wallCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                
+                wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
+                wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                wallCardGrounded.GetComponent<Rigidbody>().velocity = 
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
                 isWallGround = true;
+
+                StartCoroutine(LaunchCardCD(3));
             }
             else
             {
@@ -185,10 +196,12 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(windCardGrounded = Instantiate(windCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
+                windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 windCardGrounded.GetComponent<WindCardLongRange>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
                 isWindGround = true;
+
+                StartCoroutine(LaunchCardCD(4));
             }
             else
             {
