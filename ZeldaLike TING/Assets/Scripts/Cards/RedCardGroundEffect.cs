@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using AI;
 using UnityEngine;
 
 public class RedCardGroundEffect : MonoBehaviour
@@ -17,13 +18,25 @@ public class RedCardGroundEffect : MonoBehaviour
                     col.GetComponent<InteracteObject>().Burn();
                     break;
                 
-                case "Ennemy" :
-                    col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-                    col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
+                case "Ennemy":
+                    if (col.transform.GetComponent<SwingerAI>())
+                    {
+                        col.transform.GetComponent<SwingerAI>().LooseHp(2);
+                    }
+                    else if (col.transform.GetComponent<KamikazeAI>())
+                    {
+                        col.transform.GetComponent<KamikazeAI>().LooseHp(2);
+                    }
+                    else if (col.transform.GetComponent<MageAI>())
+                    {
+                        col.transform.GetComponent<MageAI>().LooseHp(2);
+                    }
+                    else if (col.transform.GetComponent<BomberAI>())
+                    {
+                        col.transform.GetComponent<BomberAI>().LooseHp(2);
+                    }
                     break;
-                    
             }
-            
         }
         
         Destroy(gameObject);

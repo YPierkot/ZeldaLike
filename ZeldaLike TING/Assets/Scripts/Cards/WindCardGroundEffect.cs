@@ -31,13 +31,9 @@ public class WindCardGroundEffect : MonoBehaviour
             }
             else 
             {
-                col.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
-                col.gameObject.GetComponent<ResetColor>()
-                    .StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
                 col.gameObject.GetComponent<Rigidbody>()
-                    .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 2);
+                    .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1.4f);
             }
         }
-        Destroy(gameObject, 0.2f);
     }
 }
