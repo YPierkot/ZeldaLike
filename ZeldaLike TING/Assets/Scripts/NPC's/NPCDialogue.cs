@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEngine.Random;
 
@@ -40,7 +41,7 @@ public class NPCDialogue : MonoBehaviour{
     {
         if (Input.GetKeyDown(KeyCode.E) && playerIn)
         {
-            if (currentDialogue > dialogues.Count || dialogues == null)
+            if (currentDialogue > dialogues.Count || dialogues.Count == 0)
             {
                 Debug.Log("Ya pas de dialogues");
                 AssignDialogue(fillingDialogues[Range(0, fillingDialogues.Length)]);
@@ -55,7 +56,7 @@ public class NPCDialogue : MonoBehaviour{
 
     private void AssignDialogue(DialogueScriptable dialogueToAdd)
     {
-        DialogueManager.Instance.AssignDialogue(dialogueToAdd.dialogue);
+        DialogueManager.Instance.AssignDialogue(dialogueToAdd.dialogue.ToList());
     }
     
     #if UNITY_EDITOR

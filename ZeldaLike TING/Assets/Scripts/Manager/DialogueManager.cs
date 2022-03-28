@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ using static UnityEngine.Random;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
-    private DialogueLine[] DialogueLines;
+    [SerializeField] private List<DialogueLine> DialogueLines = new List<DialogueLine>{};
     [SerializeField] private TextMeshProUGUI dialogueDisplay;
     private Queue<string> sentences;
     private int currentDialogue;
@@ -17,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Image characterEmotion;
     private int lastDialogueStopIndex;
     private int lastSentenceStopIndex;
-    private DialogueLine[] StoppedDialogue;
+    [SerializeField] private List<DialogueLine> StoppedDialogue;
     [SerializeField] private List<DialogueScriptable> ThievesLairMS;
     [SerializeField] private List<DialogueScriptable> ClearingRune;
     private bool isPlayingDialogue;
@@ -28,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance == null)
         {
+            Debug.Log("je lance l'instance");
             Instance = this;
         }
         
@@ -41,21 +43,23 @@ public class DialogueManager : MonoBehaviour
         if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0)
         {
             var dialogueToPlay = ThievesLairMS[Range(0, ThievesLairMS.Count)];
-            AssignDialogue(dialogueToPlay.dialogue);
+            AssignDialogue(dialogueToPlay.dialogue.ToList());
             ThievesLairMS.Remove(dialogueToPlay);
         }
     }
 
-    public void AssignDialogue(DialogueLine[] dialogue)
+    public void AssignDialogue(List<DialogueLine> dialogue)
     {
-        isPlayingDialogue = true;
-        if (DialogueLines != null)
+        Debug.Log(DialogueLines.Count);
+        if (DialogueLines.Count != 0 && isPlayingDialogue)
         {
+            Debug.Log("j'assigne le dialogue arrêté");
             lastDialogueStopIndex = currentDialogue;
             lastSentenceStopIndex = sentenceIndex;
             StoppedDialogue = DialogueLines;
             CancelInvoke("DisplayNextSentence");
         }
+        isPlayingDialogue = true;
         currentDialogue = 0;
         DialogueLines = dialogue;
         StartDialogue(DialogueLines[currentDialogue]);
@@ -106,35 +110,33 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        if (currentDialogue != DialogueLines.Length - 1)
+        if (currentDialogue != DialogueLines.Count - 1)
         {
             Debug.Log("je lance la suite");
             currentDialogue++;
             sentenceIndex = 0;
             StartDialogue(DialogueLines[currentDialogue]);
         }
-        else if (StoppedDialogue != null)
+        else if (StoppedDialogue.Count != 0)
         {
+            Debug.Log(StoppedDialogue);
             Debug.Log("Je lance le dialogue arrêté");
             //Debug.Log(lastDialogueStopIndex);
             DialogueLines = StoppedDialogue;
-            StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
-            StoppedDialogue = null;
+            //StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
+            StoppedDialogue.Clear();
+            currentDialogue = lastDialogueStopIndex;
+            StartDialogue(DialogueLines[currentDialogue]);
         }
         else
         {
             isPlayingDialogue = false;
             timeSinceLastDialogue = Time.time;
             Debug.Log("fin du dialogue");
-            DialogueLines = null;
+            DialogueLines.Clear();
             sentenceIndex = 0;
             dialogueDisplay.text = null;
         }
-    }
-
-    private void Tutorial()
-    {
-        AssignDialogue(tutorialDialogue.dialogue);
     }
 
     private void SetCharacterEmotion()

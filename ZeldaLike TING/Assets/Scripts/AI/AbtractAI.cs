@@ -120,11 +120,26 @@ namespace AI
                 if(e_currentAiState == walking)
                     ChangeState(attacking);
                 
-                e_sprite.DOColor(Color.red, 0.05f).OnComplete(() => e_sprite.DOColor(Color.white, 0.05f));
-                e_sprite.DOFade(0.25f, 0.05f).OnComplete(()=> e_sprite.DOFade(1, 0.05f));
+                e_sprite.DOColor(Color.red, 0.1f).OnComplete(() => e_sprite.DOColor(Color.white, 0.1f));
+                e_sprite.DOFade(0.25f, 0.1f).OnComplete(()=> e_sprite.DOFade(1, 0.1f));
             }
         }
 
+
+        public void FreezeEnnemy()
+        {
+            Debug.Log("Coroutine se lance");
+            StartCoroutine(fE());
+        }
+
+        private IEnumerator fE()
+        {
+            Debug.Log("OUAIS çA FONCTIONNE LE SANG");
+            e_speed -= 2;
+            yield return new WaitForSeconds(4f);
+            e_speed += 2;
+        }
+        
 
         private void OnDestroy()
         {

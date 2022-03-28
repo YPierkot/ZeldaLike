@@ -1,51 +1,48 @@
 using System;
+using System.Collections;
+using AI;
 using Unity.Collections;
-using Unity.VisualScripting;
+using DG.Tweening;
 using UnityEngine;
 
 public class CardsController : MonoBehaviour
 {
     public static CardsController instance;
     private Controller controller;
+    
+    
     // Cards Variables 
     public bool canUseCards;
     
-    [Space(10)]
-    [Header("Fire Card")]
-    public GameObject fireCard;
+    [Header("FireCard")]
+    [SerializeField] GameObject fireCardGrounded;
     public static bool isFireGround;
-    public GameObject groundFireCard;
-    public GameObject fireCardGrounded;
     public bool canUseFireCard;
-    public bool canUseLongFireCard;
     
-    [Space(10)]
-    [Header("Ice Card")] // IceCard
-    public GameObject iceCard;
+    // IceCard
+    [Header("Ice Card")] public GameObject iceCardGrounded;
     public static bool isIceGround;
-    public GameObject groundIceCard;
-    public GameObject iceCardGrounded;
     public bool canUseIceCard;
-    public bool canUseLongIceCard;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
-    public GameObject wallCard;
     public GameObject wallCardGrounded;
     public static bool isWallGround;
-    public GameObject groundWallCard;
+    public GameObject WallSR;
     public bool canUseWallCard;
-    public bool canUseLongWallCard;
     
     [Space(10)] // Wind Card
-    [Header("Wind Card")]
+    [Header("Wind Card")] [SerializeField]
     public static bool isWindGround;
-    public GameObject windCard;
     public GameObject windCardGrounded;
     public GameObject groundWindCard;
     public bool canUseWindCard;
-    public bool canUseLongWindCard;
-
+    
+    [SerializeField] private LayerMask interactMask;
+    [SerializeField] float repulsivePower = 500f;
+    [SerializeField] float repulsiveRadius = 4f;
+    [SerializeField] Vector3 repulsivePoint;
+    
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
@@ -69,14 +66,16 @@ public class CardsController : MonoBehaviour
     {
         controller = GetComponent<Controller>();
         canUseCards = true;
-        canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = canUseLongFireCard = canUseLongIceCard = canUseLongWallCard = canUseLongWindCard = true;
+        canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
     }
 
     private void OnDrawGizmos()
     {
-        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosGameplay) return;
-        Gizmos.DrawWireSphere(transform.position, 4f);
+        Gizmos.color = Color.cyan;
+        Vector3 mousePos = controller.pointerPosition - transform.position;
+        mousePos.Normalize();
+        Gizmos.DrawWireSphere(transform.position + mousePos * radiusShootPoint, 0.7f);
     }
 
     public void ShortRange()
@@ -111,11 +110,11 @@ public class CardsController : MonoBehaviour
 
     #region CardEffectsLongRange
 
-    private const float radiusShootPoint = 0.35f;
+    private const float radiusShootPoint = 0.55f;
     // Fire Card
     private void FireballLongRange()
     {
-        if (canUseLongFireCard)
+        if (canUseFireCard)
         {
             if (!isFireGround)
             {
@@ -123,12 +122,15 @@ public class CardsController : MonoBehaviour
                 shootPointPos.Normalize();
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
-                fireCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                fireCardGrounded.GetComponent<Rigidbody>().velocity =
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
+
                 isFireGround = true;
+                StartCoroutine(LaunchCardCD(1));
             }
             else
             {
-                fireCardGrounded.GetComponent<RedCardLongRange>().FireCardLongEffect();
+                fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect();
                 isFireGround = false;
             }
         }
@@ -137,15 +139,19 @@ public class CardsController : MonoBehaviour
     // Ice Card
     private void IceLongRange()
     {
-        if (canUseLongIceCard)
+        if (canUseIceCard)
         {
             if (!isIceGround)
             {
                 Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
-                Destroy(iceCardGrounded = Instantiate(iceCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                iceCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
+                iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                iceCardGrounded.GetComponent<Rigidbody>().velocity = 
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
                 isIceGround = true;
+                
+                StartCoroutine(LaunchCardCD(2));
             }
             else
             {
@@ -164,9 +170,14 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(wallCardGrounded = Instantiate(wallCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                wallCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                
+                wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
+                wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                wallCardGrounded.GetComponent<Rigidbody>().velocity = 
+                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
                 isWallGround = true;
+
+                StartCoroutine(LaunchCardCD(3));
             }
             else
             {
@@ -184,10 +195,12 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
-                Destroy(windCardGrounded = Instantiate(windCard, transform.position + shootPointPos * radiusShootPoint, Quaternion.identity), 5);
-                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
+                windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 windCardGrounded.GetComponent<WindCardLongRange>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
                 isWindGround = true;
+
+                StartCoroutine(LaunchCardCD(4));
             }
             else
             {
@@ -199,41 +212,25 @@ public class CardsController : MonoBehaviour
     
     #endregion
     
-    #region EffectCardToGround
+    #region EffectCardInstant
     
     // Fire Card 
     private void FireballShortRange()
     {
         if (canUseFireCard)
         {
-            if (!isFireGround)
-            {
-                fireCardGrounded = Instantiate(groundFireCard, new Vector3(transform.position.x, transform.position.y - 0.6f, transform.position.z), Quaternion.Euler(0,0,90f));
-                isFireGround = true;
-            }
-            else
-            {
-                fireCardGrounded.GetComponent<RedCardGroundEffect>().ActivateRedGroundEffect();
-                isFireGround = false;
-            }
+            ActivateFireShortEffect();
+            StartCoroutine(LaunchCardCD(1));
         }
     }
-    
+
     // Ice Card
     private void IceShortRange()
     {
         if (canUseIceCard)
         {
-            if (!isIceGround)
-            {
-                iceCardGrounded = Instantiate(groundIceCard, new Vector3(transform.position.x, transform.position.y - 0.6f, transform.position.z), Quaternion.Euler(0,0,90f));
-                isIceGround = true;
-            }
-            else
-            {
-                iceCardGrounded.GetComponent<IceCardGroundEffect>().ActivateIceGroundEffect();
-                isIceGround = false;
-            }
+            ActivateIceGroundEffect();
+            StartCoroutine(LaunchCardCD(2));
         }   
     }
 
@@ -242,16 +239,8 @@ public class CardsController : MonoBehaviour
     {
         if (canUseWallCard)
         {
-            if (!isWallGround)
-            {
-                wallCardGrounded = Instantiate(groundWallCard, new Vector3(transform.position.x, transform.position.y - 0.6f, transform.position.z), Quaternion.Euler(0,0,90f));
-                isWallGround = true;
-            }
-            else
-            {
-                wallCardGrounded.GetComponent<WallGroundCardEffect>().ActivateWallGroundEffect();
-                isWallGround = false;
-            }
+            ActivateWallGroundEffect();
+            StartCoroutine(LaunchCardCD(3));
         }
     }
     
@@ -260,17 +249,121 @@ public class CardsController : MonoBehaviour
     {
         if (canUseWindCard)
         {
-            if (!isWindGround)
+            ActivateWindGroundEffect();
+            StartCoroutine(LaunchCardCD(4));
+        }
+    }
+    
+
+    // EFFECTS CODE
+    private void ActivateFireShortEffect() // A VERIF
+    {
+        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        shootPointPos.Normalize();
+
+        GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
+        fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
+        fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+    }
+    
+    
+    public void ActivateIceGroundEffect() // OK
+    {
+        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        shootPointPos.Normalize();
+
+        var tempoV31 = new Vector3(0, 0, 2);
+        var tempoV32 = new Vector3(0, 0, 6);
+        
+        var GoDir1 = transform.position + shootPointPos * radiusShootPoint;
+        
+        var GoDir2 = transform.position + shootPointPos * radiusShootPoint;
+
+        Debug.DrawRay(GoDir1, GoDir2, Color.green, 3f);
+        
+        
+        
+        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir2 + tempoV32, 2.5f, Ennemy);
+        foreach (var ennemy in cols)
+        {
+            if (ennemy.transform.GetComponent<SwingerAI>())
             {
-                windCardGrounded = Instantiate(groundWindCard, new Vector3(transform.position.x, transform.position.y - 0.6f, transform.position.z), Quaternion.Euler(0,0,90f));
-                isWindGround = true;
+                //ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
+                ennemy.transform.GetComponent<SwingerAI>().FreezeEnnemy();
             }
-            else
+            else if (ennemy.transform.GetComponent<KamikazeAI>())
             {
-                windCardGrounded.GetComponent<WindCardGroundEffect>().ActivateWindGroundEffect();
-                isWindGround = false;
+                //ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
+                ennemy.transform.GetComponent<KamikazeAI>().FreezeEnnemy();
+            }
+            else if (ennemy.transform.GetComponent<MageAI>())
+            {
+                //ennemy.transform.GetComponent<MageAI>().LooseHp(1);
+                ennemy.transform.GetComponent<MageAI>().FreezeEnnemy();
+            }
+            else if (ennemy.transform.GetComponent<BomberAI>())
+            {
+                //ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
+                ennemy.transform.GetComponent<BomberAI>().FreezeEnnemy();
             }
         }
     }
+    
+    
+    public void ActivateWallGroundEffect() // C'est OK
+    {
+        float zTransform = transform.position.z;
+        float xTransform = transform.position.x;
+        float yTransform = transform.position.y;
+
+        Debug.Log("Wall Short Range Launched");
+        GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.6f, zTransform), Quaternion.identity);
+        wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 2f);
+        Destroy(wall, 4f);
+    }
+    
+    public void ActivateWindGroundEffect() // EN COURS DE VERIF
+    {
+        repulsivePoint = transform.position;
+        Collider[] cols = Physics.OverlapSphere(transform.position, 3);
+        foreach (var col in cols)
+        {
+            switch (col.transform.tag)
+            {
+                case "Interactable": if (col.GetComponent<GemWindPuzzle>() != null) col.GetComponent<GemWindPuzzle>().WindInteract();
+                    break;
+
+                case "Ennemy":
+                    col.gameObject.GetComponent<Rigidbody>()
+                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1.7f);
+                    break;
+                default: break;
+            }
+        }
+    }
+    
     #endregion
+    
+    public IEnumerator LaunchCardCD(byte cardType) // INT 1 = Fire / 2 = Ice / 3 = Wall / 4 = Wind
+    {
+        switch (cardType)
+        {
+            case 1: canUseFireCard = false; break;
+            case 2: canUseIceCard = false; break;
+            case 3: canUseWallCard = false; break;
+            case 4: canUseWindCard = false; break;
+            default: break;
+        }
+
+        yield return new WaitForSeconds(4f);
+        
+        switch (cardType)
+        {
+            case 1: canUseFireCard = true; break;
+            case 2: canUseIceCard = true; break;
+            case 3: canUseWallCard = true; break;
+            case 4: canUseWindCard = true; break;
+            default: break;
+        }
+    }
 }
