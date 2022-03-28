@@ -72,6 +72,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private Animator attackZone;
     public int attackCounter;
     [SerializeField] public bool nextCombo;
+    [SerializeField] public int attackDamage;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
