@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Moriz1 3
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: af3b20f2167e5fc4893e737830647bbf, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Welcome to Moriz''s shop '
+      delay: 1
+    - expressions: 0
+      name: 
+      line: 'Where you can get the finest stuff ! '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Oh it's you Kell ? What's up ?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 850ff1e3a23aa884fbc68a6169fb7e43, type: 3}
