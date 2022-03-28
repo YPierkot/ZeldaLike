@@ -3,7 +3,12 @@ guid: 3aff3f46d4ccad44d90ae267ecdf4d00
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BancMat
+    second: {fileID: 2100000, guid: 7634f4e339aa0d541a7cd153a027e28b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
