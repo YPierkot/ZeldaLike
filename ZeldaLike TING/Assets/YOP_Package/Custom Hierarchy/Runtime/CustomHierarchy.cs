@@ -82,6 +82,8 @@ public class CustomHierarchy {
     /// <param name="instanceID"></param>
     /// <param name="selectionRect"></param>
     private static void DrawCustomHierarchy(int instanceID, Rect selectionRect) {
+        if (sceneGamInformations.Count == 0) return;
+        
         //Set settings icon
         if (EditorUtility.InstanceIDToObject(instanceID) == null) {
             changeBackgroundColor = false;
