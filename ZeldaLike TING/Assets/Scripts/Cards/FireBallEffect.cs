@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class FireBallEffect : MonoBehaviour
 {
-    [SerializeField] private LayerMask Ennemy;
+    public LayerMask mask; //Ennemy & Interact
     
     public void ActivateRedGroundEffect()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, mask);
         foreach (var col in colliders)
         {
             switch (col.transform.tag)

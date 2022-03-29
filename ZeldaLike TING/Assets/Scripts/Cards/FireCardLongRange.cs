@@ -40,12 +40,12 @@ public class FireCardLongRange : MonoBehaviour
         }
         Destroy(gameObject);
     }
-    
+
     private void OnCollisionEnter(Collision other)
     {
-        if (!other.transform.CompareTag("Ennemy") && !other.transform.CompareTag("Player"))
+        if (!other.transform.CompareTag("Player"))
         {
-            transform.position = Vector3.zero;
+            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 

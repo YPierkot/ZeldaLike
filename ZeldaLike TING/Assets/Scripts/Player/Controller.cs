@@ -135,6 +135,7 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(GameManager.Instance);
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -330,8 +331,8 @@ public class Controller : MonoBehaviour
 
         if (!inAttack)
         {
-            animatorPlayer.SetFloat("X-Axis", animDir.x);
-            animatorPlayer.SetFloat("Z-Axis", animDir.z);
+            animatorPlayer.SetFloat("X-Axis", lastDir.x);
+            animatorPlayer.SetFloat("Z-Axis", lastDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
             animatorMovePlayer.SetBool("isWalk", moving);
