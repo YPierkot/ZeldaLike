@@ -3,8 +3,10 @@ using UnityEditor;
 using UnityEditor.Overlays;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using Directory = System.IO.Directory;
+using HandleUtility = UnityEditor.HandleUtility;
 
 [Overlay(typeof(SceneView),overlayID, overlayName )]
 public class CustomLDOverlay : IMGUIOverlay {
@@ -12,7 +14,11 @@ public class CustomLDOverlay : IMGUIOverlay {
     private const string overlayName = "Custom LD Overlay";
     private static GameObject LDPlan = null;
     private static bool isPlanActiv = false;
-    
+
+    private static bool useDuringScene = false;
+    private static Vector3 mousePosInWorldScene = new Vector3();
+    private static GameObject prefabToSpawn = null;
+
     #region MenuItem
     /// <summary>
     /// Show or Hide the Gizmos
@@ -41,8 +47,19 @@ public class CustomLDOverlay : IMGUIOverlay {
     /// </summary>
     [MenuItem("Tools/LD/Reorder child inside New Gam &t")]
     private static void ReorderChildInsideNewGam() => GameObjectOrderHierarchy.ArrangeChildInsideGam();
-    #endregion
     
+    [MenuItem("Tools/LD/Create Object At World Pos _a")]
+    private static void CreateObject() {
+        if (prefabToSpawn == null) return;
+        
+        GameObject prefabSpawn = (GameObject) PrefabUtility.InstantiatePrefab(prefabToSpawn, EditorSceneManager.GetActiveScene());
+        prefabSpawn.transform.position = mousePosInWorldScene;
+            
+        if (prefabSpawn.GetComponent<MeshRenderer>() != null) prefabSpawn.transform.position += new Vector3(0, prefabSpawn.GetComponent<MeshRenderer>().bounds.size.y / 2, 0);
+        Undo.RegisterCreatedObjectUndo(prefabSpawn, "Add Object to the activ scene");
+    }
+    #endregion
+
     public override void OnGUI() {
         if (LDPlan == null) {
             LDPlan = GameObject.FindGameObjectWithTag("Plan");
@@ -64,7 +81,9 @@ public class CustomLDOverlay : IMGUIOverlay {
         
         DrawLoadSceneButton();
         DrawWindowSizeButton();
-
+        
+        GUILayout.Space(4);
+        DrawObjectPlacementBox();
     }
     
     #region GUIDrawer
@@ -197,5 +216,39 @@ public class CustomLDOverlay : IMGUIOverlay {
         return true;
     }
     #endregion LoadScene
+    
+    #region ObjectPlacement
+
+    private const int btnSize = 50;
+    private void DrawObjectPlacementBox(){
+        EditorGUI.BeginChangeCheck();
+        useDuringScene = GUILayout.Toggle(useDuringScene, "Use DuringSceneGUI Event");
+        if (EditorGUI.EndChangeCheck()) {
+            if (useDuringScene) SceneView.duringSceneGui += DuringSceneView;
+            else SceneView.duringSceneGui -= DuringSceneView;
+        }
+        
+        using (new GUILayout.HorizontalScope()) {
+            GUILayout.Label("Prefab :");
+            prefabToSpawn = (GameObject) EditorGUILayout.ObjectField(GUIContent.none, prefabToSpawn, typeof(GameObject), allowSceneObjects: false);
+        }
+    }
+
+    private void DuringSceneView(SceneView sceneView) {
+        if(Event.current.type == EventType.MouseMove) sceneView.Repaint();
+        
+        Ray mouseRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+        
+        if (Physics.Raycast(mouseRay, out RaycastHit hit)) {
+            mousePosInWorldScene = hit.point;
+            
+            Handles.color = Color.black;
+            Handles.zTest = CompareFunction.LessEqual;
+            Handles.DrawWireDisc(hit.point, hit.normal, 1f, 2f);
+            Handles.color = Color.white;
+        }
+    }
+    
+    #endregion
 }
 #endif
