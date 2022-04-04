@@ -6,7 +6,7 @@ public class LinePuzzleConnectorGUI : Editor
 {
     public override void OnInspectorGUI()
     {
-        //DrawDefaultInspector();
+        DrawDefaultInspector();
 
         LinePuzzleConnector script = (LinePuzzleConnector) target;
         if (GUILayout.Button("Update"))

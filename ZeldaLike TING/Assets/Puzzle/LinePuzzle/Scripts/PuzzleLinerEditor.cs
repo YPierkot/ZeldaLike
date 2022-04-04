@@ -25,7 +25,7 @@ public class PuzzleLinerEditor : MonoBehaviour
                 {
                     var connector = enter.GetComponentInParent<LinePuzzleConnector>();
                     _puzzleLine.endConnector = connector;
-                    connector.SetEnter(_puzzleLine, enter.transform);
+                    _puzzleLine.endSide = connector.SetEnter(_puzzleLine, enter.transform);
                     line.SetPosition(line.positionCount-1, enter.transform.position-transform.position);
                 }
             }
@@ -38,12 +38,11 @@ public class PuzzleLinerEditor : MonoBehaviour
             Collider[] startEnters = Physics.OverlapSphere(line.GetPosition(0)+transform.position, 0.1f);
             foreach (Collider enter in startEnters)
             {
-                Debug.Log(enter.name);
                 if (enter.CompareTag("LinePuzzleInput"))
                 {
                     var connector = enter.GetComponentInParent<LinePuzzleConnector>();
                     _puzzleLine.startConnector = connector;
-                    connector.SetEnter(_puzzleLine, enter.transform);
+                    _puzzleLine.startSide = connector.SetEnter(_puzzleLine, enter.transform);
                     line.SetPosition(0, enter.transform.position-transform.position);
                 }
             }
@@ -53,10 +52,5 @@ public class PuzzleLinerEditor : MonoBehaviour
                 _puzzleLine.startConnector = null;
             }
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(line.GetPosition(line.positionCount-1)+transform.position, 0.1f);
     }
 }

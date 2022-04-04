@@ -16,7 +16,7 @@ public class FireBallEffect : MonoBehaviour
             switch (col.transform.tag)
             {
                 case "Interactable":
-                    col.GetComponent<InteracteObject>().Burn();
+                    col.GetComponent<InteracteObject>().OnFireEffect();
                     break;
                 
                 case "Ennemy":
