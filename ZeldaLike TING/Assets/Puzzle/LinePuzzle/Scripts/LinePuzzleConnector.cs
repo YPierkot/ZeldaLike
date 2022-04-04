@@ -22,10 +22,11 @@ public class LinePuzzleConnector : InteracteObject
         public Transform botEnter;
     }
 
-    struct ProgressLine
+    public struct ProgressLine
     {
         public LineRenderer line;
-        public bool fromStart;
+        public bool fromStart ;
+        public Side side;
     }
 
     [Header("=== Line Puzzle Connector")]
@@ -38,7 +39,7 @@ public class LinePuzzleConnector : InteracteObject
     [SerializeField] private bool right;
     [SerializeField] private bool bot;
 
-    private PuzzleLine topLine;
+   private PuzzleLine topLine;
     private PuzzleLine leftLine;
     private PuzzleLine rightLine;
     private PuzzleLine botLine;
@@ -49,9 +50,28 @@ public class LinePuzzleConnector : InteracteObject
     {
         foreach (var progress in progressLines)
         {
+            GradientColorKey[] gradientColorKey = progress.line.colorGradient.colorKeys;
             if (progress.fromStart)
             {
-                //progress.line.colorGradient
+                gradientColorKey[0].color = Color.red;
+                gradientColorKey[0].time += 0.01f;
+                if (gradientColorKey[0].time >= 1)
+                {
+                    SendSignal(progress.side);
+                    progressLines.Remove(progress);
+                }
+            }
+            else
+            {
+                int index = progress.line.colorGradient.colorKeys.Length-1;
+                
+                gradientColorKey[index].color = Color.red;
+                gradientColorKey[index].time += 0.01f;
+                if (gradientColorKey[index].time <= 0)
+                {
+                    EmitSignal(progress.side);
+                    progressLines.Remove(progress);
+                }
             }
         }
     }
@@ -64,22 +84,57 @@ public class LinePuzzleConnector : InteracteObject
 
     public void RecieveSignal(Side side)
     {
+        ProgressLine newProgress =new ProgressLine();
+        newProgress.fromStart = true;
         switch (side)
         {
             case Side.top:
-                progressLines.Add(_enters.topEnter.GetComponentInChildren<LineRenderer>());
+                newProgress.line =_enters.topEnter.GetComponentInChildren<LineRenderer>();
+                newProgress.side = Side.top;
                 break;
             
             case Side.left: 
-                progressLines.Add(_enters.leftEnter.GetComponentInChildren<LineRenderer>());
+                newProgress.line =_enters.leftEnter.GetComponentInChildren<LineRenderer>();
+                newProgress.side = Side.left;
                 break;
             
             case Side.right:
-                progressLines.Add(_enters.rightEnter.GetComponentInChildren<LineRenderer>());
+                newProgress.line =_enters.rightEnter.GetComponentInChildren<LineRenderer>();
+                newProgress.side = Side.right;
                 break;
             
             case Side.bot: 
-                progressLines.Add(_enters.botEnter.GetComponentInChildren<LineRenderer>());
+                newProgress.line =_enters.botEnter.GetComponentInChildren<LineRenderer>();
+                newProgress.side = Side.bot;
+                break;
+        }
+        progressLines.Add(newProgress);
+    }
+
+    public void SendSignal(Side sideStart)
+    {
+        if (sideStart != Side.top)
+        {
+            ProgressLine topLineProg = new ProgressLine();
+            topLineProg.line = _enters.topEnter.GetComponentInChildren<LineRenderer>();
+            
+        }
+    }
+
+    public void EmitSignal(Side side)
+    {
+        switch (side)
+        {
+            case Side.top: if(topLine != null) topLine.SetProgress(this);
+                break;
+            
+            case Side.left: if(leftLine != null) leftLine.SetProgress(this);
+                break;
+            
+            case Side.right: if(rightLine != null) rightLine.SetProgress(this);
+                break;
+            
+            case Side.bot: if(botLine != null) botLine.SetProgress(this);
                 break;
         }
     }

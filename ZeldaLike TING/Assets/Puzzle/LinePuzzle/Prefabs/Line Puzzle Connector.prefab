@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8974627975638754163}
   - component: {fileID: 8974627975638754162}
   m_Layer: 0
-  m_Name: 'Right enter '
+  m_Name: 'Left enter '
   m_TagString: LinePuzzleInput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8974627977222228332}
   m_Father: {fileID: 8974627976516644478}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8974627975638754172
 MeshFilter:
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 8974627976027915471}
   - component: {fileID: 8974627976027915470}
   m_Layer: 0
-  m_Name: 'Left enter '
+  m_Name: 'Right enter '
   m_TagString: LinePuzzleInput
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ Transform:
   m_Children:
   - {fileID: 8974627976485556891}
   m_Father: {fileID: 8974627976516644478}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8974627976027915464
 MeshFilter:
@@ -459,8 +459,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8974627976357138776}
-  - {fileID: 8974627976027915469}
   - {fileID: 8974627975638754161}
+  - {fileID: 8974627976027915469}
   - {fileID: 8974627976822397670}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -541,10 +541,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b48ef64aa4ac441a67d09ba31e6914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canBurn: 0
+  windAffect: 0
+  windThrough: 0
+  canFreeze: 0
+  freezeCollider: {fileID: 0}
+  freezeTime: 0
+  destroyInteract:
+    serializedVersion: 2
+    m_Bits: 0
   _enters:
     topEnter: {fileID: 8974627976357138776}
-    leftEnter: {fileID: 8974627976027915469}
-    rightEnter: {fileID: 8974627975638754161}
+    leftEnter: {fileID: 8974627975638754161}
+    rightEnter: {fileID: 8974627976027915469}
     botEnter: {fileID: 8974627976822397670}
   top: 0
   left: 0
