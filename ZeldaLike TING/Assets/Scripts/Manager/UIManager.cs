@@ -94,7 +94,6 @@ public class UIManager : MonoBehaviour
          cardHandles[currentCard].localScale = new Vector3(0.8f,0.8f,0.8f);
       
          currentCard += changeInt;
-         Debug.Log("Change Card : " + currentCard);
          if (currentCard == cardUnlock) currentCard = 0;
          else if (currentCard == -1) currentCard = cardUnlock - 1;
       

@@ -73,14 +73,14 @@ public class InteracteObject : MonoBehaviour
             {
                 if (col.CompareTag("Interactable"))
                 {
-                    col.GetComponent<InteracteObject>().Burn();
+                    col.GetComponent<InteracteObject>().OnFireEffect();
                 }
             }
         }
         Destroy(gameObject);
     }
     
-    public void Burn()
+    virtual public void OnFireEffect()
     {
         if (canBurn)
         {
