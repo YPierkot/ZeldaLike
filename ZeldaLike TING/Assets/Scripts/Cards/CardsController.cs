@@ -248,9 +248,11 @@ public class CardsController : MonoBehaviour
     
     public void ActivateIceGroundEffect() // OK
     {
-        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        Vector3 shootPointPos = (transform.position - controller.pointerPosition);
         shootPointPos.Normalize();
-
+        
+        Debug.Log(shootPointPos);
+        
         var tempoV31 = new Vector3(0, 0, 1.3f);
         var tempoV32 = new Vector3(0, 0, 6);
         
