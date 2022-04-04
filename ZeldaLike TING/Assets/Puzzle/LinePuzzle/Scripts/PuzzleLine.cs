@@ -8,15 +8,20 @@ public class PuzzleLine : MonoBehaviour
     public LinePuzzleConnector.Side startSide;
     public LinePuzzleConnector endConnector;
     public LinePuzzleConnector.Side endSide;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
+    
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetProgress(LinePuzzleConnector sender)
+    {
+        if (sender == startConnector)
+        {
+            
+        }
     }
 }
