@@ -23,6 +23,7 @@ public class FireBallEffect : MonoBehaviour
                     if (col.transform.GetComponent<SwingerAI>())
                     {
                         col.transform.GetComponent<SwingerAI>().LooseHp(2);
+                        Debug.Log("OH LE BOSS");
                     }
                     else if (col.transform.GetComponent<KamikazeAI>())
                     {
