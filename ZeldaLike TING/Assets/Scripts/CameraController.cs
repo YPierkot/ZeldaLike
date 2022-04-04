@@ -1,10 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
 public class CameraController : MonoBehaviour

@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomizeEditor.HierarchySO;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Component = UnityEngine.Component;
+using Object = UnityEngine.Object;
 
 [InitializeOnLoad]
 public class CustomHierarchy {
@@ -89,7 +91,7 @@ public class CustomHierarchy {
             changeBackgroundColor = false;
             changeBackgroundGroupColor = false;
             lastGroupBackground = 0;
-            DrawSettingsIcon(selectionRect);
+            DrawSettingsIcon(selectionRect, GetActualInstance(instanceID));
         }
 
         if (lastItem) {
@@ -614,6 +616,7 @@ public class CustomHierarchy {
         actualInstanceData = new InstanceInfo();
 
         List<GameObject> sceneRootsGameObject = new List<GameObject>();
+        
         for (int i = 0; i < SceneManager.sceneCount; i++) {
             sceneRootsGameObject.AddRange(SceneManager.GetSceneAt(i).GetRootGameObjects());
         }
@@ -642,8 +645,7 @@ public class CustomHierarchy {
         if (gam != null) {
             if (gam.transform.parent != null) {
                 instance.parentGam = gam.transform.parent.gameObject;
-                instance.isLastChild =
-                    gam.transform.parent.GetChild(gam.transform.parent.childCount - 1).gameObject == gam;
+                instance.isLastChild = gam.transform.parent.GetChild(gam.transform.parent.childCount - 1).gameObject == gam;
             }
             else instance.isLastChild = false;
         }
@@ -653,8 +655,7 @@ public class CustomHierarchy {
 
         int childCount = gam.transform.childCount;
         for (int x = 0; x < childCount; x++) {
-            AddInstanceInfo(gam.transform.GetChild(x).gameObject, gam.transform.GetChild(x).gameObject.GetInstanceID(),
-                nestingLevel + 1, nestingGroup);
+            AddInstanceInfo(gam.transform.GetChild(x).gameObject, gam.transform.GetChild(x).gameObject.GetInstanceID(), nestingLevel + 1, nestingGroup);
         }
     }
 
@@ -679,7 +680,7 @@ public class CustomHierarchy {
     /// Draw data in the first Instance which is the scene name
     /// </summary>
     /// <param name="selectionRect"></param>
-    private static void DrawSettingsIcon(Rect selectionRect) {
+    private static void DrawSettingsIcon(Rect selectionRect, InstanceInfo instanceID) {
         Rect buttonRect = new Rect() {
             x = selectionRect.x + selectionRect.width - 20,
             y = selectionRect.y,
@@ -695,6 +696,9 @@ public class CustomHierarchy {
         if (GUI.Button(buttonRect, EditorGUIUtility.IconContent("d_SettingsIcon"), buttonStyle)) {
             SettingsService.OpenProjectSettings("Project/Custom Hierarchy");
         }
+
+        buttonRect.x = selectionRect.x + selectionRect.width - 40;
+        //if(EditorSceneManager.GetActiveScene() == EditorSceneManager.GetSceneByName()) GUI.Label(buttonRect, EditorGUIUtility.IconContent("Favorite@2x"));
     }
 
     #endregion DrawSettingsIcon
