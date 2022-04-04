@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 8974627976485556891}
   - component: {fileID: 8974627976485556964}
   m_Layer: 0
-  m_Name: Line
+  m_Name: RightLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,9 +439,9 @@ GameObject:
   - component: {fileID: 8974627976516644476}
   - component: {fileID: 8974627976516644467}
   - component: {fileID: 8974627976516644479}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Line Puzzle Connector
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -541,6 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b48ef64aa4ac441a67d09ba31e6914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireAffect: 0
   canBurn: 0
   windAffect: 0
   windThrough: 0
@@ -570,7 +571,7 @@ GameObject:
   - component: {fileID: 8974627976584457065}
   - component: {fileID: 8974627976584457066}
   m_Layer: 0
-  m_Name: Line
+  m_Name: TopLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +703,7 @@ GameObject:
   - component: {fileID: 8974627976761858648}
   - component: {fileID: 8974627976761858649}
   m_Layer: 0
-  m_Name: Line
+  m_Name: BotLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +933,7 @@ GameObject:
   - component: {fileID: 8974627977222228332}
   - component: {fileID: 8974627977222228333}
   m_Layer: 0
-  m_Name: Line
+  m_Name: LeftLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

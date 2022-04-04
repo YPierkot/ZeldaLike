@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class LinePuzzleConnector : InteracteObject
@@ -13,7 +8,7 @@ public class LinePuzzleConnector : InteracteObject
         none, top, left, right, bot
     }
     
-    [Serializable]
+    [System.Serializable]
     struct Enters
     {
         public Transform topEnter;
@@ -44,13 +39,13 @@ public class LinePuzzleConnector : InteracteObject
     private PuzzleLine rightLine;
     private PuzzleLine botLine;
     
-    List<ProgressLine> progressLines = new List<ProgressLine>();
+    System.Collections.Generic.List<ProgressLine> progressLines = new System.Collections.Generic.List<ProgressLine>();
 
     void Update()
     {
         foreach (var progress in progressLines)
         {
-            GradientColorKey[] gradientColorKey = progress.line.colorGradient.colorKeys;
+            GradientColorKey[] gradientColorKey = new GradientColorKey[2];
             if (progress.fromStart)
             {
                 gradientColorKey[0].color = Color.red;
@@ -64,9 +59,14 @@ public class LinePuzzleConnector : InteracteObject
             else
             {
                 int index = progress.line.colorGradient.colorKeys.Length-1;
+                //if(progress.line.name == "BotLine")Debug.Log($"BEFORE :{progress.line.name} color: {progress.line.colorGradient.colorKeys[index].color}");
+                progress.line.endColor = Color.red;
                 
-                gradientColorKey[index].color = Color.red;
-                gradientColorKey[index].time -= 0.01f;
+                gradientColorKey[1].time = 0.5f;
+                Debug.Log(gradientColorKey[index].time);
+                progress.line.colorGradient.colorKeys= gradientColorKey;
+                Debug.Log(progress.line.colorGradient.colorKeys[1].time);
+                
                 if (gradientColorKey[index].time <= 0)
                 {
                     EmitSignal(progress.side);
@@ -79,7 +79,7 @@ public class LinePuzzleConnector : InteracteObject
     public override void OnFireEffect()
     {
         base.OnFireEffect();
-        EmitSignal(Side.none);
+        if(FireAffect)SendSignal(Side.none);
     }
 
     public void RecieveSignal(Side side)
@@ -117,12 +117,32 @@ public class LinePuzzleConnector : InteracteObject
         {
             ProgressLine topLineProg = new ProgressLine();
             topLineProg.line = _enters.topEnter.GetComponentInChildren<LineRenderer>();
+            progressLines.Add(topLineProg);
+        }
+        if (sideStart != Side.left)
+        {
+            ProgressLine leftLineProg = new ProgressLine();
+            leftLineProg.line = _enters.leftEnter.GetComponentInChildren<LineRenderer>();
+            progressLines.Add(leftLineProg);
             
+        }
+        if (sideStart != Side.right)
+        {
+            ProgressLine rightLineProg = new ProgressLine();
+            rightLineProg.line = _enters.rightEnter.GetComponentInChildren<LineRenderer>();
+            progressLines.Add(rightLineProg);
+        }
+        if (sideStart != Side.bot)
+        {
+            ProgressLine botLineProg = new ProgressLine();
+            botLineProg.line = _enters.botEnter.GetComponentInChildren<LineRenderer>();
+            progressLines.Add(botLineProg);
         }
     }
 
     void EmitSignal(Side side)
     {
+        Debug.Log("Emit");
         switch (side)
         {
             case Side.top: if(topLine != null) topLine.SetProgress(this);

@@ -1,12 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+//using System.Collections.Generic;
+//using System.Security.Cryptography;
 using UnityEngine;
 
 public class InteracteObject : MonoBehaviour
 {
 
     [Header("--- FIRE")]
+    public bool FireAffect;
     [SerializeField] private bool canBurn;
     private bool burning;
 
@@ -82,12 +83,15 @@ public class InteracteObject : MonoBehaviour
     
     virtual public void OnFireEffect()
     {
-        if (canBurn)
+        if (FireAffect)
         {
-            burning = true;
-            //Debug.LogError($"Start color : {meshChilds[0].material.color}" );
+            if (canBurn)
+            {
+                burning = true;
+                //Debug.LogError($"Start color : {meshChilds[0].material.color}" );
+            }
         }
-        
+
     }
 
     virtual public void Freeze(Vector3 cardPos)

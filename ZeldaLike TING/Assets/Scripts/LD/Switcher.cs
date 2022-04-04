@@ -6,10 +6,8 @@ using UnityEngine.Events;
 
 public class Switcher : InteracteObject
 {
-    private MeshRenderer mesh;
 
     [SerializeField] private bool SwitchState;
-    [Space] public bool windAffect;
     [Space] [SerializeField] private UnityEvent onEnable;
     [SerializeField] private UnityEvent onDisable;
 
