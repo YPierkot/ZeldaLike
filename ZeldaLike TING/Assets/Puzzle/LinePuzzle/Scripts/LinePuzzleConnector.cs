@@ -66,7 +66,7 @@ public class LinePuzzleConnector : InteracteObject
                 int index = progress.line.colorGradient.colorKeys.Length-1;
                 
                 gradientColorKey[index].color = Color.red;
-                gradientColorKey[index].time += 0.01f;
+                gradientColorKey[index].time -= 0.01f;
                 if (gradientColorKey[index].time <= 0)
                 {
                     EmitSignal(progress.side);
@@ -79,7 +79,7 @@ public class LinePuzzleConnector : InteracteObject
     public override void OnFireEffect()
     {
         base.OnFireEffect();
-        
+        EmitSignal(Side.none);
     }
 
     public void RecieveSignal(Side side)
@@ -111,7 +111,7 @@ public class LinePuzzleConnector : InteracteObject
         progressLines.Add(newProgress);
     }
 
-    public void SendSignal(Side sideStart)
+   void SendSignal(Side sideStart)
     {
         if (sideStart != Side.top)
         {
@@ -121,7 +121,7 @@ public class LinePuzzleConnector : InteracteObject
         }
     }
 
-    public void EmitSignal(Side side)
+    void EmitSignal(Side side)
     {
         switch (side)
         {
