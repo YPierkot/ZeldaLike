@@ -116,7 +116,7 @@ public class CardsController : MonoBehaviour
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
-                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
+                    shootPointPos * Time.deltaTime * projectileSpeed;
                 isFireGround = true;
                 
                 StartCoroutine(LaunchCardCD(1));
@@ -138,7 +138,7 @@ public class CardsController : MonoBehaviour
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
                 iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 iceCardGrounded.GetComponent<Rigidbody>().velocity = 
-                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
+                    shootPointPos * Time.deltaTime * projectileSpeed;
                 isIceGround = true;
                 
                 StartCoroutine(LaunchCardCD(2));
@@ -160,7 +160,7 @@ public class CardsController : MonoBehaviour
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
                 wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
-                    shootPointPos * Time.deltaTime * projectileSpeed * 2;
+                    shootPointPos * Time.deltaTime * projectileSpeed;
                 isWallGround = true;
 
                 StartCoroutine(LaunchCardCD(3));
@@ -242,7 +242,7 @@ public class CardsController : MonoBehaviour
 
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
-        fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+        fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed * 2;
     }
     
     
