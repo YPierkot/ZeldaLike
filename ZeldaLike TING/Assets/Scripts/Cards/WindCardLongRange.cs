@@ -15,6 +15,8 @@ public class WindCardLongRange : MonoBehaviour
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private Vector3 attractivePoint;
 
+    [SerializeField] private LayerMask groundMask;
+
     private void OnEnable()
     {
         if (collider == null) collider = GetComponent<BoxCollider>();
@@ -63,9 +65,19 @@ public class WindCardLongRange : MonoBehaviour
         
         Destroy(gameObject, 0.2f);
     }
-    
-    private void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider other)
     {
+        if (other.ToString() == groundMask.ToString())
+        {
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+        
+        if (!other.transform.CompareTag("Player"))
+        {
+            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+        
         if (other.transform.CompareTag("Interactable") )
         {
             Debug.Log(other.transform.name);
@@ -77,16 +89,13 @@ public class WindCardLongRange : MonoBehaviour
             }
             else WindCardLongEffect();
         }
-        else if (!other.transform.CompareTag("Ennemy") || !other.transform.CompareTag("Player"))
-        {
-            transform.position = Vector3.zero;
-        }
     }
+    
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         collider.isTrigger = false;
-    }
+    }*/
 
     private IEnumerator StopMovement(float timeToStopMovement, GameObject objTransform)
     {

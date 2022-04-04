@@ -8,6 +8,7 @@ using UnityEngine;
 public class FireCardLongRange : MonoBehaviour
 {
     public LayerMask mask; //Ennemy & Interact
+    public LayerMask groundMask;
     
     private void OnDrawGizmos()
     {
@@ -40,12 +41,17 @@ public class FireCardLongRange : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    private void OnCollisionEnter(Collision other)
+    
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Player"))
         {
             this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+        
+        if (other.ToString() == groundMask.ToString())
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 

@@ -135,7 +135,6 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(GameManager.Instance);
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -209,7 +209,7 @@ public class CardsController : MonoBehaviour
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
-            StartCoroutine(LaunchCardCD(2));
+            //StartCoroutine(LaunchCardCD(2));
         }   
     }
 
@@ -251,38 +251,35 @@ public class CardsController : MonoBehaviour
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
 
-        var tempoV31 = new Vector3(0, 0, 2);
+        var tempoV31 = new Vector3(0, 0, 1.3f);
         var tempoV32 = new Vector3(0, 0, 6);
         
         var GoDir1 = transform.position + shootPointPos * radiusShootPoint;
+        Debug.Log(GoDir1);
         
-        var GoDir2 = transform.position + shootPointPos * radiusShootPoint;
-
-        Debug.DrawRay(GoDir1, GoDir2, Color.green, 3f);
+        Debug.DrawRay(GoDir1 + tempoV31, new Vector3(GoDir1.x, 1, GoDir1.z) + tempoV31, Color.green, 3f);
         
-        
-        
-        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir2 + tempoV32, 2.5f, Ennemy);
+        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir1 + tempoV32, 2.5f, Ennemy);
         foreach (var ennemy in cols)
         {
             if (ennemy.transform.GetComponent<SwingerAI>())
             {
-                //ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
+                ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
                 ennemy.transform.GetComponent<SwingerAI>().FreezeEnnemy();
             }
             else if (ennemy.transform.GetComponent<KamikazeAI>())
             {
-                //ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
+                ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
                 ennemy.transform.GetComponent<KamikazeAI>().FreezeEnnemy();
             }
             else if (ennemy.transform.GetComponent<MageAI>())
             {
-                //ennemy.transform.GetComponent<MageAI>().LooseHp(1);
+                ennemy.transform.GetComponent<MageAI>().LooseHp(1);
                 ennemy.transform.GetComponent<MageAI>().FreezeEnnemy();
             }
             else if (ennemy.transform.GetComponent<BomberAI>())
             {
-                //ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
+                ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
                 ennemy.transform.GetComponent<BomberAI>().FreezeEnnemy();
             }
         }
@@ -314,7 +311,7 @@ public class CardsController : MonoBehaviour
 
                 case "Ennemy":
                     col.gameObject.GetComponent<Rigidbody>()
-                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius);
+                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1f);
                     break;
                 default: break;
             }

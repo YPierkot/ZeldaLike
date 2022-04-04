@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
+  playerDamage: 0
 --- !u!1 &689773535
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
+  playerDamage: 0
 --- !u!1 &1145041873
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,14 +284,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145041873}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.2588194, y: -0, z: -0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7337217462935629417}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!95 &1145041875
 Animator:
   serializedVersion: 4
@@ -351,7 +353,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 236042663, guid: 7022a277cd75b704cb188058f664959f, type: 3}
+  m_Sprite: {fileID: -1758062665, guid: a8fc23f04b467a04dbabe9d3a2bcb6dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -388,8 +390,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318520794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.664, y: 19.77, z: 15.16}
-  m_LocalScale: {x: 0.87626, y: 0.87626, z: 0.87626}
+  m_LocalPosition: {x: 8.65, y: 19.77, z: -14.85}
+  m_LocalScale: {x: 0.62067246, y: 0.62067246, z: 0.62067246}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7337217462935629417}
@@ -495,6 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
+  playerDamage: 0
 --- !u!111 &1587232427
 Animation:
   m_ObjectHideFlags: 0
@@ -646,6 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
+  playerDamage: 0
 --- !u!1 &1182756043373388700
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 7337217462935629423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.41, y: 1.04, z: -1.18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7337217464296193324}
@@ -819,7 +823,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!114 &7337217462935629412
 MonoBehaviour:
@@ -911,13 +915,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
-  groundDistance: 0
+  groundDistance: 1.3
   moveTransform: {fileID: 7337217464296193324}
   camera: {fileID: 0}
   PlayerCameraPoint: {fileID: 6699838829042073399}
   attackZone: {fileID: 1587232428}
   attackCounter: 0
   nextCombo: 0
+  attackDamage: 0
   moveSpeed: 100
   dashCurve:
     serializedVersion: 2
@@ -989,10 +994,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.35433447
-  m_Height: 1.2906039
+  m_Radius: 0.3
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: -0.0743345, y: -0.15, z: 0.07985437}
+  m_Center: {x: -0.0743345, y: 0.06, z: 0.07985437}
 --- !u!114 &7337217462935629415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,33 +1011,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUseCards: 0
-  fireCard: {fileID: 8479553354742785972, guid: 70ebc9619449d2b4c8e60f876b51c755,
-    type: 3}
-  groundFireCard: {fileID: 8479553354742785972, guid: dbf3923e075453146b911fa71af45ba6,
-    type: 3}
   fireCardGrounded: {fileID: 0}
   canUseFireCard: 0
-  canUseLongFireCard: 0
-  iceCard: {fileID: 8479553354742785972, guid: e07938c057bbe18428fe3571889a80d8, type: 3}
-  groundIceCard: {fileID: 8479553354742785972, guid: fc136b71843c0dc4aa5742e91b9f59f6,
-    type: 3}
   iceCardGrounded: {fileID: 0}
   canUseIceCard: 0
-  canUseLongIceCard: 0
-  wallCard: {fileID: 8479553354742785972, guid: 0dd8fc4492fde0d4d971dce2508581fd,
-    type: 3}
   wallCardGrounded: {fileID: 0}
-  groundWallCard: {fileID: 8479553354742785972, guid: 7d93a1f92ec75bf47a2168b10b2f9858,
-    type: 3}
+  WallSR: {fileID: 0}
   canUseWallCard: 0
-  canUseLongWallCard: 0
-  windCard: {fileID: 8479553354742785972, guid: 93a05bf5758e84f45b22adb664ddc335,
-    type: 3}
-  windCardGrounded: {fileID: 0}
   groundWindCard: {fileID: 8479553354742785972, guid: c3bb207d1a53eef4e9cbdb298cdca9f1,
     type: 3}
+  windCardGrounded: {fileID: 0}
   canUseWindCard: 0
-  canUseLongWindCard: 0
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 0
+  repulsivePower: 500
+  repulsiveRadius: 4
+  repulsivePoint: {x: 0, y: 0, z: 0}
   m_tranform: {fileID: 689773536}
   Ennemy:
     serializedVersion: 2
@@ -1293,14 +1288,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8483277797745064702}
-  m_LocalRotation: {x: 0.2868719, y: -0.008814488, z: 0.0038013048, w: 0.95792085}
-  m_LocalPosition: {x: 0.02, y: 8.69, z: -12.9}
+  m_LocalRotation: {x: -0.0012790824, y: -0.957962, z: 0.28689215, w: -0.00038306185}
+  m_LocalPosition: {x: 0, y: 4.345001, z: -6.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7337217462935629417}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 33.344, y: -1.009, z: 0.153}
+  m_LocalEulerAnglesHint: {x: 33.344, y: 0, z: 0.153}
 --- !u!1001 &197017903726076392
 PrefabInstance:
   m_ObjectHideFlags: 0

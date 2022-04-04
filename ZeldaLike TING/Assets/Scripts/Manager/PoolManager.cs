@@ -30,7 +30,7 @@ public class PoolManager : MonoBehaviour
     }
     
 
-    [SerializeField] private Pool[] poolArray;
+    [SerializeField] private Pool[] poolArray = new Pool[5];
     private Dictionary<Object, Queue<GameObject>> queueDictionary = new Dictionary<Object, Queue<GameObject>>(); // Store Queue of Object
     private Dictionary<Object, GameObject> prefabDictionary = new Dictionary<Object, GameObject>(); // Store prefabs independently of Queue
 
@@ -46,6 +46,7 @@ public class PoolManager : MonoBehaviour
         {
             queueDictionary.Add(pol.typeOfObject, new Queue<GameObject>());
             prefabDictionary.Add(pol.typeOfObject, pol.ObjectPrefabs);
+            Debug.Log(pol.typeOfObject);
         }
     }
 
