@@ -33,9 +33,9 @@ public class CardsController : MonoBehaviour
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
+    public GameObject groundWindCard;
     public static bool isWindGround;
     public GameObject windCardGrounded;
-    public GameObject groundWindCard;
     public bool canUseWindCard;
     
     [SerializeField] private LayerMask interactMask;
@@ -43,6 +43,8 @@ public class CardsController : MonoBehaviour
     [SerializeField] float repulsiveRadius = 4f;
     [SerializeField] Vector3 repulsivePoint;
     
+    [Space(10)] // Wind Card
+    [Header("Utilities")]
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
@@ -74,7 +76,6 @@ public class CardsController : MonoBehaviour
     {
         if (!canUseCards) return;
         
-        Debug.Log("short Effect");
         switch(State)
         {
             case CardsState.Null: break;
@@ -89,7 +90,6 @@ public class CardsController : MonoBehaviour
     {
         if (!canUseCards) return;
         
-        //Debug.Log("long Effect");
         switch(State)
         {
             case CardsState.Null: break;
@@ -112,20 +112,17 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
+                
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
                     shootPointPos * Time.deltaTime * projectileSpeed * 2;
-
                 isFireGround = true;
+                
                 StartCoroutine(LaunchCardCD(1));
             }
-            else
-            {
-                fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect();
-                isFireGround = false;
-            }
         }
+        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect();
     }
     
     // Ice Card
@@ -137,6 +134,7 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
+                
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
                 iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 iceCardGrounded.GetComponent<Rigidbody>().velocity = 
@@ -145,12 +143,8 @@ public class CardsController : MonoBehaviour
                 
                 StartCoroutine(LaunchCardCD(2));
             }
-            else
-            {
-                iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet();
-                isIceGround = false;
-            }
         }
+        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet();
     }
     
     // Wall Card
@@ -171,12 +165,8 @@ public class CardsController : MonoBehaviour
 
                 StartCoroutine(LaunchCardCD(3));
             }
-            else
-            {
-                wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect();
-                isWallGround = false;
-            }
         }
+        else if (isWallGround) wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect();
     }
     
     private void WindLongRange()
@@ -187,6 +177,7 @@ public class CardsController : MonoBehaviour
             {
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
+                
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
                 windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 windCardGrounded.GetComponent<WindCardLongRange>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
@@ -194,12 +185,8 @@ public class CardsController : MonoBehaviour
 
                 StartCoroutine(LaunchCardCD(4));
             }
-            else
-            {
-                windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect();
-                isWindGround = false;
-            }
         }
+        else if(isWindGround) windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect();
     }
     
     #endregion
@@ -222,7 +209,7 @@ public class CardsController : MonoBehaviour
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
-            StartCoroutine(LaunchCardCD(2));
+            //StartCoroutine(LaunchCardCD(2));
         }   
     }
 
@@ -261,41 +248,40 @@ public class CardsController : MonoBehaviour
     
     public void ActivateIceGroundEffect() // OK
     {
-        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
+        Vector3 shootPointPos = (transform.position - controller.pointerPosition);
         shootPointPos.Normalize();
-
-        var tempoV31 = new Vector3(0, 0, 2);
+        
+        Debug.Log(shootPointPos);
+        
+        var tempoV31 = new Vector3(0, 0, 1.3f);
         var tempoV32 = new Vector3(0, 0, 6);
         
         var GoDir1 = transform.position + shootPointPos * radiusShootPoint;
+        Debug.Log(GoDir1);
         
-        var GoDir2 = transform.position + shootPointPos * radiusShootPoint;
-
-        Debug.DrawRay(GoDir1, GoDir2, Color.green, 3f);
+        Debug.DrawRay(GoDir1 + tempoV31, new Vector3(GoDir1.x, 1, GoDir1.z) + tempoV31, Color.green, 3f);
         
-        
-        
-        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir2 + tempoV32, 2.5f, Ennemy);
+        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir1 + tempoV32, 2.5f, Ennemy);
         foreach (var ennemy in cols)
         {
             if (ennemy.transform.GetComponent<SwingerAI>())
             {
-                //ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
+                ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
                 ennemy.transform.GetComponent<SwingerAI>().FreezeEnnemy();
             }
             else if (ennemy.transform.GetComponent<KamikazeAI>())
             {
-                //ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
+                ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
                 ennemy.transform.GetComponent<KamikazeAI>().FreezeEnnemy();
             }
             else if (ennemy.transform.GetComponent<MageAI>())
             {
-                //ennemy.transform.GetComponent<MageAI>().LooseHp(1);
+                ennemy.transform.GetComponent<MageAI>().LooseHp(1);
                 ennemy.transform.GetComponent<MageAI>().FreezeEnnemy();
             }
             else if (ennemy.transform.GetComponent<BomberAI>())
             {
-                //ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
+                ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
                 ennemy.transform.GetComponent<BomberAI>().FreezeEnnemy();
             }
         }
@@ -309,8 +295,8 @@ public class CardsController : MonoBehaviour
         float yTransform = transform.position.y;
 
         Debug.Log("Wall Short Range Launched");
-        GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.6f, zTransform), Quaternion.identity);
-        wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 2f);
+        GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
+        wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 1.5f);
         Destroy(wall, 4f);
     }
     
@@ -327,7 +313,7 @@ public class CardsController : MonoBehaviour
 
                 case "Ennemy":
                     col.gameObject.GetComponent<Rigidbody>()
-                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1.7f);
+                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1f);
                     break;
                 default: break;
             }

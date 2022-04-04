@@ -7,7 +7,7 @@ using UnityEngine;
 public class WallCardLongRange : MonoBehaviour
 {
     public GameObject WallLR;
-    public CardsController cardsController;
+    public LayerMask groundMask;
     
     public void WallCardLongEffect()
     {
@@ -22,11 +22,16 @@ public class WallCardLongRange : MonoBehaviour
         Destroy(gameObject, 0.2f);
     }
     
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Ennemy"))
         {
             WallCardLongEffect();
+        }
+
+        if (other.ToString() == groundMask.ToString())
+        {
+            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 

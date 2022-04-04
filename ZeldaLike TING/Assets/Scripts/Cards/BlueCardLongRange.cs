@@ -7,7 +7,8 @@ using UnityEngine;
 public class BlueCardLongRange : MonoBehaviour
 {
 
-    public LayerMask Ennemy;
+    public LayerMask enemyLayerMask;
+    public LayerMask groundMask;
     
     private void OnDrawGizmos()
     {
@@ -41,15 +42,13 @@ public class BlueCardLongRange : MonoBehaviour
         
         Destroy(gameObject, 0.3f);
     }
-    
-    private void OnCollisionEnter(Collision other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (!other.transform.CompareTag("Ennemy")|| !other.transform.CompareTag("Player"))
+        if (other.ToString() == groundMask.ToString())
         {
-            transform.position = Vector3.zero;
+            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
-        
-        Destroy(gameObject, 0.3f);
     }
 
     private void OnDestroy()
