@@ -2,23 +2,24 @@ using System.Collections;
 //using System.Collections.Generic;
 //using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteracteObject : MonoBehaviour
 {
 
-    [Header("--- FIRE")]
-    public bool FireAffect;
+    [Header("--- FIRE")] public bool fireAffect;
     [SerializeField] private bool canBurn;
-    private bool burning;
+    [SerializeField] private bool burning;
+    [SerializeField] private UnityEvent onBurnDestroy;
 
-    [Header("--- WIND")] 
-    public bool windAffect;
+    
+    [Header("--- WIND")] public bool windAffect;
     public bool windThrough;
 
-    [Header("--- ICE")] 
+    [Header("--- ICE")] public bool iceAffect;
     public bool canFreeze;
     [SerializeField] protected GameObject freezeCollider;
-    [SerializeField] protected float freezeTime; 
+    [SerializeField] public float freezeTime; 
     
     //[Header("--- HEARTH")]
     
@@ -30,6 +31,7 @@ public class InteracteObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        onBurnDestroy.Invoke();
         if (GetComponent<MeshRenderer>() != null)
         {
             mesh = GetComponent<MeshRenderer>();
@@ -83,7 +85,7 @@ public class InteracteObject : MonoBehaviour
     
     virtual public void OnFireEffect()
     {
-        if (FireAffect)
+        if (fireAffect)
         {
             if (canBurn)
             {
