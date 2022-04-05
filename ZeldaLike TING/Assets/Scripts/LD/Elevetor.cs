@@ -11,8 +11,10 @@ public class Elevetor : InteracteObject
     [SerializeField] private float waitingTime = 2f;
     [SerializeField] private float speed = 0.05f;
     [SerializeField] private bool auto;
+    public bool canMove = true;
     [Space] 
     [SerializeField] private float boxHeight = 1;
+
     private int pointIndex = 0;
     private System.Collections.Generic.List<Transform> eleveteList = new System.Collections.Generic.List<Transform>();
 
@@ -21,7 +23,7 @@ public class Elevetor : InteracteObject
     
     void Start()
     {
-       if(auto)Move();
+       if(auto && canMove)Move();
        collider = GetComponent<BoxCollider>();
     }
 
