@@ -1,8 +1,5 @@
 using System.Collections;
-//using System.Collections.Generic;
-//using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class InteracteObject : MonoBehaviour
 {
@@ -10,7 +7,7 @@ public class InteracteObject : MonoBehaviour
     [Header("--- FIRE")] public bool fireAffect;
     [SerializeField] private bool canBurn;
     [SerializeField] private bool burning;
-    [SerializeField] private UnityEvent onBurnDestroy;
+    [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
 
     
     [Header("--- WIND")] public bool windAffect;

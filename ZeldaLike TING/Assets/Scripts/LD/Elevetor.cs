@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Elevetor : InteracteObject
 {
@@ -17,7 +14,7 @@ public class Elevetor : InteracteObject
     [Space] 
     [SerializeField] private float boxHeight = 1;
     private int pointIndex = 0;
-    private List<Transform> eleveteList = new List<Transform>();
+    private System.Collections.Generic.List<Transform> eleveteList = new System.Collections.Generic.List<Transform>();
 
     private bool waiting;
     private bool moving;

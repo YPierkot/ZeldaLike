@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Switcher : InteracteObject
 {
 
     [SerializeField] private bool SwitchState;
-    [Space] [SerializeField] private UnityEvent onEnable;
-    [SerializeField] private UnityEvent onDisable;
+    [Space] [SerializeField] private UnityEngine.Events.UnityEvent onEnable;
+    [SerializeField] private UnityEngine.Events.UnityEvent onDisable;
 
     private bool playerInRange;
 

@@ -475,7 +475,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &689773535
 GameObject:
@@ -1310,7 +1310,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1666960065 stripped
 Transform:
@@ -1416,7 +1416,7 @@ PrefabInstance:
     - target: {fileID: 1473772124928122709, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1473772124928122709, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
@@ -1818,10 +1818,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5f6f5e7b36cee49987e0da311292ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireAffect: 0
+  fireAffect: 0
   canBurn: 0
+  burning: 0
+  onBurnDestroy:
+    m_PersistentCalls:
+      m_Calls: []
   windAffect: 0
   windThrough: 1
+  iceAffect: 0
   canFreeze: 0
   freezeCollider: {fileID: 0}
   freezeTime: 0
@@ -1956,7 +1961,7 @@ Transform:
   - {fileID: 1944630627}
   - {fileID: 1666960065}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1988086180
 GameObject:
@@ -2567,7 +2572,7 @@ PrefabInstance:
     - target: {fileID: 8212951077506361114, guid: 936750e9a0fa2af44a50fd001263fe44,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8212951077506361114, guid: 936750e9a0fa2af44a50fd001263fe44,
         type: 3}
@@ -2786,7 +2791,7 @@ PrefabInstance:
     - target: {fileID: 8974627976516644478, guid: d804987633b534b4cb0baa9258416274,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8974627976516644478, guid: d804987633b534b4cb0baa9258416274,
         type: 3}

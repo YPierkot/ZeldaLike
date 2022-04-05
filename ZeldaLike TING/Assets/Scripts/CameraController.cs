@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class CameraController : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class CameraController : MonoBehaviour
     private bool changingPoint;
     
 
-    [NonSerialized] public bool dashing = false;
+    [System.NonSerialized] public bool dashing = false;
     private bool moveToPlayer;
 
     private void Update()

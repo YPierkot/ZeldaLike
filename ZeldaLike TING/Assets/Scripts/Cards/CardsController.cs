@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using AI;
-using Unity.Collections;
 using DG.Tweening;
 using UnityEngine;
 

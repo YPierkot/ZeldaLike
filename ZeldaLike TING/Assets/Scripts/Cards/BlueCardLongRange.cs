@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using AI;
 using UnityEngine;
 
@@ -12,6 +9,7 @@ public class BlueCardLongRange : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        
         Gizmos.DrawWireSphere(transform.position, 3f);
     }
 

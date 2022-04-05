@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.Random;
 
 public class NPCDialogue : MonoBehaviour{
-    public List<DialogueScriptable> dialogues;
+    public System.Collections.Generic.List<DialogueScriptable> dialogues;
     [SerializeField] private DialogueScriptable[] fillingDialogues;
     private bool playerIn;
     [SerializeField] private int currentDialogue = 0;
@@ -44,7 +41,7 @@ public class NPCDialogue : MonoBehaviour{
             if (currentDialogue > dialogues.Count || dialogues.Count == 0)
             {
                 Debug.Log("Ya pas de dialogues");
-                AssignDialogue(fillingDialogues[Range(0, fillingDialogues.Length)]);
+                AssignDialogue(fillingDialogues[UnityEngine.Random.Range(0, fillingDialogues.Length)]);
             }
             else
             {

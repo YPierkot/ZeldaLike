@@ -1,14 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem.Users;
 
 public class Button : MonoBehaviour
 {
-    [SerializeField] private UnityEvent activateEvent;
+    [SerializeField] private UnityEngine.Events.UnityEvent activateEvent;
     private MeshRenderer mesh;
 
     private bool inRange;

@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 public class Controller : MonoBehaviour
 {
@@ -47,7 +44,7 @@ public class Controller : MonoBehaviour
     [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
-    private Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new Dictionary<Func<float, bool>, SpriteAngle>();
+    private System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle>();
 
 
     private PlayerInputMap InputMap;
@@ -80,7 +77,7 @@ public class Controller : MonoBehaviour
 
     
     [Header("--- DEBUG ---")] 
-    [SerializeField] private TextMeshProUGUI Debugger;
+    [SerializeField] private TMPro.TextMeshProUGUI Debugger;
     [SerializeField] private Transform transformDebugger;
     
     

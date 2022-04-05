@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class DialogueManager : MonoBehaviour
     private float defaultDelay = 2f;
     private int sentenceIndex;
     [SerializeField] private DialogueScriptable tutorialDialogue;
-    [SerializeField] private Image characterEmotion;
+    [SerializeField] private UnityEngine.UI.Image characterEmotion;
     private int lastDialogueStopIndex;
     private int lastSentenceStopIndex;
     [SerializeField] private List<DialogueLine> StoppedDialogue;
@@ -42,7 +40,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0)
         {
-            var dialogueToPlay = ThievesLairMS[Range(0, ThievesLairMS.Count)];
+            var dialogueToPlay = ThievesLairMS[UnityEngine.Random.Range(0, ThievesLairMS.Count)];
             AssignDialogue(dialogueToPlay.dialogue.ToList());
             ThievesLairMS.Remove(dialogueToPlay);
         }

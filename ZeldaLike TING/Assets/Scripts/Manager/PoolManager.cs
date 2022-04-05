@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -22,7 +19,7 @@ public class PoolManager : MonoBehaviour
         None, fireCard, iceCard, wallCard, windCard, fireBall
     }
     
-    [Serializable]
+    [System.Serializable]
     struct Pool
     {
        public GameObject ObjectPrefabs;
