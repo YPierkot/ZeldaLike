@@ -46,7 +46,7 @@ public class PoolManager : MonoBehaviour
         {
             queueDictionary.Add(pol.typeOfObject, new Queue<GameObject>());
             prefabDictionary.Add(pol.typeOfObject, pol.ObjectPrefabs);
-            Debug.Log(pol.typeOfObject);
+//            Debug.Log(pol.typeOfObject);
         }
     }
 

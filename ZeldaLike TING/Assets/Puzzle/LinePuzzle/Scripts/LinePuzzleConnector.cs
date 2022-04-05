@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LinePuzzleConnector : InteracteObject
@@ -17,6 +18,7 @@ public class LinePuzzleConnector : InteracteObject
         public Transform botEnter;
     }
 
+    [Serializable]
     public struct ProgressLine
     {
         public LineRenderer line;
@@ -34,10 +36,10 @@ public class LinePuzzleConnector : InteracteObject
     [SerializeField] private bool right;
     [SerializeField] private bool bot;
 
-   private PuzzleLine topLine;
-    private PuzzleLine leftLine;
-    private PuzzleLine rightLine;
-    private PuzzleLine botLine;
+    [SerializeField] private PuzzleLine topLine;
+    [SerializeField] private PuzzleLine leftLine;
+    [SerializeField] private PuzzleLine rightLine;
+    [SerializeField] private PuzzleLine botLine;
     
     System.Collections.Generic.List<ProgressLine> progressLines = new System.Collections.Generic.List<ProgressLine>();
 
@@ -45,33 +47,37 @@ public class LinePuzzleConnector : InteracteObject
     {
         foreach (var progress in progressLines)
         {
-            GradientColorKey[] gradientColorKey = new GradientColorKey[2];
+            /*if (LRDebug != null)
+            { 
+                LRDebug.colorGradient.colorKeys[1].color = Color.red; 
+                LRDebug.colorGradient.colorKeys[1].time = 0.5f;
+            }*/
+            
+            GradientColorKey[] gradientColorKey = progress.line.colorGradient.colorKeys;
             if (progress.fromStart)
             {
-                gradientColorKey[0].color = Color.red;
-                gradientColorKey[0].time += 0.01f;
-                if (gradientColorKey[0].time >= 1)
+                if (progress.line.startColor != Color.red) progress.line.startColor = Color.red;
+                else 
                 {
+                    Debug.Log("Finish Line");
+                    progress.line.endColor = Color.red; 
                     SendSignal(progress.side);
                     progressLines.Remove(progress);
+                    break;
                 }
             }
             else
             {
-                int index = progress.line.colorGradient.colorKeys.Length-1;
-                //if(progress.line.name == "BotLine")Debug.Log($"BEFORE :{progress.line.name} color: {progress.line.colorGradient.colorKeys[index].color}");
-                progress.line.endColor = Color.red;
-                
-                gradientColorKey[1].time = 0.5f;
-                Debug.Log(gradientColorKey[index].time);
-                progress.line.colorGradient.colorKeys= gradientColorKey;
-                Debug.Log(progress.line.colorGradient.colorKeys[1].time);
-                
-                if (gradientColorKey[index].time <= 0)
+                if (progress.line.endColor != Color.red) progress.line.endColor = Color.red;
+                else 
                 {
+                    Debug.Log("Finish "+ progress.line.name +" Line");
+                    progress.line.startColor = Color.red; 
                     EmitSignal(progress.side);
                     progressLines.Remove(progress);
+                    break;
                 }
+
             }
         }
     }
@@ -113,36 +119,40 @@ public class LinePuzzleConnector : InteracteObject
 
    void SendSignal(Side sideStart)
     {
-        if (sideStart != Side.top)
+        if (sideStart != Side.top && top)
         {
             ProgressLine topLineProg = new ProgressLine();
             topLineProg.line = _enters.topEnter.GetComponentInChildren<LineRenderer>();
+            topLineProg.side = Side.top;
             progressLines.Add(topLineProg);
         }
-        if (sideStart != Side.left)
+        if (sideStart != Side.left && left)
         {
             ProgressLine leftLineProg = new ProgressLine();
             leftLineProg.line = _enters.leftEnter.GetComponentInChildren<LineRenderer>();
+            leftLineProg.side = Side.left;
             progressLines.Add(leftLineProg);
             
         }
-        if (sideStart != Side.right)
+        if (sideStart != Side.right && right)
         {
             ProgressLine rightLineProg = new ProgressLine();
             rightLineProg.line = _enters.rightEnter.GetComponentInChildren<LineRenderer>();
+            rightLineProg.side = Side.right;
             progressLines.Add(rightLineProg);
         }
-        if (sideStart != Side.bot)
+        if (sideStart != Side.bot&& bot)
         {
             ProgressLine botLineProg = new ProgressLine();
             botLineProg.line = _enters.botEnter.GetComponentInChildren<LineRenderer>();
+            botLineProg.side = Side.bot;
             progressLines.Add(botLineProg);
         }
     }
 
     void EmitSignal(Side side)
     {
-        Debug.Log("Emit");
+        Debug.Log("Emit from " + side);
         switch (side)
         {
             case Side.top: if(topLine != null) topLine.SetProgress(this);

@@ -25,25 +25,26 @@ public class PuzzleLine : MonoBehaviour
     {
         if (progress)
         {
-            GradientColorKey[] gradientColorKey = line.colorGradient.colorKeys;
             if (fromStart)
             {
-                gradientColorKey[0].color = Color.red;
-                gradientColorKey[0].time += 0.01f;
-                if (gradientColorKey[0].time >= 1)
+                if (line.startColor != Color.red) line.startColor = Color.red;
+                else 
                 {
-                    endConnector.RecieveSignal(endSide);
+                    Debug.Log("End");
+                    line.endColor = Color.red; 
+                    startConnector.RecieveSignal(startSide);
+                    progress = false;
                 }
             }
             else
             {
-                int index = line.colorGradient.colorKeys.Length-1;
-                
-                gradientColorKey[index].color = Color.red;
-                gradientColorKey[index].time -= 0.01f;
-                if (gradientColorKey[index].time <= 0)
+                if (line.startColor != Color.red) line.startColor = Color.red;
+                else 
                 {
-                    endConnector.RecieveSignal(startSide);
+                    Debug.Log("End");
+                    line.endColor = Color.red; 
+                    endConnector.RecieveSignal(endSide);
+                    progress = false;
                 }
             }
         }
@@ -52,8 +53,16 @@ public class PuzzleLine : MonoBehaviour
     public void SetProgress(LinePuzzleConnector sender)
     {
         progress = true;
-        if (sender == startConnector) fromStart = true;
-        else fromStart = false;
+        if (sender == startConnector)
+        {
+            fromStart = true;
+            Debug.Log("progress from start");
+        }
+        else
+        {
+            fromStart = false;
+            Debug.Log("progress from end");
+        }
 
     }
 }
