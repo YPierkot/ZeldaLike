@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using DG.Tweening;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class WindCardLongRange : MonoBehaviour
 {
@@ -80,10 +76,8 @@ public class WindCardLongRange : MonoBehaviour
         
         if (other.transform.CompareTag("Interactable") )
         {
-            Debug.Log(other.transform.name);
             if (other.transform.GetComponent<InteracteObject>().windThrough)
             {
-                Debug.Log(velocity);
                 collider.isTrigger = true;
                 GetComponent<Rigidbody>().velocity = velocity;
             }

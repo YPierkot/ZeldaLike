@@ -85,7 +85,7 @@ public class LinePuzzleConnector : InteracteObject
     public override void OnFireEffect()
     {
         base.OnFireEffect();
-        if(FireAffect)SendSignal(Side.none);
+        if(fireAffect)SendSignal(Side.none);
     }
 
     public void RecieveSignal(Side side)
