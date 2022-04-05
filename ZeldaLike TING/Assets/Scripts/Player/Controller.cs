@@ -54,7 +54,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveTransform;
+    [SerializeField] public Transform moveTransform;
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 
@@ -340,6 +340,7 @@ public class Controller : MonoBehaviour
         {
             animatorPlayer.SetFloat("X-Axis", animDir.x);
             animatorPlayer.SetFloat("Z-Axis", animDir.z);
+            Debug.Log(animDir.x + animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
         }

@@ -33,7 +33,6 @@ public class CardsController : MonoBehaviour
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
-    public GameObject groundWindCard;
     public static bool isWindGround;
     public GameObject windCardGrounded;
     public bool canUseWindCard;
@@ -242,6 +241,12 @@ public class CardsController : MonoBehaviour
 
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
+
+        //float fxRotation = controller.moveTransform.rotation.y;
+
+        //if (fxRotation < 0)fxRotation += fxRotation * -1;
+        
+        //fb.transform.rotation = new Quaternion(0, fxRotation, 0, 0);
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed * 2;
     }
     
