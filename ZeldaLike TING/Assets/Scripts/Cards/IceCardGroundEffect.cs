@@ -18,7 +18,6 @@ public class IceCardGroundEffect : MonoBehaviour
         {
             // Apply IceShortRange effect
             ennemy.gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-            ennemy.gameObject.GetComponent<ResetColor>().StartCoroutine(ennemy.gameObject.GetComponent<ResetColor>().ResetObjectColor());
         }
         Destroy(gameObject, 0.2f);
     }

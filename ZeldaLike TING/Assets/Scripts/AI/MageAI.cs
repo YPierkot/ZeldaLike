@@ -45,8 +45,6 @@ namespace AI
         
         protected override void Walk()
         {
-            Debug.Log("Wander State");
-            
             if (isAttacking)
                 return;
             if (isMoving)
@@ -61,7 +59,7 @@ namespace AI
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
             
-            mageAnimator.SetBool("isWalk", isMoving);
+            //mageAnimator.SetBool("isWalk", isMoving);
         }
 
         protected override void Attack()

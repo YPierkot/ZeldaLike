@@ -54,7 +54,6 @@ public class WindCardLongRange : MonoBehaviour
             else
             {
                 col.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
-                col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
 
                 Sequence mySequence = DOTween.Sequence();
                 mySequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(

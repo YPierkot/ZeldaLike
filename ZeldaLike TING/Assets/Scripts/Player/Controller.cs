@@ -54,7 +54,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveTransform;
+    [SerializeField] public Transform moveTransform;
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 

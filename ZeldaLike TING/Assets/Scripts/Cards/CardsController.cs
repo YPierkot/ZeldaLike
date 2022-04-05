@@ -43,7 +43,7 @@ public class CardsController : MonoBehaviour
     [SerializeField] Vector3 repulsivePoint;
     
     [Space(10)] // Wind Card
-    [Header("Utilities")]
+    [Header("Utilities")] 
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
@@ -93,7 +93,7 @@ public class CardsController : MonoBehaviour
         {
             case CardsState.Null: break;
             case CardsState.Fire: FireballLongRange(); break;
-            case CardsState.Ice: IceLongRange(); break;
+            case CardsState.Ice:  IceLongRange(); break;
             case CardsState.Wall: WallLongRange(); break;
             case CardsState.Wind: WindLongRange(); break;
         }
@@ -208,7 +208,7 @@ public class CardsController : MonoBehaviour
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
-            //StartCoroutine(LaunchCardCD(2));
+           // StartCoroutine(LaunchCardCD(2));
         }   
     }
 
@@ -241,32 +241,26 @@ public class CardsController : MonoBehaviour
 
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
-
-        //float fxRotation = controller.moveTransform.rotation.y;
-
-        //if (fxRotation < 0)fxRotation += fxRotation * -1;
         
-        //fb.transform.rotation = new Quaternion(0, fxRotation, 0, 0);
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed * 2;
     }
-    
-    
+
+
+    private const float rangeIceShot = 8f;
+    private const float rangeStartIceShot = 1f;
+    private const float radiusIceShot = 2.5f;
+
     public void ActivateIceGroundEffect() // OK
     {
-        Vector3 shootPointPos = (transform.position - controller.pointerPosition);
+        Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
         
-        Debug.Log(shootPointPos);
+        var GoDir =  (transform.position + shootPointPos * radiusShootPoint) ;
         
-        var tempoV31 = new Vector3(0, 0, 1.3f);
-        var tempoV32 = new Vector3(0, 0, 6);
         
-        var GoDir1 = transform.position + shootPointPos * radiusShootPoint;
-        Debug.Log(GoDir1);
+        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y/2, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y*2, shootPointPos.z * rangeIceShot), Color.red, 3f);
         
-        Debug.DrawRay(GoDir1 + tempoV31, new Vector3(GoDir1.x, 1, GoDir1.z) + tempoV31, Color.green, 3f);
-        
-        Collider[] cols = Physics.OverlapCapsule(GoDir1 + tempoV31, GoDir1 + tempoV32, 2.5f, Ennemy);
+        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, transform.position.y, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
             if (ennemy.transform.GetComponent<SwingerAI>())

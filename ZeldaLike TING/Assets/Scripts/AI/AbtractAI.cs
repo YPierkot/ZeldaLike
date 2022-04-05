@@ -112,7 +112,7 @@ namespace AI
         public void LooseHp(int count)
         {
             e_hp -= count;
-            
+            Debug.Log("Ennemy hit");
             if(e_hp <= 0)
                 ChangeState(dead);
             else

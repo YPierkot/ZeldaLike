@@ -49,8 +49,6 @@ namespace AI
 
         protected override void Walk()
         {
-            Debug.Log("Wander State");
-            
             if (isAttacking)
                 return;
             if (isMoving)
@@ -90,7 +88,7 @@ namespace AI
                 if (!isAttacking)
                 {
                     transform.DOKill();
-                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, 
                         e_speed * Time.deltaTime);
                     
                     kamikazeAnimator.SetBool("isWalk", true);
