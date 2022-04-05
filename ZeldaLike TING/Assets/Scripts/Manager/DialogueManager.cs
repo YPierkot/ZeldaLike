@@ -92,7 +92,7 @@ public class DialogueManager : MonoBehaviour
         {
             string currentLine = sentences.Dequeue();
             dialogueDisplay.text = currentLine;
-            SetCharacterEmotion();
+            //SetCharacterEmotion();
             //Debug.Log(sentenceIndex);
             if (DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay == 0)
             {
