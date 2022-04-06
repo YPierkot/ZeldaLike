@@ -10,36 +10,36 @@ public class CardsController : MonoBehaviour
     public static CardsController instance;
     private Controller controller;
     
-    
     // Cards Variables 
     public bool canUseCards;
     
     [Header("FireCard")]
-    [SerializeField] GameObject fireCardGrounded;
-    public static bool isFireGround;
     public bool canUseFireCard;
+    public static bool isFireGround;
+    [SerializeField] GameObject fireCardGrounded;
     
     // IceCard
-    [Header("Ice Card")] public GameObject iceCardGrounded;
-    public static bool isIceGround;
+    [Header("Ice Card")] 
     public bool canUseIceCard;
+    public static bool isIceGround;
+    public GameObject iceCardGrounded;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
-    public GameObject wallCardGrounded;
-    public static bool isWallGround;
-    public GameObject WallSR;
     public bool canUseWallCard;
+    public static bool isWallGround;
+    public GameObject wallCardGrounded;
+    public GameObject WallSR;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
+    public bool canUseWindCard;
     public static bool isWindGround;
     public GameObject windCardGrounded;
-    public bool canUseWindCard;
-    
+    [Space(5)]
     [SerializeField] private LayerMask interactMask;
     [SerializeField] float repulsivePower = 500f;
-    [SerializeField] float repulsiveRadius = 4f;
+    [SerializeField] float repulsiveRadius = 4.5f;
     [SerializeField] Vector3 repulsivePoint;
     
     [Space(10)] // Wind Card
@@ -109,6 +109,8 @@ public class CardsController : MonoBehaviour
         {
             if (!isFireGround)
             {
+                canUseFireCard = false;
+                
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
                 
@@ -131,6 +133,9 @@ public class CardsController : MonoBehaviour
         {
             if (!isIceGround)
             {
+                canUseIceCard = false;
+
+                
                 Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
                 
@@ -153,6 +158,9 @@ public class CardsController : MonoBehaviour
         {
             if (!isWallGround)
             {
+                canUseWallCard = false;
+
+                
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
                 
@@ -174,12 +182,14 @@ public class CardsController : MonoBehaviour
         {
             if (!isWindGround)
             {
+                canUseWindCard = false;
+                
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
                 windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
-                windCardGrounded.GetComponent<WindCardLongRange>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
                 isWindGround = true;
 
                 StartCoroutine(LaunchCardCD(4));
@@ -208,7 +218,7 @@ public class CardsController : MonoBehaviour
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
-           // StartCoroutine(LaunchCardCD(2));
+            StartCoroutine(LaunchCardCD(2));
         }   
     }
 
@@ -228,13 +238,13 @@ public class CardsController : MonoBehaviour
         if (canUseWindCard)
         {
             ActivateWindGroundEffect();
-            StartCoroutine(LaunchCardCD(4));
+            //StartCoroutine(LaunchCardCD(4));
         }
     }
     
 
     // EFFECTS CODE
-    private void ActivateFireShortEffect() // A VERIF
+    private void ActivateFireShortEffect() // OK FX EN COURS D'INTE
     {
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
@@ -244,13 +254,11 @@ public class CardsController : MonoBehaviour
         
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed * 2;
     }
-
-
+    
     private const float rangeIceShot = 8f;
     private const float rangeStartIceShot = 1f;
     private const float radiusIceShot = 2.5f;
-
-    public void ActivateIceGroundEffect() // OK
+    public void ActivateIceGroundEffect() // OK MANQUE FX
     {
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
@@ -258,9 +266,9 @@ public class CardsController : MonoBehaviour
         var GoDir =  (transform.position + shootPointPos * radiusShootPoint) ;
         
         
-        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y/2, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y*2, shootPointPos.z * rangeIceShot), Color.red, 3f);
+        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
         
-        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, transform.position.y, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
+        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
             if (ennemy.transform.GetComponent<SwingerAI>())
@@ -285,9 +293,8 @@ public class CardsController : MonoBehaviour
             }
         }
     }
-    
-    
-    public void ActivateWallGroundEffect() // C'est OK
+
+    public void ActivateWallGroundEffect() // C'est OK FX ARRIVE
     {
         float zTransform = transform.position.z;
         float xTransform = transform.position.x;
@@ -298,11 +305,12 @@ public class CardsController : MonoBehaviour
         wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 1.5f);
         Destroy(wall, 4f);
     }
-    
-    public void ActivateWindGroundEffect() // EN COURS DE VERIF
+
+    private const float forceModifier = 1.6f;
+    public void ActivateWindGroundEffect() // OK
     {
         repulsivePoint = transform.position;
-        Collider[] cols = Physics.OverlapSphere(transform.position, 3);
+        Collider[] cols = Physics.OverlapSphere(transform.position, repulsiveRadius);
         foreach (var col in cols)
         {
             switch (col.transform.tag)
@@ -311,14 +319,26 @@ public class CardsController : MonoBehaviour
                     break;
 
                 case "Ennemy":
-                    col.gameObject.GetComponent<Rigidbody>()
-                        .AddExplosionForce(repulsivePower, transform.position, repulsiveRadius, 1f);
+                    EnnemyWindRepultion(col.gameObject);
                     break;
                 default: break;
             }
         }
     }
-    
+
+
+    private void EnnemyWindRepultion(GameObject enemy)
+    {
+        enemy.transform.DOKill();
+                    
+        var shootPointPos = (enemy.transform.position - transform.position);
+        var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x) /* forceModifier*/, 
+            enemy.transform.position.y + shootPointPos.y + 1f,
+            (enemy.transform.position.z + shootPointPos.z) /* forceModifier*/);
+        
+        enemy.transform.DOMove(targetPos, 0.3f).OnComplete(() => enemy.transform.DOKill());
+        Debug.Log($"{enemy.name} got repulsed !");
+    }
     #endregion
     
     public IEnumerator LaunchCardCD(byte cardType) // INT 1 = Fire / 2 = Ice / 3 = Wall / 4 = Wind
@@ -342,5 +362,11 @@ public class CardsController : MonoBehaviour
             case 4: canUseWindCard = true; break;
             default: break;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, repulsiveRadius);
     }
 }

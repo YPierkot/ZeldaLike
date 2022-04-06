@@ -2412,7 +2412,7 @@ MonoBehaviour:
     card: 3
   - Handle: {fileID: 3545406009621369294}
     card: 4
-  cardUnlock: 1
+  cardUnlock: 4
   lifeArray:
   - {fileID: 5230195238561741568}
   - {fileID: 4918116943860437531}
@@ -2432,6 +2432,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1473772124928122709}
     m_Modifications:
+    - target: {fileID: 7337217462935629414, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: repulsivePower
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629417, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_RootOrder
@@ -2497,6 +2512,11 @@ PrefabInstance:
       propertyPath: Debugger
       value: 
       objectReference: {fileID: 1373090864}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: groundDistance
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629423, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_Name

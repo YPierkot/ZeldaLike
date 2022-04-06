@@ -15,6 +15,9 @@ public class WallCardLongRange : MonoBehaviour
         float xTransform = transform.position.x;
         float yTransform = transform.position.y;
 
+        var Bilalhassani = Controller.instance.moveTransform.forward; 
+        
+        
         Debug.Log("Wall Long Range Launched");
         var wall = Instantiate(WallLR, new Vector3(xTransform, yTransform - 1.3f, zTransform), Quaternion.identity);
         wall.transform.DOMove(new Vector3(xTransform, yTransform + .3f, zTransform), 2f);
@@ -38,5 +41,6 @@ public class WallCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isWallGround = false;
+        CardsController.instance.StartCoroutine(CardsController.instance.LaunchCardCD(3));
     }
 }

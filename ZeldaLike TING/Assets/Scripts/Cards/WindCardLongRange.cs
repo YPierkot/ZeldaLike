@@ -32,7 +32,7 @@ public class WindCardLongRange : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         attractivePoint = gameObject.transform.position;
-            
+        
         Collider[] colliders = Physics.OverlapSphere(transform.position, 3, interactMask);
         foreach (var col in colliders)
         {
@@ -53,11 +53,12 @@ public class WindCardLongRange : MonoBehaviour
             }
             else
             {
-                col.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
-
                 Sequence mySequence = DOTween.Sequence();
+
+                var rkj = transform.position - attractivePoint;
+                
                 mySequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
-                    new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));
+                    new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 3f));
                 StartCoroutine(StopMovement(2.5f, col.gameObject));
             }
         }
@@ -105,5 +106,6 @@ public class WindCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isWindGround = false;
+        CardsController.instance.StartCoroutine(CardsController.instance.LaunchCardCD(4));
     }
 }

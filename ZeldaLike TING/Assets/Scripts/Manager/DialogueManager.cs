@@ -29,7 +29,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            Debug.Log("je lance l'instance");
             Instance = this;
         }
         

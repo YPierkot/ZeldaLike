@@ -61,7 +61,7 @@ namespace AI
             Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
-            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
+            e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false).OnComplete(() => transform.DOKill());
             
             kamikazeAnimator.SetBool("isWalk", isMoving);
         }
@@ -69,10 +69,6 @@ namespace AI
         protected override void Attack()
         {
             base.Attack();
-            Debug.Log(isAttacking);
-            Debug.Log(isMoving);
-            
-            Debug.Log("Attacking State");
             
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
@@ -87,7 +83,7 @@ namespace AI
             {
                 if (!isAttacking)
                 {
-                    transform.DOKill();
+                    //transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, 
                         e_speed * Time.deltaTime);
                     
