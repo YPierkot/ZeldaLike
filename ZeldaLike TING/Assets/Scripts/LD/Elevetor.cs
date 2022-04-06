@@ -48,7 +48,7 @@ public class Elevetor : InteracteObject
                 }
             }
         }
-        else if (!waiting && auto) StartCoroutine("Waiter");
+        else if (!waiting && auto) StartCoroutine(Waiter());
         else
         {
             moving = false;
