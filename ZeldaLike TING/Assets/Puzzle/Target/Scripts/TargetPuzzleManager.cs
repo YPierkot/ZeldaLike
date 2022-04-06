@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class TargetPuzzleManager : MonoBehaviour
 {
-    [SerializeField] private Door[] doors;
+    [SerializeField] private InteracteObject[] doors;
     private int openDoor;
 
-    private void OpenDoor()
+    public void OpenDoor()
     {
-        doors[openDoor].SwitchState();
+        Debug.Log("Open Door");
+        doors[openDoor].OnFireEffect();
         openDoor++;
     }
 }

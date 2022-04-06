@@ -65,9 +65,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5f6f5e7b36cee49987e0da311292ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireAffect: 1
   canBurn: 1
+  burnDestroy: 1
+  burning: 0
+  onBurn:
+    m_PersistentCalls:
+      m_Calls: []
+  onBurnDestroy:
+    m_PersistentCalls:
+      m_Calls: []
   windAffect: 0
   windThrough: 0
+  onWind:
+    m_PersistentCalls:
+      m_Calls: []
+  iceAffect: 0
+  canFreeze: 0
+  freezeCollider: {fileID: 0}
+  freezeTime: 0
+  moveRestricted: 0
+  moveTop: 0
+  moveLeft: 0
+  moveRight: 0
+  moveBot: 0
   destroyInteract:
     serializedVersion: 2
     m_Bits: 2048

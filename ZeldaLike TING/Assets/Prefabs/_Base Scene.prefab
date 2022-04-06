@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolArray:
-  - ObjectPrefabs: {fileID: 8479553354742785972, guid: 70ebc9619449d2b4c8e60f876b51c755,
+  - ObjectPrefabs: {fileID: 8479553354742785972, guid: dbf3923e075453146b911fa71af45ba6,
       type: 3}
     typeOfObject: 1
   - ObjectPrefabs: {fileID: 8479553354742785972, guid: e07938c057bbe18428fe3571889a80d8,
@@ -57,6 +57,9 @@ MonoBehaviour:
   - ObjectPrefabs: {fileID: 8479553354742785972, guid: 0dd8fc4492fde0d4d971dce2508581fd,
       type: 3}
     typeOfObject: 3
+  - ObjectPrefabs: {fileID: 8479553354742785972, guid: 8d38f80c0914be6429d83cc449c608cd,
+      type: 3}
+    typeOfObject: 5
 --- !u!1 &1373090862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,7 +2412,7 @@ MonoBehaviour:
     card: 3
   - Handle: {fileID: 3545406009621369294}
     card: 4
-  cardUnlock: 1
+  cardUnlock: 4
   lifeArray:
   - {fileID: 5230195238561741568}
   - {fileID: 4918116943860437531}

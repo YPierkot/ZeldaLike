@@ -42,7 +42,6 @@ public class InteracteObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        onBurnDestroy.Invoke();
         if (GetComponent<Rigidbody>() != null) rb = GetComponent<Rigidbody>();
         if (GetComponent<MeshRenderer>() != null) mesh = GetComponent<MeshRenderer>();
         else meshChilds = GetComponentsInChildren<MeshRenderer>();
@@ -113,6 +112,7 @@ public class InteracteObject : MonoBehaviour
         if (burning)
         {
             PropageFire();
+            onBurnDestroy.Invoke();
         }
         Destroy(gameObject);
     }
@@ -131,6 +131,7 @@ public class InteracteObject : MonoBehaviour
     
     virtual public void OnFireEffect()
     {
+//        Debug.Log("OnfireEffect");
         if (fireAffect)
         {
             if (canBurn)
