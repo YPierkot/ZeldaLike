@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using DG.Tweening;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class WindCardLongRange : MonoBehaviour
 {
@@ -28,7 +32,7 @@ public class WindCardLongRange : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         attractivePoint = gameObject.transform.position;
-            
+        
         Collider[] colliders = Physics.OverlapSphere(transform.position, 3, interactMask);
         foreach (var col in colliders)
         {
@@ -41,8 +45,6 @@ public class WindCardLongRange : MonoBehaviour
                 }
                 else if (col.GetComponent<InteracteObject>().windAffect)
                 {
-                    col.GetComponent<InteracteObject>().onWind.Invoke();
-                    
                     Sequence objectSequence = DOTween.Sequence();
                     objectSequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
                         new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));
@@ -51,12 +53,12 @@ public class WindCardLongRange : MonoBehaviour
             }
             else
             {
-                col.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
-                col.gameObject.GetComponent<ResetColor>().StartCoroutine(col.gameObject.GetComponent<ResetColor>().ResetObjectColor());
-
                 Sequence mySequence = DOTween.Sequence();
+
+                var rkj = transform.position - attractivePoint;
+                
                 mySequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
-                    new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));
+                    new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 3f));
                 StartCoroutine(StopMovement(2.5f, col.gameObject));
             }
         }
@@ -78,8 +80,10 @@ public class WindCardLongRange : MonoBehaviour
         
         if (other.transform.CompareTag("Interactable") )
         {
+            Debug.Log(other.transform.name);
             if (other.transform.GetComponent<InteracteObject>().windThrough)
             {
+                Debug.Log(velocity);
                 collider.isTrigger = true;
                 GetComponent<Rigidbody>().velocity = velocity;
             }
@@ -102,5 +106,6 @@ public class WindCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isWindGround = false;
+        CardsController.instance.StartCoroutine(CardsController.instance.LaunchCardCD(4));
     }
 }
