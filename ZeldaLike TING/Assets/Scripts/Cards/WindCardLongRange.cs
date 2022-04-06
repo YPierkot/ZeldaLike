@@ -41,6 +41,8 @@ public class WindCardLongRange : MonoBehaviour
                 }
                 else if (col.GetComponent<InteracteObject>().windAffect)
                 {
+                    col.GetComponent<InteracteObject>().onWind.Invoke();
+                    
                     Sequence objectSequence = DOTween.Sequence();
                     objectSequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
                         new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));

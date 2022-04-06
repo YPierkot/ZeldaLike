@@ -1,44 +1,64 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class InteracteObject : MonoBehaviour
 {
 
+    protected MeshRenderer mesh;
+    private Rigidbody rb;
+    private MeshRenderer[] meshChilds;
+    
+    
     [Header("--- FIRE")] public bool fireAffect;
     [SerializeField] private bool canBurn;
+    [SerializeField] private bool burnDestroy;
     [SerializeField] private bool burning;
+    [SerializeField] private UnityEngine.Events.UnityEvent onBurn;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
 
     
     [Header("--- WIND")] public bool windAffect;
     public bool windThrough;
+    [SerializeField] public UnityEngine.Events.UnityEvent onWind;
 
     [Header("--- ICE")] public bool iceAffect;
     public bool canFreeze;
     [SerializeField] protected GameObject freezeCollider;
-    [SerializeField] public float freezeTime; 
+    [SerializeField] public float freezeTime;
+
+    [Header("--- MOVEMENT")] public bool moveRestricted;
+    [SerializeField] bool moveTop;
+    [SerializeField] bool moveLeft;
+    [SerializeField] bool moveRight;
+    [SerializeField] bool moveBot;
     
     //[Header("--- HEARTH")]
     
     [Space]
     [SerializeField] private LayerMask destroyInteract;
 
-    protected MeshRenderer mesh;
-    private MeshRenderer[] meshChilds;
+    
     // Start is called before the first frame update
     void Start()
     {
         onBurnDestroy.Invoke();
-        if (GetComponent<MeshRenderer>() != null)
-        {
-            mesh = GetComponent<MeshRenderer>();
-        }
+        if (GetComponent<Rigidbody>() != null) rb = GetComponent<Rigidbody>();
+        if (GetComponent<MeshRenderer>() != null) mesh = GetComponent<MeshRenderer>();
         else meshChilds = GetComponentsInChildren<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (moveRestricted && rb != null)
+        {
+            if (!moveTop   && rb.velocity.z > 0) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            if (!moveBot   && rb.velocity.z < 0) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);
+            if (!moveLeft  && rb.velocity.x > 0) rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+            if (!moveRight && rb.velocity.x < 0) rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+        }
+        
         if (burning)
         {
             if (mesh != null)
@@ -61,6 +81,30 @@ public class InteracteObject : MonoBehaviour
                     }
                 }
             }
+            onBurn.Invoke();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (moveRestricted)
+        {
+            Gizmos.color = Color.red;
+            if(moveTop) Gizmos.color = Color.green;
+            else Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, transform.forward);
+            
+            if(moveLeft) Gizmos.color = Color.green;
+            else Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, -transform.right);
+            
+            if(moveRight) Gizmos.color = Color.green;
+            else Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, transform.right);
+            
+            if(moveBot) Gizmos.color = Color.green;
+            else Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, -transform.forward);
         }
     }
 
@@ -68,16 +112,21 @@ public class InteracteObject : MonoBehaviour
     {
         if (burning)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f, destroyInteract);
-            foreach (var col in colliders)
-            {
-                if (col.CompareTag("Interactable"))
-                {
-                    col.GetComponent<InteracteObject>().OnFireEffect();
-                }
-            }
+            PropageFire();
         }
         Destroy(gameObject);
+    }
+
+    void PropageFire()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.5f, destroyInteract);
+        foreach (var col in colliders)
+        {
+            if (col.CompareTag("Interactable"))
+            {
+                col.GetComponent<InteracteObject>().OnFireEffect();
+            }
+        }
     }
     
     virtual public void OnFireEffect()
