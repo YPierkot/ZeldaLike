@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 570649737}
   - component: {fileID: 570649736}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9904,7 +9904,7 @@ GameObject:
   - component: {fileID: 1522131083}
   - component: {fileID: 1522131082}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: Circles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14774,7 +14774,7 @@ GameObject:
   - component: {fileID: 1880562329}
   - component: {fileID: 1880562328}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: SNOW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14816,7 +14816,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 90a9601f75963e2439ca17bb5df17962, type: 2}
+  - {fileID: 2100000, guid: 9d08f8c040fef06498181d4edc03127f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15003,8 +15003,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 300
-      minScalar: 150
+      scalar: 100
+      minScalar: 50
       maxCurve:
         serializedVersion: 2
         m_Curve:
