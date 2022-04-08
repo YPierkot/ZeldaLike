@@ -43,8 +43,6 @@ namespace AI
         
         protected override void Walk()
         {
-            Debug.Log("Wander State");
-            
             if (isAttacking)
                 return;
             if (isMoving)

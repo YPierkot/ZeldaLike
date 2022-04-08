@@ -38,7 +38,6 @@ public class CardsController : MonoBehaviour
     public GameObject windCardGrounded;
     [Space(5)]
     [SerializeField] private LayerMask interactMask;
-    [SerializeField] float repulsivePower = 500f;
     [SerializeField] float repulsiveRadius = 4.5f;
     [SerializeField] Vector3 repulsivePoint;
     
@@ -238,7 +237,7 @@ public class CardsController : MonoBehaviour
         if (canUseWindCard)
         {
             ActivateWindGroundEffect();
-            //StartCoroutine(LaunchCardCD(4));
+            StartCoroutine(LaunchCardCD(4));
         }
     }
     

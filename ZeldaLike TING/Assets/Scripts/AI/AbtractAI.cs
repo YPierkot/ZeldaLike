@@ -20,9 +20,6 @@ namespace AI
         [SerializeField] public LayerMask playerLayerMask; // Player Layer
         [SerializeField] public LayerMask groundLayerMask; // Player Layer
         
-        [Header("Effects"), Space]
-        [SerializeField] private float e_stuntValue = 0;
-        [SerializeField] private float e_FreezeValue = 0;
         
         public enum AIStates
         {

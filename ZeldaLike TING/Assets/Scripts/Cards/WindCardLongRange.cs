@@ -31,9 +31,9 @@ public class WindCardLongRange : MonoBehaviour
     public void WindCardLongEffect()
     {
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        attractivePoint = gameObject.transform.position;
+        attractivePoint = transform.position;
         
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 3, interactMask);
+        Collider[] colliders = Physics.OverlapSphere(attractivePoint, 4.4f, interactMask);
         foreach (var col in colliders)
         {
             if (col.CompareTag("Interactable"))
@@ -45,27 +45,39 @@ public class WindCardLongRange : MonoBehaviour
                 }
                 else if (col.GetComponent<InteracteObject>().windAffect)
                 {
-                    Sequence objectSequence = DOTween.Sequence();
-                    objectSequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
-                        new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 4f));
-                    StartCoroutine(StopMovement(2.5f, col.gameObject)); 
+                    EnnemyWindAttraction(col.gameObject);
+                }
+            }
+            if (col.CompareTag("Ennemy"))
+            {
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    EnnemyWindAttraction(col.gameObject);
+                    i++;
                 }
             }
             else
             {
-                Sequence mySequence = DOTween.Sequence();
-
-                var rkj = transform.position - attractivePoint;
-                
-                mySequence.Append(col.gameObject.GetComponent<Rigidbody>().DOMove(
-                    new Vector3(attractivePoint.x, col.gameObject.transform.position.y, attractivePoint.z), 3f));
-                StartCoroutine(StopMovement(2.5f, col.gameObject));
+                EnnemyWindAttraction(col.gameObject);
             }
         }
         
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject);
     }
 
+    private void EnnemyWindAttraction(GameObject enemy)
+    {
+        enemy.transform.DOKill();
+                    
+        var shootPointPos = (enemy.transform.position - transform.position);
+        var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x) /* forceModifier*/, 
+            enemy.transform.position.y + shootPointPos.y + 1f,
+            (enemy.transform.position.z + shootPointPos.z) /* forceModifier*/);
+        
+        enemy.transform.DOMove(targetPos, 1f).OnComplete(() => enemy.transform.DOKill());
+        Debug.Log($"{enemy.name} got attracted !");
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.ToString() == groundMask.ToString())
@@ -78,7 +90,7 @@ public class WindCardLongRange : MonoBehaviour
             this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         
-        if (other.transform.CompareTag("Interactable") )
+        if (other.transform.CompareTag("Interactable"))
         {
             Debug.Log(other.transform.name);
             if (other.transform.GetComponent<InteracteObject>().windThrough)
@@ -91,12 +103,6 @@ public class WindCardLongRange : MonoBehaviour
         }
     }
     
-
-    /*private void OnTriggerExit(Collider other)
-    {
-        collider.isTrigger = false;
-    }*/
-
     private IEnumerator StopMovement(float timeToStopMovement, GameObject objTransform)
     {
         yield return new WaitForSeconds(timeToStopMovement);
@@ -105,7 +111,7 @@ public class WindCardLongRange : MonoBehaviour
 
     private void OnDestroy()
     {
-        CardsController.isWindGround = false;
         CardsController.instance.StartCoroutine(CardsController.instance.LaunchCardCD(4));
+        CardsController.isWindGround = false;
     }
 }
