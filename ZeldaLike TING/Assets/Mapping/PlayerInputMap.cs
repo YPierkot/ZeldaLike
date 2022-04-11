@@ -143,6 +143,17 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f3439c3-5b12-4cd1-a26d-1e5f0a3801e6"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -185,16 +196,34 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CardHolder"",
+                    ""type"": ""Button"",
+                    ""id"": ""9648b042-a8b2-499b-9e89-7ede7444f875"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""cardActivator"",
+                    ""type"": ""Button"",
+                    ""id"": ""827130d3-70f7-4bd1-a973-57880eb80ec4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""215c0bce-cff9-4c38-8d8c-acea35b75409"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<XInputController>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Xbox"",
                     ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -231,6 +260,39 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""066a39a0-95ef-4c33-b05f-96f85b907eab"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""973f12e4-6754-4c04-b50a-0b68505f190f"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""CardHolder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dd10318-872f-4254-b6d7-8178e23dc3c1"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""cardActivator"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -263,7 +325,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""5d85bad8-056a-4e92-9d90-0dc447f32622"",
-                    ""path"": ""<Mouse>/backButton"",
+                    ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -274,7 +336,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""c97f1d7e-19d0-4ee6-9e95-323a733c4d93"",
-                    ""path"": ""<Mouse>/forwardButton"",
+                    ""path"": ""<XInputController>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -326,6 +388,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Action_shortCard = m_Action.FindAction("shortCard", throwIfNotFound: true);
         m_Action_longCard = m_Action.FindAction("longCard", throwIfNotFound: true);
         m_Action_Attack = m_Action.FindAction("Attack", throwIfNotFound: true);
+        m_Action_CardHolder = m_Action.FindAction("CardHolder", throwIfNotFound: true);
+        m_Action_cardActivator = m_Action.FindAction("cardActivator", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_CardMenu = m_Menu.FindAction("CardMenu", throwIfNotFound: true);
@@ -441,6 +505,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Action_shortCard;
     private readonly InputAction m_Action_longCard;
     private readonly InputAction m_Action_Attack;
+    private readonly InputAction m_Action_CardHolder;
+    private readonly InputAction m_Action_cardActivator;
     public struct ActionActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -449,6 +515,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @shortCard => m_Wrapper.m_Action_shortCard;
         public InputAction @longCard => m_Wrapper.m_Action_longCard;
         public InputAction @Attack => m_Wrapper.m_Action_Attack;
+        public InputAction @CardHolder => m_Wrapper.m_Action_CardHolder;
+        public InputAction @cardActivator => m_Wrapper.m_Action_cardActivator;
         public InputActionMap Get() { return m_Wrapper.m_Action; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -470,6 +538,12 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
+                @CardHolder.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardHolder;
+                @CardHolder.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardHolder;
+                @CardHolder.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardHolder;
+                @cardActivator.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
+                @cardActivator.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
+                @cardActivator.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
             }
             m_Wrapper.m_ActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -486,6 +560,12 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @CardHolder.started += instance.OnCardHolder;
+                @CardHolder.performed += instance.OnCardHolder;
+                @CardHolder.canceled += instance.OnCardHolder;
+                @cardActivator.started += instance.OnCardActivator;
+                @cardActivator.performed += instance.OnCardActivator;
+                @cardActivator.canceled += instance.OnCardActivator;
             }
         }
     }
@@ -553,6 +633,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnShortCard(InputAction.CallbackContext context);
         void OnLongCard(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnCardHolder(InputAction.CallbackContext context);
+        void OnCardActivator(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

@@ -39,8 +39,10 @@ public class Controller : MonoBehaviour
     private bool moving;
     private bool dashing;
     private bool inAttack;
+    private bool holdingForCard;
 
     private float dashTimer;
+    private float holdTimer;
     [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
@@ -51,7 +53,9 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveTransform;
+    [SerializeField] Transform moveCardTransform;
+    [SerializeField] Transform movePlayerTransform;
+    
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 
@@ -101,12 +105,36 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
+        InputMap.Action.CardHolder.started += context => holdingForCard = true;
+        InputMap.Action.CardHolder.canceled += CardHolderOncanceled;
+        InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast();
 
-        InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
+        InputMap.Menu.CardMenu.performed += SwitchCard;
     }
 
-
     #region Input Methode
+    
+    private void CardHolderOncanceled(InputAction.CallbackContext obj)
+    {
+        holdingForCard = false;
+        moveCardTransform.gameObject.SetActive(false);
+        if (holdTimer < 0.5f)
+        {
+            cardControl.ShortRange();
+        }
+        else
+        {
+            cardControl.LongRange();
+        }
+        holdTimer = 0;
+        
+    }
+
+    private void SwitchCard(InputAction.CallbackContext obj)
+    {
+        if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1);
+        else UIManager.Instance.ChangeCard(1);
+    }
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
@@ -132,6 +160,12 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
+        if (holdingForCard)
+        {
+            holdTimer += Time.deltaTime;
+            if(holdTimer > 0.5f) moveCardTransform.gameObject.SetActive(true);
+        }
+        
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -169,6 +203,7 @@ public class Controller : MonoBehaviour
         
         if (canMove)
         {
+
             if (moving)
             {
                 Move();
@@ -210,11 +245,17 @@ public class Controller : MonoBehaviour
     {
         Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
         lastDir = dir;
+
+        float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg);
+        if (angleView < 0) anglePlayerView += 360 ;
+        movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0);
+        
         rb.AddForce(dir * moveSpeed);
     }
 
     void Dash()
     {
+        Debug.Log("Dash");
         if (!dashing && canMove)
         {
             dashing = true;
@@ -244,7 +285,7 @@ public class Controller : MonoBehaviour
                 attackZone.Play($"Attack{attackCounter}");
                 if (attackCounter != 3)
                 {
-                    rb.AddForce(moveTransform.forward*-700);
+                    rb.AddForce(moveCardTransform.forward*-700);
                 }
             }
             else
@@ -276,7 +317,7 @@ public class Controller : MonoBehaviour
             if (Debugger != null)
                 Debugger.text = angleView.ToString();
             
-            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+            moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
             //UpdateSprite();
         }
     }
