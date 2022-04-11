@@ -98,6 +98,19 @@ public class CardsController : MonoBehaviour
             case CardsState.Wind: WindLongRange(); break;
         }
     }
+    public void LongRangeRecast()
+    {
+        if (!canUseCards) return;
+        Debug.Log("recast Card " + canUseFireCard);
+        switch(State)
+        {
+            case CardsState.Null: break;
+            case CardsState.Fire: if(!canUseFireCard) FireballLongRange(); break;
+            case CardsState.Ice:  if(!canUseIceCard)  IceLongRange(); break;
+            case CardsState.Wall: if(!canUseWallCard) WallLongRange(); break;
+            case CardsState.Wind: if(!canUseWindCard) WindLongRange(); break;
+        }
+    }
 
     #region CardEffectsLongRange
 
@@ -105,6 +118,7 @@ public class CardsController : MonoBehaviour
     // Fire Card
     private void FireballLongRange()
     {
+        Debug.Log("Accesss Fire");
         if (canUseFireCard)
         {
             if (!isFireGround)
@@ -123,7 +137,7 @@ public class CardsController : MonoBehaviour
                 StartCoroutine(LaunchCardCD(1));
             }
         }
-        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect();
+        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); Debug.Log("FireCardLongEffect");}
     }
     
     // Ice Card

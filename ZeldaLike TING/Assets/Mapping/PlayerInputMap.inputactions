@@ -121,6 +121,17 @@
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f3439c3-5b12-4cd1-a26d-1e5f0a3801e6",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -163,16 +174,34 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CardHolder",
+                    "type": "Button",
+                    "id": "9648b042-a8b2-499b-9e89-7ede7444f875",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "cardActivator",
+                    "type": "Button",
+                    "id": "827130d3-70f7-4bd1-a973-57880eb80ec4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "215c0bce-cff9-4c38-8d8c-acea35b75409",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<XInputController>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Xbox",
                     "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -209,6 +238,39 @@
                     "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "066a39a0-95ef-4c33-b05f-96f85b907eab",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "973f12e4-6754-4c04-b50a-0b68505f190f",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "CardHolder",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9dd10318-872f-4254-b6d7-8178e23dc3c1",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "cardActivator",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -241,7 +303,7 @@
                 {
                     "name": "negative",
                     "id": "5d85bad8-056a-4e92-9d90-0dc447f32622",
-                    "path": "<Mouse>/backButton",
+                    "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -252,7 +314,7 @@
                 {
                     "name": "positive",
                     "id": "c97f1d7e-19d0-4ee6-9e95-323a733c4d93",
-                    "path": "<Mouse>/forwardButton",
+                    "path": "<XInputController>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
