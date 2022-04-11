@@ -20,7 +20,7 @@ MonoBehaviour:
       name: 
       line: What do Ithar want with the spirits Mist ?
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 078d5f6c6080aed469dc25b561dca73c, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -28,7 +28,7 @@ MonoBehaviour:
       name: 
       line: Stop asking questions.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: d7a33865c284b08428ece8b1896a97ef, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -36,15 +36,23 @@ MonoBehaviour:
       name: 
       line: Please.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 000885d0a5e04be48b64e307cff5b3cb, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: I told you, he wants to know everything there is to know.
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 40522cd498311614fab29cada81f5903, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: And what is there to know about your world?
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: eca250fb5d907f146bd1c2293b39ff72, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -56,7 +64,7 @@ MonoBehaviour:
       name: 
       line: And a lot more you wouldn't.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 73390bf3596dc364d8a9dd2fc42fa843, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -64,7 +72,7 @@ MonoBehaviour:
       name: 
       line: Try me.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: ecbbda6bf948d454f9642906c1297631, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -84,7 +92,7 @@ MonoBehaviour:
       name: 
       line: Every being in our dimension alive.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: ca77891ec2b9dc14aa8da4b7f368def5, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -92,14 +100,14 @@ MonoBehaviour:
       name: 
       line: Is that the core you need to survive?
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 4082d36f6b1360d43b5a1ceadc25605e, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Yes, that's it.
-      delay: 0
+      delay: 1.75
     - expressions: 0
       name: 
       line: Every spirit is born of a singularity of the core.
@@ -107,7 +115,7 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Sometimes, its energy spikes and a spirit is born.
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: 'We don''t know where they come from, '
@@ -116,7 +124,7 @@ MonoBehaviour:
       name: 
       line: And why it happens. It just is.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 15f098b0cfa449e4eadf789665de116c, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -127,19 +135,19 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Who criticizes me about it all the time.
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: 3c7c1a2f295cc784da06f7b4acc2d355, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Let me talk human. That's why we're all siblings
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: But we don't actually have much in common.
-      delay: 0
+      delay: 3.5
     - expressions: 0
       name: 
       line: 'That''s part of the reason I don''t really '
@@ -147,8 +155,8 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Have empathy for them.
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: dda9fb8a9d2431345b48d0f9a0464709, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -156,35 +164,35 @@ MonoBehaviour:
       name: 
       line: What's the other reason?
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: f2ab0a923110ce64cbd28a55c4c8ca6b, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: I don't live among them. My life is just floating in
-      delay: 0
+      delay: 2.5
     - expressions: 0
       name: 
       line: The air and whatching from afar.
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: Contemplating my sibling's stupidity.
-      delay: 0
+      delay: 2.5
     - expressions: 0
       name: 
       line: I like the tranquility of loneliness.
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 340d85305891d2b4a83362d2ccb9680b, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: 'Right... I see. You have an inferiority complex ! '
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 5d624c36d3333f9498e7f83fae16c194, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -192,12 +200,12 @@ MonoBehaviour:
       name: 
       line: What ? No ! Stop it.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 92bd4554f01e7244e80051b2181d24c4, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Haha, Mist is inferior, Mist is inferior, Mist ?
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 4bf871005d73e984380591e0ffd92cd8, type: 3}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
-  m_Name: Totems End
+  m_Name: Tuto Mur 2
   m_EditorClassIdentifier: 
   dialogue:
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -18,30 +18,30 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I'm surprised we didn't die in there.
+      line: Good human, you understood, now, with the back power
+      delay: 3
+    - expressions: 0
+      name: 
+      line: You can create walls to protect yourself from
       delay: 0
-    voiceLine: {fileID: 8300000, guid: 616676569502ac64c87beb68d3679a77, type: 3}
+    - expressions: 0
+      name: 
+      line: Projectiles or ennemies, maybe it'll help your clumsy self
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: Not to die.
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: fcb7ea289e322844596782601f15928a, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: You should be happy instead of unpleasant.
+      line: If you actually let me focus instead of
       delay: 0
     - expressions: 0
       name: 
-      line: If I die, you die, remember ?
-      delay: 2.5
-    voiceLine: {fileID: 8300000, guid: 4d0d3ca68eb2fbe4ba85054c1175d1f2, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Stop being cheeky and keep going.
+      line: Talking to me all the time, it'd be easier.
       delay: 0
-    - expressions: 0
-      name: 
-      line: We need to find Ithar.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 5469c5c2753fe334ea478c1fd9c30f9d, type: 3}
+    voiceLine: {fileID: 8300000, guid: ef67d4cbb480ff040adad20a0c95ef33, type: 3}

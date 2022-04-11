@@ -10,42 +10,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
-  m_Name: End of Wind Card
+  m_Name: Tuto Feu 1
   m_EditorClassIdentifier: 
   dialogue:
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: I am the master of the card.
+      line: So basically, with this card you can throw a fireball.
       delay: 3
-    voiceLine: {fileID: 8300000, guid: 430e5a9cfbc412c46a71d4dff8e973fa, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: You really are a child.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 59094cf5eee40134884c52a52508cb25, type: 3}
+    voiceLine: {fileID: 8300000, guid: cb327ebb7759a9247bb8b72dc20099e3, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: We can't have fun when you're around.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 5945c8657cbdd914092258ac71ab36de, type: 3}
+      line: Really ?! I'm going to destroy the spirits with that power !
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 340f3fc6e2ce30d409e162c52b72ccfb, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Anyway, let's keep going,
+      line: Don't speak too quickly human.
       delay: 0
     - expressions: 0
       name: 
-      line: We still have a long way to go before fighting Ithar.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: e11c9053fc76c364ca847e90a59183b7, type: 3}
+      line: See those vines over there ?
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 9eeccdf0324d07a44a4ba7f01057ad26, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yeah, what about them ?
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 1f6feaab0fbe7b4429630fde578e02b5, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Try and burn them with a fireball to free yourself.
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 98893f26956db654091caa41882578c6, type: 3}
