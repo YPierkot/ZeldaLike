@@ -40,6 +40,7 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool moving;
    [SerializeField] private bool dashing;
    [SerializeField] private bool inAttack;
+   [SerializeField] private bool inAttackAnim;
 
     private float dashTimer;
     [SerializeField] public bool canMove = true;
@@ -68,7 +69,8 @@ public class Controller : MonoBehaviour
     
     [Header("--- ATTAQUE ---")] 
     public int attackCounter;
-    [SerializeField] public bool nextCombo;
+    [SerializeField] public bool setNextCombo;
+    [SerializeField] private GameObject[] attackZones;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
@@ -103,8 +105,6 @@ public class Controller : MonoBehaviour
 
         InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
     }
-
-
     #region Input Methode
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
@@ -113,7 +113,6 @@ public class Controller : MonoBehaviour
         Rotate(rotation);
     }
     #endregion
-    
     
     void Start()
     {
@@ -161,7 +160,6 @@ public class Controller : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel")< 0f) UIManager.Instance.ChangeCard(-1);
         
     }
-
     
     private void FixedUpdate()
     {
@@ -198,7 +196,6 @@ public class Controller : MonoBehaviour
         
     }
     
-
     private void OnDrawGizmos()
     {
        if(!CustomLDData.showGizmos || !CustomLDData.showGizmosGameplay) return;
@@ -211,7 +208,6 @@ public class Controller : MonoBehaviour
         lastDir = dir;
         rb.AddForce(dir * moveSpeed);
     }
-
     void Dash()
     {
         if (!dashing && canMove)
@@ -227,43 +223,27 @@ public class Controller : MonoBehaviour
             camera.dashing = true;
         }
     }
-
     void Attack()
     {
         if (attackCounter < 3)
         {
             if (!inAttack)
             {
+                animatorPlayer.SetBool("attackFinish", false);
                 StopCoroutine(ComboWait());
                 canMove = false;
                 inAttack = true;
-                nextCombo = false;
+                //nextCombo = false;
                 attackCounter++;
-                if (attackCounter != 3)
-                {
-                    rb.AddForce(moveTransform.forward*-700);
-                }
             }
-            else
+            else if(!setNextCombo && inAttackAnim)
             {
-                nextCombo = true;
+                setNextCombo = true;
+                attackCounter++;
+                Debug.Log("Set NextCombo " + attackCounter);
             }
         }
     }
-
-    public void CheckAttack()
-    {
-        inAttack = false;
-        if (!nextCombo || attackCounter == 3)
-        {
-            StartCoroutine(ComboWait());
-        }
-        else
-        {
-            Attack();
-        }
-    }
-
     void Rotate(Vector2 rotation)
     {
         if (!inAttack)
@@ -286,18 +266,59 @@ public class Controller : MonoBehaviour
             currentInterval = newSA.angleInterval;
         }  
     }
-
-
-    public IEnumerator ComboWait()
+    public void UpdateStats()
     {
-        yield return new WaitForSeconds(0.15f);
-        if (!inAttack)
-        {
-            attackCounter = 0;
-            canMove = true;
-        }
+        moveSpeed = GetComponent<PlayerStat>().moveSpeedValue;
     }
+    
+    private void Animations()
+        {
+            var animDir = pointerPosition - transform.position;
+            animDir.Normalize();
 
+            AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
+            if (animInfo.clip.name == "waitAttackState") inAttack = false;
+            animatorPlayer.SetBool("inCombo", setNextCombo);
+            animatorPlayer.SetInteger("attackCounter", attackCounter);
+            if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
+            {
+                if(animInfo.clip.name.Contains("SLASH"))rb.AddForce(moveTransform.forward*-700);
+                attackZones[attackCounter-1].SetActive(true);
+                Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
+                inAttack = true;
+                inAttackAnim = true;
+                setNextCombo = false;
+                //Debug.Log("Begin Attack");
+            }
+            else if (animInfo.clip.name == "waitAttackState" && inAttackAnim)
+            {
+                foreach (var GO in attackZones)
+                {
+                    GO.SetActive(false);
+                    Debug.Log("Desactive Attack Zone");
+                }
+                if (!setNextCombo) StartCoroutine(ComboWait());
+                    
+                inAttackAnim = false;
+            }
+            
+            if (!inAttack)
+            {
+                animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                animatorPlayer.SetFloat("Z-Axis", lastDir.z);
+                animatorPlayer.SetBool("isAttack", inAttack);
+                animatorPlayer.SetBool("isRun", moving);
+                animatorMovePlayer.SetBool("isWalk", moving); // Il est différant donc repoussé par la société
+            }
+            else
+            {
+                animatorPlayer.SetFloat("X-Axis", animDir.x);
+                animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                animatorPlayer.SetBool("isAttack", inAttack);
+                animatorPlayer.SetBool("isRun", moving);
+            }
+        }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Camera"))
@@ -306,7 +327,6 @@ public class Controller : MonoBehaviour
             cameraOnPlayer = false;
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.CompareTag("Camera"))
@@ -316,33 +336,14 @@ public class Controller : MonoBehaviour
         }
     }
 
-    private void Animations()
+    public IEnumerator ComboWait()
     {
-        var animDir = pointerPosition - transform.position;
-        animDir.Normalize();
-
+        yield return new WaitForSeconds(0.2f);
         if (!inAttack)
         {
-            animatorPlayer.SetFloat("X-Axis", lastDir.x);
-            animatorPlayer.SetFloat("Z-Axis", lastDir.z);
-            animatorPlayer.SetBool("isAttack", inAttack);
-            animatorPlayer.SetBool("isRun", moving);
-            animatorPlayer.SetInteger("attackCounter", 0);
-            
-            animatorMovePlayer.SetBool("isWalk", moving); // Il est différant donc repoussé par la société
+            animatorPlayer.SetBool("attackFinish", true);
+            attackCounter = 0;
+            canMove = true;
         }
-        else
-        {
-            animatorPlayer.SetFloat("X-Axis", animDir.x);
-            animatorPlayer.SetFloat("Z-Axis", animDir.z);
-            animatorPlayer.SetBool("isAttack", inAttack);
-            animatorPlayer.SetBool("isRun", moving);
-            animatorPlayer.SetInteger("attackCounter", attackCounter);
-        }
-    }
-
-    public void UpdateStats()
-    {
-        moveSpeed = GetComponent<PlayerStat>().moveSpeedValue;
     }
 }

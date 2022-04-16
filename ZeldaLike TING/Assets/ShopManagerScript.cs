@@ -21,10 +21,10 @@ public class ShopManagerScript : MonoBehaviour
         
         for (int i = 1; i < nbItems +1; i++)
         {
-            shopItemps[1, i] = i;     // Setup item's id
-            shopItemps[2, i] = 300;   // Setup item's price
-            shopItemps[3, i] = 1;  // Setup item's level
-            Debug.Log($"{i}ème item ");
+            //shopItemps[1, i] = i;     // Setup item's id
+            //shopItemps[2, i] = 300;   // Setup item's price
+            //shopItemps[3, i] = 1;  // Setup item's level
+            //Debug.Log($"{i}ème item ");
         }
     }
 

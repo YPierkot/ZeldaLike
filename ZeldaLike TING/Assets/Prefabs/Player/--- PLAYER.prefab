@@ -471,9 +471,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1587232425}
-  - component: {fileID: 1587232426}
-  - component: {fileID: 1587232427}
-  - component: {fileID: 1587232428}
   m_Layer: 0
   m_Name: Attack Zone
   m_TagString: Untagged
@@ -499,58 +496,6 @@ Transform:
   m_Father: {fileID: 7337217464296193324}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &1587232426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587232424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 086220cc350ca124ba5c6dedc50e426f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  control: {fileID: 7337217462935629418}
-  playerDamage: 0
---- !u!111 &1587232427
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587232424}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: f5773a53dce6fb546856264881201b32, type: 2}
-  - {fileID: 7400000, guid: debfe8d0e97b5ae4e9795e36c40efdd0, type: 2}
-  - {fileID: 7400000, guid: cec3155eba7a19745af11e9d4754f4db, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!95 &1587232428
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587232424}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 44e2fe0f091775b44b9792a51da5f872, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1870232228
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +848,7 @@ MonoBehaviour:
   moving: 0
   dashing: 0
   inAttack: 0
+  inAttackAnim: 0
   canMove: 1
   spriteArray:
   - angleInterval:
@@ -952,7 +898,8 @@ MonoBehaviour:
   camera: {fileID: 0}
   PlayerCameraPoint: {fileID: 6699838829042073399}
   attackCounter: 0
-  nextCombo: 0
+  setNextCombo: 0
+  attackZones: []
   moveSpeed: 100
   dashCurve:
     serializedVersion: 2

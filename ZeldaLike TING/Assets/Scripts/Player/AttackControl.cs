@@ -21,14 +21,9 @@ public class AttackControl : MonoBehaviour
         UpdateDMG();
         
         if (instance != null && instance != this)
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
 
         instance = this;
-    }
-
-    public void AttackFinish() //Call In Animations
-    {
-        control.CheckAttack();
     }
 
     private void OnTriggerEnter(Collider other)
