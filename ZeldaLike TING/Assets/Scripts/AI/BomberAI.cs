@@ -18,7 +18,6 @@ namespace AI
         private Vector3 basePosition;
         private Vector3 wanderDir;
         private float spriteDir;
-        private  bool goMove;
 
         [SerializeField] private Animator bomberAnimator;
         [SerializeField] private bool isMoving;
@@ -30,7 +29,6 @@ namespace AI
             base.Init();
             basePosition = transform.position;
             isAttacking = false;
-            goMove = false;
         }
         
         public override void ChangeState(AIStates aiState)
@@ -128,12 +126,6 @@ namespace AI
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, e_fliRange); // Zone of the flie range
         }
-
-        private IEnumerator GoWander()
-        {
-            goMove = true;
-            yield return new WaitForSeconds(3.5f);
-            goMove = false;
-        }
+        
     }
 }

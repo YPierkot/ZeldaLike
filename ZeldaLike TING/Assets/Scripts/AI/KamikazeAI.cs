@@ -47,8 +47,6 @@ namespace AI
 
         protected override void Walk()
         {
-            Debug.Log("Wander State");
-            
             if (isAttacking)
                 return;
             if (isMoving)
@@ -69,11 +67,7 @@ namespace AI
         protected override void Attack()
         {
             base.Attack();
-            Debug.Log(isAttacking);
-            Debug.Log(isMoving);
-            
-            Debug.Log("Attacking State");
-            
+
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
                 if (isAttacking)

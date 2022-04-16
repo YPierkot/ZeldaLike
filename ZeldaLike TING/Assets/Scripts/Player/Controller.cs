@@ -35,14 +35,13 @@ public class Controller : MonoBehaviour
     private CardsController cardControl;
     public static Controller instance;
     
+    [Header("--- PLAYER STATES ---")] [Space(10)] 
    // --- STATES ---
-    private bool moving;
-    private bool dashing;
-    private bool inAttack;
-    private bool holdingForCard;
+   [SerializeField] private bool moving;
+   [SerializeField] private bool dashing;
+   [SerializeField] private bool inAttack;
 
     private float dashTimer;
-    private float holdTimer;
     [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
@@ -53,9 +52,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveCardTransform;
-    [SerializeField] Transform movePlayerTransform;
-    
+    [SerializeField] Transform moveTransform;
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 
@@ -70,10 +67,8 @@ public class Controller : MonoBehaviour
     private Interval currentInterval = new Interval{ min=61, max=120 };
     
     [Header("--- ATTAQUE ---")] 
-    [SerializeField] private Animator attackZone;
     public int attackCounter;
     [SerializeField] public bool nextCombo;
-    [SerializeField] public int attackDamage;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
@@ -105,36 +100,12 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
-        InputMap.Action.CardHolder.started += context => holdingForCard = true;
-        InputMap.Action.CardHolder.canceled += CardHolderOncanceled;
-        InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast();
 
-        InputMap.Menu.CardMenu.performed += SwitchCard;
+        InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
     }
+
 
     #region Input Methode
-    
-    private void CardHolderOncanceled(InputAction.CallbackContext obj)
-    {
-        holdingForCard = false;
-        moveCardTransform.gameObject.SetActive(false);
-        if (holdTimer < 0.5f)
-        {
-            cardControl.ShortRange();
-        }
-        else
-        {
-            cardControl.LongRange();
-        }
-        holdTimer = 0;
-        
-    }
-
-    private void SwitchCard(InputAction.CallbackContext obj)
-    {
-        if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1);
-        else UIManager.Instance.ChangeCard(1);
-    }
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
@@ -160,12 +131,6 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if (holdingForCard)
-        {
-            holdTimer += Time.deltaTime;
-            if(holdTimer > 0.5f) moveCardTransform.gameObject.SetActive(true);
-        }
-        
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -203,7 +168,6 @@ public class Controller : MonoBehaviour
         
         if (canMove)
         {
-
             if (moving)
             {
                 Move();
@@ -231,7 +195,7 @@ public class Controller : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask)) transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
-
+        
     }
     
 
@@ -245,17 +209,11 @@ public class Controller : MonoBehaviour
     {
         Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
         lastDir = dir;
-
-        float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg);
-        if (angleView < 0) anglePlayerView += 360 ;
-        movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0);
-        
         rb.AddForce(dir * moveSpeed);
     }
 
     void Dash()
     {
-        Debug.Log("Dash");
         if (!dashing && canMove)
         {
             dashing = true;
@@ -280,12 +238,10 @@ public class Controller : MonoBehaviour
                 canMove = false;
                 inAttack = true;
                 nextCombo = false;
-                //attackZone.collider.enabled = true;
                 attackCounter++;
-                attackZone.Play($"Attack{attackCounter}");
                 if (attackCounter != 3)
                 {
-                    rb.AddForce(moveCardTransform.forward*-700);
+                    rb.AddForce(moveTransform.forward*-700);
                 }
             }
             else
@@ -300,7 +256,7 @@ public class Controller : MonoBehaviour
         inAttack = false;
         if (!nextCombo || attackCounter == 3)
         {
-            StartCoroutine(("ComboWait"));
+            StartCoroutine(ComboWait());
         }
         else
         {
@@ -317,8 +273,7 @@ public class Controller : MonoBehaviour
             if (Debugger != null)
                 Debugger.text = angleView.ToString();
             
-            moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
-            //UpdateSprite();
+            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
     }
 
@@ -372,7 +327,9 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetFloat("Z-Axis", lastDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
-            animatorMovePlayer.SetBool("isWalk", moving);
+            animatorPlayer.SetInteger("attackCounter", 0);
+            
+            animatorMovePlayer.SetBool("isWalk", moving); // Il est différant donc repoussé par la société
         }
         else
         {
@@ -380,6 +337,12 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetFloat("Z-Axis", animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
+            animatorPlayer.SetInteger("attackCounter", attackCounter);
         }
+    }
+
+    public void UpdateStats()
+    {
+        moveSpeed = GetComponent<PlayerStat>().moveSpeedValue;
     }
 }

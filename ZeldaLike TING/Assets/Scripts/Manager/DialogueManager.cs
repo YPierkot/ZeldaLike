@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            //Debug.Log("je lance l'instance");
+            Debug.Log("je lance l'instance"); // sacha t'es une merde a débug toutes les 3 lignes et pas suppr quand c'est bn
             Instance = this;
         }
         
@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log(DialogueLines.Count);
         if (DialogueLines.Count != 0 && isPlayingDialogue)
         {
-            //Debug.Log("j'assigne le dialogue arrêté");
+            Debug.Log("j'assigne le dialogue arrêté");
             lastDialogueStopIndex = currentDialogue;
             lastSentenceStopIndex = sentenceIndex;
             StoppedDialogue = DialogueLines;
@@ -78,12 +78,12 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         //Debug.Log($"Il reste {sentences.Count} phrases" );
-       // Debug.Log("Je lance une nouvelle phrase");
+        Debug.Log("Je lance une nouvelle phrase");
         float delay;
         
         if (sentences.Count <= 0)
         {
-          //  Debug.Log("C'est la fin");
+            Debug.Log("C'est la fin");
             EndDialogue();
         }
         else

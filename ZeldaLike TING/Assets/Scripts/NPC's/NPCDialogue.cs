@@ -4,7 +4,7 @@ using UnityEngine;
 public class NPCDialogue : MonoBehaviour{
     public System.Collections.Generic.List<DialogueScriptable> dialogues;
     [SerializeField] private DialogueScriptable[] fillingDialogues;
-    private bool playerIn;
+    public bool playerIn;
     [SerializeField] private int currentDialogue = 0;
     [SerializeField] private DialogueScriptable testDialogue;
 
@@ -31,6 +31,11 @@ public class NPCDialogue : MonoBehaviour{
         {
             playerIn = false;
             Debug.Log("You can't interact anymore");
+            
+            if (MerchantScript.MerchandInterface.activeSelf)
+            {
+                MerchantScript.MerchandInterface.SetActive(false);
+            }
         }
     }
 
