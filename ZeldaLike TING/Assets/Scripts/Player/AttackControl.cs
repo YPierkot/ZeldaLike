@@ -5,10 +5,25 @@ public class AttackControl : MonoBehaviour
 {
     [SerializeField] Controller control;
     [SerializeField] private int playerDamage;
-
+    private static AttackControl instance;
+    
+    // Game Instance Singleton
+    public static AttackControl Instance
+    {
+        get
+        { 
+            return instance; 
+        }
+    }
+    
     private void Awake()
     {
         UpdateDMG();
+        
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+
+        instance = this;
     }
 
     public void AttackFinish() //Call In Animations
@@ -43,6 +58,6 @@ public class AttackControl : MonoBehaviour
 
     public void UpdateDMG()
     {
-        playerDamage = control.attackDamage;
+        playerDamage = control.GetComponent<PlayerStat>().attackDamageValue;
     }
 }

@@ -26,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634778487}
-  m_LocalRotation: {x: -0.000000119209275, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.746, z: -0.01}
-  m_LocalScale: {x: 14.26, y: 8.88, z: 1}
+  m_LocalRotation: {x: -0.00000020861623, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0000000037252903, y: 0.74600005, z: -0.00999999}
+  m_LocalScale: {x: 14.26, y: 8.880001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1587232425}
@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 1145041874}
   - component: {fileID: 1145041875}
   - component: {fileID: 1145041876}
+  - component: {fileID: 816218539448046990}
   m_Layer: 0
   m_Name: Graphs
   m_TagString: Untagged
@@ -364,6 +365,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &816218539448046990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145041873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086220cc350ca124ba5c6dedc50e426f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: {fileID: 7337217462935629418}
+  playerDamage: 0
 --- !u!1 &1318520794
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,9 +577,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870232228}
-  m_LocalRotation: {x: -0.000000119209275, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: -0.14}
-  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_LocalRotation: {x: -0.00000020861623, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0000000037252903, y: 0.020000055, z: -0.14000008}
+  m_LocalScale: {x: 14.999999, y: 15.000002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1587232425}
@@ -779,9 +794,9 @@ GameObject:
   - component: {fileID: 7337217462935629417}
   - component: {fileID: 7337217462935629419}
   - component: {fileID: 7337217462935629412}
+  - component: {fileID: 7337217462935629414}
   - component: {fileID: 7337217462935629418}
   - component: {fileID: 7337217462935629413}
-  - component: {fileID: 7337217462935629414}
   - component: {fileID: 7337217462935629415}
   m_Layer: 7
   m_Name: --- PLAYER
@@ -856,6 +871,20 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!136 &7337217462935629414
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7337217462935629423}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: -0.0743345, y: 0.06, z: 0.07985437}
 --- !u!114 &7337217462935629418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +900,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   animatorPlayer: {fileID: 1145041875}
   animatorMovePlayer: {fileID: 1617754507992478219}
+  moving: 0
+  dashing: 0
+  inAttack: 0
   canMove: 1
   spriteArray:
   - angleInterval:
@@ -919,10 +951,8 @@ MonoBehaviour:
   moveTransform: {fileID: 7337217464296193324}
   camera: {fileID: 0}
   PlayerCameraPoint: {fileID: 6699838829042073399}
-  attackZone: {fileID: 1587232428}
   attackCounter: 0
   nextCombo: 0
-  attackDamage: 0
   moveSpeed: 100
   dashCurve:
     serializedVersion: 2
@@ -982,22 +1012,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeMax: 6
   life: 0
-  repulseForce: 25
   HitShake: {fileID: 11400000, guid: fdb7dddd4478ba54ba13be9ee408d09c, type: 2}
---- !u!136 &7337217462935629414
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7337217462935629423}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: -0.0743345, y: 0.06, z: 0.07985437}
+  sharpnessModuleLevel: 0
+  longSwordModuleLevel: 0
+  knockbackModuleLevel: 0
+  toughnessModuleLevel: 0
+  thornModuleLevel: 0
+  rockModuleLevel: 0
+  swiftnessModuleLevel: 0
+  staminaModuleLevel: 0
+  toughnessValue: 0.3
+  attackDamageValue: 1
+  moveSpeedValue: 100
+  repulseForce: 25
 --- !u!114 &7337217462935629415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,21 +1038,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUseCards: 0
-  fireCardGrounded: {fileID: 0}
   canUseFireCard: 0
-  iceCardGrounded: {fileID: 0}
+  fireCardGrounded: {fileID: 0}
   canUseIceCard: 0
+  iceCardGrounded: {fileID: 0}
+  canUseWallCard: 0
   wallCardGrounded: {fileID: 0}
   WallSR: {fileID: 0}
-  canUseWallCard: 0
-  groundWindCard: {fileID: 8479553354742785972, guid: c3bb207d1a53eef4e9cbdb298cdca9f1,
-    type: 3}
-  windCardGrounded: {fileID: 0}
   canUseWindCard: 0
+  windCardGrounded: {fileID: 0}
   interactMask:
     serializedVersion: 2
     m_Bits: 0
-  repulsivePower: 500
   repulsiveRadius: 4
   repulsivePoint: {x: 0, y: 0, z: 0}
   m_tranform: {fileID: 689773536}
@@ -1156,8 +1180,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7337217464296193363}
-  m_LocalRotation: {x: -0.03929432, y: -0, z: -0, w: 0.9992277}
-  m_LocalPosition: {x: 0.008, y: -0.489, z: 0}
+  m_LocalRotation: {x: -0.039294343, y: -0, z: -0, w: 0.9992277}
+  m_LocalPosition: {x: 0.007999997, y: -0.48900002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

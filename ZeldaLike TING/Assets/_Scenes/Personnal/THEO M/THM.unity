@@ -698,6 +698,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 705899874}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &746967134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8187803163383812483, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714087884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d561fe8def66b429e498c1f4dac434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &781529999
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +807,26 @@ Transform:
   m_Father: {fileID: 1986150575}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 21.314}
+--- !u!1 &946200454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1473772124729642040, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714087884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &946200458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946200454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086220cc350ca124ba5c6dedc50e426f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  control: {fileID: 746967134}
+  playerDamage: 1
 --- !u!224 &1025309431 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 839723355162386942, guid: 04d5dd494f81cd245a3a98f68ff6149d,
@@ -1212,6 +1244,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1473772123138296990, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473772123430538631, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1473772124928122708, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
       propertyPath: m_Name
@@ -1587,7 +1629,8 @@ PrefabInstance:
       propertyPath: cardHandlesReference.Array.data[3].Handle
       value: 
       objectReference: {fileID: 175501899}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1473772125105340739, guid: 04d5dd494f81cd245a3a98f68ff6149d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 04d5dd494f81cd245a3a98f68ff6149d, type: 3}
 --- !u!120 &1886011253 stripped
 LineRenderer:

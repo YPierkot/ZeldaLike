@@ -35,10 +35,11 @@ public class Controller : MonoBehaviour
     private CardsController cardControl;
     public static Controller instance;
     
+    [Header("--- PLAYER STATES ---")] [Space(10)] 
    // --- STATES ---
-    private bool moving;
-    private bool dashing;
-    private bool inAttack;
+   [SerializeField] private bool moving;
+   [SerializeField] private bool dashing;
+   [SerializeField] private bool inAttack;
 
     private float dashTimer;
     [SerializeField] public bool canMove = true;
@@ -66,10 +67,8 @@ public class Controller : MonoBehaviour
     private Interval currentInterval = new Interval{ min=61, max=120 };
     
     [Header("--- ATTAQUE ---")] 
-    [SerializeField] private Animator attackZone;
     public int attackCounter;
     [SerializeField] public bool nextCombo;
-    [SerializeField] public int attackDamage;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
@@ -196,7 +195,7 @@ public class Controller : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask)) transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
-
+        
     }
     
 
@@ -239,9 +238,7 @@ public class Controller : MonoBehaviour
                 canMove = false;
                 inAttack = true;
                 nextCombo = false;
-                //attackZone.collider.enabled = true;
                 attackCounter++;
-                attackZone.Play($"Attack{attackCounter}");
                 if (attackCounter != 3)
                 {
                     rb.AddForce(moveTransform.forward*-700);
@@ -259,7 +256,7 @@ public class Controller : MonoBehaviour
         inAttack = false;
         if (!nextCombo || attackCounter == 3)
         {
-            StartCoroutine(("ComboWait"));
+            StartCoroutine(ComboWait());
         }
         else
         {
@@ -277,7 +274,6 @@ public class Controller : MonoBehaviour
                 Debugger.text = angleView.ToString();
             
             moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
-            //UpdateSprite();
         }
     }
 
@@ -331,7 +327,9 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetFloat("Z-Axis", lastDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
-            animatorMovePlayer.SetBool("isWalk", moving);
+            animatorPlayer.SetInteger("attackCounter", 0);
+            
+            animatorMovePlayer.SetBool("isWalk", moving); // Il est différant donc repoussé par la société
         }
         else
         {
@@ -339,6 +337,12 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetFloat("Z-Axis", animDir.z);
             animatorPlayer.SetBool("isAttack", inAttack);
             animatorPlayer.SetBool("isRun", moving);
+            animatorPlayer.SetInteger("attackCounter", attackCounter);
         }
+    }
+
+    public void UpdateStats()
+    {
+        moveSpeed = GetComponent<PlayerStat>().moveSpeedValue;
     }
 }

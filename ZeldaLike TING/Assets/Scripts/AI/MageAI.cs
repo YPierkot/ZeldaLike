@@ -56,8 +56,6 @@ namespace AI
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
             
             e_transform.DOMove(newMoveTarget, 1.8f).OnComplete(() => isMoving = false);
-            
-            mageAnimator.SetBool("isWalk", isMoving);
         }
 
         protected override void Attack()

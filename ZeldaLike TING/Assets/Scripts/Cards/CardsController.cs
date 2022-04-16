@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using AI;
 using Unity.Collections;
@@ -134,7 +133,6 @@ public class CardsController : MonoBehaviour
             {
                 canUseIceCard = false;
 
-                
                 Vector3 shootPointPos = (controller.pointerPosition- transform.position);
                 shootPointPos.Normalize();
                 

@@ -32,6 +32,9 @@ public class UIManager : MonoBehaviour
    [Header("--- LIFE & STAT")] 
    [SerializeField] private Image[] lifeArray;
 
+
+   public GameObject MerchandInterfaceInUIManager;
+      
    private void Start()
    {
       cardHandles = new Transform[cardHandlesReference.Length];
