@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         //Debug.Log($"Il reste {sentences.Count} phrases" );
-        Debug.Log("Je lance une nouvelle phrase");
+        //Debug.Log("Je lance une nouvelle phrase");
         float delay;
         
         if (sentences.Count <= 0)

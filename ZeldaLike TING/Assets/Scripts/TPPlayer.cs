@@ -10,7 +10,7 @@ public class TPPlayer : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Gameplay");
         }
     }
 }
