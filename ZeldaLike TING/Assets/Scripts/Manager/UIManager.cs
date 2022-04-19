@@ -44,21 +44,7 @@ public class UIManager : MonoBehaviour
          
       }
 
-      for (int i = 0; i < cardHandlesReference.Length; i++)
-      {
-         cardHandles[i] = cardHandlesReference[i].Handle;
-         if (i < cardUnlock)
-         {
-            cardHandles[i].gameObject.SetActive(true);
-         }
-         else
-         {
-            cardHandles[i].gameObject.SetActive(false);
-         }
-      }
-      
-      
-      
+      UpdateCardUI();
       
       /*cardHandles = new Transform[cardHandlesContainer.childCount];
       for (int i = 0; i < cardHandlesContainer.childCount; i++)
@@ -76,7 +62,6 @@ public class UIManager : MonoBehaviour
          }
       }*/
       ChangeCard(0);
-
    }
 
 
@@ -104,5 +89,20 @@ public class UIManager : MonoBehaviour
 
       CardsController.instance.State = cardsDictionary[cardHandles[currentCard]];
    }
-   
+
+   public void UpdateCardUI()
+   {
+      for (int i = 0; i < cardHandlesReference.Length; i++)
+      {
+         cardHandles[i] = cardHandlesReference[i].Handle;
+         if (i < cardUnlock)
+         {
+            cardHandles[i].gameObject.SetActive(true);
+         }
+         else
+         {
+            cardHandles[i].gameObject.SetActive(false);
+         }
+      }
+   }
 }
