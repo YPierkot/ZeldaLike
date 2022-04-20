@@ -326,7 +326,9 @@ public class CardsController : MonoBehaviour
         {
             switch (col.transform.tag)
             {
-                case "Interactable": if (col.GetComponent<GemWindPuzzle>() != null) col.GetComponent<GemWindPuzzle>().WindInteract();
+                case "Interactable": 
+                    if (col.GetComponent<GemWindPuzzle>() != null) col.GetComponent<GemWindPuzzle>().WindInteract();
+                    if(col.GetComponent<InteracteObject>() != null) col.GetComponent<InteracteObject>().OnWindEffect(this);
                     break;
 
                 case "Ennemy":
