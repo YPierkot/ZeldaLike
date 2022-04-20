@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757930089360957992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -198,7 +198,7 @@ MonoBehaviour:
   e_hp: 2
   e_rangeSight: 10
   e_rangeAttack: 2.5
-  e_speed: 5
+  e_speed: 6
   e_sprite: {fileID: 757930089360957994}
   playerLayerMask:
     serializedVersion: 2
@@ -206,8 +206,6 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  e_stuntValue: 0
-  e_FreezeValue: 0
   e_rangeWander: 4
   e_aoeRange: 3
   isMoving: 0
