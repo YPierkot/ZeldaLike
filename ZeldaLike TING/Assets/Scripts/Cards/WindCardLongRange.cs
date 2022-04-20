@@ -45,7 +45,7 @@ public class WindCardLongRange : MonoBehaviour
                 }
                 else if (col.GetComponent<InteracteObject>().windAffect)
                 {
-                    EnnemyWindAttraction(col.gameObject);
+                    //EnnemyWindAttraction(col.gameObject);;
                 }
             }
             if (col.CompareTag("Ennemy"))

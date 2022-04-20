@@ -143,6 +143,11 @@ public class InteracteObject : MonoBehaviour
 
     }
 
+    virtual public void OnWindEffect(CardsController card)
+    {
+        if(windAffect) onWind.Invoke();
+    }
+
     virtual public void Freeze(Vector3 cardPos)
     {
         Debug.Log("Freeze");
