@@ -13,7 +13,7 @@ public class InteracteObject : MonoBehaviour
     [Header("--- FIRE")] public bool fireAffect;
     [SerializeField] private bool canBurn;
     [SerializeField] private bool burnDestroy;
-    [SerializeField] private bool burning;
+    [SerializeField] public bool burning;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurn;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
 
@@ -26,6 +26,7 @@ public class InteracteObject : MonoBehaviour
     public bool canFreeze;
     [SerializeField] protected GameObject freezeCollider;
     [SerializeField] public float freezeTime;
+    public bool isFreeze;
 
     [Header("--- MOVEMENT")] public bool moveRestricted;
     [SerializeField] bool moveTop;
@@ -134,6 +135,7 @@ public class InteracteObject : MonoBehaviour
 //        Debug.Log("OnfireEffect");
         if (fireAffect)
         {
+            isFreeze = false;
             if (canBurn)
             {
                 burning = true;
@@ -150,12 +152,16 @@ public class InteracteObject : MonoBehaviour
 
     virtual public void Freeze(Vector3 cardPos)
     {
-        Debug.Log("Freeze");
-        if (canFreeze)
+        if (iceAffect)
         {
-            freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
-            freezeCollider.transform.position = new Vector3(cardPos.x, freezeCollider.transform.position.y, cardPos.z);
-            StartCoroutine(FreezeTimer());
+            isFreeze = true;
+            Debug.Log("Freeze");
+            if (canFreeze)
+            {
+                freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
+                freezeCollider.transform.position = new Vector3(cardPos.x, freezeCollider.transform.position.y, cardPos.z);
+                StartCoroutine(FreezeTimer());
+            }
         }
     }
 
