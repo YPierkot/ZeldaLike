@@ -5,25 +5,12 @@ public class AttackControl : MonoBehaviour
 {
     [SerializeField] Controller control;
     [SerializeField] private int playerDamage;
-    private static AttackControl instance;
+    [SerializeField] private float repusleEnnemyForce;
     
-    // Game Instance Singleton
-    public static AttackControl Instance
-    {
-        get
-        { 
-            return instance; 
-        }
-    }
     
     private void Awake()
     {
-        UpdateDMG();
-        
-        if (instance != null && instance != this)
-            //Destroy(this.gameObject);
-
-        instance = this;
+        UpdateAttackStats();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,24 +22,36 @@ public class AttackControl : MonoBehaviour
             if (other.gameObject.GetComponent<SwingerAI>())
             {
                 other.gameObject.GetComponent<SwingerAI>().LooseHp(playerDamage);
+                Vector3 repulse = (transform.position - other.gameObject.GetComponent<Collider>().ClosestPoint(transform.position)).normalized * repusleEnnemyForce;
+                control.rb.velocity = repulse;
             }
             else if (other.gameObject.GetComponent<KamikazeAI>())
             {
                 other.gameObject.GetComponent<KamikazeAI>().LooseHp(playerDamage);
+                Vector3 repulse = (transform.position - other.gameObject.GetComponent<Collider>().ClosestPoint(transform.position)).normalized * repusleEnnemyForce;
+                control.rb.velocity = repulse;
             }
             else if (other.gameObject.GetComponent<MageAI>())
             {
                 other.gameObject.GetComponent<MageAI>().LooseHp(playerDamage);
+                Vector3 repulse = (transform.position - other.gameObject.GetComponent<Collider>().ClosestPoint(transform.position)).normalized * repusleEnnemyForce;
+                control.rb.velocity = repulse;
             }
             else if (other.gameObject.GetComponent<BomberAI>())
             {
                 other.gameObject.GetComponent<BomberAI>().LooseHp(playerDamage);
+                Vector3 repulse = (transform.position - other.gameObject.GetComponent<Collider>().ClosestPoint(transform.position)).normalized * repusleEnnemyForce;
+                control.rb.velocity = repulse;
             }
         }
     }
 
-    public void UpdateDMG()
+    public void UpdateAttackStats()
     {
-        playerDamage = control.GetComponent<PlayerStat>().attackDamageValue;
+        PlayerStat playerStat = PlayerStat.instance;
+        
+        playerDamage = playerStat.attackDamageValue;
+        repusleEnnemyForce = playerStat.enemyKBForce;
     }
+    
 }

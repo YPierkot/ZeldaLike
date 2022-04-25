@@ -5,60 +5,34 @@ using UnityEngine;
 
 public class MerchantScript : MonoBehaviour
 {
-    public NPCDialogue NpcDialogue;
-    public static GameObject MerchandInterface;
-    private bool isInterfaceOpen;
-    
-    private enum UpgradeType
-    {
-        Sharpness = 0, LongSword, Knockback, Toughness, Thorn, Rock, Swiftness, Stamina
-    }
+    [SerializeField] bool isPlayerInRange;
+    [SerializeField] private bool isShopOpen;
+    [SerializeField] private GameObject ShopUI;
 
-    private UpgradeType State = UpgradeType.Sharpness;
-    
-    private void Awake()
-    {
-        NpcDialogue = GetComponent<NPCDialogue>();
-        MerchandInterface = UIManager.Instance.MerchandInterfaceInUIManager;
-        //MerchandInterface.SetActive(false);
-    }
-    
+
     private void Update()
     {
-        if (NpcDialogue.playerIn && Input.GetKeyDown(KeyCode.R))
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.F) && !isShopOpen)
         {
-            OpenMerchantInterface();
+            isShopOpen = true;
+            ShopUI.SetActive(true);
+            ShopManagerScript.instance.UpdateShopUI();
         }
     }
 
-
-    private void OpenMerchantInterface()
+    private void OnTriggerEnter(Collider other)
     {
-        if (!isInterfaceOpen)
+        isPlayerInRange = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isPlayerInRange = false;
+
+        if (isShopOpen)
         {
-            MerchandInterface.SetActive(true);
+            isShopOpen = false;
+            ShopUI.SetActive(false);
         }
     }
-
-    
-    private void BuyModuleUpgrade(UpgradeType choosedStateToUpgrade)
-    {
-        switch(choosedStateToUpgrade)
-        {
-            case UpgradeType.Sharpness: break;
-            case UpgradeType.LongSword:  break;
-            case UpgradeType.Knockback:  ; break;
-            case UpgradeType.Toughness: ; break;
-            case UpgradeType.Thorn: ; break;
-            case UpgradeType.Rock: ; break;
-            case UpgradeType.Swiftness: ; break;
-            case UpgradeType.Stamina: ; break;
-        }
-    }
-
-    private void UpgradeSharpness()
-    {
-        
-    }
-    
 }

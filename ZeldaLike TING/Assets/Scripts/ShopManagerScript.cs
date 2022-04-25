@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,45 +9,107 @@ using TMPro;
 
 public class ShopManagerScript : MonoBehaviour
 {
-    public int[,] shopItemps = new int[5, 8];
-    private int nbItems = 8;
+    #region ShopVariables
+    //Variables
+    public int ShopLevel = 1;
     public float coins;
+    public bool isPlayerInRange;
+    public bool isShopOpen;
+    public GameObject[] iconsLvl1;
+    public GameObject[] iconsLvl2;
+    public GameObject[] iconsLvl3;
+
+    //References
     public TextMeshProUGUI CoinsText;
-    
-    
-    void Start()
+    public GameObject ShopUI;
+    private PlayerStat _controller;
+    public static ShopManagerScript instance;
+    #endregion
+
+    private void Awake()
     {
-        CoinsText.text = $"Coins: {coins.ToString()}";
-        
-        
-        for (int i = 1; i < nbItems +1; i++)
+        if (instance != null && instance != this) 
         {
-            //shopItemps[1, i] = i;     // Setup item's id
-            //shopItemps[2, i] = 300;   // Setup item's price
-            //shopItemps[3, i] = 1;  // Setup item's level
-            //Debug.Log($"{i}ème item ");
+            Destroy(this.gameObject);
         }
+ 
+        instance = this;
     }
 
-    public void Buy()
+    private void Start()
     {
-        GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
+        _controller = Controller.instance.GetComponent<PlayerStat>();
+        ShopUI.SetActive(false);
+    }
+    
+    public void BuySharpnessModule()
+    {
+        _controller.UpgradeSharpness(ShopLevel);
+    }
+    
+    public void BuyLongswordModule()
+    {
+        
+    }
+    
+    public void BuyKnockbackModule()
+    {
+        _controller.UpdateKB(ShopLevel);
+    }
+    
+    public void BuyToughnessModule()
+    {
+        _controller.UpgradeToughness(ShopLevel);
+    }
+    
+    public void BuyThornModule()
+    {
+        
+    }
+     
+    public void BuyRockModule()
+    {
+        _controller.UpgradeRockness(ShopLevel);
+    }
+    
+    public void BuySwiftnessModule()
+    {
+        _controller.UpgradeSwiftness(ShopLevel);
+    }
+    
+    public void BuyStaminaModule()
+    {
+        
+    }
 
-        if (coins >= shopItemps[2, ButtonRef.GetComponent<ButtonInfo>().ItemID])
+    public void UpdateShopUI()
+    {
+        switch (ShopLevel)
         {
-            coins -= shopItemps[2, ButtonRef.GetComponent<ButtonInfo>().ItemID];
-            CoinsText.text = $"Coins: {coins.ToString()}";
-
-            if ( shopItemps[3, ButtonRef.GetComponent<ButtonInfo>().ItemID] < 3) // Niveau max étant 3
-            {
-                shopItemps[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++; // Augementation de level d'objet
-                shopItemps[2, ButtonRef.GetComponent<ButtonInfo>().ItemID] += 400; // Augementation du prix
-                ButtonRef.GetComponent<ButtonInfo>().UpdateShopInfos();
-            }
-        }
-        else
-        {
-            Debug.Log("Not enough money");
+            case 1:
+                for (int i = 0; i < iconsLvl1.Length; i++)
+                {
+                    iconsLvl1[i].SetActive(true);
+                    iconsLvl2[i].SetActive(false);
+                    iconsLvl3[i].SetActive(false);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < iconsLvl1.Length; i++)
+                {
+                    iconsLvl1[i].SetActive(false);
+                    iconsLvl2[i].SetActive(true);
+                    iconsLvl3[i].SetActive(false);
+                }
+                break;
+            case 3:
+                for (int i = 0; i < iconsLvl1.Length; i++)
+                {
+                    iconsLvl1[i].SetActive(false);
+                    iconsLvl2[i].SetActive(false);
+                    iconsLvl3[i].SetActive(true);
+                }
+                break;
         }
     }
 }

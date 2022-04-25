@@ -46,9 +46,6 @@ public class UIManager : MonoBehaviour
 
       UpdateCardUI();
       
-      
-      
-      
       /*cardHandles = new Transform[cardHandlesContainer.childCount];
       for (int i = 0; i < cardHandlesContainer.childCount; i++)
       {
