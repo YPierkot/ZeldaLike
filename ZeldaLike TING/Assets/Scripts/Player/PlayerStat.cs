@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
    public static PlayerStat instance;
-   private Controller control;
+   private Controller _control;
+   private AttackControl _atkControl;
    
    
    [Header("LIFE")]
@@ -19,26 +20,28 @@ public class PlayerStat : MonoBehaviour
 
    
    [Header("MODULES")]
-   [SerializeField] private int sharpnessModuleLevel;
-   [SerializeField] private int longSwordModuleLevel;
-   [SerializeField] private int knockbackModuleLevel;
-   [SerializeField] private int toughnessModuleLevel;
-   [SerializeField] private int thornModuleLevel;
-   [SerializeField] private int rockModuleLevel;
-   [SerializeField] private int swiftnessModuleLevel;
-   [SerializeField] private int staminaModuleLevel;
+   [SerializeField] private int sharpnessModuleComposant;
+   [SerializeField] private int longSwordModuleComposant;
+   [SerializeField] private int knockbackModuleComposant;
+   [SerializeField] private int toughnessModuleComposant;
+   [SerializeField] private int thornModuleComposant;
+   [SerializeField] private int rockModuleComposant;
+   [SerializeField] private int swiftnessModuleComposant;
+   [SerializeField] private int staminaModuleComposant;
 
    [Header("Stats for modules")] 
    [SerializeField] public float toughnessValue = 0.3f; // Duration u can't take dmg
    [SerializeField] public int attackDamageValue = 1;
-   [SerializeField] public float moveSpeedValue = 100;
-   [SerializeField] private float repulseForce = 25;
+   [SerializeField] public float moveSpeedValue = 100; // Player MS
+   [SerializeField] private float repulseForce = 25; // Player's KB when hitted
+   [SerializeField] public float enemyKBForce = 3; // Enemies KB when hitted
    
    private bool isImmune;
 
    private void Awake()
    {
-      control = GetComponent<Controller>();
+      _control = GetComponent<Controller>();
+      _atkControl = Controller.instance.GetComponent<AttackControl>();
       life = lifeMax;
       toughnessValue = 0.3f;
       attackDamageValue = 1;
@@ -68,17 +71,17 @@ public class PlayerStat : MonoBehaviour
       {
          TakeDamage();
          StartCoroutine(HitCD());
-         control.canMove = false;
+         _control.canMove = false;
          Vector3 repulse = (transform.position - other.contacts[0].point).normalized * repulseForce;
-         control.rb.velocity = repulse;
+         _control.rb.velocity = repulse;
       }
    }
 
    IEnumerator HitCD()
    {
-      control.canMove = false;
+      _control.canMove = false;
       yield return new WaitForSeconds(0.3f);
-      control.canMove = true;
+      _control.canMove = true;
    }
    
    IEnumerator TakeDamageCD()
@@ -90,69 +93,82 @@ public class PlayerStat : MonoBehaviour
 
    #region UpgradesBuyables
 
-   public void UpgradeToughness()
+   public void UpgradeToughness(int level)
    {
-      switch (toughnessModuleLevel)
+      switch (level)
       {
-         case 3: toughnessValue = 1f;
+         case 1: toughnessValue = 1f;
             break;
-         case 6: toughnessValue = 2f;
+         case 2: toughnessValue = 2f;
             break;
-         case 9: toughnessValue = 4f;
+         case 3: toughnessValue = 4f;
             break;
          default:
             break;
       }
-   }
-   
-   public void UpgradeSharpness()
-   {
-      switch (sharpnessModuleLevel)
-      {
-         case 3: toughnessValue = 1;
-            break;
-         case 6: toughnessValue = 2;
-            break;
-         case 9: toughnessValue = 3;
-            break;
-         default:
-            break;
-      }
-      AttackControl.Instance.UpdateDMG();
    }
 
-   public void UpgradeSwiftness()
+   public void UpdateKB(int level)
    {
-      switch (swiftnessModuleLevel)
+      switch (level)
       {
-         case 3: moveSpeedValue = 100;
+         case 1: enemyKBForce = 9f;
             break;
-         case 6: toughnessValue = 120;
+         case 2: enemyKBForce = 17f;
             break;
-         case 9: toughnessValue = 135;
-            break;
-         default:
-            break;
-      }
-      control.UpdateStats();
-   }
-   
-   public void UpgradeRockness()
-   {
-      switch (rockModuleLevel)
-      {
-         case 3: repulseForce = 17;
-            break;
-         case 6: repulseForce = 9;
-            break;
-         case 9: repulseForce = 0;
+         case 3: enemyKBForce = 25f;
             break;
          default:
             break;
       }
    }
-   
 
+   public void UpgradeSharpness(int level)
+   {
+      switch (level)
+      {
+         case 1: attackDamageValue = 1;
+            break;
+         case 2: attackDamageValue = 2;
+            break;
+         case 9: attackDamageValue = 3;
+            break;
+         default:
+            break;
+      }
+      _atkControl.UpdateAttackStats();
+   }
+
+   public void UpgradeSwiftness(int level)
+   {
+      switch (level)
+      {
+         case 1: moveSpeedValue = 100;
+            break;
+         case 2: moveSpeedValue = 120;
+            break;
+         case 3: moveSpeedValue = 135;
+            break;
+         default:
+            break;
+      }
+      _control.UpdateStats();
+   }
+   
+   public void UpgradeRockness(int level)
+   {
+      switch (level)
+      {
+         case 1: repulseForce = 17;
+            break;
+         case 2: repulseForce = 9;
+            break;
+         case 3: repulseForce = 3;
+            break;
+         default:
+            break;
+      }
+   }
    #endregion
    
 }

@@ -31,11 +31,6 @@ public class NPCDialogue : MonoBehaviour{
         {
             playerIn = false;
             Debug.Log("You can't interact anymore");
-            
-            if (MerchantScript.MerchandInterface.activeSelf)
-            {
-                MerchantScript.MerchandInterface.SetActive(false);
-            }
         }
     }
 
