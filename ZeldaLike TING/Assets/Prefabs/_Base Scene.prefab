@@ -4160,8 +4160,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfbf884eb629614c9cfd4144e6d66c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShopLevel: 1
   coins: 600
+  isPlayerInRange: 0
+  isShopOpen: 0
+  iconsLvl1: []
+  iconsLvl2: []
+  iconsLvl3: []
   CoinsText: {fileID: 3388209511048322276}
+  ShopUI: {fileID: 1169385675}
 --- !u!1 &5687925816624007252
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,7 +41,6 @@ public class PlayerStat : MonoBehaviour
    private void Awake()
    {
       _control = GetComponent<Controller>();
-      _atkControl = Controller.instance.GetComponent<AttackControl>();
       life = lifeMax;
       toughnessValue = 0.3f;
       attackDamageValue = 1;
