@@ -6,19 +6,22 @@ public class BlueCardLongRange : MonoBehaviour
 
     public LayerMask enemyLayerMask;
     public LayerMask groundMask;
+    public float effectRadius = 4f;
     public GameObject DebugSphere;
+    public GameObject iceFX;
     
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 3f);
+        Gizmos.DrawWireSphere(transform.position, effectRadius);
     }
 
     public void IceCardLongEffet()
     {
         Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity), 2f);
+        Destroy(Instantiate(iceFX, transform.position + new Vector3(0,-.9f,0), Quaternion.identity),6f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 3);
+        
+        Collider[] colliders = Physics.OverlapSphere(transform.position, effectRadius);
         foreach (var col in colliders)
         {
             Debug.Log(col.name);

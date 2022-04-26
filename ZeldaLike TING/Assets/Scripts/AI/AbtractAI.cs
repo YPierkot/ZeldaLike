@@ -139,12 +139,9 @@ namespace AI
         private IEnumerator fE()
         {
             Debug.Log("OUAIS çA FONCTIONNE LE SANG");
-            if (e_speed >= 2)
-            {
-                e_speed -= 2;
-                yield return new WaitForSeconds(4f);
-                e_speed += 2;
-            }
+            e_speed /= 2;
+            yield return new WaitForSeconds(4.5f);
+            e_speed *= 2;
         }
         
 

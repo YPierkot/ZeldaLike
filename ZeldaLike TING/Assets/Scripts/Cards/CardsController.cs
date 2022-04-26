@@ -46,6 +46,13 @@ public class CardsController : MonoBehaviour
     public Transform m_tranform;
     public LayerMask Ennemy;
     public int projectileSpeed;
+
+    [Space(10)] // Wind Card
+    [Header("FX'S")]
+    [SerializeField] private GameObject ShortFireFx;
+    [SerializeField] private GameObject ShortIceFx;
+    [SerializeField] private GameObject ShortWallFx;
+    [SerializeField] private GameObject ShortWindFx;
     
     public enum CardsState
     {
@@ -269,14 +276,14 @@ public class CardsController : MonoBehaviour
     private const float rangeIceShot = 8f;
     private const float rangeStartIceShot = 1f;
     private const float radiusIceShot = 2.5f;
-    public void ActivateIceGroundEffect() // OK MANQUE FX
+    public void ActivateIceGroundEffect() // OK Manque FX
     {
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
         
+        //Destroy(Instantiate(ShortIceFx, transform.position, Quaternion.identity),6f);
+        
         var GoDir =  (transform.position + shootPointPos * radiusShootPoint) ;
-        
-        
         Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
         
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);

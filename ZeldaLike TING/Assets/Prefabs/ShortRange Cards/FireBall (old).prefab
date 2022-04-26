@@ -4985,7 +4985,7 @@ Transform:
   m_Children:
   - {fileID: 1601055091}
   m_Father: {fileID: 8479553354742785960}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -2.93}
 --- !u!198 &1701182195
 ParticleSystem:
@@ -9855,7 +9855,7 @@ Transform:
   - {fileID: 1739693132}
   - {fileID: 1242061274}
   m_Father: {fileID: 8479553354742785960}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739693131
 GameObject:
@@ -10003,7 +10003,7 @@ GameObject:
   - component: {fileID: -1064635356531176019}
   - component: {fileID: 2911912304434201460}
   m_Layer: 8
-  m_Name: FireBall
+  m_Name: FireBall (old)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10021,8 +10021,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1701987895}
   - {fileID: 1701182193}
+  - {fileID: 1701987895}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
