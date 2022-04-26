@@ -6,6 +6,7 @@ public class InteracteObjectEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
         InteracteObject script = (InteracteObject)target;
         GUILayout.Label("--- FIRE");
         script.fireAffect = EditorGUILayout.Toggle("Fire Affect", script.fireAffect);
