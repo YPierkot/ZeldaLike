@@ -4,9 +4,12 @@ public class Bomb : MonoBehaviour
 {
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float explosionRadius = 3;
+    [SerializeField] private GameObject explosionDebug;
     
     public void ExploseBomb()
     {
+        Destroy(Instantiate(explosionDebug, transform.position, Quaternion.identity),2f);
+        
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerLayer);
         foreach (var player in colliders)
         {
