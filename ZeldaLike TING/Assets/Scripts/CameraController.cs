@@ -10,11 +10,11 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float cameraSpeed;
     [SerializeField] private float changePointSpeed;
 
-    private bool changingPoint;
+    public bool changingPoint;
     
 
     [System.NonSerialized] public bool dashing = false;
-    private bool moveToPlayer;
+    public bool moveToPlayer;
 
     private void Update()
     {
@@ -58,6 +58,5 @@ public class CameraController : MonoBehaviour
         changingPoint = true;
         cameraPoint = newTransform;
         moveToPlayer = _moveToPlayer;
-
     }
 }

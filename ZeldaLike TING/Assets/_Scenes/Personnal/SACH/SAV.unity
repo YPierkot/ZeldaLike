@@ -1767,6 +1767,7 @@ MonoBehaviour:
   dialogues:
   - {fileID: 11400000, guid: 4a1c4dd2854898e46bd919f41a000e0c, type: 2}
   fillingDialogues: []
+  playerIn: 0
   currentDialogue: 0
   testDialogue: {fileID: 11400000, guid: 12d687eb4b414bf47a84fb14cb91ae44, type: 2}
 --- !u!23 &1719161628
@@ -2059,6 +2060,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1169385675, guid: 04d5dd494f81cd245a3a98f68ff6149d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1473772124928122708, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
       propertyPath: m_Name

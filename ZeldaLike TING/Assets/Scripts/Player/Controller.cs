@@ -64,7 +64,7 @@ public class Controller : MonoBehaviour
     
     [Header("--- CAMERA ---")] 
     [SerializeField] private CameraController camera;
-    [SerializeField] private Transform PlayerCameraPoint;
+    public Transform PlayerCameraPoint;
     private Vector3 cameraOffset;
     private bool cameraOnPlayer = true;
     private bool dashCamera;
@@ -86,7 +86,6 @@ public class Controller : MonoBehaviour
     [SerializeField] private AnimationCurve dashCurve;
     [SerializeField] int maxDash; 
     [SerializeField] private float dashCD = 2f;
-
     
     [Header("--- DEBUG ---")] 
     [SerializeField] private TMPro.TextMeshProUGUI Debugger;
@@ -242,8 +241,9 @@ public class Controller : MonoBehaviour
                     }
                 } // Change current Controller in GameManager
             }
+            
         }
-
+        
         Animations();
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask)) transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
@@ -267,6 +267,15 @@ public class Controller : MonoBehaviour
         movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
         
         rb.AddForce(dir * moveSpeed);
+    }
+
+    public void ForceMove(Vector3 target)
+    {
+        if (Vector3.Distance(transform.position, target) > 0.5f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, 0.01f);
+        }
+
     }
     void Dash()
     {
@@ -388,7 +397,7 @@ public class Controller : MonoBehaviour
                 Debug.Log("Combo Wait");
             }
             
-            if (!inAttack)
+            if (!inAttack && canMove)
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
@@ -403,7 +412,7 @@ public class Controller : MonoBehaviour
                 animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
             }
-        }
+    }
     
     private void OnTriggerEnter(Collider other)
     {
