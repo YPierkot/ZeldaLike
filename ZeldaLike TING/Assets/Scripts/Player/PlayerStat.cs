@@ -6,7 +6,7 @@ public class PlayerStat : MonoBehaviour
 {
    public static PlayerStat instance;
    private Controller _control;
-   private AttackControl _atkControl;
+   [SerializeField] private AttackControl _atkControl;
    
    
    [Header("LIFE")]
@@ -20,14 +20,14 @@ public class PlayerStat : MonoBehaviour
 
    
    [Header("MODULES")]
-   [SerializeField] private int sharpnessModuleComposant;
-   [SerializeField] private int longSwordModuleComposant;
-   [SerializeField] private int knockbackModuleComposant;
-   [SerializeField] private int toughnessModuleComposant;
-   [SerializeField] private int thornModuleComposant;
-   [SerializeField] private int rockModuleComposant;
-   [SerializeField] private int swiftnessModuleComposant;
-   [SerializeField] private int staminaModuleComposant;
+   [SerializeField] public int sharpnessModuleComposant;
+   [SerializeField] public int longSwordModuleComposant;
+   [SerializeField] public int knockbackModuleComposant;
+   [SerializeField] public int toughnessModuleComposant;
+   [SerializeField] public int thornModuleComposant;
+   [SerializeField] public int rockModuleComposant;
+   [SerializeField] public int swiftnessModuleComposant;
+   [SerializeField] public int staminaModuleComposant;
 
    [Header("Stats for modules")] 
    [SerializeField] public float toughnessValue = 0.3f; // Duration u can't take dmg
@@ -41,7 +41,6 @@ public class PlayerStat : MonoBehaviour
    private void Awake()
    {
       _control = GetComponent<Controller>();
-      _atkControl = Controller.instance.GetComponent<AttackControl>();
       life = lifeMax;
       toughnessValue = 0.3f;
       attackDamageValue = 1;
@@ -168,6 +167,21 @@ public class PlayerStat : MonoBehaviour
          default:
             break;
       }
+   }
+
+   public void UpgradeStamina(int level)
+   {
+      // Theo tu le fera wallah
+   }
+
+   public void UpdgradeThorn(int level)
+   {
+      
+   }
+
+   public void UpgradeLongSword(int level)
+   {
+      
    }
    #endregion
    

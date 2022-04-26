@@ -286,7 +286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1169385676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1502,9 +1502,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1473772124928122709}
+  - component: {fileID: 1804444795}
   m_Layer: 0
   m_Name: _Base Scene
-  m_TagString: EditorOnly
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1529,6 +1530,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1804444795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473772124928122708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ab772480ec4ae4698f99c00b43e782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1478975556641702352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,7 +2091,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyRockModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4160,8 +4173,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfbf884eb629614c9cfd4144e6d66c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShopLevel: 1
   coins: 600
+  itemPriceLvl1: 300
+  itemPriceLvl2: 600
+  itemPriceLvl3: 900
+  isPlayerInRange: 0
+  isShopOpen: 0
+  iconsLvl1:
+  - {fileID: 7816642714604914343}
+  - {fileID: 7921072375938534775}
+  - {fileID: 3594521591950454155}
+  - {fileID: 7836152947115103340}
+  - {fileID: 8826510219695219742}
+  - {fileID: 2232885663180252727}
+  - {fileID: 1373719794939134008}
+  - {fileID: 3931149105475740622}
+  iconsLvl2:
+  - {fileID: 5687925816624007252}
+  - {fileID: 1332991332495471158}
+  - {fileID: 2464377493952887518}
+  - {fileID: 5524056415533661887}
+  - {fileID: 3986834850549282324}
+  - {fileID: 4434606521409358307}
+  - {fileID: 161040566114355887}
+  - {fileID: 7017785853166243565}
+  iconsLvl3:
+  - {fileID: 8741491739008929408}
+  - {fileID: 9129339788997070863}
+  - {fileID: 8028947246487663773}
+  - {fileID: 767713131833910811}
+  - {fileID: 4314820001960681901}
+  - {fileID: 5983564883830328959}
+  - {fileID: 2714885569683340074}
+  - {fileID: 1642714927336772100}
   CoinsText: {fileID: 3388209511048322276}
+  ShopUI: {fileID: 1169385675}
 --- !u!1 &5687925816624007252
 GameObject:
   m_ObjectHideFlags: 0
@@ -4441,7 +4488,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyKnockbackModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4578,7 +4625,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyThornModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4936,7 +4983,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuySharpnessModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5348,7 +5395,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyLongswordModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5942,7 +5989,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyStaminaModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6433,7 +6480,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuySwiftnessModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6781,7 +6828,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: Buy
+        m_MethodName: BuyToughnessModule
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6911,12 +6958,18 @@ PrefabInstance:
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: canUseCards
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
+      propertyPath: DebugWindSphere
+      value: 
+      objectReference: {fileID: 8563752535105445969, guid: 2f1b08c0b4cc75849bb0181230ffbcac,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
       propertyPath: projectileSpeed
-      value: 500
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}

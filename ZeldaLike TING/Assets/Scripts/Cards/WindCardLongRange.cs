@@ -14,8 +14,8 @@ public class WindCardLongRange : MonoBehaviour
     
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private Vector3 attractivePoint;
-
     [SerializeField] private LayerMask groundMask;
+    public GameObject DebugSphere;
 
     private void OnEnable()
     {
@@ -25,13 +25,15 @@ public class WindCardLongRange : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 4f);
+        Gizmos.DrawWireSphere(transform.position, 4.4f);
     }
 
     public void WindCardLongEffect()
     {
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         attractivePoint = transform.position;
+        
+        Destroy(Instantiate(DebugSphere, attractivePoint, Quaternion.identity),2f);
         
         Collider[] colliders = Physics.OverlapSphere(attractivePoint, 4.4f, interactMask);
         foreach (var col in colliders)

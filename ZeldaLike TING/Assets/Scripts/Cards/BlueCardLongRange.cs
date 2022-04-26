@@ -6,15 +6,16 @@ public class BlueCardLongRange : MonoBehaviour
 
     public LayerMask enemyLayerMask;
     public LayerMask groundMask;
+    public GameObject DebugSphere;
     
     private void OnDrawGizmos()
     {
-        
         Gizmos.DrawWireSphere(transform.position, 3f);
     }
 
     public void IceCardLongEffet()
     {
+        Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity), 2f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             
         Collider[] colliders = Physics.OverlapSphere(transform.position, 3);

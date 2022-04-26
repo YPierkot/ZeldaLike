@@ -39,6 +39,7 @@ public class CardsController : MonoBehaviour
     [SerializeField] private LayerMask interactMask;
     [SerializeField] float repulsiveRadius = 4.5f;
     [SerializeField] Vector3 repulsivePoint;
+    public GameObject DebugWindSphere;
     
     [Space(10)] // Wind Card
     [Header("Utilities")] 
@@ -52,6 +53,7 @@ public class CardsController : MonoBehaviour
     }
     
     public CardsState State = CardsState.Null;
+    private int targetFrameRate = 144;
 
     private void Awake()
     {
@@ -116,7 +118,6 @@ public class CardsController : MonoBehaviour
     // Fire Card
     private void FireballLongRange()
     {
-        Debug.Log("Accesss Fire");
         if (canUseFireCard)
         {
             if (!isFireGround)
@@ -129,7 +130,7 @@ public class CardsController : MonoBehaviour
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
-                    shootPointPos * Time.deltaTime * projectileSpeed;
+                    shootPointPos * projectileSpeed;
                 isFireGround = true;
                 
                 StartCoroutine(LaunchCardCD(1));
@@ -153,7 +154,7 @@ public class CardsController : MonoBehaviour
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
                 iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 iceCardGrounded.GetComponent<Rigidbody>().velocity = 
-                    shootPointPos * Time.deltaTime * projectileSpeed;
+                    shootPointPos  * projectileSpeed;
                 isIceGround = true;
                 
                 StartCoroutine(LaunchCardCD(2));
@@ -170,7 +171,6 @@ public class CardsController : MonoBehaviour
             if (!isWallGround)
             {
                 canUseWallCard = false;
-
                 
                 Vector3 shootPointPos = (controller.pointerPosition - transform.position);
                 shootPointPos.Normalize();
@@ -178,7 +178,7 @@ public class CardsController : MonoBehaviour
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
                 wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
-                    shootPointPos * Time.deltaTime * projectileSpeed;
+                    shootPointPos * projectileSpeed;
                 isWallGround = true;
 
                 StartCoroutine(LaunchCardCD(3));
@@ -200,7 +200,7 @@ public class CardsController : MonoBehaviour
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
                 windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
-                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed;
+                windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed;
                 isWindGround = true;
 
                 StartCoroutine(LaunchCardCD(4));
@@ -263,7 +263,7 @@ public class CardsController : MonoBehaviour
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
         
-        fb.GetComponent<Rigidbody>().velocity = shootPointPos * Time.deltaTime * projectileSpeed * 2;
+        fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
     }
     
     private const float rangeIceShot = 8f;
@@ -321,6 +321,7 @@ public class CardsController : MonoBehaviour
     public void ActivateWindGroundEffect() // OK
     {
         repulsivePoint = transform.position;
+        Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
         Collider[] cols = Physics.OverlapSphere(transform.position, repulsiveRadius);
         foreach (var col in cols)
         {
@@ -328,12 +329,10 @@ public class CardsController : MonoBehaviour
             {
                 case "Interactable": 
                     if (col.GetComponent<GemWindPuzzle>() != null) col.GetComponent<GemWindPuzzle>().WindInteract();
-                    if(col.GetComponent<InteracteObject>() != null) col.GetComponent<InteracteObject>().OnWindEffect(this);
+                    if (col.GetComponent<InteracteObject>() != null) col.GetComponent<InteracteObject>().OnWindEffect(this);
                     break;
 
-                case "Ennemy":
-                    EnnemyWindRepultion(col.gameObject);
-                    break;
+                case "Ennemy": EnnemyWindRepultion(col.gameObject); break;
                 default: break;
             }
         }
@@ -345,9 +344,9 @@ public class CardsController : MonoBehaviour
         enemy.transform.DOKill();
                     
         var shootPointPos = (enemy.transform.position - transform.position);
-        var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x) /* forceModifier*/, 
+        var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x), 
             enemy.transform.position.y + shootPointPos.y + 1f,
-            (enemy.transform.position.z + shootPointPos.z) /* forceModifier*/);
+            (enemy.transform.position.z + shootPointPos.z));
         
         enemy.transform.DOMove(targetPos, 0.3f).OnComplete(() => enemy.transform.DOKill());
         Debug.Log($"{enemy.name} got repulsed !");
