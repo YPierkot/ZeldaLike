@@ -41,8 +41,10 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool dashing;
    [SerializeField] private bool inAttack;
    [SerializeField] private bool inAttackAnim;
+   private bool holdingForCard; 
 
     private float dashTimer;
+    private float holdTimer; 
     private int dashAvailable; 
     private float dashCDtimer; 
 
@@ -56,7 +58,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveTransform;
+    [SerializeField] Transform moveCardTransform;
+    [SerializeField] Transform movePlayerTransform;
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 
@@ -107,10 +110,35 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
-
-        InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
+        InputMap.Action.CardHolder.started += context => holdingForCard = true; 
+        InputMap.Action.CardHolder.canceled += CardHolderOncanceled; 
+        InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast(); 
+        
+        InputMap.Menu.CardMenu.performed += SwitchCard;
     }
     #region Input Methode
+
+    private void CardHolderOncanceled(InputAction.CallbackContext obj) 
+    { 
+        holdingForCard = false; 
+        moveCardTransform.gameObject.SetActive(false); 
+        if (holdTimer < 0.5f) 
+        { 
+            cardControl.ShortRange(); 
+        } 
+        else 
+        { 
+            cardControl.LongRange(); 
+        } 
+        holdTimer = 0; 
+         
+    } 
+    
+    private void SwitchCard(InputAction.CallbackContext obj) 
+    { 
+        if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1); 
+        else UIManager.Instance.ChangeCard(1); 
+    }
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
@@ -146,6 +174,12 @@ public class Controller : MonoBehaviour
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
         }
+        
+        if (holdingForCard) 
+        { 
+            holdTimer += Time.deltaTime; 
+            if(holdTimer > 0.5f) moveCardTransform.gameObject.SetActive(true); 
+        } 
         
         if (dashing) 
         {
@@ -224,6 +258,11 @@ public class Controller : MonoBehaviour
     {
         Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
         lastDir = dir;
+        
+        float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+        if (angleView < 0) anglePlayerView += 360 ; 
+        movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
+        
         rb.AddForce(dir * moveSpeed);
     }
     void Dash()
@@ -271,7 +310,7 @@ public class Controller : MonoBehaviour
             if (angleView < 0) angleView = 360 + angleView;
             //if (Debugger != null) Debugger.text = angleView.ToString();
             
-            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+            moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
     }
 
@@ -300,7 +339,7 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetInteger("attackCounter", attackCounter);
             if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
             {
-                if(animInfo.clip.name.Contains("SLASH"))rb.AddForce(moveTransform.forward*-700);
+                if(animInfo.clip.name.Contains("SLASH"))rb.AddForce(moveCardTransform.forward*-700);
                 attackZones[attackCounter-1].SetActive(true);
                 Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
                 inAttack = true;
