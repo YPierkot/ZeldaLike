@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Elevetor : InteracteObject
@@ -7,13 +8,17 @@ public class Elevetor : InteracteObject
     
     [Header("==== ELEVETOR ====")]
     [SerializeField] private Transform platform;
+
     [SerializeField] private Transform[] passPoint;
+    [SerializeField] private Transform[] waitPassPoint;
+
     [SerializeField] private float waitingTime = 2f;
+    [SerializeField] private bool waitBetweenStartAndEnd;
+
     [SerializeField] private float speed = 0.05f;
     [SerializeField] private bool auto;
     public bool canMove = true;
-    [Space] 
-    [SerializeField] private float boxHeight = 1;
+    [Space] [SerializeField] private float boxHeight = 1;
 
     private int pointIndex = 0;
     private System.Collections.Generic.List<Transform> eleveteList = new System.Collections.Generic.List<Transform>();
@@ -34,7 +39,7 @@ public class Elevetor : InteracteObject
             Vector3 movement = (passPoint[pointIndex].position - platform.position).normalized * speed;
             platform.position += movement;
             collider.center += movement;
-            //Debug.Log($"New Position : {platform.position}");
+            
             foreach (Transform obj in eleveteList)
             {
                 if (!obj.CompareTag("Player"))
@@ -48,7 +53,18 @@ public class Elevetor : InteracteObject
                 }
             }
         }
-        else if (!waiting && auto) StartCoroutine("Waiter");
+        else if (!waiting && auto) {
+            switch (waitBetweenStartAndEnd) {
+                case true:
+                case false when waitPassPoint.Contains(passPoint[pointIndex]):
+                    StartCoroutine(Waiter());
+                    break;
+                default:
+                    moving = false;
+                    Move();
+                    break;
+            }
+        }
         else
         {
             moving = false;
@@ -84,7 +100,6 @@ public class Elevetor : InteracteObject
         waiting = true;
         yield return new WaitForSeconds(waitingTime);
         Move();
-        
     }
 
 

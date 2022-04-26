@@ -41,8 +41,13 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool dashing;
    [SerializeField] private bool inAttack;
    [SerializeField] private bool inAttackAnim;
+   private bool holdingForCard; 
 
     private float dashTimer;
+    private float holdTimer; 
+    private int dashAvailable; 
+    private float dashCDtimer; 
+
     [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
@@ -53,7 +58,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveTransform;
+    public Transform moveCardTransform;
+    [SerializeField] Transform movePlayerTransform;
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 
@@ -70,11 +76,16 @@ public class Controller : MonoBehaviour
     [Header("--- ATTAQUE ---")] 
     public int attackCounter;
     [SerializeField] public bool setNextCombo;
-    [SerializeField] private GameObject[] attackZones;
+    [SerializeField] private GameObject[] keybordAttackZones;
+    [SerializeField] private GameObject[] controllerAttackZones;
+
+    private bool comboWaiting;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
+    [SerializeField] int maxDash; 
+    [SerializeField] private float dashCD = 2f;
 
     
     [Header("--- DEBUG ---")] 
@@ -102,10 +113,35 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
-
-        InputMap.Menu.CardMenu.performed += context => Debug.Log("scroll");
+        InputMap.Action.CardHolder.started += context => holdingForCard = true; 
+        InputMap.Action.CardHolder.canceled += CardHolderOncanceled; 
+        InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast(); 
+        
+        InputMap.Menu.CardMenu.performed += SwitchCard;
     }
     #region Input Methode
+
+    private void CardHolderOncanceled(InputAction.CallbackContext obj) 
+    { 
+        holdingForCard = false; 
+        moveCardTransform.gameObject.SetActive(false); 
+        if (holdTimer < 0.5f) 
+        { 
+            cardControl.ShortRange(); 
+        } 
+        else 
+        { 
+            cardControl.LongRange(); 
+        } 
+        holdTimer = 0; 
+         
+    } 
+    
+    private void SwitchCard(InputAction.CallbackContext obj) 
+    { 
+        if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1); 
+        else UIManager.Instance.ChangeCard(1); 
+    }
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
@@ -120,12 +156,13 @@ public class Controller : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
         cardControl = GetComponent<CardsController>();
-
+        
         foreach (SpriteAngle SA in spriteArray)
         {
             spriteDictionary.Add(x => x < SA.angleInterval.max, SA);
         }
-        
+
+        dashAvailable = maxDash;
     }
 
     private void Update()
@@ -141,6 +178,12 @@ public class Controller : MonoBehaviour
             Rotate(vector);
         }
         
+        if (holdingForCard) 
+        { 
+            holdTimer += Time.deltaTime; 
+            if(holdTimer > 0.5f) moveCardTransform.gameObject.SetActive(true); 
+        } 
+        
         if (dashing) 
         {
             if (dashTimer > dashCurve[dashCurve.length-1].time)
@@ -155,6 +198,18 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
+
+        if (dashAvailable < maxDash)
+        {
+            dashCDtimer += Time.deltaTime;
+            if (dashCDtimer >= dashCD)
+            {
+                dashCDtimer = 0;
+                dashAvailable++;
+            }
+        }
+
+        //if (Debugger != null) Debugger.text = $"Dash Available : {dashAvailable}, CD : {dashCDtimer}";
         
         if(Input.GetAxis("Mouse ScrollWheel")> 0f) UIManager.Instance.ChangeCard(1);
         if(Input.GetAxis("Mouse ScrollWheel")< 0f) UIManager.Instance.ChangeCard(-1);
@@ -206,12 +261,18 @@ public class Controller : MonoBehaviour
     {
         Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
         lastDir = dir;
+        
+        float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+        if (angleView < 0) anglePlayerView += 360 ; 
+        movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
+        
         rb.AddForce(dir * moveSpeed);
     }
     void Dash()
     {
-        if (!dashing && canMove)
+        if (!dashing && canMove && dashAvailable > 0)
         {
+            dashAvailable--;
             dashing = true;
             dashTimer = 0;
             canMove = false;
@@ -230,7 +291,10 @@ public class Controller : MonoBehaviour
             if (!inAttack)
             {
                 animatorPlayer.SetBool("attackFinish", false);
+                setNextCombo = true;
                 StopCoroutine(ComboWait());
+                comboWaiting = false;
+                Debug.Log("STOP Wait");
                 canMove = false;
                 inAttack = true;
                 //nextCombo = false;
@@ -250,10 +314,9 @@ public class Controller : MonoBehaviour
         {
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
-            if (Debugger != null)
-                Debugger.text = angleView.ToString();
+            if (Debugger != null) Debugger.text = angleView.ToString();
             
-            moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
+            moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
     }
 
@@ -272,9 +335,10 @@ public class Controller : MonoBehaviour
     }
     
     private void Animations()
-        {
-            var animDir = pointerPosition - transform.position;
-            animDir.Normalize();
+    {
+            Vector3 animDir;
+            if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
+            else animDir = -movePlayerTransform.forward ;
 
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
             if (animInfo.clip.name == "waitAttackState") inAttack = false;
@@ -282,24 +346,46 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetInteger("attackCounter", attackCounter);
             if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
             {
-                if(animInfo.clip.name.Contains("SLASH"))rb.AddForce(moveTransform.forward*-700);
-                attackZones[attackCounter-1].SetActive(true);
-                Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
+                if (animInfo.clip.name.Contains("SLASH"))
+                {
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -700);
+                    else rb.AddForce(movePlayerTransform.forward * -700);
+                }
+                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
+                else controllerAttackZones[attackCounter-1].SetActive(true);
+                //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
                 inAttack = true;
                 inAttackAnim = true;
                 setNextCombo = false;
                 //Debug.Log("Begin Attack");
+                StopCoroutine(ComboWait());
+                comboWaiting = false;
             }
             else if (animInfo.clip.name == "waitAttackState" && inAttackAnim)
             {
+                GameObject[] attackZones;
+                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) attackZones = keybordAttackZones;
+                else attackZones = controllerAttackZones;
                 foreach (var GO in attackZones)
                 {
                     GO.SetActive(false);
-                    Debug.Log("Desactive Attack Zone");
+                    //Debug.Log("Desactive Attack Zone");
                 }
-                if (!setNextCombo) StartCoroutine(ComboWait());
+
+                if (!setNextCombo && !comboWaiting)
+                {
+                    comboWaiting = true;
+                    StartCoroutine(ComboWait()); 
+                    Debug.Log("Combo Wait");
+                }
                     
                 inAttackAnim = false;
+            }
+            else if (animInfo.clip.name == "waitAttackState" && !inAttackAnim && !inAttack && !comboWaiting) 
+            { 
+                comboWaiting = true; 
+                StartCoroutine(ComboWait());
+                Debug.Log("Combo Wait");
             }
             
             if (!inAttack)
@@ -338,10 +424,11 @@ public class Controller : MonoBehaviour
 
     public IEnumerator ComboWait()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.15f);
         if (!inAttack)
         {
             animatorPlayer.SetBool("attackFinish", true);
+            Debug.Log("Attack Finish");
             attackCounter = 0;
             canMove = true;
         }

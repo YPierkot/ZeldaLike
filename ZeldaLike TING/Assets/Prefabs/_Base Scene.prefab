@@ -286,7 +286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1169385676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1502,10 +1502,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1473772124928122709}
-  - component: {fileID: 1804444795}
   m_Layer: 0
   m_Name: _Base Scene
-  m_TagString: Untagged
+  m_TagString: EditorOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1530,18 +1529,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1804444795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473772124928122708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ab772480ec4ae4698f99c00b43e782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1478975556641702352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2078,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuyRockModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4175,38 +4162,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopLevel: 1
   coins: 600
-  itemPriceLvl1: 300
-  itemPriceLvl2: 600
-  itemPriceLvl3: 900
   isPlayerInRange: 0
   isShopOpen: 0
-  iconsLvl1:
-  - {fileID: 7816642714604914343}
-  - {fileID: 7921072375938534775}
-  - {fileID: 3594521591950454155}
-  - {fileID: 7836152947115103340}
-  - {fileID: 8826510219695219742}
-  - {fileID: 2232885663180252727}
-  - {fileID: 1373719794939134008}
-  - {fileID: 3931149105475740622}
-  iconsLvl2:
-  - {fileID: 5687925816624007252}
-  - {fileID: 1332991332495471158}
-  - {fileID: 2464377493952887518}
-  - {fileID: 5524056415533661887}
-  - {fileID: 3986834850549282324}
-  - {fileID: 4434606521409358307}
-  - {fileID: 161040566114355887}
-  - {fileID: 7017785853166243565}
-  iconsLvl3:
-  - {fileID: 8741491739008929408}
-  - {fileID: 9129339788997070863}
-  - {fileID: 8028947246487663773}
-  - {fileID: 767713131833910811}
-  - {fileID: 4314820001960681901}
-  - {fileID: 5983564883830328959}
-  - {fileID: 2714885569683340074}
-  - {fileID: 1642714927336772100}
+  iconsLvl1: []
+  iconsLvl2: []
+  iconsLvl3: []
   CoinsText: {fileID: 3388209511048322276}
   ShopUI: {fileID: 1169385675}
 --- !u!1 &5687925816624007252
@@ -4488,7 +4448,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuyKnockbackModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4625,7 +4585,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuyThornModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4983,7 +4943,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuySharpnessModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5395,7 +5355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuyLongswordModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5989,7 +5949,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuyStaminaModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6480,7 +6440,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuySwiftnessModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6828,7 +6788,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1280538103606781258}
         m_TargetAssemblyTypeName: ShopManagerScript, Assembly-CSharp
-        m_MethodName: BuyToughnessModule
+        m_MethodName: Buy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6921,6 +6881,60 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1473772124928122709}
     m_Modifications:
+    - target: {fileID: 634778489, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_Color.a
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 634778489, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984527473, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_Color.a
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 984527473, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587232426, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: playerDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870232230, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_Color.a
+      value: 0.15686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870232230, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: WallSR
+      value: 
+      objectReference: {fileID: 2810267580162517682, guid: efccfadc7a601c8439ca35f0972b23e5,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: canUseCards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: projectileSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: repulsiveRadius
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: interactMask.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629417, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_RootOrder
@@ -6986,13 +7000,73 @@ PrefabInstance:
       propertyPath: Debugger
       value: 
       objectReference: {fileID: 1373090864}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: attackZone
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: groundDistance
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: attackZones.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: attackZones.Array.data[0]
+      value: 
+      objectReference: {fileID: 1473772123430538631}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: attackZones.Array.data[1]
+      value: 
+      objectReference: {fileID: 1473772123138296990}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: attackZones.Array.data[2]
+      value: 
+      objectReference: {fileID: 1473772124306179405}
     - target: {fileID: 7337217462935629423, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_Name
       value: --- PLAYER
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7337217463896534132, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1587232426, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+    - {fileID: 816218539448046990, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+--- !u!1 &1473772123138296990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 634778487, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473772123588526057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1473772123430538631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 984527470, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473772123588526057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1473772124306179405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1870232228, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473772123588526057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5226840899148185822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6699838829042073399, guid: d9d30125b4f2a6c47bb999c02a3ff083,
