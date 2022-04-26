@@ -43,6 +43,9 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool inAttackAnim;
 
     private float dashTimer;
+    private int dashAvailable; 
+    private float dashCDtimer; 
+
     [SerializeField] public bool canMove = true;
     
     [SerializeField] private SpriteAngle[] spriteArray;
@@ -75,6 +78,8 @@ public class Controller : MonoBehaviour
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
+    [SerializeField] int maxDash; 
+    [SerializeField] private float dashCD = 2f;
 
     
     [Header("--- DEBUG ---")] 
@@ -120,12 +125,13 @@ public class Controller : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody>();
         cardControl = GetComponent<CardsController>();
-
+        
         foreach (SpriteAngle SA in spriteArray)
         {
             spriteDictionary.Add(x => x < SA.angleInterval.max, SA);
         }
-        
+
+        dashAvailable = maxDash;
     }
 
     private void Update()
@@ -155,6 +161,18 @@ public class Controller : MonoBehaviour
             rb.velocity = (lastDir*dashCurve.Evaluate(dashTimer)*moveSpeed); 
             dashTimer += Time.deltaTime;
         }
+
+        if (dashAvailable < maxDash)
+        {
+            dashCDtimer += Time.deltaTime;
+            if (dashCDtimer >= dashCD)
+            {
+                dashCDtimer = 0;
+                dashAvailable++;
+            }
+        }
+
+        if (Debugger != null) Debugger.text = $"Dash Available : {dashAvailable}, CD : {dashCDtimer}";
         
         if(Input.GetAxis("Mouse ScrollWheel")> 0f) UIManager.Instance.ChangeCard(1);
         if(Input.GetAxis("Mouse ScrollWheel")< 0f) UIManager.Instance.ChangeCard(-1);
@@ -210,8 +228,9 @@ public class Controller : MonoBehaviour
     }
     void Dash()
     {
-        if (!dashing && canMove)
+        if (!dashing && canMove && dashAvailable > 0)
         {
+            dashAvailable--;
             dashing = true;
             dashTimer = 0;
             canMove = false;
@@ -250,8 +269,7 @@ public class Controller : MonoBehaviour
         {
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
-            if (Debugger != null)
-                Debugger.text = angleView.ToString();
+            //if (Debugger != null) Debugger.text = angleView.ToString();
             
             moveTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
