@@ -21,8 +21,9 @@ namespace AI
         [Header("Eye Spawning"), Space] 
         [SerializeField] private Vector2 eyePosOffset;
         [SerializeField] private GameObject eyeGameObject;
-        [SerializeField] private byte eyeCounter; 
-        
+        [SerializeField] private byte eyeCounter;
+        [SerializeField] private bool isPanic;
+
         #endregion
         
         protected override void Init()
@@ -65,6 +66,10 @@ namespace AI
             {
                 if (isAttacking)
                     return;
+                if (isPanic) return;
+                    
+                if (eyeCounter == 0) { StartCoroutine(PanicPhase(4f)); return; }
+                    
                 isAttacking = true;
                 
                 // Attack Pattern
@@ -94,6 +99,16 @@ namespace AI
                 else
                     e_sprite.flipX = false;
             }
+        }
+
+        private IEnumerator PanicPhase(float panicTime)
+        {
+            isPanic = true;
+            mageAnimator.SetBool("isPanic", isPanic);
+            yield return new WaitForSeconds(panicTime);
+            isPanic = false;
+            mageAnimator.SetBool("isPanic", isPanic);
+            eyeCounter = 3;
         }
 
         private IEnumerator DoAttack()

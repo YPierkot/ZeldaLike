@@ -57,7 +57,6 @@ namespace AI
         public void Update()
         {
             BehaviourAI();
-            //Debug.Log($"Sight range: {e_rangeSight}, distance with player: {Vector3.Distance(playerTransform.position, e_transform.position) < e_rangeSight}");
         }
         
         
@@ -98,9 +97,17 @@ namespace AI
             
         }
 
+        private IEnumerator waitDieAnim()
+        {
+            GetComponentInChildren<Animator>().SetBool("isDead", true);
+            yield return new WaitForSeconds(0.75f);
+            Destroy(gameObject);
+        }
+        
         protected void Die()
         {
-            Destroy(gameObject);
+            StartCoroutine(waitDieAnim());
+
             // ADD All other things
         }
         #endregion
@@ -132,12 +139,9 @@ namespace AI
         private IEnumerator fE()
         {
             Debug.Log("OUAIS çA FONCTIONNE LE SANG");
-            if (e_speed > 0)
-            {
-                e_speed -= 2;
-                yield return new WaitForSeconds(4f);
-                e_speed += 2;
-            }
+            e_speed /= 2;
+            yield return new WaitForSeconds(4.5f);
+            e_speed *= 2;
         }
         
 

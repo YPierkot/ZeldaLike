@@ -1,18 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
-
 
 public class ShopManagerScript : MonoBehaviour
 {
     #region ShopVariables
     //Variables
     public int ShopLevel = 1;
-    public float coins;
+    public int coins;
+    public int itemPriceLvl1 = 300;
+    public int itemPriceLvl2 = 600;
+    public int itemPriceLvl3 = 900;
     public bool isPlayerInRange;
     public bool isShopOpen;
     public GameObject[] iconsLvl1;
@@ -24,6 +27,8 @@ public class ShopManagerScript : MonoBehaviour
     public GameObject ShopUI;
     private PlayerStat _controller;
     public static ShopManagerScript instance;
+    private int moduleCost;
+
     #endregion
 
     private void Awake()
@@ -44,7 +49,37 @@ public class ShopManagerScript : MonoBehaviour
     
     public void BuySharpnessModule()
     {
-        _controller.UpgradeSharpness(ShopLevel);
+        int k = PlayerStat.instance.sharpnessModuleComposant;
+        switch (ShopLevel)
+        {
+            case 1: 
+                if (k == 1) moduleCost = itemPriceLvl1 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl1 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl1;
+                break;
+            case 2:
+                if (k == 1) moduleCost = itemPriceLvl2 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl2 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl2;
+                break;
+            case 3:
+                if (k == 1) moduleCost = itemPriceLvl3/ (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl3 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl3;
+                break;
+            default:
+                Debug.Log("CECI EST UN BOG -- VERIF CODE");
+                break;
+        }
+
+        if (coins > moduleCost) { _controller.UpgradeSharpness(ShopLevel); PlayerStat.instance.sharpnessModuleComposant -= k;}
+        else Debug.Log("Fond insufissants");
+
+        
+        moduleCost = 0;
     }
     
     public void BuyLongswordModule()
@@ -54,12 +89,66 @@ public class ShopManagerScript : MonoBehaviour
     
     public void BuyKnockbackModule()
     {
-        _controller.UpdateKB(ShopLevel);
+        int k = PlayerStat.instance.sharpnessModuleComposant;
+        switch (ShopLevel)
+        {
+            case 1: 
+                if (k == 1) moduleCost = itemPriceLvl1 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl1 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl1;
+                break;
+            case 2:
+                if (k == 1) moduleCost = itemPriceLvl2 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl2 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl2;
+                break;
+            case 3:
+                if (k == 1) moduleCost = itemPriceLvl3/ (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl3 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl3;
+                break;
+            default:
+                Debug.Log("CECI EST UN BOG -- VERIF CODE");
+                break;
+        }
+        
+        if (coins > moduleCost) { _controller.UpdateKB(ShopLevel); PlayerStat.instance.sharpnessModuleComposant -= k;}
+        else Debug.Log("Fond insufissants");
     }
     
     public void BuyToughnessModule()
     {
-        _controller.UpgradeToughness(ShopLevel);
+        int k = PlayerStat.instance.sharpnessModuleComposant;
+        switch (ShopLevel)
+        {
+            case 1: 
+                if (k == 1) moduleCost = itemPriceLvl1 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl1 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl1;
+                break;
+            case 2:
+                if (k == 1) moduleCost = itemPriceLvl2 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl2 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl2;
+                break;
+            case 3:
+                if (k == 1) moduleCost = itemPriceLvl3/ (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl3 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl3;
+                break;
+            default:
+                Debug.Log("CECI EST UN BOG -- VERIF CODE");
+                break;
+        }
+        
+        if (coins > moduleCost) {_controller.UpgradeToughness(ShopLevel); PlayerStat.instance.sharpnessModuleComposant -= k;}
+        else Debug.Log("Fond insufissants");
     }
     
     public void BuyThornModule()
@@ -69,7 +158,34 @@ public class ShopManagerScript : MonoBehaviour
      
     public void BuyRockModule()
     {
-        _controller.UpgradeRockness(ShopLevel);
+        int k = PlayerStat.instance.sharpnessModuleComposant;
+        switch (ShopLevel)
+        {
+            case 1: 
+                if (k == 1) moduleCost = itemPriceLvl1 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl1 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl1;
+                break;
+            case 2:
+                if (k == 1) moduleCost = itemPriceLvl2 / (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl2 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl2;
+                break;
+            case 3:
+                if (k == 1) moduleCost = itemPriceLvl3/ (1/3);
+                else if (k == 2) moduleCost = itemPriceLvl3 / (2/3);
+                else if (k == 3) moduleCost = 0;
+                else moduleCost = itemPriceLvl3;
+                break;
+            default:
+                Debug.Log("CECI EST UN BOG -- VERIF CODE");
+                break;
+        }
+        
+        if (coins > moduleCost) {_controller.UpgradeRockness(ShopLevel); PlayerStat.instance.sharpnessModuleComposant -= k;}
+        else Debug.Log("Fond insufissants");
     }
     
     public void BuySwiftnessModule()
