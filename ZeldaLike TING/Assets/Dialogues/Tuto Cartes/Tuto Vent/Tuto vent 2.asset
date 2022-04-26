@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Tuto vent 2
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Good, you got it.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Now, the back side works just like the fire one
+      delay: 0
+    - expressions: 0
+      name: 
+      line: But when you reactivate it pulls the debris towards the card.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: There, try and fix this crystal by pulling the pieces together.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 221c2dfdd1cc34640a5557703b7ba782, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I feel like you're treating me like a child.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You're no smarter than a child.
+      delay: 0
+    voiceLine: {fileID: 0}
