@@ -58,7 +58,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
-    [SerializeField] Transform moveCardTransform;
+    public Transform moveCardTransform;
     [SerializeField] Transform movePlayerTransform;
     private Vector3 lastDir;
     
@@ -76,7 +76,10 @@ public class Controller : MonoBehaviour
     [Header("--- ATTAQUE ---")] 
     public int attackCounter;
     [SerializeField] public bool setNextCombo;
-    [SerializeField] private GameObject[] attackZones;
+    [SerializeField] private GameObject[] keybordAttackZones;
+    [SerializeField] private GameObject[] controllerAttackZones;
+
+    private bool comboWaiting;
 
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
@@ -206,7 +209,7 @@ public class Controller : MonoBehaviour
             }
         }
 
-        if (Debugger != null) Debugger.text = $"Dash Available : {dashAvailable}, CD : {dashCDtimer}";
+        //if (Debugger != null) Debugger.text = $"Dash Available : {dashAvailable}, CD : {dashCDtimer}";
         
         if(Input.GetAxis("Mouse ScrollWheel")> 0f) UIManager.Instance.ChangeCard(1);
         if(Input.GetAxis("Mouse ScrollWheel")< 0f) UIManager.Instance.ChangeCard(-1);
@@ -288,7 +291,10 @@ public class Controller : MonoBehaviour
             if (!inAttack)
             {
                 animatorPlayer.SetBool("attackFinish", false);
+                setNextCombo = true;
                 StopCoroutine(ComboWait());
+                comboWaiting = false;
+                Debug.Log("STOP Wait");
                 canMove = false;
                 inAttack = true;
                 //nextCombo = false;
@@ -308,7 +314,7 @@ public class Controller : MonoBehaviour
         {
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
-            //if (Debugger != null) Debugger.text = angleView.ToString();
+            if (Debugger != null) Debugger.text = angleView.ToString();
             
             moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
@@ -329,9 +335,10 @@ public class Controller : MonoBehaviour
     }
     
     private void Animations()
-        {
-            var animDir = pointerPosition - transform.position;
-            animDir.Normalize();
+    {
+            Vector3 animDir;
+            if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
+            else animDir = -movePlayerTransform.forward ;
 
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
             if (animInfo.clip.name == "waitAttackState") inAttack = false;
@@ -339,24 +346,46 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetInteger("attackCounter", attackCounter);
             if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
             {
-                if(animInfo.clip.name.Contains("SLASH"))rb.AddForce(moveCardTransform.forward*-700);
-                attackZones[attackCounter-1].SetActive(true);
-                Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
+                if (animInfo.clip.name.Contains("SLASH"))
+                {
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -700);
+                    else rb.AddForce(movePlayerTransform.forward * -700);
+                }
+                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
+                else controllerAttackZones[attackCounter-1].SetActive(true);
+                //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
                 inAttack = true;
                 inAttackAnim = true;
                 setNextCombo = false;
                 //Debug.Log("Begin Attack");
+                StopCoroutine(ComboWait());
+                comboWaiting = false;
             }
             else if (animInfo.clip.name == "waitAttackState" && inAttackAnim)
             {
+                GameObject[] attackZones;
+                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) attackZones = keybordAttackZones;
+                else attackZones = controllerAttackZones;
                 foreach (var GO in attackZones)
                 {
                     GO.SetActive(false);
-                    Debug.Log("Desactive Attack Zone");
+                    //Debug.Log("Desactive Attack Zone");
                 }
-                if (!setNextCombo) StartCoroutine(ComboWait());
+
+                if (!setNextCombo && !comboWaiting)
+                {
+                    comboWaiting = true;
+                    StartCoroutine(ComboWait()); 
+                    Debug.Log("Combo Wait");
+                }
                     
                 inAttackAnim = false;
+            }
+            else if (animInfo.clip.name == "waitAttackState" && !inAttackAnim && !inAttack && !comboWaiting) 
+            { 
+                comboWaiting = true; 
+                StartCoroutine(ComboWait());
+                Debug.Log("Combo Wait");
             }
             
             if (!inAttack)
@@ -395,10 +424,11 @@ public class Controller : MonoBehaviour
 
     public IEnumerator ComboWait()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.15f);
         if (!inAttack)
         {
             animatorPlayer.SetBool("attackFinish", true);
+            Debug.Log("Attack Finish");
             attackCounter = 0;
             canMove = true;
         }
