@@ -34,6 +34,7 @@ public class FireCardTutorialManager : MonoBehaviour
                     switch (lianaSet)
                     {
                         case false:
+                            lianaSet = true;
                             lianas.transform.position = Controller.instance.transform.position;
                             break;
                     }
