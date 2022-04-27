@@ -1026,6 +1026,55 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1181648379931203166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2564886673121997627}
+  - component: {fileID: 5402016344100657027}
+  m_Layer: 0
+  m_Name: VolumeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2564886673121997627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181648379931203166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5143333523655655546}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5402016344100657027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181648379931203166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 27cd1a3aaf2bf43478267e80264f4602, type: 2}
 --- !u!1 &1332991332495471158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1542,8 @@ MonoBehaviour:
   cameraPoint: {fileID: 5226840899148185822}
   cameraSpeed: 1.5
   changePointSpeed: 0.3
+  changingPoint: 0
+  moveToPlayer: 0
 --- !u!1 &1473772124928122708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,6 +4213,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopLevel: 1
   coins: 600
+  itemPriceLvl1: 300
+  itemPriceLvl2: 600
+  itemPriceLvl3: 900
   isPlayerInRange: 0
   isShopOpen: 0
   iconsLvl1: []
@@ -5059,6 +5113,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1420927294199625769}
+  - {fileID: 2564886673121997627}
   m_Father: {fileID: 1473772124928122709}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5074,6 +5129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2896dd5e005038c43a23c60db06b3128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraController: {fileID: 1473772124496441878}
+  volumeManager: {fileID: 5402016344100657027}
   currentContorller: 0
 --- !u!1 &7081587193831323860
 GameObject:
@@ -6312,7 +6369,6 @@ MonoBehaviour:
   - {fileID: 1101833333799038660}
   - {fileID: 4345479382989275439}
   - {fileID: 312219032081009435}
-  MerchandInterfaceInUIManager: {fileID: 0}
 --- !u!1 &8785167084588536870
 GameObject:
   m_ObjectHideFlags: 0

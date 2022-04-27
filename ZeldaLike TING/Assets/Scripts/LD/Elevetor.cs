@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Elevetor : InteracteObject
 {
-    private BoxCollider collider;
+    [SerializeField] private BoxCollider collider;
     
     [Header("==== ELEVETOR ====")]
     [SerializeField] private Transform platform;

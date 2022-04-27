@@ -273,7 +273,7 @@ public class Controller : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, target) > 0.5f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, 0.01f);
+            transform.position = Vector3.MoveTowards(transform.position, target, 5 * Time.deltaTime);
         }
 
     }
@@ -361,7 +361,11 @@ public class Controller : MonoBehaviour
                     else rb.AddForce(movePlayerTransform.forward * -700);
                 }
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
-                else controllerAttackZones[attackCounter-1].SetActive(true);
+                else
+                {
+                    Debug.Log(attackCounter);
+                    controllerAttackZones[attackCounter-1].SetActive(true);
+                }
                 //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
                 inAttack = true;
                 inAttackAnim = true;
