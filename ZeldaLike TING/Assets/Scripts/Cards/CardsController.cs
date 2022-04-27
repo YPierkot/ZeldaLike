@@ -81,7 +81,7 @@ public class CardsController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Controller>();
-        canUseCards = false;
+        canUseCards = true;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
     }
