@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
     public CameraController cameraController;
+    public Volume volumeManager;
     public enum controller
     {
         Keybord, Xbox, ps
@@ -20,4 +22,9 @@ public class GameManager : MonoBehaviour
     
     
     public controller currentContorller;
+
+    public void TutorialWorld()
+    {
+        volumeManager.enabled = true;
+    }
 }

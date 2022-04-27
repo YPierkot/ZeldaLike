@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Elevetor : InteracteObject
 {
+    [SerializeField] private BoxCollider collider;
+    
     [Header("==== ELEVETOR ====")]
     [SerializeField] private Transform platform;
 
@@ -19,7 +21,7 @@ public class Elevetor : InteracteObject
     [Space] [SerializeField] private float boxHeight = 1;
 
     private int pointIndex = 0;
-    public System.Collections.Generic.List<Transform> eleveteList = new System.Collections.Generic.List<Transform>();
+    private System.Collections.Generic.List<Transform> eleveteList = new System.Collections.Generic.List<Transform>();
 
     private bool waiting;
     private bool moving;
@@ -27,6 +29,7 @@ public class Elevetor : InteracteObject
     void Start()
     {
        if(auto && canMove)Move();
+       collider = GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()
@@ -35,6 +38,7 @@ public class Elevetor : InteracteObject
         {
             Vector3 movement = (passPoint[pointIndex].position - platform.position).normalized * speed;
             platform.position += movement;
+            collider.center += movement;
             
             foreach (Transform obj in eleveteList)
             {
@@ -104,8 +108,8 @@ public class Elevetor : InteracteObject
        if(other.transform != platform) eleveteList.Add(other.transform);
     }
 
-    private void OnTriggerExit(Collider other) {
-        Debug.Log("ok");
+    private void OnTriggerExit(Collider other)
+    {
         eleveteList.Remove(other.transform);
     }
 }

@@ -15,6 +15,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private Transform ennemyParent;
     [SerializeField] private GameObject[] ennemies = new GameObject[2];
     private bool enemySpawn = true;
+    [SerializeField] private Transform fireCardCamera;
+    [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
 
     private void Awake()
     {
@@ -37,14 +39,14 @@ public class TutorialManager : MonoBehaviour
         if (DialogueManager.Instance.isPlayingDialogue == false)
         {
             remainingDialogues = dialogueQueue.Count;
-            Debug.Log(remainingDialogues);
+//            Debug.Log(remainingDialogues);
             switch (remainingDialogues)
             {
                 case 6 : 
                     Controller.instance.canMove = true;
                     GameManager.Instance.cameraController.ChangePoint(cameraPoint);
                     EnqueueDialogue();
-                    Invoke("ResetCamera", 4);
+                    Invoke("ResetCamera", 6);
                     break;
                 case 5 :
                     break;
@@ -62,15 +64,17 @@ public class TutorialManager : MonoBehaviour
                     if (ennemyParent.childCount == 0)
                     {
                         EnqueueDialogue();
-                        Controller.instance.canMove = false;
                     }
                     break;
                 case 3 :
+                    break;
+                case 2 :
                     Controller.instance.canMove = true;
+                    GameManager.Instance.TutorialWorld();
+                    EnqueueDialogue();
                     break;
-                case 2 : 
-                    break;
-                case 1 : 
+                case 1 :
+                    FireCardTutorialManager.canStart = true;
                     break;
                 case 0 : 
                     break;
@@ -86,7 +90,12 @@ public class TutorialManager : MonoBehaviour
                     GameManager.Instance.cameraController.ChangePoint(cameraPoint);
                     Controller.instance.ForceMove(prisonPosition.position);
                     break;
+                case 3 :
+                    Controller.instance.canMove = false;
+                    break;
             }
+
+            
         }
         
         
