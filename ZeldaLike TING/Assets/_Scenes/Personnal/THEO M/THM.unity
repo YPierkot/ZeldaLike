@@ -165,7 +165,6 @@ GameObject:
   - component: {fileID: 40011303}
   - component: {fileID: 40011302}
   - component: {fileID: 40011301}
-  - component: {fileID: 40011300}
   - component: {fileID: 40011299}
   m_Layer: 0
   m_Name: Waypoint (16)
@@ -194,20 +193,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &40011300
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40011298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &40011301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -491,7 +476,6 @@ GameObject:
   - component: {fileID: 63345821}
   - component: {fileID: 63345820}
   - component: {fileID: 63345819}
-  - component: {fileID: 63345818}
   - component: {fileID: 63345817}
   m_Layer: 0
   m_Name: Waypoint (13)
@@ -520,20 +504,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &63345818
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63345816}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &63345819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -652,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &117183779
 BoxCollider:
@@ -858,8 +828,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173382119}
   m_LocalRotation: {x: 1.110223e-17, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.437809, y: 16.32641, z: -34.061493}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 21.2776, y: 16.3264, z: -34.061493}
+  m_LocalScale: {x: 1.2179807, y: 0.0894, z: 1.0959}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1991644315}
@@ -1184,7 +1154,6 @@ GameObject:
   - component: {fileID: 185701803}
   - component: {fileID: 185701802}
   - component: {fileID: 185701801}
-  - component: {fileID: 185701800}
   - component: {fileID: 185701799}
   m_Layer: 0
   m_Name: Waypoint (12)
@@ -1213,20 +1182,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &185701800
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185701798}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &185701801
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1422,7 +1377,6 @@ GameObject:
   - component: {fileID: 190552682}
   - component: {fileID: 190552681}
   - component: {fileID: 190552680}
-  - component: {fileID: 190552679}
   - component: {fileID: 190552678}
   m_Layer: 0
   m_Name: Waypoint (5)
@@ -1451,20 +1405,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &190552679
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190552677}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &190552680
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1877,7 +1817,6 @@ GameObject:
   - component: {fileID: 367282683}
   - component: {fileID: 367282682}
   - component: {fileID: 367282681}
-  - component: {fileID: 367282680}
   - component: {fileID: 367282679}
   m_Layer: 0
   m_Name: Waypoint (7)
@@ -1906,20 +1845,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &367282680
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367282678}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &367282681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1991,7 +1916,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-103650
+  m_Name: pb_Mesh40264
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2196,7 +2121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &480794502
 BoxCollider:
@@ -2272,7 +2197,6 @@ GameObject:
   - component: {fileID: 502736093}
   - component: {fileID: 502736092}
   - component: {fileID: 502736091}
-  - component: {fileID: 502736090}
   - component: {fileID: 502736089}
   m_Layer: 0
   m_Name: Waypoint (17)
@@ -2301,20 +2225,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &502736090
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502736088}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &502736091
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2409,8 +2319,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507034659}
   m_LocalRotation: {x: 1.110223e-17, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.431892, y: 16.32641, z: -42.443493}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 24.1687, y: 16.3264, z: -42.443493}
+  m_LocalScale: {x: 1.2514037, y: 0.0894, z: 1.3298838}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1991644315}
@@ -3046,6 +2956,170 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568180327}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!43 &573502198
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: pb_Mesh39792
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: -0.5421448, y: 0.6437972, z: 0.490757}
+      m_Extent: {x: 0.5421448, y: 0.6437972, z: 0.4907565}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 40
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 1152
+    _typelessdata: 00ca8abf0000000078447b3f00000000000000000000803f000080bf0000000000000000000080bf00ca8a3f00000000000000000000000078447b3f00000000000000000000803f000080bf0000000000000000000080bf000000000000000000ca8abfe5cfa43f78447b3f00000000000000000000803f000080bf0000000000000000000080bf00ca8a3fe5cfa43f00000000e5cfa43f78447b3f00000000000000000000803f000080bf0000000000000000000080bf00000000e5cfa43f000000000000000078447b3f0000803f000000000000000000000000000000000000803f000080bf78447b3f000000000000000000000000000000350000803f000000000000000000000000000000000000803f000080bf000000350000000000000000e5cfa43f78447b3f0000803f000000000000000000000000000000000000803f000080bf78447b3fe5cfa43f00000000e5cfa43f000000350000803f000000000000000000000000000000000000803f000080bf00000035e5cfa43f0000000000000000000000350000000000000000000080bf0000803f0000000000000000000080bf000000000000000000ca8abf00000000000000350000000000000000000080bf0000803f0000000000000000000080bf00ca8abf0000000000000000e5cfa43f000000350000000000000000000080bf0000803f0000000000000000000080bf00000000e5cfa43f00ca8abfe5cfa43f000000350000000000000000000080bf0000803f0000000000000000000080bf00ca8abfe5cfa43f00ca8abf0000000000000035000080bf00000000000000000000000000000000000080bf000080bf000000b50000000000ca8abf0000000078447b3f000080bf00000000000000000000000000000000000080bf000080bf78447bbf0000000000ca8abfe5cfa43f00000035000080bf00000000000000000000000000000000000080bf000080bf000000b5e5cfa43f00ca8abfe5cfa43f78447b3f000080bf00000000000000000000000000000000000080bf000080bf78447bbfe5cfa43f00ca8abfe5cfa43f78447b3f000000000000803f000000000000803f0000000000000000000080bf00ca8abf78447b3f00000000e5cfa43f78447b3f000000000000803f000000000000803f0000000000000000000080bf0000000078447b3f00ca8abfe5cfa43f00000035000000000000803f000000000000803f0000000000000000000080bf00ca8abf0000003500000000e5cfa43f00000035000000000000803f000000000000803f0000000000000000000080bf000000000000003500ca8abf000000000000003500000000000080bf00000000000080bf0000000000000000000080bf00ca8a3f0000003500000000000000000000003500000000000080bf00000000000080bf0000000000000000000080bf000000000000003500ca8abf0000000078447b3f00000000000080bf00000000000080bf0000000000000000000080bf00ca8a3f78447b3f000000000000000078447b3f00000000000080bf00000000000080bf0000000000000000000080bf0000000078447b3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -0.5421448, y: 0.6437972, z: 0.490757}
+    m_Extent: {x: 0.5421448, y: 0.6437972, z: 0.4907565}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &646429627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,8 +3149,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646429627}
   m_LocalRotation: {x: 1.110223e-17, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.149979, y: 16.326412, z: -36.51085}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 17.149979, y: 16.3264, z: -36.7685}
+  m_LocalScale: {x: 1.085, y: 0.0894, z: 1.2722222}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1991644315}
@@ -3729,7 +3803,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-106604
+  m_Name: pb_Mesh39542
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3934,7 +4008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &757800006
 BoxCollider:
@@ -4238,7 +4312,7 @@ Transform:
   m_GameObject: {fileID: 809090683}
   m_LocalRotation: {x: 1.110223e-17, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 24.055729, y: 16.32641, z: -39.51203}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.0894, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1991644315}
@@ -4257,7 +4331,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1592963992}
+  m_Mesh: {fileID: 573502198}
 --- !u!33 &809090686
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -4265,7 +4339,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809090683}
-  m_Mesh: {fileID: 1592963992}
+  m_Mesh: {fileID: 573502198}
 --- !u!23 &809090687
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4546,8 +4620,8 @@ MonoBehaviour:
     m_AreaError: 15
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
-  m_Mesh: {fileID: 1592963992}
-  m_VersionIndex: 658
+  m_Mesh: {fileID: 573502198}
+  m_VersionIndex: 661
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4599,7 +4673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &856617831
 BoxCollider:
@@ -4675,7 +4749,6 @@ GameObject:
   - component: {fileID: 915914371}
   - component: {fileID: 915914370}
   - component: {fileID: 915914369}
-  - component: {fileID: 915914368}
   - component: {fileID: 915914367}
   m_Layer: 0
   m_Name: Waypoint (6)
@@ -4704,20 +4777,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &915914368
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915914366}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &915914369
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4976,7 +5035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1081128722
 BoxCollider:
@@ -5097,7 +5156,6 @@ GameObject:
   - component: {fileID: 1098117422}
   - component: {fileID: 1098117426}
   - component: {fileID: 1098117425}
-  - component: {fileID: 1098117424}
   - component: {fileID: 1098117423}
   m_Layer: 0
   m_Name: Waypoint (22)
@@ -5141,20 +5199,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1098117424
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098117421}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1098117425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5328,7 +5372,6 @@ GameObject:
   - component: {fileID: 1111240086}
   - component: {fileID: 1111240085}
   - component: {fileID: 1111240084}
-  - component: {fileID: 1111240083}
   - component: {fileID: 1111240082}
   m_Layer: 0
   m_Name: Waypoint (10)
@@ -5357,20 +5400,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1111240083
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111240081}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1111240084
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5514,7 +5543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1161378028
 BoxCollider:
@@ -6155,7 +6184,6 @@ GameObject:
   - component: {fileID: 1304773279}
   - component: {fileID: 1304773278}
   - component: {fileID: 1304773277}
-  - component: {fileID: 1304773276}
   - component: {fileID: 1304773275}
   m_Layer: 0
   m_Name: Waypoint (11)
@@ -6184,20 +6212,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1304773276
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304773274}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1304773277
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6310,7 +6324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1361438284
 BoxCollider:
@@ -6381,7 +6395,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-107366
+  m_Name: pb_Mesh39714
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6729,7 +6743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1418430250
 BoxCollider:
@@ -6805,7 +6819,6 @@ GameObject:
   - component: {fileID: 1430103639}
   - component: {fileID: 1430103638}
   - component: {fileID: 1430103637}
-  - component: {fileID: 1430103636}
   - component: {fileID: 1430103635}
   m_Layer: 0
   m_Name: Waypoint (14)
@@ -6834,20 +6847,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1430103636
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430103634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1430103637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7043,7 +7042,6 @@ GameObject:
   - component: {fileID: 1473417118}
   - component: {fileID: 1473417117}
   - component: {fileID: 1473417116}
-  - component: {fileID: 1473417115}
   - component: {fileID: 1473417114}
   m_Layer: 0
   m_Name: Waypoint (18)
@@ -7072,20 +7070,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1473417115
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473417113}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1473417116
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7198,7 +7182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1479953974
 BoxCollider:
@@ -7478,7 +7462,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-108368
+  m_Name: pb_Mesh39666
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7647,7 +7631,6 @@ GameObject:
   - component: {fileID: 1574264392}
   - component: {fileID: 1574264396}
   - component: {fileID: 1574264395}
-  - component: {fileID: 1574264394}
   - component: {fileID: 1574264393}
   m_Layer: 0
   m_Name: Waypoint (15)
@@ -7690,21 +7673,7 @@ MonoBehaviour:
   OnBlockEnter:
     m_PersistentCalls:
       m_Calls: []
-  canSetWaypoint: 1
---- !u!136 &1574264394
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574264391}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  canSetWaypoint: 0
 --- !u!23 &1574264395
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7766,7 +7735,6 @@ GameObject:
   - component: {fileID: 1590855609}
   - component: {fileID: 1590855613}
   - component: {fileID: 1590855612}
-  - component: {fileID: 1590855611}
   - component: {fileID: 1590855610}
   m_Layer: 0
   m_Name: Waypoint (21)
@@ -7810,20 +7778,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1590855611
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590855608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1590855612
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7874,170 +7828,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590855608}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!43 &1592963992
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-105722
-  serializedVersion: 10
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 24
-    localAABB:
-      m_Center: {x: -0.5421448, y: 0.6437972, z: 0.490757}
-      m_Extent: {x: 0.5421448, y: 0.6437972, z: 0.4907565}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000001000200010003000200040005000600050007000600080009000a0009000b000a000c000d000e000d000f000e00100011001200110013001200140015001600150017001600
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 24
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 24
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 40
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 1152
-    _typelessdata: 00ca8abf0000000078447b3f00000000000000000000803f000080bf0000000000000000000080bf00ca8a3f00000000000000000000000078447b3f00000000000000000000803f000080bf0000000000000000000080bf000000000000000000ca8abfe5cfa43f78447b3f00000000000000000000803f000080bf0000000000000000000080bf00ca8a3fe5cfa43f00000000e5cfa43f78447b3f00000000000000000000803f000080bf0000000000000000000080bf00000000e5cfa43f000000000000000078447b3f0000803f000000000000000000000000000000000000803f000080bf78447b3f000000000000000000000000000000350000803f000000000000000000000000000000000000803f000080bf000000350000000000000000e5cfa43f78447b3f0000803f000000000000000000000000000000000000803f000080bf78447b3fe5cfa43f00000000e5cfa43f000000350000803f000000000000000000000000000000000000803f000080bf00000035e5cfa43f0000000000000000000000350000000000000000000080bf0000803f0000000000000000000080bf000000000000000000ca8abf00000000000000350000000000000000000080bf0000803f0000000000000000000080bf00ca8abf0000000000000000e5cfa43f000000350000000000000000000080bf0000803f0000000000000000000080bf00000000e5cfa43f00ca8abfe5cfa43f000000350000000000000000000080bf0000803f0000000000000000000080bf00ca8abfe5cfa43f00ca8abf0000000000000035000080bf00000000000000000000000000000000000080bf000080bf000000b50000000000ca8abf0000000078447b3f000080bf00000000000000000000000000000000000080bf000080bf78447bbf0000000000ca8abfe5cfa43f00000035000080bf00000000000000000000000000000000000080bf000080bf000000b5e5cfa43f00ca8abfe5cfa43f78447b3f000080bf00000000000000000000000000000000000080bf000080bf78447bbfe5cfa43f00ca8abfe5cfa43f78447b3f000000000000803f000000000000803f0000000000000000000080bf00ca8abf78447b3f00000000e5cfa43f78447b3f000000000000803f000000000000803f0000000000000000000080bf0000000078447b3f00ca8abfe5cfa43f00000035000000000000803f000000000000803f0000000000000000000080bf00ca8abf0000003500000000e5cfa43f00000035000000000000803f000000000000803f0000000000000000000080bf000000000000003500ca8abf000000000000003500000000000080bf00000000000080bf0000000000000000000080bf00ca8a3f0000003500000000000000000000003500000000000080bf00000000000080bf0000000000000000000080bf000000000000003500ca8abf0000000078447b3f00000000000080bf00000000000080bf0000000000000000000080bf00ca8a3f78447b3f000000000000000078447b3f00000000000080bf00000000000080bf0000000000000000000080bf0000000078447b3f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: -0.5421448, y: 0.6437972, z: 0.490757}
-    m_Extent: {x: 0.5421448, y: 0.6437972, z: 0.4907565}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!4 &1666960065 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1412246624789801760, guid: 2468ca0e25e6bea42aa28085692fa70d,
@@ -8475,7 +8265,6 @@ GameObject:
   - component: {fileID: 1766774947}
   - component: {fileID: 1766774946}
   - component: {fileID: 1766774945}
-  - component: {fileID: 1766774944}
   - component: {fileID: 1766774943}
   m_Layer: 0
   m_Name: Waypoint (4)
@@ -8504,20 +8293,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1766774944
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766774942}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1766774945
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8748,7 +8523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1816374914
 BoxCollider:
@@ -8860,7 +8635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &1837608148
 BoxCollider:
@@ -8936,7 +8711,6 @@ GameObject:
   - component: {fileID: 1877322764}
   - component: {fileID: 1877322763}
   - component: {fileID: 1877322762}
-  - component: {fileID: 1877322761}
   - component: {fileID: 1877322760}
   m_Layer: 0
   m_Name: Waypoint (19)
@@ -8965,20 +8739,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1877322761
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877322759}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1877322762
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9070,7 +8830,7 @@ PrefabInstance:
         type: 3}
       propertyPath: currentWaypoint
       value: 
-      objectReference: {fileID: 1766774943}
+      objectReference: {fileID: 1574264393}
     - target: {fileID: 1345401524210679413, guid: e30b2a9b521ef324699c37c74c3b2491,
         type: 3}
       propertyPath: m_Name
@@ -9166,7 +8926,6 @@ GameObject:
   - component: {fileID: 1926370473}
   - component: {fileID: 1926370472}
   - component: {fileID: 1926370471}
-  - component: {fileID: 1926370470}
   - component: {fileID: 1926370469}
   m_Layer: 0
   m_Name: Waypoint (8)
@@ -9195,20 +8954,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1926370470
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926370468}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1926370471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9423,7 +9168,6 @@ GameObject:
   - component: {fileID: 1978204959}
   - component: {fileID: 1978204958}
   - component: {fileID: 1978204957}
-  - component: {fileID: 1978204956}
   - component: {fileID: 1978204955}
   m_Layer: 0
   m_Name: Waypoint (9)
@@ -9452,20 +9196,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &1978204956
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978204954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1978204957
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9829,8 +9559,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026799872}
   m_LocalRotation: {x: 1.110223e-17, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.10981, y: 16.32641, z: -42.594948}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 17.10981, y: 16.3264, z: -42.594948}
+  m_LocalScale: {x: 1.1566, y: 0.0894, z: 1.047}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1991644315}
@@ -10155,7 +9885,6 @@ GameObject:
   - component: {fileID: 2040558676}
   - component: {fileID: 2040558675}
   - component: {fileID: 2040558674}
-  - component: {fileID: 2040558673}
   - component: {fileID: 2040558672}
   m_Layer: 0
   m_Name: Waypoint (20)
@@ -10184,20 +9913,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   canSetWaypoint: 1
---- !u!136 &2040558673
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040558671}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2040558674
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10310,7 +10025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce9987394c56d14d8508d623ba1ce9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plateType: 0
+  plateType: 1
   isActivate: 0
 --- !u!65 &2044594230
 BoxCollider:

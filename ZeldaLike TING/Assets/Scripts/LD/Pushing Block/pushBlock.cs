@@ -51,7 +51,7 @@ public class pushBlock : InteracteObject
             
             Vector2 cardPosVector = new Vector2(card.transform.position.x - transform.position.x, card.transform.position.z - transform.position.z).normalized;
             Vector2 intCardPosVector = new Vector2(Mathf.Round(cardPosVector.x),Mathf.Round(cardPosVector.y));
-            Debug.Log($"player:{card.transform.position}, block:{transform.position} goes  {intCardPosVector}, vector.up: {Vector2.up}");
+            //Debug.Log($"player:{card.transform.position}, block:{transform.position} goes  {intCardPosVector}, vector.up: {Vector2.up}");
             
             /*float angle = Vector2.Angle(Vector2.right, cardPosVector);
             if (angle < 0) angle = 360 + angle;
