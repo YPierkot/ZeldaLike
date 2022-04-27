@@ -14,7 +14,7 @@ public class CardsController : MonoBehaviour
     
     [Header("FireCard")]
     public bool canUseFireCard;
-    public static bool isFireGround;
+    public bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
     [HideInInspector] public bool fireRectoUse;
     [HideInInspector] public bool fireCardUnlock; 
@@ -93,11 +93,12 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: FireballShortRange(); break;
-            case CardsState.Ice: IceShortRange(); break;
-            case CardsState.Wall: WallShortRange(); break;
-            case CardsState.Wind: WindShortRange(); break;
+            case CardsState.Fire: fireRectoUse = true; FireballShortRange(); break;
+            case CardsState.Ice: iceRectoUse = true; IceShortRange(); break;
+            case CardsState.Wall: wallRectoUse = true; WallShortRange(); break;
+            case CardsState.Wind: windRectoUse = true; WindShortRange(); break;
         }
+        UIManager.Instance.UpdateCardUI();
     }
 
     public void LongRange()
@@ -107,11 +108,12 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: FireballLongRange(); break;
-            case CardsState.Ice:  IceLongRange(); break;
-            case CardsState.Wall: WallLongRange(); break;
-            case CardsState.Wind: WindLongRange(); break;
+            case CardsState.Fire: fireRectoUse = false; FireballLongRange(); break;
+            case CardsState.Ice: iceRectoUse = false; IceLongRange(); break;
+            case CardsState.Wall: wallRectoUse = false; WallLongRange(); break;
+            case CardsState.Wind: windRectoUse = false; WindLongRange(); break;
         }
+        UIManager.Instance.UpdateCardUI();
     }
     public void LongRangeRecast()
     {
@@ -125,6 +127,8 @@ public class CardsController : MonoBehaviour
             case CardsState.Wall: if(!canUseWallCard) WallLongRange(); break;
             case CardsState.Wind: if(!canUseWindCard) WindLongRange(); break;
         }
+        
+        UIManager.Instance.UpdateCardUI();
     }
 
     #region CardEffectsLongRange
@@ -384,7 +388,7 @@ public class CardsController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(4f);
-        
+        UIManager.Instance.UpdateCardUI();
         switch (cardType)
         {
             case 1: canUseFireCard = true; break;
@@ -393,6 +397,7 @@ public class CardsController : MonoBehaviour
             case 4: canUseWindCard = true; break;
             default: break;
         }
+        UIManager.Instance.UpdateCardUI();
     }
 
     private void OnDrawGizmos()
