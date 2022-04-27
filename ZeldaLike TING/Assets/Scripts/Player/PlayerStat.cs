@@ -1,21 +1,20 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
    public static PlayerStat instance;
    private Controller _control;
-   [SerializeField] private AttackControl _atkControl;
-   
-   
+   [SerializeField] private GameObject[] attackCol1;
+   [SerializeField] private GameObject[] attackCol2;
+
    [Header("LIFE")]
    [SerializeField] private int lifeMax;
    [SerializeField] private int life;
-   
-   
-   [Header("Debug")] 
-   
+
+   [Header("Debug")]
    [SerializeField] private CameraShakeScriptable HitShake;
 
    
@@ -29,7 +28,7 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] public int swiftnessModuleComposant;
    [SerializeField] public int staminaModuleComposant;
 
-   [Header("Stats for modules")] 
+   [Header("Stats for modules")]
    [SerializeField] public float toughnessValue = 0.3f; // Duration u can't take dmg
    [SerializeField] public int attackDamageValue = 1;
    [SerializeField] public float moveSpeedValue = 100; // Player MS
@@ -46,6 +45,8 @@ public class PlayerStat : MonoBehaviour
       attackDamageValue = 1;
       moveSpeedValue = 100;
       repulseForce = 25;
+      
+      UpdateAttackStats();
    }
 
    private void Start()
@@ -120,6 +121,8 @@ public class PlayerStat : MonoBehaviour
          default:
             break;
       }
+      
+      UpdateAttackStats();
    }
 
    public void UpgradeSharpness(int level)
@@ -135,7 +138,8 @@ public class PlayerStat : MonoBehaviour
          default:
             break;
       }
-      _atkControl.UpdateAttackStats();
+
+      UpdateAttackStats();
    }
 
    public void UpgradeSwiftness(int level)
@@ -171,7 +175,7 @@ public class PlayerStat : MonoBehaviour
 
    public void UpgradeStamina(int level)
    {
-      // Theo tu le fera wallah
+      
    }
 
    public void UpdgradeThorn(int level)
@@ -184,5 +188,21 @@ public class PlayerStat : MonoBehaviour
       
    }
    #endregion
-   
+
+   void UpdateAttackStats()
+   {
+      for (int i = 0; i < attackCol1.Length; i++)
+      {
+         AttackControl attackControl = attackCol1[i].GetComponent<AttackControl>();
+         attackControl.playerDamage = attackDamageValue;
+         attackControl.repusleEnnemyForce = repulseForce;
+      }
+
+      for (int i = 0; i < attackCol2.Length; i++)
+      {
+         AttackControl attackControl = attackCol1[i].GetComponent<AttackControl>();
+         attackControl.playerDamage = attackDamageValue;
+         attackControl.repusleEnnemyForce = repulseForce;
+      }
+   }
 }
