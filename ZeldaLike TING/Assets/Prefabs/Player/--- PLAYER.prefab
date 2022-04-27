@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
   playerDamage: 0
+  repusleEnnemyForce: 0
 --- !u!1 &689773535
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
   playerDamage: 0
+  repusleEnnemyForce: 0
 --- !u!1 &1145041873
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
   playerDamage: 0
+  repusleEnnemyForce: 0
 --- !u!1 &1318520794
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   control: {fileID: 7337217462935629418}
   playerDamage: 0
+  repusleEnnemyForce: 0
 --- !u!1 &1182756043373388700
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,18 +964,19 @@ MonoBehaviour:
   lifeMax: 6
   life: 0
   HitShake: {fileID: 11400000, guid: fdb7dddd4478ba54ba13be9ee408d09c, type: 2}
-  sharpnessModuleLevel: 0
-  longSwordModuleLevel: 0
-  knockbackModuleLevel: 0
-  toughnessModuleLevel: 0
-  thornModuleLevel: 0
-  rockModuleLevel: 0
-  swiftnessModuleLevel: 0
-  staminaModuleLevel: 0
+  sharpnessModuleComposant: 0
+  longSwordModuleComposant: 0
+  knockbackModuleComposant: 0
+  toughnessModuleComposant: 0
+  thornModuleComposant: 0
+  rockModuleComposant: 0
+  swiftnessModuleComposant: 0
+  staminaModuleComposant: 0
   toughnessValue: 0.3
   attackDamageValue: 1
   moveSpeedValue: 100
   repulseForce: 25
+  enemyKBForce: 3
 --- !u!114 &7337217462935629415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1260,7 +1265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8483277797745064702}
   m_LocalRotation: {x: -0.0012790824, y: -0.957962, z: 0.28689215, w: -0.00038306185}
-  m_LocalPosition: {x: 0, y: 4.345001, z: -6.45}
+  m_LocalPosition: {x: 0, y: 5.16, z: -6.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
