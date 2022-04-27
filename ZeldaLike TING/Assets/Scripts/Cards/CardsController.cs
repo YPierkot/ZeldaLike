@@ -16,12 +16,16 @@ public class CardsController : MonoBehaviour
     public bool canUseFireCard;
     public static bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
+    [HideInInspector] public bool fireRectoUse;
+    [HideInInspector] public bool fireCardUnlock; 
     
     // IceCard
     [Header("Ice Card")] 
     public bool canUseIceCard;
     public static bool isIceGround;
     public GameObject iceCardGrounded;
+    [HideInInspector] public bool iceRectoUse;
+    [HideInInspector] public bool iceCardUnlock;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
@@ -29,6 +33,8 @@ public class CardsController : MonoBehaviour
     public static bool isWallGround;
     public GameObject wallCardGrounded;
     public GameObject WallSR;
+    [HideInInspector] public bool wallRectoUse;
+    [HideInInspector] public bool wallCardUnlock;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
@@ -40,6 +46,8 @@ public class CardsController : MonoBehaviour
     [SerializeField] float repulsiveRadius = 4.5f;
     [SerializeField] Vector3 repulsivePoint;
     public GameObject DebugWindSphere;
+    [HideInInspector] public bool windRectoUse;
+    [HideInInspector] public bool windCardUnlock;
     
     [Space(10)] // Wind Card
     [Header("Utilities")] 
