@@ -4,14 +4,10 @@ using UnityEngine;
 public class AttackControl : MonoBehaviour
 {
     [SerializeField] Controller control;
-    [SerializeField] private int playerDamage;
-    [SerializeField] private float repusleEnnemyForce;
+    private PlayerStat playerStat;
+    [SerializeField] public int playerDamage = 1;
+    [SerializeField] public float repusleEnnemyForce = 3;
     
-    
-    private void Awake()
-    {
-        UpdateAttackStats();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -45,13 +41,4 @@ public class AttackControl : MonoBehaviour
             }
         }
     }
-
-    public void UpdateAttackStats()
-    {
-        PlayerStat playerStat = PlayerStat.instance;
-        
-        playerDamage = playerStat.attackDamageValue;
-        repusleEnnemyForce = playerStat.enemyKBForce;
-    }
-    
 }
