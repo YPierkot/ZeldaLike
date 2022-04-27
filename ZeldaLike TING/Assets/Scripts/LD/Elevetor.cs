@@ -108,8 +108,8 @@ public class Elevetor : InteracteObject
        if(other.transform != platform) eleveteList.Add(other.transform);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
+    private void OnTriggerExit(Collider other) {
+        Debug.Log("ok");
         eleveteList.Remove(other.transform);
     }
 }

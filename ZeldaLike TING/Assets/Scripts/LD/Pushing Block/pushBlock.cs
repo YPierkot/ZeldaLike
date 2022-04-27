@@ -32,10 +32,11 @@ public class pushBlock : InteracteObject
             {
                 Debug.Log($"Stop move, distance:{Vector3.Distance(transform.position, newWaypoint.transform.position)}");
                 move = false;
-                newWaypoint.OnBlockEnter.Invoke();
                 transform.position = newWaypoint.transform.position;
                 currentWaypoint = newWaypoint;
+                pushWayPoint actualNewWaitpoint = newWaypoint;
                 newWaypoint = null;
+                actualNewWaitpoint.OnBlockEnter.Invoke();
                 return;
             }
             
@@ -93,4 +94,6 @@ public class pushBlock : InteracteObject
             move = true;
         }
     }
+
+    public void MoveWaytpointGravity() => MoveWaypoint(Side.bot);
 }
