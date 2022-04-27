@@ -332,7 +332,7 @@ public class CardsController : MonoBehaviour
     public void ActivateWindGroundEffect() // OK
     {
         repulsivePoint = transform.position;
-        Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
+        if(DebugWindSphere != null)Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
         Collider[] cols = Physics.OverlapSphere(transform.position, repulsiveRadius);
         foreach (var col in cols)
         {
