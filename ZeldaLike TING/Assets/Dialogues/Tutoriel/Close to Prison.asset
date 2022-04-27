@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Close to Prison
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: 'It is so beautiful, so shiny... '
+      delay: 0
+    - expressions: 2
+      name: 
+      line: Wooooow
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: FINALLY ! After centuries of patience,
+      delay: 0
+    - expressions: 4
+      name: 
+      line: I am finally freed ! Can I...
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: My magic still works ! I haven't forgotten !
+      delay: 0
+    - expressions: 4
+      name: 
+      line: Thank you for breaking the spell young fool.
+      delay: 0
+    - expressions: 4
+      name: 
+      line: 'Thank you for summoning me again in this '
+      delay: 0
+    - expressions: 4
+      name: 
+      line: World who forgot me.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: 'Well done human, you just brought the world '
+      delay: 0
+    - expressions: 4
+      name: 
+      line: To its collapse.
+      delay: 0
+    - expressions: 4
+      name: 
+      line: Well, you're a man, I shouldn't be suprised.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: Who's there ?!
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Me. Let me introduce myself, Mist, '
+      delay: 0
+    - expressions: 4
+      name: 
+      line: "I\u2019m a spirit and your new journeyman "
+      delay: 0
+    - expressions: 4
+      name: 
+      line: for the rest of your life.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: What do you mean? Spirits?
+      delay: 0
+    - expressions: 2
+      name: 
+      line: "I\u2019ve never heard of them."
+      delay: 0
+    - expressions: 3
+      name: 
+      line: "And what if I don\u2019t want you to be my journeyman?"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: You talk as if you had a choice human,
+      delay: 0
+    - expressions: 4
+      name: 
+      line: As you freed me from the prison with the wizard,
+      delay: 0
+    - expressions: 4
+      name: 
+      line: ' I cursed you,  I live in your head, rent free'
+      delay: 0
+    - expressions: 4
+      name: 
+      line: "And you can\u2019t do anything about it "
+      delay: 0
+    - expressions: 4
+      name: 
+      line: until I decide to abandon you.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: What do you mean a curse!?
+      delay: 0
+    - expressions: 3
+      name: 
+      line: "You better not do that or I\u2019m going to beat you up!"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: "I don\u2019t quite think you have time for that human"
+      delay: 0
+    - expressions: 4
+      name: 
+      line: My brothers and sisters are joining the party.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 3
+      name: 
+      line: "This is only a postponement\u2026"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Only talk, and no action.
+      delay: 0
+    voiceLine: {fileID: 0}

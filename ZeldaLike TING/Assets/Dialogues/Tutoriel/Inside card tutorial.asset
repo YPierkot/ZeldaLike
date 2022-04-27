@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Inside card tutorial
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: "Where are we? What\u2019d you do to me?"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I created a projection inside your head.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "In other words, you\u2019re in a dream and you\u2019re going"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: to use it to learn to master this card.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: A dream? And what if I think about unicorns?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Will they appear?
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 1
+      name: 
+      line: Focus please.
+      delay: 0
+    voiceLine: {fileID: 0}

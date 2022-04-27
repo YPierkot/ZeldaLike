@@ -19,17 +19,13 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private List<DialogueLine> StoppedDialogue;
     [SerializeField] private List<DialogueScriptable> ThievesLairMS;
     [SerializeField] private List<DialogueScriptable> ClearingRune;
-    private bool isPlayingDialogue;
+    public bool isPlayingDialogue;
     private int dialogueMistKellTimer = 30;
     private float timeSinceLastDialogue;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Debug.Log("je lance l'instance"); // sacha t'es une merde a débug toutes les 3 lignes et pas suppr quand c'est bn
-            Instance = this;
-        }
+        Instance = this;
         
         sentences = new Queue<string>();
         timeSinceLastDialogue = Time.time;
@@ -48,16 +44,15 @@ public class DialogueManager : MonoBehaviour
 
     public void AssignDialogue(List<DialogueLine> dialogue)
     {
+        isPlayingDialogue = true;
         Debug.Log(DialogueLines.Count);
         if (DialogueLines.Count != 0 && isPlayingDialogue)
         {
-            Debug.Log("j'assigne le dialogue arrêté");
             lastDialogueStopIndex = currentDialogue;
             lastSentenceStopIndex = sentenceIndex;
             StoppedDialogue = DialogueLines;
             CancelInvoke("DisplayNextSentence");
         }
-        isPlayingDialogue = true;
         currentDialogue = 0;
         DialogueLines = dialogue;
         StartDialogue(DialogueLines[currentDialogue]);
@@ -67,7 +62,6 @@ public class DialogueManager : MonoBehaviour
         sentenceIndex = 0;
         SoundManager.Instance.PlayVoiceline(dialogueLine.voiceLine);
         sentences.Clear();
-        Debug.Log("The dialogue started");
         foreach (dialogueProp line in dialogueLine.dialogLines)
         {
             sentences.Enqueue(line.line);
@@ -77,13 +71,10 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        //Debug.Log($"Il reste {sentences.Count} phrases" );
-        //Debug.Log("Je lance une nouvelle phrase");
         float delay;
         
         if (sentences.Count <= 0)
         {
-            Debug.Log("C'est la fin");
             EndDialogue();
         }
         else
@@ -91,7 +82,6 @@ public class DialogueManager : MonoBehaviour
             string currentLine = sentences.Dequeue();
             dialogueDisplay.text = currentLine;
             //SetCharacterEmotion();
-            //Debug.Log(sentenceIndex);
             if (DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay == 0)
             {
                 delay = defaultDelay;
@@ -101,7 +91,6 @@ public class DialogueManager : MonoBehaviour
                 delay = DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay;
             }
             sentenceIndex++;
-            //Debug.Log(delay);
             Invoke("DisplayNextSentence", delay);
         }
     }
@@ -110,7 +99,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogue != DialogueLines.Count - 1)
         {
-            Debug.Log("je lance la suite");
             currentDialogue++;
             sentenceIndex = 0;
             StartDialogue(DialogueLines[currentDialogue]);
@@ -118,8 +106,6 @@ public class DialogueManager : MonoBehaviour
         else if (StoppedDialogue.Count != 0)
         {
             Debug.Log(StoppedDialogue);
-            Debug.Log("Je lance le dialogue arrêté");
-            //Debug.Log(lastDialogueStopIndex);
             DialogueLines = StoppedDialogue;
             //StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
             StoppedDialogue.Clear();
@@ -130,7 +116,6 @@ public class DialogueManager : MonoBehaviour
         {
             isPlayingDialogue = false;
             timeSinceLastDialogue = Time.time;
-            Debug.Log("fin du dialogue");
             DialogueLines.Clear();
             sentenceIndex = 0;
             dialogueDisplay.text = null;

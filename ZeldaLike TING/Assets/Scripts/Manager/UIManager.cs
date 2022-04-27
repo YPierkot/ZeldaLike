@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.fireCardUnlock)
                {
                   cardHandles[0].gameObject.SetActive(true);
-                  if (CardsController.instance.canUseFireCard)
+                  if (CardsController.instance.canUseFireCard);
                }
                break;
          }

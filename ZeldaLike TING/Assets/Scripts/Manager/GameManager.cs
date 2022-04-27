@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         }
 
     #endregion
-
+    public CameraController cameraController;
     public enum controller
     {
         Keybord, Xbox, ps
