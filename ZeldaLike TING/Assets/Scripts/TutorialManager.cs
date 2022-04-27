@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class TutorialManager : MonoBehaviour
     private bool enemySpawn = true;
     [SerializeField] private Transform fireCardCamera;
     [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
+    [SerializeField] private Animator ithar;
+    private bool itharStarted;
 
     private void Awake()
     {
@@ -39,7 +42,6 @@ public class TutorialManager : MonoBehaviour
         if (DialogueManager.Instance.isPlayingDialogue == false)
         {
             remainingDialogues = dialogueQueue.Count;
-//            Debug.Log(remainingDialogues);
             switch (remainingDialogues)
             {
                 case 6 : 
@@ -75,6 +77,11 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 1 :
                     FireCardTutorialManager.canStart = true;
+                    if (FireCardTutorialManager.isFinished)
+                    {
+                        GameManager.Instance.volumeManager.enabled = false;
+                        EnqueueDialogue();
+                    }
                     break;
                 case 0 : 
                     break;
@@ -89,16 +96,18 @@ public class TutorialManager : MonoBehaviour
                 case 5:
                     GameManager.Instance.cameraController.ChangePoint(cameraPoint);
                     Controller.instance.ForceMove(prisonPosition.position);
+                    if (!itharStarted)
+                    {
+                        itharStarted = true;
+                        StartCoroutine(ManageIthar());
+                    }
+                    
                     break;
                 case 3 :
                     Controller.instance.canMove = false;
                     break;
             }
-
-            
         }
-        
-        
     }
 
     private void ResetCamera()
@@ -110,5 +119,18 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("Je lance le prochain dialogue du tutoriel");
         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+    }
+
+    private IEnumerator ManageIthar()
+    {
+        yield return new WaitForSeconds(8);
+        ithar.gameObject.SetActive(true);
+        ithar.Play("ItharAppear");
+        yield return new WaitForSeconds(28f);
+        ithar.Play("ItharDisappear");
+        yield return new WaitForSeconds(0.9f);
+        DialogueManager.Instance.isCursed = true;
+        DialogueManager.Instance.mist.SetTrigger("Appear");
+        ithar.gameObject.SetActive(false);
     }
 }

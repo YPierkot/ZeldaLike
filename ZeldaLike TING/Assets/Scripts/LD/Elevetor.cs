@@ -29,7 +29,7 @@ public class Elevetor : InteracteObject
     void Start()
     {
        if(auto && canMove)Move();
-       collider = GetComponent<BoxCollider>();
+       //collider = GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()
@@ -38,14 +38,18 @@ public class Elevetor : InteracteObject
         {
             Vector3 movement = (passPoint[pointIndex].position - platform.position).normalized * speed;
             platform.position += movement;
-            collider.center += movement;
+                //collider.center += movement;
             
             foreach (Transform obj in eleveteList)
             {
-                if (!obj.CompareTag("Player"))
+                if (obj == null)
                 {
-                    if (obj != null) obj.position += movement;
-                    else eleveteList.Remove(obj);
+                    eleveteList.Remove(obj);
+                    
+                }
+                else if (!obj.CompareTag("Player"))
+                { 
+                    obj.position += movement;
                 }
                 else
                 {

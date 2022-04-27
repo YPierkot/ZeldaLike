@@ -6,13 +6,13 @@ public class FireCardLongRange : MonoBehaviour
     public LayerMask mask; //Ennemy & Interact
     public LayerMask groundMask;
     public GameObject DebugSphere;
-    
+
 
     public void FireCardLongEffect()
     {
         Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),2f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, mask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 2, mask);
         foreach (var col in colliders)
         {
             switch (col.transform.tag)

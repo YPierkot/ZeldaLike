@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FireCardTutorialManager : MonoBehaviour
@@ -10,6 +11,11 @@ public class FireCardTutorialManager : MonoBehaviour
     public bool canStart;
     [SerializeField] private GameObject lianas;
     private bool lianaSet;
+    [SerializeField] private GameObject puzzle;
+    [SerializeField] private EnemySpawnTrigger enemySpawner;
+    [SerializeField] private GameObject barrier;
+    public bool isFinished;
+    private bool spawnedEnemies;
 
     private void Start()
     {
@@ -18,12 +24,14 @@ public class FireCardTutorialManager : MonoBehaviour
         {
             dialogueQueue.Enqueue(dialogue);
         }
+        
     }
 
     private void Update()
     {
         if (canStart && !DialogueManager.Instance.isPlayingDialogue)
         {
+            barrier.SetActive(true);
             int remainingDialogue = dialogueQueue.Count;
             switch (remainingDialogue)
             {
@@ -44,6 +52,30 @@ public class FireCardTutorialManager : MonoBehaviour
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
                     break;
+                case 1 :
+                    puzzle.SetActive(true);
+                    if (puzzle.transform.childCount == 4)
+                    {
+                        puzzle.SetActive(false);
+                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                    }
+                    break;
+                
+                case 0 :
+                    if (!spawnedEnemies)
+                    {
+                        enemySpawner.SpawnEnemies();
+                        spawnedEnemies = true;
+                    }
+                    
+                    if (enemySpawner.enemiesParent.childCount == 0)
+                    {
+                        canStart = false;
+                        isFinished = true;
+                        barrier.SetActive(false);
+                    }
+                    break;
+                    
             }
         }
     }

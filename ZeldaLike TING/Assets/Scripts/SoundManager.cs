@@ -16,4 +16,9 @@ public class SoundManager : MonoBehaviour
         _audioSource.clip = voiceline;
         _audioSource.Play();
     }
+
+    public void Interrupt()
+    {
+        _audioSource.Stop();
+    }
 }
