@@ -5,13 +5,7 @@ using UnityEngine;
 
 public class ElevetorPlatform : MonoBehaviour
 {
-   private Elevetor elevator;
-
-   private void Start()
-   {
-      elevator = GetComponentInParent<Elevetor>();
-   }
-   
+   [SerializeField] private Elevetor elevator;
    
    private void OnTriggerEnter(Collider other)
    {

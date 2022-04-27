@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Elevetor : InteracteObject
 {
-    private BoxCollider collider;
-    
     [Header("==== ELEVETOR ====")]
     [SerializeField] private Transform platform;
 
@@ -29,7 +27,6 @@ public class Elevetor : InteracteObject
     void Start()
     {
        if(auto && canMove)Move();
-       collider = GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()
@@ -38,7 +35,6 @@ public class Elevetor : InteracteObject
         {
             Vector3 movement = (passPoint[pointIndex].position - platform.position).normalized * speed;
             platform.position += movement;
-            collider.center += movement;
             
             foreach (Transform obj in eleveteList)
             {

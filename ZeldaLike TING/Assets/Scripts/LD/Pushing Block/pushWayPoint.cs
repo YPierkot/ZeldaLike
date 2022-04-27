@@ -18,6 +18,7 @@ public class pushWayPoint : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<MeshRenderer>().enabled = false;
+        if(GetComponent<MeshRenderer>() != null) GetComponent<MeshRenderer>().enabled = false;
+        if(GetComponent<Collider>() != null) GetComponent<Collider>().enabled = false;
     }
 }
