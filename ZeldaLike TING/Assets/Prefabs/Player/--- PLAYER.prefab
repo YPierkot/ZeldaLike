@@ -1140,7 +1140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7337217462935629423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41, y: 1.04, z: -1.18}
+  m_LocalPosition: {x: 9.49, y: 0.99, z: -3.81}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1350,6 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c7fb9f1a9e47242951562589043078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _atkControl: {fileID: 0}
   lifeMax: 6
   life: 0
   HitShake: {fileID: 11400000, guid: fdb7dddd4478ba54ba13be9ee408d09c, type: 2}
@@ -1393,11 +1394,16 @@ MonoBehaviour:
     m_Bits: 0
   repulsiveRadius: 4
   repulsivePoint: {x: 0, y: 0, z: 0}
+  DebugWindSphere: {fileID: 0}
   m_tranform: {fileID: 689773536}
   Ennemy:
     serializedVersion: 2
     m_Bits: 64
   projectileSpeed: 400
+  ShortFireFx: {fileID: 0}
+  ShortIceFx: {fileID: 0}
+  ShortWallFx: {fileID: 0}
+  ShortWindFx: {fileID: 0}
   State: 1
 --- !u!1 &7337217463896534132
 GameObject:

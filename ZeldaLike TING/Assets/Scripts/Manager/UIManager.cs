@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
    private Transform[] cardHandles;
    public int cardUnlock = 1;
    private int currentCard = 0;
+   float cardYPos;
    
    
    [Header("--- LIFE & STAT")] 
@@ -39,10 +40,12 @@ public class UIManager : MonoBehaviour
       foreach (HandleRef handle in cardHandlesReference)
       {
          cardsDictionary.Add(handle.Handle, handle.card);
-         
       }
 
+
       UpdateCardUI();
+      cardYPos = cardHandles[0].transform.position.y;
+      Debug.Log(cardYPos);
       
       /*cardHandles = new Transform[cardHandlesContainer.childCount];
       for (int i = 0; i < cardHandlesContainer.childCount; i++)
@@ -65,9 +68,21 @@ public class UIManager : MonoBehaviour
 
    public void UpdateCardUI()
    {
-      for (int i = 0; i < cardHandlesReference.Length; i++)
+      foreach (var cardHandle in cardHandlesReference)
       {
-         cardHandles[i] = cardHandlesReference[i].Handle;
+         switch (cardHandle.card)
+         {
+            case CardsController.CardsState.Fire :
+               if (CardsController.instance.fireCardUnlock)
+               {
+                  cardHandles[0].gameObject.SetActive(true);
+                  if (CardsController.instance.canUseFireCard)
+               }
+               break;
+         }
+         
+         
+         /*cardHandles[i] = cardHandlesReference[i].Handle;
          if (i < cardUnlock)
          {
             cardHandles[i].gameObject.SetActive(true);
@@ -75,7 +90,7 @@ public class UIManager : MonoBehaviour
          else
          {
             cardHandles[i].gameObject.SetActive(false);
-         }
+         }*/
       }
    }
 
@@ -92,13 +107,13 @@ public class UIManager : MonoBehaviour
    {
       if (cardUnlock != 1)
       {
-         cardHandles[currentCard].localScale = new Vector3(0.8f,0.8f,0.8f);
+         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);
       
          currentCard += changeInt;
          if (currentCard == cardUnlock) currentCard = 0;
          else if (currentCard == -1) currentCard = cardUnlock - 1;
       
-         cardHandles[currentCard].localScale = new Vector3(1.2f,1.2f,1.2f);
+         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos -55,cardHandles[currentCard].position.z);
       }
 
       CardsController.instance.State = cardsDictionary[cardHandles[currentCard]];
