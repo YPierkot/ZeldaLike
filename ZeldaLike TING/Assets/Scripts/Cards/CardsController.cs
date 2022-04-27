@@ -14,10 +14,10 @@ public class CardsController : MonoBehaviour
     
     [Header("FireCard")]
     public bool canUseFireCard;
-    public bool isFireGround;
+    public static bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
     [HideInInspector] public bool fireRectoUse;
-    [HideInInspector] public bool fireCardUnlock; 
+    [HideInInspector] public bool fireCardUnlock = true; 
     
     // IceCard
     [Header("Ice Card")] 
@@ -25,7 +25,7 @@ public class CardsController : MonoBehaviour
     public static bool isIceGround;
     public GameObject iceCardGrounded;
     [HideInInspector] public bool iceRectoUse;
-    [HideInInspector] public bool iceCardUnlock;
+    [HideInInspector] public bool iceCardUnlock = true;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
@@ -34,7 +34,7 @@ public class CardsController : MonoBehaviour
     public GameObject wallCardGrounded;
     public GameObject WallSR;
     [HideInInspector] public bool wallRectoUse;
-    [HideInInspector] public bool wallCardUnlock;
+    [HideInInspector] public bool wallCardUnlock = true;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
@@ -47,7 +47,7 @@ public class CardsController : MonoBehaviour
     [SerializeField] Vector3 repulsivePoint;
     public GameObject DebugWindSphere;
     [HideInInspector] public bool windRectoUse;
-    [HideInInspector] public bool windCardUnlock;
+    [HideInInspector] public bool windCardUnlock = true;
     
     [Space(10)] // Wind Card
     [Header("Utilities")] 
@@ -81,9 +81,10 @@ public class CardsController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Controller>();
-        canUseCards = false;
+        //canUseCards = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
+        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = true;
     }
 
     public void ShortRange()
@@ -386,9 +387,9 @@ public class CardsController : MonoBehaviour
             case 4: canUseWindCard = false; break;
             default: break;
         }
+        //UIManager.Instance.UpdateCardUI();
 
         yield return new WaitForSeconds(4f);
-        UIManager.Instance.UpdateCardUI();
         switch (cardType)
         {
             case 1: canUseFireCard = true; break;

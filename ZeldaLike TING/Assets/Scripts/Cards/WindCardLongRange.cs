@@ -115,5 +115,6 @@ public class WindCardLongRange : MonoBehaviour
     {
         CardsController.instance.StartCoroutine(CardsController.instance.LaunchCardCD(4));
         CardsController.isWindGround = false;
+        UIManager.Instance.UpdateCardUI();
     }
 }
