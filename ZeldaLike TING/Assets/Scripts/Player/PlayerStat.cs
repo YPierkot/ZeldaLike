@@ -95,6 +95,7 @@ public class PlayerStat : MonoBehaviour
 
    public void UpgradeToughness(int level)
    {
+      Debug.Log("Toughness just got upgraded");
       switch (level)
       {
          case 1: toughnessValue = 1f;
@@ -110,6 +111,7 @@ public class PlayerStat : MonoBehaviour
 
    public void UpdateKB(int level)
    {
+      Debug.Log("Enemy knockback just got upgraded");
       switch (level)
       {
          case 1: enemyKBForce = 9f;
@@ -127,6 +129,7 @@ public class PlayerStat : MonoBehaviour
 
    public void UpgradeSharpness(int level)
    {
+      Debug.Log("Sharpness just got upgraded");
       switch (level)
       {
          case 1: attackDamageValue = 1;
@@ -144,6 +147,7 @@ public class PlayerStat : MonoBehaviour
 
    public void UpgradeSwiftness(int level)
    {
+      Debug.Log("Swiftness just got upgraded");
       switch (level)
       {
          case 1: moveSpeedValue = 100;
@@ -160,6 +164,7 @@ public class PlayerStat : MonoBehaviour
    
    public void UpgradeRockness(int level)
    {
+      Debug.Log("Rockness just got upgraded");
       switch (level)
       {
          case 1: repulseForce = 17;
@@ -185,6 +190,7 @@ public class PlayerStat : MonoBehaviour
 
    public void UpgradeLongSword(int level)
    {
+      Debug.Log("Longsword module just got upgraded");
       switch (level)
       {
          // LEVEL 1
@@ -323,5 +329,6 @@ public class PlayerStat : MonoBehaviour
          attackControl.playerDamage = attackDamageValue;
          attackControl.repusleEnnemyForce = enemyKBForce;
       }
+      Debug.Log("AttackStats is at date");
    }
 }
