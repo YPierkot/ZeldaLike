@@ -108,5 +108,13 @@ public class Elevetor : InteracteObject
         Debug.Log("ok");
         eleveteList.Remove(other.transform);
     }
+
+    /// <summary>
+    /// Start the movement of the platform
+    /// </summary>
+    public void ActivatePlatform() {
+        auto = true;
+        Move();
+    }
 }
 

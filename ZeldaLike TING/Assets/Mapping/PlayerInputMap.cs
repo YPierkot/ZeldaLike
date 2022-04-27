@@ -230,6 +230,17 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""de6cff5e-4eff-497e-ab92-7db926e7572e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""332030e1-728b-40e4-85d9-a93afcc6d63c"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
