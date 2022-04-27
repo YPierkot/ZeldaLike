@@ -185,24 +185,143 @@ public class PlayerStat : MonoBehaviour
 
    public void UpgradeLongSword(int level)
    {
-      
+      switch (level)
+      {
+         // LEVEL 1
+         case 1:
+            for (int i = 0; i < attackCol1.Length; i++)
+            {
+               switch (i)
+               {
+                  case 0:
+                     attackCol1[i].transform.localPosition = new Vector3(attackCol1[i].transform.localPosition.x,
+                        attackCol1[i].transform.localPosition.y,  -0.8f);
+                     attackCol1[i].transform.localScale = new Vector3(attackCol1[i].transform.localScale.x, 9.207f, attackCol1[i].transform.localScale.z);
+                     break;
+                  case 1: 
+                     attackCol1[i].transform.localPosition = new Vector3(attackCol1[i].transform.localPosition.x,
+                        attackCol1[i].transform.localPosition.y, -0.95f);
+                     attackCol1[i].transform.localScale = new Vector3(attackCol1[i].transform.localScale.x, 9.9f, attackCol1[i].transform.localScale.z);
+                     break;
+                  case 2: attackCol1[i].transform.localScale = new Vector3(16.5f, 16.5f, attackCol1[i].transform.localScale.z);
+                     break;
+               }
+            }
+            for (int i = 0; i < attackCol2.Length; i++)
+            {
+               switch (i)
+               {
+                  case 0:
+                     attackCol2[i].transform.localPosition = new Vector3(attackCol2[i].transform.localPosition.x,
+                        attackCol2[i].transform.localPosition.y,  -0.8f);
+                     attackCol2[i].transform.localScale = new Vector3(attackCol2[i].transform.localScale.x, 9.207f, attackCol2[i].transform.localScale.z);
+                     break;
+                  case 1: 
+                     attackCol2[i].transform.localPosition = new Vector3(attackCol2[i].transform.localPosition.x,
+                        attackCol2[i].transform.localPosition.y, -0.95f);
+                     attackCol2[i].transform.localScale = new Vector3(attackCol2[i].transform.localScale.x, 9.9f, attackCol2[i].transform.localScale.z);
+                     break;
+                  case 2: attackCol2[i].transform.localScale = new Vector3(16.5f, 16.5f, attackCol2[i].transform.localScale.z);
+                     break;
+               }
+            }
+            break;
+         // LEVEL 2
+         case 2:
+             for (int i = 0; i < attackCol1.Length; i++)
+            {
+               switch (i)
+               {
+                  case 0:
+                     attackCol1[i].transform.localPosition = new Vector3(attackCol1[i].transform.localPosition.x,
+                        attackCol1[i].transform.localPosition.y, -0.953f);
+                     attackCol1[i].transform.localScale = new Vector3(attackCol1[i].transform.localScale.x, 10.4625f , attackCol1[i].transform.localScale.z);
+                     break;
+                  case 1: 
+                     attackCol1[i].transform.localPosition = new Vector3(attackCol1[i].transform.localPosition.x,
+                        attackCol1[i].transform.localPosition.y, -1.01f);
+                     attackCol1[i].transform.localScale = new Vector3(attackCol1[i].transform.localScale.x, 11.25f, attackCol1[i].transform.localScale.z);
+                     break;
+                  case 2: attackCol1[i].transform.localScale = new Vector3(18.75f, 18.75f, attackCol1[i].transform.localScale.z);
+                     break;
+               }
+            }
+            for (int i = 0; i < attackCol2.Length; i++)
+            {
+               switch (i)
+               {
+                  case 0:
+                     attackCol2[i].transform.localPosition = new Vector3(attackCol2[i].transform.localPosition.x,
+                        attackCol2[i].transform.localPosition.y, -0.953f);
+                     attackCol2[i].transform.localScale = new Vector3(attackCol2[i].transform.localScale.x, 10.4625f , attackCol2[i].transform.localScale.z);
+                     break;
+                  case 1: 
+                     attackCol2[i].transform.localPosition = new Vector3(attackCol2[i].transform.localPosition.x,
+                        attackCol2[i].transform.localPosition.y, -1.01f);
+                     attackCol2[i].transform.localScale = new Vector3(attackCol2[i].transform.localScale.x, 11.25f, attackCol2[i].transform.localScale.z);
+                     break;
+                  case 2: attackCol2[i].transform.localScale = new Vector3(18.75f, 18.75f, attackCol2[i].transform.localScale.z);
+                     break;
+               }
+            }
+            break;
+         // LEVEL 3
+         case 3:
+             for (int i = 0; i < attackCol1.Length; i++)
+            {
+               switch (i)
+               {
+                  case 0:
+                     attackCol1[i].transform.localPosition = new Vector3(attackCol1[i].transform.localPosition.x,
+                        attackCol1[i].transform.localPosition.y, -1.0323f);
+                     attackCol1[i].transform.localScale = new Vector3(attackCol1[i].transform.localScale.x, 12.555f , attackCol1[i].transform.localScale.z);
+                     break;
+                  case 1: 
+                     attackCol1[i].transform.localPosition = new Vector3(attackCol1[i].transform.localPosition.x,
+                        attackCol1[i].transform.localPosition.y, -1.19f);
+                     attackCol1[i].transform.localScale = new Vector3(attackCol1[i].transform.localScale.x, 13.5f, attackCol1[i].transform.localScale.z);
+                     break;
+                  case 2: attackCol1[i].transform.localScale = new Vector3(22.5f, 22.5f, attackCol1[i].transform.localScale.z);
+                     break;
+               }
+            }
+            for (int i = 0; i < attackCol2.Length; i++)
+            {
+               switch (i)
+               {
+                  case 0:
+                     attackCol2[i].transform.localPosition = new Vector3(attackCol2[i].transform.localPosition.x,
+                        attackCol2[i].transform.localPosition.y, -1.0323f);
+                     attackCol2[i].transform.localScale = new Vector3(attackCol2[i].transform.localScale.x, 12.555f , attackCol2[i].transform.localScale.z);
+                     break;
+                  case 1: 
+                     attackCol2[i].transform.localPosition = new Vector3(attackCol2[i].transform.localPosition.x,
+                        attackCol2[i].transform.localPosition.y, -1.19f);
+                     attackCol2[i].transform.localScale = new Vector3(attackCol2[i].transform.localScale.x, 13.5f, attackCol2[i].transform.localScale.z);
+                     break;
+                  case 2: attackCol2[i].transform.localScale = new Vector3(22.5f, 22.5f, attackCol2[i].transform.localScale.z);
+                     break;
+               }
+            }
+            break;
+      } 
    }
    #endregion
 
-   void UpdateAttackStats()
+   public void UpdateAttackStats()
    {
       for (int i = 0; i < attackCol1.Length; i++)
       {
          AttackControl attackControl = attackCol1[i].GetComponent<AttackControl>();
          attackControl.playerDamage = attackDamageValue;
-         attackControl.repusleEnnemyForce = repulseForce;
+         attackControl.repusleEnnemyForce = enemyKBForce;
       }
 
       for (int i = 0; i < attackCol2.Length; i++)
       {
-         AttackControl attackControl = attackCol1[i].GetComponent<AttackControl>();
+         AttackControl attackControl = attackCol2[i].GetComponent<AttackControl>();
          attackControl.playerDamage = attackDamageValue;
-         attackControl.repusleEnnemyForce = repulseForce;
+         attackControl.repusleEnnemyForce = enemyKBForce;
       }
    }
 }
