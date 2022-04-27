@@ -1350,7 +1350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08c7fb9f1a9e47242951562589043078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkControl: {fileID: 0}
+  attackCol1: []
+  attackCol2: []
   lifeMax: 6
   life: 0
   HitShake: {fileID: 11400000, guid: fdb7dddd4478ba54ba13be9ee408d09c, type: 2}
@@ -1382,11 +1383,17 @@ MonoBehaviour:
   canUseCards: 0
   canUseFireCard: 0
   fireCardGrounded: {fileID: 0}
+  fireRectoUse: 0
+  fireCardUnlock: 0
   canUseIceCard: 0
   iceCardGrounded: {fileID: 0}
+  iceRectoUse: 0
+  iceCardUnlock: 0
   canUseWallCard: 0
   wallCardGrounded: {fileID: 0}
   WallSR: {fileID: 0}
+  wallRectoUse: 0
+  wallCardUnlock: 0
   canUseWindCard: 0
   windCardGrounded: {fileID: 0}
   interactMask:
@@ -1395,6 +1402,8 @@ MonoBehaviour:
   repulsiveRadius: 4
   repulsivePoint: {x: 0, y: 0, z: 0}
   DebugWindSphere: {fileID: 0}
+  windRectoUse: 0
+  windCardUnlock: 0
   m_tranform: {fileID: 689773536}
   Ennemy:
     serializedVersion: 2

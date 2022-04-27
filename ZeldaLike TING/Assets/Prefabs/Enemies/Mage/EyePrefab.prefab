@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5665831862857445521}
   - component: {fileID: 5665831862857445518}
   - component: {fileID: 5665831862857445523}
-  - component: {fileID: 5665831862857445520}
   - component: {fileID: 5665831862857445522}
+  - component: {fileID: 30769204585146021}
   m_Layer: 6
   m_Name: EyePrefab
   m_TagString: Ennemy
@@ -129,19 +129,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
---- !u!65 &5665831862857445520
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5665831862857445516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9814544, y: 1.2088313, z: 0.2}
-  m_Center: {x: -0.1496718, y: -0.012233496, z: 0}
 --- !u!54 &5665831862857445522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,3 +145,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!135 &30769204585146021
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665831862857445516}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0, z: 0}
