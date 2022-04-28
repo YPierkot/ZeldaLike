@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     public CameraController cameraController;
     public Volume volumeManager;
     public bool isTutorial = true;
+    public Transform actualRespawnPoint;
     [SerializeField] private VolumeProfile tutorialWorld;
     public enum controller
     {

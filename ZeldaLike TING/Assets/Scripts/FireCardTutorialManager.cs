@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public class FireCardTutorialManager : MonoBehaviour
     [SerializeField] private GameObject barrier;
     public bool isFinished;
     private bool spawnedEnemies;
+    [SerializeField] private TextMeshProUGUI helpText;
+    [TextArea(4, 10)]
+    [SerializeField] private List<string> helps;
 
     private void Start()
     {
@@ -44,6 +48,7 @@ public class FireCardTutorialManager : MonoBehaviour
                         case false:
                             lianaSet = true;
                             lianas.transform.position = Controller.instance.transform.position;
+                            helpText.text = helps[0];
                             break;
                     }
                     lianas.SetActive(true);
@@ -56,6 +61,7 @@ public class FireCardTutorialManager : MonoBehaviour
                     puzzle.SetActive(true);
                     if (puzzle.transform.childCount == 4)
                     {
+                        helpText.text = helps[1];
                         puzzle.SetActive(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }

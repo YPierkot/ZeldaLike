@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -20,6 +21,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
     [SerializeField] private Animator ithar;
     private bool itharStarted;
+    [SerializeField] private TextMeshProUGUI helpText;
+    [TextArea(4, 10)]
+    [SerializeField] private List<string> helps;
 
     private void Awake()
     {
@@ -55,7 +59,9 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 4 :
                     if (enemySpawn)
-                    {
+                    { 
+                        helpText.text = helps[1] + " " + helps[2];
+
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
                         Instantiate(ennemies[1], ennemiesSpawnPoints[0].position, Quaternion.identity, ennemyParent);
@@ -87,6 +93,8 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
                 case 0 :
+                    Controller.instance.canMove = true;
+                    UIManager.Instance.gameObject.SetActive(true);
                     break;
                 
             }
@@ -119,6 +127,7 @@ public class TutorialManager : MonoBehaviour
     {
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         UIManager.Instance.gameObject.SetActive(true);
+        helpText.text = helps[0];
     }
 
     public void EnqueueDialogue()
@@ -139,4 +148,5 @@ public class TutorialManager : MonoBehaviour
         DialogueManager.Instance.mist.SetTrigger("Appear");
         ithar.gameObject.SetActive(false);
     }
+    
 }
