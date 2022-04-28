@@ -54,6 +54,7 @@ public class EyeBehavior : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             other.transform.GetComponent<PlayerStat>().TakeDamage();
+            Destroy(gameObject);
         }
     }
 }

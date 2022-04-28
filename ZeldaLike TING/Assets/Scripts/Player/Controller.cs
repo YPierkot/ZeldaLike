@@ -155,14 +155,9 @@ public class Controller : MonoBehaviour
             Debug.Log("cast Card :" + holdTimer);
             holdingForCard = false; 
             moveCardTransform.gameObject.SetActive(false); 
-            if (holdTimer < 0.5f) 
-            { 
-                cardControl.ShortRange(); 
-            } 
-            else 
-            { 
+            
                 cardControl.LongRange(); 
-            } 
+            
             holdTimer = 0; 
             
         }

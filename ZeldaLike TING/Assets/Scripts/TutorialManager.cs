@@ -25,6 +25,9 @@ public class TutorialManager : MonoBehaviour
     [TextArea(4, 10)]
     [SerializeField] private List<string> helps;
 
+
+    [SerializeField] private GivePlayerFireCard givePlayerFireCard = null;
+    
     private void Awake()
     {
         dialogueQueue = new Queue<DialogueScriptable>();
@@ -77,6 +80,7 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
                 case 3 :
+                    if(ennemyParent.childCount == 0) givePlayerFireCard.ActivGetCard();
                     break;
                 case 2 :
                     Controller.instance.canMove = true;

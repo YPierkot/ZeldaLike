@@ -15,6 +15,8 @@ public class FireCardTutorialManager : MonoBehaviour
     [SerializeField] private GameObject puzzle;
     [SerializeField] private EnemySpawnTrigger enemySpawner;
     [SerializeField] private GameObject barrier;
+    [SerializeField] private GameObject pasStairBarrier = null;
+
     public bool isFinished;
     private bool spawnedEnemies;
     [SerializeField] private TextMeshProUGUI helpText;
@@ -78,7 +80,7 @@ public class FireCardTutorialManager : MonoBehaviour
                     {
                         canStart = false;
                         isFinished = true;
-                        barrier.SetActive(false);
+                        pasStairBarrier.SetActive(false);
                     }
                     break;
                     

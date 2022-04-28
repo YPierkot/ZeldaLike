@@ -6,6 +6,7 @@ using UnityEngine;
 public class GivePlayerFireCard : MonoBehaviour
 {
     private bool isCardGiven;
+    private bool canGiveCard = false;
 
     private void Awake()
     {
@@ -16,13 +17,16 @@ public class GivePlayerFireCard : MonoBehaviour
     {
         if (other.transform.CompareTag("Player"))
         {
-            if (!isCardGiven)
+            if (!isCardGiven && canGiveCard && !DialogueManager.Instance.isPlayingDialogue)
             {
                 CardsController.instance.canUseCards = true;
                 CardsController.instance.fireCardUnlock = true;
                 UIManager.Instance.UpdateCardUI();
+                UIManager.Instance.ChangeCard(0);
                     isCardGiven = true;
             }
         }
     }
+
+    public void ActivGetCard() => canGiveCard = true;
 }

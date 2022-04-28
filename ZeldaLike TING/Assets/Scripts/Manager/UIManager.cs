@@ -211,18 +211,65 @@ public class UIManager : MonoBehaviour
 
    public void ChangeCard(int changeInt)
    {
-      if (cardUnlock != 1)
+      if (changeInt != 0)
       {
          cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);
-      
-         currentCard += changeInt;
-         if (currentCard == cardUnlock) currentCard = 0;
-         else if (currentCard == -1) currentCard = cardUnlock - 1;
+
+         Transform newCard = null;
+         int antiWhile = 0;
+         while (newCard == null)
+         {
+            currentCard += changeInt;
+            if (currentCard == 4) currentCard = 0;
+            else if (currentCard == -1) currentCard = 3;
+
+            switch (cardsDictionary[cardHandles[currentCard]].card)
+            {
+               case CardsController.CardsState.Fire :
+                  if (CardsController.instance.fireCardUnlock)
+                  {
+                     newCard = cardHandles[currentCard];
+                  }
+                  break;
+               
+               case CardsController.CardsState.Ice : 
+                  if (CardsController.instance.iceCardUnlock)
+                  {
+                     newCard = cardHandles[currentCard];
+                  }
+                  break;
+               
+               case CardsController.CardsState.Wall : 
+                  if (CardsController.instance.wallCardUnlock)
+                  {
+                     newCard = cardHandles[currentCard];
+                  }
+                  break;
+               
+               case CardsController.CardsState.Wind : 
+                  if (CardsController.instance.windCardUnlock)
+                  {
+                     newCard = cardHandles[currentCard];
+                  }
+                  break;
+            }
+
+            antiWhile++;
+            if (antiWhile == 5)
+            {
+               Debug.Log("Anti-While break");
+               break;
+            }
+         }
+      }
+      else
+      {
+         currentCard = 0;
+      }
       
          cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos -55,cardHandles[currentCard].position.z);
-      }
 
-      CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
+         CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }
    
 }
