@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Remus
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Hi! You must be an Ancient Seeker? '
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0ad59bedc4d7c4d499daf69ef3137ab5, type: 3}
+  - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yes! My name is Remus, how can I help you?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0998766066e6a1941814044a3714f69e, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: I was wondering if you could tell me about the Great Age of Magic.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 178adb260b20e254f898aa382f544fbd, type: 3}
+  - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Oh, you're interested in our research young traveler?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'That''s uncommon. Well, the Great Age of Magic '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Mostly took place here, in Zenithia, now called Wind's Edge.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: It all started when the first humans arrived on the Island
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'And started to notice some strange phenomenon. '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'Some of them, the curious and the clever decided that '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: They wanted to know more about them, to understand what they meant
+      delay: 0
+    - expressions: 0
+      name: 
+      line: And how they happened.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: dd8af7eb06c4a5e4996389f4265f1730, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: It was magic?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: dd2110c9bf25b034cb4eaeb16e84a7d9, type: 3}
+  - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Yes, magic, in the trees, in the water, in the air... '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Everywhere. Those people were called the Enlightened.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: They cast themselves away from the others to study magic and understand
+        it.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0ff8a3e902ca0c2478ac5d7e765b35ff, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: And apparently they succeeded.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: e089024383cb94249910b3fb336435f5, type: 3}
+  - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Clever, yes indeed. And when they came back with the ability to control
+        it,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: They amazed the people and decided that everyone should
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Be able to control it.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: That's when they founded Zenithia, the Capital of Magic.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: c2ef8fb07b3ff804c848eb2c21be42a2, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Wow, that's impressive. Thank you for that great story.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: e2257b73d67322647a38c7a7e1e7f700, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Those people really are good at their job.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 4dae2746c8ec7cb47967e0723964c718, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Hey, I'm good at my job too!
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0766fe27cf3fedc4bb5f8aa059ca6196, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You're a thief, that's not a job.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 6f182f8179ca8614cbb182d450cb7017, type: 3}
