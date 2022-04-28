@@ -10,7 +10,7 @@ public class pushBlock : InteracteObject
         none, top, left, right, bot
     }
     [Header("---PUSH BLOCK")]
-    [SerializeField] private pushWayPoint currentWaypoint;
+    public pushWayPoint currentWaypoint;
     [SerializeField] private float speed;
     // Start is called before the first frame update
 

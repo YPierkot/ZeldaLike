@@ -84,7 +84,7 @@ public class CardsController : MonoBehaviour
         //canUseCards = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
-        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
+        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = true;
     }
 
     public void ShortRange()
@@ -145,7 +145,8 @@ public class CardsController : MonoBehaviour
                 canUseFireCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                else shootPointPos = -controller.moveCardTransform.forward ;
+                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
+                else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
@@ -170,6 +171,7 @@ public class CardsController : MonoBehaviour
 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
+                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
@@ -195,6 +197,7 @@ public class CardsController : MonoBehaviour
                 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
+                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
@@ -219,6 +222,7 @@ public class CardsController : MonoBehaviour
                 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
+                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
@@ -282,6 +286,7 @@ public class CardsController : MonoBehaviour
     {
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
+        else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
         else shootPointPos =-controller.moveCardTransform.forward ;
 
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
