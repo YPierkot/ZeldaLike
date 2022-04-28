@@ -12,7 +12,7 @@ public class RunePlate : MonoBehaviour
     }
 
     [SerializeField] private Element plateType;
-    [SerializeField] private bool isActivate;
+    public bool isActivate;
 
 
     private void OnTriggerEnter(Collider other)

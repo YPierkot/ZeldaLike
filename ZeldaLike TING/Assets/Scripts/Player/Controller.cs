@@ -8,6 +8,11 @@ public class Controller : MonoBehaviour
 {
     #region CLASS & Other
 
+    public enum ControlType
+    {
+        pabougé, gachette
+    }
+    
     [Serializable]
     class SpriteAngle
     {
@@ -29,6 +34,7 @@ public class Controller : MonoBehaviour
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
+    public ControlType _controlType;
     [SerializeField] private Animator animatorPlayer;
     [SerializeField] private Animator animatorMovePlayer;
     
@@ -41,7 +47,9 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool dashing;
    [SerializeField] private bool inAttack;
    [SerializeField] private bool inAttackAnim;
-   private bool holdingForCard; 
+   [SerializeField] private bool holdingForCard;
+
+   private bool moveHoldCard;
 
     private float dashTimer;
     private float holdTimer; 
@@ -59,7 +67,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
     public Transform moveCardTransform;
-    [SerializeField] Transform movePlayerTransform;
+    public Transform movePlayerTransform;
     private Vector3 lastDir;
     
     [Header("--- CAMERA ---")] 
@@ -112,32 +120,57 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
-        InputMap.Action.CardHolder.started += context => holdingForCard = true; 
-        InputMap.Action.CardHolder.canceled += CardHolderOncanceled; 
-        InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast(); 
+        if (_controlType == ControlType.gachette)
+        {
+            InputMap.Action.CardHolder.started += context => holdingForCard = true; 
+            InputMap.Action.CardHolder.canceled += CardHolderOncanceled; 
+            InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast(); 
+        }
+        else if (_controlType == ControlType.pabougé)
+        {
+            InputMap.Action.holdForShoot.performed += context =>
+            {
+                moveHoldCard = true;
+                canMove = false;
+            };
+            InputMap.Action.holdForShoot.canceled += context =>
+            {
+                moveHoldCard = false;
+                canMove = true;
+            };
+            InputMap.Action.shootHold.started += context => holdingForCard = true;
+            InputMap.Action.shootHold.canceled += CardHolderOncanceled;
+            InputMap.Action.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
+            
+        }
         
         InputMap.Menu.CardMenu.performed += SwitchCard;
     }
     #region Input Methode
 
     private void CardHolderOncanceled(InputAction.CallbackContext obj) 
-    { 
-        holdingForCard = false; 
-        moveCardTransform.gameObject.SetActive(false); 
-        if (holdTimer < 0.5f) 
-        { 
-            cardControl.ShortRange(); 
-        } 
-        else 
-        { 
-            cardControl.LongRange(); 
-        } 
-        holdTimer = 0; 
-         
+    {
+        if (_controlType == ControlType.gachette || holdingForCard)
+        {
+            Debug.Log("cast Card :" + holdTimer);
+            holdingForCard = false; 
+            moveCardTransform.gameObject.SetActive(false); 
+            if (holdTimer < 0.5f) 
+            { 
+                cardControl.ShortRange(); 
+            } 
+            else 
+            { 
+                cardControl.LongRange(); 
+            } 
+            holdTimer = 0; 
+            
+        }
     } 
     
     private void SwitchCard(InputAction.CallbackContext obj) 
     { 
+        Debug.Log("change card");
         if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1); 
         else UIManager.Instance.ChangeCard(1); 
     }
@@ -177,7 +210,7 @@ public class Controller : MonoBehaviour
             Rotate(vector);
         }
         
-        if (holdingForCard) 
+        if (holdingForCard && (_controlType == ControlType.gachette || (_controlType == ControlType.pabougé && moveHoldCard))) 
         { 
             holdTimer += Time.deltaTime; 
             if(holdTimer > 0.5f) moveCardTransform.gameObject.SetActive(true); 
@@ -244,6 +277,12 @@ public class Controller : MonoBehaviour
                 } // Change current Controller in GameManager
             }
             
+        }
+        else if (moveHoldCard)
+        {
+            float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+            if (angleView < 0) anglePlayerView += 360 ; 
+            movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0);
         }
         
         Animations();

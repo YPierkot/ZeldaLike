@@ -214,6 +214,33 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""holdForShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""41a9997c-0945-4695-920d-82d11c58f0e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shootHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""2589ce73-18df-4502-930f-4a211086c6e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""cardActivatorHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""be30706f-d521-4399-bd70-e56d4bdf2efb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +329,39 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Xbox"",
                     ""action"": ""cardActivator"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9000bcbd-118f-4a66-9aca-0c84eb311bca"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""holdForShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2aa292a9-0f89-4fbe-bb74-28c774d941cf"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""shootHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b224a203-366a-4826-bc0d-a6e109c11abb"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""cardActivatorHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -401,6 +461,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Action_Attack = m_Action.FindAction("Attack", throwIfNotFound: true);
         m_Action_CardHolder = m_Action.FindAction("CardHolder", throwIfNotFound: true);
         m_Action_cardActivator = m_Action.FindAction("cardActivator", throwIfNotFound: true);
+        m_Action_holdForShoot = m_Action.FindAction("holdForShoot", throwIfNotFound: true);
+        m_Action_shootHold = m_Action.FindAction("shootHold", throwIfNotFound: true);
+        m_Action_cardActivatorHold = m_Action.FindAction("cardActivatorHold", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_CardMenu = m_Menu.FindAction("CardMenu", throwIfNotFound: true);
@@ -518,6 +581,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Action_Attack;
     private readonly InputAction m_Action_CardHolder;
     private readonly InputAction m_Action_cardActivator;
+    private readonly InputAction m_Action_holdForShoot;
+    private readonly InputAction m_Action_shootHold;
+    private readonly InputAction m_Action_cardActivatorHold;
     public struct ActionActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -528,6 +594,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Action_Attack;
         public InputAction @CardHolder => m_Wrapper.m_Action_CardHolder;
         public InputAction @cardActivator => m_Wrapper.m_Action_cardActivator;
+        public InputAction @holdForShoot => m_Wrapper.m_Action_holdForShoot;
+        public InputAction @shootHold => m_Wrapper.m_Action_shootHold;
+        public InputAction @cardActivatorHold => m_Wrapper.m_Action_cardActivatorHold;
         public InputActionMap Get() { return m_Wrapper.m_Action; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -555,6 +624,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @cardActivator.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
                 @cardActivator.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
                 @cardActivator.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
+                @holdForShoot.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnHoldForShoot;
+                @holdForShoot.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnHoldForShoot;
+                @holdForShoot.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnHoldForShoot;
+                @shootHold.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnShootHold;
+                @shootHold.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnShootHold;
+                @shootHold.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnShootHold;
+                @cardActivatorHold.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivatorHold;
+                @cardActivatorHold.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivatorHold;
+                @cardActivatorHold.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivatorHold;
             }
             m_Wrapper.m_ActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -577,6 +655,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @cardActivator.started += instance.OnCardActivator;
                 @cardActivator.performed += instance.OnCardActivator;
                 @cardActivator.canceled += instance.OnCardActivator;
+                @holdForShoot.started += instance.OnHoldForShoot;
+                @holdForShoot.performed += instance.OnHoldForShoot;
+                @holdForShoot.canceled += instance.OnHoldForShoot;
+                @shootHold.started += instance.OnShootHold;
+                @shootHold.performed += instance.OnShootHold;
+                @shootHold.canceled += instance.OnShootHold;
+                @cardActivatorHold.started += instance.OnCardActivatorHold;
+                @cardActivatorHold.performed += instance.OnCardActivatorHold;
+                @cardActivatorHold.canceled += instance.OnCardActivatorHold;
             }
         }
     }
@@ -646,6 +733,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnCardHolder(InputAction.CallbackContext context);
         void OnCardActivator(InputAction.CallbackContext context);
+        void OnHoldForShoot(InputAction.CallbackContext context);
+        void OnShootHold(InputAction.CallbackContext context);
+        void OnCardActivatorHold(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

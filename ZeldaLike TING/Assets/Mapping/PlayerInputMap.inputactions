@@ -192,6 +192,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "holdForShoot",
+                    "type": "Button",
+                    "id": "41a9997c-0945-4695-920d-82d11c58f0e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "shootHold",
+                    "type": "Button",
+                    "id": "2589ce73-18df-4502-930f-4a211086c6e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "cardActivatorHold",
+                    "type": "Button",
+                    "id": "be30706f-d521-4399-bd70-e56d4bdf2efb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -280,6 +307,39 @@
                     "processors": "",
                     "groups": "Xbox",
                     "action": "cardActivator",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9000bcbd-118f-4a66-9aca-0c84eb311bca",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "holdForShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2aa292a9-0f89-4fbe-bb74-28c774d941cf",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "shootHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b224a203-366a-4826-bc0d-a6e109c11abb",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "cardActivatorHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
