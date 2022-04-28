@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     [System.NonSerialized] public bool dashing = false;
     public bool moveToPlayer;
 
+    [Space] [Header("CameraSet")] 
+    [SerializeField] private Transform firstSet;
+    [SerializeField] private Transform secondSet;
+     private bool isFirstSet = true;
+
     private void Update()
     {
        /*hits = Physics.RaycastAll(transform.position, (player.position - transform.position), Vector3.Distance(player.position, transform.position));
@@ -30,6 +35,23 @@ public class CameraController : MonoBehaviour
                }
            }
        }*/
+       if (Input.GetKeyDown(KeyCode.L))
+       {
+           if (isFirstSet)
+           {
+               transform.position = secondSet.position;
+               transform.rotation = secondSet.rotation;
+               cameraPoint = secondSet;
+               isFirstSet = false;
+           }
+           else
+           {
+               transform.position = firstSet.position;
+               transform.rotation = firstSet.rotation;
+               cameraPoint = firstSet;
+               isFirstSet = true;
+           }
+       }
     }
 
     // Update is called once per frame
