@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     #endregion
     public CameraController cameraController;
     public Volume volumeManager;
+    public bool isTutorial = true;
     public enum controller
     {
         Keybord, Xbox, ps

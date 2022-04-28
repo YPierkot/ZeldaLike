@@ -1,0 +1,239 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Eroan
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Hey I know that guy! That\u2019s Ailen!"
+      delay: 0
+    - expressions: 2
+      name: 
+      line: "They made a statue of him? He didn\u2019t deserve it."
+      delay: 3.25
+    voiceLine: {fileID: 8300000, guid: db496d25c380e364d9708db37dff5cc7, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Shut it mist. Hello! Who\u2019s that on the statue?"
+      delay: 4.25
+    voiceLine: {fileID: 8300000, guid: adff272084259d245b3b5d1a16efd460, type: 3}
+  - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: ' Hello traveler, this is Ailen the Wind Magician!'
+      delay: 4
+    voiceLine: {fileID: 8300000, guid: 7cdfaccc207c6fc428b83322d1025545, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Why\u2019d you build a statue of him?"
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 6362cfc7138df8c4db40e0e59ae7083d, type: 3}
+  - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Because he\u2019s a very important person "
+      delay: 0
+    - expressions: 0
+      name: 
+      line: in the history of the village.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: You see, all of this around you? It is because of him.
+      delay: 3
+    - expressions: 0
+      name: 
+      line: This everlasting wind, those houses.
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: dc6962d7982832f449a516ba8a5f5b1b, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: "Wow how\u2019d that happen?"
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 57505d91ffcb1df498955a8d2b10260e, type: 3}
+  - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Well a long time ago, '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: when people decided dangerous magic had to be forgotten,
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: when Zenithia fell and everyone left our island,
+      delay: 3
+    - expressions: 0
+      name: 
+      line: " Ailen decided to stay with the few that couldn\u2019t leave. "
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: He took care of them and during his free time,
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: ' he experimented things with his wind magic and'
+      delay: 3
+    - expressions: 0
+      name: 
+      line: "changed the mana\u2019s nature of the whole mountain."
+      delay: 2.75
+    voiceLine: {fileID: 8300000, guid: 21dfa044f3f3f444795b7a2664a26efd, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: Just like a facilitator artifact?
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 472c22967d84cd749907b28f2cd925dd, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Wow you understand stuff now! Good job!
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: be11f7006df7bfc469014e355ebe2993, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Shhh
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 5efb0e001e106da4dae6723f40004b36, type: 3}
+  - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Yes exactly, and the mana started canalizing itself into wind.
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: 'The wind blew the rocky landscapes '
+      delay: 3
+    - expressions: 0
+      name: 
+      line: of the mountains and with erosion,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: ' the landscape started to change, '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: and the last ruins of Zenithia faded with it.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 421d5521070f69b4aa36d193370bd66f, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'So, until then you decided to stay here '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: and to rebuild Zenithia as this village.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: c7f4794c6d587424496e7fa327a27533, type: 3}
+  - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "You\u2019re quite insightful, yes that\u2019s what happened!"
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: ebcfe04b4257f3440a4f7ab89b73e923, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Well, thank you for that story!
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Hey Mist, see!?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "He said I was insightful, I\u2019m not as dumb as you thought!"
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: c816bc9f7e5f82449aa96ad1cf177061, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You have a windmill instead of a brain.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 9ce435ecbacfc0e4da2cb376a8548afe, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Not nice Mist, not nice.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 69683293d875ebc45bc9fdbc5296b651, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "So that\u2019s what became Ailen."
+      delay: 0
+    - expressions: 0
+      name: 
+      line: He actually was a pretty skilled human, I liked him.
+      delay: 3.25
+    voiceLine: {fileID: 8300000, guid: 7309c5088f5d70d419f1912ac64d4554, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: There are people you like????
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: 4637343c636d6c64993b94d369cf1150, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Not you, that\u2019s for sure."
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: ff81af772f4ab2c4193c95ae9739ee56, type: 3}

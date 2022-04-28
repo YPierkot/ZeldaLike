@@ -7,7 +7,7 @@ public class FireBallEffect : MonoBehaviour
     
     public void ActivateRedGroundEffect()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5, mask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 2, mask);
         foreach (var col in colliders)
         {
             switch (col.transform.tag)

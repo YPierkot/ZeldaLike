@@ -27,7 +27,7 @@ public class TriggeringDialogue : MonoBehaviour
                 Controller.instance.canMove = false;
             }
         }
-        else if(other.CompareTag("Player") && !hasGivenDialogue && isTutorial && enemiesIsCondition)
+        else if(other.CompareTag("Player") && !hasGivenDialogue && isTutorial && enemiesIsCondition && !DialogueManager.Instance.isPlayingDialogue)
         {
             if (enemiesParent.childCount == 0)
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -22,19 +23,20 @@ public class DialogueManager : MonoBehaviour
     public bool isPlayingDialogue;
     private int dialogueMistKellTimer = 30;
     private float timeSinceLastDialogue;
-
+    public Animator mist;
+    public bool isCursed;
+    
     private void Awake()
     {
         Instance = this;
-        
         sentences = new Queue<string>();
         timeSinceLastDialogue = Time.time;
-        //Tutorial();
     }
 
     private void Update()
     {
-        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0)
+        SkipDialogue();
+        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0 && !GameManager.Instance.isTutorial)
         {
             var dialogueToPlay = ThievesLairMS[UnityEngine.Random.Range(0, ThievesLairMS.Count)];
             AssignDialogue(dialogueToPlay.dialogue.ToList());
@@ -59,6 +61,8 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(DialogueLine dialogueLine)
     {
+        characterEmotion.gameObject.SetActive(true);
+        if(isCursed) mist.SetTrigger("Appear");
         sentenceIndex = 0;
         SoundManager.Instance.PlayVoiceline(dialogueLine.voiceLine);
         sentences.Clear();
@@ -72,7 +76,6 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         float delay;
-        
         if (sentences.Count <= 0)
         {
             EndDialogue();
@@ -81,7 +84,7 @@ public class DialogueManager : MonoBehaviour
         {
             string currentLine = sentences.Dequeue();
             dialogueDisplay.text = currentLine;
-            //SetCharacterEmotion();
+            SetCharacterEmotion();
             if (DialogueLines[currentDialogue].dialogLines[sentenceIndex].delay == 0)
             {
                 delay = defaultDelay;
@@ -114,6 +117,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            characterEmotion.gameObject.SetActive(false);
+            if(isCursed) mist.ResetTrigger("Appear");
             isPlayingDialogue = false;
             timeSinceLastDialogue = Time.time;
             DialogueLines.Clear();
@@ -150,6 +155,22 @@ public class DialogueManager : MonoBehaviour
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Neutral;
                 //Debug.Log("Neutral");
                 break;
+        }
+    }
+
+    private void SkipDialogue()
+    {
+        if (Input.GetKeyDown(KeyCode.T) && isPlayingDialogue)
+        {
+            CancelInvoke("DisplayNextSentence");
+            SoundManager.Instance.Interrupt();
+            characterEmotion.gameObject.SetActive(false);
+            if(isCursed) mist.ResetTrigger("Appear");
+            isPlayingDialogue = false;
+            timeSinceLastDialogue = Time.time;
+            DialogueLines.Clear();
+            sentenceIndex = 0;
+            dialogueDisplay.text = null;
         }
     }
 }

@@ -5,10 +5,10 @@ public class EnemySpawnTrigger : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemiesToSpawn;
     [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] private Transform enemiesParent;
+    public Transform enemiesParent;
     private bool hasSpawned;
 
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn.Count; i++)
         {

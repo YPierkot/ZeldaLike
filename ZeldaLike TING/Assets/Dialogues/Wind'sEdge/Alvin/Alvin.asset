@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Alvin
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 571570e6e4b6c1e47b53b5f531615c7e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Oh, a visitor, few are the people that dare climbing the moutain.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Welcome to Wind\u2019s Edge."
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: a4945f54b37d41548a33ab6be8996080, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Well, they should know better,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: ' because this village is absolutely beautiful!'
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: e20c53a9ce63a074cb168aa997d2dd16, type: 3}
+  - character: {fileID: 11400000, guid: 571570e6e4b6c1e47b53b5f531615c7e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Haha thank you, well, it doesn\u2019t come close"
+      delay: 3
+    - expressions: 0
+      name: 
+      line: to what it used to be but we tried our best.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: b4edae30085b2e249bb00802b2eac955, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Well you still managed to do a good job I think. '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Incredible how this place bears the scars of its past
+      delay: 4
+    - expressions: 0
+      name: 
+      line: What are those rotating things?
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 8817aa0827fdbf54c91174dcbb980548, type: 3}
+  - character: {fileID: 11400000, guid: 571570e6e4b6c1e47b53b5f531615c7e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Those are wind turbines; they use the power of the wind
+      delay: 3
+    - expressions: 0
+      name: 
+      line: 'blowing on the mountain to rotate and to transfer '
+      delay: 3
+    - expressions: 0
+      name: 
+      line: ' this rotation to the different mechanism and runes in town.'
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 495747a3599cc53448bf93d8e310dc3b, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "I\u2019m impressed. I\u2019ve never seen anything like it."
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: 88599b26b5a322d46a2523fb0bedf68a, type: 3}
+  - character: {fileID: 11400000, guid: 571570e6e4b6c1e47b53b5f531615c7e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: ' It is unique on the island! We are proud of it, it shows what us,'
+      delay: 4
+    - expressions: 0
+      name: 
+      line: "inhabitants of Wind\u2019s Edge, are capable of doing."
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 3ac13625e3017db4e89fbca003f1bc28, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Don\u2019t you think it\u2019s incredible Mist?"
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 3b1b00aa520a85d4b94f283e40efb953, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: " I\u2019m fascinated by the ways you humans find"
+      delay: 3
+    - expressions: 0
+      name: 
+      line: 'to get around your powerlessness.
+
+'
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 1dbd9b2e9acd4444cbd744da15181871, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: You always act as if you spirits are better than us.
+      delay: 3.25
+    voiceLine: {fileID: 8300000, guid: 098f2a0311cde464da05e5ed0af8163d, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Oh, but we are.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 17f2de1269ed5c4408461d70d2718ada, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Well, how come I beat up dozens of spirits
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: while being an incompetent human Mist?
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 710da1c84118b604a972d84e0c5651b1, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Watch your mouth, human.
+      delay: 3
+    - expressions: 0
+      name: 
+      line: "You\u2019re lucky I don\u2019t feel empathy for my siblings."
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: acb731387a3034b4891568956e35e0ca, type: 3}

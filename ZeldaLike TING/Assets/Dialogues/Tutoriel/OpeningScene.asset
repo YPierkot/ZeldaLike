@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: OpeningScene
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: A magician's caravan?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: It's my lucky day ! I hope it has food !
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: de610d71de442c949a2678d048055430, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Shhh... he stops.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 25ec6c79d36bc794282b04e3f1714811, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Alright, he's not paying attention, now is the time...
+      delay: 4
+    voiceLine: {fileID: 8300000, guid: ceb6c7c4147bdd24baecd389783c1420, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 2
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Come on, open !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 3767a8f46d40347429f43decf525c921, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: There you go! Let's see... Wooooow
+      delay: 5
+    voiceLine: {fileID: 8300000, guid: 43e59aac050c1b14ba980a9f604b3186, type: 3}
