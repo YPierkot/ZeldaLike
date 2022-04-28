@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -24,11 +25,10 @@ public class DialogueManager : MonoBehaviour
     private float timeSinceLastDialogue;
     public Animator mist;
     public bool isCursed;
-
+    
     private void Awake()
     {
         Instance = this;
-        
         sentences = new Queue<string>();
         timeSinceLastDialogue = Time.time;
     }
@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         SkipDialogue();
-        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0)
+        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0 && !GameManager.Instance.isTutorial)
         {
             var dialogueToPlay = ThievesLairMS[UnityEngine.Random.Range(0, ThievesLairMS.Count)];
             AssignDialogue(dialogueToPlay.dialogue.ToList());

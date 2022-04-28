@@ -271,7 +271,7 @@ public class Controller : MonoBehaviour
 
     public void ForceMove(Vector3 target)
     {
-        if (Vector3.Distance(transform.position, target) > 0.5f)
+        if (Vector3.Distance(transform.position, target) >= 0.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, 5 * Time.deltaTime);
         }
