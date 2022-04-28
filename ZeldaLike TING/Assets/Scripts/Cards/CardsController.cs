@@ -84,7 +84,7 @@ public class CardsController : MonoBehaviour
         //canUseCards = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
-        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = true;
+        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
     }
 
     public void ShortRange()
@@ -94,7 +94,7 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: fireRectoUse = true; FireballShortRange(); break;
+            case CardsState.Fire: if(fireCardUnlock)fireRectoUse = true; FireballShortRange(); break;
             case CardsState.Ice: iceRectoUse = true; IceShortRange(); break;
             case CardsState.Wall: wallRectoUse = true; WallShortRange(); break;
             case CardsState.Wind: windRectoUse = true; WindShortRange(); break;
@@ -109,7 +109,7 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: fireRectoUse = false; FireballLongRange(); break;
+            case CardsState.Fire: if(fireCardUnlock)fireRectoUse = false; FireballLongRange(); break;
             case CardsState.Ice: iceRectoUse = false; IceLongRange(); break;
             case CardsState.Wall: wallRectoUse = false; WallLongRange(); break;
             case CardsState.Wind: windRectoUse = false; WindLongRange(); break;

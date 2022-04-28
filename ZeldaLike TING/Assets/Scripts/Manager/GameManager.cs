@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public CameraController cameraController;
     public Volume volumeManager;
     public bool isTutorial = true;
+    [SerializeField] private VolumeProfile tutorialWorld;
     public enum controller
     {
         Keybord, Xbox, ps
@@ -26,6 +27,6 @@ public class GameManager : MonoBehaviour
 
     public void TutorialWorld()
     {
-        volumeManager.enabled = true;
+        volumeManager.profile = tutorialWorld;
     }
 }

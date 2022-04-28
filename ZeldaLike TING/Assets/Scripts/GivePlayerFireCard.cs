@@ -18,12 +18,10 @@ public class GivePlayerFireCard : MonoBehaviour
         {
             if (!isCardGiven)
             {
-                other.transform.GetComponent<CardsController>().canUseCards = true;
-                Debug.Log(other.transform.GetComponent<UIManager>().cardUnlock);
-                other.transform.GetComponent<UIManager>().cardUnlock = 1;
-                Debug.Log(other.transform.GetComponent<UIManager>().cardUnlock);
-                other.transform.GetComponent<UIManager>().UpdateCardUI();
-                isCardGiven = true;
+                CardsController.instance.canUseCards = true;
+                CardsController.instance.fireCardUnlock = true;
+                UIManager.Instance.UpdateCardUI();
+                    isCardGiven = true;
             }
         }
     }

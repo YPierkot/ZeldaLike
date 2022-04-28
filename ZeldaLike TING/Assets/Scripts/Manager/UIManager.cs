@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
    private void Start()
    {
       initCardUI();
-      //UpdateCardUI();
+      UpdateCardUI();
       cardYPos = cardHandles[0].transform.position.y;
       Debug.Log(cardYPos);
       
@@ -124,6 +124,7 @@ public class UIManager : MonoBehaviour
                   }
                   
                }
+               else cardHandle.Handle.gameObject.SetActive(false);
                break;
             
             case CardsController.CardsState.Ice :
@@ -136,11 +137,12 @@ public class UIManager : MonoBehaviour
                      cardHandle.sideText.text = "verso";
                   }
                   else if (CardsController.instance.iceRectoUse || !CardsController.isIceGround)
-                     {
-                        cardHandle.sideText.text = "recto";
-                        cardHandle.image.color = Color.grey;
-                     }
+                  {
+                     cardHandle.sideText.text = "recto";
+                     cardHandle.image.color = Color.grey;
+                  }
                }
+               else cardHandle.Handle.gameObject.SetActive(false);
                break;
             
             case CardsController.CardsState.Wall :
@@ -161,6 +163,7 @@ public class UIManager : MonoBehaviour
                      }
                   }
                }
+               else cardHandle.Handle.gameObject.SetActive(false);
                break;
             case CardsController.CardsState.Wind :
                if (CardsController.instance.windCardUnlock)
@@ -180,6 +183,7 @@ public class UIManager : MonoBehaviour
                      }
                   }
                }
+               else cardHandle.Handle.gameObject.SetActive(false);
                break;
          }
          
