@@ -81,10 +81,18 @@ public class ScenePartLoader : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            shouldLoad = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
             shouldLoad = true;
         }
     }
-    
+
     private void TriggerCheck()
     {
         if (shouldLoad)
