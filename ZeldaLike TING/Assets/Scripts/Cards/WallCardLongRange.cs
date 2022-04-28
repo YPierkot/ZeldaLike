@@ -35,5 +35,6 @@ public class WallCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isWallGround = false;
+        UIManager.Instance.UpdateCardUI();
     }
 }

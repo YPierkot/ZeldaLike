@@ -58,5 +58,6 @@ public class FireCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isFireGround = false;
+        UIManager.Instance.UpdateCardUI();
     }
 }

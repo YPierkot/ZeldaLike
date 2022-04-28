@@ -56,5 +56,6 @@ public class BlueCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isIceGround = false;
+        UIManager.Instance.UpdateCardUI();
     }
 }
