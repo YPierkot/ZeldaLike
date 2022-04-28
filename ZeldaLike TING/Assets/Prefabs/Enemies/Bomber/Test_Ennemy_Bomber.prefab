@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3ab335e2a4cf74481f71ad8871c954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_hp: 2
+  e_hp: 4
   e_rangeSight: 7
   e_rangeAttack: 2.5
   e_speed: 3
@@ -569,8 +569,6 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  e_stuntValue: 0
-  e_FreezeValue: 0
   bombPrefab: {fileID: 9214266994308807322, guid: d370767ac97a8f94c8146a12cde3f617,
     type: 3}
   e_rangeWander: 4

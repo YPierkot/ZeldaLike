@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cd250559784654cabd6d10ac8b1cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  e_hp: 1
+  e_hp: 3
   e_rangeSight: 11.655
   e_rangeAttack: 8.97
   e_speed: 2.07
@@ -108,8 +108,6 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  e_stuntValue: 0
-  e_FreezeValue: 0
   e_rangeWander: 3
   isMoving: 0
   isAttacking: 0
@@ -119,6 +117,7 @@ MonoBehaviour:
   eyeGameObject: {fileID: 5665831862857445516, guid: e24dd8d954556f0419d4fbe7510a31d5,
     type: 3}
   eyeCounter: 3
+  isPanic: 0
 --- !u!65 &3913864873762027158
 BoxCollider:
   m_ObjectHideFlags: 0

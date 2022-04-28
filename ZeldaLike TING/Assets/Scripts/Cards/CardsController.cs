@@ -84,7 +84,7 @@ public class CardsController : MonoBehaviour
         //canUseCards = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
-        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = true;
+        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
     }
 
     public void ShortRange()

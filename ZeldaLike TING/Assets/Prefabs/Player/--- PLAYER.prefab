@@ -1226,12 +1226,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  _controlType: 0
   animatorPlayer: {fileID: 1145041875}
   animatorMovePlayer: {fileID: 1617754507992478219}
   moving: 0
   dashing: 0
   inAttack: 0
   inAttackAnim: 0
+  holdingForCard: 0
   canMove: 1
   spriteArray:
   - angleInterval:
@@ -1291,7 +1293,7 @@ MonoBehaviour:
   - {fileID: 984527470}
   - {fileID: 634778487}
   - {fileID: 1870232228}
-  moveSpeed: 80
+  moveSpeed: 50
   dashCurve:
     serializedVersion: 2
     m_Curve:
