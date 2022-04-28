@@ -138,7 +138,6 @@ public class Controller : MonoBehaviour
                 moveHoldCard = false;
                 canMove = true;
             };
-            InputMap.Action.shootHold.started += context => holdingForCard = true;
             InputMap.Action.shootHold.canceled += CardHolderOncanceled;
             InputMap.Action.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
             
@@ -150,16 +149,20 @@ public class Controller : MonoBehaviour
 
     private void CardHolderOncanceled(InputAction.CallbackContext obj) 
     {
-        if (_controlType == ControlType.gachette || holdingForCard)
+        if (_controlType == ControlType.gachette && holdingForCard)
         {
             Debug.Log("cast Card :" + holdTimer);
             holdingForCard = false; 
-            moveCardTransform.gameObject.SetActive(false); 
+            moveCardTransform.gameObject.SetActive(false);
+            if (holdTimer < 0.5f && _controlType == ControlType.gachette) cardControl.ShortRange();
+            else cardControl.LongRange(); 
             
-                cardControl.LongRange(); 
-            
-            holdTimer = 0; 
-            
+            holdTimer = 0;
+        }
+        else if (_controlType == ControlType.pabougé)
+        {
+            if(moveHoldCard) cardControl.LongRange(); 
+            else cardControl.ShortRange();
         }
     } 
     
