@@ -217,6 +217,8 @@ public class Controller : MonoBehaviour
     
     private void FixedUpdate()
     {
+        Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
+        lastDir = dir;
         
         if (canMove)
         {
@@ -259,9 +261,7 @@ public class Controller : MonoBehaviour
 
     void Move()
     {
-        Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
-        lastDir = dir;
-        
+        Vector3 dir = lastDir;
         float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
         if (angleView < 0) anglePlayerView += 360 ; 
         movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
@@ -279,12 +279,17 @@ public class Controller : MonoBehaviour
     }
     void Dash()
     {
-        if (!dashing && canMove && dashAvailable > 0)
+        if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0)
         {
+            animatorPlayer.SetBool("attackFinish", true);
             dashAvailable--;
             dashing = true;
             dashTimer = 0;
             canMove = false;
+            
+            inAttack = false;
+            attackCounter = 0;
+            DesactiveAttackZone();
             if (cameraOnPlayer)
             {
                 dashCamera = true;
@@ -357,8 +362,8 @@ public class Controller : MonoBehaviour
             {
                 if (animInfo.clip.name.Contains("SLASH"))
                 {
-                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -700);
-                    else rb.AddForce(movePlayerTransform.forward * -700);
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -500);
+                    else rb.AddForce(movePlayerTransform.forward * -500);
                 }
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
                 else
@@ -376,15 +381,8 @@ public class Controller : MonoBehaviour
             }
             else if (animInfo.clip.name == "waitAttackState" && inAttackAnim)
             {
-                GameObject[] attackZones;
-                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) attackZones = keybordAttackZones;
-                else attackZones = controllerAttackZones;
-                foreach (var GO in attackZones)
-                {
-                    GO.SetActive(false);
-                    //Debug.Log("Desactive Attack Zone");
-                }
-
+                DesactiveAttackZone();
+                
                 if (!setNextCombo && !comboWaiting)
                 {
                     comboWaiting = true;
@@ -411,11 +409,31 @@ public class Controller : MonoBehaviour
             }
             else
             {
-                animatorPlayer.SetFloat("X-Axis", animDir.x);
-                animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                if (dashing)
+                {
+                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
+                }
+                else
+                {
+                    animatorPlayer.SetFloat("X-Axis", animDir.x);
+                    animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                }
                 animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
             }
+    }
+
+    void DesactiveAttackZone()
+    {
+        GameObject[] attackZones;
+        if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) attackZones = keybordAttackZones;
+        else attackZones = controllerAttackZones;
+        foreach (var GO in attackZones)
+        {
+            GO.SetActive(false);
+            //Debug.Log("Desactive Attack Zone");
+        }
     }
     
     private void OnTriggerEnter(Collider other)
@@ -441,8 +459,8 @@ public class Controller : MonoBehaviour
         if (!inAttack)
         {
             animatorPlayer.SetBool("attackFinish", true);
-            Debug.Log("Attack Finish");
             attackCounter = 0;
+            Debug.Log("Attack Finish");
             canMove = true;
         }
     }
