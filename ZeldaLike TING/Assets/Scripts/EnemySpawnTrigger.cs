@@ -7,6 +7,7 @@ public class EnemySpawnTrigger : MonoBehaviour
     [SerializeField] private List<Transform> spawnPoints;
     public Transform enemiesParent;
     private bool hasSpawned;
+    [SerializeField] private GameObject barrier;
 
     public void SpawnEnemies()
     {
@@ -20,6 +21,8 @@ public class EnemySpawnTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasSpawned)
         {
+            GameManager.Instance.actualRespawnPoint = transform;
+            barrier.SetActive(true);
             hasSpawned = true;
             SpawnEnemies();
         }
