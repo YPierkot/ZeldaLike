@@ -502,6 +502,54 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""FastCast"",
+            ""id"": ""4b152a67-80e5-4631-a25f-6a1f01e754a7"",
+            ""actions"": [
+                {
+                    ""name"": ""ShortShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c4593b6-101f-41cf-a03d-f6811c8d5346"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LongShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6990f11-9f1b-45e1-bc49-16abfab6eb8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cfc39f3d-31c7-4f8c-9f77-24a330763b55"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""ShortShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc61b01c-5a15-4cc9-9aba-b9b0f050bf3a"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""LongShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -561,6 +609,10 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_ChangeSideControl = asset.FindActionMap("ChangeSideControl", throwIfNotFound: true);
         m_ChangeSideControl_ChangeCard = m_ChangeSideControl.FindAction("ChangeCard", throwIfNotFound: true);
         m_ChangeSideControl_Shoot = m_ChangeSideControl.FindAction("Shoot", throwIfNotFound: true);
+        // FastCast
+        m_FastCast = asset.FindActionMap("FastCast", throwIfNotFound: true);
+        m_FastCast_ShortShoot = m_FastCast.FindAction("ShortShoot", throwIfNotFound: true);
+        m_FastCast_LongShoot = m_FastCast.FindAction("LongShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -886,6 +938,47 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         }
     }
     public ChangeSideControlActions @ChangeSideControl => new ChangeSideControlActions(this);
+
+    // FastCast
+    private readonly InputActionMap m_FastCast;
+    private IFastCastActions m_FastCastActionsCallbackInterface;
+    private readonly InputAction m_FastCast_ShortShoot;
+    private readonly InputAction m_FastCast_LongShoot;
+    public struct FastCastActions
+    {
+        private @PlayerInputMap m_Wrapper;
+        public FastCastActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ShortShoot => m_Wrapper.m_FastCast_ShortShoot;
+        public InputAction @LongShoot => m_Wrapper.m_FastCast_LongShoot;
+        public InputActionMap Get() { return m_Wrapper.m_FastCast; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(FastCastActions set) { return set.Get(); }
+        public void SetCallbacks(IFastCastActions instance)
+        {
+            if (m_Wrapper.m_FastCastActionsCallbackInterface != null)
+            {
+                @ShortShoot.started -= m_Wrapper.m_FastCastActionsCallbackInterface.OnShortShoot;
+                @ShortShoot.performed -= m_Wrapper.m_FastCastActionsCallbackInterface.OnShortShoot;
+                @ShortShoot.canceled -= m_Wrapper.m_FastCastActionsCallbackInterface.OnShortShoot;
+                @LongShoot.started -= m_Wrapper.m_FastCastActionsCallbackInterface.OnLongShoot;
+                @LongShoot.performed -= m_Wrapper.m_FastCastActionsCallbackInterface.OnLongShoot;
+                @LongShoot.canceled -= m_Wrapper.m_FastCastActionsCallbackInterface.OnLongShoot;
+            }
+            m_Wrapper.m_FastCastActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ShortShoot.started += instance.OnShortShoot;
+                @ShortShoot.performed += instance.OnShortShoot;
+                @ShortShoot.canceled += instance.OnShortShoot;
+                @LongShoot.started += instance.OnLongShoot;
+                @LongShoot.performed += instance.OnLongShoot;
+                @LongShoot.canceled += instance.OnLongShoot;
+            }
+        }
+    }
+    public FastCastActions @FastCast => new FastCastActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -936,5 +1029,10 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     {
         void OnChangeCard(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+    }
+    public interface IFastCastActions
+    {
+        void OnShortShoot(InputAction.CallbackContext context);
+        void OnLongShoot(InputAction.CallbackContext context);
     }
 }

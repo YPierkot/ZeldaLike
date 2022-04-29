@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
 
     public enum ControlType
     {
-        MoveStopShoot, HoldForLong, ChangeSideControl
+        MoveStopShoot, HoldForLong, ChangeSideControl, FastCast
     }
     
     [Serializable]
@@ -142,12 +142,15 @@ public class Controller : MonoBehaviour
             {
                 moveHoldCard = true;
                 canMove = false;
+                cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = true;
             };
             InputMap.MoveStopShoot.holdForShoot.canceled += context =>
             {
                 moveHoldCard = false;
                 canMove = true;
+                cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
             };
+            UIManager.Instance.UpdateCardUI();
             InputMap.MoveStopShoot.shoot.canceled += CardHolderOncanceled;
             InputMap.MoveStopShoot.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
             
@@ -167,6 +170,11 @@ public class Controller : MonoBehaviour
                 if (cardControl.rectoSide) cardControl.ShortRange();
                 else cardControl.LongRange();
             };
+        }
+        else if (_controlType == ControlType.FastCast)
+        {
+            InputMap.FastCast.ShortShoot.performed += context => cardControl.ShortRange();
+            InputMap.FastCast.LongShoot.performed += context => cardControl.LongRange();
         }
         
         InputMap.Menu.CardMenu.performed += SwitchCard;

@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
       private void Awake()
       {
          Instance = this;
+         initCardUI();
       }
    #endregion
 
@@ -37,11 +38,10 @@ public class UIManager : MonoBehaviour
    
    [Header("--- LIFE & STAT")] 
    [SerializeField] private Image[] lifeArray;
-
+   
    
    private void Start()
    {
-      initCardUI();
       cardYPos = cardHandles[0].transform.position.y;
       Debug.Log(cardYPos);
       

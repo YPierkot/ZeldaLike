@@ -480,6 +480,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "FastCast",
+            "id": "4b152a67-80e5-4631-a25f-6a1f01e754a7",
+            "actions": [
+                {
+                    "name": "ShortShoot",
+                    "type": "Button",
+                    "id": "5c4593b6-101f-41cf-a03d-f6811c8d5346",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LongShoot",
+                    "type": "Button",
+                    "id": "b6990f11-9f1b-45e1-bc49-16abfab6eb8a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cfc39f3d-31c7-4f8c-9f77-24a330763b55",
+                    "path": "<XInputController>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "ShortShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc61b01c-5a15-4cc9-9aba-b9b0f050bf3a",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "LongShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
