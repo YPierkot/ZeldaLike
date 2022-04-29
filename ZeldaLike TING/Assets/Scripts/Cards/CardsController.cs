@@ -147,8 +147,8 @@ public class CardsController : MonoBehaviour
                 canUseFireCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                //else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
-                else shootPointPos =-controller.moveCardTransform.forward ;
+                else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
+                else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
@@ -173,8 +173,8 @@ public class CardsController : MonoBehaviour
 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                //else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
-                else shootPointPos =-controller.moveCardTransform.forward ;
+                else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
+                else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
                 iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
@@ -199,8 +199,8 @@ public class CardsController : MonoBehaviour
                 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                //else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
-                else shootPointPos =-controller.moveCardTransform.forward ;
+                else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
+                else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
                 wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
@@ -224,8 +224,8 @@ public class CardsController : MonoBehaviour
                 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                //else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
-                else shootPointPos =-controller.moveCardTransform.forward ;
+                else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
+                else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
                 windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
@@ -288,8 +288,8 @@ public class CardsController : MonoBehaviour
     {
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-        //else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
-        else shootPointPos =-controller.moveCardTransform.forward ;
+        else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
+        else shootPointPos =-controller.movePlayerTransform.forward ;
 
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;

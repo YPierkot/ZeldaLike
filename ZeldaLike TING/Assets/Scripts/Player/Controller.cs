@@ -35,6 +35,7 @@ public class Controller : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
     public ControlType _controlType;
+    public bool secondStick;
     private ControlType lastControlType;
     [SerializeField] private Animator animatorPlayer;
     [SerializeField] private Animator animatorMovePlayer;
@@ -235,6 +236,7 @@ public class Controller : MonoBehaviour
         if (lastControlType != _controlType)
         {
             SetInputMap();
+            if (_controlType == ControlType.MoveStopShoot) secondStick = false;
             lastControlType  = _controlType;
         }
         
