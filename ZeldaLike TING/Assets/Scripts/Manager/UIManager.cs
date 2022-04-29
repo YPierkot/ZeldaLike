@@ -111,14 +111,15 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.fireCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
+                  if(CardsController.instance.fireRectoUse)cardHandle.sideText.text = "recto";
+                  else cardHandle.sideText.text = "verso";
+                  
                   if (CardsController.instance.canUseFireCard)
                   {
                      cardHandle.image.color = cardColor[0];
-                     cardHandle.sideText.text = "verso";
                   }
                   else if (CardsController.instance.fireRectoUse || !CardsController.isFireGround) 
-                  { 
-                     cardHandle.sideText.text = "recto";
+                  {
                      cardHandle.image.color = Color.grey;
                   }
                   
@@ -129,15 +130,16 @@ public class UIManager : MonoBehaviour
             case CardsController.CardsState.Ice :
                if (CardsController.instance.iceCardUnlock)
                {
+                  if(CardsController.instance.iceRectoUse)cardHandle.sideText.text = "recto";
+                  else cardHandle.sideText.text = "verso";
+                  
                   cardHandle.Handle.gameObject.SetActive(true);
                   if (CardsController.instance.canUseIceCard)
                   {
                      cardHandle.image.color = cardColor[1];
-                     cardHandle.sideText.text = "verso";
                   }
                   else if (CardsController.instance.iceRectoUse || !CardsController.isIceGround)
                   {
-                     cardHandle.sideText.text = "recto";
                      cardHandle.image.color = Color.grey;
                   }
                }
@@ -148,16 +150,18 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.wallCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
+                  
+                  if(CardsController.instance.wallRectoUse)cardHandle.sideText.text = "recto";
+                  else cardHandle.sideText.text = "verso";
+                  
                   if (CardsController.instance.canUseWallCard) 
                   {
                      cardHandle.image.color = cardColor[2];
-                     cardHandle.sideText.text = "verso";
                   }
                   else
                   {
                      if (CardsController.instance.wallRectoUse || !CardsController.isWallGround)
                      {
-                        cardHandle.sideText.text = "recto";
                         cardHandle.image.color = Color.grey;
                      }
                   }
@@ -168,16 +172,18 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.windCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
+                  
+                  if(CardsController.instance.windRectoUse)cardHandle.sideText.text = "recto";
+                  else cardHandle.sideText.text = "verso";
+                  
                   if (CardsController.instance.canUseWindCard)
                   {
                      cardHandle.image.color = cardColor[3];
-                     cardHandle.sideText.text = "verso";
                   }
                   else
                   {
                      if (CardsController.instance.windRectoUse || !CardsController.isWindGround)
                      {
-                        cardHandle.sideText.text = "recto";
                         cardHandle.image.color = Color.grey;
                      }
                   }
@@ -210,6 +216,7 @@ public class UIManager : MonoBehaviour
 
    public void ChangeCard(int changeInt)
    {
+      Debug.Log($"change card {changeInt}");
       if (changeInt != 0)
       {
          cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);

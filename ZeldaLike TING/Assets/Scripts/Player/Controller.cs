@@ -118,6 +118,7 @@ public class Controller : MonoBehaviour
 
     void SetInputMap()
     {
+        if (InputMap != null) InputMap.Disable();
         InputMap = new PlayerInputMap();
         InputMap.Enable();
         InputMap.Movement.Rotation.performed += RotationOnperformed;
