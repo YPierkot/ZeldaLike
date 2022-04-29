@@ -11,8 +11,8 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] private GameObject[] attackCol2;
 
    [Header("LIFE")]
-   [SerializeField] private int lifeMax;
-   [SerializeField] private int life;
+   public int lifeMax;
+   public int life;
 
    [Header("Debug")]
    [SerializeField] private CameraShakeScriptable HitShake;
@@ -39,13 +39,13 @@ public class PlayerStat : MonoBehaviour
 
    private void Awake()
    {
+      instance = this;
       _control = GetComponent<Controller>();
       life = lifeMax;
       toughnessValue = 0.3f;
       attackDamageValue = 1;
       moveSpeedValue = 100;
       repulseForce = 25;
-      
       UpdateAttackStats();
    }
 
