@@ -42,7 +42,6 @@ public class UIManager : MonoBehaviour
    private void Start()
    {
       initCardUI();
-      UpdateCardUI();
       cardYPos = cardHandles[0].transform.position.y;
       Debug.Log(cardYPos);
       
