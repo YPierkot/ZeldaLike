@@ -84,7 +84,7 @@ public class Controller : MonoBehaviour
     [Header("--- PARAMETRES ---")] 
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
-    [SerializeField] int maxDash; 
+    public int maxDash; 
     [SerializeField] private float dashCD = 2f;
     
     [Header("--- DEBUG ---")] 
@@ -464,4 +464,37 @@ public class Controller : MonoBehaviour
             canMove = true;
         }
     }
+
+    public void FreezePlayer(bool freeze, string toFreeze = "All")
+    {
+        if (freeze)
+        {
+            switch (toFreeze)
+            {
+                case "Dash":
+                    dashAvailable = 0;
+                    break;
+                case "Attack":
+                    attackCounter = 3;
+                    break;
+                case "All":
+                    canMove = false;
+                    dashAvailable = 0;
+                    attackCounter = 3;
+                    break;
+                case "DashAttack":
+                    dashAvailable = 0;
+                    attackCounter = 3;
+                    break;
+            }
+        }
+        else
+        {
+            canMove = true;
+            dashAvailable = maxDash;
+            attackCounter = 0;
+        }
+    }
+
+    
 }
