@@ -43,7 +43,6 @@ public class UIManager : MonoBehaviour
    private void Start()
    {
       cardYPos = cardHandles[0].transform.position.y;
-      Debug.Log(cardYPos);
       
       /*cardHandles = new Transform[cardHandlesContainer.childCount];
       for (int i = 0; i < cardHandlesContainer.childCount; i++)
@@ -101,13 +100,13 @@ public class UIManager : MonoBehaviour
 
    public void UpdateCardUI()
    {
-      Debug.Log("Update Card");
+      //Debug.Log("Update Card");
       foreach (var cardHandle in cardHandlesReference)
       {
          switch (cardHandle.card)
          {
             case CardsController.CardsState.Fire :
-               Debug.Log($"FIRE Unlock: {CardsController.instance.fireCardUnlock}, canUse {CardsController.instance.canUseFireCard}, isRecto: {CardsController.instance.fireRectoUse}, isGround: {CardsController.isFireGround}");
+               //Debug.Log($"FIRE Unlock: {CardsController.instance.fireCardUnlock}, canUse {CardsController.instance.canUseFireCard}, isRecto: {CardsController.instance.fireRectoUse}, isGround: {CardsController.isFireGround}");
                if (CardsController.instance.fireCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
@@ -216,7 +215,7 @@ public class UIManager : MonoBehaviour
 
    public void ChangeCard(int changeInt)
    {
-      Debug.Log($"change card {changeInt}");
+      //Debug.Log($"change card {changeInt}");
       if (changeInt != 0)
       {
          cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);

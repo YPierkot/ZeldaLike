@@ -17,7 +17,6 @@ public class RunePlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            Debug.Log("collide Block");
         if (other.GetComponent<pushBlock>() != null)
         {
             switch (plateType)
