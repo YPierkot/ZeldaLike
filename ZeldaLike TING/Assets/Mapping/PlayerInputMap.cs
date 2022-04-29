@@ -331,7 +331,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""shootHold"",
+                    ""name"": ""shoot"",
                     ""type"": ""Button"",
                     ""id"": ""d3106f67-581a-452a-be8f-e670eb5fd6b9"",
                     ""expectedControlType"": ""Button"",
@@ -368,7 +368,18 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
-                    ""action"": ""shootHold"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""472b31b4-579c-458b-a33d-0ffaf3c70e10"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -540,7 +551,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         // MoveStopShoot
         m_MoveStopShoot = asset.FindActionMap("MoveStopShoot", throwIfNotFound: true);
         m_MoveStopShoot_holdForShoot = m_MoveStopShoot.FindAction("holdForShoot", throwIfNotFound: true);
-        m_MoveStopShoot_shootHold = m_MoveStopShoot.FindAction("shootHold", throwIfNotFound: true);
+        m_MoveStopShoot_shoot = m_MoveStopShoot.FindAction("shoot", throwIfNotFound: true);
         m_MoveStopShoot_cardActivatorHold = m_MoveStopShoot.FindAction("cardActivatorHold", throwIfNotFound: true);
         // HoldForLong
         m_HoldForLong = asset.FindActionMap("HoldForLong", throwIfNotFound: true);
@@ -749,14 +760,14 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_MoveStopShoot;
     private IMoveStopShootActions m_MoveStopShootActionsCallbackInterface;
     private readonly InputAction m_MoveStopShoot_holdForShoot;
-    private readonly InputAction m_MoveStopShoot_shootHold;
+    private readonly InputAction m_MoveStopShoot_shoot;
     private readonly InputAction m_MoveStopShoot_cardActivatorHold;
     public struct MoveStopShootActions
     {
         private @PlayerInputMap m_Wrapper;
         public MoveStopShootActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @holdForShoot => m_Wrapper.m_MoveStopShoot_holdForShoot;
-        public InputAction @shootHold => m_Wrapper.m_MoveStopShoot_shootHold;
+        public InputAction @shoot => m_Wrapper.m_MoveStopShoot_shoot;
         public InputAction @cardActivatorHold => m_Wrapper.m_MoveStopShoot_cardActivatorHold;
         public InputActionMap Get() { return m_Wrapper.m_MoveStopShoot; }
         public void Enable() { Get().Enable(); }
@@ -770,9 +781,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @holdForShoot.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnHoldForShoot;
                 @holdForShoot.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnHoldForShoot;
                 @holdForShoot.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnHoldForShoot;
-                @shootHold.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShootHold;
-                @shootHold.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShootHold;
-                @shootHold.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShootHold;
+                @shoot.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShoot;
+                @shoot.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShoot;
+                @shoot.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShoot;
                 @cardActivatorHold.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnCardActivatorHold;
                 @cardActivatorHold.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnCardActivatorHold;
                 @cardActivatorHold.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnCardActivatorHold;
@@ -783,9 +794,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @holdForShoot.started += instance.OnHoldForShoot;
                 @holdForShoot.performed += instance.OnHoldForShoot;
                 @holdForShoot.canceled += instance.OnHoldForShoot;
-                @shootHold.started += instance.OnShootHold;
-                @shootHold.performed += instance.OnShootHold;
-                @shootHold.canceled += instance.OnShootHold;
+                @shoot.started += instance.OnShoot;
+                @shoot.performed += instance.OnShoot;
+                @shoot.canceled += instance.OnShoot;
                 @cardActivatorHold.started += instance.OnCardActivatorHold;
                 @cardActivatorHold.performed += instance.OnCardActivatorHold;
                 @cardActivatorHold.canceled += instance.OnCardActivatorHold;
@@ -913,7 +924,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     public interface IMoveStopShootActions
     {
         void OnHoldForShoot(InputAction.CallbackContext context);
-        void OnShootHold(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
         void OnCardActivatorHold(InputAction.CallbackContext context);
     }
     public interface IHoldForLongActions

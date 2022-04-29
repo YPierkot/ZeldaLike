@@ -148,7 +148,7 @@ public class Controller : MonoBehaviour
                 moveHoldCard = false;
                 canMove = true;
             };
-            InputMap.MoveStopShoot.shootHold.canceled += CardHolderOncanceled;
+            InputMap.MoveStopShoot.shoot.canceled += CardHolderOncanceled;
             InputMap.MoveStopShoot.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
             
         }

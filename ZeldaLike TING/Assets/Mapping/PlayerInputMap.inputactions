@@ -309,7 +309,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "shootHold",
+                    "name": "shoot",
                     "type": "Button",
                     "id": "d3106f67-581a-452a-be8f-e670eb5fd6b9",
                     "expectedControlType": "Button",
@@ -346,7 +346,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Xbox",
-                    "action": "shootHold",
+                    "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "472b31b4-579c-458b-a33d-0ffaf3c70e10",
+                    "path": "<XInputController>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Xbox",
+                    "action": "shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
