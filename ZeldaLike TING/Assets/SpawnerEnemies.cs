@@ -10,6 +10,7 @@ public class SpawnerEnemies : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemiesPrefab;
     [SerializeField] private bool canSpawn;
+    [SerializeField] private Vector2 enemyPerWave;
 
     private Material _material;
 
@@ -41,7 +42,7 @@ public class SpawnerEnemies : MonoBehaviour
         if (!canSpawn)
             return;
 
-        int alea = Random.Range(4, 10);
+        int alea = (int)Random.Range(enemyPerWave.x, enemyPerWave.y);
         for (int i = 0; i < alea; i++)
         {
             GameObject eGameObject = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
