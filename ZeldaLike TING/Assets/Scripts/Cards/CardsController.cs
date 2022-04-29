@@ -11,34 +11,36 @@ public class CardsController : MonoBehaviour
     
     // Cards Variables 
     public bool canUseCards;
+    [HideInInspector] public bool rectoSide;
     
     [Header("FireCard")]
     public bool canUseFireCard;
+    public bool fireCardUnlock = true; 
     public static bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
     [HideInInspector] public bool fireRectoUse;
-    [HideInInspector] public bool fireCardUnlock = true; 
     
     // IceCard
     [Header("Ice Card")] 
     public bool canUseIceCard;
+     public bool iceCardUnlock = true;
     public static bool isIceGround;
     public GameObject iceCardGrounded;
     [HideInInspector] public bool iceRectoUse;
-    [HideInInspector] public bool iceCardUnlock = true;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
     public bool canUseWallCard;
+    public bool wallCardUnlock = true;
     public static bool isWallGround;
     public GameObject wallCardGrounded;
     public GameObject WallSR;
     [HideInInspector] public bool wallRectoUse;
-    [HideInInspector] public bool wallCardUnlock = true;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
     public bool canUseWindCard;
+    public bool windCardUnlock = true;
     public static bool isWindGround;
     public GameObject windCardGrounded;
     [Space(5)]
@@ -47,7 +49,6 @@ public class CardsController : MonoBehaviour
     [SerializeField] Vector3 repulsivePoint;
     public GameObject DebugWindSphere;
     [HideInInspector] public bool windRectoUse;
-    [HideInInspector] public bool windCardUnlock = true;
     
     [Space(10)] // Wind Card
     [Header("Utilities")] 
@@ -84,7 +85,8 @@ public class CardsController : MonoBehaviour
         //canUseCards = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
-        fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
+        //fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
+        UIManager.Instance.UpdateCardUI();
     }
 
     public void ShortRange()
@@ -145,7 +147,7 @@ public class CardsController : MonoBehaviour
                 canUseFireCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
+                else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
@@ -171,7 +173,7 @@ public class CardsController : MonoBehaviour
 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
+                else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
@@ -197,7 +199,7 @@ public class CardsController : MonoBehaviour
                 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
+                else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
@@ -222,7 +224,7 @@ public class CardsController : MonoBehaviour
                 
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-                else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
+                else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
                 else shootPointPos =-controller.moveCardTransform.forward ;
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
@@ -286,7 +288,7 @@ public class CardsController : MonoBehaviour
     {
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
-        else if (controller._controlType == Controller.ControlType.pabougé) shootPointPos =-controller.movePlayerTransform.forward ;
+        else if (controller._controlType == Controller.ControlType.MoveStopShoot) shootPointPos =-controller.movePlayerTransform.forward ;
         else shootPointPos =-controller.moveCardTransform.forward ;
 
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);

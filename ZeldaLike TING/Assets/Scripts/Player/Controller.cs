@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
 
     public enum ControlType
     {
-        pabougé, gachette
+        MoveStopShoot, HoldForLong, ChangeSideControl
     }
     
     [Serializable]
@@ -35,6 +35,7 @@ public class Controller : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
     private PlayerInput _playerInput;
     public ControlType _controlType;
+    private ControlType lastControlType;
     [SerializeField] private Animator animatorPlayer;
     [SerializeField] private Animator animatorMovePlayer;
     
@@ -110,6 +111,13 @@ public class Controller : MonoBehaviour
 
         instance = this;
         
+        SetInputMap();
+        
+    }
+    #region Input Methode
+
+    void SetInputMap()
+    {
         InputMap = new PlayerInputMap();
         InputMap.Enable();
         InputMap.Movement.Rotation.performed += RotationOnperformed;
@@ -120,46 +128,64 @@ public class Controller : MonoBehaviour
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
-        if (_controlType == ControlType.gachette)
+        if (_controlType == ControlType.HoldForLong)
         {
-            InputMap.Action.CardHolder.started += context => holdingForCard = true; 
-            InputMap.Action.CardHolder.canceled += CardHolderOncanceled; 
-            InputMap.Action.cardActivator.performed += context => cardControl.LongRangeRecast(); 
+            InputMap.HoldForLong.CardHolder.started += context => holdingForCard = true; 
+            InputMap.HoldForLong.CardHolder.canceled += CardHolderOncanceled; 
+            InputMap.HoldForLong.cardActivator.performed += context => cardControl.LongRangeRecast(); 
         }
-        else if (_controlType == ControlType.pabougé)
+        else if (_controlType == ControlType.MoveStopShoot)
         {
-            InputMap.Action.holdForShoot.performed += context =>
+            InputMap.MoveStopShoot.holdForShoot.performed += context =>
             {
                 moveHoldCard = true;
                 canMove = false;
             };
-            InputMap.Action.holdForShoot.canceled += context =>
+            InputMap.MoveStopShoot.holdForShoot.canceled += context =>
             {
                 moveHoldCard = false;
                 canMove = true;
             };
-            InputMap.Action.shootHold.started += context => holdingForCard = true;
-            InputMap.Action.shootHold.canceled += CardHolderOncanceled;
-            InputMap.Action.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
+            InputMap.MoveStopShoot.shootHold.canceled += CardHolderOncanceled;
+            InputMap.MoveStopShoot.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
             
+        }
+        else if (_controlType == ControlType.ChangeSideControl)
+        {
+            InputMap.ChangeSideControl.ChangeCard.performed += context =>
+            {
+                cardControl.rectoSide = !cardControl.rectoSide;
+               if(!cardControl.rectoSide) cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = true;
+               else cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
+               UIManager.Instance.UpdateCardUI();
+            };
+
+            InputMap.ChangeSideControl.Shoot.performed += context =>
+            {
+                if (cardControl.rectoSide) cardControl.ShortRange();
+                else cardControl.LongRange();
+            };
         }
         
         InputMap.Menu.CardMenu.performed += SwitchCard;
     }
-    #region Input Methode
-
+    
     private void CardHolderOncanceled(InputAction.CallbackContext obj) 
     {
-        if (_controlType == ControlType.gachette || holdingForCard)
+        if (_controlType == ControlType.HoldForLong && holdingForCard)
         {
             Debug.Log("cast Card :" + holdTimer);
             holdingForCard = false; 
-            moveCardTransform.gameObject.SetActive(false); 
+            moveCardTransform.gameObject.SetActive(false);
+            if (holdTimer < 0.5f && _controlType == ControlType.HoldForLong) cardControl.ShortRange();
+            else cardControl.LongRange(); 
             
-                cardControl.LongRange(); 
-            
-            holdTimer = 0; 
-            
+            holdTimer = 0;
+        }
+        else if (_controlType == ControlType.MoveStopShoot)
+        {
+            if(moveHoldCard) cardControl.LongRange(); 
+            else cardControl.ShortRange();
         }
     } 
     
@@ -204,8 +230,14 @@ public class Controller : MonoBehaviour
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
             Rotate(vector);
         }
+
+        if (lastControlType != _controlType)
+        {
+            SetInputMap();
+            lastControlType  = _controlType;
+        }
         
-        if (holdingForCard && (_controlType == ControlType.gachette || (_controlType == ControlType.pabougé && moveHoldCard))) 
+        if (holdingForCard && (_controlType == ControlType.HoldForLong || (_controlType == ControlType.MoveStopShoot && moveHoldCard))) 
         { 
             holdTimer += Time.deltaTime; 
             if(holdTimer > 0.5f) moveCardTransform.gameObject.SetActive(true); 

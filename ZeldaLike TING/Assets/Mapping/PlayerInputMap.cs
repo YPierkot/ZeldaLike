@@ -196,51 +196,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CardHolder"",
-                    ""type"": ""Button"",
-                    ""id"": ""9648b042-a8b2-499b-9e89-7ede7444f875"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""cardActivator"",
-                    ""type"": ""Button"",
-                    ""id"": ""827130d3-70f7-4bd1-a973-57880eb80ec4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""holdForShoot"",
-                    ""type"": ""Button"",
-                    ""id"": ""41a9997c-0945-4695-920d-82d11c58f0e7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""shootHold"",
-                    ""type"": ""Button"",
-                    ""id"": ""2589ce73-18df-4502-930f-4a211086c6e6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""cardActivatorHold"",
-                    ""type"": ""Button"",
-                    ""id"": ""be30706f-d521-4399-bd70-e56d4bdf2efb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -309,61 +264,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""973f12e4-6754-4c04-b50a-0b68505f190f"",
-                    ""path"": ""<XInputController>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""CardHolder"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9dd10318-872f-4254-b6d7-8178e23dc3c1"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""cardActivator"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9000bcbd-118f-4a66-9aca-0c84eb311bca"",
-                    ""path"": ""<XInputController>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""holdForShoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2aa292a9-0f89-4fbe-bb74-28c774d941cf"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""shootHold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b224a203-366a-4826-bc0d-a6e109c11abb"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox"",
-                    ""action"": ""cardActivatorHold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -416,6 +316,181 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""MoveStopShoot"",
+            ""id"": ""a6d3d488-53a9-46ab-b8ec-35dbce86b12b"",
+            ""actions"": [
+                {
+                    ""name"": ""holdForShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef3fbd7a-a3f2-418f-8df6-cc99a59fee6e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shootHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3106f67-581a-452a-be8f-e670eb5fd6b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""cardActivatorHold"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0484022-486c-4b85-ac04-0bd00ee5a9eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8f1ce4bd-0494-48fe-b631-6c40a8b20a5a"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""holdForShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1d57f78-2ef0-40a9-a6d0-e5bba01573bd"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""shootHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b42acb61-b002-4179-951e-1ee2bfce3422"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""cardActivatorHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""HoldForLong"",
+            ""id"": ""42c39255-3c31-42b8-aa43-d1bf84a0a177"",
+            ""actions"": [
+                {
+                    ""name"": ""CardHolder"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5f46d1d-304d-45b2-82a6-4f9ef70105c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""cardActivator"",
+                    ""type"": ""Button"",
+                    ""id"": ""81b06f00-4bc9-40fa-8637-c0347d82bf8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4e18de92-1fa7-4a6d-9b0e-ca79fe22a4d5"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""CardHolder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80a76e14-69c7-42cf-9a1a-a09db093bbfd"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""cardActivator"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""ChangeSideControl"",
+            ""id"": ""9fa0f206-4436-470d-aed1-3243cfa4deea"",
+            ""actions"": [
+                {
+                    ""name"": ""ChangeCard"",
+                    ""type"": ""Button"",
+                    ""id"": ""2eb50a2a-0a7b-462b-bda0-8e6fd3da9b9b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""dbb0b900-dbd8-41d0-8b8c-48b1da352829"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""728f18de-c44a-402e-ba31-b6a3cb0e7684"",
+                    ""path"": ""<XInputController>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""ChangeCard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abb0f9cf-eb71-43bd-a8cb-4f1d92772b1c"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0fd9636-1816-46e1-882a-b94af25a1ef8"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -459,14 +534,22 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Action_shortCard = m_Action.FindAction("shortCard", throwIfNotFound: true);
         m_Action_longCard = m_Action.FindAction("longCard", throwIfNotFound: true);
         m_Action_Attack = m_Action.FindAction("Attack", throwIfNotFound: true);
-        m_Action_CardHolder = m_Action.FindAction("CardHolder", throwIfNotFound: true);
-        m_Action_cardActivator = m_Action.FindAction("cardActivator", throwIfNotFound: true);
-        m_Action_holdForShoot = m_Action.FindAction("holdForShoot", throwIfNotFound: true);
-        m_Action_shootHold = m_Action.FindAction("shootHold", throwIfNotFound: true);
-        m_Action_cardActivatorHold = m_Action.FindAction("cardActivatorHold", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_CardMenu = m_Menu.FindAction("CardMenu", throwIfNotFound: true);
+        // MoveStopShoot
+        m_MoveStopShoot = asset.FindActionMap("MoveStopShoot", throwIfNotFound: true);
+        m_MoveStopShoot_holdForShoot = m_MoveStopShoot.FindAction("holdForShoot", throwIfNotFound: true);
+        m_MoveStopShoot_shootHold = m_MoveStopShoot.FindAction("shootHold", throwIfNotFound: true);
+        m_MoveStopShoot_cardActivatorHold = m_MoveStopShoot.FindAction("cardActivatorHold", throwIfNotFound: true);
+        // HoldForLong
+        m_HoldForLong = asset.FindActionMap("HoldForLong", throwIfNotFound: true);
+        m_HoldForLong_CardHolder = m_HoldForLong.FindAction("CardHolder", throwIfNotFound: true);
+        m_HoldForLong_cardActivator = m_HoldForLong.FindAction("cardActivator", throwIfNotFound: true);
+        // ChangeSideControl
+        m_ChangeSideControl = asset.FindActionMap("ChangeSideControl", throwIfNotFound: true);
+        m_ChangeSideControl_ChangeCard = m_ChangeSideControl.FindAction("ChangeCard", throwIfNotFound: true);
+        m_ChangeSideControl_Shoot = m_ChangeSideControl.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -579,11 +662,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Action_shortCard;
     private readonly InputAction m_Action_longCard;
     private readonly InputAction m_Action_Attack;
-    private readonly InputAction m_Action_CardHolder;
-    private readonly InputAction m_Action_cardActivator;
-    private readonly InputAction m_Action_holdForShoot;
-    private readonly InputAction m_Action_shootHold;
-    private readonly InputAction m_Action_cardActivatorHold;
     public struct ActionActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -592,11 +670,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @shortCard => m_Wrapper.m_Action_shortCard;
         public InputAction @longCard => m_Wrapper.m_Action_longCard;
         public InputAction @Attack => m_Wrapper.m_Action_Attack;
-        public InputAction @CardHolder => m_Wrapper.m_Action_CardHolder;
-        public InputAction @cardActivator => m_Wrapper.m_Action_cardActivator;
-        public InputAction @holdForShoot => m_Wrapper.m_Action_holdForShoot;
-        public InputAction @shootHold => m_Wrapper.m_Action_shootHold;
-        public InputAction @cardActivatorHold => m_Wrapper.m_Action_cardActivatorHold;
         public InputActionMap Get() { return m_Wrapper.m_Action; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -618,21 +691,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnAttack;
-                @CardHolder.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardHolder;
-                @CardHolder.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardHolder;
-                @CardHolder.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardHolder;
-                @cardActivator.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
-                @cardActivator.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
-                @cardActivator.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivator;
-                @holdForShoot.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnHoldForShoot;
-                @holdForShoot.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnHoldForShoot;
-                @holdForShoot.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnHoldForShoot;
-                @shootHold.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnShootHold;
-                @shootHold.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnShootHold;
-                @shootHold.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnShootHold;
-                @cardActivatorHold.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivatorHold;
-                @cardActivatorHold.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivatorHold;
-                @cardActivatorHold.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnCardActivatorHold;
             }
             m_Wrapper.m_ActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -649,21 +707,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
-                @CardHolder.started += instance.OnCardHolder;
-                @CardHolder.performed += instance.OnCardHolder;
-                @CardHolder.canceled += instance.OnCardHolder;
-                @cardActivator.started += instance.OnCardActivator;
-                @cardActivator.performed += instance.OnCardActivator;
-                @cardActivator.canceled += instance.OnCardActivator;
-                @holdForShoot.started += instance.OnHoldForShoot;
-                @holdForShoot.performed += instance.OnHoldForShoot;
-                @holdForShoot.canceled += instance.OnHoldForShoot;
-                @shootHold.started += instance.OnShootHold;
-                @shootHold.performed += instance.OnShootHold;
-                @shootHold.canceled += instance.OnShootHold;
-                @cardActivatorHold.started += instance.OnCardActivatorHold;
-                @cardActivatorHold.performed += instance.OnCardActivatorHold;
-                @cardActivatorHold.canceled += instance.OnCardActivatorHold;
             }
         }
     }
@@ -701,6 +744,137 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // MoveStopShoot
+    private readonly InputActionMap m_MoveStopShoot;
+    private IMoveStopShootActions m_MoveStopShootActionsCallbackInterface;
+    private readonly InputAction m_MoveStopShoot_holdForShoot;
+    private readonly InputAction m_MoveStopShoot_shootHold;
+    private readonly InputAction m_MoveStopShoot_cardActivatorHold;
+    public struct MoveStopShootActions
+    {
+        private @PlayerInputMap m_Wrapper;
+        public MoveStopShootActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @holdForShoot => m_Wrapper.m_MoveStopShoot_holdForShoot;
+        public InputAction @shootHold => m_Wrapper.m_MoveStopShoot_shootHold;
+        public InputAction @cardActivatorHold => m_Wrapper.m_MoveStopShoot_cardActivatorHold;
+        public InputActionMap Get() { return m_Wrapper.m_MoveStopShoot; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MoveStopShootActions set) { return set.Get(); }
+        public void SetCallbacks(IMoveStopShootActions instance)
+        {
+            if (m_Wrapper.m_MoveStopShootActionsCallbackInterface != null)
+            {
+                @holdForShoot.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnHoldForShoot;
+                @holdForShoot.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnHoldForShoot;
+                @holdForShoot.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnHoldForShoot;
+                @shootHold.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShootHold;
+                @shootHold.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShootHold;
+                @shootHold.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnShootHold;
+                @cardActivatorHold.started -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnCardActivatorHold;
+                @cardActivatorHold.performed -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnCardActivatorHold;
+                @cardActivatorHold.canceled -= m_Wrapper.m_MoveStopShootActionsCallbackInterface.OnCardActivatorHold;
+            }
+            m_Wrapper.m_MoveStopShootActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @holdForShoot.started += instance.OnHoldForShoot;
+                @holdForShoot.performed += instance.OnHoldForShoot;
+                @holdForShoot.canceled += instance.OnHoldForShoot;
+                @shootHold.started += instance.OnShootHold;
+                @shootHold.performed += instance.OnShootHold;
+                @shootHold.canceled += instance.OnShootHold;
+                @cardActivatorHold.started += instance.OnCardActivatorHold;
+                @cardActivatorHold.performed += instance.OnCardActivatorHold;
+                @cardActivatorHold.canceled += instance.OnCardActivatorHold;
+            }
+        }
+    }
+    public MoveStopShootActions @MoveStopShoot => new MoveStopShootActions(this);
+
+    // HoldForLong
+    private readonly InputActionMap m_HoldForLong;
+    private IHoldForLongActions m_HoldForLongActionsCallbackInterface;
+    private readonly InputAction m_HoldForLong_CardHolder;
+    private readonly InputAction m_HoldForLong_cardActivator;
+    public struct HoldForLongActions
+    {
+        private @PlayerInputMap m_Wrapper;
+        public HoldForLongActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CardHolder => m_Wrapper.m_HoldForLong_CardHolder;
+        public InputAction @cardActivator => m_Wrapper.m_HoldForLong_cardActivator;
+        public InputActionMap Get() { return m_Wrapper.m_HoldForLong; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HoldForLongActions set) { return set.Get(); }
+        public void SetCallbacks(IHoldForLongActions instance)
+        {
+            if (m_Wrapper.m_HoldForLongActionsCallbackInterface != null)
+            {
+                @CardHolder.started -= m_Wrapper.m_HoldForLongActionsCallbackInterface.OnCardHolder;
+                @CardHolder.performed -= m_Wrapper.m_HoldForLongActionsCallbackInterface.OnCardHolder;
+                @CardHolder.canceled -= m_Wrapper.m_HoldForLongActionsCallbackInterface.OnCardHolder;
+                @cardActivator.started -= m_Wrapper.m_HoldForLongActionsCallbackInterface.OnCardActivator;
+                @cardActivator.performed -= m_Wrapper.m_HoldForLongActionsCallbackInterface.OnCardActivator;
+                @cardActivator.canceled -= m_Wrapper.m_HoldForLongActionsCallbackInterface.OnCardActivator;
+            }
+            m_Wrapper.m_HoldForLongActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CardHolder.started += instance.OnCardHolder;
+                @CardHolder.performed += instance.OnCardHolder;
+                @CardHolder.canceled += instance.OnCardHolder;
+                @cardActivator.started += instance.OnCardActivator;
+                @cardActivator.performed += instance.OnCardActivator;
+                @cardActivator.canceled += instance.OnCardActivator;
+            }
+        }
+    }
+    public HoldForLongActions @HoldForLong => new HoldForLongActions(this);
+
+    // ChangeSideControl
+    private readonly InputActionMap m_ChangeSideControl;
+    private IChangeSideControlActions m_ChangeSideControlActionsCallbackInterface;
+    private readonly InputAction m_ChangeSideControl_ChangeCard;
+    private readonly InputAction m_ChangeSideControl_Shoot;
+    public struct ChangeSideControlActions
+    {
+        private @PlayerInputMap m_Wrapper;
+        public ChangeSideControlActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ChangeCard => m_Wrapper.m_ChangeSideControl_ChangeCard;
+        public InputAction @Shoot => m_Wrapper.m_ChangeSideControl_Shoot;
+        public InputActionMap Get() { return m_Wrapper.m_ChangeSideControl; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ChangeSideControlActions set) { return set.Get(); }
+        public void SetCallbacks(IChangeSideControlActions instance)
+        {
+            if (m_Wrapper.m_ChangeSideControlActionsCallbackInterface != null)
+            {
+                @ChangeCard.started -= m_Wrapper.m_ChangeSideControlActionsCallbackInterface.OnChangeCard;
+                @ChangeCard.performed -= m_Wrapper.m_ChangeSideControlActionsCallbackInterface.OnChangeCard;
+                @ChangeCard.canceled -= m_Wrapper.m_ChangeSideControlActionsCallbackInterface.OnChangeCard;
+                @Shoot.started -= m_Wrapper.m_ChangeSideControlActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_ChangeSideControlActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_ChangeSideControlActionsCallbackInterface.OnShoot;
+            }
+            m_Wrapper.m_ChangeSideControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ChangeCard.started += instance.OnChangeCard;
+                @ChangeCard.performed += instance.OnChangeCard;
+                @ChangeCard.canceled += instance.OnChangeCard;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+            }
+        }
+    }
+    public ChangeSideControlActions @ChangeSideControl => new ChangeSideControlActions(this);
     private int m_XboxSchemeIndex = -1;
     public InputControlScheme XboxScheme
     {
@@ -731,14 +905,25 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnShortCard(InputAction.CallbackContext context);
         void OnLongCard(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnCardHolder(InputAction.CallbackContext context);
-        void OnCardActivator(InputAction.CallbackContext context);
-        void OnHoldForShoot(InputAction.CallbackContext context);
-        void OnShootHold(InputAction.CallbackContext context);
-        void OnCardActivatorHold(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
         void OnCardMenu(InputAction.CallbackContext context);
+    }
+    public interface IMoveStopShootActions
+    {
+        void OnHoldForShoot(InputAction.CallbackContext context);
+        void OnShootHold(InputAction.CallbackContext context);
+        void OnCardActivatorHold(InputAction.CallbackContext context);
+    }
+    public interface IHoldForLongActions
+    {
+        void OnCardHolder(InputAction.CallbackContext context);
+        void OnCardActivator(InputAction.CallbackContext context);
+    }
+    public interface IChangeSideControlActions
+    {
+        void OnChangeCard(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

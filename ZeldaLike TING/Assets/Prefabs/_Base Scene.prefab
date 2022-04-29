@@ -1623,7 +1623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473772124496441877}
   m_LocalRotation: {x: 0.34201974, y: -0.0004566689, z: 0.001254688, w: 0.9396919}
-  m_LocalPosition: {x: 212.0389, y: 13.873686, z: 110.6333}
+  m_LocalPosition: {x: 7.1, y: 13.873686, z: -19.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1649,6 +1649,8 @@ MonoBehaviour:
   changePointSpeed: 0.3
   changingPoint: 0
   moveToPlayer: 0
+  firstSet: {fileID: 5226840899148185822}
+  secondSet: {fileID: 821294402754308580}
 --- !u!1 &1473772124928122708
 GameObject:
   m_ObjectHideFlags: 0
@@ -8648,6 +8650,12 @@ PrefabInstance:
     - {fileID: 1587232426, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
     - {fileID: 816218539448046990, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+--- !u!4 &821294402754308580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2240031845128476173, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473772123588526057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473772123138296990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 634778487, guid: d9d30125b4f2a6c47bb999c02a3ff083,
