@@ -45,7 +45,7 @@ public class Controller : MonoBehaviour
    // --- STATES ---
    [SerializeField] private bool moving;
    [SerializeField] private bool dashing;
-   [SerializeField] private bool inAttack;
+   [SerializeField] public bool inAttack;
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
 
