@@ -682,6 +682,37 @@ Transform:
   m_Father: {fileID: 2131420526571062310}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1434173521138706504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2240031845128476173}
+  m_Layer: 0
+  m_Name: Camera Player Point 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2240031845128476173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434173521138706504}
+  m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 8.700001, z: -4.8933334}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7337217462935629417}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
 --- !u!1 &3469779447150847627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1180,7 @@ Transform:
   - {fileID: 1318520795}
   - {fileID: 6699838829042073399}
   - {fileID: 1145041874}
+  - {fileID: 2240031845128476173}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1383,20 +1415,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUseCards: 0
+  rectoSide: 0
   canUseFireCard: 0
+  fireCardUnlock: 0
   fireCardGrounded: {fileID: 0}
   fireRectoUse: 0
-  fireCardUnlock: 0
   canUseIceCard: 0
+  iceCardUnlock: 0
   iceCardGrounded: {fileID: 0}
   iceRectoUse: 0
-  iceCardUnlock: 0
   canUseWallCard: 0
+  wallCardUnlock: 0
   wallCardGrounded: {fileID: 0}
   WallSR: {fileID: 0}
   wallRectoUse: 0
-  wallCardUnlock: 0
   canUseWindCard: 0
+  windCardUnlock: 0
   windCardGrounded: {fileID: 0}
   interactMask:
     serializedVersion: 2
@@ -1405,7 +1439,6 @@ MonoBehaviour:
   repulsivePoint: {x: 0, y: 0, z: 0}
   DebugWindSphere: {fileID: 0}
   windRectoUse: 0
-  windCardUnlock: 0
   m_tranform: {fileID: 689773536}
   Ennemy:
     serializedVersion: 2

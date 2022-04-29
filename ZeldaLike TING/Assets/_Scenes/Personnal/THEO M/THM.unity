@@ -2047,7 +2047,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
+      propertyPath: canUseCards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: iceCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
       propertyPath: fireCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: wallCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: windCardUnlock
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -2925,6 +2945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526492105218828176, guid: 9c4bd2d8d3a217348959661b6b88a9a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7526492105218828182, guid: 9c4bd2d8d3a217348959661b6b88a9a4,
         type: 3}
