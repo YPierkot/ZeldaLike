@@ -61,12 +61,11 @@ public class CameraController : MonoBehaviour
         {
            if(moveToPlayer) transform.position = Vector3.Lerp(transform.position, cameraPoint.position, changePointSpeed*0.1f*(1/Vector3.Distance(transform.position, cameraPoint.position)*15));
            else transform.position = Vector3.Lerp(transform.position, cameraPoint.position, changePointSpeed*0.1f);
-            Debug.Log("Slow change");
-            
-            if (Vector3.Distance(transform.position, cameraPoint.position) < 0.3f)
-            {
+
+           if (Vector3.Distance(transform.position, cameraPoint.position) < 0.3f)
+           {
                 changingPoint = false;
-            }
+           }
         }
         else if (!dashing)
         {

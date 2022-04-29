@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour
     // --- COMPONENTS ---
     private SpriteRenderer sprite;
     [HideInInspector] public Rigidbody rb;
-    private PlayerInput _playerInput;
+    public PlayerInput _playerInput;
     public ControlType _controlType;
     public bool secondStick;
     private ControlType lastControlType;
@@ -45,8 +45,8 @@ public class Controller : MonoBehaviour
     
     [Header("--- PLAYER STATES ---")] [Space(10)] 
    // --- STATES ---
-   [SerializeField] private bool moving;
-   [SerializeField] private bool dashing;
+   public bool moving;
+   public bool dashing;
    [SerializeField] public bool inAttack;
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
@@ -122,6 +122,7 @@ public class Controller : MonoBehaviour
         if (InputMap != null) InputMap.Disable();
         InputMap = new PlayerInputMap();
         InputMap.Enable();
+        
         InputMap.Movement.Rotation.performed += RotationOnperformed;
         InputMap.Movement.Dash.performed += context => Dash();
         InputMap.Movement.Position.started += context => moving = true;
@@ -369,10 +370,13 @@ public class Controller : MonoBehaviour
     }
     void Attack()
     {
+        Debug.Log("J'appuie sur attaquer");
         if (attackCounter < 3)
         {
+            Debug.Log("Le combo n'est pas fini");
             if (!inAttack)
             {
+                Debug.Log("J'attaque");
                 animatorPlayer.SetBool("attackFinish", false);
                 setNextCombo = true;
                 StopCoroutine(ComboWait());
@@ -542,26 +546,34 @@ public class Controller : MonoBehaviour
             {
                 case "Dash":
                     dashAvailable = 0;
+                    dashing = false;
                     break;
                 case "Attack":
                     attackCounter = 3;
+                    inAttack = false;
                     break;
                 case "All":
                     canMove = false;
+                    inAttack = false;
+                    dashing = false;
                     dashAvailable = 0;
                     attackCounter = 3;
                     break;
                 case "DashAttack":
                     dashAvailable = 0;
+                    inAttack = false;
+                    dashing = false;
                     attackCounter = 3;
                     break;
             }
         }
         else
         {
+            Debug.Log("Je défreeze le joueur");
             canMove = true;
             dashAvailable = maxDash;
             attackCounter = 0;
+            inAttack = false;
         }
     }
 

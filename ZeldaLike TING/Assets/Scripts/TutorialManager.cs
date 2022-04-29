@@ -22,13 +22,10 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
     [SerializeField] private Animator ithar;
     private bool itharStarted;
-    [SerializeField] private TextMeshProUGUI helpText;
-    [TextArea(4, 10)]
-    [SerializeField] private List<string> helps;
-
-
+    private HelpsManager helpManager;
     [SerializeField] private GivePlayerFireCard givePlayerFireCard = null;
-    
+    private bool setHelp = true;
+    private bool fireCardCinematic = true;
     private void Awake()
     {
         dialogueQueue = new Queue<DialogueScriptable>();
@@ -40,13 +37,47 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        helpManager = GetComponent<HelpsManager>();
         Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
+        DialogueManager.Instance.IsCinematic();
         EnqueueDialogue();
     }
 
     private void Update()
+    {
+        Dialogues();
+    }
+
+    private void ResetCamera()
+    {
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+        Controller.instance.FreezePlayer(false);
+        //Controller.instance.FreezePlayer(true, "DashAttack");
+        DialogueManager.Instance.IsCinematic();
+        UIManager.Instance.gameObject.SetActive(true);
+    }
+
+    public void EnqueueDialogue()
+    {
+        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+    }
+
+    private IEnumerator ManageIthar()
+    {
+        yield return new WaitForSeconds(8);
+        ithar.gameObject.SetActive(true);
+        ithar.Play("ItharAppear");
+        yield return new WaitForSeconds(28f);
+        ithar.Play("ItharDisappear");
+        yield return new WaitForSeconds(0.9f);
+        DialogueManager.Instance.isCursed = true;
+        DialogueManager.Instance.mist.SetTrigger("Appear");
+        ithar.gameObject.SetActive(false);
+    }
+
+    private void Dialogues()
     {
         if (DialogueManager.Instance.isPlayingDialogue == false)
         {
@@ -60,14 +91,17 @@ public class TutorialManager : MonoBehaviour
                     Invoke("ResetCamera", 6);
                     break;
                 case 5 : //Après avoir vu l'objet magique
-                    Debug.Log("Je freeze le dash et l'attaque");
                     Controller.instance.FreezePlayer(true, "DashAttack");
+                    if (setHelp)
+                    {
+                        setHelp = false;
+                        helpManager.DisplayHelp();
+                    }
                     break;
                 case 4 : //Après avoir libéré Ithar
                     if (enemySpawn)
-                    { 
-                        helpText.text = helps[1] + " " + helps[2];
-
+                    {
+                        helpManager.DisplayHelp();
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
                         Instantiate(ennemies[1], ennemiesSpawnPoints[0].position, Quaternion.identity, ennemyParent);
@@ -87,6 +121,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 2 : //Après avoir récupéré la carte de feu
                     Controller.instance.FreezePlayer(false);
+                    DialogueManager.Instance.IsCinematic();
                     UIManager.Instance.gameObject.SetActive(true);
                     GameManager.Instance.TutorialWorld();
                     EnqueueDialogue();
@@ -101,6 +136,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 0 : //Une fois le deal passé
                     Controller.instance.FreezePlayer(false);
+                    DialogueManager.Instance.IsCinematic();
                     UIManager.Instance.gameObject.SetActive(true);
                     break;
                 
@@ -118,6 +154,7 @@ public class TutorialManager : MonoBehaviour
                     Controller.instance.FreezePlayer(true);
                     if (!itharStarted)
                     {
+                        DialogueManager.Instance.IsCinematic();
                         itharStarted = true;
                         StartCoroutine(ManageIthar());
                     }
@@ -125,38 +162,16 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 3 :
                     Controller.instance.FreezePlayer(true);
+                    if (fireCardCinematic)
+                    {
+                        fireCardCinematic = false;
+                        DialogueManager.Instance.IsCinematic();
+                    }
+                    
                     UIManager.Instance.gameObject.SetActive(false);
                     break;
             }
         }
-    }
-
-    private void ResetCamera()
-    {
-        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        Controller.instance.FreezePlayer(false);
-        Controller.instance.FreezePlayer(true, "DashAttack");
-        UIManager.Instance.gameObject.SetActive(true);
-        helpText.text = helps[0];
-    }
-
-    public void EnqueueDialogue()
-    {
-        Debug.Log("Je lance le prochain dialogue du tutoriel");
-        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-    }
-
-    private IEnumerator ManageIthar()
-    {
-        yield return new WaitForSeconds(8);
-        ithar.gameObject.SetActive(true);
-        ithar.Play("ItharAppear");
-        yield return new WaitForSeconds(28f);
-        ithar.Play("ItharDisappear");
-        yield return new WaitForSeconds(0.9f);
-        DialogueManager.Instance.isCursed = true;
-        DialogueManager.Instance.mist.SetTrigger("Appear");
-        ithar.gameObject.SetActive(false);
     }
     
 }

@@ -19,9 +19,7 @@ public class FireCardTutorialManager : MonoBehaviour
 
     public bool isFinished;
     private bool spawnedEnemies;
-    [SerializeField] private TextMeshProUGUI helpText;
-    [TextArea(4, 10)]
-    [SerializeField] private List<string> helps;
+    [SerializeField] private HelpsManager HelpsManager;
 
     private void Start()
     {
@@ -51,7 +49,7 @@ public class FireCardTutorialManager : MonoBehaviour
                         case false:
                             lianaSet = true;
                             lianas.transform.position = Controller.instance.transform.position;
-                            helpText.text = helps[0];
+                            HelpsManager.DisplayHelp();
                             break;
                     }
                     lianas.SetActive(true);
@@ -64,7 +62,7 @@ public class FireCardTutorialManager : MonoBehaviour
                     puzzle.SetActive(true);
                     if (puzzle.transform.childCount == 4)
                     {
-                        helpText.text = helps[1];
+                        HelpsManager.DisplayHelp();
                         puzzle.SetActive(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
