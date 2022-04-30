@@ -25,7 +25,9 @@ public class DialogueManager : MonoBehaviour
     private float timeSinceLastDialogue;
     public Animator mist;
     public bool isCursed;
-    
+    [SerializeField] private Animator cinematicMode;
+    private bool isCinematic = false;
+
     private void Awake()
     {
         Instance = this;
@@ -47,7 +49,6 @@ public class DialogueManager : MonoBehaviour
     public void AssignDialogue(List<DialogueLine> dialogue)
     {
         isPlayingDialogue = true;
-        Debug.Log(DialogueLines.Count);
         if (DialogueLines.Count != 0 && isPlayingDialogue)
         {
             lastDialogueStopIndex = currentDialogue;
@@ -172,5 +173,19 @@ public class DialogueManager : MonoBehaviour
             sentenceIndex = 0;
             dialogueDisplay.text = null;
         }
+    }
+
+    public void IsCinematic()
+    {
+        Debug.Log("Cinematique");
+        if (isCinematic)
+        {
+            cinematicMode.ResetTrigger("IsCinematic");
+        }
+        else if (!isCinematic)
+        {
+            cinematicMode.SetTrigger("IsCinematic");
+        }
+        isCinematic = !isCinematic;
     }
 }
