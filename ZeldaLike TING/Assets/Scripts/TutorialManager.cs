@@ -136,7 +136,12 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 0 : //Une fois le deal passé
                     Controller.instance.FreezePlayer(false);
-                    DialogueManager.Instance.IsCinematic();
+                    if (GameManager.Instance.isTutorial)
+                    {
+                        GameManager.Instance.isTutorial = false;
+                        DialogueManager.Instance.IsCinematic();
+                    }
+                    
                     UIManager.Instance.gameObject.SetActive(true);
                     break;
                 

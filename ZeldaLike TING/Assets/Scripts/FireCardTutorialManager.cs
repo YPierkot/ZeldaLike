@@ -33,9 +33,9 @@ public class FireCardTutorialManager : MonoBehaviour
 
     private void Update()
     {
-        PlayerStat.instance.life = PlayerStat.instance.lifeMax;
         if (canStart && !DialogueManager.Instance.isPlayingDialogue)
         {
+            PlayerStat.instance.life = PlayerStat.instance.lifeMax;
             barrier.SetActive(true);
             int remainingDialogue = dialogueQueue.Count;
             switch (remainingDialogue)

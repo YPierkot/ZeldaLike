@@ -370,18 +370,16 @@ public class Controller : MonoBehaviour
     }
     void Attack()
     {
-        Debug.Log("J'appuie sur attaquer");
         if (attackCounter < 3)
         {
             Debug.Log("Le combo n'est pas fini");
             if (!inAttack)
             {
-                Debug.Log("J'attaque");
+
                 animatorPlayer.SetBool("attackFinish", false);
                 setNextCombo = true;
                 StopCoroutine(ComboWait());
                 comboWaiting = false;
-                Debug.Log("STOP Wait");
                 canMove = false;
                 inAttack = true;
                 //nextCombo = false;
@@ -459,8 +457,7 @@ public class Controller : MonoBehaviour
                 if (!setNextCombo && !comboWaiting)
                 {
                     comboWaiting = true;
-                    StartCoroutine(ComboWait()); 
-                    Debug.Log("Combo Wait");
+                    StartCoroutine(ComboWait());
                 }
                     
                 inAttackAnim = false;
@@ -469,7 +466,6 @@ public class Controller : MonoBehaviour
             { 
                 comboWaiting = true; 
                 StartCoroutine(ComboWait());
-                Debug.Log("Combo Wait");
             }
             
             if (!inAttack && canMove)
@@ -533,7 +529,6 @@ public class Controller : MonoBehaviour
         {
             animatorPlayer.SetBool("attackFinish", true);
             attackCounter = 0;
-            Debug.Log("Attack Finish");
             canMove = true;
         }
     }
@@ -556,6 +551,7 @@ public class Controller : MonoBehaviour
                     canMove = false;
                     inAttack = false;
                     dashing = false;
+                    CardsController.instance.canUseCards = false;
                     dashAvailable = 0;
                     attackCounter = 3;
                     break;
@@ -569,8 +565,8 @@ public class Controller : MonoBehaviour
         }
         else
         {
-            Debug.Log("Je défreeze le joueur");
             canMove = true;
+            CardsController.instance.canUseCards = false;
             dashAvailable = maxDash;
             attackCounter = 0;
             inAttack = false;
