@@ -384,14 +384,16 @@ public class Controller : MonoBehaviour
             {
                 launchAttack = true;
                 canMove = false;
-                
+                attackCounter++;
                 inAttack = true;
+                StopCoroutine(ComboWait());
+                
+                /*
                 animatorPlayer.SetBool("attackFinish", false);
                 setNextCombo = true;
-                StopCoroutine(ComboWait());
                 comboWaiting = false;
                 //nextCombo = false;
-                attackCounter++;
+                */
             }
             else if(!setNextCombo && inAttackAnim)
             {
@@ -425,9 +427,10 @@ public class Controller : MonoBehaviour
             else animDir = -movePlayerTransform.forward ;
 
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
-
+            //Debug.Log(animInfo.clip.name);
             if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
             {
+            Debug.Log("Idle or Run");
                 inAttack = false;
                 inAttackAnim = false;
                 canMove = true;
@@ -435,7 +438,8 @@ public class Controller : MonoBehaviour
             }
             else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
             {
-                
+                launchAttack = false;
+                inAttackAnim = true;
             }
             
             
@@ -484,7 +488,6 @@ public class Controller : MonoBehaviour
             }*/
             
             animatorPlayer.SetBool("isAttack", launchAttack);
-            launchAttack = false;
             
             if (!inAttack && canMove)
             {
@@ -540,13 +543,13 @@ public class Controller : MonoBehaviour
 
     public IEnumerator ComboWait()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(2f);
         if (!inAttack)
         {
-            animatorPlayer.SetBool("attackFinish", true);
+            //animatorPlayer.SetBool("attackFinish", true);
             attackCounter = 0;
             Debug.Log("Attack Finish");
-            canMove = true;
+            //canMove = true;
         }
     }
 
