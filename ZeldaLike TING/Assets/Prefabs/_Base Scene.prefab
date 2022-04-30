@@ -136,6 +136,55 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &490693508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490693509}
+  - component: {fileID: 490693510}
+  m_Layer: 0
+  m_Name: VolumeTransitions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &490693509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490693508}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2564886673121997627}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &490693510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490693508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 1
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 0}
 --- !u!1 &514164187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1360,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 490693509}
   m_Father: {fileID: 5143333523655655546}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1331,7 +1381,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 64db94767f4bded4d92606ed9c8fb159, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 27cd1a3aaf2bf43478267e80264f4602, type: 2}
 --- !u!1 &1332991332495471158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,7 +1824,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473772124496441877}
-  m_LocalRotation: {x: 0.34201974, y: -0.0004566689, z: 0.001254688, w: 0.9396919}
+  m_LocalRotation: {x: 0.49999958, y: -0.00066760543, z: 0.0011563266, w: 0.8660246}
   m_LocalPosition: {x: 7.1, y: 13.873686, z: -19.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1782,7 +1832,7 @@ Transform:
   - {fileID: 1473772123758657155}
   m_Father: {fileID: 1473772124928122709}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0.153}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0.153}
 --- !u!114 &1473772124496441878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1796,13 +1846,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8187803163383812480}
-  cameraPoint: {fileID: 5226840899148185822}
+  cameraPoint: {fileID: 821294402754308580}
   cameraSpeed: 1.5
   changePointSpeed: 0.3
   changingPoint: 0
   moveToPlayer: 0
-  firstSet: {fileID: 5226840899148185822}
-  secondSet: {fileID: 821294402754308580}
+  firstSet: {fileID: 821294402754308580}
+  secondSet: {fileID: 5226840899148185822}
 --- !u!1 &1473772124928122708
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,7 +4942,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6464,6 +6514,41 @@ MonoBehaviour:
   isTutorial: 1
   actualRespawnPoint: {fileID: 0}
   tutorialWorld: {fileID: 11400000, guid: 27cd1a3aaf2bf43478267e80264f4602, type: 2}
+  volumeTransition: {fileID: 490693510}
+  cardTutorialCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.23595467
+      value: 0.99176306
+      inSlope: 0.023762714
+      outSlope: 0.023762714
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5015625
+    - serializedVersion: 3
+      time: 0.5000061
+      value: -0.0070894957
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  tutorialTransition: {fileID: 11400000, guid: 774653c0a35fe6545a717dede57885c4, type: 2}
   currentContorller: 0
 --- !u!1 &7081587193831323860
 GameObject:
@@ -8828,6 +8913,11 @@ PrefabInstance:
       propertyPath: groundDistance
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: PlayerCameraPoint
+      value: 
+      objectReference: {fileID: 821294402754308580}
     - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: attackZones.Array.size

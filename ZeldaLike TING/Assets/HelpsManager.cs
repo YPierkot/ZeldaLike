@@ -62,29 +62,35 @@ public class HelpsManager : MonoBehaviour
                     if (Controller.instance.moving)
                     {
                         CheckLine(1);
+                        CheckLine(2);
+                        CheckLine(3);
+                        CheckLine(4);
                     }
                 }
                 break;
-            case 2:
+            case 2 :
+                if (Controller.instance.dashing)
+                { 
+                    CheckLine(1);
+                }
+                break;
+            case 3:
                 if (Controller.instance.inAttack)
                 { 
                     CheckLine(1);
                 }
 
-                if (Controller.instance.dashing)
-                { 
-                    CheckLine(2);
-                }
+                
                 
                 break;
-            case 3:
+            case 4:
                 if (CardsController.instance.fireRectoUse)
                 {
                     CheckLine(1);
                 }
 
                 break;
-            case 4 :
+            case 5 :
                 if (!CardsController.instance.fireRectoUse)
                 {
                     CheckLine(1);
@@ -142,6 +148,14 @@ public class HelpsManager : MonoBehaviour
             check.SetActive(false);
         }
 
-        currentHelp = helps[4];
+        if (currentHelp.helpIndex == 1)
+        {
+            DisplayHelp();
+        }
+        else
+        {
+            currentHelp = helps[4];
+        }
+        
     }
 }

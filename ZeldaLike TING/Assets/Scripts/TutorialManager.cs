@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -26,6 +24,12 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GivePlayerFireCard givePlayerFireCard = null;
     private bool setHelp = true;
     private bool fireCardCinematic = true;
+    [SerializeField] private CameraShakeScriptable prisonShake;
+    [SerializeField] private VolumeProfile transitionVolume;
+    [SerializeField] private AnimationCurve transitionCurve;
+    [SerializeField] private AnimationCurve constantVolumeCurve;
+    [SerializeField] private VolumeProfile tensionVolume;
+     
     private void Awake()
     {
         dialogueQueue = new Queue<DialogueScriptable>();
@@ -53,10 +57,7 @@ public class TutorialManager : MonoBehaviour
     private void ResetCamera()
     {
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        Controller.instance.FreezePlayer(false);
-        //Controller.instance.FreezePlayer(true, "DashAttack");
-        DialogueManager.Instance.IsCinematic();
-        UIManager.Instance.gameObject.SetActive(true);
+        
     }
 
     public void EnqueueDialogue()
@@ -66,12 +67,17 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator ManageIthar()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(4);
+        CameraShake.Instance.AddShakeEvent(prisonShake);
+        GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
+        yield return new WaitForSeconds(3);
+        GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve, true);
         ithar.gameObject.SetActive(true);
         ithar.Play("ItharAppear");
         yield return new WaitForSeconds(28f);
         ithar.Play("ItharDisappear");
         yield return new WaitForSeconds(0.9f);
+        GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve);
         DialogueManager.Instance.isCursed = true;
         DialogueManager.Instance.mist.SetTrigger("Appear");
         ithar.gameObject.SetActive(false);
@@ -91,9 +97,12 @@ public class TutorialManager : MonoBehaviour
                     Invoke("ResetCamera", 6);
                     break;
                 case 5 : //Après avoir vu l'objet magique
-                    Controller.instance.FreezePlayer(true, "DashAttack");
+                    Controller.instance.FreezePlayer(false);
+                    Controller.instance.FreezePlayer(true, "Attack");
+                    UIManager.Instance.gameObject.SetActive(true);
                     if (setHelp)
                     {
+                        DialogueManager.Instance.IsCinematic();
                         setHelp = false;
                         helpManager.DisplayHelp();
                     }
@@ -104,10 +113,10 @@ public class TutorialManager : MonoBehaviour
                         helpManager.DisplayHelp();
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
-                        Instantiate(ennemies[1], ennemiesSpawnPoints[0].position, Quaternion.identity, ennemyParent);
                         Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
                         Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
                         Controller.instance.FreezePlayer(false);
+                        DialogueManager.Instance.IsCinematic();
                         ResetCamera();
                     }
 
@@ -124,6 +133,7 @@ public class TutorialManager : MonoBehaviour
                     DialogueManager.Instance.IsCinematic();
                     UIManager.Instance.gameObject.SetActive(true);
                     GameManager.Instance.TutorialWorld();
+                    GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
                     EnqueueDialogue();
                     break;
                 case 1 : //Une fois l'intro du monde tutoriel finie

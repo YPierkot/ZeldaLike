@@ -474,7 +474,7 @@ public class Controller : MonoBehaviour
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
                 animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
-                animatorMovePlayer.SetBool("isWalk", moving); // Il est différant donc repoussé par la société
+                animatorMovePlayer.SetBool("isWalk", moving); // Il est différent donc repoussé par la société
             }
             else
             {
