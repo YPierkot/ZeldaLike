@@ -121,14 +121,21 @@ namespace AI
                 ChangeState(dead);
             else
             {
-                if(e_currentAiState == walking)
-                    ChangeState(attacking);
-                
                 e_sprite.DOColor(Color.red, 0.1f).OnComplete(() => e_sprite.DOColor(Color.white, 0.1f));
                 e_sprite.DOFade(0.25f, 0.1f).OnComplete(()=> e_sprite.DOFade(1, 0.1f));
+                StartCoroutine(FlashRed());
+                
+                if(e_currentAiState == walking)
+                    ChangeState(attacking);
             }
         }
 
+        private IEnumerator FlashRed()
+        {
+            e_sprite.color = Color.red;
+            yield return new WaitForSeconds(0.2f);
+            e_sprite.color = Color.white;
+        }
 
         public void FreezeEnnemy()
         {
