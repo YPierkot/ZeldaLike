@@ -69,7 +69,7 @@ public class SpawnerEnemies : MonoBehaviour
         
         for (int i = 0; i < alea; i++)
         {
-            Destroy(Instantiate(eAppearFX, ePos[i].position, Quaternion.identity), 5f);
+            Destroy(Instantiate(eAppearFX, ePos[i].position + new Vector3(0,3.3f,0), Quaternion.identity), 5f);
         }
         
         yield return new WaitForSeconds(3.5f);
