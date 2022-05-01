@@ -24,7 +24,7 @@ public class CinematicManager : MonoBehaviour
     {
         DialogueManager.Instance.AssignDialogue(dialogue.dialogue.ToList());
         UIManager.Instance.gameObject.SetActive(false);
-        Controller.instance.canMove = false;
+        Controller.instance.FreezePlayer(true);
         StartCoroutine(ObjectManagement());
     }
 
