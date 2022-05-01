@@ -121,8 +121,6 @@ namespace AI
                 ChangeState(dead);
             else
             {
-                e_sprite.DOColor(Color.red, 0.1f).OnComplete(() => e_sprite.DOColor(Color.white, 0.1f));
-                e_sprite.DOFade(0.25f, 0.1f).OnComplete(()=> e_sprite.DOFade(1, 0.1f));
                 StartCoroutine(FlashRed());
                 
                 if(e_currentAiState == walking)
@@ -133,7 +131,7 @@ namespace AI
         private IEnumerator FlashRed()
         {
             e_sprite.color = Color.red;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.14f);
             e_sprite.color = Color.white;
         }
 

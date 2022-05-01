@@ -65,7 +65,7 @@ public class PlayerStat : MonoBehaviour
       }
    }
 
-   private void OnCollisionEnter(Collision other)
+   /*private void OnCollisionEnter(Collision other)
    {
       if (other.transform.CompareTag("Ennemy")) 
       {
@@ -76,6 +76,7 @@ public class PlayerStat : MonoBehaviour
          _control.rb.velocity = repulse;
       }
    }
+   */
 
    IEnumerator HitCD()
    {

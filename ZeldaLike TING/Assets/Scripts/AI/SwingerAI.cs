@@ -130,7 +130,7 @@ namespace AI
             Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
             foreach (var player in playercol)
             {
-                player.GetComponent<PlayerStat>().TakeDamage();
+                StartCoroutine(PlayerDmgCo());
             }
 
             yield return new WaitForSeconds(1.17f); // Anim fini 
@@ -160,6 +160,12 @@ namespace AI
             e_rigidbody.constraints = RigidbodyConstraints.None;
             e_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
             e_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+
+        private IEnumerator PlayerDmgCo()
+        {
+            yield return new WaitForSeconds(.19f);
+            PlayerStat.instance.TakeDamage();
         }
     }
 }
