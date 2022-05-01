@@ -386,7 +386,10 @@ public class Controller : MonoBehaviour
                 canMove = false;
                 attackCounter++;
                 inAttack = true;
-                StopCoroutine(ComboWait());
+
+                CancelInvoke("ComboWait");
+                //StopCoroutine("ComboWait");
+                Debug.Log("Stop Invoke");
                 
                 /*
                 animatorPlayer.SetBool("attackFinish", false);
@@ -395,11 +398,10 @@ public class Controller : MonoBehaviour
                 //nextCombo = false;
                 */
             }
-            else if(!setNextCombo && inAttackAnim)
+            else if(!launchAttack && inAttackAnim)
             {
-                setNextCombo = true;
-                attackCounter++;
-                Debug.Log("Set NextCombo " + attackCounter);
+                /*launchAttack = true;
+                attackCounter++;*/
             }
         }
     }
@@ -433,15 +435,34 @@ public class Controller : MonoBehaviour
             //Debug.Log(animInfo.clip.name);
             if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
             {
+                foreach (var zone in keybordAttackZones   ) zone.SetActive(false);
+                foreach (var zone in controllerAttackZones) zone.SetActive(false);
+                
+                
                 inAttack = false;
                 inAttackAnim = false;
                 canMove = true;
-                StartCoroutine(ComboWait());
+                //StartCoroutine(ComboWait());
+                Invoke("ComboWait", 1f);
             }
             else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
             {
+                if (!inAttackAnim)
+                {
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
+                    {
+                        rb.AddForce(moveCardTransform.forward * -500);
+                        keybordAttackZones[attackCounter-1].SetActive(true);
+                    }
+                    else
+                    {
+                        rb.AddForce(movePlayerTransform.forward * -500);
+                        controllerAttackZones[attackCounter-1].SetActive(true);
+                    }
+                }
                 launchAttack = false;
                 inAttackAnim = true;
+                
             }
             
             
@@ -451,15 +472,10 @@ public class Controller : MonoBehaviour
             {
                 if (animInfo.clip.name.Contains("SLASH"))
                 {
-                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -500);
-                    else rb.AddForce(movePlayerTransform.forward * -500);
+                    
                 }
-                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
-                else
-                {
-                    Debug.Log(attackCounter);
-                    controllerAttackZones[attackCounter-1].SetActive(true);
-                }
+                
+                
                 //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
                 inAttack = true;
                 inAttackAnim = true;
@@ -541,14 +557,16 @@ public class Controller : MonoBehaviour
         }
     }
 
-    public IEnumerator ComboWait()
+    private int waitIndex = 0;
+    public void ComboWait()
     {
-        yield return new WaitForSeconds(2f);
+        
+        //yield return new WaitForSeconds(2f);
         if (!inAttack)
         {
             //animatorPlayer.SetBool("attackFinish", true);
             attackCounter = 0;
-            Debug.Log("Attack Finish");
+            Debug.Log($"Attack Finish");
             //canMove = true;
         }
     }
