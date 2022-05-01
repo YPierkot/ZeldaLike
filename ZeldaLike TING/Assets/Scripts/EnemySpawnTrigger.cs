@@ -31,7 +31,7 @@ public class EnemySpawnTrigger : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn.Count; i++)
         {
-            Destroy(Instantiate(appearFX, spawnPoints[i].position, Quaternion.identity, enemiesParent), 5f);
+            Destroy(Instantiate(appearFX, spawnPoints[i].position + new Vector3(0,2.2f,0), Quaternion.identity, enemiesParent), 5f);
         }
 
         yield return new WaitForSeconds(3f);
