@@ -426,15 +426,17 @@ public class Controller : MonoBehaviour
             if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
             else animDir = -movePlayerTransform.forward ;
 
+            animatorPlayer.SetInteger("attackCounter", attackCounter);
+            animatorPlayer.SetBool("isAttack", launchAttack);
+            
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
             //Debug.Log(animInfo.clip.name);
             if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
             {
-            Debug.Log("Idle or Run");
                 inAttack = false;
                 inAttackAnim = false;
                 canMove = true;
-                Debug.Log("Stop Atk");
+                StartCoroutine(ComboWait());
             }
             else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
             {
@@ -445,7 +447,6 @@ public class Controller : MonoBehaviour
             
             /*
             animatorPlayer.SetBool("inCombo", setNextCombo);
-            animatorPlayer.SetInteger("attackCounter", attackCounter);
             if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
             {
                 if (animInfo.clip.name.Contains("SLASH"))
@@ -487,7 +488,6 @@ public class Controller : MonoBehaviour
                 Debug.Log("Combo Wait");
             }*/
             
-            animatorPlayer.SetBool("isAttack", launchAttack);
             
             if (!inAttack && canMove)
             {
