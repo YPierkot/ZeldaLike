@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private List<Transform> ennemiesSpawnPoints;
     [SerializeField] private Transform ennemyParent;
     [SerializeField] private GameObject[] ennemies = new GameObject[2];
+    [SerializeField] private GameObject eAppearFX;
     private bool enemySpawn = true;
     [SerializeField] private Transform fireCardCamera;
     [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
@@ -115,8 +116,8 @@ public class TutorialManager : MonoBehaviour
                         helpManager.DisplayHelp();
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
-                        Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
-                        Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
+                        StartCoroutine(SpawnEnnemiesCo());
+                        
                         Controller.instance.FreezePlayer(false);
                         Controller.instance.FreezePlayer(true, "Cards");
                         DialogueManager.Instance.IsCinematic();
@@ -192,6 +193,17 @@ public class TutorialManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private IEnumerator SpawnEnnemiesCo()
+    {
+        Destroy(Instantiate(eAppearFX, ennemiesSpawnPoints[1].position + new Vector3(0,3.3f, 0), Quaternion.identity, ennemyParent), 5f);
+        Destroy(Instantiate(eAppearFX, ennemiesSpawnPoints[2].position + new Vector3(0,3.3f, 0), Quaternion.identity, ennemyParent), 5f);
+        
+        yield return new WaitForSeconds(3.5f);
+        
+        Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
+        Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
     }
     
 }
