@@ -42,6 +42,9 @@ public class UIManager : MonoBehaviour
    [SerializeField] private Image[] dashHandles;
    private Color dashColor;
    
+   public GameObject loadingScreen;
+
+   
    
    private void Start()
    {

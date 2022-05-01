@@ -542,6 +542,9 @@ public class Controller : MonoBehaviour
                     dashAvailable = 0;
                     attackCounter = 3;
                     break;
+                case "Cards":
+                    CardsController.instance.canUseCards = false;
+                    break;
                 case "DashAttack":
                     dashAvailable = 0;
                     inAttack = false;
@@ -553,7 +556,7 @@ public class Controller : MonoBehaviour
         else
         {
             canMove = true;
-            CardsController.instance.canUseCards = false;
+            CardsController.instance.canUseCards = true;
             dashAvailable = maxDash;
             attackCounter = 0;
             inAttack = false;

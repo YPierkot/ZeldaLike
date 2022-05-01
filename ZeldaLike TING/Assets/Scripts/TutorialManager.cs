@@ -46,6 +46,7 @@ public class TutorialManager : MonoBehaviour
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         DialogueManager.Instance.IsCinematic();
+        UIManager.Instance.loadingScreen.SetActive(false);
         EnqueueDialogue();
     }
 
@@ -98,6 +99,7 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 5 : //Après avoir vu l'objet magique
                     Controller.instance.FreezePlayer(false);
+                    Controller.instance.FreezePlayer(true, "Cards");
                     Controller.instance.FreezePlayer(true, "Attack");
                     UIManager.Instance.gameObject.SetActive(true);
                     if (setHelp)
@@ -116,6 +118,7 @@ public class TutorialManager : MonoBehaviour
                         Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
                         Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
                         Controller.instance.FreezePlayer(false);
+                        Controller.instance.FreezePlayer(true, "Cards");
                         DialogueManager.Instance.IsCinematic();
                         ResetCamera();
                     }
@@ -132,6 +135,7 @@ public class TutorialManager : MonoBehaviour
                     Controller.instance.FreezePlayer(false);
                     DialogueManager.Instance.IsCinematic();
                     UIManager.Instance.gameObject.SetActive(true);
+                    Controller.instance.FreezePlayer(true, "Cards");
                     GameManager.Instance.TutorialWorld();
                     GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
                     EnqueueDialogue();
@@ -146,7 +150,8 @@ public class TutorialManager : MonoBehaviour
                     break;
                 case 0 : //Une fois le deal passé
                     Controller.instance.FreezePlayer(false);
-                    if (GameManager.Instance.isTutorial)
+                    Debug.Log("J'ai capté que le dialogue était fini");
+                    if (GameManager.Instance.isTutorial && DialogueManager.Instance.isCinematic)
                     {
                         GameManager.Instance.isTutorial = false;
                         DialogueManager.Instance.IsCinematic();
