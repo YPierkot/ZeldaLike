@@ -3,9 +3,10 @@ using UnityEngine.Rendering;
 
 public class PlayerSpawnPoint : MonoBehaviour
 {
+    [Header("Forest variables")]
     [SerializeField] private AudioClip forestAmbiance;
     [SerializeField] private VolumeProfile forest;
-    void Awake()
+    void Start()
     {
         Controller.instance.FreezePlayer(false);
         Controller.instance.transform.position = transform.position;

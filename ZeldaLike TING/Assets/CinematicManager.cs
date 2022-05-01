@@ -7,13 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class CinematicManager : MonoBehaviour
 {
+    [Header("Dialogue")]
     [SerializeField] private DialogueScriptable dialogue;
+    
+    [Header("Objects")]
     [SerializeField] private GameObject wizard;
-    private bool wizardMove;
+    
+    [Header("Waypoints & Movement")]
     [SerializeField] private Transform wizardWaypoint;
     [SerializeField] private List<Transform> waypointList;
+    private bool wizardMove;
     private bool kellMove;
     private int waypointIndex;
+    
+    [Header("PostProcess & GameFeel")]
     [SerializeField] private VolumeProfile transitionVolume;
     [SerializeField] private AnimationCurve transitionCurve;
     [SerializeField] private CameraShakeScriptable cameraShake;

@@ -6,27 +6,43 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Dialogues Management")]
+    
     public static DialogueManager Instance;
-    [SerializeField] private List<DialogueLine> DialogueLines = new List<DialogueLine>{};
-    [SerializeField] private TextMeshProUGUI dialogueDisplay;
     private Queue<string> sentences;
     private int currentDialogue;
     private float defaultDelay = 2f;
     private int sentenceIndex;
-    [SerializeField] private DialogueScriptable tutorialDialogue;
-    [SerializeField] private UnityEngine.UI.Image characterEmotion;
-    private int lastDialogueStopIndex;
-    private int lastSentenceStopIndex;
-    [SerializeField] private List<DialogueLine> StoppedDialogue;
-    [SerializeField] private List<DialogueScriptable> ThievesLairMS;
-    [SerializeField] private List<DialogueScriptable> ClearingRune;
+    [SerializeField] private List<DialogueLine> DialogueLines = new List<DialogueLine>{};
     public bool isPlayingDialogue;
     private int dialogueMistKellTimer = 30;
     private float timeSinceLastDialogue;
+    
+    
+    [Header("Dialogue Display")]
+    
+    [SerializeField] private TextMeshProUGUI dialogueDisplay;
+    [SerializeField] private UnityEngine.UI.Image characterEmotion;
+    [SerializeField] private Animator cinematicMode;
     public Animator mist;
     public bool isCursed;
-    [SerializeField] private Animator cinematicMode;
     public bool isCinematic = false;
+    
+    [Header("Stopped Dialogue Management")]
+    
+    private int lastDialogueStopIndex;
+    private int lastSentenceStopIndex;
+    [SerializeField] private List<DialogueLine> StoppedDialogue;
+    
+    [Header("Dialogues")]
+    
+    [SerializeField] private List<DialogueScriptable> ThievesLairMS;
+    [SerializeField] private List<DialogueScriptable> ClearingRune;
+    [SerializeField] private DialogueScriptable TestDialogue;
+    
+    
+    
+    
 
     private void Awake()
     {

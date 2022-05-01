@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class HelpsManager : MonoBehaviour
 {
+    [Header("Helps Display")]
+    
     [SerializeField] private TextMeshProUGUI helpTextDisplay;
     [SerializeField] private GameObject[] checks = new GameObject[4];
     [SerializeField] private List<helpTexts> helps;
