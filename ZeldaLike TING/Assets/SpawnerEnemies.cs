@@ -9,9 +9,13 @@ public class SpawnerEnemies : MonoBehaviour
 {
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemiesPrefab;
+    [SerializeField] private GameObject eAppearFX;
     [SerializeField] private bool canSpawn;
     [SerializeField] private Vector2 enemyPerWave;
 
+    [SerializeField] private GameObject[] eGameObject;
+    [SerializeField] private Transform[] ePos;
+    
     private Material _material;
 
     private void Start()
@@ -30,8 +34,6 @@ public class SpawnerEnemies : MonoBehaviour
             Debug.Log("ColColCol");
             SpawnEnnemis();
             StartCoroutine(ResetSpawnTimer());
-            _material.DOColor(Color.red, 0.1f).OnComplete(() => _material.DOColor(Color.white, 0.1f));
-            _material.DOFade(0.25f, 0.1f).OnComplete(()=> _material.DOFade(1, 0.1f));
         }
         
         Debug.Log("Collision");
@@ -41,22 +43,40 @@ public class SpawnerEnemies : MonoBehaviour
     {
         if (!canSpawn)
             return;
-
-        int alea = (int)Random.Range(enemyPerWave.x, enemyPerWave.y);
-        for (int i = 0; i < alea; i++)
-        {
-            GameObject eGameObject = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
-            Transform ePos = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-            Instantiate(eGameObject, ePos.position, Quaternion.identity);
-        }
+        
+        StartCoroutine(SpawnEnnemisCo());
     }
-
-
+    
     private IEnumerator ResetSpawnTimer()
     {
         canSpawn = false;
         yield return new WaitForSeconds(0.7f);
         canSpawn = true;
+    }
+
+    private IEnumerator SpawnEnnemisCo()
+    {
+        int alea = (int)Random.Range(enemyPerWave.x, enemyPerWave.y);
+        
+        eGameObject = new GameObject[alea];
+        ePos = new Transform[alea];
+        
+        for (int i = 0; i < alea; i++)
+        { 
+            eGameObject[i] = enemiesPrefab[Random.Range(0, enemiesPrefab.Length)];
+            ePos[i] = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        }
+        
+        for (int i = 0; i < alea; i++)
+        {
+            Destroy(Instantiate(eAppearFX, ePos[i].position, Quaternion.identity), 5f);
+        }
+        
+        yield return new WaitForSeconds(3.5f);
+        
+        for (int i = 0; i < alea; i++)
+        {
+            Instantiate(eGameObject[i], ePos[i].position, Quaternion.identity);
+        }
     }
 }
