@@ -48,6 +48,7 @@ public class Controller : MonoBehaviour
    public bool moving;
    public bool dashing;
    [SerializeField] public bool inAttack;
+   [SerializeField] private bool launchAttack;
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
 
@@ -383,21 +384,26 @@ public class Controller : MonoBehaviour
             Debug.Log("Le combo n'est pas fini");
             if (!inAttack)
             {
+                launchAttack = true;
+                canMove = false;
+                attackCounter++;
+                inAttack = true;
 
+                CancelInvoke("ComboWait");
+                //StopCoroutine("ComboWait");
+                Debug.Log("Stop Invoke");
+                
+                /*
                 animatorPlayer.SetBool("attackFinish", false);
                 setNextCombo = true;
-                StopCoroutine(ComboWait());
                 comboWaiting = false;
-                canMove = false;
-                inAttack = true;
                 //nextCombo = false;
-                attackCounter++;
+                */
             }
-            else if(!setNextCombo && inAttackAnim)
+            else if(!launchAttack && inAttackAnim)
             {
-                setNextCombo = true;
-                attackCounter++;
-                Debug.Log("Set NextCombo " + attackCounter);
+                /*launchAttack = true;
+                attackCounter++;*/
             }
         }
     }
@@ -412,16 +418,7 @@ public class Controller : MonoBehaviour
             moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
     }
-
-    void UpdateSprite()
-    {
-        if (angleView>currentInterval.max || angleView < currentInterval.min)
-        {
-            SpriteAngle newSA = spriteDictionary.First(sw => sw.Key(angleView)).Value;
-            sprite.sprite = newSA.sprite;
-            currentInterval = newSA.angleInterval;
-        }  
-    }
+    
     public void UpdateStats()
     {
         moveSpeed = GetComponent<PlayerStat>().moveSpeedValue;
@@ -433,23 +430,54 @@ public class Controller : MonoBehaviour
             if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
             else animDir = -movePlayerTransform.forward ;
 
-            AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
-            if (animInfo.clip.name == "waitAttackState") inAttack = false;
-            animatorPlayer.SetBool("inCombo", setNextCombo);
             animatorPlayer.SetInteger("attackCounter", attackCounter);
+            animatorPlayer.SetBool("isAttack", launchAttack);
+            
+            AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
+            //Debug.Log(animInfo.clip.name);
+            if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
+            {
+                foreach (var zone in keybordAttackZones   ) zone.SetActive(false);
+                foreach (var zone in controllerAttackZones) zone.SetActive(false);
+                
+                
+                inAttack = false;
+                inAttackAnim = false;
+                canMove = true;
+                //StartCoroutine(ComboWait());
+                Invoke("ComboWait", 1f);
+            }
+            else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
+            {
+                if (!inAttackAnim)
+                {
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
+                    {
+                        rb.AddForce(moveCardTransform.forward * -500);
+                        keybordAttackZones[attackCounter-1].SetActive(true);
+                    }
+                    else
+                    {
+                        rb.AddForce(movePlayerTransform.forward * -500);
+                        controllerAttackZones[attackCounter-1].SetActive(true);
+                    }
+                }
+                launchAttack = false;
+                inAttackAnim = true;
+                
+            }
+            
+            
+            /*
+            animatorPlayer.SetBool("inCombo", setNextCombo);
             if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
             {
                 if (animInfo.clip.name.Contains("SLASH"))
                 {
-                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -500);
-                    else rb.AddForce(movePlayerTransform.forward * -500);
+                    
                 }
-                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
-                else
-                {
-                    Debug.Log(attackCounter);
-                    controllerAttackZones[attackCounter-1].SetActive(true);
-                }
+                
+                
                 //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
                 inAttack = true;
                 inAttackAnim = true;
@@ -474,13 +502,14 @@ public class Controller : MonoBehaviour
             { 
                 comboWaiting = true; 
                 StartCoroutine(ComboWait());
-            }
+                Debug.Log("Combo Wait");
+            }*/
+            
             
             if (!inAttack && canMove)
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
-                animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
                 animatorMovePlayer.SetBool("isWalk", moving); // Il est différent donc repoussé par la société
             }
@@ -496,7 +525,6 @@ public class Controller : MonoBehaviour
                     animatorPlayer.SetFloat("X-Axis", animDir.x);
                     animatorPlayer.SetFloat("Z-Axis", animDir.z);
                 }
-                animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
             }
     }
@@ -530,14 +558,17 @@ public class Controller : MonoBehaviour
         }
     }
 
-    public IEnumerator ComboWait()
+    private int waitIndex = 0;
+    public void ComboWait()
     {
-        yield return new WaitForSeconds(0.15f);
+        
+        //yield return new WaitForSeconds(2f);
         if (!inAttack)
         {
-            animatorPlayer.SetBool("attackFinish", true);
+            //animatorPlayer.SetBool("attackFinish", true);
             attackCounter = 0;
-            canMove = true;
+            Debug.Log($"Attack Finish");
+            //canMove = true;
         }
     }
 

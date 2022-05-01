@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
    private void Start()
    {
       cardYPos = cardHandles[0].transform.position.y;
+      
 
       /*cardHandles = new Transform[cardHandlesContainer.childCount];
       for (int i = 0; i < cardHandlesContainer.childCount; i++)
@@ -100,6 +101,7 @@ public class UIManager : MonoBehaviour
 
    public void UpdateCardUI()
    {
+      //Debug.Log("Update Card");
       foreach (var cardHandle in cardHandlesReference)
       {
          switch (cardHandle.card)

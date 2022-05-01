@@ -329,6 +329,6 @@ public class PlayerStat : MonoBehaviour
          attackControl.playerDamage = attackDamageValue;
          attackControl.repusleEnnemyForce = enemyKBForce;
       }
-      Debug.Log("AttackStats is at date");
+      //Debug.Log("AttackStats is at date");
    }
 }
