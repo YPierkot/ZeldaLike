@@ -58,8 +58,8 @@ public class SpawnerEnemies : MonoBehaviour
     {
         int alea = (int)Random.Range(enemyPerWave.x, enemyPerWave.y);
         
-        eGameObject = new GameObject[alea];
-        ePos = new Transform[alea];
+        eGameObject = new GameObject[(int)enemyPerWave.y];
+        ePos = new Transform[(int)enemyPerWave.y];
         
         for (int i = 0; i < alea; i++)
         { 
