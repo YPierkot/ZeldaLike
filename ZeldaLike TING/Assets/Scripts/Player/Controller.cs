@@ -278,6 +278,7 @@ public class Controller : MonoBehaviour
             {
                 dashCDtimer = 0;
                 dashAvailable++;
+                UIManager.Instance.UpdateDash(dashAvailable);
             }
         }
 
@@ -365,9 +366,9 @@ public class Controller : MonoBehaviour
             dashing = true;
             dashTimer = 0;
             canMove = false;
-            
             inAttack = false;
             attackCounter = 0;
+            UIManager.Instance.UpdateDash(dashAvailable);
             DesactiveAttackZone();
             if (cameraOnPlayer)
             {
@@ -381,7 +382,6 @@ public class Controller : MonoBehaviour
     {
         if (attackCounter < 3)
         {
-            Debug.Log("Le combo n'est pas fini");
             if (!inAttack)
             {
                 launchAttack = true;
@@ -390,20 +390,7 @@ public class Controller : MonoBehaviour
                 inAttack = true;
 
                 CancelInvoke("ComboWait");
-                //StopCoroutine("ComboWait");
-                Debug.Log("Stop Invoke");
                 
-                /*
-                animatorPlayer.SetBool("attackFinish", false);
-                setNextCombo = true;
-                comboWaiting = false;
-                //nextCombo = false;
-                */
-            }
-            else if(!launchAttack && inAttackAnim)
-            {
-                /*launchAttack = true;
-                attackCounter++;*/
             }
         }
     }
@@ -434,7 +421,6 @@ public class Controller : MonoBehaviour
             animatorPlayer.SetBool("isAttack", launchAttack);
             
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
-            //Debug.Log(animInfo.clip.name);
             if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
             {
                 foreach (var zone in keybordAttackZones   ) zone.SetActive(false);
@@ -444,7 +430,6 @@ public class Controller : MonoBehaviour
                 inAttack = false;
                 inAttackAnim = false;
                 canMove = true;
-                //StartCoroutine(ComboWait());
                 Invoke("ComboWait", 1f);
             }
             else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
@@ -466,46 +451,6 @@ public class Controller : MonoBehaviour
                 inAttackAnim = true;
                 
             }
-            
-            
-            /*
-            animatorPlayer.SetBool("inCombo", setNextCombo);
-            if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
-            {
-                if (animInfo.clip.name.Contains("SLASH"))
-                {
-                    
-                }
-                
-                
-                //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
-                inAttack = true;
-                inAttackAnim = true;
-                setNextCombo = false;
-                //Debug.Log("Begin Attack");
-                StopCoroutine(ComboWait());
-                comboWaiting = false;
-            }
-            else if (animInfo.clip.name == "waitAttackState" && inAttackAnim)
-            {
-                DesactiveAttackZone();
-                
-                if (!setNextCombo && !comboWaiting)
-                {
-                    comboWaiting = true;
-                    StartCoroutine(ComboWait());
-                }
-                    
-                inAttackAnim = false;
-            }
-            else if (animInfo.clip.name == "waitAttackState" && !inAttackAnim && !inAttack && !comboWaiting) 
-            { 
-                comboWaiting = true; 
-                StartCoroutine(ComboWait());
-                Debug.Log("Combo Wait");
-            }*/
-            
-            
             if (!inAttack && canMove)
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
@@ -540,6 +485,11 @@ public class Controller : MonoBehaviour
             //Debug.Log("Desactive Attack Zone");
         }
     }
+
+    public void ChangeControleType(int value)
+    {
+        _controlType = (ControlType) value;
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -562,10 +512,8 @@ public class Controller : MonoBehaviour
     public void ComboWait()
     {
         
-        //yield return new WaitForSeconds(2f);
         if (!inAttack)
         {
-            //animatorPlayer.SetBool("attackFinish", true);
             attackCounter = 0;
             Debug.Log($"Attack Finish");
             //canMove = true;

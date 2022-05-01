@@ -38,11 +38,15 @@ public class UIManager : MonoBehaviour
    
    [Header("--- LIFE & STAT")] 
    [SerializeField] private Image[] lifeArray;
+
+   [SerializeField] private Image[] dashHandles;
+   private Color dashColor;
    
    
    private void Start()
    {
       cardYPos = cardHandles[0].transform.position.y;
+      dashColor = dashHandles[0].color;
       
 
       /*cardHandles = new Transform[cardHandlesContainer.childCount];
@@ -211,6 +215,15 @@ public class UIManager : MonoBehaviour
       {
          if (i >= life)lifeArray[i].enabled = false;
          else lifeArray[i].enabled = true;
+      }
+   }
+
+   public void UpdateDash(int dash = 3)
+   {
+      for (int i = 0; i < dashHandles.Length; i++)
+      {
+         if (i < dash) dashHandles[i].color = dashColor; 
+         else dashHandles[i].color = new Color(.3f, .3f, .3f, .5f);
       }
    }
 
