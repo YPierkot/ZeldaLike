@@ -51,6 +51,7 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool launchAttack;
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
+   public bool canDash;
 
    private bool moveHoldCard;
 
@@ -362,7 +363,7 @@ public class Controller : MonoBehaviour
     }
     void Dash()
     {
-        if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0)
+        if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0 && canDash)
         {
             animatorPlayer.SetBool("attackFinish", true);
             dashAvailable--;
@@ -530,8 +531,7 @@ public class Controller : MonoBehaviour
             switch (toFreeze)
             {
                 case "Dash":
-                    dashAvailable = 0;
-                    dashing = false;
+                    canDash = false;
                     break;
                 case "Attack":
                     attackCounter = 3;
@@ -540,18 +540,16 @@ public class Controller : MonoBehaviour
                 case "All":
                     canMove = false;
                     inAttack = false;
-                    dashing = false;
+                    canDash = false;
                     CardsController.instance.canUseCards = false;
-                    dashAvailable = 0;
                     attackCounter = 3;
                     break;
                 case "Cards":
                     CardsController.instance.canUseCards = false;
                     break;
                 case "DashAttack":
-                    dashAvailable = 0;
                     inAttack = false;
-                    dashing = false;
+                    canDash = false;
                     attackCounter = 3;
                     break;
             }
@@ -560,7 +558,7 @@ public class Controller : MonoBehaviour
         {
             canMove = true;
             CardsController.instance.canUseCards = true;
-            dashAvailable = maxDash;
+            canDash = true;
             attackCounter = 0;
             inAttack = false;
         }
