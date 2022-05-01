@@ -43,12 +43,13 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         helpManager = GetComponent<HelpsManager>();
-        Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         DialogueManager.Instance.IsCinematic();
+        Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
         EnqueueDialogue();
+        
     }
 
     private void Update()
@@ -59,7 +60,6 @@ public class TutorialManager : MonoBehaviour
     private void ResetCamera()
     {
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        
     }
 
     public void EnqueueDialogue()

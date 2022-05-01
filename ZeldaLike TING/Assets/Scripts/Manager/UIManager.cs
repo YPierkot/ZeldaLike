@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
    [SerializeField] private Image[] lifeArray;
 
    [SerializeField] private Image[] dashHandles;
-   private Color dashColor;
+   private Color dashColor= new Color(.5f, .2f, .5f, 1);
    
    public GameObject loadingScreen;
 
@@ -49,25 +49,9 @@ public class UIManager : MonoBehaviour
    private void Start()
    {
       cardYPos = cardHandles[0].transform.position.y;
-      dashColor = dashHandles[0].color;
       
-
-      /*cardHandles = new Transform[cardHandlesContainer.childCount];
-      for (int i = 0; i < cardHandlesContainer.childCount; i++)
-      {
-         cardHandles[i] = cardHandlesContainer.GetChild(i);
-         if (i < cardUnlock)
-         {
-            cardHandles[i].gameObject.SetActive(true);
-            Debug.Log("Active " + i);
-         }
-         else
-         {
-            cardHandles[i].gameObject.SetActive(false);
-            Debug.Log("Desactive " + i);
-         }
-      }*/
       ChangeCard(0);
+      UIManager.Instance.UpdateCardUI();
 
    }
 

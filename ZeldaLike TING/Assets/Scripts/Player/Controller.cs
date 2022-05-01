@@ -152,7 +152,6 @@ public class Controller : MonoBehaviour
                 canMove = true;
                 cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
             };
-            UIManager.Instance.UpdateCardUI();
             InputMap.MoveStopShoot.shoot.canceled += CardHolderOncanceled;
             InputMap.MoveStopShoot.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
             
@@ -164,7 +163,6 @@ public class Controller : MonoBehaviour
                 cardControl.rectoSide = !cardControl.rectoSide;
                if(!cardControl.rectoSide) cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = true;
                else cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
-               UIManager.Instance.UpdateCardUI();
             };
 
             InputMap.ChangeSideControl.Shoot.performed += context =>
@@ -237,6 +235,7 @@ public class Controller : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
+
             //transformDebugger.position = hit.point;
             pointerPosition = hit.point;
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
@@ -328,7 +327,11 @@ public class Controller : MonoBehaviour
         
         Animations();
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask)) transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask))
+        {
+            transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
+            Debug.Log("Colldie with " + groundHit.transform.name);
+        }
         else transform.position += new Vector3(0, -0.1f, 0);
         
     }
