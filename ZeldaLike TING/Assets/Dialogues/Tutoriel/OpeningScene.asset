@@ -18,19 +18,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: A magician's caravan?
+      line: Une roulotte de magicien?
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: C'est mon jour de chance,
       delay: 0
     - expressions: 0
       name: 
-      line: It's my lucky day ! I hope it has food !
-      delay: 3
+      line: " j'esp\xE8re qu'il a de la nourriture"
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: de610d71de442c949a2678d048055430, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Shhh... he stops.
+      line: "Chut...Il s'arr\xEAte."
       delay: 3
     voiceLine: {fileID: 8300000, guid: 25ec6c79d36bc794282b04e3f1714811, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -38,22 +42,26 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Alright, he's not paying attention, now is the time...
-      delay: 4
+      line: 'C''est le moment ! Il ne fait pas attention ! '
+      delay: 5.5
     voiceLine: {fileID: 8300000, guid: ceb6c7c4147bdd24baecd389783c1420, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 2
+    startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Come on, open !
-      delay: 0
+      line: Allez allez ouvre toi !
+      delay: 3
     voiceLine: {fileID: 8300000, guid: 3767a8f46d40347429f43decf525c921, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: There you go! Let's see... Wooooow
-      delay: 5
+      line: Enfin ! Voyons voir....
+      delay: 3
+    - expressions: 2
+      name: 
+      line: Woooooow
+      delay: 3
     voiceLine: {fileID: 8300000, guid: 43e59aac050c1b14ba980a9f604b3186, type: 3}

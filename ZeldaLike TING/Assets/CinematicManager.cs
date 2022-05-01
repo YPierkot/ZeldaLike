@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class CinematicManager : MonoBehaviour
@@ -13,6 +14,11 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] private List<Transform> waypointList;
     private bool kellMove;
     private int waypointIndex;
+    [SerializeField] private VolumeProfile transitionVolume;
+    [SerializeField] private AnimationCurve transitionCurve;
+    [SerializeField] private CameraShakeScriptable cameraShake;
+    [SerializeField] private VolumeProfile hardTransition;
+    [SerializeField] private AnimationCurve hardCurve;
 
     private void Start()
     {
@@ -48,7 +54,15 @@ public class CinematicManager : MonoBehaviour
         waypointIndex = 1;
         yield return new WaitForSeconds(0.8f);
         waypointIndex = 2;
-        yield return new WaitForSeconds(9);
+        yield return new WaitForSeconds(7.5f);
+        GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
+        CameraShake.Instance.AddShakeEvent(cameraShake);
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.volumeManager.profile = transitionVolume;
+        GameManager.Instance.VolumeTransition(hardTransition, hardCurve);
+        yield return new WaitForSeconds(0.4f);
+        UIManager.Instance.loadingScreen.SetActive(true);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("_Scenes/SceneWorkflow/LD_Tuto");
     }
 }

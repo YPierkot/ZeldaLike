@@ -38,6 +38,8 @@ public class UIManager : MonoBehaviour
    [Header("--- LIFE & STAT")] 
    [SerializeField] private Image[] lifeArray;
 
+   public GameObject loadingScreen;
+
    
    private void Start()
    {

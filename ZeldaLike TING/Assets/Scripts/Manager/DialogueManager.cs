@@ -26,7 +26,7 @@ public class DialogueManager : MonoBehaviour
     public Animator mist;
     public bool isCursed;
     [SerializeField] private Animator cinematicMode;
-    private bool isCinematic = false;
+    public bool isCinematic = false;
 
     private void Awake()
     {

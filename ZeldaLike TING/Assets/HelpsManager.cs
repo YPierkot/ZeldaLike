@@ -24,7 +24,7 @@ public class HelpsManager : MonoBehaviour
         [TextArea(4, 10)] public string XboxHelp;
     }
 
-    private void Start()
+    private void Awake()
     {
         helpsQueue = new Queue<helpTexts>();
         foreach (var help in helps)
@@ -35,67 +35,76 @@ public class HelpsManager : MonoBehaviour
 
     private void Update()
     {
-        switch (currentHelp.helpIndex)
+        if (currentHelp != null)
         {
-            case 1:
-                if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
-                {
-                    if (Input.GetKey(KeyCode.Z))
+            switch (currentHelp.helpIndex)
+            {
+                case 1:
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
+                    {
+                        if (Input.GetKey(KeyCode.Z))
+                        {
+                            CheckLine(1);
+                        }
+
+                        if (Input.GetKey(KeyCode.Q))
+                        {
+                            CheckLine(2);
+                        }
+
+                        if (Input.GetKey(KeyCode.S))
+                        {
+                            CheckLine(3);
+                        }
+
+                        if (Input.GetKey(KeyCode.D))
+                        {
+                            CheckLine(4);
+                        }
+                    }
+                    else
+                    {
+                        if (Controller.instance.moving)
+                        {
+                            CheckLine(1);
+                            CheckLine(2);
+                            CheckLine(3);
+                            CheckLine(4);
+                        }
+                    }
+
+                    break;
+                case 2:
+                    if (Controller.instance.dashing)
                     {
                         CheckLine(1);
                     }
-                    if (Input.GetKey(KeyCode.Q))
-                    {
-                        CheckLine(2);
-                    }
-                    if (Input.GetKey(KeyCode.S))
-                    {
-                        CheckLine(3);
-                    }
-                    if (Input.GetKey(KeyCode.D))
-                    {
-                        CheckLine(4);
-                    }
-                }
-                else
-                {
-                    if (Controller.instance.moving)
+
+                    break;
+                case 3:
+                    if (Controller.instance.inAttack)
                     {
                         CheckLine(1);
-                        CheckLine(2);
-                        CheckLine(3);
-                        CheckLine(4);
                     }
-                }
-                break;
-            case 2 :
-                if (Controller.instance.dashing)
-                { 
-                    CheckLine(1);
-                }
-                break;
-            case 3:
-                if (Controller.instance.inAttack)
-                { 
-                    CheckLine(1);
-                }
 
-                
-                
-                break;
-            case 4:
-                if (CardsController.instance.fireRectoUse)
-                {
-                    CheckLine(1);
-                }
 
-                break;
-            case 5 :
-                if (!CardsController.instance.fireRectoUse)
-                {
-                    CheckLine(1);
-                }
-                break;
+
+                    break;
+                case 4:
+                    if (CardsController.instance.fireRectoUse)
+                    {
+                        CheckLine(1);
+                    }
+
+                    break;
+                case 5:
+                    if (!CardsController.instance.fireRectoUse)
+                    {
+                        CheckLine(1);
+                    }
+
+                    break;
+            }
         }
 
     }
