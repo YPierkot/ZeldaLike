@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FireCardTutorialManager : MonoBehaviour
@@ -16,13 +13,14 @@ public class FireCardTutorialManager : MonoBehaviour
     [SerializeField] private EnemySpawnTrigger enemySpawner;
     [SerializeField] private GameObject barrier;
     [SerializeField] private GameObject pasStairBarrier = null;
-
+    [SerializeField] private GameObject liana;
     public bool isFinished;
     private bool spawnedEnemies;
-    [SerializeField] private TextMeshProUGUI helpText;
-    [TextArea(4, 10)]
-    [SerializeField] private List<string> helps;
-
+    [SerializeField] private HelpsManager HelpsManager;
+    [SerializeField] private Transform[] lianaSpawnPoints;
+    private float lastLianaSpawn;
+    [SerializeField] private float lianaSpawnDelay;
+    private bool canSpawnLianas;
     private void Start()
     {
         dialogueQueue = new Queue<DialogueScriptable>();
@@ -35,9 +33,9 @@ public class FireCardTutorialManager : MonoBehaviour
 
     private void Update()
     {
-        PlayerStat.instance.life = PlayerStat.instance.lifeMax;
         if (canStart && !DialogueManager.Instance.isPlayingDialogue)
         {
+            PlayerStat.instance.life = PlayerStat.instance.lifeMax;
             barrier.SetActive(true);
             int remainingDialogue = dialogueQueue.Count;
             switch (remainingDialogue)
@@ -50,13 +48,16 @@ public class FireCardTutorialManager : MonoBehaviour
                     {
                         case false:
                             lianaSet = true;
+                            CardsController.instance.canUseCards = true;
                             lianas.transform.position = Controller.instance.transform.position;
-                            helpText.text = helps[0];
+                            HelpsManager.DisplayHelp();
                             break;
                     }
                     lianas.SetActive(true);
                     if (lianas.transform.childCount == 0)
                     {
+                        lastLianaSpawn = Time.time;
+                        canSpawnLianas = true;
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
                     break;
@@ -64,7 +65,7 @@ public class FireCardTutorialManager : MonoBehaviour
                     puzzle.SetActive(true);
                     if (puzzle.transform.childCount == 4)
                     {
-                        helpText.text = helps[1];
+                        HelpsManager.DisplayHelp();
                         puzzle.SetActive(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
@@ -84,7 +85,13 @@ public class FireCardTutorialManager : MonoBehaviour
                         pasStairBarrier.SetActive(false);
                     }
                     break;
+
                     
+            }
+            if (Time.time > lastLianaSpawn + lianaSpawnDelay && canSpawnLianas && !isFinished)
+            {
+                Instantiate(liana, lianaSpawnPoints[UnityEngine.Random.Range(0, lianaSpawnPoints.Length)]);
+                lastLianaSpawn = Time.time;
             }
         }
     }
