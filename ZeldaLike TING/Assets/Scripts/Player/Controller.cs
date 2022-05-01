@@ -56,7 +56,7 @@ public class Controller : MonoBehaviour
 
     private float dashTimer;
     private float holdTimer; 
-    private int dashAvailable; 
+    public int dashAvailable; 
     private float dashCDtimer; 
 
     [SerializeField] public bool canMove = true;
@@ -562,6 +562,4 @@ public class Controller : MonoBehaviour
             inAttack = false;
         }
     }
-
-    
 }

@@ -1757,7 +1757,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: e98a86e8c4fd14e4db9e63082713354e, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 64db94767f4bded4d92606ed9c8fb159, type: 2}
 --- !u!1 &1332991332495471158
 GameObject:
   m_ObjectHideFlags: 0
@@ -3063,6 +3063,8 @@ GameObject:
   - component: {fileID: 5412872044852991963}
   - component: {fileID: 516064602205012215}
   - component: {fileID: 5161319261094417317}
+  - component: {fileID: 6773615633634257289}
+  - component: {fileID: 5225742825040051476}
   m_Layer: 5
   m_Name: ControlType (Dropdown)
   m_TagString: Untagged
@@ -3077,7 +3079,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087104034294715281}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3205,6 +3207,44 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_AlphaFadeSpeed: 0.15
+--- !u!223 &6773615633634257289
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087104034294715281}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 100
+  m_TargetDisplay: 0
+--- !u!114 &5225742825040051476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087104034294715281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2098427053462849963
 GameObject:
   m_ObjectHideFlags: 0
@@ -7799,8 +7839,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.23595467
-      value: 0.99176306
+      time: 0.29781234
+      value: 0.9939979
       inSlope: 0.023762714
       outSlope: 0.023762714
       tangentMode: 0
@@ -7808,8 +7848,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.5015625
     - serializedVersion: 3
-      time: 0.5000061
-      value: -0.0070894957
+      time: 0.7121643
+      value: -0.002359271
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -9632,9 +9672,9 @@ MonoBehaviour:
   - {fileID: 4345479382989275439}
   - {fileID: 312219032081009435}
   dashHandles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5012725918857049714}
+  - {fileID: 5782056214422378235}
+  - {fileID: 5701980271092727989}
   loadingScreen: {fileID: 1041585920}
 --- !u!1 &8785167084588536870
 GameObject:
@@ -10588,6 +10628,26 @@ PrefabInstance:
         type: 3}
       propertyPath: canUseCards
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: iceCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: fireCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: wallCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: windCardUnlock
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
