@@ -37,7 +37,8 @@ public class UIManager : MonoBehaviour
    
    
    [Header("--- LIFE & STAT")] 
-   [SerializeField] private Image[] lifeArray;
+   [SerializeField] private Animator[] lifeArray;
+   [SerializeField] private Animator KellHead;
 
    [SerializeField] private Image[] dashHandles;
    private Color dashColor= new Color(.5f, .2f, .5f, 1);
@@ -196,13 +197,23 @@ public class UIManager : MonoBehaviour
       }
    }
 
-   public void UpdateLife(int life)
+   public void InitLife(int life)
    {
       for (int i = 0; i < lifeArray.Length; i++)
       {
-         if (i >= life)lifeArray[i].enabled = false;
-         else lifeArray[i].enabled = true;
+         if (i >= life)lifeArray[i].gameObject.SetActive(false);
+         else lifeArray[i].gameObject.SetActive(true);
       }
+   }
+
+   public void TakeDamageUI(int life)
+   {
+      for (int i = 0; i < life; i++)
+      {
+         lifeArray[i].SetTrigger("TakeDamage");
+      }
+      lifeArray[life].SetTrigger("Destroy");
+      KellHead.SetTrigger("TakeDamage");
    }
 
    public void UpdateDash(int dash = 3)
