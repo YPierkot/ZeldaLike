@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class SetupArena : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private enum ArenaState
     {
-        
+        withCardsPhase = 0, withoutCardsPhase
     }
 
-    // Update is called once per frame
-    void Update()
+    private ArenaState State = ArenaState.withCardsPhase;
+    [SerializeField] private GameObject UICompteurDeCoups;
+    [SerializeField] private GameObject LifeUI;
+    
+    void Start()
     {
-        
+        LifeUI.SetActive(false);
+    }
+
+    private void StartArena()
+    {
+        switch (State)
+        {
+            case ArenaState.withCardsPhase:
+                
+                break;
+            case ArenaState.withoutCardsPhase:
+                
+                break;
+        }
     }
 }
