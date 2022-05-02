@@ -212,6 +212,7 @@ public class UIManager : MonoBehaviour
       {
          lifeArray[i].SetTrigger("TakeDamage");
       }
+      Debug.Log($"destroy {lifeArray[life]}");
       lifeArray[life].SetTrigger("Destroy");
       KellHead.SetTrigger("TakeDamage");
    }
