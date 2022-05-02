@@ -6,25 +6,39 @@ using UnityEngine.Rendering;
 
 public class TutorialManager : MonoBehaviour
 {
+    [Header("Start Tutorial")]
+    
     [SerializeField] private Transform spawnPoint;
+    
+    [Header("Dialogues & Helps")]
+    
     [SerializeField] private List<DialogueScriptable> tutorialDialogues;
     private Queue<DialogueScriptable> dialogueQueue;
+    private HelpsManager helpManager;
     private int remainingDialogues;
+    private bool setHelp = true;
+    
+    [Header("First Cinematic")]
+    
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private Transform prisonPosition;
     [SerializeField] private List<Transform> ennemiesSpawnPoints;
+    [SerializeField] private Animator ithar;
+    private bool itharStarted;
+    
+    [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
     [SerializeField] private GameObject[] ennemies = new GameObject[2];
     [SerializeField] private GameObject eAppearFX;
     private bool enemySpawn = true;
-    [SerializeField] private Transform fireCardCamera;
+
+    [Header("Fire Card Tutorial")]
     [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
-    [SerializeField] private Animator ithar;
-    private bool itharStarted;
-    private HelpsManager helpManager;
     [SerializeField] private GivePlayerFireCard givePlayerFireCard = null;
-    private bool setHelp = true;
     private bool fireCardCinematic = true;
+    
+    [Header("Volumes & Feedbacks")]
+    
     [SerializeField] private CameraShakeScriptable prisonShake;
     [SerializeField] private VolumeProfile transitionVolume;
     [SerializeField] private AnimationCurve transitionCurve;

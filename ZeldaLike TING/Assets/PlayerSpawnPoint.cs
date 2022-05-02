@@ -3,6 +3,7 @@ using UnityEngine.Rendering;
 
 public class PlayerSpawnPoint : MonoBehaviour
 {
+    [Header("Forest variables")]
     [SerializeField] private AudioClip forestAmbiance;
     [SerializeField] private VolumeProfile forest;
     void Start()

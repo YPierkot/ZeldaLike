@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class FireCardTutorialManager : MonoBehaviour
 {
+    
+    [Header("Dialogues and helps")]
+    
     private Queue<DialogueScriptable> dialogueQueue;
     [SerializeField] private List<DialogueScriptable> dialogues;
+    [SerializeField] private HelpsManager HelpsManager;
+    
+    [Header("State Bools")]
+    
     public bool canStart;
-    [SerializeField] private GameObject lianas;
     private bool lianaSet;
-    [SerializeField] private GameObject puzzle;
-    [SerializeField] private EnemySpawnTrigger enemySpawner;
-    [SerializeField] private GameObject barrier;
-    [SerializeField] private GameObject pasStairBarrier = null;
-    [SerializeField] private GameObject liana;
     public bool isFinished;
     private bool spawnedEnemies;
-    [SerializeField] private HelpsManager HelpsManager;
-    [SerializeField] private Transform[] lianaSpawnPoints;
+    private bool canSpawnLianas;
+    
+    [Header("First Challenge")]
+    
+    [SerializeField] private GameObject lianas;
+    [SerializeField] private GameObject liana;
     private float lastLianaSpawn;
     [SerializeField] private float lianaSpawnDelay;
-    private bool canSpawnLianas;
+    [SerializeField] private Transform[] lianaSpawnPoints;
+    
+    [Header("Second Challenge")]
+    
+    [SerializeField] private GameObject puzzle;
+    
+    [Header("Third Challenge")]
+    [SerializeField] private EnemySpawnTrigger enemySpawner;
+    
+    [Header("Blocking Player")]
+    
+    [SerializeField] private GameObject barrier;
+    [SerializeField] private GameObject pasStairBarrier = null;
+    [SerializeField] private GameObject platformBarrier;
+
+
     private void Start()
     {
         dialogueQueue = new Queue<DialogueScriptable>();
@@ -83,6 +103,7 @@ public class FireCardTutorialManager : MonoBehaviour
                         canStart = false;
                         isFinished = true;
                         pasStairBarrier.SetActive(false);
+                        platformBarrier.SetActive(false);
                     }
                     break;
 
