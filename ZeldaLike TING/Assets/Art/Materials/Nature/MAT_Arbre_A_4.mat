@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MAT_Arbre_A_4
-  m_Shader: {fileID: -6465566751694194690, guid: c22c48d3a27caca458810524fa481e98,
+  m_Shader: {fileID: -6465566751694194690, guid: 6e3489db2e1bfeb4c99c4403331501f8,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 1900
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -136,6 +136,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _Wind: 0.09
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
