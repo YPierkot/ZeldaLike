@@ -96,6 +96,7 @@ public class UIManager : MonoBehaviour
       //Debug.Log("Update Card");
       foreach (var cardHandle in cardHandlesReference)
       {
+         Debug.Log(cardHandle.Handle.name);
          switch (cardHandle.card)
          {
             case CardsController.CardsState.Fire :

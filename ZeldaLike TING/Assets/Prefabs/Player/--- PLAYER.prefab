@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   _playerInput: {fileID: 0}
-  _controlType: 0
+  _controlType: 3
   secondStick: 0
   animatorPlayer: {fileID: 1145041875}
   animatorMovePlayer: {fileID: 1617754507992478219}
@@ -1269,6 +1269,7 @@ MonoBehaviour:
   launchAttack: 0
   inAttackAnim: 0
   holdingForCard: 0
+  canDash: 0
   dashAvailable: 0
   canMove: 1
   spriteArray:

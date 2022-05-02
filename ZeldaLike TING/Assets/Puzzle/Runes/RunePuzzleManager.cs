@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,6 +24,19 @@ public class RunePuzzleManager : MonoBehaviour
   private void Start()
   {
     ResetRune();
+    
+  }
+
+  private void Update()
+  {
+    if(!CardsController.instance.windCardUnlock) forPlaytestBuild();
+    if(!CardsController.instance.iceCardUnlock) forPlaytestBuild();
+  }
+
+  void forPlaytestBuild()
+  {
+    CardsController.instance.fireCardUnlock = CardsController.instance.iceCardUnlock = CardsController.instance.wallCardUnlock = CardsController.instance.windCardUnlock = true;
+    UIManager.Instance.UpdateCardUI();
   }
 
   public void CheckRunes()
