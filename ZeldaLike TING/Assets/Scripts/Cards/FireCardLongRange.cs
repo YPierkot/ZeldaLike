@@ -17,20 +17,8 @@ public class FireCardLongRange : MonoBehaviour
         {
             switch (col.transform.tag)
             {
-                case "Interactable":
-                    col.GetComponent<InteracteObject>().OnFireEffect();
-                    break;
-                
-                case "Ennemy" :
-                    if (col.transform.GetComponent<SwingerAI>())
-                        col.transform.GetComponent<SwingerAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<KamikazeAI>())
-                        col.transform.GetComponent<KamikazeAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<MageAI>())
-                        col.transform.GetComponent<MageAI>().LooseHp(2);
-                    else if (col.transform.GetComponent<BomberAI>())
-                        col.transform.GetComponent<BomberAI>().LooseHp(2);
-                    break;
+                case "Interactable": col.GetComponent<InteracteObject>().OnFireEffect(); break;
+                case "Ennemy" : col.transform.GetComponent<AI.AbtractAI>().LooseHp(2); break;
             }
         }
         Destroy(gameObject);
@@ -38,14 +26,9 @@ public class FireCardLongRange : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.transform.CompareTag("Player"))
+        if (!other.GetComponentInParent<Transform>().CompareTag("Player") || other.ToString() == groundMask.ToString())
         {
-            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-        
-        if (other.ToString() == groundMask.ToString())
-        {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
@@ -58,6 +41,7 @@ public class FireCardLongRange : MonoBehaviour
     private void OnDestroy()
     {
         CardsController.isFireGround = false;
-        UIManager.Instance.UpdateCardUI();
+        CardsController.instance.LaunchCardCD(1);
+        //UIManager.Instance.UpdateCardUI();
     }
 }
