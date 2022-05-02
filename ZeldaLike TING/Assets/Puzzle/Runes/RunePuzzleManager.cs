@@ -35,7 +35,7 @@ public class RunePuzzleManager : MonoBehaviour
 
   void forPlaytestBuild()
   {
-    CardsController.instance.fireCardUnlock = CardsController.instance.iceCardUnlock = CardsController.instance.wallCardUnlock = CardsController.instance.windCardUnlock = true;
+    CardsController.instance.fireCardUnlock = CardsController.instance.iceCardUnlock = CardsController.instance.windCardUnlock = true;
     UIManager.Instance.UpdateCardUI();
   }
 

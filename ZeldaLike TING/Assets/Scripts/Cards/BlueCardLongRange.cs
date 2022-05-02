@@ -48,7 +48,7 @@ public class BlueCardLongRange : MonoBehaviour
     {
         if (other.ToString() == groundMask.ToString())
         {
-            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
