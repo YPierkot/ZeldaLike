@@ -155,7 +155,7 @@ public class InteracteObject : MonoBehaviour
         if (iceAffect)
         {
             isFreeze = true;
-            Debug.Log("Freeze");
+            burning = false;
             if (canFreeze)
             {
                 freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);

@@ -24,7 +24,6 @@ public class BlueCardLongRange : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, effectRadius);
         foreach (var col in colliders)
         {
-            Debug.Log(col.name);
             if (col.transform.CompareTag("Interactable"))
             {
                 col.GetComponent<InteracteObject>().Freeze(transform.position);

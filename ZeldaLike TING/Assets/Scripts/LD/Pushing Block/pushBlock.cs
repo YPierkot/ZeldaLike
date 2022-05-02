@@ -19,18 +19,18 @@ public class pushBlock : InteracteObject
     void Start()
     {
         transform.position = currentWaypoint.transform.position;
+        mesh = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isFreeze)mesh.material.color = Color.blue;
+        else if(burning) mesh.material.color = Color.red;
         if (move)
         {
-            Debug.Log("move");
             if (Vector3.Distance(transform.position, newWaypoint.transform.position)<= speed)
             {
-                Debug.Log($"Stop move, distance:{Vector3.Distance(transform.position, newWaypoint.transform.position)}");
                 move = false;
                 transform.position = newWaypoint.transform.position;
                 currentWaypoint = newWaypoint;
@@ -71,7 +71,6 @@ public class pushBlock : InteracteObject
 
     void MoveWaypoint(Side side)
     {
-        Debug.Log("Move "+ side);
         pushWayPoint waypoint = null;
         switch (side)
         {
@@ -94,6 +93,7 @@ public class pushBlock : InteracteObject
             move = true;
         }
     }
+
 
     public void MoveWaytpointGravity() => MoveWaypoint(Side.bot);
 }
