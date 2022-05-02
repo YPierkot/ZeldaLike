@@ -27,6 +27,10 @@ public class AttackControl : MonoBehaviour
             eRb.AddForce(differance, ForceMode.Impulse); */
             StartCoroutine(KnockbackCo(eRb));
         }
+        else if (other.transform.CompareTag("Crates")) {
+            if(other.GetComponent<DestructableObject>() != null) other.GetComponent<DestructableObject>().DestroyObject();
+            else Debug.LogError("The object you try to destroy doesn't have the script DestructableObject", other.transform);
+        }
     }
 
     private IEnumerator KnockbackCo(Rigidbody rb)
