@@ -335,7 +335,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6dd60c94291102b4ba5194fa3764ca45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1259,6 +1259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   _controlType: 0
+  secondStick: 0
   animatorPlayer: {fileID: 1145041875}
   animatorMovePlayer: {fileID: 1617754507992478219}
   moving: 0
@@ -1696,6 +1697,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Main_Gauche_TBL
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fbdd36f5165e0804494809baf1152e78,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1627280189752160394, guid: fbdd36f5165e0804494809baf1152e78,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1875,6 +1881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Main_Droite_TBL
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9c5abca86ce02034796f161e109d5002,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3224851131903822176, guid: 9c5abca86ce02034796f161e109d5002,
         type: 3}

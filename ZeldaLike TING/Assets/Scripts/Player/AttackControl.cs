@@ -17,7 +17,7 @@ public class AttackControl : MonoBehaviour
 
             if (other.gameObject.GetComponent<SwingerAI>())
             {
-                other.gameObject.GetComponent<SwingerAI>().LooseHp(playerDamage);
+                other.gameObject.GetComponent<AI.AbtractAI>().LooseHp(playerDamage);
                 Vector3 repulse = (transform.position - other.gameObject.GetComponent<Collider>().ClosestPoint(transform.position)).normalized * repusleEnnemyForce;
                 control.rb.velocity = repulse;
             }
@@ -39,6 +39,10 @@ public class AttackControl : MonoBehaviour
                 Vector3 repulse = (transform.position - other.gameObject.GetComponent<Collider>().ClosestPoint(transform.position)).normalized * repusleEnnemyForce;
                 control.rb.velocity = repulse;
             }
+        }
+        else if (other.transform.CompareTag("Crates")) {
+            if(other.GetComponent<DestructableObject>() != null) other.GetComponent<DestructableObject>().DestroyObject();
+            else Debug.LogError("The object you try to destroy doesn't have the script DestructableObject", other.transform);
         }
     }
 }

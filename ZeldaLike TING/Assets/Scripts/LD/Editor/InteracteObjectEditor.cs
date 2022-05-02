@@ -47,7 +47,10 @@ public class InteracteObjectEditor : Editor
         
         EditorGUILayout.PropertyField(serializedObject.FindProperty("destroyInteract")); 
         serializedObject.ApplyModifiedProperties();
-        
+
+
+        if (!((InteracteObject) target).gameObject.CompareTag("Interactable")) ((InteracteObject) target).gameObject.tag = "Interactable";
+        if (((InteracteObject) target).gameObject.layer != 11) ((InteracteObject) target).gameObject.layer = 11;
     }
 }
 
