@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Update = UnityEngine.PlayerLoop.Update;
 
 public class PlayerStat : MonoBehaviour
 {
@@ -51,16 +52,21 @@ public class PlayerStat : MonoBehaviour
 
    private void Start()
    {
-      UIManager.Instance.UpdateLife(life);
+      UIManager.Instance.InitLife(life);
    }
-   
+
+   private void Update()
+   {
+      if (Input.GetKeyDown(KeyCode.M)) TakeDamage();
+   }
+
    public void TakeDamage(int damage = 1)
    {
       if (!isImmune)
       {
          life -= damage;
          StartCoroutine(TakeDamageCD());
-         UIManager.Instance.UpdateLife(life);
+         UIManager.Instance.TakeDamageUI(life);
          CameraShake.Instance.AddShakeEvent(HitShake);
       }
    }

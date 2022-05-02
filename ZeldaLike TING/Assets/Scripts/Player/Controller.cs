@@ -328,11 +328,7 @@ public class Controller : MonoBehaviour
         
         Animations();
 
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask))
-        {
-            transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
-            Debug.Log("Colldie with " + groundHit.transform.name);
-        }
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, groundDistance, groundMask)) transform.position = groundHit.point + new Vector3(0, groundDistance - 0.05f, 0);
         else transform.position += new Vector3(0, -0.1f, 0);
         
     }
