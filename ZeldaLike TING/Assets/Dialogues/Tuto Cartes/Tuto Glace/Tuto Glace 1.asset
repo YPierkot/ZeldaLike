@@ -18,23 +18,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So, with the front power, you can create an ice beam
+      line: "Alors, avec le pouvoir recto, tu peux cr\xE9er un jet de glace"
       delay: 3
     - expressions: 0
       name: 
-      line: 'That freezes stuff. Here, you can freeze the water '
+      line: "Tiens, essaie de geler l'eau pour traverser la rivi\xE8re."
       delay: 3
-    - expressions: 0
-      name: 
-      line: To cross the river.
-      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 659d7c321bcf60740b884dc0357ac350, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: It means... I can walk on water? That's so cool !
+      line: Ca veut dire... Que je peux marcher sur l'eau maintenant ?
+      delay: 5
+    - expressions: 0
+      name: 
+      line: C'est trop cool !
       delay: 5
     voiceLine: {fileID: 8300000, guid: aa5da77cba65c3a4588344e7bbf10dd3, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -42,6 +42,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Not being able to fly seems to be so lame...
+      line: Ca a l'air nul de pas pouvoir voler...
       delay: 0
     voiceLine: {fileID: 8300000, guid: 38e12f5364001ff47bacb1eee340c998, type: 3}

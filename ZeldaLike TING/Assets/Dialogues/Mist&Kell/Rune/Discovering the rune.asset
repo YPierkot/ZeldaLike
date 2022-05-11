@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Wow, I've never travelled that far before...
+      line: "Wow, je n'ai jamais voyag\xE9 aussi loin..."
       delay: 3.5
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: What is all of that ?
+      line: C'est quoi ce truc ?
       delay: 1
     voiceLine: {fileID: 8300000, guid: 76941e849f921d34a9f98042f5cedcf2, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -30,15 +30,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: It's a giant rune.
+      line: "Une rune g\xE9ante."
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 400e7ccbcb2d8084fb7753df7331864f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: Looks more like a big drawing to me.
+      line: J'aurais plus dit un gros dessin.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 8a91e9bfff57079468b3db04f96783bd, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -46,7 +46,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: That's what runes are human.
+      line: "C'est litt\xE9ralement ce que sont les runes humain..."
       delay: 2.75
     voiceLine: {fileID: 8300000, guid: 6700fc23b67309d42add1edeb437a2ad, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -54,7 +54,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh yeah... I knew that.
+      line: Ah... Je le savais hein
       delay: 3
     voiceLine: {fileID: 8300000, guid: 292591cdf0c613547828b54384ff2a97, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -62,23 +62,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'They are symbols used to canalize '
+      line: "Elles sont utilis\xE9es pour lancer des sorts, et celle-ci"
       delay: 0
     - expressions: 0
       name: 
-      line: Magic more easily so the wizard can focus
+      line: "En particulier pour un sort tr\xE8s tr\xE8s puissant."
       delay: 0
-    - expressions: 0
-      name: 
-      line: On other things.
-      delay: 2.25
     voiceLine: {fileID: 8300000, guid: f624d2a2d21b4aa418458b2e996810af, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: So it is used to cast spells?
+      line: "Lequel ? Une m\xE9ga boule de feu ?"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Ou oh ! Un tsunami !
       delay: 0
     voiceLine: {fileID: 8300000, guid: 38a221cd9a2ff3444865a65710103850, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -86,11 +86,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Yes human, and this one is used for a '
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Very powerful spell.
+      line: Tu n'as pas besoin de le savoir humain.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 02b037a5bd2a3e54f9662a0f523d792d, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -98,23 +94,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Oh wow, which one ? '
+      line: Et pourquoi est-ce qu'elle brille ?
       delay: 1
-    - expressions: 0
-      name: 
-      line: Is it a huge firebolt ?
-      delay: 1
-    - expressions: 0
-      name: 
-      line: Or a flood ?
-      delay: 2.5
     voiceLine: {fileID: 8300000, guid: df7cb62bb58d6cb44ae483c1ab2c3ea7, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: You don't need to know that, human.
+      line: "La rune est li\xE9e aux monolithes. Quand un monolithe"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Est activ\xE9, un quart de la rune brille. Ici, la moiti\xE9 brille."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 87813c8341193334fbb7c74154f6f98f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -122,7 +114,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Right... And why is it glowing ?
+      line: "Ce qui veut dire que deux monolithes ont \xE9t\xE9 activ\xE9s !"
       delay: 0
     voiceLine: {fileID: 8300000, guid: ed2b41cfb8877934a831ea789ec5caef, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -130,15 +122,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: The rune is linked to the monoliths.
+      line: "Tu sais faire des math\xE9matiques ?"
       delay: 0
     - expressions: 0
       name: 
-      line: When a monolith is activated, a quarter
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Of the rune shines. Here, half of it shines.
+      line: "Ca c'est du progr\xE8s !"
       delay: 0
     voiceLine: {fileID: 8300000, guid: 032823895fab3f141836a69ff25091a5, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -146,22 +134,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So, two of them already are activated.
+      line: "Piti\xE9 laisse moi tranquille."
       delay: 3
     voiceLine: {fileID: 8300000, guid: 338dabfcde496134993dc426ceac7f33, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: 'You can do math ! Great progress ! '
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: e4eb8237c393df743b050099427fe429, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I beg you to leave me alone.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 877db974d2c449a4a8a17497e81e8983, type: 3}

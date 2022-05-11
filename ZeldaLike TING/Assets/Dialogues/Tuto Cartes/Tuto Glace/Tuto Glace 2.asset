@@ -18,15 +18,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So with the back power, you can create an ice explosion
+      line: "Avec le pouvoir verso, tu peux cr\xE9er une explosion"
       delay: 0
     - expressions: 0
       name: 
-      line: That freezes everything in its radius.
+      line: Qui va geler tout ce qu'elle va toucher.
       delay: 0
     - expressions: 0
       name: 
-      line: You can use it to freeze this mecanism and get through the door.
+      line: "Tu peux l'utiliser pour geler ce m\xE9canisme "
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: Et passer la porte.
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 40975b04b4d0c494490dc68408b346d2, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -34,6 +38,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Makes me want to sing something about letting it go...
+      line: C'est bizarre... Ca me donne envie de chanter
+      delay: 6
+    - expressions: 0
+      name: 
+      line: "Quelque chose \xE0 propos de me lib\xE9rer... de me d\xE9livrer..."
       delay: 6
     voiceLine: {fileID: 8300000, guid: 034d657681844bc4bb33059a9d2b90f6, type: 3}

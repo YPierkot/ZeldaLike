@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Tell me Mist, why do your spirit siblings
+      line: Dis moi Mist, pourquoi les esprits
       delay: 1
     - expressions: 0
       name: 
-      line: Attack humans ?
+      line: Attaquent-ils les humains ?
       delay: 2
     voiceLine: {fileID: 8300000, guid: 3f853324100fa9e4083ab04ff4d7a5ca, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -30,23 +30,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So, you're asking me to talk now ?
+      line: Tu me demande de parler maintenant ?
       delay: 0
     - expressions: 0
       name: 
-      line: 'Great progress. Your curiosity always '
+      line: "Tu fais des progr\xE8s."
       delay: 0
-    - expressions: 0
-      name: 
-      line: surprises me, human.
-      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 5e747aa122da730438c8c43ae7a55d22, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Just answer and quit being a jerk.
+      line: "R\xE9ponds et arr\xEAte d'\xEAtre d\xE9sagr\xE9able."
       delay: 0
     voiceLine: {fileID: 8300000, guid: a8ef167aab6a04a48878da12c308a2a3, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -54,35 +50,27 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, it all happened a very long time ago,
+      line: Eh bien, il y a longtemps,
       delay: 0
     - expressions: 0
       name: 
-      line: Way before I was born, even if time
+      line: Bien avant que je naisse, certains esprits curieux
       delay: 0
     - expressions: 0
       name: 
-      line: Doesn't work the same way in our dimension
+      line: "Ont r\xE9ussi \xE0 utiliser l'\xE9nergie du coeur de notre"
       delay: 3
     - expressions: 0
       name: 
-      line: Some curious and ingenious spirits managed
+      line: "Dimension pour cr\xE9er des br\xE8ches vers la votre."
       delay: 3
-    - expressions: 0
-      name: 
-      line: To use the core energy of our dimension
-      delay: 3
-    - expressions: 0
-      name: 
-      line: To create breaches to yours.
-      delay: 0
     voiceLine: {fileID: 8300000, guid: 7072b0d12f9ad1447b6b715cb9a920a4, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Just like Ithar ?
+      line: Comme Ithar ?
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: c0d196428deb06f44b2729c9d4ba9c12, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -90,55 +78,35 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Yes, but the other way around.
+      line: Exactement.
       delay: 0
     - expressions: 0
       name: 
-      line: So, the curious spirits sometimes decided
+      line: Mais en visitant votre dimension, les humains,
       delay: 0
     - expressions: 0
       name: 
-      line: To visit your dimension, to explore and discover
+      line: "Apeur\xE9s, les chass\xE8rent. Depuis ce jour, les esprits"
       delay: 3
     - expressions: 0
       name: 
-      line: A new environment and new species.
+      line: "Ont une grande aversion pour votre esp\xE8ce."
       delay: 3
-    - expressions: 0
-      name: 
-      line: But when they met you foolish humans,
-      delay: 3
-    - expressions: 0
-      name: 
-      line: Were afraid of the spirits, and immediatly started to attack them
-      delay: 3
-    - expressions: 0
-      name: 
-      line: Even if they came in peace, and as we
-      delay: 2
-    - expressions: 0
-      name: 
-      line: 'Didn''t speak the same language, '
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: We couldn't negociate.
-      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 67d7f3028ea890f4dbcd9ea177152fe0, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: If I understand correctly, it is all about revenge then.
+      line: "Donc tout \xE7a c'est juste pour se venger ? "
       delay: 3
     - expressions: 0
       name: 
-      line: 'Even after thousands of years? '
+      line: "M\xEAme apr\xE8s des milliers d'ann\xE9e ?"
       delay: 2.5
     - expressions: 0
       name: 
-      line: Feels a bit childish to me.
+      line: "Ils ont une sacr\xE9 m\xE9moire."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 64aca9e07d30003439b3de444e796c23, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -146,15 +114,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Watch your mouth human. And it was too far gone
+      line: "Nos capacit\xE9s cognitives sont sup\xE9rieures"
       delay: 3
     - expressions: 0
       name: 
-      line: Even when we managed to communicate
-      delay: 3
-    - expressions: 0
-      name: 
-      line: The spirits were too angry to ask for peace
+      line: "A celles de votre esp\xE8ce."
       delay: 3
     voiceLine: {fileID: 8300000, guid: a6439231170c3ad44804777563e31ff8, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -162,11 +126,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: And now Ithar is using this resentment
+      line: 'Et maintenant Ithar utilise ce ressentiment pour '
       delay: 0
     - expressions: 0
       name: 
-      line: To spread chaoes all over the place.
+      line: "Propager le chaos sur toute l'\xEEle"
       delay: 3
     voiceLine: {fileID: 8300000, guid: 0160c88bbde031740a2580fc2733dc64, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -174,7 +138,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: See!? Your brain works correctly when you try.
+      line: Tu vois quand tu fais fonctionner tes neurones
+      delay: 3
+    - expressions: 0
+      name: 
+      line: 'Ton cerveau marche ! '
       delay: 3
     voiceLine: {fileID: 8300000, guid: 43e84060d4862b84baf64706f76a4a29, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -182,6 +150,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I'm never talking to you again.
+      line: Je te parlerai plus jamais.
       delay: 0
     voiceLine: {fileID: 8300000, guid: b770a9519ec24844bafce8fdadb7bb2a, type: 3}

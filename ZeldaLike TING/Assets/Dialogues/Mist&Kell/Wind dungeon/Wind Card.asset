@@ -18,7 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Another glowing object ! They always bring bad new...
+      line: Encore un objet qui brille ?
+      delay: 4
+    - expressions: 0
+      name: 
+      line: Ils sont toujours porteurs de mauvaises nouvelles.
       delay: 4
     voiceLine: {fileID: 8300000, guid: 331fe040a1bbf73499bb3576b7e3d15b, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -26,7 +30,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: It's the facilitator, looks like it hosts wind mana.
+      line: C'est le facilitateur, on dirait qu'il contient du mana de vent
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 6a8b5e28033ff694097dbfe159c2e07c, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -34,11 +38,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Surprising for the Wind dungeon in the Windy Moutain
+      line: Etonnant pour le donjon du vent dans la Montagne venteuse
       delay: 3.5
     - expressions: 0
       name: 
-      line: Next to Wind's Edge.
+      line: "A c\xF4t\xE9 de Bord de Vent."
       delay: 2
     voiceLine: {fileID: 8300000, guid: 081ab4201fdd9a04abe9127fb9eb25eb, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -46,14 +50,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Shut it and just take it Kell.
+      line: Tais toi et prends la.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 76706ee0cf6f5bd4b9914dfa2306bc83, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: And there we go. How do I use it ?
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: 73295ee0477922542933f89c61b68e93, type: 3}

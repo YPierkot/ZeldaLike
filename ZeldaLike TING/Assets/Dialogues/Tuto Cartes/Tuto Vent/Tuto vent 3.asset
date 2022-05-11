@@ -18,18 +18,18 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Good, you got it. Last challenge now.
+      line: "Bien jou\xE9. Derni\xE8re \xE9preuve."
       delay: 0
-    - expressions: 0
+    - expressions: 4
       name: 
-      line: Try not to die!
+      line: Essaie de ne pas mourir !
       delay: 0
     voiceLine: {fileID: 8300000, guid: 858bde76dbf89594f801ccc0360f0245, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
-      line: You're really enjoying this, aren't you?
+      line: "Je suis s\xFBr que tu adores me faire vivre tout \xE7a."
       delay: 3
     voiceLine: {fileID: 8300000, guid: 593c7704852b55344905584e9ba515ef, type: 3}

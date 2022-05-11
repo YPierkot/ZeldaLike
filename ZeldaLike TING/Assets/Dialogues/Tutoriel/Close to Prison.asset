@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: 'It is so beautiful, so shiny... '
+      line: C'est si beau... Si brillant
       delay: 4
     - expressions: 2
       name: 
-      line: Wooooow
+      line: Woooow
       delay: 4
     voiceLine: {fileID: 8300000, guid: 3ac879005a6dad241a1fc28aa3a4910a, type: 3}
   - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
@@ -30,11 +30,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: FINALLY ! After centuries of patience,
+      line: "ENFIN ! Apr\xE8s des si\xE8cles d'attente"
       delay: 5.5
     - expressions: 4
       name: 
-      line: I am finally freed ! Can I...
+      line: De patience, je suis libre ! Puis-je ?
       delay: 6
     - expressions: 0
       name: 
@@ -46,19 +46,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: My magic still works ! I haven't forgotten !
+      line: "OUI ! Ma magie fonctionne toujours, je n'ai rien oubli\xE9 !"
       delay: 6
     - expressions: 4
       name: 
-      line: Thank you for breaking the spell young fool.
+      line: Toi, merci d'avoir rompu le sort jeune ignorant
       delay: 5
     - expressions: 4
       name: 
-      line: 'Thank you for summoning me again in this '
+      line: "Merci de m'avoir r\xE9invoqu\xE9 dans ce "
       delay: 3
     - expressions: 4
       name: 
-      line: World who forgot me.
+      line: "Monde qui m'a oubli\xE9 ! "
       delay: 2
     voiceLine: {fileID: 8300000, guid: 99959ec0cd4efeb46b27938538f84826, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -66,15 +66,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: 'Well done human, you just brought the world '
+      line: "Bien jou\xE9 humain, tu viens de mener le monde entier"
       delay: 3.5
     - expressions: 4
       name: 
-      line: To its collapse.
+      line: "\xE0 sa perte"
       delay: 1.5
     - expressions: 4
       name: 
-      line: Well, you're a man, I shouldn't be suprised.
+      line: "Enfin bon, tu n'es qu'un homme je ne devrais pas \xEAtre surpris"
       delay: 3.25
     voiceLine: {fileID: 8300000, guid: 63fe18c1794e63f47af69db54e740b2f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -82,7 +82,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: Who's there ?!
+      line: Qui parle ?!
       delay: 1
     voiceLine: {fileID: 8300000, guid: 5eafe755a84bbd349a3fc161296ea404, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -90,15 +90,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Me. Let me introduce myself, Mist, '
+      line: "Moi, je me pr\xE9sente, Mist"
       delay: 0
     - expressions: 4
       name: 
-      line: "I\u2019m a spirit and your new journeyman "
+      line: Je suis un esprit et ton nouveau compagnon
       delay: 3
     - expressions: 4
       name: 
-      line: for the rest of your life.
+      line: Pour le reste de ta vie
       delay: 0
     voiceLine: {fileID: 8300000, guid: 5a8f2bf439f687a4b813795c8cad8959, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -106,62 +106,30 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: What do you mean? Spirits?
+      line: Hein, mais je ne veux p...
       delay: 0
-    - expressions: 2
-      name: 
-      line: "I\u2019ve never heard of them."
-      delay: 0
-    - expressions: 3
-      name: 
-      line: "And what if I don\u2019t want you to be my journeyman?"
-      delay: 4
     voiceLine: {fileID: 8300000, guid: da50b6d66f683f0448bf43cfdc742b45, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 4
       name: 
-      line: You talk as if you had a choice human,
+      line: Tu parles comme si tu avais le choix humain
       delay: 0
     - expressions: 4
       name: 
-      line: As you freed me from the prison with the wizard,
+      line: "Tu m'as lib\xE9r\xE9 de la prison avec le sorcier"
       delay: 3
     - expressions: 4
       name: 
-      line: ' I cursed you,  I live in your head, rent free'
+      line: "Alors je t'ai maudit, je vis dans ta t\xEAte, gratuitement"
       delay: 3
     - expressions: 4
       name: 
-      line: "And you can\u2019t do anything about it "
-      delay: 0
+      line: "Tiens, il semblerait que mes fr\xE8res et soeurs"
+      delay: 3
     - expressions: 4
       name: 
-      line: until I decide to abandon you.
-      delay: 0
+      line: "Se joignent \xE0 la f\xEAte, courage..."
+      delay: 3
     voiceLine: {fileID: 8300000, guid: 6f481ed36fc254247be416789f3fddc8, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 2
-      name: 
-      line: What do you mean a curse!?
-      delay: 0
-    - expressions: 3
-      name: 
-      line: "You better not do that or I\u2019m going to beat you up!"
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 7e2f1aee6ee87b64aa4b6c58a86bace5, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 4
-      name: 
-      line: "I don\u2019t quite think you have time for that human"
-      delay: 0
-    - expressions: 4
-      name: 
-      line: My brothers and sisters are joining the party.
-      delay: 2.5
-    voiceLine: {fileID: 8300000, guid: 7cbf96bb733cd4f45a547e80bee484b7, type: 3}

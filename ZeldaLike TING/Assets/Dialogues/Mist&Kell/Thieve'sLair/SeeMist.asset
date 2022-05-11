@@ -16,13 +16,13 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: So, Mist, I've been wondering
+      line: Mist, je me demandais
       delay: 1
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: Why can't anyone see you except for me
+      line: "Pourquoi personne ne peut te voir \xE0 part moi?"
       delay: 0
     voiceLine: {fileID: 8300000, guid: 4cbaa7526d7a87e489f3724e7351dff6, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -30,11 +30,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Remember that one time '
+      line: "Tu te souviens la fois ou je t'ai envoy\xE9 dans"
       delay: 0
     - expressions: 0
       name: 
-      line: I sent you in that projection, that dream?
+      line: "Une projection ? Le r\xEAve ?"
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 2379d59ef67c1334a8511d85464257f4, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -42,7 +42,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Yeah. You wouldn't let me spawn unicorns
+      line: Oui... Tu voulais pas me laisser faire
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Apparaitre des licornes.
       delay: 3
     voiceLine: {fileID: 8300000, guid: 20e322eb515aaaa4cab5ca34da02b269, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -50,19 +54,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, that's basically it
+      line: "C'est \xE0 peu pr\xE8s \xE7a"
       delay: 1.5
     - expressions: 0
       name: 
-      line: I'm simply a projection in your head
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: You're simply dreaming of me all the time
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Except I'm the one controlling the dream.
+      line: "Je ne suis qu'une projection dans ta t\xEAte."
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 22b22f09f6932934ebff028b62ed0514, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -70,7 +66,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Right, and how do you do that ?
+      line: "Et comment tu fais \xE7a ?"
       delay: 0
     voiceLine: {fileID: 8300000, guid: 675f73e9756cce44ab78d8ac3add8b73, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -78,15 +74,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'I''m a spirit human, '
+      line: Je suis un esprit humain.
       delay: 0
     - expressions: 0
       name: 
-      line: I can do stuff beyond human understanding
+      line: "Je peux faire des choses qui d\xE9passent largement la "
       delay: 2.5
     - expressions: 0
       name: 
-      line: And even further beyond yours.
+      line: "Compr\xE9hension humaine, et encore plus la tienne."
       delay: 0
     voiceLine: {fileID: 8300000, guid: e88eb66ba8bda3d46ba30edb58a8129a, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -94,11 +90,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Are you implying that my understanding
+      line: "Es-tu en train d'insinuer que ma compr\xE9hension des "
       delay: 0
     - expressions: 0
       name: 
-      line: Of things is lower than the average human?
+      line: Choses est plus faible que celle d'un humain moyen?
       delay: 0
     voiceLine: {fileID: 8300000, guid: 7c90239bffe8d24469a01075cbd68b7f, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -106,98 +102,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Yes indeed.
+      line: Exactement.
       delay: 0
     voiceLine: {fileID: 8300000, guid: d230fab2c023c994bbcbb563155166a3, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: 'You''re so dislikable. '
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Anyway, another question for you.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: d89967e15c2b36d4a92d6e68aabbcf79, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I'm not your encyclopedia human.
-      delay: 2.5
-    voiceLine: {fileID: 8300000, guid: cddabf804232e7a4a9f5a8970b99b947, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Why did you curse me ?
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: Your brothers and sisters can easily live
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: Whithout a host so...
-      delay: 1.5
-    voiceLine: {fileID: 8300000, guid: f7dca90a0afb123498f6360a9526f8cc, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Clever question human.
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: 'You see, I''m a lower spirit, meaning '
-      delay: 0
-    - expressions: 0
-      name: 
-      line: I'm weaker than my siblings that come
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Attack your island and much more reliant on
-      delay: 2.5
-    - expressions: 0
-      name: 
-      line: 'The energy core of our dimension. '
-      delay: 0
-    - expressions: 0
-      name: 
-      line: When I'm in your dimension, I'm cut off the core
-      delay: 2.5
-    - expressions: 0
-      name: 
-      line: And I need an energy source to sustain on.
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: 9c1092633ed17b44d958ac8fdd66e7cb, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: You're basically sucking my energy?
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 3e04ae60f53e36c47a3aa114e2f02aad, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: It's not like you needed it in the first place.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: d5c4e9b5f227f2548a80ceb7c4c7308c, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I hate you Mist.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 13e57cbe8994d8d478ea921e939dfdc4, type: 3}

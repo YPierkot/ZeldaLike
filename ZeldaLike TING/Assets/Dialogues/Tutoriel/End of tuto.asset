@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So, human, you do realize that this fighting
+      line: Humain, tu te rends bien compte que tous ces combats
       delay: 0
     - expressions: 0
       name: 
-      line: Will be your life from now-on with Ithar running around?
+      line: Vont devenir ton quotidien maintenant qu'Ithar est libre ?
       delay: 4.5
     voiceLine: {fileID: 8300000, guid: 9ec08b30d0c7828488c332b4cc6c78f9, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -30,7 +30,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: "So that\u2019s his name? Ithar?"
+      line: C'est son nom ? Ithar ?
       delay: 0
     voiceLine: {fileID: 8300000, guid: e26e9b76f1601684c9f963ca33c3f451, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -38,11 +38,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: "You know, that\u2019s not the information"
+      line: "Tu sais, c'est vraiment pas l'information \xE0 laquelle"
       delay: 0
     - expressions: 2
       name: 
-      line: You were supposed to react to, human.
+      line: "Tu \xE9tais cens\xE9 r\xE9agir humain."
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: da29327c13f10d24989464949496c45d, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -50,7 +50,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 3
       name: 
-      line: I told you to stop calling me that.
+      line: "Je t'ai dit d'arr\xEAter de m'appeler comme \xE7a."
       delay: 0
     voiceLine: {fileID: 8300000, guid: aa47f2e1f6d968c479931f6eb351280a, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -58,15 +58,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "You know what human, I\u2019m going to offer you a deal."
+      line: "Tu sais quoi, humain, je vais te proposer un march\xE9."
       delay: 3
     - expressions: 0
       name: 
-      line: "I\u2019m willing to cleanse the curse "
+      line: "J'accepte de lever la mal\xE9diction"
       delay: 3
     - expressions: 0
       name: 
-      line: and to disappear from your life forever.
+      line: et de disparaitre de ta vie pour toujours
       delay: 1.75
     voiceLine: {fileID: 8300000, guid: c640c13504120ce4f910fe5f38e097e6, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -74,11 +74,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: "Oh great! Cause I\u2019ve known you for a few minutes only"
+      line: "Oh super ! Parce que \xE7a fait seulement quelques"
       delay: 3
     - expressions: 3
       name: 
-      line: "And you\u2019re already the most dislikeable being I\u2019ve ever met."
+      line: 'Minutes que je te connais '
+      delay: 4.25
+    - expressions: 3
+      name: 
+      line: "Et tu es d\xE9j\xE0 l'\xEAtre le plus insupportable "
+      delay: 4.25
+    - expressions: 3
+      name: 
+      line: "Que j'ai jamais rencontr\xE9"
       delay: 4.25
     voiceLine: {fileID: 8300000, guid: fdd4619665b61af4b912c7f0436eb77d, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -86,19 +94,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Of course, it comes with a few conditions.
+      line: "Bien \xE9videmment, ceci arrivera uniquement sous"
       delay: 3.5
     - expressions: 0
       name: 
-      line: 'If you manage to jail Ithar back to the magical prison '
+      line: Certaines conditions.
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: "Si tu arrives \xE0 remettre Ithar dans sa prison"
       delay: 0
     - expressions: 0
       name: 
-      line: you freed him from, and help me go back home
+      line: "Et que tu m'aides \xE0 rentrer chez moi"
       delay: 3
     - expressions: 0
       name: 
-      line: through one of those breaches, the deal is on. Deal?
+      line: "Par une de ces br\xE8ches, le march\xE9 est conclu."
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: f1384d13ef2108c45acc1536aca96f66, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -106,7 +118,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: Sounds like dying with a few extra-steps.
+      line: Tu me proposes de mourir mais avec
+      delay: 3.5
+    - expressions: 2
+      name: 
+      line: "Quelques \xE9tapes en plus ?"
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 9f58ec0ff9131734f95153dfba04ca61, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -114,7 +130,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: You still act as if you had a choice.
+      line: Tu continues d'agir comme si tu avais le choix.
       delay: 2.75
     voiceLine: {fileID: 8300000, guid: 188228c985c10d043a5e9c02cb21b21b, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -122,19 +138,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Alright alright, I get it, me, '
+      line: C'est bon c'est bon j'ai compris, moi
       delay: 2.5
     - expressions: 0
       name: 
-      line: as an unskilled and meaningless human thief
+      line: Un voleur humain sans talent et sans valeur
       delay: 3
     - expressions: 0
       name: 
-      line: that knows nothing about magic,
+      line: "Qui ne connait rien \xE0 la magie"
       delay: 0
     - expressions: 0
       name: 
-      line: I accept your kind offer, your dislikeableness.
+      line: "J'accepte votre offre, votre d\xE9testable majest\xE9"
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: 60ca7e760202bb6419d2610a1253d918, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -142,6 +158,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Wise decision human.
+      line: "Sage d\xE9cision, humain."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 49df6e8de82585640b275e4452b2f294, type: 3}

@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Soooo, you know the odd looking crazy powerful wizard '
+      line: Alooors, tu vois le sorcier fou et super puissant
       delay: 4
     - expressions: 0
       name: 
-      line: that opened that breach?
+      line: "Qui a ouvert cette br\xE8che ?"
       delay: 1.75
     voiceLine: {fileID: 8300000, guid: 3c66af5682fcede47b94797e9767d44f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -30,7 +30,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: Yeah, what about him?
+      line: Oui et bah ?
       delay: 0
     voiceLine: {fileID: 8300000, guid: e27589386f501b14bbe9050cac7188d2, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -38,15 +38,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: "Well, he\u2019s going to keep doing that all over your island,"
+      line: "Il va continuer \xE0 le faire partout sur ton \xEEle"
       delay: 0
     - expressions: 4
       name: 
-      line: Creating pathways for spirits to invade your lands,
+      line: "Cr\xE9ant des portails pour que les esprits envahissent vos terres"
       delay: 3.5
     - expressions: 4
       name: 
-      line: "And all of that because of you! Oh, isn\u2019t it amazing!"
+      line: "Et tout \xE7a, par ta faute ? N'est-ce pas incroyable ?"
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: b17f67f88e4d1a745be4611c70c3b83d, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -54,34 +54,22 @@ MonoBehaviour:
     dialogLines:
     - expressions: 3
       name: 
-      line: "I don\u2019t care, I don\u2019t care about magic,"
+      line: "Je comprends rien \xE0 ce que tu me racontes."
       delay: 0
-    - expressions: 3
-      name: 
-      line: "And I don\u2019t understand anything about it"
-      delay: 0
-    - expressions: 3
-      name: 
-      line: So he can do whatever he wants to my island, not my problem.
-      delay: 3
     voiceLine: {fileID: 8300000, guid: c07d74bfa5656ba4ca396b350f775f3f, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 4
       name: 
-      line: You truly have interesting reactions for such
+      line: "Tu n'es pas tr\xE8s intelligent, humain."
       delay: 0
-    - expressions: 4
-      name: 
-      line: An ignorant flesh-being, human.
-      delay: 2.5
     voiceLine: {fileID: 8300000, guid: a84efa21ae974ca43b6f98ef272bdb4f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 3
       name: 
-      line: Stop calling me that.
+      line: "Arr\xEAte de m'appeler comme \xE7a."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 336f0506b215fd24ebcdc32caaac077b, type: 3}
