@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Hey Will! Wow....
+      line: Salut Will ! Oula
       delay: 1.5
     - expressions: 0
       name: 
-      line: You look like you haven't slept for days.
+      line: On dirait que t'as pas dormi depuis des jours...
       delay: 0
     voiceLine: {fileID: 8300000, guid: 1214e04ef471e4d40b3ef8387b57aabb, type: 3}
   - character: {fileID: 11400000, guid: e17ca90299fe6cd4ca829b2662376ccf, type: 2}
@@ -30,11 +30,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I've been training Ivy for the past week.
+      line: "J'ai entrain\xE9 Ivy cette semaine. "
       delay: 0
     - expressions: 0
       name: 
-      line: She put me through hell.
+      line: Elle m'a fait vivre un enfer.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 1b60dd77f009a66419e64bd34256731e, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -42,11 +42,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I can believe that.
+      line: Ca je peux y croire.
       delay: 1.5
     - expressions: 0
       name: 
-      line: This girl is a little nightmare.
+      line: Cette fille est un vrai petit cauchemar.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 3ba2442f57cdb2340b7590bc187bfe70, type: 3}
   - character: {fileID: 11400000, guid: e17ca90299fe6cd4ca829b2662376ccf, type: 2}
@@ -54,11 +54,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Tell me about it. It's the tradition anyway
+      line: "M'en parles pas... De toute fa\xE7on c'est la tradition"
       delay: 3.5
     - expressions: 0
       name: 
-      line: Teaching the children what we know.
+      line: Apprendre aux enfants ce que l'on sait.
       delay: 2
     voiceLine: {fileID: 8300000, guid: 647ef22f37e6c8447ad7e78504e70af9, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -66,7 +66,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I know.
+      line: Je sais...
       delay: 1
     voiceLine: {fileID: 8300000, guid: b71b7220a0d7b0145b204e1eb60528fe, type: 3}
   - character: {fileID: 11400000, guid: e17ca90299fe6cd4ca829b2662376ccf, type: 2}
@@ -74,19 +74,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: And Kell, even if you refused to take these lessons
+      line: "Et Kell, m\xEAme si tu as refus\xE9 ces cours"
       delay: 3.5
     - expressions: 0
       name: 
-      line: After your father passed away
+      line: "Apr\xE8s la mort de ton p\xE8re"
       delay: 0
     - expressions: 0
       name: 
-      line: You need to teach her what you know
+      line: Tu dois lui apprendre ce que tu sais.
       delay: 0
     - expressions: 0
       name: 
-      line: For her sake.
+      line: Pour elle.
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: c069e55cea132ec40bd71945c100f4f0, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -94,7 +94,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I'll do it Will, for her sake.
+      line: Je le ferai Will, pour elle.
       delay: 3
     voiceLine: {fileID: 8300000, guid: c4288e8bd1cccae44af7bc491bfa9398, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -102,11 +102,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh, you have a tragic background! How original Kell.
+      line: "Oh, tu as un pass\xE9 tragique ? Comme c'est original."
       delay: 3
     - expressions: 0
       name: 
-      line: Your family was decimated, you're longing for revenge.
+      line: "Ta famille fut d\xE9cim\xE9e, tu as soif de vengeance..."
       delay: 4.5
     voiceLine: {fileID: 8300000, guid: a29790bbe3d265b47a24ccc416372fa7, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -114,7 +114,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: We're not going to talk about that Mist.
+      line: "On ne parlera pas de \xE7a Mist."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 3b726631c1c85224facc3edf2d475a71, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -122,14 +122,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: Ooh, what a mysterious little human.
+      line: "Ooooh, quel humain myst\xE9rieux..."
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: 0d87696f59fe8ba44a0fcfccae324b9e, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 4
-      name: 
-      line: You're despicable.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 61e202f7f72024d499c6f76ecb9940ef, type: 3}

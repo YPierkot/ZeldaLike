@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: End of the game
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Comment-est ce possible ?
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Comment me tiens tu t\xEAte de la sorte ?"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Honn\xEAtement, je n'en ai aucune id\xE9e,"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'mais c''est fini pour toi Ithar, tu vas retourner '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "dans la prison que tu as c\xF4toy\xE9e pendant des si\xE8cles."
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Tu ne pourras pas m'attraper, les autres Monolithes
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "sont encore activ\xE9s, je peux me rendre \xE0 ces derniers "
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'en un claquement de doi... Hein... Ca ne marche pas ? '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Comment \xE7a cela ne marche pas?"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Aeryn a r\xE9ussi ! Il a d\xE9sactiv\xE9 les Monolithes ! "
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Aeryn !? Ce vieux vestige ? Tu l'as lib\xE9r\xE9 ? Arghhhh"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Allez Ithar, il est temps de retourner dormir. '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Adieu la connaissance, tu retournes dans le noir.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Nooooooon, je ne peux pas... '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Je n'ai pas encore assez appris. C'est impossible.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Si si, allez j'ai pas toute la journ\xE9e."
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Tu es un horrible personnage Kell,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: tu ne te rends pas compte de la connaissance
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "que tu fais perdre \xE0 ce monde."
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Et je t'ai vaincu en \xE9tant un total ignorant"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: alors je dirais que nous  n'en avons tout simplement
+      delay: 0
+    - expressions: 0
+      name: 
+      line: ' pas besoin.'
+      delay: 0
+    voiceLine: {fileID: 0}
