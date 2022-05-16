@@ -25,12 +25,12 @@ public class UIManager : MonoBehaviour
       public CardsController.CardsState card;
       [HideInInspector]public Image image;
    }
-   
+
    [Header("--- CARDS")] 
+   [SerializeField] private CardUIScriptable cardSprites;
    [SerializeField] HandleRef[] cardHandlesReference;
    private Dictionary<Transform, HandleRef> cardsDictionary = new Dictionary<Transform, HandleRef>();
    private Transform[] cardHandles;
-   private Color[] cardColor;
    public int cardUnlock = 1;
    private int currentCard = 0;
    float cardYPos;
@@ -59,7 +59,6 @@ public class UIManager : MonoBehaviour
    void initCardUI()
    {
       cardHandles = new Transform[cardHandlesReference.Length];
-      cardColor = new Color[cardHandlesReference.Length];
       
       foreach (HandleRef handle in cardHandlesReference)
       {
@@ -87,7 +86,6 @@ public class UIManager : MonoBehaviour
          }
          cardHandles[index] = cardHandle.Handle;
         cardHandle.image = cardHandle.Handle.GetComponent<Image>();
-        cardColor[index] = cardHandle.image.color;
       }
    }
 
@@ -103,12 +101,13 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.fireCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
-                  if(CardsController.instance.fireRectoUse)cardHandle.sideText.text = "recto";
-                  else cardHandle.sideText.text = "verso";
+                  if(CardsController.instance.fireRectoUse)cardHandle.image.sprite = cardSprites.fireRecto;
+                  else cardHandle.image.sprite = cardSprites.fireVerso;
                   
                   if (CardsController.instance.canUseFireCard)
                   {
-                     cardHandle.image.color = cardColor[0];
+                     cardHandle.image.color = Color.white;
+                     cardHandle.image.sprite = cardSprites.fireVerso;
                   }
                   else if (CardsController.instance.fireRectoUse || !CardsController.isFireGround) 
                   {
@@ -122,13 +121,14 @@ public class UIManager : MonoBehaviour
             case CardsController.CardsState.Ice :
                if (CardsController.instance.iceCardUnlock)
                {
-                  if(CardsController.instance.iceRectoUse)cardHandle.sideText.text = "recto";
-                  else cardHandle.sideText.text = "verso";
+                  if (CardsController.instance.iceRectoUse) cardHandle.image.sprite = cardSprites.iceRecto;
+                  else cardHandle.image.sprite = cardSprites.iceVerso;
                   
                   cardHandle.Handle.gameObject.SetActive(true);
                   if (CardsController.instance.canUseIceCard)
                   {
-                     cardHandle.image.color = cardColor[1];
+                     cardHandle.image.color = Color.white;
+                     cardHandle.image.sprite = cardSprites.iceVerso;
                   }
                   else if (CardsController.instance.iceRectoUse || !CardsController.isIceGround)
                   {
@@ -142,13 +142,14 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.wallCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
-                  
-                  if(CardsController.instance.wallRectoUse)cardHandle.sideText.text = "recto";
-                  else cardHandle.sideText.text = "verso";
+
+                  if (CardsController.instance.wallRectoUse) cardHandle.image.sprite = cardSprites.groundRecto;
+                  else cardHandle.image.sprite = cardSprites.groundVerso;
                   
                   if (CardsController.instance.canUseWallCard) 
                   {
-                     cardHandle.image.color = cardColor[2];
+                     cardHandle.image.color = Color.white;
+                     cardHandle.image.sprite = cardSprites.groundVerso;
                   }
                   else
                   {
@@ -164,13 +165,14 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.windCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
-                  
-                  if(CardsController.instance.windRectoUse)cardHandle.sideText.text = "recto";
-                  else cardHandle.sideText.text = "verso";
+
+                  if (CardsController.instance.windRectoUse) cardHandle.image.sprite = cardSprites.windRecto;
+                  else cardHandle.image.sprite = cardSprites.windVerso;
                   
                   if (CardsController.instance.canUseWindCard)
                   {
-                     cardHandle.image.color = cardColor[3];
+                     cardHandle.image.sprite = cardSprites.windVerso;
+                     cardHandle.image.color = Color.white;
                   }
                   else
                   {
