@@ -72,7 +72,7 @@ public class WindCardLongRange : MonoBehaviour
             enemy.transform.position.y + shootPointPos.y + 1f,
             (enemy.transform.position.z + shootPointPos.z) /* forceModifier*/);
         
-        enemy.transform.DOMove(targetPos, 1f).OnComplete(() => enemy.transform.DOKill());
+        enemy.transform.DOMove(targetPos, 1.5f).OnComplete(() => enemy.transform.DOKill());
         Debug.Log($"{enemy.name} got attracted !");
     }
     private void OnTriggerEnter(Collider other)
