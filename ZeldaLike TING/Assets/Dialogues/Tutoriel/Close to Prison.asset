@@ -20,11 +20,15 @@ MonoBehaviour:
       name: 
       line: C'est si beau... Si brillant
       delay: 4
-    - expressions: 2
-      name: 
-      line: Woooow
-      delay: 4
     voiceLine: {fileID: 8300000, guid: 3ac879005a6dad241a1fc28aa3a4910a, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Woooooow
+      delay: 4
+    voiceLine: {fileID: 8300000, guid: 3a9db86b31c175144975a9b2956d9cf4, type: 3}
   - character: {fileID: 11400000, guid: 1c1c33de8c87d2d48a0cbb8f7511146a, type: 2}
     startingDelay: 0
     dialogLines:
@@ -107,8 +111,8 @@ MonoBehaviour:
     - expressions: 2
       name: 
       line: Hein, mais je ne veux p...
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: da50b6d66f683f0448bf43cfdc742b45, type: 3}
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: 5007c54e0b51f2448a7f4c6d0be83c6e, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -132,4 +136,4 @@ MonoBehaviour:
       name: 
       line: "Se joignent \xE0 la f\xEAte, courage..."
       delay: 3
-    voiceLine: {fileID: 8300000, guid: 6f481ed36fc254247be416789f3fddc8, type: 3}
+    voiceLine: {fileID: 8300000, guid: 5c9abbac7e2905c4f9a252ca9a5f9d17, type: 3}

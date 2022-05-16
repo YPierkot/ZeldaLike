@@ -79,15 +79,15 @@ MonoBehaviour:
     - expressions: 3
       name: 
       line: 'Minutes que je te connais '
-      delay: 4.25
+      delay: 1.5
     - expressions: 3
       name: 
       line: "Et tu es d\xE9j\xE0 l'\xEAtre le plus insupportable "
-      delay: 4.25
+      delay: 2
     - expressions: 3
       name: 
       line: "Que j'ai jamais rencontr\xE9"
-      delay: 4.25
+      delay: 1
     voiceLine: {fileID: 8300000, guid: fdd4619665b61af4b912c7f0436eb77d, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
@@ -95,11 +95,11 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Bien \xE9videmment, ceci arrivera uniquement sous"
-      delay: 3.5
+      delay: 3
     - expressions: 0
       name: 
       line: Certaines conditions.
-      delay: 3.5
+      delay: 1
     - expressions: 0
       name: 
       line: "Si tu arrives \xE0 remettre Ithar dans sa prison"
@@ -107,10 +107,10 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Et que tu m'aides \xE0 rentrer chez moi"
-      delay: 3
+      delay: 2
     - expressions: 0
       name: 
-      line: "Par une de ces br\xE8ches, le march\xE9 est conclu."
+      line: "Par une de ces br\xE8ches, le march\xE9 est conclu. Alors ?"
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: f1384d13ef2108c45acc1536aca96f66, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -123,7 +123,7 @@ MonoBehaviour:
     - expressions: 2
       name: 
       line: "Quelques \xE9tapes en plus ?"
-      delay: 3.5
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 9f58ec0ff9131734f95153dfba04ca61, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "J'accepte votre offre, votre d\xE9testable majest\xE9"
+      line: "J'accepte ton offre, votre d\xE9testable majest\xE9"
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: 60ca7e760202bb6419d2610a1253d918, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}

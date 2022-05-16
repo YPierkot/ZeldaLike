@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: JackGiveQuest
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Bonjour ! Comment allez vous ?
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: d37a4bab3f1733a41a98d12530e422e8, type: 3}
+  - character: {fileID: 11400000, guid: b55a5fffaebee62488501a31786c5b04, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Mal ! Les esprits... Ils m'ont vol\xE9 !"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 478285e11bb62e74fbb778f367301632, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Comment \xE7a ? Que s'est-il pass\xE9 ?"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: d921d50190f6ffd419ccc94718337ac9, type: 3}
+  - character: {fileID: 11400000, guid: b55a5fffaebee62488501a31786c5b04, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Depuis que ces satan\xE9s esprits occupent la Montagne Venteuse,"
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: 'ils attaquent notre village ! '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: " Ils sont entr\xE9s dans ma maison et ont vol\xE9"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "la plus pr\xE9cieuse chose que je poss\xE8de."
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: ca4e87b012221f44898eadba6c7490c9, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Qu'ont-ils vol\xE9 ?"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: ed038fc94b7142643b0a64d1e5f5e8fb, type: 3}
+  - character: {fileID: 11400000, guid: b55a5fffaebee62488501a31786c5b04, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Mon croissant de lune... c'est un h\xE9ritage familial,"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: ' je ne peux me permettre de le perdre. '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Mais... je ne peux pas me battre contre les esprits,
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "m\xEAme si je r\xEAve de mettre mon poing au milieu de leur visage."
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 8964ec4cdc0b7444695814db6493ab4e, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Peut-\xEAtre que je pourrais le trouver pour vous ?"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 7919eb37130f11b4084ace910ea89e11, type: 3}
+  - character: {fileID: 11400000, guid: b55a5fffaebee62488501a31786c5b04, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Vous n'avez pas l'air d'en \xEAtre capable."
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: c03cda90bb77c4a4793e336c03452fa6, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Les apparences sont trompeuses.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: e0faec3fab553494593d7b7bfdb571ad, type: 3}
+  - character: {fileID: 11400000, guid: b55a5fffaebee62488501a31786c5b04, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Heureusement pour vous.
+      delay: 1.4
+    voiceLine: {fileID: 8300000, guid: 4f759292da5bc1d4597ef71376e02a32, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Aouch.
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 3162815aef591474aba211568058864b, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Bon vous le voulez ce croissant ou pas ?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 75f62fe8400446e46839678d736a6c0c, type: 3}
+  - character: {fileID: 11400000, guid: b55a5fffaebee62488501a31786c5b04, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Eh bien, si vous arrivez \xE0 le trouver et \xE0 me le ramener,"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: " peut-\xEAtre que je vous donnerai quelque chose en retour."
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: f0c1868d5b922174b9ec85ac713a63dc, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Bien, \xE0 la revoyure alors.  "
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 9c028ca48f090b64aa08b76adbd4bf0b, type: 3}

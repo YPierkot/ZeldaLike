@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Beating Spirits
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Eh Mist, pourquoi tu me laisses frapper tes fr\xE8res "
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Et soeurs comme \xE7a ?"
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: e1a7b48be50712c4faf5faf1e9fcf2e6, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Nous sommes fr\xE8res et soeurs car nous les esprits"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Naissons tous du coeur de notre dimension, mais au
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Final, nous n'avons pas grand chose en commun.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: C'est une des raisons pour laquelle je n'ai
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Aucune empathie pour eux.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: cafca2f9ea75dc845aa43e94f0dc97fa, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Quelles sont les autres raisons ?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 7a3b428f10fffd34a8f087f113f9f6ce, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'Je ne vis pas parmi eux. Ma vie, c''est juste de '
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Flotter dans les airs et regarder de loin, contempler
+      delay: 3
+    - expressions: 0
+      name: 
+      line: "La stupidit\xE9 de ma fratrie. J'aime la"
+      delay: 3
+    - expressions: 0
+      name: 
+      line: "Tranquilit\xE9 de la solitude."
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 925c9e67860ff2443bf19ff64418298e, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Je vois... Tu as un complexe d'inf\xE9riorit\xE9 !"
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: ef42c684b99ddcf4a839eb82d6f21697, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Hein quoi? Mais pas du tout ?
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 0ed64ba42bc89924890beaad10b10052, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Si si, je t'assure !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: f03a3c4f6f9c5354e911aef53df07450, type: 3}

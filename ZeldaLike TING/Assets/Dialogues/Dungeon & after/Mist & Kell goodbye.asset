@@ -13,51 +13,51 @@ MonoBehaviour:
   m_Name: Mist & Kell goodbye
   m_EditorClassIdentifier: 
   dialogue:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: "Bon et bien voil\xE0 une bonne chose de faite. "
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "Mist, le contrat a \xE9t\xE9 rempli, je crois qu'il est temps."
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: 8b8cd87c9519e8d488ca68f57bd26b40, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Tout a fait Kell, comme promis, je te laisse tranquille.
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: 0e7d9510953e2564693bc96619518239, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: "C'est moi ou tu viens de m'appeler par mon pr\xE9nom ??!"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 2.25
+    voiceLine: {fileID: 8300000, guid: 9aa6c8130943108429cd27a4cd55173e, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: "Peut-\xEAtre... Je me suis dit que tu le m\xE9ritais enfin."
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "Bref j'esp\xE8re ne jamais avoir affaire \xE0 toi"
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "\xE0 nouveau insupportable humain."
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 7ad818f8d982ea844a6809705865197a, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -67,15 +67,19 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "j'esp\xE8re que ceci est un adieu et pas un au revoir."
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: a2ac21e4fc3d7c24eb03d8c0c5c0a7ee, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
+      line: 
+      delay: 2.5
+    - expressions: 0
+      name: 
       line: "Ah et, Kell, je tenais \xE0 te dire que m\xEAme"
-      delay: 0
+      delay: 3.5
     - expressions: 0
       name: 
       line: "si je r\xEAve d'une vie tranquille,"
@@ -83,39 +87,43 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "cette petite escapade aux c\xF4t\xE9s de ton ignorante"
-      delay: 0
+      delay: 2.5
     - expressions: 0
       name: 
       line: "personne fut tout de m\xEAme amusante et int\xE9ressante."
-      delay: 0
+      delay: 5.5
     - expressions: 0
       name: 
       line: 'Ne change pas Kell.
 
 '
       delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 9c53b176e36f2e6438abf927a8ec3605, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Tu fais du sentiment esprit. Adieu !
-      delay: 0
+      line: Tu fais du sentiment esprit. Allez, adieu !
+      delay: 4.5
+    voiceLine: {fileID: 8300000, guid: dcc72d11989ce2043ba0006077e9b441, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
     - expressions: 0
       name: 
       line: "Bon, et bien, retour \xE0 la vie normale."
-      delay: 0
+      delay: 3.5
     - expressions: 0
       name: 
       line: "Oh non, c'est \xE0 mon tour d'entrainer Ivy..."
-      delay: 0
+      delay: 4
     - expressions: 0
       name: 
       line: " Rien de ce que j'ai v\xE9cu n'est pire que \xE7a... "
-      delay: 0
+      delay: 2.5
     - expressions: 0
       name: 
       line: "Je regrette d\xE9j\xE0 Ithar."
-      delay: 0
-    voiceLine: {fileID: 0}
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 85edbc74d9b6318499887d3490563623, type: 3}
