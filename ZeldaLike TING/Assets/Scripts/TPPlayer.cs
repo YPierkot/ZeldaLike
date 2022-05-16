@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class TPPlayer : MonoBehaviour
 {
+    [SerializeField] private string sceneName = "PlaytestPuzzle";
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player") && !DialogueManager.Instance.isPlayingDialogue)
         {
-            SceneManager.LoadScene("LD_Playtest");
+            SceneManager.LoadScene(sceneName);
         }
 
         if (DialogueManager.Instance.isPlayingDialogue && other.transform.CompareTag("Player"))

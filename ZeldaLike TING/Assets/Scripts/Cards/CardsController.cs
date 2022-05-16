@@ -8,7 +8,8 @@ public class CardsController : MonoBehaviour
 {
     public static CardsController instance;
     private Controller controller;
-    
+
+    #region Cards Variables
     // Cards Variables 
     public bool canUseCards;
     [HideInInspector] public bool rectoSide;
@@ -67,6 +68,7 @@ public class CardsController : MonoBehaviour
     {
         Null = 0, Fire, Ice, Wall, Wind
     }
+    #endregion
     
     public CardsState State = CardsState.Null;
     private int targetFrameRate = 144;
@@ -103,7 +105,6 @@ public class CardsController : MonoBehaviour
         }
         UIManager.Instance.UpdateCardUI();
     }
-
     public void LongRange()
     {
         if (!canUseCards) return;
@@ -155,11 +156,10 @@ public class CardsController : MonoBehaviour
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
                     shootPointPos * projectileSpeed;
                 isFireGround = true;
-                
-                StartCoroutine(LaunchCardCD(1));
             }
         }
-        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); Debug.Log("FireCardLongEffect");}
+        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); Debug.Log("FireCardLongEffect"); UIManager.Instance.UpdateCardUI();
+        }
     }
     
     // Ice Card
@@ -182,10 +182,11 @@ public class CardsController : MonoBehaviour
                     shootPointPos  * projectileSpeed;
                 isIceGround = true;
                 
-                StartCoroutine(LaunchCardCD(2));
+                UIManager.Instance.UpdateCardUI();
             }
         }
-        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet();
+        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet(); UIManager.Instance.UpdateCardUI();
+
     }
     
     // Wall Card
@@ -207,11 +208,12 @@ public class CardsController : MonoBehaviour
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos * projectileSpeed;
                 isWallGround = true;
-
-                StartCoroutine(LaunchCardCD(3));
+                
+                UIManager.Instance.UpdateCardUI();
             }
         }
         else if (isWallGround) wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect();
+
     }
     
     private void WindLongRange()
@@ -231,8 +233,8 @@ public class CardsController : MonoBehaviour
                 windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed;
                 isWindGround = true;
-
-                StartCoroutine(LaunchCardCD(4));
+                
+                UIManager.Instance.UpdateCardUI();
             }
         }
         else if(isWindGround) windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect();
@@ -248,7 +250,7 @@ public class CardsController : MonoBehaviour
         if (canUseFireCard)
         {
             ActivateFireShortEffect();
-            StartCoroutine(LaunchCardCD(1));
+            StartCoroutine(LaunchCardCDCo(1));
         }
     }
 
@@ -258,7 +260,7 @@ public class CardsController : MonoBehaviour
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
-            StartCoroutine(LaunchCardCD(2));
+            StartCoroutine(LaunchCardCDCo(2));
         }   
     }
 
@@ -268,7 +270,7 @@ public class CardsController : MonoBehaviour
         if (canUseWallCard)
         {
             ActivateWallGroundEffect();
-            StartCoroutine(LaunchCardCD(3));
+            StartCoroutine(LaunchCardCDCo(3));
         }
     }
     
@@ -278,7 +280,7 @@ public class CardsController : MonoBehaviour
         if (canUseWindCard)
         {
             ActivateWindGroundEffect();
-            StartCoroutine(LaunchCardCD(4));
+            StartCoroutine(LaunchCardCDCo(4));
         }
     }
     
@@ -313,25 +315,14 @@ public class CardsController : MonoBehaviour
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            if (ennemy.transform.GetComponent<SwingerAI>())
+            ennemy.transform.GetComponent<AI.AbtractAI>().LooseHp(1);
+            ennemy.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy();
+            
+
+            if (ennemy.transform.CompareTag("Interactable"))
             {
-                ennemy.transform.GetComponent<SwingerAI>().LooseHp(1);
-                ennemy.transform.GetComponent<SwingerAI>().FreezeEnnemy();
-            }
-            else if (ennemy.transform.GetComponent<KamikazeAI>())
-            {
-                ennemy.transform.GetComponent<KamikazeAI>().LooseHp(1);
-                ennemy.transform.GetComponent<KamikazeAI>().FreezeEnnemy();
-            }
-            else if (ennemy.transform.GetComponent<MageAI>())
-            {
-                ennemy.transform.GetComponent<MageAI>().LooseHp(1);
-                ennemy.transform.GetComponent<MageAI>().FreezeEnnemy();
-            }
-            else if (ennemy.transform.GetComponent<BomberAI>())
-            {
-                ennemy.transform.GetComponent<BomberAI>().LooseHp(1);
-                ennemy.transform.GetComponent<BomberAI>().FreezeEnnemy();
+                ennemy.GetComponent<InteracteObject>().isFreeze = true;
+                
             }
         }
     }
@@ -384,7 +375,7 @@ public class CardsController : MonoBehaviour
     }
     #endregion
     
-    public IEnumerator LaunchCardCD(byte cardType) // INT 1 = Fire / 2 = Ice / 3 = Wall / 4 = Wind
+    public IEnumerator LaunchCardCDCo(byte cardType) // INT 1 = Fire / 2 = Ice / 3 = Wall / 4 = Wind
     {
         switch (cardType)
         {
@@ -394,7 +385,6 @@ public class CardsController : MonoBehaviour
             case 4: canUseWindCard = false; break;
             default: break;
         }
-        //UIManager.Instance.UpdateCardUI();
 
         yield return new WaitForSeconds(4f);
         switch (cardType)
@@ -407,10 +397,14 @@ public class CardsController : MonoBehaviour
         }
         UIManager.Instance.UpdateCardUI();
     }
-
-    private void OnDrawGizmos()
+    public void LaunchCardCD(byte cardType) // INT 1 = Fire / 2 = Ice / 3 = Wall / 4 = Wind
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, repulsiveRadius);
+        switch (cardType)
+        {
+            case 1: StartCoroutine(LaunchCardCDCo(1)); break;
+            case 2: StartCoroutine(LaunchCardCDCo(2)); break;
+            case 3: StartCoroutine(LaunchCardCDCo(3)); break;
+            case 4: StartCoroutine(LaunchCardCDCo(4)); break;
+        }
     }
 }
