@@ -15,8 +15,9 @@ public class DialogueManager : MonoBehaviour
     private int sentenceIndex;
     [SerializeField] private List<DialogueLine> DialogueLines = new List<DialogueLine>{};
     public bool isPlayingDialogue;
-    private int dialogueMistKellTimer = 30;
+    [SerializeField] private int dialogueMistKellTimer = 30;
     private float timeSinceLastDialogue;
+    [NonSerialized] public string playerLocation;
     
     
     [Header("Dialogue Display")]
@@ -36,30 +37,24 @@ public class DialogueManager : MonoBehaviour
     
     [Header("Dialogues")]
     
-    [SerializeField] private List<DialogueScriptable> ThievesLairMS;
-    [SerializeField] private List<DialogueScriptable> ClearingRune;
+    [SerializeField] private List<DialogueScriptable> FirstExploration;
+    [SerializeField] private List<DialogueScriptable> WindDungeon;
+    [SerializeField] private List<DialogueScriptable> SecondExploration;
+    [SerializeField] private List<DialogueScriptable> Dungeon;
     [SerializeField] private DialogueScriptable TestDialogue;
-    
-    
-    
-    
 
     private void Awake()
     {
         Instance = this;
         sentences = new Queue<string>();
         timeSinceLastDialogue = Time.time;
+        characterEmotion.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         SkipDialogue();
-        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && ThievesLairMS.Count > 0 && !GameManager.Instance.isTutorial)
-        {
-            var dialogueToPlay = ThievesLairMS[UnityEngine.Random.Range(0, ThievesLairMS.Count)];
-            AssignDialogue(dialogueToPlay.dialogue.ToList());
-            ThievesLairMS.Remove(dialogueToPlay);
-        }
+        AutomaticDialogues();
     }
 
     public void AssignDialogue(List<DialogueLine> dialogue)
@@ -123,7 +118,7 @@ public class DialogueManager : MonoBehaviour
             sentenceIndex = 0;
             StartDialogue(DialogueLines[currentDialogue]);
         }
-        else if (StoppedDialogue.Count != 0)
+        /*else if (StoppedDialogue.Count != 0)
         {
             Debug.Log(StoppedDialogue);
             DialogueLines = StoppedDialogue;
@@ -131,7 +126,7 @@ public class DialogueManager : MonoBehaviour
             StoppedDialogue.Clear();
             currentDialogue = lastDialogueStopIndex;
             StartDialogue(DialogueLines[currentDialogue]);
-        }
+        }*/
         else
         {
             characterEmotion.gameObject.SetActive(false);
@@ -196,12 +191,48 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Cinematique");
         if (isCinematic)
         {
+            UIManager.Instance.gameObject.SetActive(true);
             cinematicMode.ResetTrigger("IsCinematic");
         }
         else if (!isCinematic)
-        {
+        {   
+            UIManager.Instance.gameObject.SetActive(false);
             cinematicMode.SetTrigger("IsCinematic");
         }
         isCinematic = !isCinematic;
+    }
+
+    private void AutomaticDialogues()
+    {
+        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && !GameManager.Instance.isTutorial)
+        {
+            Debug.Log("Je lance un dialogue random");
+            DialogueScriptable dialogueToPlay;
+            switch (playerLocation)
+            {
+                case "Exploration1":
+                    dialogueToPlay = FirstExploration[UnityEngine.Random.Range(0, FirstExploration.Count)];
+                    AssignDialogue(dialogueToPlay.dialogue.ToList());
+                    FirstExploration.Remove(dialogueToPlay);
+                    break;
+                case "WindDungeon":
+                    dialogueToPlay = WindDungeon[UnityEngine.Random.Range(0, WindDungeon.Count)];
+                    AssignDialogue(dialogueToPlay.dialogue.ToList());
+                    WindDungeon.Remove(dialogueToPlay);
+                    break;
+                case "Exploration2":
+                    dialogueToPlay = SecondExploration[UnityEngine.Random.Range(0, SecondExploration.Count)];
+                    AssignDialogue(dialogueToPlay.dialogue.ToList());
+                    SecondExploration.Remove(dialogueToPlay);
+                    break;
+                case "Dungeon":
+                    dialogueToPlay = Dungeon[UnityEngine.Random.Range(0, Dungeon.Count)];
+                    AssignDialogue(dialogueToPlay.dialogue.ToList());
+                    Dungeon.Remove(dialogueToPlay);
+                    break;
+                
+            }
+            
+        }
     }
 }

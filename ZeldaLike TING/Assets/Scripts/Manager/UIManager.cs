@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
    private Color dashColor= new Color(.5f, .2f, .5f, 1);
    
    public GameObject loadingScreen;
+   public TextMeshProUGUI playerLocation;
 
    
    
