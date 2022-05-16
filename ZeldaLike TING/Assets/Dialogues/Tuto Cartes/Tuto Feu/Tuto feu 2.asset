@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Good job human.
+      line: "Bien jou\xE9, humain."
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 22489acf1f3576e4c8a177e6f83bb4a8, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: That's it?
+      line: C'est tout ?
       delay: 1
     voiceLine: {fileID: 8300000, guid: 1daea4901f9b8a94ab8cda00346d62ab, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -34,23 +34,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: No, of course not. You see, these cards
+      line: Non bien sur que non. Tu vois ces cartes
       delay: 3
     - expressions: 0
       name: 
-      line: Have two sides and each side holds a power.
+      line: Ont deux faces, et chaque face contient un pouvoir.
       delay: 3
     - expressions: 0
       name: 
-      line: The front holds the fireball, but with the back,
+      line: Le recto de celle-ci contient la boule de feu mais avec le verso
       delay: 3.5
     - expressions: 0
       name: 
-      line: 'You can send the card where you want and '
+      line: 'Tu peux lancer la carte ou tu veux et la '
       delay: 2.5
     - expressions: 0
       name: 
-      line: Reactivate it to create an explosion !
+      line: "R\xE9activer pour cr\xE9er une explosion !"
       delay: 0
     voiceLine: {fileID: 8300000, guid: b98d704b278d551499f403f50b715729, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -58,7 +58,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: That's pretty complicated.
+      line: "C'est compliqu\xE9 tout \xE7a..."
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: a585ebaa70dc7f4449f8813aadbb783e, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -66,10 +66,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: No, it's easy as pie, you're just stupid.
+      line: Non c'est simple comme bonjour, t'es juste stupide
       delay: 3
     - expressions: 0
       name: 
-      line: Try and reach those vines with the back side power.
+      line: Allez, essaie d'atteindre ces lianes avec le pouvoir verso.
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: c007d2a68da4b054f948724479e9dfc4, type: 3}

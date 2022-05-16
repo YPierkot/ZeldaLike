@@ -18,18 +18,22 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: You should have understood how to use the card now
+      line: Tu devrais avoir compris comment utiliser la carte maintenant.
       delay: 0
     - expressions: 0
       name: 
-      line: So let's raise the difficulty a little, good luck!
-      delay: 5
+      line: "On va un peu monter la difficult\xE9 maintenant."
+      delay: 3
+    - expressions: 0
+      name: 
+      line: Bonne chance !
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: d1908025a2d9b2446a3571a66a4bd7f3, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Hey! Wait! What are you gonna do?!
+      line: Hein quoi ?? Tu vas faire quoi ???
       delay: 3
     voiceLine: {fileID: 8300000, guid: d77cc13ef58b1754a9a8543e717efbc5, type: 3}

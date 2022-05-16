@@ -18,11 +18,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So, Mist, you were jailed with Ithar for centuries,
+      line: "Dis Mist, vu que t'\xE9tais emprisonn\xE9 avec Ithar "
       delay: 3
     - expressions: 0
       name: 
-      line: You must know each other pretty well right ?
+      line: "Pendant des ann\xE9es, tu dois bien"
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: Le connaitre nan ?
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: 1cccbf3fdc9471d479f0f9ea229a01e6, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -30,31 +34,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: No, I mostly hid from him.
+      line: "Non, je me cachais de lui, et de toute fa\xE7on"
       delay: 0
     - expressions: 0
       name: 
-      line: He was all about planning how to escape from this place
+      line: "Il ne pensait qu'\xE0 planifier comment il allait s'\xE9chapper."
       delay: 3.5
     - expressions: 0
       name: 
-      line: And didn't really pay attention to me.
+      line: "Il n'a jamais su que j'\xE9tais l\xE0"
       delay: 0
-    - expressions: 0
-      name: 
-      line: 'I don''t even know if he knew I was here '
-      delay: 2.25
-    - expressions: 0
-      name: 
-      line: As his magic didn't work.
-      delay: 1.75
     voiceLine: {fileID: 8300000, guid: 190790d222ca3544a816c371b853c6a2, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Why'd you hide ?
+      line: "Pourquoi tu t'es cach\xE9 ?"
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: e0181d3418cc52f4cb0e372fa59dc501, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -62,11 +58,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Conversations with you humans are so boring
+      line: Les conversations avec vous les humains sont
       delay: 3.5
     - expressions: 0
       name: 
-      line: I'd be dead of boredom before you freed us.
+      line: "Tellement ennuyantes que j'aurais \xE9t\xE9 mort"
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: "D'ennui avant que tu nous lib\xE8re."
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 524e8b91fa5457a4880706c6ce58a547, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -74,7 +74,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: You don't sound bored when we talk.
+      line: "Tu n'as pas l'air ennuy\xE9 quand on parle pourtant."
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: 478c9d653b00c0243965f923ecd839c7, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -82,7 +82,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: No, because I make fun of you.
+      line: Non, en effet, se moquer de toi rend le tout amusant.
       delay: 3.25
     voiceLine: {fileID: 8300000, guid: acab7e9133e3bca4ab1dbfda01a28184, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -90,7 +90,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Great... So how's Ithar like ?
+      line: Super... Sinon il est comment Ithar ?
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: c58989caee877b143a2a3b2eb44293a4, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -98,11 +98,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: He's actually a pretty interesting flesh-being.
+      line: "C'est un \xEAtre de chair assez int\xE9ressant mine de rien."
       delay: 3.5
     - expressions: 0
       name: 
-      line: Kind of a maniac, but interesting nonetheless.
+      line: "Une fou, mais int\xE9ressant tout de m\xEAme."
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: bbcc223c5d59691479ebb46661131157, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -110,7 +110,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: How so ?
+      line: "Comment \xE7a ?"
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 5982dbe122e8af44f99dda94f7520a93, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -118,19 +118,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Ithar is passionate about knowledge.
+      line: "Ithar est obs\xE9d\xE9 par le savoir. "
       delay: 0
     - expressions: 0
       name: 
-      line: He wants to know everything there is to know
+      line: "Il veut conna\xEEtre absolument chaque chose"
       delay: 0
     - expressions: 0
       name: 
-      line: In this world and the others, but his curiosity
+      line: "de ce monde et des autres mondes, mais sa curiosit\xE9"
       delay: 0
     - expressions: 0
       name: 
-      line: Led him to dangerous games and getting jailed.
+      line: "l'a men\xE9 vers des jeux dangereux "
+      delay: 4.25
+    - expressions: 0
+      name: 
+      line: "et notamment \xE0 se faire emprisonner."
       delay: 4.25
     voiceLine: {fileID: 8300000, guid: 38dc5dc893db3ae4189b3cb23d9658de, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -138,11 +142,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Sounds kinda harsh for someone '
+      line: 'La prison c''est une grosse punition pour quelqu''un '
       delay: 0
     - expressions: 0
       name: 
-      line: Who just wanted to learn new things.
+      line: Qui voulait juste apprendre de nouvelles choses.
       delay: 3
     voiceLine: {fileID: 8300000, guid: c751c4f8dcdf9934a9c8f60b928cdd6a, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -150,15 +154,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, he opened gateways to our dimension,
+      line: Bah, il a ouvert des portails vers votre dimension
       delay: 2.5
     - expressions: 0
       name: 
-      line: Allowing the spirits to invade your lands.
+      line: Permettant ainsi aux esprits d'envahir votre monde
       delay: 3
     - expressions: 0
       name: 
-      line: Still sounds harsh?
+      line: Ca te semble toujours gros ?
       delay: 0
     voiceLine: {fileID: 8300000, guid: 53b83e5fac32c124284a261d7154effa, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -166,6 +170,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Alright I get it.
+      line: C'est bon j'ai compris.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 46e79e9e3c0a595419db5c976b4be3b8, type: 3}

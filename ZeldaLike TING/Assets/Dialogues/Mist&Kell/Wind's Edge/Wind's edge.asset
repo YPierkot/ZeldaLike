@@ -18,62 +18,30 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I don't know this place.
+      line: Je ne connais pas cet endroit...
       delay: 0
-    voiceLine: {fileID: 0}
+    - expressions: 0
+      name: 
+      line: Zenithia s'y tenait avant...
+      delay: 2.25
+    voiceLine: {fileID: 8300000, guid: 84add0a6f5aa12b4fa849f745ae6f2e2, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh, Mr. Know it all doesn't know everything after all.
-      delay: 0
-    voiceLine: {fileID: 0}
+      line: Oh ! Monsieur je sais tout ne sait pas tout au final !
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: f9101b6dfa222f34eb581d23f9659120, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: You're the most annoying human I've ever met.
-      delay: 0
+      line: "Tu es l'humain le plus \xE9nervant que j'ai jamais rencontr\xE9."
+      delay: 3
     - expressions: 0
       name: 
-      line: It must've been built after my imprisonment with Ithar.
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I looks fascinating.
-      delay: 0
-    - expressions: 0
-      name: 
-      line: What are those curious machineries ?
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Well, if you're so curious now,
-      delay: 0
-    - expressions: 0
-      name: 
-      line: 'You should ask the flesh-beings that '
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Populate this place.
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I don't need to be asked twice.
-      delay: 0
-    voiceLine: {fileID: 0}
+      line: "Ca a du \xEAtre construit apr\xE8s mon emprisonnement."
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 3963dd63ff5270f4bbc858709d14d356, type: 3}

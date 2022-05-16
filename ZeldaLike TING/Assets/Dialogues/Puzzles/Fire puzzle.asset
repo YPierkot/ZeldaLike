@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Fire puzzle
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Des runes \xE9l\xE9mentaires..."
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Ca faisait longtemps que je n'en avais pas vu.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "C'est quoi des runes \xE9l\xE9mentaires ?"
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Ce sont un peu comme des interrupteurs qui ne
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "S'activent que si elles r\xE9agissent \xE0 un certain "
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Type de magie. Celles-ci s'activent avec le feu
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Donc si tu arrives \xE0 les embraser, elles "
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Devraient s'activer et ouvrir cette porte.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Super... Un entrainement de vis\xE9e, je d\xE9teste \xE7a."
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: J'ai bien peur que tu n'aies pas le choix humain.
+      delay: 0
+    voiceLine: {fileID: 0}

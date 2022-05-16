@@ -18,42 +18,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: So basically, with this card you can throw a fireball.
+      line: Cette carte va te permettre de lancer une boule de feu.
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: "Utilise la pour d\xE9truire ces lianes."
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: cb327ebb7759a9247bb8b72dc20099e3, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Really ?! I'm going to destroy the spirits with that power !
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: 340f3fc6e2ce30d409e162c52b72ccfb, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Don't speak too quickly human.
-      delay: 0
-    - expressions: 0
-      name: 
-      line: See those vines over there ?
-      delay: 1
-    voiceLine: {fileID: 8300000, guid: 9eeccdf0324d07a44a4ba7f01057ad26, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Yeah, what about them ?
-      delay: 1.5
-    voiceLine: {fileID: 8300000, guid: 1f6feaab0fbe7b4429630fde578e02b5, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Try and burn them with a fireball to free yourself.
-      delay: 2.5
-    voiceLine: {fileID: 8300000, guid: 98893f26956db654091caa41882578c6, type: 3}
