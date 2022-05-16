@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 96de021a8d452d546b4d67bbdb28cb85, type: 2}
+  - {fileID: 2100000, guid: 41b009a33fb0c964ebd4e261b13d0b3c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1024
+  effectRadius: 4
   DebugSphere: {fileID: 8460420800604774821, guid: 507fce60bdad14d4892e35bf09cfdb3d,
     type: 3}
   iceFX: {fileID: 2213401173028623185, guid: c2fc444d5f67d744c82baed420d46fc1, type: 3}

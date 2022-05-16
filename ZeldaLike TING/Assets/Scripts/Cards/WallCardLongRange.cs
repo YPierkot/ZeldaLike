@@ -21,20 +21,16 @@ public class WallCardLongRange : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.transform.CompareTag("Ennemy"))
+        if (other.ToString() == groundMask.ToString() ||!other.GetComponentInParent<Transform>().CompareTag("Player"))
         {
-            WallCardLongEffect();
-        }
-
-        if (other.ToString() == groundMask.ToString())
-        {
-            this.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 
     private void OnDestroy()
     {
         CardsController.isWallGround = false;
+        CardsController.instance.LaunchCardCD(3);
         UIManager.Instance.UpdateCardUI();
     }
 }
