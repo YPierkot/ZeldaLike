@@ -158,7 +158,7 @@ public class CardsController : MonoBehaviour
                 isFireGround = true;
             }
         }
-        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); Debug.Log("FireCardLongEffect"); UIManager.Instance.UpdateCardUI();
+        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI();
         }
     }
     

@@ -42,6 +42,6 @@ public class FireCardLongRange : MonoBehaviour
     {
         CardsController.isFireGround = false;
         CardsController.instance.LaunchCardCD(1);
-        //UIManager.Instance.UpdateCardUI();
+        UIManager.Instance.UpdateCardUI();
     }
 }

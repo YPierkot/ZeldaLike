@@ -31,12 +31,9 @@ public class SpawnerEnemies : MonoBehaviour
 
         if (Controller.instance.inAttack && canSpawn)
         {
-            Debug.Log("ColColCol");
             SpawnEnnemis();
             StartCoroutine(ResetSpawnTimer());
         }
-        
-        Debug.Log("Collision");
     }
 
     private void SpawnEnnemis()

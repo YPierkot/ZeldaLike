@@ -108,9 +108,10 @@ namespace AI
 
         private IEnumerator DoAttack()
         {
+            e_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            
             kamikazeAnimator.SetBool("isAttack", true);
             yield return new WaitForSeconds(0.95f);
-            kamikazeAnimator.SetBool("isAttack", false);
             Collider[] playercol = Physics.OverlapSphere(transform.position, e_aoeRange, playerLayerMask);
             foreach (var player in playercol)
             {

@@ -165,7 +165,7 @@ namespace AI
         private IEnumerator PlayerDmgCo()
         {
             yield return new WaitForSeconds(.19f);
-            PlayerStat.instance.TakeDamage();
+            if (this.gameObject != null) PlayerStat.instance.TakeDamage();
         }
     }
 }
