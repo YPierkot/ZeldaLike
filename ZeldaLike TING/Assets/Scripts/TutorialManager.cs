@@ -29,6 +29,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
     [SerializeField] private GameObject[] ennemies = new GameObject[2];
+    [SerializeField] private GameObject eAppearFX;
     private bool enemySpawn = true;
 
     [Header("Fire Card Tutorial")]
@@ -56,12 +57,13 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         helpManager = GetComponent<HelpsManager>();
-        Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         DialogueManager.Instance.IsCinematic();
+        Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
         EnqueueDialogue();
+        
     }
 
     private void Update()
@@ -72,7 +74,6 @@ public class TutorialManager : MonoBehaviour
     private void ResetCamera()
     {
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        
     }
 
     public void EnqueueDialogue()
@@ -129,8 +130,8 @@ public class TutorialManager : MonoBehaviour
                         helpManager.DisplayHelp();
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
-                        Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
-                        Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
+                        StartCoroutine(SpawnEnnemiesCo());
+                        
                         Controller.instance.FreezePlayer(false);
                         Controller.instance.FreezePlayer(true, "Cards");
                         DialogueManager.Instance.IsCinematic();
@@ -206,6 +207,17 @@ public class TutorialManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private IEnumerator SpawnEnnemiesCo()
+    {
+        Destroy(Instantiate(eAppearFX, ennemiesSpawnPoints[1].position + new Vector3(0,3.3f, 0), Quaternion.identity, ennemyParent), 5f);
+        Destroy(Instantiate(eAppearFX, ennemiesSpawnPoints[2].position + new Vector3(0,3.3f, 0), Quaternion.identity, ennemyParent), 5f);
+        
+        yield return new WaitForSeconds(3.5f);
+        
+        Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
+        Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
     }
     
 }

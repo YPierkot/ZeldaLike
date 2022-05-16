@@ -14,22 +14,49 @@ public class RunePlate : MonoBehaviour
     [SerializeField] private Element plateType;
     public bool isActivate;
 
-
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-            Debug.Log("collide Block");
+        RunePuzzleManager.Instance.runesList.Add(this);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
         if (other.GetComponent<pushBlock>() != null)
         {
             switch (plateType)
             {
                 case Element.Fire:
-                    if (other.GetComponent<InteracteObject>().burning) isActivate = true;
-                    else isActivate = false;
+                    if (other.GetComponent<InteracteObject>().burning)
+                    {
+                        if (!isActivate)
+                        {
+                            GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
+                            isActivate = true;
+                            RunePuzzleManager.Instance.CheckRunes();
+                        }
+                    }
+                    else
+                    {
+                        if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
+                        isActivate = false;
+                    }
                     break;
             
                 case Element.Ice :
-                    if (other.GetComponent<InteracteObject>().isFreeze) isActivate = true;
-                    else isActivate = false;
+                    if (other.GetComponent<InteracteObject>().isFreeze)
+                    {
+                        if (!isActivate)
+                        {
+                            GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
+                            isActivate = true;
+                            RunePuzzleManager.Instance.CheckRunes();
+                        }
+                    }
+                    else
+                    {
+                        if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
+                        isActivate = false;
+                    }
                     break;
             }
         }

@@ -54,6 +54,7 @@ public class CustomLDOverlay : IMGUIOverlay {
         
         GameObject prefabSpawn = (GameObject) PrefabUtility.InstantiatePrefab(prefabToSpawn, EditorSceneManager.GetActiveScene());
         prefabSpawn.transform.position = mousePosInWorldScene;
+        prefabSpawn.transform.rotation = Quaternion.Euler(prefabSpawn.transform.rotation.x,Random.Range(0,360), prefabSpawn.transform.rotation.z);
             
         if (prefabSpawn.GetComponent<MeshRenderer>() != null) prefabSpawn.transform.position += new Vector3(0, prefabSpawn.GetComponent<MeshRenderer>().bounds.size.y / 2, 0);
         Undo.RegisterCreatedObjectUndo(prefabSpawn, "Add Object to the activ scene");

@@ -7,7 +7,7 @@ public class TPPlayer : MonoBehaviour
     {
         if (other.transform.CompareTag("Player") && !DialogueManager.Instance.isPlayingDialogue)
         {
-            SceneManager.LoadScene("Gameplay");
+            SceneManager.LoadScene("LD_Playtest");
         }
 
         if (DialogueManager.Instance.isPlayingDialogue && other.transform.CompareTag("Player"))

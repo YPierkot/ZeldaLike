@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
 
     public enum ControlType
     {
-        MoveStopShoot, HoldForLong, ChangeSideControl
+        MoveStopShoot, HoldForLong, ChangeSideControl, FastCast
     }
     
     [Serializable]
@@ -48,14 +48,16 @@ public class Controller : MonoBehaviour
    public bool moving;
    public bool dashing;
    [SerializeField] public bool inAttack;
+   [SerializeField] private bool launchAttack;
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
+   public bool canDash;
 
    private bool moveHoldCard;
 
     private float dashTimer;
     private float holdTimer; 
-    private int dashAvailable; 
+    public int dashAvailable; 
     private float dashCDtimer; 
 
     [SerializeField] public bool canMove = true;
@@ -143,13 +145,15 @@ public class Controller : MonoBehaviour
             {
                 moveHoldCard = true;
                 canMove = false;
+                cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = true;
             };
             InputMap.MoveStopShoot.holdForShoot.canceled += context =>
             {
                 moveHoldCard = false;
                 canMove = true;
+                cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
             };
-            InputMap.MoveStopShoot.shootHold.canceled += CardHolderOncanceled;
+            InputMap.MoveStopShoot.shoot.canceled += CardHolderOncanceled;
             InputMap.MoveStopShoot.cardActivatorHold.performed += context => cardControl.LongRangeRecast(); 
             
         }
@@ -160,7 +164,6 @@ public class Controller : MonoBehaviour
                 cardControl.rectoSide = !cardControl.rectoSide;
                if(!cardControl.rectoSide) cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = true;
                else cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
-               UIManager.Instance.UpdateCardUI();
             };
 
             InputMap.ChangeSideControl.Shoot.performed += context =>
@@ -168,6 +171,11 @@ public class Controller : MonoBehaviour
                 if (cardControl.rectoSide) cardControl.ShortRange();
                 else cardControl.LongRange();
             };
+        }
+        else if (_controlType == ControlType.FastCast)
+        {
+            InputMap.FastCast.ShortShoot.performed += context => cardControl.ShortRange();
+            InputMap.FastCast.LongShoot.performed += context => cardControl.LongRange();
         }
         
         InputMap.Menu.CardMenu.performed += SwitchCard;
@@ -228,6 +236,7 @@ public class Controller : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
+
             //transformDebugger.position = hit.point;
             pointerPosition = hit.point;
             Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
@@ -269,6 +278,7 @@ public class Controller : MonoBehaviour
             {
                 dashCDtimer = 0;
                 dashAvailable++;
+                UIManager.Instance.UpdateDash(dashAvailable);
             }
         }
 
@@ -349,16 +359,16 @@ public class Controller : MonoBehaviour
     }
     void Dash()
     {
-        if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0)
+        if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0 && canDash)
         {
             animatorPlayer.SetBool("attackFinish", true);
             dashAvailable--;
             dashing = true;
             dashTimer = 0;
             canMove = false;
-            
             inAttack = false;
             attackCounter = 0;
+            UIManager.Instance.UpdateDash(dashAvailable);
             DesactiveAttackZone();
             if (cameraOnPlayer)
             {
@@ -372,24 +382,15 @@ public class Controller : MonoBehaviour
     {
         if (attackCounter < 3)
         {
-            Debug.Log("Le combo n'est pas fini");
             if (!inAttack)
             {
-
-                animatorPlayer.SetBool("attackFinish", false);
-                setNextCombo = true;
-                StopCoroutine(ComboWait());
-                comboWaiting = false;
+                launchAttack = true;
                 canMove = false;
+                attackCounter++;
                 inAttack = true;
-                //nextCombo = false;
-                attackCounter++;
-            }
-            else if(!setNextCombo && inAttackAnim)
-            {
-                setNextCombo = true;
-                attackCounter++;
-                Debug.Log("Set NextCombo " + attackCounter);
+
+                CancelInvoke("ComboWait");
+                
             }
         }
     }
@@ -404,16 +405,7 @@ public class Controller : MonoBehaviour
             moveCardTransform.rotation = Quaternion.Euler(0, angleView-90, 0);
         }
     }
-
-    void UpdateSprite()
-    {
-        if (angleView>currentInterval.max || angleView < currentInterval.min)
-        {
-            SpriteAngle newSA = spriteDictionary.First(sw => sw.Key(angleView)).Value;
-            sprite.sprite = newSA.sprite;
-            currentInterval = newSA.angleInterval;
-        }  
-    }
+    
     public void UpdateStats()
     {
         moveSpeed = GetComponent<PlayerStat>().moveSpeedValue;
@@ -425,54 +417,44 @@ public class Controller : MonoBehaviour
             if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
             else animDir = -movePlayerTransform.forward ;
 
-            AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
-            if (animInfo.clip.name == "waitAttackState") inAttack = false;
-            animatorPlayer.SetBool("inCombo", setNextCombo);
             animatorPlayer.SetInteger("attackCounter", attackCounter);
-            if ((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN"))  && !inAttackAnim)
-            {
-                if (animInfo.clip.name.Contains("SLASH"))
-                {
-                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord) rb.AddForce(moveCardTransform.forward * -500);
-                    else rb.AddForce(movePlayerTransform.forward * -500);
-                }
-                if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) keybordAttackZones[attackCounter-1].SetActive(true);
-                else
-                {
-                    Debug.Log(attackCounter);
-                    controllerAttackZones[attackCounter-1].SetActive(true);
-                }
-                //Debug.Log($"Attack {attackCounter}, GO :{attackZones[attackCounter-1].name}");
-                inAttack = true;
-                inAttackAnim = true;
-                setNextCombo = false;
-                //Debug.Log("Begin Attack");
-                StopCoroutine(ComboWait());
-                comboWaiting = false;
-            }
-            else if (animInfo.clip.name == "waitAttackState" && inAttackAnim)
-            {
-                DesactiveAttackZone();
-                
-                if (!setNextCombo && !comboWaiting)
-                {
-                    comboWaiting = true;
-                    StartCoroutine(ComboWait());
-                }
-                    
-                inAttackAnim = false;
-            }
-            else if (animInfo.clip.name == "waitAttackState" && !inAttackAnim && !inAttack && !comboWaiting) 
-            { 
-                comboWaiting = true; 
-                StartCoroutine(ComboWait());
-            }
+            animatorPlayer.SetBool("isAttack", launchAttack);
             
+            AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
+            if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
+            {
+                foreach (var zone in keybordAttackZones   ) zone.SetActive(false);
+                foreach (var zone in controllerAttackZones) zone.SetActive(false);
+                
+                
+                inAttack = false;
+                inAttackAnim = false;
+                canMove = true;
+                Invoke("ComboWait", 1f);
+            }
+            else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
+            {
+                if (!inAttackAnim)
+                {
+                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
+                    {
+                        rb.AddForce(moveCardTransform.forward * -500);
+                        keybordAttackZones[attackCounter-1].SetActive(true);
+                    }
+                    else
+                    {
+                        rb.AddForce(movePlayerTransform.forward * -500);
+                        controllerAttackZones[attackCounter-1].SetActive(true);
+                    }
+                }
+                launchAttack = false;
+                inAttackAnim = true;
+                
+            }
             if (!inAttack && canMove)
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
-                animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
                 animatorMovePlayer.SetBool("isWalk", moving); // Il est différent donc repoussé par la société
             }
@@ -488,7 +470,6 @@ public class Controller : MonoBehaviour
                     animatorPlayer.SetFloat("X-Axis", animDir.x);
                     animatorPlayer.SetFloat("Z-Axis", animDir.z);
                 }
-                animatorPlayer.SetBool("isAttack", inAttack);
                 animatorPlayer.SetBool("isRun", moving);
             }
     }
@@ -503,6 +484,11 @@ public class Controller : MonoBehaviour
             GO.SetActive(false);
             //Debug.Log("Desactive Attack Zone");
         }
+    }
+
+    public void ChangeControleType(int value)
+    {
+        _controlType = (ControlType) value;
     }
     
     private void OnTriggerEnter(Collider other)
@@ -522,14 +508,15 @@ public class Controller : MonoBehaviour
         }
     }
 
-    public IEnumerator ComboWait()
+    private int waitIndex = 0;
+    public void ComboWait()
     {
-        yield return new WaitForSeconds(0.15f);
+        
         if (!inAttack)
         {
-            animatorPlayer.SetBool("attackFinish", true);
             attackCounter = 0;
-            canMove = true;
+            Debug.Log($"Attack Finish");
+            //canMove = true;
         }
     }
 
@@ -540,8 +527,7 @@ public class Controller : MonoBehaviour
             switch (toFreeze)
             {
                 case "Dash":
-                    dashAvailable = 0;
-                    dashing = false;
+                    canDash = false;
                     break;
                 case "Attack":
                     attackCounter = 3;
@@ -550,18 +536,16 @@ public class Controller : MonoBehaviour
                 case "All":
                     canMove = false;
                     inAttack = false;
-                    dashing = false;
+                    canDash = false;
                     CardsController.instance.canUseCards = false;
-                    dashAvailable = 0;
                     attackCounter = 3;
                     break;
                 case "Cards":
                     CardsController.instance.canUseCards = false;
                     break;
                 case "DashAttack":
-                    dashAvailable = 0;
                     inAttack = false;
-                    dashing = false;
+                    canDash = false;
                     attackCounter = 3;
                     break;
             }
@@ -570,11 +554,9 @@ public class Controller : MonoBehaviour
         {
             canMove = true;
             CardsController.instance.canUseCards = true;
-            dashAvailable = maxDash;
+            canDash = true;
             attackCounter = 0;
             inAttack = false;
         }
     }
-
-    
 }

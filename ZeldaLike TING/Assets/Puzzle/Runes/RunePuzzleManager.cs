@@ -1,27 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class RunePuzzleManager : MonoBehaviour
 {
+  public static RunePuzzleManager Instance;
+
+  private void Awake()
+  {
+    if(Instance == null)Instance = this;
+  }
+
   [SerializeField] private pushBlock block;
   [SerializeField] private pushWayPoint startWaypoint;
   [SerializeField] private UnityEvent onFinishEvent;
 
-  [HideInInspector] public List<RunePlate> runesList = new List<RunePlate>();
+  public List<RunePlate> runesList = new List<RunePlate>();
 
   private void Start()
   {
     ResetRune();
   }
 
-  void CheckRunes()
+  public void CheckRunes()
   {
     foreach (var rune in runesList)
     {
-      if(rune.isActivate == false)return;
+      if (!rune.isActivate)
+      {
+        Debug.Log($"{rune.transform.name} is not Activ");
+        return;
+      }
     }
     onFinishEvent.Invoke();
   }

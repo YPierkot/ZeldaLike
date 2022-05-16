@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
       private void Awake()
       {
          Instance = this;
+         initCardUI();
       }
    #endregion
 
@@ -36,32 +37,22 @@ public class UIManager : MonoBehaviour
    
    
    [Header("--- LIFE & STAT")] 
-   [SerializeField] private Image[] lifeArray;
+   [SerializeField] private Animator[] lifeArray;
+   [SerializeField] private Animator KellHead;
 
+   [SerializeField] private Image[] dashHandles;
+   private Color dashColor= new Color(.5f, .2f, .5f, 1);
+   
    public GameObject loadingScreen;
 
    
+   
    private void Start()
    {
-      initCardUI();
       cardYPos = cardHandles[0].transform.position.y;
-
-      /*cardHandles = new Transform[cardHandlesContainer.childCount];
-      for (int i = 0; i < cardHandlesContainer.childCount; i++)
-      {
-         cardHandles[i] = cardHandlesContainer.GetChild(i);
-         if (i < cardUnlock)
-         {
-            cardHandles[i].gameObject.SetActive(true);
-            Debug.Log("Active " + i);
-         }
-         else
-         {
-            cardHandles[i].gameObject.SetActive(false);
-            Debug.Log("Desactive " + i);
-         }
-      }*/
+      
       ChangeCard(0);
+      UIManager.Instance.UpdateCardUI();
 
    }
 
@@ -102,6 +93,7 @@ public class UIManager : MonoBehaviour
 
    public void UpdateCardUI()
    {
+      //Debug.Log("Update Card");
       foreach (var cardHandle in cardHandlesReference)
       {
          switch (cardHandle.card)
@@ -205,12 +197,32 @@ public class UIManager : MonoBehaviour
       }
    }
 
-   public void UpdateLife(int life)
+   public void InitLife(int life)
    {
       for (int i = 0; i < lifeArray.Length; i++)
       {
-         if (i >= life)lifeArray[i].enabled = false;
-         else lifeArray[i].enabled = true;
+         if (i >= life)lifeArray[i].gameObject.SetActive(false);
+         else lifeArray[i].gameObject.SetActive(true);
+      }
+   }
+
+   public void TakeDamageUI(int life)
+   {
+      for (int i = 0; i < life; i++)
+      {
+         lifeArray[i].SetTrigger("TakeDamage");
+      }
+      Debug.Log($"destroy {lifeArray[life]}");
+      lifeArray[life].SetTrigger("Destroy");
+      KellHead.SetTrigger("TakeDamage");
+   }
+
+   public void UpdateDash(int dash = 3)
+   {
+      for (int i = 0; i < dashHandles.Length; i++)
+      {
+         if (i < dash) dashHandles[i].color = dashColor; 
+         else dashHandles[i].color = new Color(.3f, .3f, .3f, .5f);
       }
    }
 

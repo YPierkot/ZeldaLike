@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Update = UnityEngine.PlayerLoop.Update;
 
 public class PlayerStat : MonoBehaviour
 {
@@ -31,9 +32,9 @@ public class PlayerStat : MonoBehaviour
    [Header("Stats for modules")]
    [SerializeField] public float toughnessValue = 0.3f; // Duration u can't take dmg
    [SerializeField] public int attackDamageValue = 1;
-   [SerializeField] public float moveSpeedValue = 100; // Player MS
+   [SerializeField] public float moveSpeedValue = 100; // Player MS  
    [SerializeField] private float repulseForce = 25; // Player's KB when hitted
-   [SerializeField] public float enemyKBForce = 3; // Enemies KB when hitted
+   [SerializeField] public float enemyKBForce; // Enemies KB when hitted
    
    private bool isImmune;
 
@@ -51,21 +52,26 @@ public class PlayerStat : MonoBehaviour
 
    private void Start()
    {
-      UIManager.Instance.UpdateLife(life);
+      UIManager.Instance.InitLife(life);
    }
-   
+
+   private void Update()
+   {
+      if (Input.GetKeyDown(KeyCode.M)) TakeDamage();
+   }
+
    public void TakeDamage(int damage = 1)
    {
       if (!isImmune)
       {
          life -= damage;
          StartCoroutine(TakeDamageCD());
-         UIManager.Instance.UpdateLife(life);
+         UIManager.Instance.TakeDamageUI(life);
          CameraShake.Instance.AddShakeEvent(HitShake);
       }
    }
 
-   private void OnCollisionEnter(Collision other)
+   /*private void OnCollisionEnter(Collision other)
    {
       if (other.transform.CompareTag("Ennemy")) 
       {
@@ -76,6 +82,7 @@ public class PlayerStat : MonoBehaviour
          _control.rb.velocity = repulse;
       }
    }
+   */
 
    IEnumerator HitCD()
    {
@@ -329,6 +336,6 @@ public class PlayerStat : MonoBehaviour
          attackControl.playerDamage = attackDamageValue;
          attackControl.repusleEnnemyForce = enemyKBForce;
       }
-      Debug.Log("AttackStats is at date");
+      //Debug.Log("AttackStats is at date");
    }
 }
