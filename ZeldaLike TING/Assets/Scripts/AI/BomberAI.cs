@@ -106,12 +106,13 @@ namespace AI
         {
             bomberAnimator.SetBool("isAttack", isAttacking);
             yield return new WaitForSeconds(0.85f);
+            bomberAnimator.SetBool("isAttack", false);
             Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
             var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
             bomb.GetComponent<Bomb>().ExploseBomb();
-            bomberAnimator.SetBool("isAttack", false);
             
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.85f);
             isAttacking = false;
         }
         
