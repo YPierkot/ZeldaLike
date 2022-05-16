@@ -18,11 +18,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: The front power of this card builds a wall under you
+      line: "Le pouvoir recto de cette carte cr\xE9e un mur sous toi"
       delay: 0
     - expressions: 0
       name: 
-      line: So you can climb hills as you're completely unable to do that.
+      line: "Comme \xE7a, tu pourras monter en haut des collines"
+      delay: 4
+    - expressions: 0
+      name: 
+      line: Vu que tu es incapable d'escalader.
       delay: 4
     voiceLine: {fileID: 8300000, guid: bed2433077605474eaab20dd701d17df, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -30,6 +34,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Hey, don't shame me, it ain't my fault if I can't climb.
+      line: "H\xE9, ne te moque pas, c'est pas de ma faute"
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: Si je peux pas escalader.
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 47ccb5c98ffa47a4b9485c192e6c68c0, type: 3}

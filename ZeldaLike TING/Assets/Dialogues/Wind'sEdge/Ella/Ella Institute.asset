@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Hi traveler. What are you doing in these ruined lands?
+      line: Bonjour voyageur, que faites vous dans ces terres en ruine ?
       delay: 0
     voiceLine: {fileID: 8300000, guid: 802dcc7ea9e1e8b4fbdeee81ed40bb09, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I'm trying to learn about this place, Wind's Edge.
+      line: J'essaie d'en apprendre sur cet endroit, Bord de Vent.
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 963ebcbd470fc3140993df8092862ad1, type: 3}
   - character: {fileID: 11400000, guid: 004b332a1be346842ba2cc9d782a4431, type: 2}
@@ -34,7 +34,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh well, I could help you with that.
+      line: "Oh et bien, \xE9tant chercheuse du temps "
+      delay: 3.5
+    - expressions: 0
+      name: 
+      line: je peux vous aider avec cela.
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: f6e41eda6adf8f94b825fdebbf1852e6, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -42,7 +46,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Be my guest.
+      line: Je vous en prie
       delay: 0
     voiceLine: {fileID: 8300000, guid: d9c7ca6ddd6543348a596245236d1bb3, type: 3}
   - character: {fileID: 11400000, guid: 004b332a1be346842ba2cc9d782a4431, type: 2}
@@ -50,39 +54,43 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: This place has a magnificent story and meaning.
+      line: Cet endroit a une histoire et une signification magnifique.
       delay: 3
     - expressions: 0
       name: 
-      line: 'It used to be called Zenithia, and was '
+      line: "Avant, ce lieu s'appelait Zenithia et \xE9tait"
       delay: 2.5
     - expressions: 0
       name: 
-      line: The great capital of the Island.
+      line: "la grande capitale de l'Ile du Z\xE9nith."
       delay: 0
     - expressions: 0
       name: 
-      line: The Enlightened built this place to share everything
+      line: "Les Illumin\xE9s l'ont construite afin de partager"
       delay: 3
     - expressions: 0
       name: 
-      line: they had with everyone.
+      line: ' tout ce qu''ils avaient avec les autres.'
       delay: 1.5
     - expressions: 0
       name: 
-      line: Not only wanted they to get better at magic,
+      line: ' Non seulement ils voulaient mieux comprendre'
       delay: 2.5
     - expressions: 0
       name: 
-      line: But they also wanted humanity as a whole to become better.
+      line: la magie, mais ils voulaient que le peuple entier
+      delay: 0
+    - expressions: 0
+      name: 
+      line: " de l'\xEEle devienne meilleur avec eux."
       delay: 3
     - expressions: 0
       name: 
-      line: "That\u2019s why everyone coming to this city could"
+      line: "C'est pour cela que tous pouvaient venir \xE0 Zenithia"
       delay: 2.5
     - expressions: 0
       name: 
-      line: take free lessons about magic.
+      line: "et y prendre des le\xE7ons de magie."
       delay: 0
     voiceLine: {fileID: 8300000, guid: aafe150396f94d642abf10110dbb2add, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -90,7 +98,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: You could use some of that.
+      line: T'en aurais bien besoin.
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 4115e7abb5717fa4faaae09c9639e0f6, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -106,19 +114,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: The Enlightened inspired others to study magic.
+      line: " Les Illumin\xE9s ont inspir\xE9 les autres \xE0 \xE9tudier la magie."
       delay: 3
     - expressions: 0
       name: 
-      line: They thus created the research center in which
+      line: "Ils ont ainsi cr\xE9\xE9 l'institut de recherche dans lequel"
       delay: 3
     - expressions: 0
       name: 
-      line: 'Any magic user could report his findings '
+      line: 'tout magicien pouvait venir rapporter ses trouvailles '
       delay: 0
     - expressions: 0
       name: 
-      line: to improve the common knowledge.
+      line: et son savoir afin de faire progresser le savoir commun.
       delay: 3
     voiceLine: {fileID: 8300000, guid: bd5f691d520a54b4fb84ed225f1e0988, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -126,7 +134,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: That's amazing. They were a very united community.
+      line: " C'est incroyable, ils \xE9taient vraiment un peuple uni."
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 396e48fd48dc1ea4d9c50b205f161289, type: 3}
   - character: {fileID: 11400000, guid: 004b332a1be346842ba2cc9d782a4431, type: 2}
@@ -134,7 +142,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Yes, we kind of lost that unity over time unfortunately.
+      line: En effet, nous avons un peu perdu
+      delay: 3.25
+    - expressions: 0
+      name: 
+      line: " cette unit\xE9 malheureusement."
       delay: 3.25
     voiceLine: {fileID: 8300000, guid: 0d891de844ffcab448f1eae6ae56a29a, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -142,11 +154,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Well thank you for your time! '
+      line: Eh bien, merci pour votre temps !
       delay: 0
     - expressions: 0
       name: 
-      line: Hey Mist, the Great Age of Magic sounded fascinating!
+      line: "H\xE9 Mist, le Grand Age de la Magie avait l'air fascinant!"
       delay: 4.5
     voiceLine: {fileID: 8300000, guid: 13032a8c2a3f53d49b2ea520b7bb8893, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -154,11 +166,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: It was indeed more interesting than your boring era.
+      line: "C'\xE9tait en effet bien plus int\xE9ressant que votre \xE8re ennuyeuse."
       delay: 3.5
     - expressions: 0
       name: 
-      line: By the way, I'm surprised by your curiosity human.
+      line: "D'ailleurs, je suis surpris de ta curiosit\xE9, humain."
       delay: 4
     voiceLine: {fileID: 8300000, guid: 8ebdc4bd04811dd40af3e7e75590c712, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -166,6 +178,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I guess i got hooked by all those stories.
+      line: "Je suppose que j'ai \xE9t\xE9 happ\xE9 par toutes ces histoires. "
       delay: 3
     voiceLine: {fileID: 8300000, guid: 6e6904b4ca1d16a4fa1495577f9eedfb, type: 3}

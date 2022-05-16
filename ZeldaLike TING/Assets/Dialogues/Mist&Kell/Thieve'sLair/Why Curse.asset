@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Why Curse
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 2
+      name: 
+      line: Dis Mist...
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: c73291aa684f7c14dadbb8731a8da2f2, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 3
+      name: 
+      line: "Tu m'as pris pour ton encyclop\xE9die humain ?"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: c33087d0057d04c41882b0e4c8639848, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: "C'est bien la seule chose \xE0 laquelle tu me sers..."
+      delay: 0
+    - expressions: 2
+      name: 
+      line: Dis, pourquoi tu m'as maudit ?
+      delay: 0
+    - expressions: 2
+      name: 
+      line: "Tes fr\xE8res et soeurs n'ont pas l'air d'avoir besoin "
+      delay: 0
+    - expressions: 2
+      name: 
+      line: "D'h\xF4te pour survivre..."
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: aad72abedd2b5a54e98a24b4ccda8213, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Mmhh eh bien, je suis un petit esprit donc je suis
+      delay: 3
+    - expressions: 2
+      name: 
+      line: "D\xE9pendant du coeur d'\xE9nergie de notre dimension."
+      delay: 3
+    - expressions: 2
+      name: 
+      line: Quand je suis dans la votre, je suis trop loin de ce coeur
+      delay: 3
+    - expressions: 2
+      name: 
+      line: "Et j'ai besoin d'une source d'\xE9nergie"
+      delay: 0
+    - expressions: 2
+      name: 
+      line: Alternative pour survivre.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 996b359a90606034f8332973e61e48ab, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: "En gros tu pompes mon \xE9nergie ?"
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: fde2555453f0509488efcec00c3739fd, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: C'est pas comme si tu en avais besoin.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: bbcbb118cda24f14dbfef7893e657187, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 4
+      name: 
+      line: Pour supporter tes remarques, si, j'en ai besoin.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: e5aa48bbf15927b4f80004ce3135250f, type: 3}

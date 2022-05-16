@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I am the master of the card.
+      line: "Je suis le ma\xEEtre des cartes !"
       delay: 3
     voiceLine: {fileID: 8300000, guid: 430e5a9cfbc412c46a71d4dff8e973fa, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: You really are a child.
+      line: T'es vraiment un enfant.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 59094cf5eee40134884c52a52508cb25, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -34,7 +34,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: We can't have fun when you're around.
+      line: "On ne peut vraiment pas s'amuser quand t'es l\xE0 hein."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 5945c8657cbdd914092258ac71ab36de, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -42,10 +42,14 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Anyway, let's keep going,
+      line: Bref, continuons.
       delay: 0
     - expressions: 0
       name: 
-      line: We still have a long way to go before fighting Ithar.
+      line: 'On a encore un long chemin avant '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: D'aller se battre contre Ithar.
       delay: 0
     voiceLine: {fileID: 8300000, guid: e11c9053fc76c364ca847e90a59183b7, type: 3}

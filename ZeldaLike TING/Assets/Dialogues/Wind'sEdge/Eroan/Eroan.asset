@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Hey I know that guy! That\u2019s Ailen!"
+      line: "H\xE9 mais je le connais lui ! C'est Ailen !"
       delay: 0
     - expressions: 2
       name: 
-      line: "They made a statue of him? He didn\u2019t deserve it."
+      line: "Ils ont fait une statue de lui? il ne le m\xE9ritait pas."
       delay: 3.25
     voiceLine: {fileID: 8300000, guid: db496d25c380e364d9708db37dff5cc7, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -30,7 +30,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Shut it mist. Hello! Who\u2019s that on the statue?"
+      line: Tais toi Mist.
+      delay: 4.25
+    - expressions: 0
+      name: 
+      line: "Bonjour, qui est repr\xE9sent\xE9 sur cette statue?"
       delay: 4.25
     voiceLine: {fileID: 8300000, guid: adff272084259d245b3b5d1a16efd460, type: 3}
   - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
@@ -38,7 +42,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: ' Hello traveler, this is Ailen the Wind Magician!'
+      line: Bonjour voyageur, c'est Ailen, le magicien du vent.
       delay: 4
     voiceLine: {fileID: 8300000, guid: 7cdfaccc207c6fc428b83322d1025545, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -46,7 +50,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Why\u2019d you build a statue of him?"
+      line: Pourquoi avoir construit une statue en son honneur ?
       delay: 3
     voiceLine: {fileID: 8300000, guid: 6362cfc7138df8c4db40e0e59ae7083d, type: 3}
   - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
@@ -54,19 +58,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Because he\u2019s a very important person "
+      line: "Eh bien, il est une personne tr\xE8s importante"
       delay: 0
     - expressions: 0
       name: 
-      line: in the history of the village.
+      line: dans l'histoire de ce village.
       delay: 0
     - expressions: 0
       name: 
-      line: You see, all of this around you? It is because of him.
+      line: "Vous voyez tout cela autour de vous? C'est gr\xE2ce \xE0 lui."
       delay: 3
     - expressions: 0
       name: 
-      line: This everlasting wind, those houses.
+      line: ' Ce vent infini, ces maisons...'
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: dc6962d7982832f449a516ba8a5f5b1b, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -74,7 +78,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: "Wow how\u2019d that happen?"
+      line: "Comment-\xE7a ?"
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 57505d91ffcb1df498955a8d2b10260e, type: 3}
   - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
@@ -82,31 +86,36 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Well a long time ago, '
+      line: Eh bien, il y a longtemps,
       delay: 0
     - expressions: 0
       name: 
-      line: when people decided dangerous magic had to be forgotten,
+      line: "lorsque les gens ont d\xE9cid\xE9 que les magies "
       delay: 3.5
     - expressions: 0
       name: 
-      line: when Zenithia fell and everyone left our island,
+      line: " dangereuses devaient \xEAtre oubli\xE9es, "
+      delay: 2.75
+    - expressions: 0
+      name: 
+      line: "quand Zenithia est tomb\xE9e et que tous quitt\xE8rent cette \xEEle"
       delay: 3
     - expressions: 0
       name: 
-      line: " Ailen decided to stay with the few that couldn\u2019t leave. "
+      line: "Ailen lui, d\xE9cida de rester avec ceux qui ne pouvaient pas partir."
       delay: 3.5
     - expressions: 0
       name: 
-      line: He took care of them and during his free time,
+      line: Il a pris soin d'eux et pendant son temps libre,
       delay: 2.5
     - expressions: 0
       name: 
-      line: ' he experimented things with his wind magic and'
+      line: "il exp\xE9rimentait des choses avec sa magie du vent"
       delay: 3
     - expressions: 0
       name: 
-      line: "changed the mana\u2019s nature of the whole mountain."
+      line: " et a fini par changer la nature du mana de la montagne elle m\xEAme
+        !"
       delay: 2.75
     voiceLine: {fileID: 8300000, guid: 21dfa044f3f3f444795b7a2664a26efd, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -114,7 +123,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: Just like a facilitator artifact?
+      line: "Comme dans un art\xE9fact facilitateur ?"
       delay: 3
     voiceLine: {fileID: 8300000, guid: 472c22967d84cd749907b28f2cd925dd, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -122,7 +131,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Wow you understand stuff now! Good job!
+      line: 'Wow, tu comprends les choses maintenant ? Incroyable ! '
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: be11f7006df7bfc469014e355ebe2993, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -138,23 +147,24 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Yes exactly, and the mana started canalizing itself into wind.
+      line: "Exactement, et le mana commen\xE7a \xE0 se canaliser en vent de lui
+        m\xEAme."
       delay: 3.5
     - expressions: 0
       name: 
-      line: 'The wind blew the rocky landscapes '
+      line: "Le vent a souffl\xE9 sur les paysages rocheux "
       delay: 3
     - expressions: 0
       name: 
-      line: of the mountains and with erosion,
+      line: "de la montagne et avec l'\xE9rosion,"
       delay: 0
     - expressions: 0
       name: 
-      line: ' the landscape started to change, '
+      line: "le paysage commen\xE7a \xE0 changer"
       delay: 0
     - expressions: 0
       name: 
-      line: and the last ruins of Zenithia faded with it.
+      line: "et les derni\xE8res ruines de Zenithia commenc\xE8rent \xE0 disparaitre. "
       delay: 3
     voiceLine: {fileID: 8300000, guid: 421d5521070f69b4aa36d193370bd66f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -162,11 +172,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'So, until then you decided to stay here '
+      line: "Donc vous avez d\xE9cid\xE9 de reconstruire"
       delay: 0
     - expressions: 0
       name: 
-      line: and to rebuild Zenithia as this village.
+      line: Zenithia en Bord de Vent en attendant ?
       delay: 0
     voiceLine: {fileID: 8300000, guid: c7f4794c6d587424496e7fa327a27533, type: 3}
   - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
@@ -174,7 +184,8 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "You\u2019re quite insightful, yes that\u2019s what happened!"
+      line: "Vous \xEAtes plut\xF4t perspicace, oui, c'est ce qui c'est pass\xE9
+        ! "
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: ebcfe04b4257f3440a4f7ab89b73e923, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -182,15 +193,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, thank you for that story!
+      line: Eh bien merci pour ces explications.
       delay: 3
     - expressions: 0
       name: 
-      line: Hey Mist, see!?
+      line: "H\xE9 Mist, tu vois ?"
       delay: 0
     - expressions: 0
       name: 
-      line: "He said I was insightful, I\u2019m not as dumb as you thought!"
+      line: "Il a dit que j'\xE9tais perspicace, "
+      delay: 3
+    - expressions: 0
+      name: 
+      line: 'je ne suis pas aussi stupide que tu ne le crois! '
       delay: 3
     voiceLine: {fileID: 8300000, guid: c816bc9f7e5f82449aa96ad1cf177061, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -198,7 +213,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: You have a windmill instead of a brain.
+      line: "Tu as un moulin \xE0 vent \xE0 la place du cerveau."
       delay: 3
     voiceLine: {fileID: 8300000, guid: 9ce435ecbacfc0e4da2cb376a8548afe, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -206,34 +221,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Not nice Mist, not nice.
+      line: C'est pas sympa Mist.
       delay: 0
     voiceLine: {fileID: 8300000, guid: 69683293d875ebc45bc9fdbc5296b651, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: "So that\u2019s what became Ailen."
-      delay: 0
-    - expressions: 0
-      name: 
-      line: He actually was a pretty skilled human, I liked him.
-      delay: 3.25
-    voiceLine: {fileID: 8300000, guid: 7309c5088f5d70d419f1912ac64d4554, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: There are people you like????
-      delay: 1.75
-    voiceLine: {fileID: 8300000, guid: 4637343c636d6c64993b94d369cf1150, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: "Not you, that\u2019s for sure."
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: ff81af772f4ab2c4193c95ae9739ee56, type: 3}
