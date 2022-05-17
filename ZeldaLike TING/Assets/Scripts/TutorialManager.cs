@@ -34,7 +34,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Fire Card Tutorial")]
     [SerializeField] private FireCardTutorialManager FireCardTutorialManager;
-    [SerializeField] private GivePlayerFireCard givePlayerFireCard = null;
+    [SerializeField] private GivePlayerCard givePlayerFireCard = null;
     private bool fireCardCinematic = true;
     
     [Header("Volumes & Feedbacks")]

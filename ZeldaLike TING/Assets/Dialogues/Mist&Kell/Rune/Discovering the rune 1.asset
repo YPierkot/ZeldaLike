@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Discovering the rune 1
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Elles sont utilis\xE9es pour lancer des sorts, et celle-ci"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "En particulier pour un sort tr\xE8s tr\xE8s puissant."
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: ab0f2314b449efa4d847c3c67746a431, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Lequel ? Une m\xE9ga boule de feu ?"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Ou oh ! Un tsunami !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: df7cb62bb58d6cb44ae483c1ab2c3ea7, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Tu n'as pas besoin de le savoir humain.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 87813c8341193334fbb7c74154f6f98f, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: D'accord... Et pourquoi est-ce qu'elle brille ?
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: b314828d390b9c94cbede491d348a990, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "La rune est li\xE9e aux monolithes. Quand un monolithe"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Est activ\xE9, un quart de la rune brille. Ici, la moiti\xE9 brille."
+      delay: 4.25
+    voiceLine: {fileID: 8300000, guid: 032823895fab3f141836a69ff25091a5, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Ce qui veut dire que deux monolithes ont \xE9t\xE9 activ\xE9s !"
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: 338dabfcde496134993dc426ceac7f33, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Tu sais faire des math\xE9matiques ?"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Ca c'est du progr\xE8s !"
+      delay: 1.25
+    voiceLine: {fileID: 8300000, guid: e4eb8237c393df743b050099427fe429, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Piti\xE9 laisse moi tranquille."
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 877db974d2c449a4a8a17497e81e8983, type: 3}

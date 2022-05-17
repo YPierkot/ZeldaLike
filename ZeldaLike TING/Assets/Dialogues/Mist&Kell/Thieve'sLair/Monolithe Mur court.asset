@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Monolithe Mur court
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Allez Mist, fais ton truc !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: bafd6775513a7d144815bf67a69fa331, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Encore un art\xE9fact facilitateur !"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Au Sud Est !
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: c5f542e2afdda154e904d1f7ce28f2ef, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Ca va commencer \xE0 faire lourd \xE0 porter tout \xE7a..."
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 158fa9907f5f77f4cb6b5495fcab43d5, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: 'D''ailleurs, bonne nouvelle ! '
+      delay: 4
+    - expressions: 0
+      name: 
+      line: "Ithar n'a pas encore activ\xE9 ce Monolithe"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'On a encore du temps ! '
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 2a38139c60c39cb4fa3fc88af9f0f236, type: 3}

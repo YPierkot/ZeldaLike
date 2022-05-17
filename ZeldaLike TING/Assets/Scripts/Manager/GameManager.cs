@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public AnimationCurve cardTutorialCurve;
     public VolumeProfile tutorialTransition;
     private bool isLoop;
-    
+    public bool foundMonolith;
 
     public enum controller
     {
