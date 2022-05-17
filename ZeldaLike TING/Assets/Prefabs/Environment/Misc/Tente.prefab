@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 682931512285598564}
   - component: {fileID: 3779493244859905186}
   - component: {fileID: 1688553231}
+  - component: {fileID: 2616520940955027547}
   m_Layer: 0
   m_Name: Tente
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3018564953498389947, guid: ed9bf4a9c4f1708428646aaae9fe5485, type: 3}
+--- !u!65 &2616520940955027547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817860480653971102}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.8812807, y: 3.0323453, z: 5.217078}
+  m_Center: {x: 3.4184833, y: 1.3683681, z: 0.05086132}

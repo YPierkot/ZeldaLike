@@ -240,7 +240,7 @@ public class CustomLDOverlay : IMGUIOverlay {
         
         Ray mouseRay = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
         
-        if (Physics.Raycast(mouseRay, out RaycastHit hit)) {
+        if (Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Ground"))) {
             mousePosInWorldScene = hit.point;
             
             Handles.color = Color.black;
