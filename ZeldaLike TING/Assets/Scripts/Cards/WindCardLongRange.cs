@@ -14,7 +14,7 @@ public class WindCardLongRange : MonoBehaviour
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private Vector3 attractivePoint;
     [SerializeField] private LayerMask groundMask;
-    public GameObject DebugSphere;
+    [SerializeField] private GameObject windFX;
     
     private void OnEnable()
     {
@@ -30,7 +30,7 @@ public class WindCardLongRange : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         attractivePoint = transform.position;
         
-        Destroy(Instantiate(DebugSphere, attractivePoint, Quaternion.identity),2f);
+        Destroy(Instantiate(windFX, attractivePoint, Quaternion.identity),3f);
         
         Collider[] colliders = Physics.OverlapSphere(attractivePoint, 4.4f, interactMask);
         foreach (var col in colliders)
@@ -44,20 +44,19 @@ public class WindCardLongRange : MonoBehaviour
                 }
                 else if (col.GetComponent<InteracteObject>().windAffect)
                 {
-                    //EnnemyWindAttraction(col.gameObject);;
+                    EnnemyWindAttraction(col.gameObject);;
                 }
             }
             else if (col.CompareTag("Ennemy"))
             {
                 for (int i = 0; i < colliders.Length; i++)
                 {
-                    EnnemyWindAttraction(col.gameObject);
+                    if (col.CompareTag("Ennemy"))
+                    {
+                        EnnemyWindAttraction(col.gameObject);
+                    }
                     i++;
                 }
-            }
-            else
-            {
-                EnnemyWindAttraction(col.gameObject);
             }
         }
         
@@ -68,11 +67,11 @@ public class WindCardLongRange : MonoBehaviour
         enemy.transform.DOKill();
                     
         var shootPointPos = (enemy.transform.position - transform.position);
-        var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x) /* forceModifier*/, 
+        var targetPos = new Vector3((enemy.transform.position.x - shootPointPos.x), 
             enemy.transform.position.y + shootPointPos.y + 1f,
-            (enemy.transform.position.z + shootPointPos.z) /* forceModifier*/);
+            (enemy.transform.position.z - shootPointPos.z));
         
-        enemy.transform.DOMove(targetPos, 1.5f).OnComplete(() => enemy.transform.DOKill());
+        enemy.transform.DOMove(targetPos, 2f).OnComplete(() => enemy.transform.DOKill());
         Debug.Log($"{enemy.name} got attracted !");
     }
     private void OnTriggerEnter(Collider other)

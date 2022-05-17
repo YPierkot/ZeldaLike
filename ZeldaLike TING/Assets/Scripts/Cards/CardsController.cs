@@ -299,6 +299,7 @@ public class CardsController : MonoBehaviour
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
     }
     
+    
     private const float rangeIceShot = 8f;
     private const float rangeStartIceShot = 1f;
     private const float radiusIceShot = 2.5f;
@@ -334,16 +335,20 @@ public class CardsController : MonoBehaviour
         float yTransform = transform.position.y;
 
         Debug.Log("Wall Short Range Launched");
+        Destroy(Instantiate(ShortWallFx, transform.position + new Vector3(0, -1,0), Quaternion.identity), 3f);
         GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
         wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 1.5f);
         Destroy(wall, 4f);
     }
 
+    
     private const float forceModifier = 1.6f;
     public void ActivateWindGroundEffect() // OK
     {
+        Destroy(Instantiate(ShortWindFx, transform.position, Quaternion.identity), 3f);
+        
         repulsivePoint = transform.position;
-        if(DebugWindSphere != null)Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
+        //if(DebugWindSphere != null)Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
         Collider[] cols = Physics.OverlapSphere(transform.position, repulsiveRadius);
         foreach (var col in cols)
         {
