@@ -18,11 +18,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: Kell?! Long time no see!
+      line: Kell !? Ca fait longtemps !
       delay: 1
     - expressions: 4
       name: 
-      line: How's my favorite thief?
+      line: "Comment va mon exil\xE9 pr\xE9f\xE9r\xE9 ?"
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: d3c6bdca26c2575499853dc430dbe293, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -30,7 +30,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Could be better...
+      line: Ca pourrait aller mieux...
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 9c82314fc1fcbab4c9277a6c0aea4911, type: 3}
   - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
@@ -38,23 +38,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I can see that,
+      line: "Je vois \xE7a,"
       delay: 1
     - expressions: 0
       name: 
-      line: You look like a dead body
+      line: "Tu ressembles \xE0 un cadavre"
       delay: 1.25
     - expressions: 2
       name: 
-      line: What happened to you?
+      line: "Il t'est arriv\xE9 quoi ?"
       delay: 1
     - expressions: 2
       name: 
-      line: That purple mark on your face?
+      line: Cette marque sur ton visage?
       delay: 1
     - expressions: 2
       name: 
-      line: And that hor...
+      line: Et cette corn...
       delay: 0.75
     voiceLine: {fileID: 8300000, guid: 92f7d66514604594aaa57f941b2297aa, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -62,15 +62,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Nothing Brent,
+      line: 'Rien Brent, '
       delay: 1
     - expressions: 0
       name: 
-      line: Don't worry about me.
+      line: "T'inqui\xE8te pas pour moi, \xE7a va."
       delay: 1.5
     - expressions: 0
       name: 
-      line: What's new?
+      line: Sinon, quoi de neuf ?
       delay: 0
     voiceLine: {fileID: 8300000, guid: 76f95fab0ee049b4faf89c49c78bdad1, type: 3}
   - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
@@ -78,19 +78,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, odd things are starting
+      line: 'Des choses bizarres arrivent un peu '
       delay: 1.5
     - expressions: 0
       name: 
-      line: To happen all over the island.
+      line: "Partout sur l'\xEEle."
       delay: 1
     - expressions: 2
       name: 
-      line: Apparently, there are spirit attacks very often
+      line: "Apparemment les esprits attaquent tr\xE8s souvent,"
       delay: 2
     - expressions: 2
       name: 
-      line: Which is odd, because it usually is pretty rare.
+      line: "C'est \xE9trange les esprits sont rares d'habitude."
       delay: 2.5
     voiceLine: {fileID: 8300000, guid: 7686c56900192c447a375972039a512f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -98,35 +98,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 1
       name: 
-      line: Right...
+      line: Je vois...
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 97a77daf5b01d36479ecba8a704c6e9d, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: You're to blame for that human.
-      delay: 1.5
-    voiceLine: {fileID: 8300000, guid: 8ef9f4080a8f92541bb8361e4e313bea, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 3
-      name: 
-      line: Shut it Mist.
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: Did the village get attacked?
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 7e192de0c74f30a4c8f3ae8d46502f30, type: 3}
   - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Fortunately we were spared
+      line: "Heureusement, nous avons \xE9t\xE9 \xE9pargn\xE9s."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 7da03e5c7121531479d1552646c4b06a, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -134,7 +114,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Let's hope it lasts.
+      line: "Esp\xE9rons que \xE7a dure. "
       delay: 0
     voiceLine: {fileID: 8300000, guid: 4ffc0758f5bdb394885bb90b33ed7706, type: 3}
   - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
@@ -142,42 +122,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Oh, and there''s a newcomer! '
+      line: "En tout cas \xE7a a l'air de bien s'agiter \xE0 l'Est."
+      delay: 1.75
+    - expressions: 0
+      name: 
+      line: Tu devrais y faire un tour si tu veux en savoir plus.
       delay: 1.75
     voiceLine: {fileID: 8300000, guid: 6986e7b7f5f22a140a7db717cab649f8, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 4
-      name: 
-      line: Really? That's great!
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 7ec1a92b753735049b127e720ae7265e, type: 3}
-  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Yeah, her name is Gloria
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: She got cast away from the
-      delay: 1.25
-    - expressions: 0
-      name: 
-      line: 'Wind''s Edge village. '
-      delay: 1.75
-    - expressions: 0
-      name: 
-      line: She's currently trying to pass the integration test
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: d238ee2716de3ed4f99e8cf89fa041ff, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I'll go say I if I see her.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 640373aea84585e4da74caf3b06e7013, type: 3}

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -97,10 +96,7 @@ public class TriggeringDialogue : MonoBehaviour
         UIManager.Instance.playerLocation.text = zoneName;
         yield return new WaitForSeconds(4f);
         UIManager.Instance.playerLocation.text = null;
-        yield return new WaitForSeconds(timing - 4f);
-        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        Controller.instance.FreezePlayer(false);
-        DialogueManager.Instance.IsCinematic();
+        StartCoroutine(DialogueManager.Instance.CinematicWait(timing - 4f));
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos() {

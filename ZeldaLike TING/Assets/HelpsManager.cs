@@ -106,6 +106,12 @@ public class HelpsManager : MonoBehaviour
                     }
 
                     break;
+                case 6 :
+                    if (Input.GetKeyDown(KeyCode.T))
+                    {
+                        CheckLine(1);
+                    }
+                    break;
             }
         }
 
@@ -141,7 +147,7 @@ public class HelpsManager : MonoBehaviour
         }
         if (finished)
         {
-            ResetHelpText();
+            Invoke("ResetHelpText", 1.5f);;
         }
     }
 
@@ -162,6 +168,10 @@ public class HelpsManager : MonoBehaviour
         if (currentHelp.helpIndex == 1)
         {
             DisplayHelp();
+        }
+        else if (currentHelp.helpIndex == 6)
+        {
+            enabled = false;
         }
         else
         {

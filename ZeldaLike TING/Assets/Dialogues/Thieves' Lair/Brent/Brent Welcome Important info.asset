@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Brent Welcome Important info
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 55deb5260a84d964cb87941a8979269d, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "En tout cas \xE7a a l'air de bien s'agiter \xE0 l'Est."
+      delay: 1.75
+    - expressions: 0
+      name: 
+      line: Tu devrais y faire un tour si tu veux en savoir plus.
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: 6986e7b7f5f22a140a7db717cab649f8, type: 3}

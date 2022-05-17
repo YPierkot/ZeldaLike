@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -6,34 +7,30 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    [Header("Dialogues Management")]
-    
-    public static DialogueManager Instance;
+    [Header("Dialogues Management")] public static DialogueManager Instance;
     private Queue<string> sentences;
     private int currentDialogue;
     private float defaultDelay = 2f;
     private int sentenceIndex;
-    [SerializeField] private List<DialogueLine> DialogueLines = new List<DialogueLine>{};
+    [SerializeField] private List<DialogueLine> DialogueLines = new List<DialogueLine> { };
     public bool isPlayingDialogue;
     [SerializeField] private int dialogueMistKellTimer = 30;
     private float timeSinceLastDialogue;
     [NonSerialized] public string playerLocation;
-    
-    
-    [Header("Dialogue Display")]
-    
-    [SerializeField] private TextMeshProUGUI dialogueDisplay;
+    private bool skip;
+
+    [Header("Dialogue Display")] [SerializeField]
+    private TextMeshProUGUI dialogueDisplay;
+
     [SerializeField] private UnityEngine.UI.Image characterEmotion;
     [SerializeField] private Animator cinematicMode;
     public Animator mist;
     public bool isCursed;
     public bool isCinematic = false;
+
+    [Header("Enqueued Dialogue Management")]
     
-    [Header("Stopped Dialogue Management")]
-    
-    private int lastDialogueStopIndex;
-    private int lastSentenceStopIndex;
-    [SerializeField] private List<DialogueLine> StoppedDialogue;
+    public List<DialogueLine> EnqueuedDialogue;
     
     [Header("Dialogues")]
     
@@ -60,11 +57,8 @@ public class DialogueManager : MonoBehaviour
     public void AssignDialogue(List<DialogueLine> dialogue)
     {
         isPlayingDialogue = true;
-        if (DialogueLines.Count != 0 && isPlayingDialogue)
+        if (isPlayingDialogue)
         {
-            lastDialogueStopIndex = currentDialogue;
-            lastSentenceStopIndex = sentenceIndex;
-            StoppedDialogue = DialogueLines;
             CancelInvoke("DisplayNextSentence");
         }
         currentDialogue = 0;
@@ -112,21 +106,13 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
+        
         if (currentDialogue != DialogueLines.Count - 1)
         {
             currentDialogue++;
             sentenceIndex = 0;
             StartDialogue(DialogueLines[currentDialogue]);
         }
-        /*else if (StoppedDialogue.Count != 0)
-        {
-            Debug.Log(StoppedDialogue);
-            DialogueLines = StoppedDialogue;
-            //StartDialogue(StoppedDialogue[currentDialogue].character.dialogueInterruptions[Range(0, StoppedDialogue[currentDialogue].character.dialogueInterruptions.Length)].dialogue[0]);
-            StoppedDialogue.Clear();
-            currentDialogue = lastDialogueStopIndex;
-            StartDialogue(DialogueLines[currentDialogue]);
-        }*/
         else
         {
             characterEmotion.gameObject.SetActive(false);
@@ -134,6 +120,7 @@ public class DialogueManager : MonoBehaviour
             isPlayingDialogue = false;
             timeSinceLastDialogue = Time.time;
             DialogueLines.Clear();
+            EnqueuedDialogue.Clear();
             sentenceIndex = 0;
             dialogueDisplay.text = null;
         }
@@ -174,6 +161,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T) && isPlayingDialogue)
         {
+            skip = true;
             CancelInvoke("DisplayNextSentence");
             SoundManager.Instance.Interrupt();
             characterEmotion.gameObject.SetActive(false);
@@ -183,12 +171,23 @@ public class DialogueManager : MonoBehaviour
             DialogueLines.Clear();
             sentenceIndex = 0;
             dialogueDisplay.text = null;
+            if (EnqueuedDialogue.Count != 0)
+            {
+                DialogueLines = EnqueuedDialogue;
+                AssignDialogue(DialogueLines);
+            }
+            if (isCinematic)
+            {
+                UIManager.Instance.playerLocation.text = null;
+                IsCinematic();
+                GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+                Controller.instance.FreezePlayer(false);
+            }
         }
     }
 
     public void IsCinematic()
     {
-        Debug.Log("Cinematique");
         if (isCinematic)
         {
             UIManager.Instance.gameObject.SetActive(true);
@@ -206,7 +205,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && !GameManager.Instance.isTutorial)
         {
-            Debug.Log("Je lance un dialogue random");
             DialogueScriptable dialogueToPlay;
             switch (playerLocation)
             {
@@ -233,6 +231,23 @@ public class DialogueManager : MonoBehaviour
                 
             }
             
+        }
+    }
+    public IEnumerator CinematicWait(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (skip)
+        {
+            Debug.Log("La cinématique a été skip");
+            skip = false;
+        }
+        else
+        {
+            Debug.Log("La cinématique continue");
+            IsCinematic();
+            UIManager.Instance.playerLocation.text = null;
+            GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+            Controller.instance.FreezePlayer(false);
         }
     }
 }
