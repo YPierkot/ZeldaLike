@@ -53,13 +53,16 @@ public class NPCDialogue : MonoBehaviour{
 
     private void AssignDialogue(DialogueScriptable dialogueToAdd)
     {
-        DialogueManager.Instance.AssignDialogue(dialogueToAdd.dialogue.ToList());
+        if (!DialogueManager.Instance.isPlayingDialogue)
+        {
+            DialogueManager.Instance.AssignDialogue(dialogueToAdd.dialogue.ToList());
+        }
     }
     
     /// <summary>
     /// Assign a random dialogue
     /// </summary>
-    public void AssignRandomlDialogue() => AssignDialogue(fillingDialogues[UnityEngine.Random.Range(0, fillingDialogues.Length)]);
+    public void AssignRandomDialogue() => AssignDialogue(fillingDialogues[UnityEngine.Random.Range(0, fillingDialogues.Length)]);
     
     #if UNITY_EDITOR
     private void OnDrawGizmos() {
