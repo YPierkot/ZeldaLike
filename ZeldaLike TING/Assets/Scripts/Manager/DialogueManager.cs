@@ -132,27 +132,22 @@ public class DialogueManager : MonoBehaviour
         {
             case dialogueProp.Expressions.Angry:
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Angry;
-                //Debug.Log("Angry");
                 break;
             
             case dialogueProp.Expressions.Sad:
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Sad;
-                //Debug.Log("Sad");
                 break;
             
             case dialogueProp.Expressions.Laughing:
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Laughing;
-                //Debug.Log("Laughing");
                 break;
             
             case dialogueProp.Expressions.Confused:
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Confused;
-                //Debug.Log("Confused");
                 break;
             
             case dialogueProp.Expressions.Neutral:
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Neutral;
-                //Debug.Log("Neutral");
                 break;
         }
     }

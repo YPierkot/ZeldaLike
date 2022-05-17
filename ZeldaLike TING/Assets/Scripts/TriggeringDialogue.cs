@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggeringDialogue : MonoBehaviour
 {
     [SerializeField] private DialogueScriptable dialogue;
+    public DialogueScriptable importantInfo;
     private bool hasGivenDialogue;
     public bool isTutorial;
     [HideInInspector] public TutorialManager tutorialManager;
@@ -17,6 +18,7 @@ public class TriggeringDialogue : MonoBehaviour
     [HideInInspector] public string zoneName;
     [HideInInspector] public bool isMonolith;
     [HideInInspector] public DialogueScriptable shortMonolithDialogue;
+    
     private Transform defaultCamera;
 
     private void Start()
@@ -60,6 +62,7 @@ public class TriggeringDialogue : MonoBehaviour
                     DialogueManager.Instance.AssignDialogue(shortMonolithDialogue.dialogue.ToList());
                     if (isCinematic)
                     {
+                        cinematicTime = 8;
                         StartCoroutine(Cinematic(cinematicTime, cameraPoint));
                     }
                 }
@@ -72,11 +75,20 @@ public class TriggeringDialogue : MonoBehaviour
                         StartCoroutine(Cinematic(cinematicTime, cameraPoint));
                     }
                 }
+
+                if (importantInfo != null)
+                {
+                    DialogueManager.Instance.EnqueuedDialogue = importantInfo.dialogue.ToList();
+                }
             }
             else
             {
                 hasGivenDialogue = true;
                 DialogueManager.Instance.AssignDialogue(dialogue.dialogue.ToList());
+                if (importantInfo != null)
+                {
+                    DialogueManager.Instance.EnqueuedDialogue = importantInfo.dialogue.ToList();
+                }
                 if (isCinematic)
                 {
                     StartCoroutine(Cinematic(cinematicTime, cameraPoint));
