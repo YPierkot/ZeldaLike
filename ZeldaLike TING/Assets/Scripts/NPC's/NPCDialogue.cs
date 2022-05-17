@@ -56,6 +56,11 @@ public class NPCDialogue : MonoBehaviour{
         DialogueManager.Instance.AssignDialogue(dialogueToAdd.dialogue.ToList());
     }
     
+    /// <summary>
+    /// Assign a random dialogue
+    /// </summary>
+    public void AssignRandomlDialogue() => AssignDialogue(fillingDialogues[UnityEngine.Random.Range(0, fillingDialogues.Length)]);
+    
     #if UNITY_EDITOR
     private void OnDrawGizmos() {
         if (!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;

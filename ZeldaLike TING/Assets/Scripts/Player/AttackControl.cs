@@ -28,7 +28,7 @@ public class AttackControl : MonoBehaviour
             StartCoroutine(KnockbackCo(eRb));
         }
         else if (other.transform.CompareTag("Crates")) {
-            if(other.GetComponent<DestructableObject>() != null) other.GetComponent<DestructableObject>().DestroyObject();
+            if(other.GetComponent<InteracteWithObect>() != null) other.GetComponent<InteracteWithObect>().InteractWithObject();
             else Debug.LogError("The object you try to destroy doesn't have the script DestructableObject", other.transform);
         }
     }

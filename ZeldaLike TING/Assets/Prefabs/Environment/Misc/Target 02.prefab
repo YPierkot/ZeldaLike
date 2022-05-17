@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5963623999186782633}
   - component: {fileID: 4182285430884212868}
   - component: {fileID: 8004668388227412204}
+  - component: {fileID: 3294872698295680882}
+  - component: {fileID: 7588918876619260579}
   m_Layer: 0
   m_Name: Target 02
-  m_TagString: Untagged
+  m_TagString: Crates
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +85,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3294872698295680882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409984055802976164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd92546bae92fb0469b5ac41d6be654c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyObjectAfterHitting: 0
+  destroyAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!65 &7588918876619260579
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409984055802976164}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.77140033, y: 1.9473, z: 0.7946003}
+  m_Center: {x: -0.115900055, y: 0.97365, z: 0.0000014339655}
