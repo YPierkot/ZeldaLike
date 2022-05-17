@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PuzzleDoorActivation : MonoBehaviour {
     [SerializeField] private int numberOfToObjectToActivate = 0;
