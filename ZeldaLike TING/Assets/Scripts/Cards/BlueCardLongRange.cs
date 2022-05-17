@@ -20,6 +20,7 @@ public class BlueCardLongRange : MonoBehaviour
         {
             if (col.transform.CompareTag("Interactable")) col.GetComponent<InteracteObject>().Freeze(transform.position);
             else if (col.transform.CompareTag("Ennemy")) col.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy();
+            else if (col.CompareTag("Boss")) col.transform.GetComponentInParent<BossManager>().Freeze();
         }
         
         Destroy(gameObject);
