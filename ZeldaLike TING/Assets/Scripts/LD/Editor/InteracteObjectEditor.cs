@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+[CanEditMultipleObjects]
 [CustomEditor(typeof(InteracteObject) , true)]
 public class InteracteObjectEditor : Editor
 {

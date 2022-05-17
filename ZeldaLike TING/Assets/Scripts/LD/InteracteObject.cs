@@ -64,7 +64,7 @@ public class InteracteObject : MonoBehaviour
             if (mesh != null)
             {
                 mesh.material.color = new Color( Mathf.Clamp(mesh.material.color.r+.035f, 0,1),Mathf.Clamp(mesh.material.color.g-.035f, 0,1) ,Mathf.Clamp(mesh.material.color.b-.035f, 0,1) , 1);
-                if(mesh.material.color.r >= 1) Destroy(gameObject); 
+                if(mesh.material.color.r >= 1) DestroyGM();
             }
             else
             {
