@@ -19,7 +19,16 @@ public class BossAnimation : MonoBehaviour
 
    public void FinishTP()
    {
-      Debug.Log("FinishTP");
       script.EndTeleport();
-   } 
+   }
+
+   public void EndLaserCast()
+   {
+      script.castingLaser = false;
+   }
+
+   public void CanThrowBool()
+   {
+      script.canThrow = true;
+   }
 }
