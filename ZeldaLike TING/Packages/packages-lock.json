@@ -2,7 +2,7 @@
   "dependencies": {
     "com.autodesk.fbx": {
       "version": "4.1.1",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -132,9 +132,20 @@
         "com.unity.2d.tilemap.extras": "2.2.1"
       }
     },
+    "com.unity.feature.worldbuilding": {
+      "version": "1.0.1",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.probuilder": "5.0.3",
+        "com.unity.polybrush": "1.1.2",
+        "com.unity.formats.fbx": "4.1.2",
+        "com.unity.terrain-tools": "4.0.3"
+      }
+    },
     "com.unity.formats.fbx": {
       "version": "4.1.2",
-      "depth": 0,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.timeline": "1.5.2",
