@@ -52,27 +52,28 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
    public bool canDash;
-
+   
    private bool moveHoldCard;
 
-    private float dashTimer;
-    private float holdTimer; 
-    public int dashAvailable; 
-    private float dashCDtimer; 
-
-    [SerializeField] public bool canMove = true;
+   private float dashTimer;
+   private float holdTimer; 
+   public int dashAvailable; 
+   private float dashCDtimer;
+   
+   [SerializeField] public bool canMove = true;
     
-    [SerializeField] private SpriteAngle[] spriteArray;
-    private System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle>();
+   [SerializeField] private SpriteAngle[] spriteArray;
+   private System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle>();
 
 
-    private PlayerInputMap InputMap;
-    [SerializeField] private LayerMask pointerMask;
+   private PlayerInputMap InputMap;
+   [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
     public Transform moveCardTransform;
     public Transform movePlayerTransform;
     private Vector3 lastDir;
+    private float anglePlayerView;
     
     [Header("--- CAMERA ---")] 
     [SerializeField] private CameraController camera;
@@ -82,7 +83,7 @@ public class Controller : MonoBehaviour
     private bool dashCamera;
 
     [NonSerialized] public Vector3 pointerPosition;
-    private float angleView;
+    [HideInInspector] public float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
     
     [Header("--- ATTAQUE ---")] 
@@ -321,7 +322,7 @@ public class Controller : MonoBehaviour
         }
         else if (moveHoldCard)
         {
-            float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+            anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
             if (angleView < 0) anglePlayerView += 360 ; 
             movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0);
         }
@@ -342,7 +343,7 @@ public class Controller : MonoBehaviour
     void Move()
     {
         Vector3 dir = lastDir;
-        float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+        anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
         if (angleView < 0) anglePlayerView += 360 ; 
         movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
         

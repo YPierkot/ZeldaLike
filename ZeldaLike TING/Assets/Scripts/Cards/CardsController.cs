@@ -57,9 +57,8 @@ public class CardsController : MonoBehaviour
     public LayerMask Ennemy;
     public int projectileSpeed;
 
-    [Space(10)] // Wind Card
+    [Space(10)] // Wind Card FX's
     [Header("FX'S")]
-    [SerializeField] private GameObject ShortFireFx;
     [SerializeField] private GameObject ShortIceFx;
     [SerializeField] private GameObject ShortWallFx;
     [SerializeField] private GameObject ShortWindFx;
@@ -286,7 +285,7 @@ public class CardsController : MonoBehaviour
     
 
     // EFFECTS CODE
-    private void ActivateFireShortEffect() // OK FX EN COURS D'INTE
+    private void ActivateFireShortEffect() // OK
     {
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -299,36 +298,33 @@ public class CardsController : MonoBehaviour
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
     }
     
-    
     private const float rangeIceShot = 8f;
     private const float rangeStartIceShot = 1f;
     private const float radiusIceShot = 2.5f;
-    public void ActivateIceGroundEffect() // OK Manque FX
+    public void ActivateIceGroundEffect() // OK FX A FIX
     {
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
-        
-        //Destroy(Instantiate(ShortIceFx, transform.position, Quaternion.identity),6f);
-        
+
         var GoDir =  (transform.position + shootPointPos * radiusShootPoint) ;
-        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
+        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
+            new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
         
-        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
+        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 0.5f, GoDir.z * rangeStartIceShot), 
+            Quaternion.Euler(-90,Controller.instance.angleView -90f + 180,0)),3f);
+        
+        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
+            new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            ennemy.transform.GetComponent<AI.AbtractAI>().LooseHp(1);
-            ennemy.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy();
-            
+            if (ennemy.isTrigger) { ennemy.transform.GetComponent<AI.AbtractAI>().LooseHp(1); ennemy.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy(); }
 
             if (ennemy.transform.CompareTag("Interactable"))
-            {
                 ennemy.GetComponent<InteracteObject>().isFreeze = true;
-                
-            }
         }
     }
 
-    public void ActivateWallGroundEffect() // C'est OK FX ARRIVE
+    public void ActivateWallGroundEffect() // C'est OK 
     {
         float zTransform = transform.position.z;
         float xTransform = transform.position.x;
@@ -340,7 +336,6 @@ public class CardsController : MonoBehaviour
         wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 1.5f);
         Destroy(wall, 4f);
     }
-
     
     private const float forceModifier = 1.6f;
     public void ActivateWindGroundEffect() // OK
@@ -364,8 +359,7 @@ public class CardsController : MonoBehaviour
             }
         }
     }
-
-
+    
     private void EnnemyWindRepultion(GameObject enemy)
     {
         enemy.transform.DOKill();
