@@ -1468,12 +1468,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e072db3f9fbb6488ec9fa9b8915332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLife: 2
+  life: 0
   shield: {fileID: 1788566872}
   currentState: 0
   TransformTP_Zone: {fileID: 451372040}
+  isFreeze: 0
   sizeTP_Zone: {x: 15, y: 15}
   DebugTP_Zone: 1
-  laserTimer: 20
+  laserTimer: 5
   laserSpeed: 0.045
   castingLaser: 0
   ballAmountRange: {x: 5, y: 8}

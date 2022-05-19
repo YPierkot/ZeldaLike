@@ -16,12 +16,17 @@ public class BossManager : MonoBehaviour
 
     private Transform boss;
 
+    [SerializeField] private float maxLife;
+    public float life;
     [SerializeField] private Transform shield;
 
     [SerializeField] private BossState currentState = BossState.idle;
     [HideInInspector] public Transform TransformTP_Zone;
 
-    private bool isFreeze;
+    private int idleCount = 0;
+    public bool isFreeze;
+    private bool castAttack;
+    private bool tpNext;
 
     [Header("TP")] private bool teleporting;
     [Space] [SerializeField] private Vector2 sizeTP_Zone;
@@ -51,6 +56,7 @@ public class BossManager : MonoBehaviour
 
     void Start()
     {
+        maxLife = life;
         animator = GetComponentInChildren<Animator>();
         laserLine = GetComponentInChildren<LineRenderer>();
 
@@ -84,6 +90,16 @@ public class BossManager : MonoBehaviour
 
     }
 
+    public void EndIdle()
+    {
+        if (currentState == BossState.idle)
+        {
+            if (tpNext) currentState = BossState.Tp;
+            else if (castAttack || idleCount == 3) RandomAttack();
+            else idleCount++;
+        }
+    }
+
     #endregion
 
     #region TP
@@ -92,10 +108,11 @@ public class BossManager : MonoBehaviour
     {
         if (!teleporting) LaunchTeleport();
     }
-
-
+    
     private void LaunchTeleport()
     {
+        idleCount = 0;
+        tpNext = false;
         shield.gameObject.SetActive(false);
         teleporting = true;
         animator.SetTrigger("StartTP");
@@ -118,7 +135,8 @@ public class BossManager : MonoBehaviour
         if (teleporting)
         {
             teleporting = false;
-            RandomAttack();
+            castAttack = true;
+            currentState = BossState.idle;
         }
     }
 
@@ -130,6 +148,7 @@ public class BossManager : MonoBehaviour
     {
         if (!laserStart)
         {
+            idleCount = 0;
             laserStart = true;
             castingLaser = true;
             animator.SetTrigger("LaserAttack");
@@ -142,7 +161,7 @@ public class BossManager : MonoBehaviour
         }
         else if (_laserTimer >= 0)
         {
-            laserPos = Vector3.Lerp(laserPos.normalized, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
+            laserPos = Vector3.Lerp(laserPos, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
             Vector3 rayDir = (laserPos - boss.position).normalized;
             rayDir = new Vector3(rayDir.x, 0, rayDir.z);
             if (!castingLaser)
@@ -170,6 +189,7 @@ public class BossManager : MonoBehaviour
         if (!ballStart)
         {
             Debug.Log("Ball Start");
+            idleCount = 0;
             ballStart = true;
             animator.SetTrigger("BallAttack");
             int ballsAmount = Random.Range((int)ballAmountRange.x, ((int)ballAmountRange.y + 1));
@@ -187,7 +207,7 @@ public class BossManager : MonoBehaviour
             {
                 Debug.Log("Throw");
                 GameObject newBall = Instantiate(ballQueue.Dequeue(), new Vector3(boss.position.x, 0, boss.position.z), Quaternion.identity);
-                Vector3 rdm = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), 0, Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
+                Vector3 rdm = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), 1, Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
                 newBall.GetComponent<BossBall>().LaunchBall(TransformTP_Zone.position + rdm);
                 canThrow = false;
                 StartCoroutine(ballThrowCD());
@@ -209,13 +229,14 @@ public class BossManager : MonoBehaviour
     {
         if (Random.value <= 0.5f) currentState = BossState.ballAttack;
         else currentState = BossState.lasetAttack;
+        castAttack = false;
     }
 
     private void OnDrawGizmos()
     {
         if (DebugTP_Zone && TransformTP_Zone != null) Gizmos.DrawWireCube(TransformTP_Zone.position, new Vector3(sizeTP_Zone.x, 0, sizeTP_Zone.y) * 2);
 
-        if (boss != null) Gizmos.DrawRay(boss.position, laserPos);
+        if (boss != null) Gizmos.DrawLine(boss.position, laserPos);
     }
 
     public void Freeze()
@@ -225,8 +246,24 @@ public class BossManager : MonoBehaviour
         {
             Debug.Log("Freeze");
             shield.gameObject.SetActive(false);
-            FreezeCD();
+            StartCoroutine(FreezeCD());
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("Damage Boss");
+        if (isFreeze)
+        {
+            life -= damage;
+            if (life <= 0) Death();
+        }
+        else tpNext = true;
+    }
+
+    void Death()
+    {
+        gameObject.SetActive(false);
     }
 
     IEnumerator FreezeCD()

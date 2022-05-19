@@ -27,6 +27,11 @@ public class BossAnimation : MonoBehaviour
       script.castingLaser = false;
    }
 
+   public void EndIdle()
+   {
+      script.EndIdle();
+   }
+
    public void CanThrowBool()
    {
       script.canThrow = true;

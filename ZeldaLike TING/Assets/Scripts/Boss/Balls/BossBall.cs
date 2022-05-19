@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class BossBall : MonoBehaviour
 {
-    [SerializeField] private float speed = 0.01f;
+    [SerializeField] private float maxSpeed = 0.01f;
     [SerializeField] private float heightMultiplicator;
+    [SerializeField] private float destroyTime;
     private float currentDistance;
     private float totalDistance;
     private bool ballLaunch;
@@ -16,6 +17,7 @@ public class BossBall : MonoBehaviour
 
     private void Start()
     {
+        
     }
 
     private void Update()
@@ -24,9 +26,9 @@ public class BossBall : MonoBehaviour
         {
             if (currentDistance <= 1)
             {
+                float speed = maxSpeed;
                 currentDistance += speed;
                 Vector3 position = startPosition + new Vector3( targetPosition.x*currentDistance, Mathf.Cos((currentDistance - 0.5f)*Mathf.PI) * heightMultiplicator, targetPosition.z*currentDistance);
-                Debug.Log($"distance: {currentDistance}, pos:{position}");
                 transform.position = position;
             }
 
@@ -41,5 +43,11 @@ public class BossBall : MonoBehaviour
         target2DPosition = new Vector2(target.x, target.z).normalized;
         totalDistance = Vector2.Distance(new Vector2(startPosition.x, startPosition.z), target2DPosition);
         ballLaunch = true;
+    }
+
+    IEnumerable Destroyed()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
     }
 }
