@@ -333,7 +333,7 @@ public class CardsController : MonoBehaviour
         Debug.Log("Wall Short Range Launched");
         Destroy(Instantiate(ShortWallFx, transform.position + new Vector3(0, -1,0), Quaternion.identity), 3f);
         GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
-        wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 1.5f);
+        wall.transform.DOMove(new Vector3(xTransform, yTransform, zTransform), 1.5f);
         Destroy(wall, 4f);
     }
     
