@@ -4,7 +4,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class 
+    Controller : MonoBehaviour
 {
     #region CLASS & Other
 
