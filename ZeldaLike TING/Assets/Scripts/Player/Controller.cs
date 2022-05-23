@@ -66,8 +66,12 @@ public class Controller : MonoBehaviour
    private System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle>();
 
 
-   private PlayerInputMap InputMap;
-   [SerializeField] private LayerMask pointerMask;
+    private PlayerInputMap InputMap;
+    public delegate void Interaction();
+    public Interaction playerInteraction;
+    
+    
+    [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
     public Transform moveCardTransform;
@@ -131,6 +135,7 @@ public class Controller : MonoBehaviour
         InputMap.Movement.Position.started += context => moving = true;
         InputMap.Movement.Position.canceled += context => moving = false;
 
+        InputMap.Action.Interaction.performed += InteractionPerformed;
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
@@ -181,7 +186,12 @@ public class Controller : MonoBehaviour
         
         InputMap.Menu.CardMenu.performed += SwitchCard;
     }
-    
+
+    private void InteractionPerformed(InputAction.CallbackContext obj)
+    {
+        if(playerInteraction != null) playerInteraction();
+    }
+
     private void CardHolderOncanceled(InputAction.CallbackContext obj) 
     {
         if (_controlType == ControlType.HoldForLong && holdingForCard)

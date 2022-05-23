@@ -30,5 +30,6 @@ public class AttackControl : MonoBehaviour
             else Debug.LogError("The object you try to destroy doesn't have the script DestructableObject", other.transform);
             
         }
+        else if (other.CompareTag("Boss")) other.GetComponentInParent<BossManager>().TakeDamage(playerDamage);
     }
 }
