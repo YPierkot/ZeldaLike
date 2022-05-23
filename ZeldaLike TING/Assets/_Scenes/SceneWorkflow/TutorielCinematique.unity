@@ -318,6 +318,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
+      propertyPath: ShortIceFx
+      value: 
+      objectReference: {fileID: 4176346125989671971, guid: 5cea77857c8eb534e8aea7e5a3f79f5c,
+        type: 3}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
       propertyPath: ShortFireFx
       value: 
       objectReference: {fileID: 132305753347939906, guid: bb97d7fb24ce876499abdde9d3f7c8a4,
@@ -328,6 +334,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2582913492085078652, guid: 6cfdc976f71d9004695aaf288075ffb5,
         type: 3}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: canUseCards
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: iceCardUnlock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: fireCardUnlock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: wallCardUnlock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: windCardUnlock
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d5dd494f81cd245a3a98f68ff6149d, type: 3}
 --- !u!1 &363172606
