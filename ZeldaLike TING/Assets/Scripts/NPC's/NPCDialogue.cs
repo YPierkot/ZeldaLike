@@ -20,7 +20,7 @@ public class NPCDialogue : MonoBehaviour{
     {
         if (other.CompareTag("Player"))
         {
-            playerIn = true;
+            Controller.instance.playerInteraction = Interact;
             Debug.Log("You can interact");
         }
     }
@@ -29,14 +29,14 @@ public class NPCDialogue : MonoBehaviour{
     {
         if (other.CompareTag("Player"))
         {
-            playerIn = false;
+            if (Controller.instance.playerInteraction == Interact) Controller.instance.playerInteraction = null;
             Debug.Log("You can't interact anymore");
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIn)
+        /*if (Input.GetKeyDown(KeyCode.E) && playerIn)
         {
             if (currentDialogue > dialogues.Count || dialogues.Count == 0)
             {
@@ -48,7 +48,22 @@ public class NPCDialogue : MonoBehaviour{
                 AssignDialogue(dialogues[currentDialogue]);
                 currentDialogue++;
             }
-        }
+        }*/
+    }
+
+    void Interact()
+    {
+            if (currentDialogue > dialogues.Count || dialogues.Count == 0)
+            {
+                Debug.Log("Ya pas de dialogues");
+                AssignDialogue(fillingDialogues[UnityEngine.Random.Range(0, fillingDialogues.Length)]);
+            }
+            else
+            {
+                AssignDialogue(dialogues[currentDialogue]);
+                currentDialogue++;
+            }
+        
     }
 
     private void AssignDialogue(DialogueScriptable dialogueToAdd)

@@ -5,19 +5,14 @@ public class Button : MonoBehaviour
     [SerializeField] private UnityEngine.Events.UnityEvent activateEvent;
     private MeshRenderer mesh;
 
-    private bool inRange;
-
     void Start()
     {
         mesh = GetComponent<MeshRenderer>();
     }
 
-    private void Update()
+    void Interact()
     {
-        if (inRange && Input.GetKeyDown(KeyCode.E))
-        {
             activateEvent.Invoke();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +20,7 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             mesh.material.color = Color.yellow;
-            inRange = true;
+            Controller.instance.playerInteraction = Interact;
         }
     }
 
@@ -34,7 +29,7 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             mesh.material.color = Color.white;
-            inRange = false;
+            if (Controller.instance.playerInteraction == Interact) Controller.instance.playerInteraction = null;
         }
     }
 }
