@@ -55,6 +55,7 @@ public class FireCardTutorialManager : MonoBehaviour
     {
         if (canStart && !DialogueManager.Instance.isPlayingDialogue)
         {
+            Debug.Log("Je commence le tutoriel du feu");
             PlayerStat.instance.life = PlayerStat.instance.lifeMax;
             barrier.SetActive(true);
             int remainingDialogue = dialogueQueue.Count;
