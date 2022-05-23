@@ -18,7 +18,7 @@ public class GivePlayerCard : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.transform.CompareTag("Player") && Input.GetKeyDown(KeyCode.E));
         {
             if (!isCardGiven && canGiveCard && !DialogueManager.Instance.isPlayingDialogue)
             {
