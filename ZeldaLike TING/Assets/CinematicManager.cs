@@ -70,6 +70,7 @@ public class CinematicManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         UIManager.Instance.loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
+        DialogueManager.Instance.IsCinematic();
         SceneManager.LoadScene("_Scenes/SceneWorkflow/LD_Tuto");
     }
 }

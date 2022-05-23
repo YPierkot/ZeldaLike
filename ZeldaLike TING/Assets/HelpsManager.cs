@@ -13,7 +13,8 @@ public class HelpsManager : MonoBehaviour
     [SerializeField] private GameObject[] checks = new GameObject[4];
     [SerializeField] private List<helpTexts> helps;
     private Queue<helpTexts> helpsQueue;
-    private helpTexts currentHelp; 
+    private helpTexts currentHelp;
+    private bool done;
 
 
     [System.Serializable]
@@ -37,7 +38,7 @@ public class HelpsManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentHelp != null)
+        if (currentHelp != null && !done)
         {
             switch (currentHelp.helpIndex)
             {
@@ -74,23 +75,18 @@ public class HelpsManager : MonoBehaviour
                             CheckLine(4);
                         }
                     }
-
                     break;
                 case 2:
                     if (Controller.instance.dashing)
                     {
                         CheckLine(1);
                     }
-
                     break;
                 case 3:
                     if (Controller.instance.inAttack)
                     {
                         CheckLine(1);
                     }
-
-
-
                     break;
                 case 4:
                     if (CardsController.instance.fireRectoUse)
@@ -119,6 +115,8 @@ public class HelpsManager : MonoBehaviour
 
     public void DisplayHelp()
     {
+        done = false;
+        helpTextDisplay.gameObject.SetActive(true);
         currentHelp = helpsQueue.Dequeue();
         Debug.Log(currentHelp.keyBoardHelp);
         switch (GameManager.Instance.currentContorller)
@@ -147,24 +145,25 @@ public class HelpsManager : MonoBehaviour
         }
         if (finished)
         {
+            done = true;
             Invoke("ResetHelpText", 1.5f);;
         }
     }
 
     private void CheckLine(int line)
     {
-        checks[line-1].SetActive(true);
+        checks[line - 1].SetActive(true);
+        Debug.Log("Je check la condition " + currentHelp.helpIndex);
         CheckIfHelpFinished();
     }
 
     private void ResetHelpText()
     {
-        helpTextDisplay.text = "";
+        
         foreach (var check in checks)
         {
             check.SetActive(false);
         }
-
         if (currentHelp.helpIndex == 1)
         {
             DisplayHelp();
@@ -175,8 +174,7 @@ public class HelpsManager : MonoBehaviour
         }
         else
         {
-            currentHelp = helps[4];
+            helpTextDisplay.text = "";
         }
-        
     }
 }
