@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Scolling
-  m_Shader: {fileID: -6465566751694194690, guid: a10224afe62e8684691f76400304f053,
+  m_Name: mat_distort_1
+  m_Shader: {fileID: -6465566751694194690, guid: 85647afc870172b4b891080c1a48369c,
     type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,8 +20,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainText:
-        m_Texture: {fileID: 2800000, guid: a6d8016075a26454ba0ff40a433d5aa2, type: 3}
+    - _SampleTexture2D_1661f9e1ed04404fb8074fb7c6dcc6e2_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 95b04b2c113a9454eb297161f86fa91b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -40,11 +40,10 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scroll_speed: 1
     m_Colors:
-    - _Color: {r: 7.999999, g: 1.7591621, b: 0.041884813, a: 0}
+    - _Color: {r: 0.5803922, g: 1.2392157, b: 1.5137255, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &577024937085585321
+--- !u!114 &3072354341665462353
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
