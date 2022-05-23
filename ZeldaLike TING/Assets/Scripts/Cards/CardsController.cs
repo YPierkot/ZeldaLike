@@ -370,7 +370,7 @@ public class CardsController : MonoBehaviour
                     
         var shootPointPos = (enemy.transform.position - transform.position);
         var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x), 
-            enemy.transform.position.y + shootPointPos.y + 1f,
+            enemy.transform.position.y,
             (enemy.transform.position.z + shootPointPos.z));
         
         enemy.transform.DOMove(targetPos, 0.3f).OnComplete(() => enemy.transform.DOKill());
