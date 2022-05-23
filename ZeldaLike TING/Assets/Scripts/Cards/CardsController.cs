@@ -59,6 +59,7 @@ public class CardsController : MonoBehaviour
 
     [Space(10)] // Wind Card FX's
     [Header("FX'S")]
+    [SerializeField] private GameObject ShortFireFx;
     [SerializeField] private GameObject ShortIceFx;
     [SerializeField] private GameObject ShortWallFx;
     [SerializeField] private GameObject ShortWindFx;
@@ -292,8 +293,11 @@ public class CardsController : MonoBehaviour
         else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
         else shootPointPos =-controller.movePlayerTransform.forward ;
 
+        Destroy(Instantiate(ShortFireFx, transform.position + shootPointPos * (radiusShootPoint * 1.8f), Quaternion.Euler(0,Controller.instance.angleView -90f + 180,0)), 0.8f);
+        
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
+        
         
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
     }
