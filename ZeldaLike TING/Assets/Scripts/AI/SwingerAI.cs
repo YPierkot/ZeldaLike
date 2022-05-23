@@ -125,7 +125,11 @@ namespace AI
 
             Debug.DrawRay(transform.position, dir*2, Color.green, 1f);
             
-            yield return new WaitForSeconds(.53f); // Temps de l'animation avant hit 
+            yield return new WaitForSeconds(.28f); // Temps de l'animation avant hit & recast dmg point
+            
+            dir = playerTransform.position - transform.position; dir.Normalize();
+            
+            yield return new WaitForSeconds(.25f);
 
             Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
             foreach (var player in playercol)
@@ -165,7 +169,7 @@ namespace AI
         private IEnumerator PlayerDmgCo()
         {
             yield return new WaitForSeconds(.19f);
-            PlayerStat.instance.TakeDamage();
+            if (this.gameObject != null) PlayerStat.instance.TakeDamage();
         }
     }
 }

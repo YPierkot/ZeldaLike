@@ -57,7 +57,7 @@ public class CardsController : MonoBehaviour
     public LayerMask Ennemy;
     public int projectileSpeed;
 
-    [Space(10)] // Wind Card
+    [Space(10)] // Wind Card FX's
     [Header("FX'S")]
     [SerializeField] private GameObject ShortFireFx;
     [SerializeField] private GameObject ShortIceFx;
@@ -158,7 +158,7 @@ public class CardsController : MonoBehaviour
                 isFireGround = true;
             }
         }
-        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); Debug.Log("FireCardLongEffect"); UIManager.Instance.UpdateCardUI();
+        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI();
         }
     }
     
@@ -286,15 +286,18 @@ public class CardsController : MonoBehaviour
     
 
     // EFFECTS CODE
-    private void ActivateFireShortEffect() // OK FX EN COURS D'INTE
+    private void ActivateFireShortEffect() // OK
     {
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
         else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
         else shootPointPos =-controller.movePlayerTransform.forward ;
 
+        Destroy(Instantiate(ShortFireFx, transform.position + shootPointPos * (radiusShootPoint * 1.8f), Quaternion.Euler(0,Controller.instance.angleView -90f + 180,0)), 0.8f);
+        
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
+        
         
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
     }
@@ -302,48 +305,49 @@ public class CardsController : MonoBehaviour
     private const float rangeIceShot = 8f;
     private const float rangeStartIceShot = 1f;
     private const float radiusIceShot = 2.5f;
-    public void ActivateIceGroundEffect() // OK Manque FX
+    public void ActivateIceGroundEffect() // OK FX A FIX
     {
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
-        
-        //Destroy(Instantiate(ShortIceFx, transform.position, Quaternion.identity),6f);
-        
+
         var GoDir =  (transform.position + shootPointPos * radiusShootPoint) ;
-        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
+        Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
+            new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
         
-        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
+        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 0.5f, GoDir.z * rangeStartIceShot), 
+            Quaternion.Euler(-90,Controller.instance.angleView -90f + 180,0)),3f);
+        
+        Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
+            new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            ennemy.transform.GetComponent<AI.AbtractAI>().LooseHp(1);
-            ennemy.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy();
-            
+            if (ennemy.isTrigger) { ennemy.transform.GetComponent<AI.AbtractAI>().LooseHp(1); ennemy.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy(); }
 
             if (ennemy.transform.CompareTag("Interactable"))
-            {
                 ennemy.GetComponent<InteracteObject>().isFreeze = true;
-                
-            }
         }
     }
 
-    public void ActivateWallGroundEffect() // C'est OK FX ARRIVE
+    public void ActivateWallGroundEffect() // C'est OK 
     {
         float zTransform = transform.position.z;
         float xTransform = transform.position.x;
         float yTransform = transform.position.y;
 
         Debug.Log("Wall Short Range Launched");
+        Destroy(Instantiate(ShortWallFx, transform.position + new Vector3(0, -1,0), Quaternion.identity), 3f);
         GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
-        wall.transform.DOMove(new Vector3(xTransform, yTransform - .25f, zTransform), 1.5f);
+        wall.transform.DOMove(new Vector3(xTransform, yTransform, zTransform), 1.5f);
         Destroy(wall, 4f);
     }
-
+    
     private const float forceModifier = 1.6f;
     public void ActivateWindGroundEffect() // OK
     {
+        Destroy(Instantiate(ShortWindFx, transform.position, Quaternion.identity), 3f);
+        
         repulsivePoint = transform.position;
-        if(DebugWindSphere != null)Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
+        //if(DebugWindSphere != null)Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
         Collider[] cols = Physics.OverlapSphere(transform.position, repulsiveRadius);
         foreach (var col in cols)
         {
@@ -359,8 +363,7 @@ public class CardsController : MonoBehaviour
             }
         }
     }
-
-
+    
     private void EnnemyWindRepultion(GameObject enemy)
     {
         enemy.transform.DOKill();

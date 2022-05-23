@@ -1,3 +1,4 @@
+using System.Collections;
 using AI;
 using UnityEngine;
 
@@ -6,11 +7,28 @@ public class FireCardLongRange : MonoBehaviour
     public LayerMask mask; //Ennemy & Interact
     public LayerMask groundMask;
     public GameObject DebugSphere;
+    public GameObject fireFX;
 
 
     public void FireCardLongEffect()
     {
-        Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),2f);
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        StartCoroutine(FireCardLongEffectCo());
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.GetComponentInParent<Transform>().CompareTag("Player") || other.ToString() == groundMask.ToString())
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    private IEnumerator FireCardLongEffectCo()
+    {
+        Destroy(Instantiate(fireFX, transform.position, Quaternion.identity), 3.4f);
+        yield return new WaitForSeconds(.22f);
+        Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),1f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2.5f, mask);
         foreach (var col in colliders)
@@ -23,15 +41,7 @@ public class FireCardLongRange : MonoBehaviour
         }
         Destroy(gameObject);
     }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.GetComponentInParent<Transform>().CompareTag("Player") || other.ToString() == groundMask.ToString())
-        {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
-
+        
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -42,6 +52,6 @@ public class FireCardLongRange : MonoBehaviour
     {
         CardsController.isFireGround = false;
         CardsController.instance.LaunchCardCD(1);
-        //UIManager.Instance.UpdateCardUI();
+        UIManager.Instance.UpdateCardUI();
     }
 }
