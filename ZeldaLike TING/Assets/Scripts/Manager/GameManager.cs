@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void TutorialWorld()
     {
+        volumeManager.enabled = true;
         volumeManager.profile = tutorialWorld;
     }
 
