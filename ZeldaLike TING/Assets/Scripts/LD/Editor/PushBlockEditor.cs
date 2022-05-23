@@ -10,6 +10,7 @@ public class PushBlockEditor : InteracteObjectEditor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("currentWaypoint"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("newWaypoint"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("speed"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("distanceThreshold"));
         
         serializedObject.ApplyModifiedProperties();
     }
