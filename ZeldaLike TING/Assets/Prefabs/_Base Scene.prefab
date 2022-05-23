@@ -1517,7 +1517,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 64db94767f4bded4d92606ed9c8fb159, type: 2}
+  sharedProfile: {fileID: 0}
 --- !u!1 &1332991332495471158
 GameObject:
   m_ObjectHideFlags: 0
@@ -9370,9 +9370,21 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
+      propertyPath: ShortIceFx
+      value: 
+      objectReference: {fileID: 4176346125989671971, guid: 5cea77857c8eb534e8aea7e5a3f79f5c,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: ShortFireFx
+      value: 
+      objectReference: {fileID: 132305753347939906, guid: bb97d7fb24ce876499abdde9d3f7c8a4,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
       propertyPath: ShortWallFx
       value: 
-      objectReference: {fileID: 3347548447703097262, guid: ef9f568571deb6b4b854d2d0fefb63bb,
+      objectReference: {fileID: 2582913492085078652, guid: 6cfdc976f71d9004695aaf288075ffb5,
         type: 3}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
@@ -9383,27 +9395,27 @@ PrefabInstance:
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: canUseCards
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: iceCardUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: fireCardUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: wallCardUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: windCardUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
