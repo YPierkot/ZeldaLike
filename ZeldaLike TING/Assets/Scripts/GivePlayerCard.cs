@@ -4,6 +4,7 @@ public class GivePlayerCard : MonoBehaviour
 {
     private bool isCardGiven;
     private bool canGiveCard = true;
+    [SerializeField] private WindCardTutorialManager WindCardTutorialManager;
     public enum CardToGive
     {
         fire, wind, wall, ice

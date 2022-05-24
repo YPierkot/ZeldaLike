@@ -170,6 +170,8 @@ public class HelpsManager : MonoBehaviour
         }
         else if (currentHelp.helpIndex == 6)
         {
+            Debug.Log("Dernière aide");
+            helpTextDisplay.text = "";
             enabled = false;
         }
         else

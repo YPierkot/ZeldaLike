@@ -245,6 +245,7 @@ public class DialogueManager : MonoBehaviour
     }
     public IEnumerator CinematicWait(float duration)
     {
+        Debug.Log("J'attends");
         yield return new WaitForSeconds(duration);
         if (skip)
         {
