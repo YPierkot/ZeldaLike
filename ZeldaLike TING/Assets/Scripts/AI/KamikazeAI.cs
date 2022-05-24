@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class KamikazeAI : AbtractAI
+    public class KamikazeAI : AbstractAI
     {
         #region Variables
         [Header("Specific Values"), Space]
@@ -107,7 +107,7 @@ namespace AI
             yield return new WaitForSeconds(1.05f);
             
             bool isPlayer = Physics.CheckSphere(transform.position, e_aoeRange, playerLayerMask);
-            if (isPlayer) PlayerStat.instance.TakeDamage();
+            if (isPlayer && GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
 
             yield return new WaitForSeconds(0.7f);
             Destroy(gameObject);

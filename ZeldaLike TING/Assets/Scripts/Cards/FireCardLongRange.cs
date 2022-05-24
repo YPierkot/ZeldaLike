@@ -18,7 +18,7 @@ public class FireCardLongRange : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponentInParent<Transform>().CompareTag("Player") || other.ToString() == groundMask.ToString())
+        if (!other.GetComponentInParent<Transform>().CompareTag("Player") && other.ToString() == groundMask.ToString())
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -36,7 +36,7 @@ public class FireCardLongRange : MonoBehaviour
             switch (col.transform.tag)
             {
                 case "Interactable": col.GetComponent<InteracteObject>().OnFireEffect(); break;
-                case "Ennemy" : col.transform.GetComponent<AI.AbtractAI>().LooseHp(2); break;
+                case "Ennemy" : col.transform.GetComponent<AI.AbstractAI>().LooseHp(2); break;
             }
         }
         Destroy(gameObject);

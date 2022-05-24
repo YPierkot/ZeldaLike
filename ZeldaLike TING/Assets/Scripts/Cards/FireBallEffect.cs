@@ -13,7 +13,7 @@ public class FireBallEffect : MonoBehaviour
             switch (col.transform.tag)
             {
                 case "Interactable": col.GetComponent<InteracteObject>().OnFireEffect(); break;
-                case "Ennemy": if (col.isTrigger) col.GetComponent<AI.AbtractAI>().LooseHp(2); break;
+                case "Ennemy": if (col.isTrigger) col.GetComponent<AI.AbstractAI>().LooseHp(2); break;
             }
         }
         Destroy(gameObject);

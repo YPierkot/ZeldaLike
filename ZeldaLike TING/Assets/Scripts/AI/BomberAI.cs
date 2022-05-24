@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class BomberAI : AbtractAI
+    public class BomberAI : AbstractAI
     {
         #region Variables
         [Header("Specific values"), Space]
@@ -109,7 +109,7 @@ namespace AI
             bomberAnimator.SetBool("isAttack", false);
             
             yield return new WaitForSeconds(0.3f);
-            if (this.gameObject != null)
+            if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead != null)
             {
                 Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
                 var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);

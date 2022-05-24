@@ -83,7 +83,7 @@ public class WindCardLongRange : MonoBehaviour
             }
             else WindCardLongEffect();
         }
-        else if (other.ToString() == groundMask.ToString() || !other.GetComponentInParent<Transform>().CompareTag("Player"))
+        else if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
         {
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }

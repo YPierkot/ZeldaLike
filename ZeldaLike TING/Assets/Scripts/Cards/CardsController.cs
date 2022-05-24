@@ -305,7 +305,7 @@ public class CardsController : MonoBehaviour
     private const float rangeIceShot = 8f;
     private const float rangeStartIceShot = 1f;
     private const float radiusIceShot = 2.5f;
-    public void ActivateIceGroundEffect() // OK FX A FIX
+    public void ActivateIceGroundEffect()
     {
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
@@ -313,15 +313,15 @@ public class CardsController : MonoBehaviour
         var GoDir =  (transform.position + shootPointPos * radiusShootPoint) ;
         Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
-        
-        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 0.5f, GoDir.z * rangeStartIceShot), 
-            Quaternion.Euler(-90,Controller.instance.angleView -90f + 180,0)),3f);
+
+        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 0.5f, GoDir.z * rangeStartIceShot),
+            Quaternion.Euler(-90, Controller.instance.angleView - 90f + 180, 0)), 3f);
         
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            if (ennemy.isTrigger) { ennemy.transform.GetComponent<AI.AbtractAI>().LooseHp(1); ennemy.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy(); }
+            if (ennemy.isTrigger) { ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1); ennemy.transform.GetComponent<AI.AbstractAI>().SlowEnemy(); }
 
             if (ennemy.transform.CompareTag("Interactable"))
                 ennemy.GetComponent<InteracteObject>().isFreeze = true;
