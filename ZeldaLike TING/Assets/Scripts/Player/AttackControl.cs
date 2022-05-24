@@ -20,14 +20,19 @@ public class AttackControl : MonoBehaviour
                 return;
             }
 
-            // Apply Damage
-            other.gameObject.GetComponent<AI.AbstractAI>().LooseHp(playerDamage);
+            AI.AbstractAI abstractAI = other.gameObject.GetComponent<AI.AbstractAI>();
+            
+            // Apply Damage && Hit Stun
+            abstractAI.LooseHp(playerDamage);
             Destroy(Instantiate(hitFx, (other.GetComponent<Collider>().ClosestPoint(transform.position)), Quaternion.identity), 0.6f);
-            //other.gameObject.GetComponent<AI.AbstractAI>().ChangeState(AbstractAI.AIStates.hit);
+            if (abstractAI.isHitStun) abstractAI.isHitStun = false;
+            abstractAI.ChangeState(AbstractAI.AIStates.hit);
+            
         }
-        else if (other.transform.CompareTag("Crates")) 
+        else if (other.transform.CompareTag("Crates"))
         {
-            if(other.GetComponent<InteracteWithObect>() != null) other.GetComponent<InteracteWithObect>().InteractWithObject();
+            InteracteWithObect interacteWithObect = other.GetComponent<InteracteWithObect>();
+            if(interacteWithObect != null) interacteWithObect.InteractWithObject();
             else Debug.LogError("The object you try to destroy doesn't have the script DestructableObject", other.transform);
             
         }

@@ -44,10 +44,10 @@ namespace AI
         
         protected override void Walk()
         {
-            if (isAttacking)
-                return;
-            if (isMoving)
-                return;
+            if (isAttacking) return;
+            if (isMoving) return;
+            if (isHitStun) return;
+
             
             base.Walk();
             
@@ -62,24 +62,25 @@ namespace AI
         protected override void Attack()
         {
             base.Attack();
+            if (isHitStun) return;
+
+            
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
+                if (isAttacking) return;
                 if (isPanic) return;
                     
                 if (eyeCounter == 0) { StartCoroutine(PanicPhase(4f)); return; }
-                    
-                isAttacking = true;
                 
                 // Attack Pattern
-                if (eyeCounter > 0)
-                {
-                    StartCoroutine(DoAttack());
-                }
+                if (isHitStun) return;
+                isAttacking = true;
+                StartCoroutine(DoAttack());
+                
             }
             else
             {
+                if (isHitStun) return;
                 if (!isAttacking)
                 {
                     transform.DOKill();
@@ -113,7 +114,6 @@ namespace AI
 
         private IEnumerator DoAttack()
         {
-           
             mageAnimator.SetBool("isAttack", true);
             yield return new WaitForSeconds(1.75f); // Temps de l'anim
             mageAnimator.SetBool("isAttack", false);

@@ -16,7 +16,7 @@ namespace AI
         [SerializeField] private int e_hp = 1; // Enemy Health Points
         [SerializeField] public float e_rangeSight = 10f; // Enemy Detect Range
         [SerializeField] public float e_rangeAttack = 10f; // Enemy Attack Range
-        [SerializeField] private float e_hitStunTime = 1f;
+        [SerializeField] private float e_hitStunTime = 3f;
         [SerializeField] protected float e_speed = 10; // Enemy Speed
         [SerializeField] public SpriteRenderer e_sprite; // Enemy Sprite Renderer
         [SerializeField] public LayerMask playerLayerMask; // Player Layer
@@ -39,7 +39,7 @@ namespace AI
         protected Rigidbody e_rigidbody;
 
         private Coroutine e_hitStunCO;
-        private bool isHitStun;
+        public bool isHitStun;
         private bool init;
         
 
@@ -85,15 +85,16 @@ namespace AI
                 case attacking : Attack(); break;
                 case walking: Walk(); break;
                 case dead: Die(); break;
-               // case hit: Hit(); break;
+                case hit: Hit(); break;
                 default: throw new System.ArgumentOutOfRangeException();
             }
         }
 
         protected void Hit()
         {
+            if(isHitStun) return;
+            
             HitStun();
-            Debug.Log("Oui");
         }
 
         protected virtual void Walk()
@@ -180,7 +181,6 @@ namespace AI
             ChangeState(attacking);
         }
         
-
         private void OnDestroy()
         {
             e_sprite.DOKill();

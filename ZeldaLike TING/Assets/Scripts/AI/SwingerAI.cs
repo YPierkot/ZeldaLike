@@ -71,17 +71,18 @@ namespace AI
 
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
-                
-                isAttacking = true;
-                isMoving = false;
+                if (isAttacking) return;
+                if (isHitStun) return;
                 
                 // Attack Pattern
+                isMoving = false;
+                isAttacking = true;
                 StartCoroutine(DoAttack());
             }
             else
             {
+                if (isHitStun) return;
+
                 if (!isAttacking)
                 {
                     transform.DOKill();
