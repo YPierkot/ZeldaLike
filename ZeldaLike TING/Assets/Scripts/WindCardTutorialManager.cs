@@ -31,6 +31,7 @@ public class WindCardTutorialManager : MonoBehaviour
     
     [SerializeField] private GameObject mannequin;
     [SerializeField] private GameObject brasier;
+    [SerializeField] private GameObject fakeBrasier;
     [SerializeField] private bool isDead;
     [Header("Third Challenge")]
     
@@ -82,7 +83,7 @@ public class WindCardTutorialManager : MonoBehaviour
                     if (puzzleFinished)
                     {
                         puzzleFinished = false;
-                        puzzle.SetActive(false);
+                        StartCoroutine(DisableObject(puzzle));
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                         StartCoroutine(MannequinDelay());
                     }
@@ -141,9 +142,13 @@ public class WindCardTutorialManager : MonoBehaviour
 
     private IEnumerator MannequinDeathWait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+        fakeBrasier.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         mannequin.SetActive(false);
         brasier.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        fakeBrasier.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -153,6 +158,12 @@ public class WindCardTutorialManager : MonoBehaviour
             canStart = true;
             GameManager.Instance.actualRespawnPoint = transform;
         }
+    }
+    private IEnumerator DisableObject(GameObject _object)
+    {
+        _object.SetActive(false);
+        yield return new WaitForSeconds(0.001f);
+        _object.SetActive(true);
     }
     
 }
