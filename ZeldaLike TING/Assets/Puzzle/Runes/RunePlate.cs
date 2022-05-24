@@ -4,59 +4,67 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RunePlate : MonoBehaviour
-{
-    public enum Element
-    {
-        Fire, Ice, Ground, Wind
+public class RunePlate : MonoBehaviour {
+    private enum Element {
+        Fire,
+        Ice,
+        Ground,
+        Wind
     }
 
+    [SerializeField] private RunePuzzleManager runeManager = null;
+    [Space]
     [SerializeField] private Element plateType;
-    public bool isActivate;
-
-    private void Start()
-    {
-        RunePuzzleManager.Instance.runesList.Add(this);
+    
+    [SerializeField] private bool isActivate;
+    public bool IsActivate {
+        get => isActivate;
+        set => isActivate = value;
+    }
+    
+    private void Start() {
+        if (runeManager == null) {
+            Debug.LogError("There is no rune manager on this object. Please add one before testing the puzzle.", this.transform);
+            return;
+        }
+        
+        runeManager.runesList.Add(this);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<pushBlock>() != null)
-        {
-            switch (plateType)
-            {
+    private void OnTriggerStay(Collider other) {
+        if (other.GetComponent<pushBlock>() != null) {
+            if (runeManager == null) return;
+            Debug.Log("ok");
+
+            switch (plateType) {
                 case Element.Fire:
-                    if (other.GetComponent<InteracteObject>().burning)
-                    {
-                        if (!isActivate)
-                        {
+                    if (other.GetComponent<InteracteObject>().burning) {
+                        if (!isActivate) {
                             GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             isActivate = true;
-                            RunePuzzleManager.Instance.CheckRunes();
+                            runeManager.CheckRunes();
                         }
                     }
-                    else
-                    {
+                    else {
                         if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
                         isActivate = false;
                     }
+
                     break;
-            
-                case Element.Ice :
-                    if (other.GetComponent<InteracteObject>().isFreeze)
-                    {
-                        if (!isActivate)
-                        {
+
+                case Element.Ice:
+                    if (other.GetComponent<InteracteObject>().isFreeze) {
+                        if (!isActivate) {
                             GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             isActivate = true;
-                            RunePuzzleManager.Instance.CheckRunes();
+                            runeManager.CheckRunes();
                         }
                     }
-                    else
-                    {
+                    else {
                         if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
                         isActivate = false;
                     }
+
                     break;
             }
         }
