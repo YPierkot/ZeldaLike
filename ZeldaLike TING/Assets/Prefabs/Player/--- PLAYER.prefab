@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!136 &634778490
 CapsuleCollider:
@@ -115,6 +115,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 5474078863165976714, guid: f99d205bef5820a4796080213d59d49f, type: 3}
 --- !u!1 &689773535
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!136 &984527472
 CapsuleCollider:
@@ -261,6 +262,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 5474078863165976714, guid: f99d205bef5820a4796080213d59d49f, type: 3}
 --- !u!1 &1145041873
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +384,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 0}
 --- !u!1 &1318520794
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,37 +468,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &1587232424
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1587232425}
-  m_Layer: 0
-  m_Name: Attack Zone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1587232425
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587232424}
-  m_LocalRotation: {x: -0.734346, y: -0, z: -0, w: 0.67877537}
-  m_LocalPosition: {x: 0.008000056, y: -0.48900002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1870232228
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +500,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!136 &1870232231
 CapsuleCollider:
@@ -611,6 +583,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 5474078863165976714, guid: f99d205bef5820a4796080213d59d49f, type: 3}
 --- !u!1 &657207843338987019
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +612,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1587232425}
   - {fileID: 984527471}
   - {fileID: 634778488}
   - {fileID: 1870232229}
@@ -734,7 +706,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1434173521138706504
 GameObject:
@@ -796,7 +768,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3488751800213775679
 GameObject:
@@ -828,7 +800,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2131420526571062310}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1617754507992478219
 Animator:
@@ -965,6 +937,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 5474078863165976714, guid: f99d205bef5820a4796080213d59d49f, type: 3}
 --- !u!1 &4110202141070673427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1053,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 5474078863165976714, guid: f99d205bef5820a4796080213d59d49f, type: 3}
 --- !u!1 &4756010760798865708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1169,7 @@ MonoBehaviour:
   control: {fileID: 7337217462935629418}
   playerDamage: 0
   repusleEnnemyForce: 0
+  hitFx: {fileID: 5474078863165976714, guid: f99d205bef5820a4796080213d59d49f, type: 3}
 --- !u!1 &5607359522157237992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,7 +1692,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fbdd36f5165e0804494809baf1152e78,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fbdd36f5165e0804494809baf1152e78,
         type: 3}
@@ -2021,7 +1996,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9c5abca86ce02034796f161e109d5002,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9c5abca86ce02034796f161e109d5002,
         type: 3}
