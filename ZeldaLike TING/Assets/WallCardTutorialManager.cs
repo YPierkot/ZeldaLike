@@ -88,8 +88,10 @@ public class WallCardTutorialManager : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isFinished)
         {
-            canStart = true;
             barrier.SetActive(true);
+            canStart = true;
+            GameManager.Instance.actualRespawnPoint = transform;
         }
     }
+    
 }
