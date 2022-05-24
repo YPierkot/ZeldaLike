@@ -84,12 +84,28 @@ public class WallCardTutorialManager : MonoBehaviour
         }
     }
 
+    void Interact()
+    {
+        barrier.SetActive(true);
+        canStart = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isFinished)
         {
-            canStart = true;
-            barrier.SetActive(true);
+            Controller.instance.playerInteraction = Interact;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (Controller.instance.playerInteraction == Interact)
+            {
+                Controller.instance.playerInteraction = null;
+            }
         }
     }
 }

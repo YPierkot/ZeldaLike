@@ -221,8 +221,13 @@ public class
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
-        Vector2 rotation = obj.ReadValue<Vector2>().normalized;
-        Rotate(rotation);
+        if (DialogueManager.Instance.isCinematic)
+        {
+          Vector2 rotation = obj.ReadValue<Vector2>().normalized;
+          Rotate(rotation);  
+        }
+
+        
     }
     #endregion
     
@@ -251,8 +256,11 @@ public class
 
             //transformDebugger.position = hit.point;
             pointerPosition = hit.point;
-            Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
-            Rotate(vector);
+            if (!DialogueManager.Instance.isCinematic)
+            {
+                Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+                Rotate(vector);
+            }
         }
 
         if (lastControlType != _controlType)
@@ -467,8 +475,11 @@ public class
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
-                animatorPlayer.SetBool("isRun", moving);
-                animatorMovePlayer.SetBool("isWalk", moving); // Il est différent donc repoussé par la société
+                if (!DialogueManager.Instance.isCinematic)
+                {
+                    animatorPlayer.SetBool("isRun", moving);
+                    animatorMovePlayer.SetBool("isWalk", moving);
+                } // Il est différent donc repoussé par la société
             }
             else
             {
@@ -482,7 +493,7 @@ public class
                     animatorPlayer.SetFloat("X-Axis", animDir.x);
                     animatorPlayer.SetFloat("Z-Axis", animDir.z);
                 }
-                animatorPlayer.SetBool("isRun", moving);
+                if (!DialogueManager.Instance.isCinematic)animatorPlayer.SetBool("isRun", moving);
             }
     }
 
