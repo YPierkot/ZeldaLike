@@ -37,6 +37,7 @@ public class GivePlayerCard : MonoBehaviour
                         CardsController.instance.wallCardUnlock = true;
                         break;
                     case CardToGive.wind :
+                        WindCardTutorialManager.canStart = true;
                         CardsController.instance.windCardUnlock = true;
                         break;
                 }
