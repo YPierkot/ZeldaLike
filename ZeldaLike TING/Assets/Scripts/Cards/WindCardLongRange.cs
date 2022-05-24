@@ -9,12 +9,14 @@ using Debug = UnityEngine.Debug;
 public class WindCardLongRange : MonoBehaviour
 {
     private BoxCollider collider;
-    public Vector3 velocity;
+    [HideInInspector] public Vector3 velocity;
     
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private Vector3 attractivePoint;
+    [SerializeField] private float attractiveRadius = 4.7f;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private GameObject windFX;
+    
     
     private void OnEnable()
     {
@@ -23,7 +25,7 @@ public class WindCardLongRange : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 4.4f);
+        Gizmos.DrawWireSphere(transform.position, attractiveRadius);
     }
     public void WindCardLongEffect()
     {
@@ -32,7 +34,7 @@ public class WindCardLongRange : MonoBehaviour
         
         Destroy(Instantiate(windFX, attractivePoint, Quaternion.identity),3f);
         
-        Collider[] colliders = Physics.OverlapSphere(attractivePoint, 4.4f, interactMask);
+        Collider[] colliders = Physics.OverlapSphere(attractivePoint, attractiveRadius, interactMask);
         foreach (var col in colliders)
         {
             if (col.CompareTag("Interactable"))
@@ -49,14 +51,7 @@ public class WindCardLongRange : MonoBehaviour
             }
             else if (col.CompareTag("Ennemy"))
             {
-                for (int i = 0; i < colliders.Length; i++)
-                {
-                    if (col.CompareTag("Ennemy"))
-                    {
-                        EnnemyWindAttraction(col.gameObject);
-                    }
-                    i++;
-                }
+                if(!col.isTrigger) EnnemyWindAttraction(col.gameObject);
             }
         }
         
@@ -65,13 +60,14 @@ public class WindCardLongRange : MonoBehaviour
     private void EnnemyWindAttraction(GameObject enemy)
     {
         enemy.transform.DOKill();
+        enemy.transform.DOKill();
                     
-        var shootPointPos = (enemy.transform.position - transform.position);
+        var shootPointPos = (enemy.transform.position - attractivePoint);
         var targetPos = new Vector3((enemy.transform.position.x - shootPointPos.x), 
-            enemy.transform.position.y + shootPointPos.y + 1f,
+            enemy.transform.position.y,
             (enemy.transform.position.z - shootPointPos.z));
-        
-        enemy.transform.DOMove(targetPos, 2f).OnComplete(() => enemy.transform.DOKill());
+
+        enemy.transform.DOMove(targetPos, 1.7f).OnComplete(() => enemy.transform.DOKill());
         Debug.Log($"{enemy.name} got attracted !");
     }
     private void OnTriggerEnter(Collider other)
@@ -87,16 +83,12 @@ public class WindCardLongRange : MonoBehaviour
             }
             else WindCardLongEffect();
         }
-        else if (other.ToString() == groundMask.ToString() || !other.GetComponentInParent<Transform>().CompareTag("Player"))
+        else if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
         {
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-    private IEnumerator StopMovement(float timeToStopMovement, GameObject objTransform)
-    {
-        yield return new WaitForSeconds(timeToStopMovement);
-        objTransform.transform.DOKill();
-    }
+    
     private void OnDestroy()
     {
         CardsController.instance.LaunchCardCD(4);

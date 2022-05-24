@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class MageAI : AbtractAI
+    public class MageAI : AbstractAI
     {
         #region Variables
         [Header("Specific Values"), Space]
@@ -118,16 +118,22 @@ namespace AI
             yield return new WaitForSeconds(1.75f); // Temps de l'anim
             mageAnimator.SetBool("isAttack", false);
             if (e_sprite.flipX == true)
-            { 
-                Instantiate(eyeGameObject,
-                    new Vector3(transform.position.x - eyePosOffset.x, transform.position.y + eyePosOffset.y,
-                        transform.position.z), Quaternion.identity);
+            {
+                if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead)
+                {
+                    Instantiate(eyeGameObject,
+                        new Vector3(transform.position.x - eyePosOffset.x, transform.position.y + eyePosOffset.y,
+                            transform.position.z), Quaternion.identity);
+                }
             }
             else
             {
-                Instantiate(eyeGameObject,
-                    new Vector3(transform.position.x + eyePosOffset.x, transform.position.y + eyePosOffset.y,
-                        transform.position.z), Quaternion.identity);
+                if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead)
+                {
+                    Instantiate(eyeGameObject,
+                        new Vector3(transform.position.x + eyePosOffset.x, transform.position.y + eyePosOffset.y,
+                            transform.position.z), Quaternion.identity);
+                }
             }
 
             eyeCounter -= 1;

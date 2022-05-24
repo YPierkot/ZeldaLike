@@ -12,6 +12,7 @@ public class pushBlock : InteracteObject
     [Header("---PUSH BLOCK")]
     public pushWayPoint currentWaypoint;
     [SerializeField] private float speed;
+    [SerializeField] private float distanceThreshold;
     // Start is called before the first frame update
 
     [SerializeField] private pushWayPoint newWaypoint;
@@ -29,7 +30,7 @@ public class pushBlock : InteracteObject
         else if(burning) mesh.material.color = Color.red;
         if (move)
         {
-            if (Vector3.Distance(transform.position, newWaypoint.transform.position)<= speed)
+            if (Vector3.Distance(transform.position, newWaypoint.transform.position) <= distanceThreshold)
             {
                 move = false;
                 transform.position = newWaypoint.transform.position;
@@ -40,7 +41,7 @@ public class pushBlock : InteracteObject
                 return;
             }
             
-            transform.position = Vector3.Lerp(transform.position, newWaypoint.transform.position, speed/Vector3.Distance(transform.position, newWaypoint.transform.position));
+            transform.position = Vector3.Lerp(transform.position, newWaypoint.transform.position, speed / Vector3.Distance(transform.position, newWaypoint.transform.position) * Time.deltaTime);
         }
     }
 

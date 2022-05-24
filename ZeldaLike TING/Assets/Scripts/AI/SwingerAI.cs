@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class SwingerAI : AbtractAI
+    public class SwingerAI : AbstractAI
     {
         #region Variables
 
@@ -169,7 +169,7 @@ namespace AI
         private IEnumerator PlayerDmgCo()
         {
             yield return new WaitForSeconds(.19f);
-            if (this.gameObject != null) PlayerStat.instance.TakeDamage();
+            if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
         }
     }
 }

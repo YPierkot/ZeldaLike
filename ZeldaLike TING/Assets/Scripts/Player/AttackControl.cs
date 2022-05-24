@@ -1,4 +1,5 @@
 using System.Collections;
+using AI;
 using UnityEngine;
 
 public class AttackControl : MonoBehaviour
@@ -20,9 +21,9 @@ public class AttackControl : MonoBehaviour
             }
 
             // Apply Damage
-            other.gameObject.GetComponent<AI.AbtractAI>().LooseHp(playerDamage);
+            other.gameObject.GetComponent<AI.AbstractAI>().LooseHp(playerDamage);
             Destroy(Instantiate(hitFx, (other.GetComponent<Collider>().ClosestPoint(transform.position)), Quaternion.identity), 0.6f);
-            
+            //other.gameObject.GetComponent<AI.AbstractAI>().ChangeState(AbstractAI.AIStates.hit);
         }
         else if (other.transform.CompareTag("Crates")) 
         {
