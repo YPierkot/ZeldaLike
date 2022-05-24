@@ -19,7 +19,7 @@ public class BlueCardLongRange : MonoBehaviour
         foreach (var col in colliders)
         {
             if (col.transform.CompareTag("Interactable")) col.GetComponent<InteracteObject>().Freeze(transform.position);
-            else if (col.transform.CompareTag("Ennemy")) col.transform.GetComponent<AI.AbtractAI>().FreezeEnnemy();
+            else if (col.transform.CompareTag("Ennemy")) col.transform.GetComponent<AI.AbstractAI>().SlowEnemy();
             else if (col.CompareTag("Boss")) col.transform.GetComponentInParent<BossManager>().Freeze();
         }
         
@@ -28,7 +28,7 @@ public class BlueCardLongRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.ToString() == groundMask.ToString() ||!other.transform.CompareTag("Player"))
+        if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
