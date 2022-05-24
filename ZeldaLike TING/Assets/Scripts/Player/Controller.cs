@@ -39,6 +39,7 @@ public class
     public bool secondStick;
     private ControlType lastControlType;
     [SerializeField] private Animator animatorPlayer;
+    [SerializeField] private Animator animatorPlayerHand;
     [SerializeField] private Animator animatorMovePlayer;
     
     private CardsController cardControl;
@@ -431,6 +432,8 @@ public class
 
             animatorPlayer.SetInteger("attackCounter", attackCounter);
             animatorPlayer.SetBool("isAttack", launchAttack);
+            animatorPlayerHand.SetInteger("attackCounter", attackCounter);
+            animatorPlayerHand.SetBool("isAttack", launchAttack);
             
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
             if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
@@ -468,6 +471,7 @@ public class
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
                 animatorPlayer.SetBool("isRun", moving);
+                animatorPlayerHand.SetBool("isRun", moving);
                 animatorMovePlayer.SetBool("isWalk", moving); // Il est différent donc repoussé par la société
             }
             else
@@ -483,6 +487,7 @@ public class
                     animatorPlayer.SetFloat("Z-Axis", animDir.z);
                 }
                 animatorPlayer.SetBool("isRun", moving);
+                animatorPlayerHand.SetBool("isRun", moving);
             }
     }
 
