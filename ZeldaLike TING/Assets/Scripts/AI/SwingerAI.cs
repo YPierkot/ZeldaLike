@@ -19,7 +19,6 @@ namespace AI
         
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
-        [Space(2)] [SerializeField] private Animator swingerAnimator;
         private bool debugBool;
         private Vector3 dir;
         private float spriteDir;
@@ -53,7 +52,7 @@ namespace AI
                 return;
             
             isMoving = true;
-            swingerAnimator.SetBool("isWalk", true);
+            e_animator.SetBool("isWalk", true);
             
             Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
@@ -62,7 +61,7 @@ namespace AI
             
             if (!isMoving)
             {
-                swingerAnimator.SetBool("isWalk", false);
+                e_animator.SetBool("isWalk", false);
             }
         }
 
@@ -90,7 +89,7 @@ namespace AI
                     transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
-                    swingerAnimator.SetBool("isWalk", true);
+                    e_animator.SetBool("isWalk", true);
                     
                     RaycastHit groundHit;
                     if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
@@ -99,7 +98,7 @@ namespace AI
                 }
                 else
                 {
-                    swingerAnimator.SetBool("isWalk", false);
+                    e_animator.SetBool("isWalk", false);
                 }
                 
                 spriteDir = playerTransform.position.x - transform.position.x;
@@ -128,7 +127,7 @@ namespace AI
             else
                 e_sprite.flipX = false;
             
-            swingerAnimator.SetBool("isAttack", true);
+            e_animator.SetBool("isAttack", true);
             
             yield return new WaitForSeconds(.40f); // Temps de l'animation avant hit & recast dmg point
             
@@ -137,10 +136,10 @@ namespace AI
             yield return new WaitForSeconds(.10f);
 
             Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
-            foreach (var player in playercol) { if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage(); }
+            foreach (var player in playercol) { if (e_currentAiState != AIStates.dead && isFreeze) PlayerStat.instance.TakeDamage(); }
 
             yield return new WaitForSeconds(1.2f); // Anim fini 
-            swingerAnimator.SetBool("isAttack", false);
+            e_animator.SetBool("isAttack", false);
             CanMove();  
             
             yield return new WaitForSeconds(1.3f); // Temps avant de pouvoir ré attaqué
