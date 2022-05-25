@@ -6,7 +6,8 @@ public class PuzzleDoorActivation : MonoBehaviour {
     [Space]
     [SerializeField] private GameObject wall = null;
 
-    [SerializeField] private WindCardTutorialManager windCardTutorialManager;
+    [SerializeField] private GameObject windCard;
+    [SerializeField] private GameObject windChest;
     
     private int activatedObject = 0;
     private bool checkForParent = false;
@@ -19,10 +20,10 @@ public class PuzzleDoorActivation : MonoBehaviour {
     private void Update() {
         if (!checkForParent) return;
         if (enemyParent.childCount > 0) return;
-        if (windCardTutorialManager != null)
+        if (windCard != null)
         {
-            
-            windCardTutorialManager.canStart = true;
+            windCard.SetActive(true);
+            windChest.SetActive(true);
         }
         Destroy(wall);
         Destroy(gameObject);

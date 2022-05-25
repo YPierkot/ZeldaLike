@@ -4,6 +4,7 @@ public class GivePlayerCard : MonoBehaviour
 {
     private bool isCardGiven;
     private bool canGiveCard = true;
+    [SerializeField] private WindCardTutorialManager WindCardTutorialManager;
     public enum CardToGive
     {
         fire, wind, wall, ice
@@ -36,6 +37,7 @@ public class GivePlayerCard : MonoBehaviour
                         CardsController.instance.wallCardUnlock = true;
                         break;
                     case CardToGive.wind :
+                        WindCardTutorialManager.canStart = true;
                         CardsController.instance.windCardUnlock = true;
                         break;
                 }

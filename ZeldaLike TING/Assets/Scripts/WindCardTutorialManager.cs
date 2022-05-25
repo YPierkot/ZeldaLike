@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -21,12 +23,16 @@ public class WindCardTutorialManager : MonoBehaviour
 
     [Header("First Challenge")] 
     
-    [SerializeField] private GameObject[] debris;
+    [SerializeField] private GameObject puzzle;
+
+    [SerializeField] private bool puzzleFinished;
 
     [Header("Second Challenge")] 
     
-    [SerializeField] private GameObject[] crystalShards;
-    
+    [SerializeField] private GameObject mannequin;
+    [SerializeField] private GameObject brasier;
+    [SerializeField] private GameObject fakeBrasier;
+    [SerializeField] private bool isDead;
     [Header("Third Challenge")]
     
     [SerializeField] private EnemySpawnTrigger spawner;
@@ -54,42 +60,61 @@ public class WindCardTutorialManager : MonoBehaviour
             int remainingDialogue = dialogueQueue.Count;
             switch (remainingDialogue)
             {
-                case 4:
+                case 5 :
+                    barrier.SetActive(true);
                     DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-                    GameManager.Instance.TutorialWorld();
-                    GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
-                    foreach (var debri in debris)
+                    DialogueManager.Instance.IsCinematic();
+                    StartCoroutine(DialogueManager.Instance.CinematicWait(14));
+                    Controller.instance.FreezePlayer(true);
+                    break;
+                
+                case 4:
+                    if (!DialogueManager.Instance.isPlayingDialogue)
                     {
-                        debri.SetActive(true);
+                        Controller.instance.FreezePlayer(false);
+                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                        GameManager.Instance.TutorialWorld();
+                        GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
+                        puzzle.SetActive(true);
                     }
                     break;
                 
                 case 3 :
-                    /*if (Les débris sont bougés)
+                    if (puzzleFinished)
                     {
+                        puzzleFinished = false;
+                        StartCoroutine(DisableObject(puzzle));
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-                        foreach (var shard in crystalShards)
-                        {
-                            shard.SetActive(true);
-                        }
-                    }*/
-                    
-                    
-                    break;
-                case 2 :
-                    
-                    spawner.SpawnEnemies();
-                    if (spawner.enemiesParent.childCount == 0)
-                    {
-                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                        StartCoroutine(MannequinDelay());
                     }
                     
                     break;
+                case 2 :
+                    if (isDead)
+                    {
+                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                        isDead = false;
+                    }
+
+                    break;
                 case 1 :
+                    if (!spawnedEnemies && !DialogueManager.Instance.isPlayingDialogue)
+                    {
+                        spawnedEnemies = true;
+                        spawner.SpawnEnemies();
+                    }
+                    if (spawner.enemiesParent.childCount == 3)
+                    {
+                        GameManager.Instance.volumeManager.profile = forestProfile;
+                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                        barrier.SetActive(false);
+                    }
+                    break;
+                case 0 : 
                     if (!isFinished)
                     {
                         isFinished = true;
-                        GameManager.Instance.volumeManager.profile = forestProfile;
+                        canStart = false;
                     }
                     break;
             }
@@ -97,6 +122,34 @@ public class WindCardTutorialManager : MonoBehaviour
         }
     }
 
+    private IEnumerator MannequinDelay()
+    {
+        yield return new WaitForSeconds(6f);
+        mannequin.SetActive(true);
+        brasier.SetActive(true);
+    }
+
+    public void FinishPuzzle()
+    {
+        puzzleFinished = true;
+    }
+
+    public void MannequinKilled()
+    {
+        StartCoroutine(MannequinDeathWait());
+        isDead = true;
+    }
+
+    private IEnumerator MannequinDeathWait()
+    {
+        yield return new WaitForSeconds(1.5f);
+        fakeBrasier.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        mannequin.SetActive(false);
+        brasier.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        fakeBrasier.SetActive(false);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !isFinished)
@@ -105,6 +158,12 @@ public class WindCardTutorialManager : MonoBehaviour
             canStart = true;
             GameManager.Instance.actualRespawnPoint = transform;
         }
+    }
+    private IEnumerator DisableObject(GameObject _object)
+    {
+        _object.SetActive(false);
+        yield return new WaitForSeconds(0.001f);
+        _object.SetActive(true);
     }
     
 }
