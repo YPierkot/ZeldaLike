@@ -288,7 +288,7 @@ public class UIManager : MonoBehaviour
          currentCard = 0;
       }
       
-         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos -55,cardHandles[currentCard].position.z);
+         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos +55,cardHandles[currentCard].position.z);
 
          CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }
