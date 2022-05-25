@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PathCreation.Examples;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -28,6 +29,8 @@ public class TutorialManager : MonoBehaviour
     private bool touchedPrison;
     private bool itharStarted;
     [SerializeField] private GameObject enemyBreach;
+    [SerializeField] private PathFollower prisonParticle;
+    [SerializeField] private GameObject itharSpell;
     
     [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
@@ -89,19 +92,25 @@ public class TutorialManager : MonoBehaviour
         yield return new WaitForSeconds(4);
         CameraShake.Instance.AddShakeEvent(prisonShake);
         touchedPrison = true;
+        prisonParticle.enabled = true;
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         yield return new WaitForSeconds(3);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve, true);
         ithar.gameObject.SetActive(true);
         ithar.Play("ItharAppear");
-        yield return new WaitForSeconds(12.5f);
+        prisonParticle.gameObject.SetActive(false);
+        yield return new WaitForSeconds(8.5f);
+        itharSpell.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        itharSpell.SetActive(false);
         enemyBreach.SetActive(true);
-        yield return new WaitForSeconds(25.5f);
+        yield return new WaitForSeconds(15.5f);
         ithar.Play("ItharDisappear");
         yield return new WaitForSeconds(0.9f);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve);
         DialogueManager.Instance.isCursed = true;
         DialogueManager.Instance.mist.SetTrigger("Appear");
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         ithar.gameObject.SetActive(false);
     }
 
@@ -154,13 +163,18 @@ public class TutorialManager : MonoBehaviour
                     if(ennemyParent.childCount == 0) givePlayerFireCard.ActivGetCard();
                     break;
                 case 2 : //Après avoir récupéré la carte de feu
+                    
                     Controller.instance.FreezePlayer(false);
-                    DialogueManager.Instance.IsCinematic();
-                    UIManager.Instance.gameObject.SetActive(true);
-                    Controller.instance.FreezePlayer(true, "Cards");
-                    GameManager.Instance.TutorialWorld();
-                    GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
-                    EnqueueDialogue();
+                    if (CardsController.instance.fireCardUnlock)
+                    {
+                        DialogueManager.Instance.IsCinematic();
+                        UIManager.Instance.gameObject.SetActive(true);
+                        Controller.instance.FreezePlayer(true, "Cards");
+                        GameManager.Instance.TutorialWorld();
+                        GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
+                        EnqueueDialogue();
+                    }
+                    
                     break;
                 case 1 : //Une fois l'intro du monde tutoriel finie
                     FireCardTutorialManager.canStart = true;
