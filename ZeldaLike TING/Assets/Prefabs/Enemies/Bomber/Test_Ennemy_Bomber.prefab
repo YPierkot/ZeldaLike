@@ -523,7 +523,6 @@ GameObject:
   - component: {fileID: 2642377945956058367}
   - component: {fileID: 2642377945956058304}
   - component: {fileID: 2642377945956058305}
-  - component: {fileID: 1863430795}
   m_Layer: 6
   m_Name: Test_Ennemy_Bomber
   m_TagString: Ennemy
@@ -595,6 +594,7 @@ MonoBehaviour:
   e_rangeAttack: 2.5
   e_hitStunTime: 1
   e_speed: 3
+  e_animator: {fileID: 0}
   e_sprite: {fileID: 2642377944615720107}
   playerLayerMask:
     serializedVersion: 2
@@ -604,6 +604,7 @@ MonoBehaviour:
     m_Bits: 1024
   spawnFXPos: {fileID: 1766146351}
   e_currentAiState: 0
+  isHitStun: 0
   bombPrefab: {fileID: 9214266994308807322, guid: d370767ac97a8f94c8146a12cde3f617,
     type: 3}
   e_rangeWander: 4
@@ -612,16 +613,3 @@ MonoBehaviour:
   bomberAnimator: {fileID: 285809415}
   isMoving: 0
   isAttacking: 0
---- !u!65 &1863430795
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2642377945956058364}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.973463, y: 1.7605, z: 0.5425081}
-  m_Center: {x: 0.11863923, y: 1.135854, z: 0.032877445}

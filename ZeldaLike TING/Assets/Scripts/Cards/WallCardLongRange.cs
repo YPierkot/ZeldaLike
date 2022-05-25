@@ -26,6 +26,14 @@ public class WallCardLongRange : MonoBehaviour
             GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.ToString() == groundMask.ToString())
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
 
     private void OnDestroy()
     {

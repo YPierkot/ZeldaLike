@@ -1,3 +1,4 @@
+using System;
 using AI;
 using UnityEngine;
 
@@ -29,6 +30,14 @@ public class BlueCardLongRange : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.ToString() == groundMask.ToString())
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }

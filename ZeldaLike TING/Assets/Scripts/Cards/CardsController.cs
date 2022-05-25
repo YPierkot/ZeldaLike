@@ -296,9 +296,9 @@ public class CardsController : MonoBehaviour
         
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
-        
-        
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
+        
+        Destroy(fb, 3.8f);
     }
     
     private const float rangeIceShot = 8f;
