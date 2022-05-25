@@ -23,6 +23,7 @@ namespace AI
         private bool debugBool;
         private Vector3 dir;
         private float spriteDir;
+        private float lastSpriteDir;
         #endregion
         
 
@@ -67,8 +68,9 @@ namespace AI
 
         protected override void Attack()
         {
+            if (isFreeze) return;
             base.Attack();
-
+            
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
                 if (isAttacking)
@@ -101,10 +103,14 @@ namespace AI
                 
                 spriteDir = playerTransform.position.x - transform.position.x;
 
-                if (spriteDir < 0)
+                if (spriteDir < 0) {
                     e_sprite.flipX = true;
-                else
+                    SpawnFXPos.transform.localPosition = new Vector3(-Mathf.Abs(SpawnFXPos.transform.localPosition.x), SpawnFXPos.transform.localPosition.y, SpawnFXPos.transform.localPosition.z);
+                }
+                else {
                     e_sprite.flipX = false;
+                    SpawnFXPos.transform.localPosition = new Vector3(Mathf.Abs(SpawnFXPos.transform.localPosition.x), SpawnFXPos.transform.localPosition.y, SpawnFXPos.transform.localPosition.z);
+                }
             }
         }
 

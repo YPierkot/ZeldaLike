@@ -61,6 +61,7 @@ namespace AI
 
         protected override void Attack()
         {
+            if (isFreeze) return;
             base.Attack();
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {

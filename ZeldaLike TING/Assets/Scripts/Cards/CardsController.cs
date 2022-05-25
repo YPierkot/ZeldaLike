@@ -1,6 +1,4 @@
 using System.Collections;
-using AI;
-using Unity.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -27,6 +25,7 @@ public class CardsController : MonoBehaviour
      public bool iceCardUnlock = true;
     public static bool isIceGround;
     public GameObject iceCardGrounded;
+    public GameObject enemyFreezeFX;
     [HideInInspector] public bool iceRectoUse;
     
     [Space(10)]
@@ -321,10 +320,13 @@ public class CardsController : MonoBehaviour
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            if (ennemy.isTrigger) { ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1); ennemy.transform.GetComponent<AI.AbstractAI>().SlowEnemy(); }
-
-            if (ennemy.transform.CompareTag("Interactable"))
-                ennemy.GetComponent<InteracteObject>().isFreeze = true;
+            if (ennemy.isTrigger) {
+                ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1); 
+                ennemy.transform.GetComponent<AI.AbstractAI>().SlowEnemy();
+                Instantiate(enemyFreezeFX, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos.position, Quaternion.identity, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos);
+            }
+            
+            if (ennemy.transform.CompareTag("Interactable")) ennemy.GetComponent<InteracteObject>().isFreeze = true;
         }
     }
 

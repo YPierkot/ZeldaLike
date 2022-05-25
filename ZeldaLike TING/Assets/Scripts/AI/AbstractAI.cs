@@ -1,9 +1,6 @@
-
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
 using static AI.AbstractAI.AIStates;
 
 namespace AI
@@ -21,7 +18,8 @@ namespace AI
         [SerializeField] public SpriteRenderer e_sprite; // Enemy Sprite Renderer
         [SerializeField] public LayerMask playerLayerMask; // Player Layer
         [SerializeField] public LayerMask groundLayerMask; // Player Layer
-        
+        [SerializeField] private Transform spawnFXPos = null;
+        public Transform SpawnFXPos => spawnFXPos;
         
         public enum AIStates
         {
@@ -40,6 +38,7 @@ namespace AI
 
         private Coroutine e_hitStunCO;
         private bool isHitStun;
+        protected bool isFreeze;
         private bool init;
         
 
@@ -102,8 +101,7 @@ namespace AI
                 ChangeState(attacking); // Skip in attack state if player is in sight range
         }
 
-        protected virtual void Attack()
-        {
+        protected virtual void Attack() {
             
         }
 
@@ -142,12 +140,11 @@ namespace AI
         {
             e_sprite.color = Color.red;
             yield return new WaitForSeconds(0.14f);
-            e_sprite.color = Color.white;
+            e_sprite.color = isFreeze ? new Color(146f/255f, 237f/255f, 255f/255f) : Color.white;
         }
 
         public void SlowEnemy()
         {
-            Debug.Log("Coroutine se lance");
             StartCoroutine(sE());
         }
 
@@ -156,12 +153,17 @@ namespace AI
             
         }
 
-        private IEnumerator sE()
-        {
-            Debug.Log("OUAIS çA FONCTIONNE LE SANG");
-            e_speed /= 2;
+        private IEnumerator sE() {
+            Vector2 speed = new Vector2(e_speed, GetComponentInChildren<Animator>().speed);
+            GetComponentInChildren<Animator>().speed = 0;
+            e_sprite.color = new Color(146f/255f, 237f/255f, 255f/255f);
+            isFreeze = true;
+            e_speed = 0;
             yield return new WaitForSeconds(4.5f);
-            e_speed *= 2;
+            GetComponentInChildren<Animator>().speed = speed.y;
+            e_sprite.color = new Color(1,1,1);
+            e_speed = speed.x;
+            isFreeze = false;
         }
 
         private void HitStun()

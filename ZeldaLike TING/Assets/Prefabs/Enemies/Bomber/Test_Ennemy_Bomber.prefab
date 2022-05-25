@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1766146350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766146351}
+  m_Layer: 6
+  m_Name: SpawnFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1766146351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766146350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2642377945956058365}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2642377944153001551
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +545,7 @@ Transform:
   m_Children:
   - {fileID: 2642377944615720106}
   - {fileID: 2642377944677528718}
+  - {fileID: 1766146351}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -561,6 +593,7 @@ MonoBehaviour:
   e_hp: 5
   e_rangeSight: 7
   e_rangeAttack: 2.5
+  e_hitStunTime: 1
   e_speed: 3
   e_sprite: {fileID: 2642377944615720107}
   playerLayerMask:
@@ -569,6 +602,8 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  spawnFXPos: {fileID: 1766146351}
+  e_currentAiState: 0
   bombPrefab: {fileID: 9214266994308807322, guid: d370767ac97a8f94c8146a12cde3f617,
     type: 3}
   e_rangeWander: 4
