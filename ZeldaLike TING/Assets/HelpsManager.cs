@@ -11,7 +11,9 @@ public class HelpsManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI helpTextDisplay;
     [SerializeField] private GameObject[] checks = new GameObject[4];
+    private Animator helpTextAnimator;
     [SerializeField] private List<helpTexts> helps;
+    [SerializeField] private Animator helpFrame;
     private Queue<helpTexts> helpsQueue;
     private helpTexts currentHelp;
     private bool done;
@@ -34,6 +36,7 @@ public class HelpsManager : MonoBehaviour
         {
             helpsQueue.Enqueue(help);
         }
+        helpTextAnimator = helpTextDisplay.GetComponent<Animator>();
     }
 
     private void Update()
@@ -115,6 +118,8 @@ public class HelpsManager : MonoBehaviour
 
     public void DisplayHelp()
     {
+        helpTextAnimator.SetTrigger("IsOn");
+        helpFrame.SetTrigger("IsOn");
         done = false;
         helpTextDisplay.gameObject.SetActive(true);
         currentHelp = helpsQueue.Dequeue();
@@ -159,7 +164,6 @@ public class HelpsManager : MonoBehaviour
 
     private void ResetHelpText()
     {
-        
         foreach (var check in checks)
         {
             check.SetActive(false);
@@ -171,12 +175,14 @@ public class HelpsManager : MonoBehaviour
         else if (currentHelp.helpIndex == 6)
         {
             Debug.Log("Dernière aide");
-            helpTextDisplay.text = "";
+            helpTextAnimator.ResetTrigger("IsOn");
+            helpFrame.ResetTrigger("IsOn");
             enabled = false;
         }
         else
         {
-            helpTextDisplay.text = "";
+            helpTextAnimator.ResetTrigger("IsOn");
+            helpFrame.ResetTrigger("IsOn");
         }
     }
 }
