@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -94,5 +95,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void Disable(GameObject objectToDisable)
+    {
+        StartCoroutine(DisableObject(objectToDisable));
+    }
+    public IEnumerator DisableObject(GameObject _object)
+    {
+        _object.SetActive(false);
+        yield return new WaitForSeconds(0.001f);
+        _object.SetActive(true);
     }
 }
