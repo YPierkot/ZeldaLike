@@ -251,15 +251,12 @@ public class
     {
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
-
-            //transformDebugger.position = hit.point;
-            pointerPosition = hit.point;
+            Vector3 vect = Input.mousePosition;
+            vect.z = Vector3.Distance(camera.transform.position, transform.position);
+            pointerPosition = Camera.main.ScreenToWorldPoint(vect);
             if (!DialogueManager.Instance.isCinematic)
             {
-                Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+                Vector2 vector = (new Vector2(pointerPosition.x, pointerPosition.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
                 Rotate(vector);
             }
         }
