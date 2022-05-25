@@ -22,7 +22,9 @@ public class RunePlate : MonoBehaviour {
         set => isActivate = value;
     }
     
-    private void Start() {
+    private void Start()
+    {
+        if (GetComponentInParent<RunePuzzleManager>()) runeManager = GetComponentInParent<RunePuzzleManager>();
         if (runeManager == null) {
             Debug.LogError("There is no rune manager on this object. Please add one before testing the puzzle.", this.transform);
             return;
