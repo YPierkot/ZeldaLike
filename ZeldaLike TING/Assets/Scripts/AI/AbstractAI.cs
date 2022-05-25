@@ -41,6 +41,7 @@ namespace AI
         private Coroutine e_hitStunCO;
         public bool isHitStun;
         private bool init;
+        private float freezeTime;
         
 
         #endregion
@@ -152,17 +153,24 @@ namespace AI
             StartCoroutine(sE());
         }
 
-        public void FreezeEnemy()
-        {
-            
-        }
-
         private IEnumerator sE()
         {
             Debug.Log("OUAIS çA FONCTIONNE LE SANG");
             e_speed /= 2;
             yield return new WaitForSeconds(4.5f);
             e_speed *= 2;
+        }
+        
+        public void FreezeEnemy(float fT)
+        {
+            StartCoroutine(fE(fT));
+        }
+
+        private IEnumerator fE(float fTCo)
+        {
+           
+            yield return new WaitForSeconds(fTCo);
+            
         }
 
         private void HitStun()

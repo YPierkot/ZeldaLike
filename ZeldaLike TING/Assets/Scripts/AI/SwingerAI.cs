@@ -123,26 +123,21 @@ namespace AI
                 e_sprite.flipX = false;
             
             swingerAnimator.SetBool("isAttack", true);
-
-            Debug.DrawRay(transform.position, dir*2, Color.green, 1f);
             
-            yield return new WaitForSeconds(.28f); // Temps de l'animation avant hit & recast dmg point
+            yield return new WaitForSeconds(.40f); // Temps de l'animation avant hit & recast dmg point
             
             dir = playerTransform.position - transform.position; dir.Normalize();
             
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.10f);
 
             Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
-            foreach (var player in playercol)
-            {
-                StartCoroutine(PlayerDmgCo());
-            }
+            foreach (var player in playercol) { if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage(); }
 
-            yield return new WaitForSeconds(1.17f); // Anim fini 
+            yield return new WaitForSeconds(1.2f); // Anim fini 
             swingerAnimator.SetBool("isAttack", false);
             CanMove();  
             
-            yield return new WaitForSeconds(1.5f); // Temps avant de pouvoir ré attaqué
+            yield return new WaitForSeconds(1.3f); // Temps avant de pouvoir ré attaqué
             isAttacking = false;
         }
 
@@ -165,12 +160,6 @@ namespace AI
             e_rigidbody.constraints = RigidbodyConstraints.None;
             e_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
             e_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-
-        private IEnumerator PlayerDmgCo()
-        {
-            yield return new WaitForSeconds(.19f);
-            if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
         }
     }
 }

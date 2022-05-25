@@ -9394,6 +9394,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629413, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
+      propertyPath: lifeMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629413, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
       propertyPath: enemyKBForce
       value: 6
       objectReference: {fileID: 0}
@@ -9600,6 +9605,11 @@ PrefabInstance:
       objectReference: {fileID: 821294402754308580}
     - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
+      propertyPath: animatorMovePlayer
+      value: 
+      objectReference: {fileID: 2864837487321878433}
+    - target: {fileID: 7337217462935629418, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
       propertyPath: attackZones.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -9675,6 +9685,12 @@ Transform:
 --- !u!1 &2699368523014407226 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3532500712317058003, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+    type: 3}
+  m_PrefabInstance: {fileID: 1473772123588526057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2864837487321878433 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3725059031725174856, guid: d9d30125b4f2a6c47bb999c02a3ff083,
     type: 3}
   m_PrefabInstance: {fileID: 1473772123588526057}
   m_PrefabAsset: {fileID: 0}

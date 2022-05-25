@@ -830,8 +830,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187803163383812480, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812480, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 12.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: canUseCards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: iceCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: fireCardUnlock
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04d5dd494f81cd245a3a98f68ff6149d, type: 3}
