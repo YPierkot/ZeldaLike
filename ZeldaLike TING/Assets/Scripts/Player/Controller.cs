@@ -101,6 +101,7 @@ public class
     private bool comboWaiting;
 
     [Header("--- PARAMETRES ---")] 
+    [SerializeField] private float joystickDeadZone;
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
     public int maxDash; 
@@ -222,7 +223,7 @@ public class
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
-        if (DialogueManager.Instance.isCinematic)
+        if (DialogueManager.Instance.isCinematic && Vector2.Distance(Vector2.zero,obj.ReadValue<Vector2>()) > joystickDeadZone)
         {
           Vector2 rotation = obj.ReadValue<Vector2>().normalized;
           Rotate(rotation);  
