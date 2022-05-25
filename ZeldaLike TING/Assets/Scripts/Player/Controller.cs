@@ -297,7 +297,7 @@ public class
             {
                 dashCDtimer = 0;
                 dashAvailable++;
-                UIManager.Instance.UpdateDash(dashAvailable);
+                UIManager.Instance.UpdateDash(dashAvailable, true);
             }
         }
 
@@ -384,6 +384,7 @@ public class
             dashAvailable--;
             dashing = true;
             dashTimer = 0;
+            dashCDtimer = 0;
             canMove = false;
             inAttack = false;
             attackCounter = 0;
