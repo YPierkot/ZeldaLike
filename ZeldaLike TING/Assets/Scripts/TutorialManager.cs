@@ -22,9 +22,12 @@ public class TutorialManager : MonoBehaviour
     
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private Transform prisonPosition;
+    [SerializeField] private Transform prison;
     [SerializeField] private List<Transform> ennemiesSpawnPoints;
     [SerializeField] private Animator ithar;
+    private bool touchedPrison;
     private bool itharStarted;
+    [SerializeField] private GameObject enemyBreach;
     
     [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
@@ -85,12 +88,15 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         CameraShake.Instance.AddShakeEvent(prisonShake);
+        touchedPrison = true;
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         yield return new WaitForSeconds(3);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve, true);
         ithar.gameObject.SetActive(true);
         ithar.Play("ItharAppear");
-        yield return new WaitForSeconds(28f);
+        yield return new WaitForSeconds(12.5f);
+        enemyBreach.SetActive(true);
+        yield return new WaitForSeconds(25.5f);
         ithar.Play("ItharDisappear");
         yield return new WaitForSeconds(0.9f);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve);
@@ -130,6 +136,7 @@ public class TutorialManager : MonoBehaviour
                         helpManager.DisplayHelp();
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
+                        enemyBreach.SetActive(false);
                         StartCoroutine(SpawnEnnemiesCo());
                         
                         Controller.instance.FreezePlayer(false);
@@ -187,6 +194,15 @@ public class TutorialManager : MonoBehaviour
                     UIManager.Instance.gameObject.SetActive(false);
                     Controller.instance.ForceMove(prisonPosition.position);
                     Controller.instance.FreezePlayer(true);
+                    if (touchedPrison)
+                    {
+                        prison.localScale += new Vector3(1f, 1f, 1f);
+                        if (prison.localScale.x >= 20)
+                        {
+                            touchedPrison = false;
+                            prison.gameObject.SetActive(false);
+                        }
+                    }
                     if (!itharStarted)
                     {
                         DialogueManager.Instance.IsCinematic();
