@@ -43,8 +43,9 @@ namespace AI
         {
             base.Walk();
 
-            if(isMoving)
-                return;
+            if(isMoving) return;
+            if (isHitStun) return;
+
             
             isMoving = true;
 
@@ -71,13 +72,12 @@ namespace AI
             
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
+                if (isAttacking) return;
+                if (isHitStun) return;
                 
+                // Attack Pattern
                 isAttacking = true;
                 isMoving = false;
-            
-                // Attack Pattern
                 StartCoroutine(DoDropBomb());
             }
             else

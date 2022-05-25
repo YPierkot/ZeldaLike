@@ -18,11 +18,6 @@ public class WindCardLongRange : MonoBehaviour
     [SerializeField] private GameObject windFX;
     
     
-    private void OnEnable()
-    {
-        if (collider == null) collider = GetComponent<BoxCollider>();
-        collider.isTrigger = false;
-    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, attractiveRadius);

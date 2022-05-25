@@ -313,7 +313,7 @@ public class CardsController : MonoBehaviour
         Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
 
-        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 0.5f, GoDir.z * rangeStartIceShot),
+        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 1.1f, GoDir.z * rangeStartIceShot),
             Quaternion.Euler(-90, Controller.instance.angleView - 90f + 180, 0)), 3f);
         
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
