@@ -9,8 +9,9 @@ public class BarrierAppear : MonoBehaviour
     private float actualScale;
     [SerializeField] private float maxScale;
     private bool start;
+    private bool deactivate = false;
 
-    private void Start()
+    private void OnEnable()
     {
         
         StartCoroutine(DelayStart());
@@ -18,11 +19,23 @@ public class BarrierAppear : MonoBehaviour
 
     private void Update()
     {
-        if (actualScale <= maxScale && start)
+        if (actualScale <= maxScale && start && !deactivate)
         {
             actualScale = transform.localScale.y;
             transform.localScale = new Vector3(transform.localScale.x, actualScale += appearSpeed,
                 transform.localScale.z);
+        }
+
+        if (deactivate && actualScale >= 0) 
+        {
+            actualScale = transform.localScale.y;
+            transform.localScale = new Vector3(transform.localScale.x, actualScale -= appearSpeed *2,
+                transform.localScale.z);
+        }
+
+        if (actualScale <= 0.2f && deactivate)
+        {
+            gameObject.SetActive(false);
         }
         
     }
@@ -32,5 +45,10 @@ public class BarrierAppear : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GetComponent<MeshRenderer>().enabled = true;
         start = true;
+    }
+
+    private void OnDisable()
+    {
+        deactivate = true;
     }
 }

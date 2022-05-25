@@ -11,6 +11,7 @@ public class TriggeringDialogue : MonoBehaviour
     [HideInInspector] public TutorialManager tutorialManager;
     public bool enemiesIsCondition;
     [HideInInspector] public Transform enemiesParent;
+    [SerializeField] private GameObject barrier;
 
     public bool isCinematic;
     [HideInInspector] public float cinematicTime;
@@ -18,7 +19,7 @@ public class TriggeringDialogue : MonoBehaviour
     [HideInInspector] public string zoneName;
     [HideInInspector] public bool isMonolith;
     [HideInInspector] public DialogueScriptable shortMonolithDialogue;
-    
+
     private Transform defaultCamera;
 
     private void Start()
@@ -30,6 +31,10 @@ public class TriggeringDialogue : MonoBehaviour
     {
         if (other.CompareTag("Player") && !hasGivenDialogue)
         {
+            if (barrier != null)
+            {
+                barrier.SetActive(true);
+            }
             if (isTutorial)
             {
                 if (enemiesIsCondition)

@@ -83,7 +83,7 @@ public class WindCardTutorialManager : MonoBehaviour
                     if (puzzleFinished)
                     {
                         puzzleFinished = false;
-                        StartCoroutine(DisableObject(puzzle));
+                        StartCoroutine(GameManager.Instance.DisableObject(puzzle));
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                         StartCoroutine(MannequinDelay());
                     }
@@ -107,7 +107,7 @@ public class WindCardTutorialManager : MonoBehaviour
                     {
                         GameManager.Instance.volumeManager.profile = forestProfile;
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-                        barrier.SetActive(false);
+                        StartCoroutine(GameManager.Instance.DisableObject(barrier));
                     }
                     break;
                 case 0 : 
@@ -159,11 +159,6 @@ public class WindCardTutorialManager : MonoBehaviour
             GameManager.Instance.actualRespawnPoint = transform;
         }
     }
-    private IEnumerator DisableObject(GameObject _object)
-    {
-        _object.SetActive(false);
-        yield return new WaitForSeconds(0.001f);
-        _object.SetActive(true);
-    }
+    
     
 }
