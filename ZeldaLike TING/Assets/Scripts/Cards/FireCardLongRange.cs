@@ -7,7 +7,7 @@ public class FireCardLongRange : MonoBehaviour
 {
     public LayerMask mask; //Ennemy & Interact
     public LayerMask groundMask;
-    public GameObject DebugSphere;
+    //public GameObject DebugSphere;
     public GameObject fireFX;
 
 
@@ -21,7 +21,7 @@ public class FireCardLongRange : MonoBehaviour
     {
         Destroy(Instantiate(fireFX, transform.position, Quaternion.identity), 3.4f);
         yield return new WaitForSeconds(.22f);
-        Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),1f);
+        //Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),1f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2.5f, mask);
         foreach (var col in colliders)

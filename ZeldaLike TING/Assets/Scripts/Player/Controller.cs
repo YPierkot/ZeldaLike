@@ -38,7 +38,7 @@ public class
     public ControlType _controlType;
     public bool secondStick;
     private ControlType lastControlType;
-    [SerializeField] private Animator animatorPlayer;
+    public Animator animatorPlayer;
     [SerializeField] private Animator animatorPlayerHand;
     [SerializeField] private Animator animatorMovePlayer;
     
