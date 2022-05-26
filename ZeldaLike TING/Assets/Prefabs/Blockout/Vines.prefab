@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4938882022940205607}
   - component: {fileID: 5069656443912013146}
   - component: {fileID: 6054870952332879973}
+  - component: {fileID: 3531309818222832177}
   m_Layer: 11
   m_Name: Vines
   m_TagString: Interactable
@@ -60,7 +61,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801875180711142008}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e5f6f5e7b36cee49987e0da311292ea, type: 3}
   m_Name: 
@@ -93,6 +94,46 @@ MonoBehaviour:
   destroyInteract:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &3531309818222832177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801875180711142008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1f024c7ef3a0b418737119da8ac17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireAffect: 0
+  canBurn: 0
+  burnDestroy: 0
+  burning: 0
+  onBurn:
+    m_PersistentCalls:
+      m_Calls: []
+  onBurnDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  windAffect: 0
+  windThrough: 0
+  onWind:
+    m_PersistentCalls:
+      m_Calls: []
+  iceAffect: 0
+  canFreeze: 0
+  freezeCollider: {fileID: 0}
+  freezeTime: 0
+  isFreeze: 0
+  moveRestricted: 0
+  moveTop: 0
+  moveLeft: 0
+  moveRight: 0
+  moveBot: 0
+  destroyInteract:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1316213084449343177
 GameObject:
   m_ObjectHideFlags: 0
