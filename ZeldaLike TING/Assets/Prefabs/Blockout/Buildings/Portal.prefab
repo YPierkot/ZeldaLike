@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6504259840299534120}
   - component: {fileID: 4213466060136999425}
   - component: {fileID: 1119201156684986523}
+  - component: {fileID: 5292384078142067598}
   m_Layer: 0
   m_Name: DarkCircle
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1609752505399423289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 9.22, y: 9.22, z: 9.22}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 249104703035970418}
@@ -285,7 +286,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 0.34
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4870,6 +4871,26 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!95 &5292384078142067598
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609752505399423289}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c89bdf675dcfe6843817aa100064eb71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3008491974573140470
 GameObject:
   m_ObjectHideFlags: 0
@@ -4882,6 +4903,7 @@ GameObject:
   - component: {fileID: 8305055138335569954}
   - component: {fileID: 6065511856843047441}
   - component: {fileID: 4640988991174114785}
+  - component: {fileID: 361458018}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -4970,6 +4992,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &361458018
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3008491974573140470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c89bdf675dcfe6843817aa100064eb71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4415859732867848437
 GameObject:
   m_ObjectHideFlags: 0
@@ -5837,7 +5879,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 19.13
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9810,7 +9852,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6147671990526196309}
-  m_LocalRotation: {x: -0.16135322, y: -0.6468026, z: -0.71362203, w: 0.21530251}
+  m_LocalRotation: {x: -0.1613578, y: -0.6468013, z: -0.7136208, w: 0.21530709}
   m_LocalPosition: {x: -18.51, y: -2.36, z: 152.74}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
@@ -10809,7 +10851,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9527
+  m_VersionIndex: 9530
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

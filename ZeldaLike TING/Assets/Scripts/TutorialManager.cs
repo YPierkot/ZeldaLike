@@ -18,9 +18,15 @@ public class TutorialManager : MonoBehaviour
     private HelpsManager helpManager;
     private int remainingDialogues;
     private bool setHelp = true;
-    
-    [Header("First Cinematic")]
-    
+
+    [Header("First Cinematic")] 
+    [SerializeField] private Animator portal;
+
+    [SerializeField] private Animator portalDarkCircle;
+    [SerializeField] private GameObject teleportShader;
+    [SerializeField] private CameraShakeScriptable appearCameraShake;
+
+    private bool playerAppeared;
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private Transform prisonPosition;
     [SerializeField] private Transform prison;
@@ -63,13 +69,14 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         helpManager = GetComponent<HelpsManager>();
+        StartCoroutine(PortalAppearance());
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
+        Controller.instance.gameObject.SetActive(false);
         DialogueManager.Instance.IsCinematic();
         Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
-        EnqueueDialogue();
-        
+
     }
 
     private void Update()
@@ -106,8 +113,8 @@ public class TutorialManager : MonoBehaviour
         enemyBreach.SetActive(true);
         yield return new WaitForSeconds(15.5f);
         ithar.Play("ItharDisappear");
-        yield return new WaitForSeconds(0.9f);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve);
+        yield return new WaitForSeconds(0.9f);
         DialogueManager.Instance.isCursed = true;
         DialogueManager.Instance.mist.SetTrigger("Appear");
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
@@ -116,7 +123,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Dialogues()
     {
-        if (DialogueManager.Instance.isPlayingDialogue == false)
+        if (DialogueManager.Instance.isPlayingDialogue == false && playerAppeared)
         {
             remainingDialogues = dialogueQueue.Count;
             switch (remainingDialogues)
@@ -136,13 +143,13 @@ public class TutorialManager : MonoBehaviour
                     {
                         DialogueManager.Instance.IsCinematic();
                         setHelp = false;
-                        helpManager.DisplayHelp();
+                        StartCoroutine(helpManager.DisplayHelp());
                     }
                     break;
                 case 4 : //Après avoir libéré Ithar
                     if (enemySpawn)
                     {
-                        helpManager.DisplayHelp();
+                        StartCoroutine(helpManager.DisplayHelp());
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
                         enemyBreach.SetActive(false);
@@ -237,6 +244,23 @@ public class TutorialManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private IEnumerator PortalAppearance()
+    {
+        portal.SetTrigger("PortalOn");
+        portalDarkCircle.SetTrigger("PortalOn");
+        CameraShake.Instance.AddShakeEvent(appearCameraShake);
+        yield return new WaitForSeconds(1.5f);
+        teleportShader.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        portal.ResetTrigger("PortalOn");
+        portalDarkCircle.ResetTrigger("PortalOn");
+        Controller.instance.gameObject.SetActive(true);
+        playerAppeared = true;
+        EnqueueDialogue();
+        yield return new WaitForSeconds(0.5f);
+        teleportShader.SetActive(false);
     }
 
     private IEnumerator SpawnEnnemiesCo()
