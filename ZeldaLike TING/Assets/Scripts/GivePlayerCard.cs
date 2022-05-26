@@ -60,7 +60,6 @@ public class GivePlayerCard : MonoBehaviour
                     CardsController.instance.wallCardUnlock = true;
                     break;
                 case CardToGive.wind :
-                    WindCardTutorialManager.canStart = true;
                     CardsController.instance.windCardUnlock = true;
                     break;
             }
@@ -85,7 +84,7 @@ public class GivePlayerCard : MonoBehaviour
             transform.localScale -= Vector3.one/10;
         }
 
-        if (transform.localScale.y <= 0.5f)
+        if (transform.localScale.y <= 0.5f && isCardGiven)
         {
             gameObject.SetActive(false);
         }

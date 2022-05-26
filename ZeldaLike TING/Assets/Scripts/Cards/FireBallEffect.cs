@@ -1,3 +1,4 @@
+using System;
 using AI;
 using UnityEngine;
 
@@ -18,8 +19,8 @@ public class FireBallEffect : MonoBehaviour
         }
         Destroy(gameObject);
     }
-
-    private void OnCollisionEnter(Collision other)
+    
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Player"))
         {

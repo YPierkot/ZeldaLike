@@ -14,8 +14,10 @@ public class InteracteObject : MonoBehaviour
     [SerializeField] private bool canBurn;
     [SerializeField] private bool burnDestroy;
     [SerializeField] public bool burning;
+    [SerializeField] private float burnAmount = 0;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurn;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
+    [SerializeField] private Material lianaBurning;
 
     
     [Header("--- WIND")] public bool windAffect;
@@ -63,8 +65,17 @@ public class InteracteObject : MonoBehaviour
         {
             if (mesh != null)
             {
-                mesh.material.color = new Color( Mathf.Clamp(mesh.material.color.r+.035f, 0,1),Mathf.Clamp(mesh.material.color.g-.035f, 0,1) ,Mathf.Clamp(mesh.material.color.b-.035f, 0,1) , 1);
-                if(mesh.material.color.r >= 1) DestroyGM();
+                mesh.material = lianaBurning;
+                burnAmount += 0.05f;
+                mesh.material.SetFloat("BurningValue", burnAmount);
+                if(burnAmount >= 1) 
+                {
+                    mesh.transform.localScale -= Vector3.one/10;
+                }
+                if (mesh.transform.localScale.y < 0.2f)
+                {
+                    DestroyGM();
+                }
             }
             else
             {

@@ -23,7 +23,6 @@ public class PuzzleDoorActivation : MonoBehaviour {
         if (windCard != null)
         {
             windCard.SetActive(true);
-            windChest.SetActive(true);
         }
         GameManager.Instance.Disable(wall);
         Destroy(gameObject);

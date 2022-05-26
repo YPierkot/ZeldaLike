@@ -37,6 +37,8 @@ public class WindCardTutorialManager : MonoBehaviour
     
     [SerializeField] private EnemySpawnTrigger spawner;
 
+    [SerializeField] private Animator portal;
+
     [Header("Blocking Player")] 
     
     [SerializeField] private GameObject barrier;
@@ -69,7 +71,7 @@ public class WindCardTutorialManager : MonoBehaviour
                     break;
                 
                 case 4:
-                    if (!DialogueManager.Instance.isPlayingDialogue)
+                    if (!DialogueManager.Instance.isPlayingDialogue && CardsController.instance.windCardUnlock)
                     {
                         Controller.instance.FreezePlayer(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
@@ -108,6 +110,7 @@ public class WindCardTutorialManager : MonoBehaviour
                         GameManager.Instance.volumeManager.profile = forestProfile;
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                         StartCoroutine(GameManager.Instance.DisableObject(barrier));
+                        portal.SetTrigger("PortalOn");
                     }
                     break;
                 case 0 : 
@@ -116,6 +119,7 @@ public class WindCardTutorialManager : MonoBehaviour
                         isFinished = true;
                         canStart = false;
                     }
+                    
                     break;
             }
             

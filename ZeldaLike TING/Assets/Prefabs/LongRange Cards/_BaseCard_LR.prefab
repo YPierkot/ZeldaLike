@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 96de021a8d452d546b4d67bbdb28cb85, type: 2}
+  - {fileID: 2100000, guid: eae326bf4622b054fb40be4a4f3a34bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19707,6 +19707,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 3134837155021762816, guid: efccfadc7a601c8439ca35f0972b23e5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eae326bf4622b054fb40be4a4f3a34bf, type: 2}
     m_RemovedComponents:
     - {fileID: 2810267580162517680, guid: efccfadc7a601c8439ca35f0972b23e5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: efccfadc7a601c8439ca35f0972b23e5, type: 3}

@@ -47,14 +47,21 @@ public class WallCardTutorialManager : MonoBehaviour
     {
         if (canStart && !DialogueManager.Instance.isPlayingDialogue)
         {
+            barrier.SetActive(true);
             PlayerStat.instance.life = PlayerStat.instance.lifeMax;
             int remainingDialogue = dialogueQueue.Count;
             switch (remainingDialogue)
             {
-                case 2:
+                case 3 :
                     DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-                    GameManager.Instance.TutorialWorld();
-                    GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
+                    break;
+                case 2:
+                    if (CardsController.instance.wallCardUnlock)
+                    {
+                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                        GameManager.Instance.TutorialWorld();
+                        GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
+                    }
                     break;
                 case 1 :
                     if (Vector3.Distance(objective.position, Controller.instance.transform.position) <= 3)
@@ -84,14 +91,4 @@ public class WallCardTutorialManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !isFinished)
-        {
-            barrier.SetActive(true);
-            canStart = true;
-            GameManager.Instance.actualRespawnPoint = transform;
-        }
-    }
-    
 }
