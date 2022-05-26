@@ -9,7 +9,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     [Header("Forest Variables")]
     [SerializeField] private AudioClip forestAmbiance;
     [SerializeField] private VolumeProfile forest;
-    
+
     [Header("Cinematic Variables")]
     [SerializeField] private string location;
     [SerializeField] private Transform cameraPoint;
@@ -29,7 +29,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         {
             DialogueManager.Instance.IsCinematic();
         }
-        //StartCoroutine(SmallCinematic());
+        StartCoroutine(SmallCinematic());
     }
 
     private IEnumerator SmallCinematic()

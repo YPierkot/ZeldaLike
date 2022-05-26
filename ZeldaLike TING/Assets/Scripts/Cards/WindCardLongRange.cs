@@ -18,11 +18,6 @@ public class WindCardLongRange : MonoBehaviour
     [SerializeField] private GameObject windFX;
     
     
-    private void OnEnable()
-    {
-        if (collider == null) collider = GetComponent<BoxCollider>();
-        collider.isTrigger = false;
-    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, attractiveRadius);
@@ -88,7 +83,26 @@ public class WindCardLongRange : MonoBehaviour
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-    
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("Interactable"))
+        {
+            Debug.Log(other.transform.name);
+            if (other.transform.GetComponent<InteracteObject>().windThrough)
+            {
+                Debug.Log(velocity);
+                collider.isTrigger = true;
+                GetComponent<Rigidbody>().velocity = velocity;
+            }
+            else WindCardLongEffect();
+        }
+        else if (other.ToString() == groundMask.ToString())
+        {
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
     private void OnDestroy()
     {
         CardsController.instance.LaunchCardCD(4);

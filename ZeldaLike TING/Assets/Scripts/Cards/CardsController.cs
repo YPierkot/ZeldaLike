@@ -1,6 +1,4 @@
 using System.Collections;
-using AI;
-using Unity.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -27,6 +25,7 @@ public class CardsController : MonoBehaviour
      public bool iceCardUnlock = true;
     public static bool isIceGround;
     public GameObject iceCardGrounded;
+    public GameObject enemyFreezeFX;
     [HideInInspector] public bool iceRectoUse;
     
     [Space(10)]
@@ -297,9 +296,9 @@ public class CardsController : MonoBehaviour
         
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
-        
-        
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
+        
+        Destroy(fb, 3.8f);
     }
     
     private const float rangeIceShot = 8f;
@@ -314,17 +313,20 @@ public class CardsController : MonoBehaviour
         Debug.DrawRay(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), Color.red, 3f);
 
-        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 0.5f, GoDir.z * rangeStartIceShot),
+        Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 1.1f, GoDir.z * rangeStartIceShot),
             Quaternion.Euler(-90, Controller.instance.angleView - 90f + 180, 0)), 3f);
         
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            if (ennemy.isTrigger) { ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1); ennemy.transform.GetComponent<AI.AbstractAI>().SlowEnemy(); }
-
-            if (ennemy.transform.CompareTag("Interactable"))
-                ennemy.GetComponent<InteracteObject>().isFreeze = true;
+            if (ennemy.isTrigger) {
+                ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1);
+                ennemy.transform.GetComponent<AI.AbstractAI>().FreezeEnemy(3.5f);
+                Instantiate(enemyFreezeFX, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos.position, Quaternion.identity, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos);
+            }
+            
+            if (ennemy.transform.CompareTag("Interactable")) ennemy.GetComponent<InteracteObject>().isFreeze = true;
         }
     }
 

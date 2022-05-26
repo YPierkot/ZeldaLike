@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1749064542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749064543}
+  m_Layer: 6
+  m_Name: SpawnFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1749064543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749064542}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3913864873762027152}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3913864873623611266
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +75,6 @@ GameObject:
   - component: {fileID: 3913864873762027155}
   - component: {fileID: 3913864873762027159}
   - component: {fileID: 3913864873762027158}
-  - component: {fileID: 3913864873762027156}
   m_Layer: 6
   m_Name: Test_Enemy_Mage
   m_TagString: Ennemy
@@ -66,6 +96,7 @@ Transform:
   m_Children:
   - {fileID: 3913864874531748774}
   - {fileID: 3913864873623611267}
+  - {fileID: 1749064543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -100,7 +131,9 @@ MonoBehaviour:
   e_hp: 4
   e_rangeSight: 11.655
   e_rangeAttack: 8.97
+  e_hitStunTime: 1
   e_speed: 2.07
+  e_animator: {fileID: 0}
   e_sprite: {fileID: 3913864874531748772}
   playerLayerMask:
     serializedVersion: 2
@@ -108,6 +141,9 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  spawnFXPos: {fileID: 1749064543}
+  e_currentAiState: 0
+  isHitStun: 0
   e_rangeWander: 3
   isMoving: 0
   isAttacking: 0
@@ -127,19 +163,6 @@ BoxCollider:
   m_GameObject: {fileID: 3913864873762027154}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.54, y: 1.28, z: 0.952676}
-  m_Center: {x: -0.010569572, y: 1.43, z: 0.17604509}
---- !u!65 &3913864873762027156
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3913864873762027154}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.54, y: 1.28, z: 0.952676}

@@ -40,11 +40,10 @@ namespace AI
 
         protected override void Walk()
         {
-            if (isAttacking)
-                return;
-            if (isMoving)
-                return;
-            
+            if (isAttacking) return;
+            if (isMoving) return;
+            if (isHitStun) return;
+
             base.Walk();
             
             isMoving = true;
@@ -59,15 +58,16 @@ namespace AI
         
         protected override void Attack()
         {
+            if (isFreeze) return;
             base.Attack();
 
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
-                isAttacking = true;
+                if (isAttacking) return;
+                if (isHitStun) return;
                 
                 // Attack Pattern
+                isAttacking = true;
                 StartCoroutine(DoAttack());
             }
             else

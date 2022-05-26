@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using AI;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class FireCardLongRange : MonoBehaviour
 {
     public LayerMask mask; //Ennemy & Interact
     public LayerMask groundMask;
-    public GameObject DebugSphere;
+    //public GameObject DebugSphere;
     public GameObject fireFX;
 
 
@@ -16,19 +17,11 @@ public class FireCardLongRange : MonoBehaviour
         StartCoroutine(FireCardLongEffectCo());
     }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.GetComponentInParent<Transform>().CompareTag("Player") && other.ToString() == groundMask.ToString())
-        {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
-
     private IEnumerator FireCardLongEffectCo()
     {
         Destroy(Instantiate(fireFX, transform.position, Quaternion.identity), 3.4f);
         yield return new WaitForSeconds(.22f);
-        Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),1f);
+        //Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),1f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2.5f, mask);
         foreach (var col in colliders)
@@ -47,6 +40,23 @@ public class FireCardLongRange : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 5);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.GetComponentInParent<Transform>().CompareTag("Player") && other.ToString() == groundMask.ToString())
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.ToString() == groundMask.ToString())
+        {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
 
     private void OnDestroy()
     {

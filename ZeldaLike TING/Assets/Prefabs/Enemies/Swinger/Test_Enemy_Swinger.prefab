@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1086540470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086540471}
+  m_Layer: 6
+  m_Name: SpawnFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1086540471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086540470}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.696, y: 0, z: -0.889}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8446749621590671366}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8446749621102933504
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +76,6 @@ GameObject:
   - component: {fileID: 8446749621590671360}
   - component: {fileID: 8446749621590671363}
   - component: {fileID: 8446749621590671362}
-  - component: {fileID: 8446749621590671361}
   m_Layer: 6
   m_Name: Test_Enemy_Swinger
   m_TagString: Ennemy
@@ -67,6 +97,7 @@ Transform:
   m_Children:
   - {fileID: 8446749622061708269}
   - {fileID: 8446749621102933507}
+  - {fileID: 1086540471}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -101,7 +132,9 @@ MonoBehaviour:
   e_hp: 6
   e_rangeSight: 9
   e_rangeAttack: 2.9
+  e_hitStunTime: 1
   e_speed: 3
+  e_animator: {fileID: 0}
   e_sprite: {fileID: 8446749622061708271}
   playerLayerMask:
     serializedVersion: 2
@@ -109,11 +142,13 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  spawnFXPos: {fileID: 1086540471}
+  e_currentAiState: 0
+  isHitStun: 0
   e_rangeWander: 2.4
   e_aoeRange: 0.9
   isMoving: 0
   isAttacking: 0
-  swingerAnimator: {fileID: 8446749622061708268}
 --- !u!65 &8446749621590671362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,19 +158,6 @@ BoxCollider:
   m_GameObject: {fileID: 8446749621590671367}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.0055132, y: 1.44, z: 0.7516786}
-  m_Center: {x: 0.06832293, y: 0.95000005, z: 0.10158163}
---- !u!65 &8446749621590671361
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8446749621590671367}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.0055132, y: 1.44, z: 0.7516786}

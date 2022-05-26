@@ -21,9 +21,17 @@ public class WallCardLongRange : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
+        if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player"))
         {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.ToString() == groundMask.ToString())
+        {
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 

@@ -22,11 +22,8 @@ public class FireCardTutorialManager : MonoBehaviour
     [Header("First Challenge")]
     
     [SerializeField] private GameObject lianas;
-    [SerializeField] private GameObject liana;
     private float lastLianaSpawn;
-    [SerializeField] private float lianaSpawnDelay;
-    [SerializeField] private Transform[] lianaSpawnPoints;
-    
+
     [Header("Second Challenge")]
     
     [SerializeField] private GameObject puzzle;
@@ -70,23 +67,16 @@ public class FireCardTutorialManager : MonoBehaviour
                         case false:
                             lianaSet = true;
                             CardsController.instance.canUseCards = true;
-                            lianas.transform.position = Controller.instance.transform.position;
-                            HelpsManager.DisplayHelp();
+                            StartCoroutine(HelpsManager.DisplayHelp());
                             break;
                     }
                     lianas.SetActive(true);
-                    if (lianas.transform.childCount == 0)
-                    {
-                        lastLianaSpawn = Time.time;
-                        canSpawnLianas = true;
-                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-                    }
                     break;
                 case 1 :
                     puzzle.SetActive(true);
                     if (puzzle.transform.childCount == 4)
                     {
-                        HelpsManager.DisplayHelp();
+                        StartCoroutine(HelpsManager.DisplayHelp());
                         puzzle.SetActive(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
@@ -109,11 +99,6 @@ public class FireCardTutorialManager : MonoBehaviour
                     break;
 
                     
-            }
-            if (Time.time > lastLianaSpawn + lianaSpawnDelay && canSpawnLianas && !isFinished)
-            {
-                Instantiate(liana, lianaSpawnPoints[UnityEngine.Random.Range(0, lianaSpawnPoints.Length)]);
-                lastLianaSpawn = Time.time;
             }
         }
     }

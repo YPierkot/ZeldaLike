@@ -1,9 +1,6 @@
-
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
 using static AI.AbstractAI.AIStates;
 
 namespace AI
@@ -16,12 +13,14 @@ namespace AI
         [SerializeField] private int e_hp = 1; // Enemy Health Points
         [SerializeField] public float e_rangeSight = 10f; // Enemy Detect Range
         [SerializeField] public float e_rangeAttack = 10f; // Enemy Attack Range
-        [SerializeField] private float e_hitStunTime = 1f;
+        [SerializeField] private float e_hitStunTime = 3f;
         [SerializeField] protected float e_speed = 10; // Enemy Speed
+        [SerializeField] protected Animator e_animator; // Enemy Speed
         [SerializeField] public SpriteRenderer e_sprite; // Enemy Sprite Renderer
         [SerializeField] public LayerMask playerLayerMask; // Player Layer
         [SerializeField] public LayerMask groundLayerMask; // Player Layer
-        
+        [SerializeField] private Transform spawnFXPos = null;
+        public Transform SpawnFXPos => spawnFXPos;
         
         public enum AIStates
         {
@@ -39,10 +38,15 @@ namespace AI
         protected Rigidbody e_rigidbody;
 
         private Coroutine e_hitStunCO;
-        private bool isHitStun;
-        private bool init;
+        protected bool isFreeze;
+        private float freezeTime;
         
-
+        
+        public bool isHitStun;
+       
+       
+        
+        private bool init;
         #endregion
 
         private void Start()
@@ -59,6 +63,7 @@ namespace AI
             playerTransform = player.transform;
             e_transform = transform;
             e_rigidbody = GetComponent<Rigidbody>();
+            e_animator = GetComponentInChildren<Animator>();
         }
         
         public void Update()
@@ -85,15 +90,16 @@ namespace AI
                 case attacking : Attack(); break;
                 case walking: Walk(); break;
                 case dead: Die(); break;
-               // case hit: Hit(); break;
+                case hit: Hit(); break;
                 default: throw new System.ArgumentOutOfRangeException();
             }
         }
 
         protected void Hit()
         {
+            if(isHitStun) return;
+            
             HitStun();
-            Debug.Log("Oui");
         }
 
         protected virtual void Walk()
@@ -102,7 +108,7 @@ namespace AI
                 ChangeState(attacking); // Skip in attack state if player is in sight range
         }
 
-        protected virtual void Attack()
+        protected virtual void Attack() 
         {
             
         }
@@ -142,26 +148,41 @@ namespace AI
         {
             e_sprite.color = Color.red;
             yield return new WaitForSeconds(0.14f);
-            e_sprite.color = Color.white;
+            e_sprite.color = isFreeze ? new Color(146f/255f, 237f/255f, 255f/255f) : Color.white;
         }
 
         public void SlowEnemy()
         {
-            Debug.Log("Coroutine se lance");
             StartCoroutine(sE());
         }
-
-        public void FreezeEnemy()
-        {
-            
-        }
-
+        
         private IEnumerator sE()
         {
             Debug.Log("OUAIS çA FONCTIONNE LE SANG");
             e_speed /= 2;
             yield return new WaitForSeconds(4.5f);
             e_speed *= 2;
+        }
+        
+        public void FreezeEnemy(float fT)
+        {
+            StartCoroutine(fE(fT));
+        }
+
+        private IEnumerator fE(float fTCo)
+        {
+            Vector2 speed = new Vector2(e_speed, e_animator.speed);
+            e_animator.speed = 0;
+            e_sprite.color = new Color(146f / 255f, 237f / 255f, 255f / 255f);
+            isFreeze = true;
+            e_speed = 0;
+            
+            yield return new WaitForSeconds(fTCo);
+            
+            e_animator.speed = speed.y;
+            e_sprite.color = new Color(1,1,1);
+            e_speed = speed.x;
+            isFreeze = false;
         }
 
         private void HitStun()
@@ -180,7 +201,6 @@ namespace AI
             ChangeState(attacking);
         }
         
-
         private void OnDestroy()
         {
             e_sprite.DOKill();

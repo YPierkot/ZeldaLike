@@ -39,8 +39,8 @@ public class UIManager : MonoBehaviour
    [Header("--- LIFE & STAT")] 
    [SerializeField] private Animator[] lifeArray;
    [SerializeField] private Animator KellHead;
-
-   [SerializeField] private Image[] dashHandles;
+   [Space]
+   [SerializeField] private Animator[] dashHandles;
    private Color dashColor= new Color(.5f, .2f, .5f, 1);
    
    public GameObject loadingScreen;
@@ -220,12 +220,21 @@ public class UIManager : MonoBehaviour
       KellHead.SetTrigger("TakeDamage");
    }
 
-   public void UpdateDash(int dash = 3)
+   public void UpdateDash(int dash = 3, bool add=false)
    {
-      for (int i = 0; i < dashHandles.Length; i++)
+      /*for (int i = 0; i < dashHandles.Length; i++)
       {
          if (i < dash) dashHandles[i].color = dashColor; 
          else dashHandles[i].color = new Color(.3f, .3f, .3f, .5f);
+      }*/
+
+      if (!add)
+      {
+         dashHandles[dash].SetTrigger("Dash");
+      }
+      else
+      {
+         dashHandles[dash - 1].SetTrigger("Recover");
       }
    }
 
@@ -288,7 +297,7 @@ public class UIManager : MonoBehaviour
          currentCard = 0;
       }
       
-         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos -55,cardHandles[currentCard].position.z);
+         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos +55,cardHandles[currentCard].position.z);
 
          CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }

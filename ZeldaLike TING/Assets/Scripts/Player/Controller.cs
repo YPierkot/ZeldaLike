@@ -38,7 +38,7 @@ public class
     public ControlType _controlType;
     public bool secondStick;
     private ControlType lastControlType;
-    [SerializeField] private Animator animatorPlayer;
+    public Animator animatorPlayer;
     [SerializeField] private Animator animatorPlayerHand;
     [SerializeField] private Animator animatorMovePlayer;
     
@@ -101,6 +101,7 @@ public class
     private bool comboWaiting;
 
     [Header("--- PARAMETRES ---")] 
+    [SerializeField] private float joystickDeadZone;
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
     public int maxDash; 
@@ -222,7 +223,7 @@ public class
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
-        if (DialogueManager.Instance.isCinematic)
+        if (DialogueManager.Instance.isCinematic && Vector2.Distance(Vector2.zero,obj.ReadValue<Vector2>()) > joystickDeadZone)
         {
           Vector2 rotation = obj.ReadValue<Vector2>().normalized;
           Rotate(rotation);  
@@ -251,15 +252,12 @@ public class
     {
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
-
-            //transformDebugger.position = hit.point;
-            pointerPosition = hit.point;
+            Vector3 vect = Input.mousePosition;
+            vect.z = Vector3.Distance(camera.transform.position, transform.position);
+            pointerPosition = Camera.main.ScreenToWorldPoint(vect);
             if (!DialogueManager.Instance.isCinematic)
             {
-                Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+                Vector2 vector = (new Vector2(pointerPosition.x, pointerPosition.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
                 Rotate(vector);
             }
         }
@@ -299,7 +297,7 @@ public class
             {
                 dashCDtimer = 0;
                 dashAvailable++;
-                UIManager.Instance.UpdateDash(dashAvailable);
+                UIManager.Instance.UpdateDash(dashAvailable, true);
             }
         }
 
@@ -386,6 +384,7 @@ public class
             dashAvailable--;
             dashing = true;
             dashTimer = 0;
+            dashCDtimer = 0;
             canMove = false;
             inAttack = false;
             attackCounter = 0;
