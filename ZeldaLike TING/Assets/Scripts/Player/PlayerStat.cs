@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using Update = UnityEngine.PlayerLoop.Update;
 
@@ -15,6 +14,8 @@ public class PlayerStat : MonoBehaviour
    public int lifeMax;
    public int life;
 
+   [SerializeField] private bool isImmune;
+   
    [Header("Debug")]
    [SerializeField] private CameraShakeScriptable HitShake;
 
@@ -36,8 +37,7 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] private float repulseForce = 25; // Player's KB when hitted
    [SerializeField] public float enemyKBForce; // Enemies KB when hitted
    
-   private bool isImmune;
-
+   
    private void Awake()
    {
       instance = this;
@@ -62,13 +62,26 @@ public class PlayerStat : MonoBehaviour
 
    public void TakeDamage(int damage = 1)
    {
-      if (!isImmune && !_control.dashing)
+      if (isImmune && _control.dashing && life > 0) return;
+      
+      life -= damage;
+
+      if (life <= 0) 
+         PlayerDeath();
+      else
       {
-         life -= damage;
          StartCoroutine(TakeDamageCD());
          UIManager.Instance.TakeDamageUI(life);
          CameraShake.Instance.AddShakeEvent(HitShake);
       }
+   }
+
+   private void PlayerDeath()
+   {
+      UIManager.Instance.TakeDamageUI(life);
+      Time.timeScale = 0f;
+      _control.animatorPlayer.SetBool("isDead", true);
+      GetComponent<CardsController>().canUseCards = false;
    }
 
    /*private void OnCollisionEnter(Collision other)

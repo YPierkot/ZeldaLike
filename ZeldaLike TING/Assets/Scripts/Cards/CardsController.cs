@@ -321,8 +321,8 @@ public class CardsController : MonoBehaviour
         foreach (var ennemy in cols)
         {
             if (ennemy.isTrigger) {
-                ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1); 
-                ennemy.transform.GetComponent<AI.AbstractAI>().SlowEnemy();
+                ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1);
+                ennemy.transform.GetComponent<AI.AbstractAI>().FreezeEnemy(3.5f);
                 Instantiate(enemyFreezeFX, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos.position, Quaternion.identity, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos);
             }
             
