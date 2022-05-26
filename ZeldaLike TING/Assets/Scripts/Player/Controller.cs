@@ -381,6 +381,7 @@ public class
         if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0 && canDash)
         {
             animatorPlayer.SetBool("attackFinish", true);
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.dash, .2f); 
             dashAvailable--;
             dashing = true;
             dashTimer = 0;
@@ -458,6 +459,15 @@ public class
             {
                 if (!inAttackAnim)
                 {
+                    switch (attackCounter)
+                    {
+                        case 1: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack1);
+                            break;
+                        case 2: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack2);
+                            break;
+                        case 3: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack3);
+                            break;
+                    }
                     if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
                     {
                         rb.AddForce(moveCardTransform.forward * -500);
@@ -473,7 +483,7 @@ public class
                 inAttackAnim = true;
                 
             }
-            if (!inAttack && canMove)
+            if (!inAttack && canMove && moving)
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
@@ -487,15 +497,18 @@ public class
             }
             else
             {
-                if (dashing)
+                if (moving)
                 {
-                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
-                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
-                }
-                else
-                {
-                    animatorPlayer.SetFloat("X-Axis", animDir.x);
-                    animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                    if (dashing)
+                    {
+                        animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                        animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
+                    }
+                    else
+                    {
+                        animatorPlayer.SetFloat("X-Axis", animDir.x);
+                        animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                    }
                 }
 
                 if (!DialogueManager.Instance.isCinematic)

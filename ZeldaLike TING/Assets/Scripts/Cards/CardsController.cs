@@ -293,7 +293,7 @@ public class CardsController : MonoBehaviour
         else shootPointPos =-controller.movePlayerTransform.forward ;
 
         Destroy(Instantiate(ShortFireFx, transform.position + shootPointPos * (radiusShootPoint * 1.8f), Quaternion.Euler(0,Controller.instance.angleView -90f + 180,0)), 0.8f);
-        
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.fireBall);
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
@@ -315,6 +315,7 @@ public class CardsController : MonoBehaviour
 
         Destroy(Instantiate(ShortIceFx, new Vector3(GoDir.x, transform.position.y - 1.1f, GoDir.z * rangeStartIceShot),
             Quaternion.Euler(-90, Controller.instance.angleView - 90f + 180, 0)), 3f);
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.iceRecto); 
         
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
@@ -338,6 +339,7 @@ public class CardsController : MonoBehaviour
 
         Debug.Log("Wall Short Range Launched");
         Destroy(Instantiate(ShortWallFx, transform.position + new Vector3(0, -1,0), Quaternion.identity), 3f);
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.groundPeak); 
         GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
         wall.transform.DOMove(new Vector3(xTransform, yTransform, zTransform), 1.5f);
         Destroy(wall, 4f);
@@ -347,7 +349,7 @@ public class CardsController : MonoBehaviour
     public void ActivateWindGroundEffect() // OK
     {
         Destroy(Instantiate(ShortWindFx, transform.position, Quaternion.identity), 3f);
-        
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.WindThrow);
         repulsivePoint = transform.position;
         //if(DebugWindSphere != null)Destroy(Instantiate(DebugWindSphere, repulsivePoint, Quaternion.identity), 2f);
         Collider[] cols = Physics.OverlapSphere(transform.position, repulsiveRadius);

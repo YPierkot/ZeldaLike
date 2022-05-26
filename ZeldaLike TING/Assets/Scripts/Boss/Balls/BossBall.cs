@@ -7,7 +7,6 @@ public class BossBall : MonoBehaviour
 {
     [SerializeField] private float maxSpeed = 0.01f;
     [SerializeField] private float heightMultiplicator;
-    [SerializeField] private float destroyTime;
     private float currentDistance;
     private float totalDistance;
     private bool ballLaunch;
@@ -15,10 +14,6 @@ public class BossBall : MonoBehaviour
     private Vector3 targetPosition;
     private Vector2 target2DPosition;
 
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {
@@ -45,7 +40,13 @@ public class BossBall : MonoBehaviour
         ballLaunch = true;
     }
 
-    IEnumerable Destroyed()
+    void ballEffect()
+    {
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossProjectilImpact);
+        StartCoroutine("Destroyed", 2f);
+    }
+
+    IEnumerable Destroyed(float destroyTime)
     {
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
