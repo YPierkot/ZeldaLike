@@ -37,6 +37,7 @@ public class BossManager : MonoBehaviour
 
     private LineRenderer laserLine;
     private bool laserStart;
+    private bool laserStartThrow;
     private Vector3 laserPos;
     [HideInInspector] public bool castingLaser;
     private float _laserTimer;
@@ -116,6 +117,7 @@ public class BossManager : MonoBehaviour
         shield.gameObject.SetActive(false);
         teleporting = true;
         animator.SetTrigger("StartTP");
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossTP);
         
     }
 
@@ -150,7 +152,9 @@ public class BossManager : MonoBehaviour
         {
             idleCount = 0;
             laserStart = true;
+            laserStartThrow = false;
             castingLaser = true;
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossLaserCast);
             animator.SetTrigger("LaserAttack");
             laserLine.enabled = true;
             _laserTimer = laserTimer;
@@ -166,6 +170,11 @@ public class BossManager : MonoBehaviour
             rayDir = new Vector3(rayDir.x, 0, rayDir.z);
             if (!castingLaser)
             {
+                if (!laserStartThrow)
+                {
+                    SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossLaser);
+                    laserStartThrow = true;
+                }
                 if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, Mathf.Infinity, 15))
                     laserLine.SetPosition(1, hit.point);
                 else laserLine.SetPosition(1, rayDir * 100);
@@ -207,6 +216,7 @@ public class BossManager : MonoBehaviour
             {
                 Debug.Log("Throw");
                 GameObject newBall = Instantiate(ballQueue.Dequeue(), new Vector3(boss.position.x, 0, boss.position.z), Quaternion.identity);
+                SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossProjectilShoot);
                 Vector3 rdm = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), 1, Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
                 newBall.GetComponent<BossBall>().LaunchBall(TransformTP_Zone.position + rdm);
                 canThrow = false;
