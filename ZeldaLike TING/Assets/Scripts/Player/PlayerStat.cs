@@ -58,6 +58,7 @@ public class PlayerStat : MonoBehaviour
    private void Update()
    {
       if (Input.GetKeyDown(KeyCode.M)) TakeDamage();
+      if (Input.GetKeyDown(KeyCode.R)) PlayerRespawn();
    }
 
    public void TakeDamage(int damage = 1)
@@ -81,9 +82,22 @@ public class PlayerStat : MonoBehaviour
       UIManager.Instance.TakeDamageUI(life);
       Time.timeScale = 0f;
       _control.animatorPlayer.SetBool("isDead", true);
-      GetComponent<CardsController>().canUseCards = false;
+      CardsController.instance.canUseCards = false;
+      _control.canMove = false;
+      _control.canDash = false;
    }
 
+   private void PlayerRespawn()
+   {
+      CardsController.instance.canUseCards = true;
+      _control.canMove = true;
+      _control.canDash = true;
+      //if (GameManager.Instance.actualRespawnPoint.position != null) _control.transform.position = GameManager.Instance.actualRespawnPoint.position;
+      _control.animatorPlayer.SetBool("isDead", false);
+      Time.timeScale = 1f;
+      UIManager.Instance.InitLife(lifeMax);
+   }
+   
    /*private void OnCollisionEnter(Collision other)
    {
       if (other.transform.CompareTag("Ennemy")) 
