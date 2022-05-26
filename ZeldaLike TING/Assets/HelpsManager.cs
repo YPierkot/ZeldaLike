@@ -116,8 +116,10 @@ public class HelpsManager : MonoBehaviour
 
     }
 
-    public void DisplayHelp()
+    public IEnumerator DisplayHelp()
     {
+        helpTextAnimator.ResetTrigger("IsOn");
+        yield return new WaitForSeconds(1.5f);
         helpTextAnimator.SetTrigger("IsOn");
         helpFrame.SetTrigger("IsOn");
         done = false;
@@ -170,7 +172,7 @@ public class HelpsManager : MonoBehaviour
         }
         if (currentHelp.helpIndex == 1)
         {
-            DisplayHelp();
+            StartCoroutine(DisplayHelp());
         }
         else if (currentHelp.helpIndex == 6)
         {
