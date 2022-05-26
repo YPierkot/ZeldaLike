@@ -51,7 +51,7 @@ public class InteracteObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (moveRestricted && rb != null)
         {
@@ -61,7 +61,7 @@ public class InteracteObject : MonoBehaviour
             if (!moveRight && rb.velocity.x < 0) rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
         }
         
-        if (burning)
+        /*if (burning)
         {
             if (mesh != null)
             {
@@ -93,7 +93,7 @@ public class InteracteObject : MonoBehaviour
                 }
             }
             onBurn.Invoke();
-        }
+        }*/
     }
 
     private void OnDrawGizmos()
@@ -119,7 +119,7 @@ public class InteracteObject : MonoBehaviour
         }
     }
 
-    void DestroyGM()
+    public void DestroyGM()
     {
         if (burning)
         {

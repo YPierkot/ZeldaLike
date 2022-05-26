@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b59a96d3188b6c48b495f634e55198e, type: 3}
   m_Name: CustomHierarchy
   m_EditorClassIdentifier: 
-  useCustomHierarchy: 0
-  activScene:
-  - {fileID: 102900000, guid: 82f6e5093370bc94880916fed7b4e66c, type: 3}
+  useCustomHierarchy: 1
+  activScene: []
   darkerBackground: {r: 0, g: 0, b: 0, a: 0.0859375}
   useDarkerBackground: 1
   backgroundGroupA: {r: 0.99609375, g: 0.98828125, b: 0.39453125, a: 0.09765625}
   backgroundGroupB: {r: 0.8984375, g: 0.4140625, b: 0.90234375, a: 0.09765625}
-  useColorFullBackground: 0
+  useColorFullBackground: 1
   treeColorListA:
   - {r: 0.99609375, g: 0.98828125, b: 0.39453125, a: 1}
   - {r: 0.99609375, g: 0.8203125, b: 0, a: 1}

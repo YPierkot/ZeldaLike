@@ -17,7 +17,7 @@ public class BarrierAppear : MonoBehaviour
         StartCoroutine(DelayStart());
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (actualScale <= maxScale && start && !deactivate)
         {
