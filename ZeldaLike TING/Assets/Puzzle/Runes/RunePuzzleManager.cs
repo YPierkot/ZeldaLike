@@ -14,8 +14,8 @@ public class RunePuzzleManager : MonoBehaviour {
     
 
     private void Update() {
-        if (!CardsController.instance.windCardUnlock) forPlaytestBuild();
-        if (!CardsController.instance.iceCardUnlock) forPlaytestBuild();
+        //if (!CardsController.instance.windCardUnlock) forPlaytestBuild();
+        //if (!CardsController.instance.iceCardUnlock) forPlaytestBuild();
     }
 
     

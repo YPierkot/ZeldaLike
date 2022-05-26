@@ -29,7 +29,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         {
             DialogueManager.Instance.IsCinematic();
         }
-        StartCoroutine(SmallCinematic());
+        //StartCoroutine(SmallCinematic());
     }
 
     private IEnumerator SmallCinematic()
@@ -42,7 +42,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         UIManager.Instance.playerLocation.text = null;
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         DialogueManager.Instance.AssignDialogue(startDialogue.dialogue.ToList());
-        HelpsManager.DisplayHelp();
+        StartCoroutine(HelpsManager.DisplayHelp());
         DialogueManager.Instance.EnqueuedDialogue = importantInfo.dialogue.ToList();
         StartCoroutine(DialogueManager.Instance.CinematicWait(18f));
 
