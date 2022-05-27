@@ -12,6 +12,8 @@ public class TeleportationPortal : MonoBehaviour
     [SerializeField] private string destinationSceneName;
 
     [SerializeField] private Animator teleportingShader;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Animator particleAnimator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +35,7 @@ public class TeleportationPortal : MonoBehaviour
         else
         {
             teleportingShader.SetTrigger("TeleportIn");
+            Controller.instance.FreezePlayer(true);
             teleportingShader.gameObject.SetActive(true);
             StartCoroutine(PlayerTeleporting());
         }
@@ -40,6 +43,8 @@ public class TeleportationPortal : MonoBehaviour
 
     public IEnumerator PlayerTeleporting()
     {
+        animator.SetTrigger("PortalOn");
+        particleAnimator.SetTrigger("PortalOn");
         yield return new WaitForSeconds(1f);
         Controller.instance.gameObject.SetActive(false);
         yield return new WaitForSeconds(2f);
@@ -50,12 +55,17 @@ public class TeleportationPortal : MonoBehaviour
     public IEnumerator PlayerAppearing()
     {
         teleportingShader.ResetTrigger("TeleportIn");
+        animator.SetTrigger("PortalOn");
+        particleAnimator.SetTrigger("PortalOn");
         teleportingShader.gameObject.SetActive(true);
         Controller.instance.transform.position = transform.position;
         yield return new WaitForSeconds(2.1f);
         Controller.instance.transform.position = teleportingShader.transform.position;
+        Controller.instance.FreezePlayer(false);
         Controller.instance.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
+        particleAnimator.ResetTrigger("PortalOn");
+        animator.ResetTrigger("PortalOn");
         teleportingShader.gameObject.SetActive(false);
     }
 }
