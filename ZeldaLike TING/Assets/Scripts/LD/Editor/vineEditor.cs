@@ -11,6 +11,7 @@ public class vineEditor : InteracteObjectEditor
       base.OnInspectorGUI();
       EditorGUILayout.PropertyField(serializedObject.FindProperty("lianaBurnMaterial"));
       EditorGUILayout.PropertyField(serializedObject.FindProperty("burnAmount"));
+      EditorGUILayout.PropertyField(serializedObject.FindProperty("sparks"));
       serializedObject.ApplyModifiedProperties();
 
    }

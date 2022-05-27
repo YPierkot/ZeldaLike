@@ -30,6 +30,8 @@ public class FireCardTutorialManager : MonoBehaviour
     
     [Header("Third Challenge")]
     [SerializeField] private EnemySpawnTrigger enemySpawner;
+
+    [SerializeField] private Animator portal;
     
     [Header("Blocking Player")]
     
@@ -95,6 +97,7 @@ public class FireCardTutorialManager : MonoBehaviour
                         isFinished = true;
                         pasStairBarrier.SetActive(false);
                         platformBarrier.SetActive(false);
+                        portal.SetTrigger("PortalOn");
                     }
                     break;
 
