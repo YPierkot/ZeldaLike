@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PathCreation.Examples;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -17,14 +18,25 @@ public class TutorialManager : MonoBehaviour
     private HelpsManager helpManager;
     private int remainingDialogues;
     private bool setHelp = true;
-    
-    [Header("First Cinematic")]
-    
+
+    [Header("First Cinematic")] 
+    [SerializeField] private Animator portal;
+
+    [SerializeField] private Animator portalDarkCircle;
+    [SerializeField] private GameObject teleportShader;
+    [SerializeField] private CameraShakeScriptable appearCameraShake;
+
+    private bool playerAppeared;
     [SerializeField] private Transform cameraPoint;
     [SerializeField] private Transform prisonPosition;
+    [SerializeField] private Transform prison;
     [SerializeField] private List<Transform> ennemiesSpawnPoints;
     [SerializeField] private Animator ithar;
+    private bool touchedPrison;
     private bool itharStarted;
+    [SerializeField] private GameObject enemyBreach;
+    [SerializeField] private PathFollower prisonParticle;
+    [SerializeField] private GameObject itharSpell;
     
     [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
@@ -57,13 +69,14 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         helpManager = GetComponent<HelpsManager>();
+        StartCoroutine(PortalAppearance());
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
+        Controller.instance.gameObject.SetActive(false);
         DialogueManager.Instance.IsCinematic();
         Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
-        EnqueueDialogue();
-        
+
     }
 
     private void Update()
@@ -85,23 +98,32 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         CameraShake.Instance.AddShakeEvent(prisonShake);
+        touchedPrison = true;
+        prisonParticle.enabled = true;
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         yield return new WaitForSeconds(3);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve, true);
         ithar.gameObject.SetActive(true);
         ithar.Play("ItharAppear");
-        yield return new WaitForSeconds(28f);
+        prisonParticle.gameObject.SetActive(false);
+        yield return new WaitForSeconds(8.5f);
+        itharSpell.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        itharSpell.SetActive(false);
+        enemyBreach.SetActive(true);
+        yield return new WaitForSeconds(15.5f);
         ithar.Play("ItharDisappear");
-        yield return new WaitForSeconds(0.9f);
         GameManager.Instance.VolumeTransition(tensionVolume, constantVolumeCurve);
+        yield return new WaitForSeconds(0.9f);
         DialogueManager.Instance.isCursed = true;
         DialogueManager.Instance.mist.SetTrigger("Appear");
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         ithar.gameObject.SetActive(false);
     }
 
     private void Dialogues()
     {
-        if (DialogueManager.Instance.isPlayingDialogue == false)
+        if (DialogueManager.Instance.isPlayingDialogue == false && playerAppeared)
         {
             remainingDialogues = dialogueQueue.Count;
             switch (remainingDialogues)
@@ -121,15 +143,16 @@ public class TutorialManager : MonoBehaviour
                     {
                         DialogueManager.Instance.IsCinematic();
                         setHelp = false;
-                        helpManager.DisplayHelp();
+                        StartCoroutine(helpManager.DisplayHelp());
                     }
                     break;
                 case 4 : //Après avoir libéré Ithar
                     if (enemySpawn)
                     {
-                        helpManager.DisplayHelp();
+                        StartCoroutine(helpManager.DisplayHelp());
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
+                        enemyBreach.SetActive(false);
                         StartCoroutine(SpawnEnnemiesCo());
                         
                         Controller.instance.FreezePlayer(false);
@@ -147,13 +170,18 @@ public class TutorialManager : MonoBehaviour
                     if(ennemyParent.childCount == 0) givePlayerFireCard.ActivGetCard();
                     break;
                 case 2 : //Après avoir récupéré la carte de feu
+                    
                     Controller.instance.FreezePlayer(false);
-                    DialogueManager.Instance.IsCinematic();
-                    UIManager.Instance.gameObject.SetActive(true);
-                    Controller.instance.FreezePlayer(true, "Cards");
-                    GameManager.Instance.TutorialWorld();
-                    GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
-                    EnqueueDialogue();
+                    if (CardsController.instance.fireCardUnlock)
+                    {
+                        DialogueManager.Instance.IsCinematic();
+                        UIManager.Instance.gameObject.SetActive(true);
+                        Controller.instance.FreezePlayer(true, "Cards");
+                        GameManager.Instance.TutorialWorld();
+                        GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
+                        EnqueueDialogue();
+                    }
+                    
                     break;
                 case 1 : //Une fois l'intro du monde tutoriel finie
                     FireCardTutorialManager.canStart = true;
@@ -187,6 +215,15 @@ public class TutorialManager : MonoBehaviour
                     UIManager.Instance.gameObject.SetActive(false);
                     Controller.instance.ForceMove(prisonPosition.position);
                     Controller.instance.FreezePlayer(true);
+                    if (touchedPrison)
+                    {
+                        prison.localScale += new Vector3(1f, 1f, 1f);
+                        if (prison.localScale.x >= 20)
+                        {
+                            touchedPrison = false;
+                            prison.gameObject.SetActive(false);
+                        }
+                    }
                     if (!itharStarted)
                     {
                         DialogueManager.Instance.IsCinematic();
@@ -207,6 +244,23 @@ public class TutorialManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private IEnumerator PortalAppearance()
+    {
+        portal.SetTrigger("PortalOn");
+        portalDarkCircle.SetTrigger("PortalOn");
+        CameraShake.Instance.AddShakeEvent(appearCameraShake);
+        yield return new WaitForSeconds(1.5f);
+        teleportShader.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        portal.ResetTrigger("PortalOn");
+        portalDarkCircle.ResetTrigger("PortalOn");
+        Controller.instance.gameObject.SetActive(true);
+        playerAppeared = true;
+        EnqueueDialogue();
+        yield return new WaitForSeconds(0.5f);
+        teleportShader.SetActive(false);
     }
 
     private IEnumerator SpawnEnnemiesCo()

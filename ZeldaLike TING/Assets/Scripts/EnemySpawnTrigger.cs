@@ -6,7 +6,9 @@ public class EnemySpawnTrigger : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemiesToSpawn;
     [SerializeField] private List<Transform> spawnPoints;
-    [Space]
+    [Space] 
+    
+    public bool spawnOnEntry;
     public Transform enemiesParent;
     [SerializeField] private GameObject barrier;
     [SerializeField] private GameObject appearFX;
@@ -23,7 +25,7 @@ public class EnemySpawnTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !hasSpawned)
+        if (other.CompareTag("Player") && !hasSpawned && spawnOnEntry)
         {
             GameManager.Instance.actualRespawnPoint = transform;
             barrier.SetActive(true);

@@ -8,6 +8,11 @@ public class CharacterScriptable : ScriptableObject
     public Sprite Sad;
     public Sprite Laughing;
     public Sprite Confused;
+    public Frames frame;
+    public enum Frames
+    {
+        defaultFrame, mainCharacter, Ithar
+    }
 
     public DialogueScriptable[] dialogueInterruptions = new DialogueScriptable[]{};
 }

@@ -4,7 +4,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class 
+    Controller : MonoBehaviour
 {
     #region CLASS & Other
 
@@ -37,7 +38,8 @@ public class Controller : MonoBehaviour
     public ControlType _controlType;
     public bool secondStick;
     private ControlType lastControlType;
-    [SerializeField] private Animator animatorPlayer;
+    public Animator animatorPlayer;
+    [SerializeField] private Animator animatorPlayerHand;
     [SerializeField] private Animator animatorMovePlayer;
     
     private CardsController cardControl;
@@ -52,27 +54,32 @@ public class Controller : MonoBehaviour
    [SerializeField] private bool inAttackAnim;
    [SerializeField] private bool holdingForCard;
    public bool canDash;
-
+   
    private bool moveHoldCard;
 
-    private float dashTimer;
-    private float holdTimer; 
-    public int dashAvailable; 
-    private float dashCDtimer; 
-
-    [SerializeField] public bool canMove = true;
+   private float dashTimer;
+   private float holdTimer; 
+   public int dashAvailable; 
+   private float dashCDtimer;
+   
+   [SerializeField] public bool canMove = true;
     
-    [SerializeField] private SpriteAngle[] spriteArray;
-    private System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle>();
+   [SerializeField] private SpriteAngle[] spriteArray;
+   private System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle> spriteDictionary = new System.Collections.Generic.Dictionary<Func<float, bool>, SpriteAngle>();
 
 
     private PlayerInputMap InputMap;
+    public delegate void Interaction();
+    public Interaction playerInteraction;
+    
+    
     [SerializeField] private LayerMask pointerMask;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float groundDistance;
     public Transform moveCardTransform;
     public Transform movePlayerTransform;
     private Vector3 lastDir;
+    private float anglePlayerView;
     
     [Header("--- CAMERA ---")] 
     [SerializeField] private CameraController camera;
@@ -82,7 +89,7 @@ public class Controller : MonoBehaviour
     private bool dashCamera;
 
     [NonSerialized] public Vector3 pointerPosition;
-    private float angleView;
+    [HideInInspector] public float angleView;
     private Interval currentInterval = new Interval{ min=61, max=120 };
     
     [Header("--- ATTAQUE ---")] 
@@ -94,6 +101,7 @@ public class Controller : MonoBehaviour
     private bool comboWaiting;
 
     [Header("--- PARAMETRES ---")] 
+    [SerializeField] private float joystickDeadZone;
     [SerializeField] private float moveSpeed;
     [SerializeField] private AnimationCurve dashCurve;
     public int maxDash; 
@@ -130,6 +138,7 @@ public class Controller : MonoBehaviour
         InputMap.Movement.Position.started += context => moving = true;
         InputMap.Movement.Position.canceled += context => moving = false;
 
+        InputMap.Action.Interaction.performed += InteractionPerformed;
         InputMap.Action.shortCard.performed += context => cardControl.ShortRange();
         InputMap.Action.longCard.performed += context => cardControl.LongRange();
         InputMap.Action.Attack.performed += context => Attack();
@@ -180,7 +189,12 @@ public class Controller : MonoBehaviour
         
         InputMap.Menu.CardMenu.performed += SwitchCard;
     }
-    
+
+    private void InteractionPerformed(InputAction.CallbackContext obj)
+    {
+        if(playerInteraction != null) playerInteraction();
+    }
+
     private void CardHolderOncanceled(InputAction.CallbackContext obj) 
     {
         if (_controlType == ControlType.HoldForLong && holdingForCard)
@@ -209,8 +223,13 @@ public class Controller : MonoBehaviour
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
-        Vector2 rotation = obj.ReadValue<Vector2>().normalized;
-        Rotate(rotation);
+        if (DialogueManager.Instance.isCinematic && Vector2.Distance(Vector2.zero,obj.ReadValue<Vector2>()) > joystickDeadZone)
+        {
+          Vector2 rotation = obj.ReadValue<Vector2>().normalized;
+          Rotate(rotation);  
+        }
+
+        
     }
     #endregion
     
@@ -233,14 +252,14 @@ public class Controller : MonoBehaviour
     {
         if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, Mathf.Infinity, pointerMask);
-
-            //transformDebugger.position = hit.point;
-            pointerPosition = hit.point;
-            Vector2 vector = (new Vector2(hit.point.x, hit.point.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
-            Rotate(vector);
+            Vector3 vect = Input.mousePosition;
+            vect.z = Vector3.Distance(camera.transform.position, transform.position);
+            pointerPosition = Camera.main.ScreenToWorldPoint(vect);
+            if (!DialogueManager.Instance.isCinematic)
+            {
+                Vector2 vector = (new Vector2(pointerPosition.x, pointerPosition.z) - new Vector2(transform.position.x, transform.position.z)).normalized;
+                Rotate(vector);
+            }
         }
 
         if (lastControlType != _controlType)
@@ -278,7 +297,7 @@ public class Controller : MonoBehaviour
             {
                 dashCDtimer = 0;
                 dashAvailable++;
-                UIManager.Instance.UpdateDash(dashAvailable);
+                UIManager.Instance.UpdateDash(dashAvailable, true);
             }
         }
 
@@ -321,7 +340,7 @@ public class Controller : MonoBehaviour
         }
         else if (moveHoldCard)
         {
-            float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+            anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
             if (angleView < 0) anglePlayerView += 360 ; 
             movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0);
         }
@@ -342,7 +361,7 @@ public class Controller : MonoBehaviour
     void Move()
     {
         Vector3 dir = lastDir;
-        float anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
+        anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
         if (angleView < 0) anglePlayerView += 360 ; 
         movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
         
@@ -362,9 +381,11 @@ public class Controller : MonoBehaviour
         if (!dashing && (canMove || animatorPlayer.GetCurrentAnimatorClipInfo(0)[0].clip.name == "waitAttackState") && dashAvailable > 0 && canDash)
         {
             animatorPlayer.SetBool("attackFinish", true);
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.dash, .2f); 
             dashAvailable--;
             dashing = true;
             dashTimer = 0;
+            dashCDtimer = 0;
             canMove = false;
             inAttack = false;
             attackCounter = 0;
@@ -419,6 +440,8 @@ public class Controller : MonoBehaviour
 
             animatorPlayer.SetInteger("attackCounter", attackCounter);
             animatorPlayer.SetBool("isAttack", launchAttack);
+            animatorPlayerHand.SetInteger("attackCounter", attackCounter);
+            animatorPlayerHand.SetBool("isAttack", launchAttack);
             
             AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
             if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
@@ -436,6 +459,15 @@ public class Controller : MonoBehaviour
             {
                 if (!inAttackAnim)
                 {
+                    switch (attackCounter)
+                    {
+                        case 1: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack1);
+                            break;
+                        case 2: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack2);
+                            break;
+                        case 3: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack3);
+                            break;
+                    }
                     if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
                     {
                         rb.AddForce(moveCardTransform.forward * -500);
@@ -451,26 +483,39 @@ public class Controller : MonoBehaviour
                 inAttackAnim = true;
                 
             }
-            if (!inAttack && canMove)
+            if (!inAttack && canMove && moving)
             {
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
-                animatorPlayer.SetBool("isRun", moving);
-                animatorMovePlayer.SetBool("isWalk", moving); // Il est différent donc repoussé par la société
+
+                if (!DialogueManager.Instance.isCinematic)
+                {	
+                    animatorPlayer.SetBool("isRun", moving);
+					animatorPlayerHand.SetBool("isRun", moving);
+                    animatorMovePlayer.SetBool("isWalk", moving);
+                } // Il est différent donc repoussé par la société
             }
             else
             {
-                if (dashing)
+                if (moving)
                 {
-                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
-                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
+                    if (dashing)
+                    {
+                        animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                        animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
+                    }
+                    else
+                    {
+                        animatorPlayer.SetFloat("X-Axis", animDir.x);
+                        animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                    }
                 }
-                else
-                {
-                    animatorPlayer.SetFloat("X-Axis", animDir.x);
-                    animatorPlayer.SetFloat("Z-Axis", animDir.z);
-                }
-                animatorPlayer.SetBool("isRun", moving);
+
+                if (!DialogueManager.Instance.isCinematic)
+				{
+					animatorPlayer.SetBool("isRun", moving);
+					animatorPlayerHand.SetBool("isRun", moving);
+				}
             }
     }
 

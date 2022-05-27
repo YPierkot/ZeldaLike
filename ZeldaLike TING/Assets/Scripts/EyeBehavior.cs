@@ -46,7 +46,8 @@ public class EyeBehavior : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
 
-        transform.DOMove(newMoveTarget, 1.2f).OnComplete(() => Destroy(gameObject));
+        transform.DOMove(newMoveTarget, 1.2f);
+        Destroy(gameObject, 1.5f);
     }
 
     private void OnCollisionEnter(Collision other)

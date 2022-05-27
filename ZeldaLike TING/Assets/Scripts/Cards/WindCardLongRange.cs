@@ -9,30 +9,27 @@ using Debug = UnityEngine.Debug;
 public class WindCardLongRange : MonoBehaviour
 {
     private BoxCollider collider;
-    public Vector3 velocity;
+    [HideInInspector] public Vector3 velocity;
     
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private Vector3 attractivePoint;
+    [SerializeField] private float attractiveRadius = 4.7f;
     [SerializeField] private LayerMask groundMask;
-    public GameObject DebugSphere;
+    [SerializeField] private GameObject windFX;
     
-    private void OnEnable()
-    {
-        if (collider == null) collider = GetComponent<BoxCollider>();
-        collider.isTrigger = false;
-    }
+    
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 4.4f);
+        Gizmos.DrawWireSphere(transform.position, attractiveRadius);
     }
     public void WindCardLongEffect()
     {
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         attractivePoint = transform.position;
         
-        Destroy(Instantiate(DebugSphere, attractivePoint, Quaternion.identity),2f);
+        Destroy(Instantiate(windFX, attractivePoint, Quaternion.identity),3f);
         
-        Collider[] colliders = Physics.OverlapSphere(attractivePoint, 4.4f, interactMask);
+        Collider[] colliders = Physics.OverlapSphere(attractivePoint, attractiveRadius, interactMask);
         foreach (var col in colliders)
         {
             if (col.CompareTag("Interactable"))
@@ -44,20 +41,12 @@ public class WindCardLongRange : MonoBehaviour
                 }
                 else if (col.GetComponent<InteracteObject>().windAffect)
                 {
-                    //EnnemyWindAttraction(col.gameObject);;
+                    EnnemyWindAttraction(col.gameObject);;
                 }
             }
             else if (col.CompareTag("Ennemy"))
             {
-                for (int i = 0; i < colliders.Length; i++)
-                {
-                    EnnemyWindAttraction(col.gameObject);
-                    i++;
-                }
-            }
-            else
-            {
-                EnnemyWindAttraction(col.gameObject);
+                if(!col.isTrigger) EnnemyWindAttraction(col.gameObject);
             }
         }
         
@@ -66,13 +55,14 @@ public class WindCardLongRange : MonoBehaviour
     private void EnnemyWindAttraction(GameObject enemy)
     {
         enemy.transform.DOKill();
+        enemy.transform.DOKill();
                     
-        var shootPointPos = (enemy.transform.position - transform.position);
-        var targetPos = new Vector3((enemy.transform.position.x + shootPointPos.x) /* forceModifier*/, 
-            enemy.transform.position.y + shootPointPos.y + 1f,
-            (enemy.transform.position.z + shootPointPos.z) /* forceModifier*/);
-        
-        enemy.transform.DOMove(targetPos, 1.5f).OnComplete(() => enemy.transform.DOKill());
+        var shootPointPos = (enemy.transform.position - attractivePoint);
+        var targetPos = new Vector3((enemy.transform.position.x - shootPointPos.x), 
+            enemy.transform.position.y,
+            (enemy.transform.position.z - shootPointPos.z));
+
+        enemy.transform.DOMove(targetPos, 1.7f).OnComplete(() => enemy.transform.DOKill());
         Debug.Log($"{enemy.name} got attracted !");
     }
     private void OnTriggerEnter(Collider other)
@@ -88,16 +78,31 @@ public class WindCardLongRange : MonoBehaviour
             }
             else WindCardLongEffect();
         }
-        else if (other.ToString() == groundMask.ToString() || !other.GetComponentInParent<Transform>().CompareTag("Player"))
+        else if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
         {
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-    private IEnumerator StopMovement(float timeToStopMovement, GameObject objTransform)
+
+    private void OnCollisionEnter(Collision other)
     {
-        yield return new WaitForSeconds(timeToStopMovement);
-        objTransform.transform.DOKill();
+        if (other.transform.CompareTag("Interactable"))
+        {
+            Debug.Log(other.transform.name);
+            if (other.transform.GetComponent<InteracteObject>().windThrough)
+            {
+                Debug.Log(velocity);
+                collider.isTrigger = true;
+                GetComponent<Rigidbody>().velocity = velocity;
+            }
+            else WindCardLongEffect();
+        }
+        else if (other.ToString() == groundMask.ToString())
+        {
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
+
     private void OnDestroy()
     {
         CardsController.instance.LaunchCardCD(4);

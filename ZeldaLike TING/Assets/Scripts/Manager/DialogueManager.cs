@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI dialogueDisplay;
 
     [SerializeField] private UnityEngine.UI.Image characterEmotion;
+    [SerializeField] private UnityEngine.UI.Image frame;
+    [SerializeField] private Sprite[] frames;
     [SerializeField] private Animator cinematicMode;
     public Animator mist;
     public bool isCursed;
@@ -128,6 +131,18 @@ public class DialogueManager : MonoBehaviour
 
     private void SetCharacterEmotion()
     {
+        switch (DialogueLines[currentDialogue].character.frame)
+        {
+            case CharacterScriptable.Frames.defaultFrame :
+                frame.sprite = frames[0];
+                break;
+            case CharacterScriptable.Frames.Ithar : 
+                frame.sprite = frames[1];
+                break;
+            case CharacterScriptable.Frames.mainCharacter :
+                frame.sprite = frames[2];
+                break;
+        }
         switch (DialogueLines[currentDialogue].dialogLines[sentenceIndex].expressions)
         {
             case dialogueProp.Expressions.Angry:
@@ -230,6 +245,7 @@ public class DialogueManager : MonoBehaviour
     }
     public IEnumerator CinematicWait(float duration)
     {
+        Debug.Log("J'attends");
         yield return new WaitForSeconds(duration);
         if (skip)
         {

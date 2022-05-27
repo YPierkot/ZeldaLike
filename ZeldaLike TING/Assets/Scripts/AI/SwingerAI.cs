@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class SwingerAI : AbtractAI
+    public class SwingerAI : AbstractAI
     {
         #region Variables
 
@@ -19,10 +19,10 @@ namespace AI
         
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
-        [Space(2)] [SerializeField] private Animator swingerAnimator;
         private bool debugBool;
         private Vector3 dir;
         private float spriteDir;
+        private float lastSpriteDir;
         #endregion
         
 
@@ -52,7 +52,7 @@ namespace AI
                 return;
             
             isMoving = true;
-            swingerAnimator.SetBool("isWalk", true);
+            e_animator.SetBool("isWalk", true);
             
             Vector3 newMoveTarget = new Vector3(Random.Range(basePosition.x - e_rangeWander, basePosition.x + e_rangeWander), basePosition.y, 
                 Random.Range(basePosition.z - e_rangeWander, basePosition.z + e_rangeWander));
@@ -61,33 +61,35 @@ namespace AI
             
             if (!isMoving)
             {
-                swingerAnimator.SetBool("isWalk", false);
+                e_animator.SetBool("isWalk", false);
             }
         }
 
         protected override void Attack()
         {
+            if (isFreeze) return;
             base.Attack();
-
+            
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
-                
-                isAttacking = true;
-                isMoving = false;
+                if (isAttacking) return;
+                if (isHitStun) return;
                 
                 // Attack Pattern
+                isMoving = false;
+                isAttacking = true;
                 StartCoroutine(DoAttack());
             }
             else
             {
+                if (isHitStun) return;
+
                 if (!isAttacking)
                 {
                     transform.DOKill();
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
-                    swingerAnimator.SetBool("isWalk", true);
+                    e_animator.SetBool("isWalk", true);
                     
                     RaycastHit groundHit;
                     if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
@@ -96,15 +98,19 @@ namespace AI
                 }
                 else
                 {
-                    swingerAnimator.SetBool("isWalk", false);
+                    e_animator.SetBool("isWalk", false);
                 }
                 
                 spriteDir = playerTransform.position.x - transform.position.x;
 
-                if (spriteDir < 0)
+                if (spriteDir < 0) {
                     e_sprite.flipX = true;
-                else
+                    SpawnFXPos.transform.localPosition = new Vector3(-Mathf.Abs(SpawnFXPos.transform.localPosition.x), SpawnFXPos.transform.localPosition.y, SpawnFXPos.transform.localPosition.z);
+                }
+                else {
                     e_sprite.flipX = false;
+                    SpawnFXPos.transform.localPosition = new Vector3(Mathf.Abs(SpawnFXPos.transform.localPosition.x), SpawnFXPos.transform.localPosition.y, SpawnFXPos.transform.localPosition.z);
+                }
             }
         }
 
@@ -121,23 +127,22 @@ namespace AI
             else
                 e_sprite.flipX = false;
             
-            swingerAnimator.SetBool("isAttack", true);
-
-            Debug.DrawRay(transform.position, dir*2, Color.green, 1f);
+            e_animator.SetBool("isAttack", true);
             
-            yield return new WaitForSeconds(.53f); // Temps de l'animation avant hit 
+            yield return new WaitForSeconds(.40f); // Temps de l'animation avant hit & recast dmg point
+            
+            dir = playerTransform.position - transform.position; dir.Normalize();
+            
+            yield return new WaitForSeconds(.10f);
 
             Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
-            foreach (var player in playercol)
-            {
-                StartCoroutine(PlayerDmgCo());
-            }
+            foreach (var player in playercol) { if (e_currentAiState != AIStates.dead && isFreeze) PlayerStat.instance.TakeDamage(); }
 
-            yield return new WaitForSeconds(1.17f); // Anim fini 
-            swingerAnimator.SetBool("isAttack", false);
+            yield return new WaitForSeconds(1.2f); // Anim fini 
+            e_animator.SetBool("isAttack", false);
             CanMove();  
             
-            yield return new WaitForSeconds(1.5f); // Temps avant de pouvoir ré attaqué
+            yield return new WaitForSeconds(1.3f); // Temps avant de pouvoir ré attaqué
             isAttacking = false;
         }
 
@@ -160,12 +165,6 @@ namespace AI
             e_rigidbody.constraints = RigidbodyConstraints.None;
             e_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
             e_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        }
-
-        private IEnumerator PlayerDmgCo()
-        {
-            yield return new WaitForSeconds(.19f);
-            PlayerStat.instance.TakeDamage();
         }
     }
 }

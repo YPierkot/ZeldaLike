@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class MageAI : AbtractAI
+    public class MageAI : AbstractAI
     {
         #region Variables
         [Header("Specific Values"), Space]
@@ -44,10 +44,10 @@ namespace AI
         
         protected override void Walk()
         {
-            if (isAttacking)
-                return;
-            if (isMoving)
-                return;
+            if (isAttacking) return;
+            if (isMoving) return;
+            if (isHitStun) return;
+
             
             base.Walk();
             
@@ -61,25 +61,27 @@ namespace AI
 
         protected override void Attack()
         {
+            if (isFreeze) return;
             base.Attack();
+            if (isHitStun) return;
+
+            
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
+                if (isAttacking) return;
                 if (isPanic) return;
                     
                 if (eyeCounter == 0) { StartCoroutine(PanicPhase(4f)); return; }
-                    
-                isAttacking = true;
                 
                 // Attack Pattern
-                if (eyeCounter > 0)
-                {
-                    StartCoroutine(DoAttack());
-                }
+                if (isHitStun) return;
+                isAttacking = true;
+                StartCoroutine(DoAttack());
+                
             }
             else
             {
+                if (isHitStun) return;
                 if (!isAttacking)
                 {
                     transform.DOKill();
@@ -87,7 +89,7 @@ namespace AI
                         e_speed * Time.deltaTime);
                     
                     RaycastHit groundHit;
-                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.5f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
+                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.4f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.2f, 0);
                     else transform.position += new Vector3(0, -0.2f, 0);
                     Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
                 }
@@ -113,21 +115,26 @@ namespace AI
 
         private IEnumerator DoAttack()
         {
-           
             mageAnimator.SetBool("isAttack", true);
             yield return new WaitForSeconds(1.75f); // Temps de l'anim
             mageAnimator.SetBool("isAttack", false);
             if (e_sprite.flipX == true)
-            { 
-                Instantiate(eyeGameObject,
-                    new Vector3(transform.position.x - eyePosOffset.x, transform.position.y + eyePosOffset.y,
-                        transform.position.z), Quaternion.identity);
+            {
+                if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead)
+                {
+                    Instantiate(eyeGameObject,
+                        new Vector3(transform.position.x - eyePosOffset.x, transform.position.y + eyePosOffset.y,
+                            transform.position.z), Quaternion.identity);
+                }
             }
             else
             {
-                Instantiate(eyeGameObject,
-                    new Vector3(transform.position.x + eyePosOffset.x, transform.position.y + eyePosOffset.y,
-                        transform.position.z), Quaternion.identity);
+                if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead)
+                {
+                    Instantiate(eyeGameObject,
+                        new Vector3(transform.position.x + eyePosOffset.x, transform.position.y + eyePosOffset.y,
+                            transform.position.z), Quaternion.identity);
+                }
             }
 
             eyeCounter -= 1;

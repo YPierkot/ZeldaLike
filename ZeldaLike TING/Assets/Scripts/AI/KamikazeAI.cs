@@ -5,12 +5,13 @@ using Random = UnityEngine.Random;
 
 namespace AI
 {
-    public class KamikazeAI : AbtractAI
+    public class KamikazeAI : AbstractAI
     {
         #region Variables
         [Header("Specific Values"), Space]
         [SerializeField] private float e_rangeWander = 3.7f;
         [SerializeField] private float e_aoeRange = 1.4f;
+        private float groundDst = 1f;
         private Vector3 basePosition;
         
         [SerializeField] private bool isMoving;
@@ -27,16 +28,8 @@ namespace AI
             isAttacking = false;
             canMove = true;
         }
-
-        private void FixedUpdate()
-        {
-            RaycastHit groundHit;
-            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.5f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
-            else transform.position += new Vector3(0, -0.1f, 0);
-            
-            Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
-        }
-
+        
+        
         public override void ChangeState(AIStates aiState)
         {
             base.ChangeState(aiState);
@@ -47,11 +40,10 @@ namespace AI
 
         protected override void Walk()
         {
-            if (isAttacking)
-                return;
-            if (isMoving)
-                return;
-            
+            if (isAttacking) return;
+            if (isMoving) return;
+            if (isHitStun) return;
+
             base.Walk();
             
             isMoving = true;
@@ -66,15 +58,16 @@ namespace AI
         
         protected override void Attack()
         {
+            if (isFreeze) return;
             base.Attack();
 
             if (Vector3.Distance(playerTransform.position, transform.position) <= e_rangeAttack)
             {
-                if (isAttacking)
-                    return;
-                isAttacking = true;
+                if (isAttacking) return;
+                if (isHitStun) return;
                 
                 // Attack Pattern
+                isAttacking = true;
                 StartCoroutine(DoAttack());
             }
             else
@@ -85,12 +78,12 @@ namespace AI
                     transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
                         e_speed * Time.deltaTime);
                     
-                    kamikazeAnimator.SetBool("isWalk", true);
-
                     RaycastHit groundHit;
                     if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
                     else transform.position += new Vector3(0, -0.1f, 0);
                     Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
+                    
+                    kamikazeAnimator.SetBool("isWalk", true);
                 }
                 else
                 {
@@ -108,15 +101,15 @@ namespace AI
 
         private IEnumerator DoAttack()
         {
-            kamikazeAnimator.SetBool("isAttack", true);
-            yield return new WaitForSeconds(0.95f);
-            kamikazeAnimator.SetBool("isAttack", false);
-            Collider[] playercol = Physics.OverlapSphere(transform.position, e_aoeRange, playerLayerMask);
-            foreach (var player in playercol)
-            {
-                player.GetComponent<PlayerStat>().TakeDamage();
-            }
+            e_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             
+            kamikazeAnimator.SetBool("isAttack", true);
+            yield return new WaitForSeconds(1.05f);
+            
+            bool isPlayer = Physics.CheckSphere(transform.position, e_aoeRange, playerLayerMask);
+            if (isPlayer && GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
+
+            yield return new WaitForSeconds(0.7f);
             Destroy(gameObject);
         }
         

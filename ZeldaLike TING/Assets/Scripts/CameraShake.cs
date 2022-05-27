@@ -106,7 +106,7 @@ public class CameraShake : MonoBehaviour
         transform.localEulerAngles = rotationOffset;
     }
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
     }
