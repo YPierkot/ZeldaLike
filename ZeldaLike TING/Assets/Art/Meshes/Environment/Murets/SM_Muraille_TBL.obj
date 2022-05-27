@@ -1,0 +1,62 @@
+#File written by RizomUV 2022.0.11.g5424fda. Compilation :Nov 24 2021,04:16:21
+mtllib SM_Muraille_TBL:mtl
+#begin vertices
+v 0 0 -0
+v 0 0 -6.65
+v 0 4.75 -0
+v 0 4.75 -6.65
+#end vertices
+
+#begin 4 textures vertices 
+vt 0.9140625 0.203125 0
+vt 0.0859375 0.203125 0
+vt 0.9140625 0.796875 0
+vt 0.0859375 0.796875 0
+#end 4 textures vertices 
+
+#begin 4 normals 
+vn -1 0 -0
+vn -1 0 -0
+vn -1 0 -0
+vn -1 0 -0
+#end 4 normals 
+
+#begin 1 faces
+o Muraille
+usemtl wire_008008136
+g Muraille
+s 64
+f 2/2/1 1/1/2 3/3/3 4/4/4 
+#end 1 faces
+
+#ZOMPROPERTIES_04{
+#ZOMPROPERTIES_04 table {Mesh table {SymPlane table {Point vector3d 0 0 0 Normal vector3d 1 0 0 Threshold double 0.01 
+#ZOMPROPERTIES_04 Enabled bool false EdgeID int -1 SymEdgeID int -1 UPos double 0.5 LocalMode bool false } RootGroup C
+#ZOMPROPERTIES_04 SubMeshGroup {Children table {Tile_0_0 CSubMeshGroup {Children table {} BBoxUV box3d 0 0 0 0 0 0 BBo
+#ZOMPROPERTIES_04 x3D box3d 0 0 0 0 0 0 Area3D double 0 AreaUV double 0.491699 IsRoot bool false TopoStable table {Sel
+#ZOMPROPERTIES_04 ected bool false Box box3d 0 1 0 1 0 1 U int 0 V int 0 NU int 0 NV int 0 Tiling vector3d 1 1 1 TileR
+#ZOMPROPERTIES_04 atioMode string "1:1" Pack table {BoxFrameLocked bool false BoxFrameEdit bool false } } IsTile bool 
+#ZOMPROPERTIES_04 true PolyIDs ints { 0 } } } BBoxUV box3d 0 0 0 0 0 0 BBox3D box3d 0 0 0 0 0 0 Area3D double 0 AreaUV
+#ZOMPROPERTIES_04  double 0 IsRoot bool true TopoStable table {Selected bool false Box box3d 0 1 0 1 0 1 U int 0 V int
+#ZOMPROPERTIES_04  0 NU int 1 NV int 1 Tiling vector3d 1 1 1 TileRatioMode string "1:1" Pack table {Rotate table {Mode
+#ZOMPROPERTIES_04  int 2 Min double 0 Max double 90 Step double 0 } PaddingSize double 0.0078125 MarginSize double 0.0
+#ZOMPROPERTIES_04 0390625 Resolution int 256 MapResolution int 128 Scaling table {TexelDensity double 16 Mode int 0 } 
+#ZOMPROPERTIES_04 LayoutScalingMode int 2 MaxMutations int 1 } } IsTile bool false PolyIDs ints { } } Maps table {Dens
+#ZOMPROPERTIES_04 ity table {PrimType string "Polygon" Size int 1 DefaultValue double 1 ScaleType string "Log" MergeMo
+#ZOMPROPERTIES_04 de string "Average" MinValue double 0.1 MaxValue double 4 Data doubles { 1 } } Pin table {PrimType s
+#ZOMPROPERTIES_04 tring "Vertex" Size int 1 DefaultValue double 0 ScaleType string "Normalized" MergeMode string "Max"
+#ZOMPROPERTIES_04  MinValue double 0 MaxValue double 1 Data doubles { r 4 0 } } Protect table {PrimType string "Vertex
+#ZOMPROPERTIES_04 " Size int 1 DefaultValue double 0 ScaleType string "Normalized" MergeMode string "Average" MinValue
+#ZOMPROPERTIES_04  double -1 MaxValue double 1 Data doubles { r 4 0 } } } } }
+#ZOMPROPERTIES_04}
+
+
+#ZOMSCENE_01{
+#ZOMSCENE_01 CScene {Settings table {AxisSystem table {UpVector string "y" } Unit string "m" } }
+#ZOMSCENE_01}
+
+#begin 0 fatal error vertex (that RizomUV cannot handle)
+#end 0 fatal error vertex (that RizomUV cannot handle)
+
+#begin 0 error vertex
+#end 0 error vertex
