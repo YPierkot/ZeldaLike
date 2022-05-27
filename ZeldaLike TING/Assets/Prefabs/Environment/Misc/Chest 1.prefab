@@ -114,7 +114,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 898ee7709bd454a4ba953cbcd0fa34d0, type: 3}
+  - {fileID: 2100000, guid: 77082efe1b8b88845aacf5279d050b37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -235,7 +235,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 898ee7709bd454a4ba953cbcd0fa34d0, type: 3}
+  - {fileID: 2100000, guid: 77082efe1b8b88845aacf5279d050b37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -455,6 +455,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestAnim: {fileID: 6442669409130886429}
+  isCardChest: 0
+  card: {fileID: 0}
+  WindCardTutorialManager: {fileID: 0}
+  WallCardTutorialManager: {fileID: 0}
 --- !u!1 &8751623636954700033
 GameObject:
   m_ObjectHideFlags: 0
