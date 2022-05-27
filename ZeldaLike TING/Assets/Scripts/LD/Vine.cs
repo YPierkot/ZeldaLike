@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Vine : InteracteObject
@@ -7,27 +5,28 @@ public class Vine : InteracteObject
     [Header("--- VINE")]
     [SerializeField] private Material lianaBurnMaterial;
     [SerializeField] private float burnAmount;
+    [SerializeField] private GameObject sparks;
 
-    public override void Update()
+    public void FixedUpdate()
     {
-        base.Update();
         if (burning)
         {
             if (mesh != null)
             {
+                sparks.SetActive(true);
                 mesh.material = lianaBurnMaterial;
-                burnAmount += 0.009f;
+                burnAmount += 0.005f;
                 mesh.material.SetFloat("_BurningValue", burnAmount);
                 if(burnAmount >= 1) 
                 {
-                    mesh.transform.localScale -= Vector3.one;
+                    mesh.transform.localScale -= Vector3.one*1.5f;
                 }
                 if (mesh.transform.localScale.y < 0.2f)
                 {
+                    sparks.SetActive(false);
                     DestroyGM();
                 }
             } 
         }
-        
     }
 }
