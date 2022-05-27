@@ -149,6 +149,11 @@ MonoBehaviour:
   e_aoeRange: 0.9
   isMoving: 0
   isAttacking: 0
+  directions: []
+  DebugSphere: {fileID: 2910240843093238154, guid: ec0318b7cd7b5984b8cb2396c1bf4560,
+    type: 3}
+  anchorDst: 1.3
+  f: 3
 --- !u!65 &8446749621590671362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -345,7 +350,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 530b109ea2d5e6747b469063deb31d40, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 2
+  m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

@@ -63,7 +63,7 @@ public class PlayerStat : MonoBehaviour
 
    public void TakeDamage(int damage = 1)
    {
-      if (isImmune && _control.dashing && life > 0) return;
+      if (isImmune && _control.dashing && life < 0) return;
       
       life -= damage;
 

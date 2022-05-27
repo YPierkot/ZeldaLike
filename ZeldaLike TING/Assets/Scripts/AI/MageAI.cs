@@ -76,7 +76,7 @@ namespace AI
                 // Attack Pattern
                 if (isHitStun) return;
                 isAttacking = true;
-                StartCoroutine(DoAttack());
+                if(e_currentAiState != AIStates.dead || !isFreeze) StartCoroutine(DoAttack());
                 
             }
             else
