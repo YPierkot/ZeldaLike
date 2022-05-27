@@ -88,7 +88,7 @@ public class WallCardTutorialManager : MonoBehaviour
                         canStart = false;
                         StartCoroutine(GameManager.Instance.DisableObject(barrier));
                         chest.SetActive(true);
-
+                        gameObject.SetActive(false);
                     }
                     break;
             }

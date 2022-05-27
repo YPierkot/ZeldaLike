@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RunePlate : MonoBehaviour {
     private enum Element {
@@ -17,6 +18,8 @@ public class RunePlate : MonoBehaviour {
     [SerializeField] private Element plateType;
     
     [SerializeField] private bool isActivate;
+    [SerializeField] private UnityEvent onActivation;
+    [SerializeField] private UnityEvent onDeactivation;
     public bool IsActivate {
         get => isActivate;
         set => isActivate = value;
@@ -44,12 +47,14 @@ public class RunePlate : MonoBehaviour {
                         if (!isActivate) {
                             GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             isActivate = true;
+                            onActivation.Invoke();
                             runeManager.CheckRunes();
                         }
                     }
                     else {
                         if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
                         isActivate = false;
+                        onDeactivation.Invoke();
                     }
 
                     break;

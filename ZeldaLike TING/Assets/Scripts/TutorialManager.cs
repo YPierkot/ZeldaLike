@@ -164,13 +164,21 @@ public class TutorialManager : MonoBehaviour
                     if (ennemyParent.childCount == 0)
                     {
                         EnqueueDialogue();
+                        setHelp = true;
                     }
                     break;
-                case 3 : //Après avoir tué les ennemis
-                    if(ennemyParent.childCount == 0) givePlayerFireCard.ActivGetCard();
+                case 3: //Après avoir tué les ennemis
+                    if (ennemyParent.childCount == 0)
+                    {
+                        givePlayerFireCard.ActivGetCard();
+                    }
                     break;
                 case 2 : //Après avoir récupéré la carte de feu
-                    
+                    if (setHelp)
+                    {
+                        setHelp = false;
+                        StartCoroutine(helpManager.DisplayHelp());
+                    }
                     Controller.instance.FreezePlayer(false);
                     if (CardsController.instance.fireCardUnlock)
                     {
@@ -189,6 +197,8 @@ public class TutorialManager : MonoBehaviour
                     {
                         GameManager.Instance.volumeManager.enabled = false;
                         EnqueueDialogue();
+                        StartCoroutine(ActivatePortal());
+                        Invoke("ResetCamera", 6);
                     }
                     break;
                 case 0 : //Une fois le deal passé
@@ -201,6 +211,7 @@ public class TutorialManager : MonoBehaviour
                     }
                     
                     UIManager.Instance.gameObject.SetActive(true);
+                    gameObject.SetActive(false);
                     break;
                 
             }
@@ -272,6 +283,12 @@ public class TutorialManager : MonoBehaviour
         
         Instantiate(ennemies[0], ennemiesSpawnPoints[1].position, Quaternion.identity, ennemyParent);
         Instantiate(ennemies[0], ennemiesSpawnPoints[2].position, Quaternion.identity, ennemyParent);
+    }
+    private IEnumerator ActivatePortal()
+    {
+        yield return new WaitForSeconds(2f);
+        portal.SetTrigger("PortalOn");
+        portalDarkCircle.SetTrigger("PortalOn");
     }
     
 }

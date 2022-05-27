@@ -119,6 +119,7 @@ public class WindCardTutorialManager : MonoBehaviour
                         isFinished = true;
                         canStart = false;
                     }
+                    gameObject.SetActive(false);
                     
                     break;
             }

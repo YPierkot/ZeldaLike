@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -31,7 +32,8 @@ public class FireCardTutorialManager : MonoBehaviour
     [Header("Third Challenge")]
     [SerializeField] private EnemySpawnTrigger enemySpawner;
 
-    [SerializeField] private Animator portal;
+    [SerializeField] private TeleportationPortal portal;
+    [SerializeField] private Transform portalCameraPoint;
     
     [Header("Blocking Player")]
     
@@ -70,15 +72,22 @@ public class FireCardTutorialManager : MonoBehaviour
                             lianaSet = true;
                             CardsController.instance.canUseCards = true;
                             StartCoroutine(HelpsManager.DisplayHelp());
+                            lianas.SetActive(true);
                             break;
                     }
-                    lianas.SetActive(true);
+                    if (lianas.transform.childCount == 0)
+                    {
+                        DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
+                    }
                     break;
                 case 1 :
-                    puzzle.SetActive(true);
+                    if (!puzzle.activeSelf)
+                    {
+                        puzzle.SetActive(true);
+                        StartCoroutine(HelpsManager.DisplayHelp());
+                    }
                     if (puzzle.transform.childCount == 4)
                     {
-                        StartCoroutine(HelpsManager.DisplayHelp());
                         puzzle.SetActive(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
@@ -97,7 +106,9 @@ public class FireCardTutorialManager : MonoBehaviour
                         isFinished = true;
                         pasStairBarrier.SetActive(false);
                         platformBarrier.SetActive(false);
-                        portal.SetTrigger("PortalOn");
+                        portal.GetComponent<SphereCollider>().enabled = true;
+                        GameManager.Instance.cameraController.ChangePoint(portalCameraPoint);
+                        gameObject.SetActive(false);
                     }
                     break;
 

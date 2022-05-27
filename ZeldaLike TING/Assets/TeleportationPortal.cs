@@ -1,19 +1,17 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TeleportationPortal : MonoBehaviour
 {
     public bool changeScene;
 
     [SerializeField] private TeleportationPortal destination;
-
     [SerializeField] private string destinationSceneName;
 
     [SerializeField] private Animator teleportingShader;
-    [SerializeField] private Animator animator;
-    [SerializeField] private Animator particleAnimator;
+    public Animator animator;
+    public Animator particleAnimator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,13 +41,25 @@ public class TeleportationPortal : MonoBehaviour
 
     public IEnumerator PlayerTeleporting()
     {
-        animator.SetTrigger("PortalOn");
-        particleAnimator.SetTrigger("PortalOn");
-        yield return new WaitForSeconds(1f);
-        Controller.instance.gameObject.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        teleportingShader.gameObject.SetActive(false);
-        StartCoroutine(destination.PlayerAppearing());
+        if (!changeScene)
+        {
+            animator.SetTrigger("PortalOn");
+            particleAnimator.SetTrigger("PortalOn");
+            yield return new WaitForSeconds(1f);
+            Controller.instance.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2f);
+            teleportingShader.gameObject.SetActive(false);
+            StartCoroutine(destination.PlayerAppearing());
+        }
+        else
+        {
+            animator.SetTrigger("PortalOn");
+            particleAnimator.SetTrigger("PortalOn");
+            yield return new WaitForSeconds(1f);
+            Controller.instance.gameObject.SetActive(false);
+            SceneManager.LoadScene(destinationSceneName);
+        }
+        
     }
 
     public IEnumerator PlayerAppearing()

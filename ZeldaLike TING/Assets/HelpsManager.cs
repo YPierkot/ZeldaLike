@@ -111,6 +111,13 @@ public class HelpsManager : MonoBehaviour
                         CheckLine(1);
                     }
                     break;
+                case 7:
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        CheckLine(1);
+                    }
+                    break;
+                
             }
         }
 
