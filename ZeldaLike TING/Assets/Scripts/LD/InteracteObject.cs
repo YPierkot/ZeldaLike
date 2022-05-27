@@ -61,39 +61,10 @@ public class InteracteObject : MonoBehaviour
             if (!moveRight && rb.velocity.x < 0) rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
         }
         
-        /*if (burning)
+        if (burning)
         {
-            if (mesh != null)
-            {
-                mesh.material = lianaBurning;
-                burnAmount += 0.05f;
-                mesh.material.SetFloat("BurningValue", burnAmount);
-                if(burnAmount >= 1) 
-                {
-                    mesh.transform.localScale -= Vector3.one/10;
-                }
-                if (mesh.transform.localScale.y < 0.2f)
-                {
-                    DestroyGM();
-                }
-            }
-            else
-            {
-                int indexDebug = 0;
-                foreach (MeshRenderer meshC in meshChilds)
-                {
-                    indexDebug++;
-                    
-                    meshC.material.color = new Color(meshC.material.color.r+(1f/255), meshC.material.color.g-(1f/255), meshC.material.color.b-(1f/255));
-                    if (meshC.material.color.r >= 1)
-                    {
-                        DestroyGM();
-                        break;
-                    }
-                }
-            }
             onBurn.Invoke();
-        }*/
+        }
     }
 
     private void OnDrawGizmos()

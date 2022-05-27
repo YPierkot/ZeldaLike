@@ -222,7 +222,10 @@ public class TutorialManager : MonoBehaviour
             switch (remainingDialogues)
             {
                 case 5:
-                    GameManager.Instance.cameraController.ChangePoint(cameraPoint);
+                    if (!DialogueManager.Instance.isCursed)
+                    {
+                        GameManager.Instance.cameraController.ChangePoint(cameraPoint);
+                    }
                     UIManager.Instance.gameObject.SetActive(false);
                     Controller.instance.ForceMove(prisonPosition.position);
                     Controller.instance.FreezePlayer(true);

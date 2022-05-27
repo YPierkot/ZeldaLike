@@ -171,7 +171,7 @@ public class HelpsManager : MonoBehaviour
         CheckIfHelpFinished();
     }
 
-    private void ResetHelpText()
+    public void ResetHelpText()
     {
         foreach (var check in checks)
         {

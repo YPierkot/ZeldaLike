@@ -44,7 +44,8 @@ public class PlayerSpawnPoint : MonoBehaviour
         DialogueManager.Instance.AssignDialogue(startDialogue.dialogue.ToList());
         StartCoroutine(HelpsManager.DisplayHelp());
         DialogueManager.Instance.EnqueuedDialogue = importantInfo.dialogue.ToList();
-        StartCoroutine(DialogueManager.Instance.CinematicWait(18f));
+        StartCoroutine(DialogueManager.Instance.CinematicWait(23f));
+        HelpsManager.ResetHelpText();
 
     }
 }
