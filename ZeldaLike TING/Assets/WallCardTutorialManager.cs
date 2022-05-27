@@ -23,6 +23,7 @@ public class WallCardTutorialManager : MonoBehaviour
     [Header("First Challenge")]
     
     [SerializeField] private Transform objective;
+    [SerializeField] private GameObject chest;
 
     [Header("Second Challenge")] 
     
@@ -47,7 +48,7 @@ public class WallCardTutorialManager : MonoBehaviour
     {
         if (canStart && !DialogueManager.Instance.isPlayingDialogue)
         {
-            barrier.SetActive(true);
+            chest.SetActive(false);
             PlayerStat.instance.life = PlayerStat.instance.lifeMax;
             int remainingDialogue = dialogueQueue.Count;
             switch (remainingDialogue)
@@ -60,12 +61,15 @@ public class WallCardTutorialManager : MonoBehaviour
                     {
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                         GameManager.Instance.TutorialWorld();
+                        objective.gameObject.SetActive(true);
+                        barrier.SetActive(true);
                         GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
                     }
                     break;
                 case 1 :
                     if (Vector3.Distance(objective.position, Controller.instance.transform.position) <= 3)
                     {
+                        StartCoroutine(GameManager.Instance.DisableObject(objective.gameObject));
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
                     }
                     
@@ -82,8 +86,9 @@ public class WallCardTutorialManager : MonoBehaviour
                         GameManager.Instance.volumeManager.profile = forestProfile;
                         isFinished = true;
                         canStart = false;
-                        barrier.SetActive(false);
-                        
+                        StartCoroutine(GameManager.Instance.DisableObject(barrier));
+                        chest.SetActive(true);
+
                     }
                     break;
             }

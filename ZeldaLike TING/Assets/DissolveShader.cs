@@ -15,7 +15,14 @@ public class DissolveShader : MonoBehaviour
     private bool appearing = true;
     void OnEnable()
     {
-        material = GetComponent<MeshRenderer>().material;
+        if (GetComponent<MeshRenderer>() != null)
+        {
+            material = GetComponent<MeshRenderer>().material;
+        }
+        else if (GetComponent<SkinnedMeshRenderer>() != null)
+        {
+            material = GetComponent<SkinnedMeshRenderer>().material;
+        }
         if (appearing)
         {
             appear = true;
