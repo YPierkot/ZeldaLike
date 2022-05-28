@@ -14,7 +14,7 @@ public class InteracteObjectEditor : Editor
         if (script.fireAffect)
         {
             serializedObject.FindProperty("canBurn").boolValue = EditorGUILayout.Toggle("Can Burn", serializedObject.FindProperty("canBurn").boolValue);
-            serializedObject.FindProperty("burnDestroy").boolValue = EditorGUILayout.Toggle("Burn Destroy", serializedObject.FindProperty("burnDestroy").boolValue);
+            serializedObject.FindProperty("isRune").boolValue = EditorGUILayout.Toggle("Is Rune", serializedObject.FindProperty("isRune").boolValue);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onBurn"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onBurnDestroy"));
         }

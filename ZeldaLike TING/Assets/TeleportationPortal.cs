@@ -37,7 +37,7 @@ public class TeleportationPortal : MonoBehaviour
             DialogueManager.Instance.IsCinematic();
             
         }
-        if (!DialogueManager.Instance.isPlayingDialogue && DialogueManager.Instance.isCinematic)
+        if (!DialogueManager.Instance.isPlayingDialogue && DialogueManager.Instance.isCinematic && GameManager.Instance.isTutorial)
         {
             Teleport();
         }

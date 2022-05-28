@@ -36,9 +36,12 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         Controller.instance.FreezePlayer(true);
         DialogueManager.Instance.IsCinematic();
+        UIManager.Instance.playerLocationTween.Play("PlayerLocation");
         UIManager.Instance.playerLocation.text = location;
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration-0.5f);
+        UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
+        yield return new WaitForSeconds(0.5f);
         UIManager.Instance.playerLocation.text = null;
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         DialogueManager.Instance.AssignDialogue(startDialogue.dialogue.ToList());
