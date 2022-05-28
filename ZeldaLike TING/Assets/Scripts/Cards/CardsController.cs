@@ -71,7 +71,6 @@ public class CardsController : MonoBehaviour
     #endregion
     
     public CardsState State = CardsState.Null;
-    private int targetFrameRate = 144;
 
     private void Awake()
     {
@@ -105,6 +104,7 @@ public class CardsController : MonoBehaviour
         }
         UIManager.Instance.UpdateCardUI();
     }
+    
     public void LongRange()
     {
         if (!canUseCards) return;
@@ -119,6 +119,7 @@ public class CardsController : MonoBehaviour
         }
         UIManager.Instance.UpdateCardUI();
     }
+    
     public void LongRangeRecast()
     {
         if (!canUseCards) return;
@@ -208,6 +209,8 @@ public class CardsController : MonoBehaviour
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos * projectileSpeed;
                 isWallGround = true;
+                
+                wallCardGrounded.transform.rotation = Quaternion.Euler(-90, Controller.instance.angleView - 90f + 180, 0);
                 
                 UIManager.Instance.UpdateCardUI();
             }
