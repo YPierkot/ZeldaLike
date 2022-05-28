@@ -10178,11 +10178,28 @@ PrefabInstance:
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: canUseCards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: firecircleFx
+      value: 
+      objectReference: {fileID: 132305753347939906, guid: bb97d7fb24ce876499abdde9d3f7c8a4,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: enemyFreezeFX
+      value: 
+      objectReference: {fileID: 1091237611353723582, guid: 405d75a8cb5f32447ad91bd42b345b59,
+        type: 3}
+    - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
+        type: 3}
+      propertyPath: iceCardUnlock
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
-      propertyPath: iceCardUnlock
+      propertyPath: canUseFireCard
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
@@ -10193,12 +10210,12 @@ PrefabInstance:
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: wallCardUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: windCardUnlock
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7337217462935629415, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
