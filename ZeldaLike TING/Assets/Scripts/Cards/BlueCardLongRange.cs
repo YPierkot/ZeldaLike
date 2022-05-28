@@ -29,19 +29,12 @@ public class BlueCardLongRange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
+        if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.ToString() == groundMask.ToString())
-        {
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
+    
 
     private void OnDestroy()
     {
