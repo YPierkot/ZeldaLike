@@ -5979,7 +5979,7 @@ GameObject:
   - component: {fileID: 1648343253}
   - component: {fileID: 1648343252}
   - component: {fileID: 1648343251}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11453,6 +11453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
+      propertyPath: iceCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
       propertyPath: canUseFireCard
       value: 0
       objectReference: {fileID: 0}
@@ -11465,6 +11470,16 @@ PrefabInstance:
         type: 3}
       propertyPath: canUseWindCard
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: wallCardUnlock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
+      propertyPath: windCardUnlock
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8738277003849221600, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}

@@ -36,7 +36,8 @@ public class TutorialManager : MonoBehaviour
     private bool itharStarted;
     [SerializeField] private GameObject enemyBreach;
     [SerializeField] private PathFollower prisonParticle;
-    [SerializeField] private GameObject itharSpell;
+    [SerializeField] private CameraShakeScriptable breachCameraShake;
+    [SerializeField] private CameraShakeScriptable enemiesCameraShake;
     
     [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
@@ -106,10 +107,10 @@ public class TutorialManager : MonoBehaviour
         ithar.gameObject.SetActive(true);
         ithar.Play("ItharAppear");
         prisonParticle.gameObject.SetActive(false);
-        yield return new WaitForSeconds(8.5f);
-        itharSpell.SetActive(true);
-        yield return new WaitForSeconds(4f);
-        itharSpell.SetActive(false);
+        yield return new WaitForSeconds(11.5f);
+        ithar.Play("ItharPower");
+        CameraShake.Instance.AddShakeEvent(breachCameraShake);
+        yield return new WaitForSeconds(1f);
         enemyBreach.SetActive(true);
         yield return new WaitForSeconds(15.5f);
         ithar.Play("ItharDisappear");
@@ -119,6 +120,8 @@ public class TutorialManager : MonoBehaviour
         DialogueManager.Instance.mist.SetTrigger("Appear");
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         ithar.gameObject.SetActive(false);
+        yield return new WaitForSeconds(26f);
+        CameraShake.Instance.AddShakeEvent(enemiesCameraShake);
     }
 
     private void Dialogues()

@@ -65,44 +65,15 @@ public class WindCardLongRange : MonoBehaviour
         enemy.transform.DOMove(targetPos, 1.7f).OnComplete(() => enemy.transform.DOKill());
         Debug.Log($"{enemy.name} got attracted !");
     }
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("Interactable"))
-        {
-            Debug.Log(other.transform.name);
-            if (other.transform.GetComponent<InteracteObject>().windThrough)
-            {
-                Debug.Log(velocity);
-                collider.isTrigger = true;
-                GetComponent<Rigidbody>().velocity = velocity;
-            }
-            else WindCardLongEffect();
-        }
-        else if (other.ToString() == groundMask.ToString() && !other.GetComponentInParent<Transform>().CompareTag("Player") )
+        if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
         {
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.transform.CompareTag("Interactable"))
-        {
-            Debug.Log(other.transform.name);
-            if (other.transform.GetComponent<InteracteObject>().windThrough)
-            {
-                Debug.Log(velocity);
-                collider.isTrigger = true;
-                GetComponent<Rigidbody>().velocity = velocity;
-            }
-            else WindCardLongEffect();
-        }
-        else if (other.ToString() == groundMask.ToString())
-        {
-            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-    }
-
+    
     private void OnDestroy()
     {
         CardsController.instance.LaunchCardCD(4);

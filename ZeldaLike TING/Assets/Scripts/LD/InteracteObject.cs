@@ -14,9 +14,9 @@ public class InteracteObject : MonoBehaviour
     [SerializeField] private bool canBurn;
     [SerializeField] private bool burnDestroy;
     [SerializeField] public bool burning;
-    [SerializeField] private float burnAmount = 0;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurn;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
+    public bool lianaTouched;
     [SerializeField] private Material lianaBurning;
 
     
@@ -43,7 +43,7 @@ public class InteracteObject : MonoBehaviour
 
     
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         if (GetComponent<Rigidbody>() != null) rb = GetComponent<Rigidbody>();
         if (GetComponent<MeshRenderer>() != null) mesh = GetComponent<MeshRenderer>();
@@ -120,6 +120,7 @@ public class InteracteObject : MonoBehaviour
             isFreeze = false;
             if (canBurn)
             {
+                lianaTouched = true;
                 burning = true;
                 //Debug.LogError($"Start color : {meshChilds[0].material.color}" );
             }
