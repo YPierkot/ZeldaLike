@@ -48,7 +48,7 @@ MonoBehaviour:
   - ObjectPrefabs: {fileID: 8479553354742785972, guid: dbf3923e075453146b911fa71af45ba6,
       type: 3}
     typeOfObject: 1
-  - ObjectPrefabs: {fileID: 8479553354742785972, guid: 8d38f80c0914be6429d83cc449c608cd,
+  - ObjectPrefabs: {fileID: 3970286176897906624, guid: 9b059abc4bf0fcd4db6837946b6ee064,
       type: 3}
     typeOfObject: 5
   - ObjectPrefabs: {fileID: 8479553354742785972, guid: e07938c057bbe18428fe3571889a80d8,
@@ -3445,6 +3445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3504858ad0a61f04ba89e42c8549d1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
 --- !u!82 &228383084452050286
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9921,6 +9922,10 @@ PrefabInstance:
     - target: {fileID: 1145041873, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145041875, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1318520795, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
       propertyPath: m_LocalPosition.x

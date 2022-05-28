@@ -17,6 +17,7 @@ public class CardsController : MonoBehaviour
     public bool fireCardUnlock = true; 
     public static bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
+    public GameObject firecircleFx;
     [HideInInspector] public bool fireRectoUse;
     
     // IceCard
@@ -292,13 +293,13 @@ public class CardsController : MonoBehaviour
         else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
         else shootPointPos =-controller.movePlayerTransform.forward ;
 
-        Destroy(Instantiate(ShortFireFx, transform.position + shootPointPos * (radiusShootPoint * 1.8f), Quaternion.Euler(0,Controller.instance.angleView -90f + 180,0)), 0.8f);
+        Destroy(Instantiate(ShortFireFx, transform.position + shootPointPos * (radiusShootPoint * 2.1f), Quaternion.Euler(0,Controller.instance.angleView -90f + 180,0)), 0.8f);
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.fireBall);
         GameObject fb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireBall);
         fb.transform.position = transform.position + shootPointPos * radiusShootPoint;
         fb.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed * 2;
         
-        Destroy(fb, 3.8f);
+        Destroy(fb, 3f);
     }
     
     private const float rangeIceShot = 8f;
@@ -321,7 +322,8 @@ public class CardsController : MonoBehaviour
             new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
         foreach (var ennemy in cols)
         {
-            if (ennemy.isTrigger) {
+            if (ennemy.CompareTag("Ennemy")) 
+            {
                 ennemy.transform.GetComponent<AI.AbstractAI>().LooseHp(1);
                 ennemy.transform.GetComponent<AI.AbstractAI>().FreezeEnemy(3.5f);
                 Instantiate(enemyFreezeFX, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos.position, Quaternion.identity, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos);

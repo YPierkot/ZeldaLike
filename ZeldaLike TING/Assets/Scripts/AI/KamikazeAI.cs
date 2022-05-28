@@ -68,7 +68,7 @@ namespace AI
                 
                 // Attack Pattern
                 isAttacking = true;
-                StartCoroutine(DoAttack());
+                if(e_currentAiState != AIStates.dead || !isFreeze) StartCoroutine(DoAttack());
             }
             else
             {
