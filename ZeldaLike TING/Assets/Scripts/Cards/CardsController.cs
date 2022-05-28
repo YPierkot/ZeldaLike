@@ -203,14 +203,14 @@ public class CardsController : MonoBehaviour
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
                 else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
                 else shootPointPos =-controller.movePlayerTransform.forward ;
-                
+                    
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
                 wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos * projectileSpeed;
                 isWallGround = true;
                 
-                wallCardGrounded.transform.rotation = Quaternion.Euler(-90, Controller.instance.angleView - 90f + 180, 0);
+                wallCardGrounded.GetComponent<WallCardLongRange>().wallRotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 
                 UIManager.Instance.UpdateCardUI();
             }
@@ -347,7 +347,7 @@ public class CardsController : MonoBehaviour
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.groundPeak); 
         GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
         wall.transform.DOMove(new Vector3(xTransform, yTransform, zTransform), 1.5f);
-        Destroy(wall, 4f);
+        wall.GetComponent<WallDeseapear>().WallDeseapearFct();
     }
     
     private const float forceModifier = 1.6f;

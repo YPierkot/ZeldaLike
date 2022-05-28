@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2810267580162517681}
   - component: {fileID: 2810267580162517680}
   - component: {fileID: 4489962139252502631}
+  - component: {fileID: 8014966411562632856}
   m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
@@ -63,6 +64,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 3
+--- !u!114 &8014966411562632856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810267580162517682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48787a57a19c728458c8a8897775c2f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7991072058963625323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,7 +92,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: eae326bf4622b054fb40be4a4f3a34bf, type: 2}
+      objectReference: {fileID: 2100000, guid: 50b7d3c4b4b4e7b46a6391eb2794b390, type: 2}
     - target: {fileID: 6524584107645213024, guid: 50c940e4c9516724ab73e939cb96097b,
         type: 3}
       propertyPath: m_RootOrder

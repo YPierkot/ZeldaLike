@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3698724175964973671}
   - component: {fileID: 3698724175964973670}
   - component: {fileID: 4505253755046515141}
+  - component: {fileID: 559116910314705283}
   m_Layer: 10
   m_Name: _BaseCard_LR
   m_TagString: Ennemy
@@ -115,8 +116,20 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 3
+--- !u!114 &559116910314705283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698724175964973669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48787a57a19c728458c8a8897775c2f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7636327291861746826
 GameObject:
   m_ObjectHideFlags: 0
@@ -19611,6 +19624,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Carte Terre
+      objectReference: {fileID: 0}
+    - target: {fileID: 8267575041857749202, guid: 6cfdc976f71d9004695aaf288075ffb5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cfdc976f71d9004695aaf288075ffb5, type: 3}
