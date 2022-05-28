@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,15 +13,35 @@ public class TeleportationPortal : MonoBehaviour
     [SerializeField] private Animator teleportingShader;
     public Animator animator;
     public Animator particleAnimator;
+    private bool playerWaiting;
+    private bool playerIn;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Controller.instance.playerInteraction = Teleport;
+            if (GameManager.Instance.isTutorial)
+            {
+                playerWaiting = true;
+            }
         }
     }
 
+    private void Update()
+    {
+        if (playerWaiting)
+        {
+            playerWaiting = false;
+            Controller.instance.FreezePlayer(true);
+            DialogueManager.Instance.IsCinematic();
+            
+        }
+        if (!DialogueManager.Instance.isPlayingDialogue && DialogueManager.Instance.isCinematic)
+        {
+            Teleport();
+        }
+    }
 
     public void Teleport()
     {
