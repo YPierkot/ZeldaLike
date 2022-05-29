@@ -47,7 +47,8 @@ public class UIManager : MonoBehaviour
    public TextMeshProUGUI playerLocation;
    public Animator playerLocationTween;
 
-   
+   [Header("--- BOSS")]
+   public Slider BosslifeBar;
    
    private void Start()
    {
@@ -219,6 +220,12 @@ public class UIManager : MonoBehaviour
       Debug.Log($"destroy {lifeArray[life]}");
       lifeArray[life].SetTrigger("Destroy");
       KellHead.SetTrigger("TakeDamage");
+   }
+   
+   public void BossLifeUpdate(int life)
+   {
+      Debug.Log("Ui update " + life);
+      BosslifeBar.value = life;
    }
 
    public void UpdateDash(int dash = 3, bool add=false)

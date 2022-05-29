@@ -15,17 +15,18 @@ public class BossManager : MonoBehaviour
     }
 
     private Transform boss;
-
-    [SerializeField] private float maxLife;
-    public float life;
+    public bool stayIdle;
+    [SerializeField] private int maxLife; 
+    public int life;
     [SerializeField] private Transform shield;
 
     [SerializeField] private BossState currentState = BossState.idle;
     [HideInInspector] public Transform TransformTP_Zone;
 
+    private bool idleStart;
     private int idleCount = 0;
     public bool isFreeze;
-    private bool castAttack;
+    [SerializeField] private bool castAttack;
     private bool tpNext;
 
     [Header("TP")] private bool teleporting;
@@ -48,6 +49,11 @@ public class BossManager : MonoBehaviour
     [Space]
     [SerializeField] private GameObject[] balls;
     private bool ballStart;
+
+    [Header("---SHIELD")] 
+    private MeshRenderer shieldMesh;
+    [SerializeField] Color destroyableColor ;
+    [SerializeField] Color invincibleColor ;
     
     private Queue<GameObject> ballQueue;
     [HideInInspector] public bool canThrow;
@@ -57,9 +63,12 @@ public class BossManager : MonoBehaviour
 
     void Start()
     {
-        maxLife = life;
+        life = maxLife;
+        UIManager.Instance.BosslifeBar.maxValue = maxLife;
         animator = GetComponentInChildren<Animator>();
         laserLine = GetComponentInChildren<LineRenderer>();
+        shieldMesh = shield.GetComponent<MeshRenderer>();
+        invincibleColor = shieldMesh.material.color;
 
         boss = transform.GetChild(0);
         TransformTP_Zone = transform.GetChild(1);
@@ -88,7 +97,11 @@ public class BossManager : MonoBehaviour
 
     void IdleUpdate()
     {
-
+        if (!idleStart)
+        {
+            shieldMesh.material.color = destroyableColor;
+            idleStart = true;
+        }
     }
 
     public void EndIdle()
@@ -96,7 +109,12 @@ public class BossManager : MonoBehaviour
         if (currentState == BossState.idle)
         {
             if (tpNext) currentState = BossState.Tp;
-            else if (castAttack || idleCount == 3) RandomAttack();
+            else if (idleCount == 3) currentState = BossState.Tp;
+            else if (castAttack) RandomAttack();
+            else if (DialogueManager.Instance != null)
+            {
+                if (!DialogueManager.Instance.isCinematic) idleCount++;
+            }
             else idleCount++;
         }
     }
@@ -237,6 +255,9 @@ public class BossManager : MonoBehaviour
 
     void RandomAttack()
     {
+        if(stayIdle) return;
+        idleStart = false;
+        shieldMesh.material.color = invincibleColor;
         if (Random.value <= 0.5f) currentState = BossState.ballAttack;
         else currentState = BossState.lasetAttack;
         castAttack = false;
@@ -266,6 +287,7 @@ public class BossManager : MonoBehaviour
         if (isFreeze)
         {
             life -= damage;
+            UIManager.Instance.BossLifeUpdate(life);
             if (life <= 0) Death();
         }
         else tpNext = true;
@@ -282,6 +304,7 @@ public class BossManager : MonoBehaviour
         animator.speed /= 2;
         yield return new WaitForSeconds(5f);
         isFreeze = false;
+        if (currentState == BossState.idle) tpNext = true;
         animator.speed *= 2;
         shield.gameObject.SetActive(true);
 
