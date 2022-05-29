@@ -10,56 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
-  m_Name: Following Aeryn
+  m_Name: Aeryn explains Ithar
   m_EditorClassIdentifier: 
   dialogue:
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Comment ?? Oui... Vous l'avez vu ?
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: 03a6a06c72488944bb1e505db573343a, type: 3}
   - character: {fileID: 11400000, guid: 300e3e19750b78340a63f80893afcc33, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Comment pensez vous que j'ai fini dans ce cachot.
+      line: Pendant que tu cherches la solution, je vais te
       delay: 0
     - expressions: 0
       name: 
-      line: "Ce donjon est mon rep\xE8re, Ithar me l'a vol\xE9 pour mener"
-      delay: 3
-    - expressions: 0
-      name: 
-      line: "A bien ses petites exp\xE9riences."
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: 'Il essaie de se souvenir d''un sort '
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: "qu'il a cr\xE9\xE9 avant le grand oubli."
-      delay: 1.75
-    voiceLine: {fileID: 8300000, guid: ebca85723eb86aa4dbebac78659cc27a, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Le grand oubli ?
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: ed7e2da6bea1b9344932849a473d2a41, type: 3}
-  - character: {fileID: 11400000, guid: 300e3e19750b78340a63f80893afcc33, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: "Vous ne connaissez vraiment rien de l'histoire de notre \xEEle. "
-      delay: 0
+      line: "Raconter l'histoire de notre \xEEle."
+      delay: 3.5
     - expressions: 0
       name: 
       line: Pendant le Grand Age de la Magie, Ithar connaissait

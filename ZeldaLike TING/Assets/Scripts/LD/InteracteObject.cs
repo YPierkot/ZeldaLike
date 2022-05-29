@@ -12,7 +12,7 @@ public class InteracteObject : MonoBehaviour
     
     [Header("--- FIRE")] public bool fireAffect;
     [SerializeField] private bool canBurn;
-    [SerializeField] private bool burnDestroy;
+    [SerializeField] private bool isRune;
     [SerializeField] public bool burning;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurn;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
@@ -63,6 +63,10 @@ public class InteracteObject : MonoBehaviour
         
         if (burning)
         {
+            if (isRune)
+            {
+                burning = false;
+            }
             onBurn.Invoke();
         }
     }

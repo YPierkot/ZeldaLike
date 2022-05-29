@@ -36,10 +36,12 @@ public class RunePlate : MonoBehaviour {
         runeManager.runesList.Add(this);
     }
 
-    private void OnTriggerStay(Collider other) {
+    private void OnTriggerStay(Collider other) 
+    {
+        Debug.Log("ok");
         if (other.GetComponent<pushBlock>() != null) {
             if (runeManager == null) return;
-            Debug.Log("ok");
+            
 
             switch (plateType) {
                 case Element.Fire:
@@ -63,6 +65,7 @@ public class RunePlate : MonoBehaviour {
                     if (other.GetComponent<InteracteObject>().isFreeze) {
                         if (!isActivate) {
                             GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
+                            onActivation.Invoke();
                             isActivate = true;
                             runeManager.CheckRunes();
                         }
@@ -70,6 +73,7 @@ public class RunePlate : MonoBehaviour {
                     else {
                         if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
                         isActivate = false;
+                        onDeactivation.Invoke();
                     }
 
                     break;
