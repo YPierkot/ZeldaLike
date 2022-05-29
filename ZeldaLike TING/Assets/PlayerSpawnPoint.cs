@@ -20,6 +20,7 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.isTutorial = false;
         HelpsManager = GetComponent<HelpsManager>();
         Controller.instance.FreezePlayer(false);
         Controller.instance.transform.position = transform.position;
@@ -35,6 +36,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     private IEnumerator SmallCinematic()
     {
         Controller.instance.FreezePlayer(true);
+        Controller.instance.gameObject.SetActive(true);
         DialogueManager.Instance.IsCinematic();
         UIManager.Instance.playerLocationTween.Play("PlayerLocation");
         UIManager.Instance.playerLocation.text = location;

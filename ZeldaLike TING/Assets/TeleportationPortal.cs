@@ -23,21 +23,22 @@ public class TeleportationPortal : MonoBehaviour
             Controller.instance.playerInteraction = Teleport;
             if (GameManager.Instance.isTutorial)
             {
-                playerWaiting = true;
+                playerIn = true;
             }
         }
     }
 
     private void Update()
     {
-        if (playerWaiting)
+        if (playerIn)
         {
-            playerWaiting = false;
+            playerIn = false;
+            playerWaiting = true;
             Controller.instance.FreezePlayer(true);
             DialogueManager.Instance.IsCinematic();
             
         }
-        if (!DialogueManager.Instance.isPlayingDialogue && DialogueManager.Instance.isCinematic && GameManager.Instance.isTutorial)
+        if (!DialogueManager.Instance.isPlayingDialogue && DialogueManager.Instance.isCinematic && GameManager.Instance.isTutorial && playerWaiting)
         {
             Teleport();
         }
