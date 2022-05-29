@@ -173,12 +173,30 @@ namespace AI
 
         private void AvoidObstacles()
         {
-            RaycastHit groundHit;
-            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask))
-                transform.position = (groundHit.point + new Vector3(0, 0.1f, 0));
-            else transform.position += new Vector3(0, -0.1f, 0);
+            Vector3 swingerVelocity = Vector3.zero;
             
-            DebugAnchorTest();
+            RaycastHit groundHit;
+            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) swingerVelocity += (groundHit.point + new Vector3(0, 0.1f, 0));
+            else swingerVelocity += new Vector3(0, -0.1f, 0);
+            
+            Vector3[] boidsRays = Method();
+            for (int i = 0; i < boidsRays.Length; i++)
+            {
+                Vector3 dir = boidsRays[i];
+                Debug.DrawLine(transform.position, dir);
+                Destroy(Instantiate(DebugSphere, dir, Quaternion.identity), .04f);
+                
+                RaycastHit dosGroundHit;
+                if (Physics.Raycast(transform.position, directions[i], out dosGroundHit, anchorDst, groundLayerMask)) swingerVelocity += groundHit.point + new Vector3(-directions[i].x,0,-directions[i].z) * f * Time.deltaTime;
+            }
+            
+            swingerVelocity *= Time.deltaTime;
+            float calibratedspeed = swingerVelocity.magnitude;
+            Vector3 finalDir = swingerVelocity / calibratedspeed;
+            calibratedspeed = e_speed;
+            swingerVelocity = finalDir * calibratedspeed;
+            
+            this.transform.position += swingerVelocity;
         }
         
         private Vector3[] Method() 
