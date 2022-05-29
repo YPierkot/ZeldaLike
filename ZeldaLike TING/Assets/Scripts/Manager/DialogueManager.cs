@@ -26,7 +26,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image characterEmotion;
     [SerializeField] private UnityEngine.UI.Image frame;
     [SerializeField] private Sprite[] frames;
+    [SerializeField] private Animator maskAnimator;
     [SerializeField] private Animator cinematicMode;
+    private Animator textAnimator;
+    private CharacterScriptable lastCharacter;
     public Animator mist;
     public bool isCursed;
     public bool isCinematic = false;
@@ -49,6 +52,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         timeSinceLastDialogue = Time.time;
         characterEmotion.gameObject.SetActive(false);
+        textAnimator = characterEmotion.GetComponent<Animator>();
     }
 
     private void Update()
@@ -84,6 +88,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
+        maskAnimator.Play("DialogueTextMask");
         float delay;
         if (sentences.Count <= 0)
         {
@@ -131,6 +136,11 @@ public class DialogueManager : MonoBehaviour
 
     private void SetCharacterEmotion()
     {
+        if (lastCharacter != DialogueLines[currentDialogue].character)
+        {
+            textAnimator.Play("DialogueTextAppear");
+        }
+        
         switch (DialogueLines[currentDialogue].character.frame)
         {
             case CharacterScriptable.Frames.defaultFrame :
@@ -165,6 +175,8 @@ public class DialogueManager : MonoBehaviour
                 characterEmotion.sprite = DialogueLines[currentDialogue].character.Neutral;
                 break;
         }
+
+        lastCharacter = DialogueLines[currentDialogue].character;
     }
 
     private void SkipDialogue()
