@@ -45,13 +45,14 @@ public class UIManager : MonoBehaviour
    
    public GameObject loadingScreen;
    public TextMeshProUGUI playerLocation;
+   public Animator playerLocationTween;
 
    
    
    private void Start()
    {
       cardYPos = cardHandles[0].transform.position.y;
-      
+      playerLocationTween = playerLocation.GetComponent<Animator>();
       ChangeCard(0);
       UIManager.Instance.UpdateCardUI();
 

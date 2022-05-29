@@ -209,7 +209,6 @@ public class TutorialManager : MonoBehaviour
                     Debug.Log("J'ai capté que le dialogue était fini");
                     if (GameManager.Instance.isTutorial && DialogueManager.Instance.isCinematic)
                     {
-                        GameManager.Instance.isTutorial = false;
                         DialogueManager.Instance.IsCinematic();
                     }
                     
