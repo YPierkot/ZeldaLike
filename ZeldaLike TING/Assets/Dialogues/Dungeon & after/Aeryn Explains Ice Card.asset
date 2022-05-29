@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Aeryn Explains Ice Card
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Mist ? Tu ne m'apprends pas comment l'utiliser.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 03a6a06c72488944bb1e505db573343a, type: 3}
+  - character: {fileID: 11400000, guid: 300e3e19750b78340a63f80893afcc33, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Je peux t'expliquer si tu le souhaites.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Avec le recto tu peux geler ce qui se trouve devant toi
+      delay: 3
+    - expressions: 0
+      name: 
+      line: "Et avec le verso, tu cr\xE9es une explosion de glace"
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Lorsque tu r\xE9actives."
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Tu pourras geler les esprits, l'eau mais aussi d\xE9truire"
+      delay: 1.75
+    - expressions: 0
+      name: 
+      line: "Les barri\xE8res magiques."
+      delay: 1.75
+    - expressions: 0
+      name: 
+      line: "Tiens, d\xE9truit cette barri\xE8re magique "
+      delay: 1.75
+    - expressions: 0
+      name: 
+      line: "Puis active le levier pour d\xE9clencher l'\xE9nigme."
+      delay: 1.75
+    voiceLine: {fileID: 8300000, guid: ebca85723eb86aa4dbebac78659cc27a, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Chef oui chef !
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: ebca85723eb86aa4dbebac78659cc27a, type: 3}
