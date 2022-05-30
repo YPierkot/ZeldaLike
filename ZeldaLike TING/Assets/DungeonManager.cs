@@ -19,6 +19,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private Transform manaPoolCamera;
     [SerializeField] private Transform wideManaPoolCamera;
     [SerializeField] private GameObject barrier;
+    [SerializeField] private AerynBehaviour aeryn;
     private bool goingToPortal;
     private bool enemiesSpawned;
     private bool freedAeryn;
@@ -83,6 +84,7 @@ public class DungeonManager : MonoBehaviour
                     {
                         DialogueManager.Instance.IsCinematic();
                     }
+                    aeryn.isFreed = true;
                     Controller.instance.FreezePlayer(false);
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
@@ -114,12 +116,14 @@ public class DungeonManager : MonoBehaviour
             case 4 :
                 if (!puzzleBounds.gameObject.activeSelf)
                 {
+                    aeryn.firstPath = false;
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
                 break;
             case 3 :
                 if (puzzleFinished)
                 {
+                    aeryn.isThirdPath = true;
                     StartCoroutine(PuzzleIsFinished());
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }

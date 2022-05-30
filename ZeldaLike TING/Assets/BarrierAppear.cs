@@ -9,7 +9,7 @@ public class BarrierAppear : MonoBehaviour
     private float actualScale;
     [SerializeField] private float maxScale;
     private bool start;
-    private bool deactivate = false;
+    private bool deactivate;
 
     private void OnEnable()
     {
@@ -19,6 +19,7 @@ public class BarrierAppear : MonoBehaviour
 
     public virtual void Update()
     {
+        
         if (actualScale <= maxScale && start && !deactivate)
         {
             actualScale = transform.localScale.y;
