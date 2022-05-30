@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public VolumeProfile tutorialTransition;
     private bool isLoop;
     public bool foundMonolith;
+    public bool isDungeonFinished;
 
     public enum controller
     {

@@ -8,13 +8,27 @@ public class DungeonManager : MonoBehaviour
 {
 
     [SerializeField] private Transform cameraPoint;
+
+    [SerializeField] private Transform aerynCameraPoint;
+    [SerializeField] private Transform doorCameraPoint;
+    [SerializeField] private Transform leverCamera;
+    [SerializeField] private Transform puzzleCamera;
     [SerializeField] private GameObject puzzleCube;
+    [SerializeField] private Transform enemyParent;
+    [SerializeField] private Transform lastleverCamera;
+    [SerializeField] private Transform manaPoolCamera;
+    [SerializeField] private Transform wideManaPoolCamera;
+    [SerializeField] private GameObject barrier;
+    private bool goingToPortal;
+    private bool enemiesSpawned;
     private bool freedAeryn;
+    private bool enteredManaPool;
     [SerializeField] private List<DialogueScriptable> aerynDialogues;
     private Queue<DialogueScriptable> dialogues;
     public bool startIce;
     [SerializeField] private GameObject iceCard;
     [SerializeField] private GameObject puzzleBounds;
+    [SerializeField] private bool puzzleFinished;
     
 
 
@@ -50,6 +64,7 @@ public class DungeonManager : MonoBehaviour
 
     public void FreeingAeryn()
     {
+        GameManager.Instance.cameraController.ChangePoint(aerynCameraPoint);
         DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
         DialogueManager.Instance.IsCinematic();
         Controller.instance.FreezePlayer(true);
@@ -60,35 +75,70 @@ public class DungeonManager : MonoBehaviour
     {
         switch (dialogues.Count)
         {
-            case 6:
+            case 7:
                 if (freedAeryn && !DialogueManager.Instance.isPlayingDialogue)
                 {
-                    DialogueManager.Instance.IsCinematic();
+                    GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+                    if (DialogueManager.Instance.isCinematic)
+                    {
+                        DialogueManager.Instance.IsCinematic();
+                    }
                     Controller.instance.FreezePlayer(false);
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
 
                 break;
-            case 5:
+            case 6:
+                if (!enemiesSpawned && enemyParent.childCount > 5)
+                {
+                    enemiesSpawned = true;
+                }
+                if (enemyParent.childCount <= 5 && enemiesSpawned)
+                {
+                    barrier.SetActive(false);
+                }
                 if (startIce)
                 {
+                    StartCoroutine(GiveIceCard());
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                     iceCard.SetActive(true);
                 }
                 break;
-            case 4 :
+            case 5 :
                 if (CardsController.instance.iceCardUnlock && !DialogueManager.Instance.isPlayingDialogue)
                 {
+                    StartCoroutine(LeverCamera());
+                    iceCard.SetActive(false);
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
                 break;
-            case 3 :
+            case 4 :
                 if (!puzzleBounds.activeSelf)
                 {
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
                 break;
-            
+            case 3 :
+                if (puzzleFinished)
+                {
+                    StartCoroutine(PuzzleIsFinished());
+                    DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
+                }
+                break;
+            case 2 :
+                if (enteredManaPool)
+                {
+                    StartCoroutine(ManaPoolCinematic());
+                }
+                break;
+            case 1 :
+                if (goingToPortal)
+                {
+                    GameManager.Instance.isDungeonFinished = true;
+                }
+                    
+                break;
+
         }
     }
 
@@ -99,6 +149,70 @@ public class DungeonManager : MonoBehaviour
 
     public void ActivateLever()
     {
+        StartCoroutine(ShowPuzzleBounds());
         puzzleBounds.SetActive(false);
+    }
+
+    public void PuzzleFinished()
+    {
+        puzzleFinished = true;
+    }
+
+    public void EnteredManaPool()
+    {
+        enteredManaPool = true;
+    }
+
+    private IEnumerator GiveIceCard()
+    {
+        Controller.instance.FreezePlayer(true);
+        DialogueManager.Instance.IsCinematic();
+        GameManager.Instance.cameraController.ChangePoint(doorCameraPoint);
+        yield return new WaitForSeconds(5f);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+        Controller.instance.FreezePlayer(false);
+        DialogueManager.Instance.IsCinematic();
+    }
+
+    private IEnumerator LeverCamera()
+    {
+        yield return new WaitForSeconds(15f);
+        GameManager.Instance.cameraController.ChangePoint(leverCamera);
+        yield return new WaitForSeconds(4f);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+    }
+
+    private IEnumerator ShowPuzzleBounds()
+    {
+        Controller.instance.FreezePlayer(true);
+        GameManager.Instance.cameraController.ChangePoint(puzzleCamera);
+        yield return new WaitForSeconds(3f);
+        Controller.instance.FreezePlayer(false);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+    }
+
+    private IEnumerator PuzzleIsFinished()
+    {
+        Controller.instance.FreezePlayer(true);
+        GameManager.Instance.cameraController.ChangePoint(doorCameraPoint);
+        yield return new WaitForSeconds(5f);
+        Controller.instance.FreezePlayer(false);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+    }
+
+    private IEnumerator ManaPoolCinematic()
+    {
+        Controller.instance.FreezePlayer(true);
+        GameManager.Instance.cameraController.ChangePoint(wideManaPoolCamera);
+        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
+        yield return new WaitForSeconds(5f);
+        GameManager.Instance.cameraController.ChangePoint(manaPoolCamera);
+        yield return new WaitForSeconds(2.5f);
+        GameManager.Instance.cameraController.ChangePoint(lastleverCamera);
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+        Controller.instance.FreezePlayer(false);
+        DialogueManager.Instance.IsCinematic();
     }
 }

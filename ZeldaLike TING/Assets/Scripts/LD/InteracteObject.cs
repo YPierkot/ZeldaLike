@@ -14,7 +14,7 @@ public class InteracteObject : MonoBehaviour
     [SerializeField] private bool canBurn;
     [SerializeField] private bool isRune;
     [SerializeField] public bool burning;
-    [SerializeField] private UnityEngine.Events.UnityEvent onBurn;
+    [SerializeField] public UnityEngine.Events.UnityEvent onBurn;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
     public bool lianaTouched;
     [SerializeField] private Material lianaBurning;
@@ -26,9 +26,11 @@ public class InteracteObject : MonoBehaviour
 
     [Header("--- ICE")] public bool iceAffect;
     public bool canFreeze;
+    public bool barrier;
     [SerializeField] protected GameObject freezeCollider;
     [SerializeField] public float freezeTime;
     public bool isFreeze;
+    [SerializeField] public UnityEngine.Events.UnityEvent onFreeze;
 
     [Header("--- MOVEMENT")] public bool moveRestricted;
     [SerializeField] bool moveTop;
@@ -141,6 +143,7 @@ public class InteracteObject : MonoBehaviour
     {
         if (iceAffect)
         {
+            onFreeze.Invoke();
             isFreeze = true;
             burning = false;
             if (canFreeze)
@@ -148,6 +151,11 @@ public class InteracteObject : MonoBehaviour
                 freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
                 freezeCollider.transform.position = new Vector3(cardPos.x, freezeCollider.transform.position.y, cardPos.z);
                 StartCoroutine(FreezeTimer());
+            }
+
+            if (barrier)
+            {
+                GameManager.Instance.Disable(gameObject);
             }
         }
     }

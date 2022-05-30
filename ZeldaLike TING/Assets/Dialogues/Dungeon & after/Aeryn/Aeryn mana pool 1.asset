@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Aeryn mana pool 1
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Wooow, c'est merveilleux ici.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 300e3e19750b78340a63f80893afcc33, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: N'y trainons pas trop, Ithar va comprendre que je suis libre.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Ah, enfin ! Je me sens lib\xE9r\xE9 !"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Une fois que tu es pr\xEAt \xE0 partir, passe le portail"
+      delay: 0
+    voiceLine: {fileID: 0}

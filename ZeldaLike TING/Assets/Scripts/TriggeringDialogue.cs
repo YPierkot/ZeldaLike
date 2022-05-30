@@ -113,7 +113,7 @@ public class TriggeringDialogue : MonoBehaviour
         UIManager.Instance.playerLocationTween.Play("PlayerLocation");
         UIManager.Instance.playerLocation.text = zoneName;
         yield return new WaitForSeconds(3.5f);
-        UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
+        //UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.playerLocation.text = null;
         StartCoroutine(DialogueManager.Instance.CinematicWait(timing - 4f));
