@@ -19,6 +19,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private Transform manaPoolCamera;
     [SerializeField] private Transform wideManaPoolCamera;
     [SerializeField] private GameObject barrier;
+    private bool goingToPortal;
     private bool enemiesSpawned;
     private bool freedAeryn;
     private bool enteredManaPool;
@@ -130,7 +131,14 @@ public class DungeonManager : MonoBehaviour
                     StartCoroutine(ManaPoolCinematic());
                 }
                 break;
-            
+            case 1 :
+                if (goingToPortal)
+                {
+                    GameManager.Instance.isDungeonFinished = true;
+                }
+                    
+                break;
+
         }
     }
 

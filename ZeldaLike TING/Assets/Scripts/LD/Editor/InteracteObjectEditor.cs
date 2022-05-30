@@ -31,6 +31,7 @@ public class InteracteObjectEditor : Editor
         script.iceAffect = EditorGUILayout.Toggle("Ice Affected", script.iceAffect);
         if (serializedObject.FindProperty("iceAffect").boolValue)
         {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("onFreeze"));
             script.canFreeze = EditorGUILayout.Toggle("Can Freeze", script.canFreeze);
             script.barrier = EditorGUILayout.Toggle("Barrier", script.barrier);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("freezeCollider"));

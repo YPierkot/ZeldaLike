@@ -17,17 +17,25 @@ public class pushBlock : InteracteObject
 
     [SerializeField] private pushWayPoint newWaypoint;
     private bool move;
-    void Start()
+    public override void Start()
     {
+        base.Start();
         transform.position = currentWaypoint.transform.position;
-        mesh = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isFreeze)mesh.material.color = Color.blue;
-        else if(burning) mesh.material.color = Color.red;
+        if (isFreeze) 
+        {
+            onFreeze.Invoke();
+             mesh.material.SetColor("_Emission_Teinte", Color.blue);
+        }
+        else if(burning)
+        {
+             onBurn.Invoke();
+             mesh.material.SetColor("_Emission_Teinte", Color.red);
+        }
         if (move)
         {
             if (Vector3.Distance(transform.position, newWaypoint.transform.position) <= distanceThreshold)
