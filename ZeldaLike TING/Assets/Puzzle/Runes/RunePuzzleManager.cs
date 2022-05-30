@@ -8,7 +8,7 @@ public class RunePuzzleManager : MonoBehaviour {
     [SerializeField] private pushWayPoint startWaypoint;
     [SerializeField] private UnityEvent onFinishEvent;
 
-    [HideInInspector] public List<RunePlate> runesList = new List<RunePlate>();
+    public List<RunePlate> runesList = new List<RunePlate>();
 
     private void Start() => ResetRune();
     
@@ -30,7 +30,8 @@ public class RunePuzzleManager : MonoBehaviour {
     /// <summary>
     /// Method to call when a rune is updated
     /// </summary>
-    public void CheckRunes() {
+    public void CheckRunes(){
+        Debug.Log("Je check les runes");
         if (runesList.Any(rune => !rune.IsActivate)) return;
         onFinishEvent.Invoke();
     }

@@ -28,7 +28,10 @@ public class EnemySpawnTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !hasSpawned && spawnOnEntry)
         {
             GameManager.Instance.actualRespawnPoint = transform;
-            barrier.SetActive(true);
+            if (barrier!=null)
+            {
+                barrier.SetActive(true);
+            }
             hasSpawned = true;
             SpawnEnemies();
         }

@@ -26,6 +26,7 @@ public class InteracteObject : MonoBehaviour
 
     [Header("--- ICE")] public bool iceAffect;
     public bool canFreeze;
+    public bool barrier;
     [SerializeField] protected GameObject freezeCollider;
     [SerializeField] public float freezeTime;
     public bool isFreeze;
@@ -148,6 +149,11 @@ public class InteracteObject : MonoBehaviour
                 freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
                 freezeCollider.transform.position = new Vector3(cardPos.x, freezeCollider.transform.position.y, cardPos.z);
                 StartCoroutine(FreezeTimer());
+            }
+
+            if (barrier)
+            {
+                GameManager.Instance.Disable(gameObject);
             }
         }
     }
