@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class BossManager : MonoBehaviour
@@ -179,10 +180,11 @@ public class BossManager : MonoBehaviour
             SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossLaserCast);
             animator.SetTrigger("LaserAttack");
             laserLine.enabled = true;
+            laser.gameObject.SetActive(true);
             _laserTimer = laserTimer;
             Debug.Log(Controller.instance.transform.position);
             laserPos = Controller.instance.transform.position;
-            laser.rotation = Quaternion.LookRotation(Controller.instance.transform.position);
+            laser.rotation = Quaternion.LookRotation(Controller.instance.transform.position-boss.position);
             laserLine.SetPosition(0, boss.position);
             laserLine.SetPosition(1, boss.position);
         }
@@ -191,7 +193,7 @@ public class BossManager : MonoBehaviour
             /*laserPos = Vector3.Lerp(laserPos, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
             Vector3 rayDir = (laserPos - boss.position).normalized;
             rayDir = new Vector3(rayDir.x, 0, rayDir.z);*/
-            Vector3 rayDir = laser.forward;
+            Vector3 rayDir = new Vector3(laser.forward.x, 0, laser.forward.z);
             if (!castingLaser)
             {
                 if (!laserStartThrow)
@@ -201,7 +203,7 @@ public class BossManager : MonoBehaviour
                 }
                 if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, Mathf.Infinity, 15))
                     laserLine.SetPosition(1, hit.point);
-                else laserLine.SetPosition(1, rayDir * 100);
+                else laserLine.SetPosition(1, rayDir*50);
                 _laserTimer -= Time.deltaTime;
             }
         }
@@ -210,6 +212,7 @@ public class BossManager : MonoBehaviour
             currentState = BossState.idle;
             laserStart = false;
             laserLine.enabled = false;
+            laser.gameObject.SetActive(false);
         }
     }
 
