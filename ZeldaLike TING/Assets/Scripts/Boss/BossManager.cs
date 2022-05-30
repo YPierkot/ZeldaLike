@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -33,9 +34,11 @@ public class BossManager : MonoBehaviour
     [Space] [SerializeField] private Vector2 sizeTP_Zone;
     [SerializeField] private bool DebugTP_Zone;
 
-    [Header("---LASER")] [SerializeField] private float laserTimer = 5;
-    [SerializeField] private float laserSpeed;
+    [Header("---LASER")] 
+    [SerializeField] private float laserTimer = 5;
+    public float laserSpeed;
 
+    private Transform laser;
     private LineRenderer laserLine;
     private bool laserStart;
     private bool laserStartThrow;
@@ -67,6 +70,7 @@ public class BossManager : MonoBehaviour
         UIManager.Instance.BosslifeBar.maxValue = maxLife;
         animator = GetComponentInChildren<Animator>();
         laserLine = GetComponentInChildren<LineRenderer>();
+        laser = laserLine.transform;
         shieldMesh = shield.GetComponent<MeshRenderer>();
         invincibleColor = shieldMesh.material.color;
 
@@ -178,14 +182,16 @@ public class BossManager : MonoBehaviour
             _laserTimer = laserTimer;
             Debug.Log(Controller.instance.transform.position);
             laserPos = Controller.instance.transform.position;
+            laser.rotation = Quaternion.LookRotation(Controller.instance.transform.position);
             laserLine.SetPosition(0, boss.position);
             laserLine.SetPosition(1, boss.position);
         }
         else if (_laserTimer >= 0)
         {
-            laserPos = Vector3.Lerp(laserPos, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
+            /*laserPos = Vector3.Lerp(laserPos, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
             Vector3 rayDir = (laserPos - boss.position).normalized;
-            rayDir = new Vector3(rayDir.x, 0, rayDir.z);
+            rayDir = new Vector3(rayDir.x, 0, rayDir.z);*/
+            Vector3 rayDir = laser.forward;
             if (!castingLaser)
             {
                 if (!laserStartThrow)
@@ -258,7 +264,7 @@ public class BossManager : MonoBehaviour
         if(stayIdle) return;
         idleStart = false;
         shieldMesh.material.color = invincibleColor;
-        if (Random.value <= 0.5f) currentState = BossState.ballAttack;
+        if (Random.value <= 0.5f) currentState = BossState.lasetAttack;
         else currentState = BossState.lasetAttack;
         castAttack = false;
     }
