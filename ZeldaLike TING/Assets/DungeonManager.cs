@@ -43,15 +43,15 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator OnEntrance()
     {
-        //Controller.instance.FreezePlayer(true);
-        //DialogueManager.Instance.IsCinematic();
-        //GameManager.Instance.cameraController.ChangePoint(cameraPoint);
+        Controller.instance.FreezePlayer(true);
+        DialogueManager.Instance.IsCinematic();
+        GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         yield return new WaitForSeconds(3f);
         puzzleCube.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
-        //DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic();
     }
 
     private void OnTriggerEnter(Collider other)

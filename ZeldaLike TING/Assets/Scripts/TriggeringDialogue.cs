@@ -110,7 +110,7 @@ public class TriggeringDialogue : MonoBehaviour
         {
             GameManager.Instance.cameraController.ChangePoint(camera);
         }
-        UIManager.Instance.playerLocationTween.Play("PlayerLocation");
+        //UIManager.Instance.playerLocationTween.Play("PlayerLocation");
         UIManager.Instance.playerLocation.text = zoneName;
         yield return new WaitForSeconds(3.5f);
         //UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
