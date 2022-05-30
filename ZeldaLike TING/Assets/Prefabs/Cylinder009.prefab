@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1426093048755759221}
   - component: {fileID: 5815000825518378300}
   - component: {fileID: 5381122650650014122}
+  - component: {fileID: 4645455759482452717}
   m_Layer: 11
   m_Name: Cylinder009
   m_TagString: Interactable
@@ -6194,9 +6195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcb6ec10c9ae7f439a7ac7ce41b033f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRune: 0
   fireAffect: 1
   canBurn: 1
-  isRune: 0
   burning: 0
   onBurn:
     m_PersistentCalls:
@@ -6225,6 +6226,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  fireColor: {r: 0, g: 0, b: 0, a: 0}
   onBurnDestroy:
     m_PersistentCalls:
       m_Calls: []
@@ -6250,6 +6252,7 @@ MonoBehaviour:
   iceAffect: 1
   canFreeze: 0
   barrier: 0
+  iceColor: {r: 0, g: 0, b: 0, a: 0}
   freezeCollider: {fileID: 0}
   freezeTime: 0
   isFreeze: 0
@@ -6327,6 +6330,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &4645455759482452717
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637913706247069086}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
 --- !u!1001 &278108281277705276
 PrefabInstance:
   m_ObjectHideFlags: 0
