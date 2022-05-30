@@ -181,7 +181,7 @@ public class DialogueManager : MonoBehaviour
 
     private void SkipDialogue()
     {
-        if (Input.GetKeyDown(KeyCode.T) && isPlayingDialogue)
+        if (Input.GetKeyDown(KeyCode.T) && isPlayingDialogue && !GameManager.Instance.isDungeonFinished)
         {
             skip = true;
             CancelInvoke("DisplayNextSentence");
@@ -225,7 +225,7 @@ public class DialogueManager : MonoBehaviour
 
     private void AutomaticDialogues()
     {
-        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && !GameManager.Instance.isTutorial)
+        if (!isPlayingDialogue && Time.time >= timeSinceLastDialogue + dialogueMistKellTimer && !GameManager.Instance.isTutorial && !GameManager.Instance.isDungeonFinished)
         {
             DialogueScriptable dialogueToPlay;
             switch (playerLocation)

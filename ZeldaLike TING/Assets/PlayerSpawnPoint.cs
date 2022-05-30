@@ -38,7 +38,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         {
             DialogueManager.Instance.IsCinematic();
         }
-        StartCoroutine(SmallCinematic());
+        //StartCoroutine(SmallCinematic());
     }
 
     private IEnumerator SmallCinematic()
@@ -64,7 +64,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && GameManager.Instance.isDungeonFinished && !spawned)
         {
@@ -75,7 +75,7 @@ public class PlayerSpawnPoint : MonoBehaviour
             DialogueManager.Instance.IsCinematic();
             StartCoroutine(ThePlan());
         }
-    }
+    }*/
 
     private IEnumerator ThePlan()
     {
