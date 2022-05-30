@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using PathCreation.Examples;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -11,15 +12,16 @@ public class CinematicManager : MonoBehaviour
     [SerializeField] private DialogueScriptable dialogue;
     
     [Header("Objects")]
-    [SerializeField] private GameObject wizard;
+    
+
+    [SerializeField] private Transform cameraPoint;
     
     [Header("Waypoints & Movement")]
-    [SerializeField] private Transform wizardWaypoint;
-    [SerializeField] private List<Transform> waypointList;
-    private bool wizardMove;
-    private bool kellMove;
-    private int waypointIndex;
-    
+    [SerializeField] private PathFollower wizard;
+
+    [SerializeField] private Transform wizardTransform;
+    [SerializeField] private PathFollower kellPath;
+
     [Header("PostProcess & GameFeel")]
     [SerializeField] private VolumeProfile transitionVolume;
     [SerializeField] private AnimationCurve transitionCurve;
@@ -29,6 +31,7 @@ public class CinematicManager : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         DialogueManager.Instance.AssignDialogue(dialogue.dialogue.ToList());
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
@@ -37,30 +40,17 @@ public class CinematicManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (wizardMove)
-        {
-            wizard.transform.Translate((wizardWaypoint.position - wizard.transform.position).normalized * 0.05f);
-        }
-
-        if (kellMove)
-        {
-            Controller.instance.ForceMove(waypointList[waypointIndex].position);
-        }
+        wizardTransform.position = wizard.transform.position;
+        Controller.instance.transform.position = kellPath.transform.position;
 
     }
 
     private IEnumerator ObjectManagement()
     {
         yield return new WaitForSeconds(8);
-        wizardMove = true;
+        wizard.enabled = true;
         yield return new WaitForSeconds(3f);
-        wizardMove = false;
-        kellMove = true;
-        waypointIndex = 0;
-        yield return new WaitForSeconds(0.5f);
-        waypointIndex = 1;
-        yield return new WaitForSeconds(0.8f);
-        waypointIndex = 2;
+        kellPath.enabled = true;
         yield return new WaitForSeconds(7.5f);
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         CameraShake.Instance.AddShakeEvent(cameraShake);
@@ -71,6 +61,6 @@ public class CinematicManager : MonoBehaviour
         UIManager.Instance.loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
         DialogueManager.Instance.IsCinematic();
-        SceneManager.LoadScene("_Scenes/SceneWorkflow/LD_Tuto");
+        SceneManager.LoadScene("_Scenes/Level Design/LD_DonjonPrinc");
     }
 }
