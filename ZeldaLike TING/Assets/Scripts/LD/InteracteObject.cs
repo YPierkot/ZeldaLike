@@ -8,13 +8,14 @@ public class InteracteObject : MonoBehaviour
     protected MeshRenderer mesh;
     private Rigidbody rb;
     private MeshRenderer[] meshChilds;
-    
+    [SerializeField] private bool isRune;
     
     [Header("--- FIRE")] public bool fireAffect;
     [SerializeField] private bool canBurn;
-    [SerializeField] private bool isRune;
     [SerializeField] public bool burning;
     [SerializeField] public UnityEngine.Events.UnityEvent onBurn;
+    [ColorUsage(true, true)]
+    [SerializeField] private Color fireColor;
     [SerializeField] private UnityEngine.Events.UnityEvent onBurnDestroy;
     public bool lianaTouched;
     [SerializeField] private Material lianaBurning;
@@ -27,6 +28,8 @@ public class InteracteObject : MonoBehaviour
     [Header("--- ICE")] public bool iceAffect;
     public bool canFreeze;
     public bool barrier;
+    [ColorUsage(true, true)]
+    [SerializeField] private Color iceColor;
     [SerializeField] protected GameObject freezeCollider;
     [SerializeField] public float freezeTime;
     public bool isFreeze;
@@ -67,6 +70,8 @@ public class InteracteObject : MonoBehaviour
         {
             if (isRune)
             {
+                Debug.Log("si senior");
+                mesh.material.SetColor("_Emission_Teinte", fireColor);
                 burning = false;
             }
             onBurn.Invoke();
@@ -146,6 +151,10 @@ public class InteracteObject : MonoBehaviour
             onFreeze.Invoke();
             isFreeze = true;
             burning = false;
+            if (isRune)
+            {
+                mesh.material.SetColor("_Emission_Teinte", iceColor);
+            }
             if (canFreeze)
             {
                 freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
@@ -165,6 +174,5 @@ public class InteracteObject : MonoBehaviour
         yield return new WaitForSeconds(freezeTime);
         freezeCollider.SetActive(false);
         mesh.material.color = Color.gray;
-        
     }
 }

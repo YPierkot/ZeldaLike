@@ -28,6 +28,14 @@ public class TeleportationPortal : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")&& Controller.instance.playerInteraction == Teleport)
+        {
+            Controller.instance.playerInteraction = null;
+        }
+    }
+
     private void Update()
     {
         if (playerIn)

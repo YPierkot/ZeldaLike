@@ -9,12 +9,14 @@ public class InteracteObjectEditor : Editor
     {
         serializedObject.Update();
         InteracteObject script = (InteracteObject)target;
+        serializedObject.FindProperty("isRune").boolValue = EditorGUILayout.Toggle("Is Rune", serializedObject.FindProperty("isRune").boolValue);
         GUILayout.Label("--- FIRE");
         script.fireAffect = EditorGUILayout.Toggle("Fire Affect", script.fireAffect);
         if (script.fireAffect)
         {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("fireColor"));
             serializedObject.FindProperty("canBurn").boolValue = EditorGUILayout.Toggle("Can Burn", serializedObject.FindProperty("canBurn").boolValue);
-            serializedObject.FindProperty("isRune").boolValue = EditorGUILayout.Toggle("Is Rune", serializedObject.FindProperty("isRune").boolValue);
+            
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onBurn"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onBurnDestroy"));
         }
@@ -31,6 +33,7 @@ public class InteracteObjectEditor : Editor
         script.iceAffect = EditorGUILayout.Toggle("Ice Affected", script.iceAffect);
         if (serializedObject.FindProperty("iceAffect").boolValue)
         {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("iceColor"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("onFreeze"));
             script.canFreeze = EditorGUILayout.Toggle("Can Freeze", script.canFreeze);
             script.barrier = EditorGUILayout.Toggle("Barrier", script.barrier);

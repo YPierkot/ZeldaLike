@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
                     case true :
                         finished = true;
                         startTransition = true;
-                        Debug.Log("je loop");
+                        //Debug.Log("je loop");
                         VolumeTransition(volumeTransition.profile, transitionCurve, true);
                         break;
                     

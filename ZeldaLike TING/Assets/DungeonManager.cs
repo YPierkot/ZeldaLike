@@ -27,7 +27,7 @@ public class DungeonManager : MonoBehaviour
     private Queue<DialogueScriptable> dialogues;
     public bool startIce;
     [SerializeField] private GameObject iceCard;
-    [SerializeField] private GameObject puzzleBounds;
+    [SerializeField] private Animator puzzleBounds;
     [SerializeField] private bool puzzleFinished;
     
 
@@ -108,12 +108,11 @@ public class DungeonManager : MonoBehaviour
                 if (CardsController.instance.iceCardUnlock && !DialogueManager.Instance.isPlayingDialogue)
                 {
                     StartCoroutine(LeverCamera());
-                    iceCard.SetActive(false);
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
                 break;
             case 4 :
-                if (!puzzleBounds.activeSelf)
+                if (!puzzleBounds.gameObject.activeSelf)
                 {
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
@@ -150,7 +149,7 @@ public class DungeonManager : MonoBehaviour
     public void ActivateLever()
     {
         StartCoroutine(ShowPuzzleBounds());
-        puzzleBounds.SetActive(false);
+        puzzleBounds.Play("PuzzleBounds");
     }
 
     public void PuzzleFinished()
@@ -188,6 +187,7 @@ public class DungeonManager : MonoBehaviour
         GameManager.Instance.cameraController.ChangePoint(puzzleCamera);
         yield return new WaitForSeconds(3f);
         Controller.instance.FreezePlayer(false);
+        puzzleBounds.gameObject.SetActive(false);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
     }
 

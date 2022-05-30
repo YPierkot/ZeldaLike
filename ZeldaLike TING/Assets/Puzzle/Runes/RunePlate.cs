@@ -16,10 +16,16 @@ public class RunePlate : MonoBehaviour {
     [SerializeField] private RunePuzzleManager runeManager = null;
     [Space]
     [SerializeField] private Element plateType;
-    
+
     [SerializeField] private bool isActivate;
     [SerializeField] private UnityEvent onActivation;
     [SerializeField] private UnityEvent onDeactivation;
+    private MeshRenderer mesh;
+    [ColorUsage(true, true)]
+    [SerializeField] private Color fireColor;
+    [ColorUsage(true, true)]
+    [SerializeField] private Color iceColor;
+    
     public bool IsActivate {
         get => isActivate;
         set => isActivate = value;
@@ -27,18 +33,22 @@ public class RunePlate : MonoBehaviour {
     
     private void Start()
     {
-        if (GetComponentInParent<RunePuzzleManager>()) runeManager = GetComponentInParent<RunePuzzleManager>();
+        if (GetComponentInParent<RunePuzzleManager>())
+        {
+            runeManager = GetComponentInParent<RunePuzzleManager>();
+        }
         if (runeManager == null) {
             Debug.LogError("There is no rune manager on this object. Please add one before testing the puzzle.", this.transform);
             return;
         }
-        
+
+        mesh = GetComponent<MeshRenderer>();
         runeManager.runesList.Add(this);
     }
 
     private void OnTriggerStay(Collider other) 
     {
-        Debug.Log("ok");
+        //Debug.Log("ok");
         if (other.GetComponent<pushBlock>() != null) {
             if (runeManager == null) return;
             
@@ -47,14 +57,12 @@ public class RunePlate : MonoBehaviour {
                 case Element.Fire:
                     if (other.GetComponent<InteracteObject>().burning) {
                         if (!isActivate) {
-                            GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             isActivate = true;
                             onActivation.Invoke();
                             runeManager.CheckRunes();
                         }
                     }
                     else {
-                        if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
                         isActivate = false;
                         onDeactivation.Invoke();
                     }
@@ -64,20 +72,48 @@ public class RunePlate : MonoBehaviour {
                 case Element.Ice:
                     if (other.GetComponent<InteracteObject>().isFreeze) {
                         if (!isActivate) {
-                            GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             onActivation.Invoke();
                             isActivate = true;
                             runeManager.CheckRunes();
                         }
                     }
                     else {
-                        if (isActivate) GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color - new Color(.2f, .2f, .2f);
-                        isActivate = false;
-                        onDeactivation.Invoke();
+                        if (isActivate)
+                        {
+                            isActivate = false;
+                            onDeactivation.Invoke();
+                        }
                     }
 
                     break;
             }
+        }
+    }
+
+    public void ActivateRune()
+    {
+        switch (plateType)
+        {
+            case Element.Fire: 
+                mesh.material.SetColor("_Emission_Teinte", fireColor);
+                break;
+            case Element.Ice :
+                mesh.material.SetColor("_Emission_Teinte", iceColor);
+                break;
+        }
+        
+    }
+
+    public void DeactivateRune()
+    {
+        switch (plateType)
+        {
+            case Element.Fire: 
+                mesh.material.SetColor("_Emission_Teinte", Color.grey);
+                break;
+            case Element.Ice :
+                mesh.material.SetColor("_Emission_Teinte", Color.black);
+                break;
         }
     }
 }
