@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class pushBlock : InteracteObject
@@ -13,6 +11,9 @@ public class pushBlock : InteracteObject
     public pushWayPoint currentWaypoint;
     [SerializeField] private float speed;
     [SerializeField] private float distanceThreshold;
+    private bool freezeCoroutine;
+
+    public Animator block;
     // Start is called before the first frame update
 
     [SerializeField] private pushWayPoint newWaypoint;
@@ -21,6 +22,7 @@ public class pushBlock : InteracteObject
     {
         base.Start();
         transform.position = currentWaypoint.transform.position;
+        block = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -78,6 +80,26 @@ public class pushBlock : InteracteObject
         }
     }
 
+    public override void OnFireEffect()
+    {
+        base.OnFireEffect();
+        if (fireAffect)
+        {
+            freezeCoroutine = false;
+            Animation();
+        }
+    }
+
+    public override void Freeze(Vector3 cardPos)
+    {
+        base.Freeze(cardPos);
+        if (!freezeCoroutine)
+        {
+            BlockFreeze();
+        }
+        
+    }
+
     void MoveWaypoint(Side side)
     {
         pushWayPoint waypoint = null;
@@ -103,6 +125,16 @@ public class pushBlock : InteracteObject
         }
     }
 
+    public void Animation()
+    {
+        block.Play("CubeTouched");
+    }
+
+    private void BlockFreeze()
+    {
+        Animation();
+        freezeCoroutine = true;
+    }
 
     public void MoveWaytpointGravity() => MoveWaypoint(Side.bot);
 }

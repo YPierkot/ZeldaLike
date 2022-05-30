@@ -146,6 +146,7 @@ public class InteracteObject : MonoBehaviour
             onFreeze.Invoke();
             isFreeze = true;
             burning = false;
+            
             if (canFreeze)
             {
                 freezeCollider.transform.gameObject.transform.gameObject.SetActive(true);
@@ -165,6 +166,5 @@ public class InteracteObject : MonoBehaviour
         yield return new WaitForSeconds(freezeTime);
         freezeCollider.SetActive(false);
         mesh.material.color = Color.gray;
-        
     }
 }
