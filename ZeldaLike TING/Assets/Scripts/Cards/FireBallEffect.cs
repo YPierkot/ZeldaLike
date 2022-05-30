@@ -11,7 +11,7 @@ public class FireBallEffect : MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2, interactMask);
         foreach (var col in colliders)
-        {
+        {   
             switch (col.transform.tag)
             {
                 case "Interactable": col.GetComponent<InteracteObject>().OnFireEffect(); break;
@@ -24,6 +24,10 @@ public class FireBallEffect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
+        {
+            ActivateRedGroundEffect();
+        }
+        else if (other.CompareTag("Ennemy"))
         {
             ActivateRedGroundEffect();
         }
