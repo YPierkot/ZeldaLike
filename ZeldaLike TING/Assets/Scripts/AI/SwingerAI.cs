@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Assertions.Must;
 using Random = UnityEngine.Random;
 
 namespace AI
@@ -31,6 +31,8 @@ namespace AI
         [Range(0.2f, 5)] public float anchorDst = 1f;
         [Range(0.2f, 10)] public float f = 1f;
 
+        public float debugX;
+        public float debugZ;
         
         protected override void Init()
         {
@@ -93,11 +95,12 @@ namespace AI
                 if (!isAttacking)
                 {
                     transform.DOKill();
-                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
-                        e_speed * Time.deltaTime);
+                    GoToPlayer();
                     e_animator.SetBool("isWalk", true);
                     
-                    //AvoidObstacles();
+                    RaycastHit groundHit;
+                    if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
+                    else transform.position += new Vector3(0, -0.1f, 0);
                     Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
                 }
                 else
@@ -118,6 +121,55 @@ namespace AI
             }
         }
 
+        private void GoToPlayer()
+        {
+            RaycastHit collisionHit;
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), out collisionHit, 
+                Vector3.Distance(playerTransform.position, transform.position), groundLayerMask))
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
+
+                float pointX = collisionHit.point.x;
+                float pointZ = collisionHit.point.z;
+                
+                debugX = (playerTransform.position.x - transform.position.x);
+                debugZ = (playerTransform.position.z - transform.position.z);
+
+                if (debugZ > 0) // Joueur au dessus
+                {
+                    if (debugX > 0) // Joueur à droite
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX - 2.5f, 0,pointZ + 1f),
+                            e_speed * Time.deltaTime);
+                    }
+                    else // Joueur à gauche
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ + 1f),
+                            e_speed * Time.deltaTime);
+                    }
+                }
+                else // Joueur en dessous
+                {
+                    if (debugX > 0) // Joueur à droite
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ - .7f),
+                            e_speed * Time.deltaTime);
+                    }
+                    else // Joueur à gauche
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - .7f),
+                            e_speed * Time.deltaTime);
+                    }
+                }
+            }
+            else
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.green);
+                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                    e_speed * Time.deltaTime);
+            }
+        }
+        
         private const float radiusShootPoint = 1.9f;
         private IEnumerator DoAttack()
         {
@@ -170,68 +222,5 @@ namespace AI
             e_rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
             e_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
-
-        private void AvoidObstacles()
-        {
-            Vector3 swingerVelocity = Vector3.zero;
-            
-            RaycastHit groundHit;
-            if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) swingerVelocity += (groundHit.point + new Vector3(0, 0.1f, 0));
-            else swingerVelocity += new Vector3(0, -0.1f, 0);
-            
-            Vector3[] boidsRays = Method();
-            for (int i = 0; i < boidsRays.Length; i++)
-            {
-                Vector3 dir = boidsRays[i];
-                Debug.DrawLine(transform.position, dir);
-                Destroy(Instantiate(DebugSphere, dir, Quaternion.identity), .04f);
-                
-                RaycastHit dosGroundHit;
-                if (Physics.Raycast(transform.position, directions[i], out dosGroundHit, anchorDst, groundLayerMask)) swingerVelocity += groundHit.point + new Vector3(-directions[i].x,0,-directions[i].z) * f * Time.deltaTime;
-            }
-            
-            swingerVelocity *= Time.deltaTime;
-            float calibratedspeed = swingerVelocity.magnitude;
-            Vector3 finalDir = swingerVelocity / calibratedspeed;
-            calibratedspeed = e_speed;
-            swingerVelocity = finalDir * calibratedspeed;
-            
-            this.transform.position += swingerVelocity;
-        }
-        
-        private Vector3[] Method() 
-        {
-            directions = new Vector3[8];
-
-            directions[0] = transform.position + Vector3.back * anchorDst;
-            directions[1] = transform.position + (Vector3.back + Vector3.right).normalized * anchorDst;
-            directions[2] = transform.position + Vector3.right * anchorDst;
-            directions[3] = transform.position + (Vector3.forward + Vector3.right).normalized * anchorDst;
-            directions[4] = transform.position + Vector3.forward * anchorDst;
-            directions[5] = transform.position + (Vector3.forward + Vector3.left).normalized * anchorDst;
-            directions[6] = transform.position + Vector3.left * anchorDst;
-            directions[7] = transform.position + (Vector3.back + Vector3.left).normalized * anchorDst;
-            return directions;
-        }
-
-        private void LateUpdate()
-        {
-           AvoidObstacles();
-        }
-
-        private void DebugAnchorTest()
-        {
-            Vector3[] boidsRays = Method();
-            for (int i = 0; i < boidsRays.Length; i++)
-            {
-                Vector3 dir = boidsRays[i];
-                Debug.DrawLine(transform.position, dir);
-                Destroy(Instantiate(DebugSphere, dir, Quaternion.identity), .04f);
-                
-                RaycastHit groundHit;
-                if (Physics.Raycast(transform.position, directions[i], out groundHit, anchorDst, groundLayerMask)) transform.position = groundHit.point + new Vector3(-directions[i].x,0,-directions[i].z) * f * Time.deltaTime;
-            }
-        }
-        
     }
 }

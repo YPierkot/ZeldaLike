@@ -9,7 +9,6 @@ public class FireBallEffect : MonoBehaviour
     
     public void ActivateRedGroundEffect()
     {
-        Debug.LogFormat("acces");
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2, interactMask);
         foreach (var col in colliders)
         {
@@ -27,7 +26,6 @@ public class FireBallEffect : MonoBehaviour
         if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
         {
             ActivateRedGroundEffect();
-            Debug.Log("oui");
         }
     }
 }

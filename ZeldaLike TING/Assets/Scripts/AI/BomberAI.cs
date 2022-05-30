@@ -22,6 +22,9 @@ namespace AI
         [SerializeField] private Animator bomberAnimator;
         [SerializeField] private bool isMoving;
         [SerializeField] private bool isAttacking;
+        
+        public float debugX;
+        public float debugZ;
         #endregion
         
         protected override void Init()
@@ -45,7 +48,6 @@ namespace AI
 
             if(isMoving) return;
             if (isHitStun) return;
-
             
             isMoving = true;
 
@@ -85,8 +87,7 @@ namespace AI
                 if (!isAttacking)
                 {
                     transform.DOKill();
-                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
-                        e_speed * Time.deltaTime);
+                    GoToPlayer();
                     
                     RaycastHit groundHit;
                     if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 1f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
@@ -118,6 +119,55 @@ namespace AI
             }
             yield return new WaitForSeconds(1.85f);
             isAttacking = false;
+        }
+        
+        private void GoToPlayer()
+        {
+            RaycastHit collisionHit;
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), out collisionHit, 
+                Vector3.Distance(playerTransform.position, transform.position), groundLayerMask))
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
+
+                float pointX = collisionHit.point.x;
+                float pointZ = collisionHit.point.z;
+                
+                debugX = (playerTransform.position.x - transform.position.x);
+                debugZ = (playerTransform.position.z - transform.position.z);
+
+                if (debugZ > 0) // Joueur au dessus
+                {
+                    if (debugX > 0) // Joueur à droite
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX - 2.5f, 0,pointZ + 1f),
+                            e_speed * Time.deltaTime);
+                    }
+                    else // Joueur à gauche
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ + 1f),
+                            e_speed * Time.deltaTime);
+                    }
+                }
+                else // Joueur en dessous
+                {
+                    if (debugX > 0) // Joueur à droite
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ - .7f),
+                            e_speed * Time.deltaTime);
+                    }
+                    else // Joueur à gauche
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - .7f),
+                            e_speed * Time.deltaTime);
+                    }
+                }
+            }
+            else
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.green);
+                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                    e_speed * Time.deltaTime);
+            }
         }
         
         private void OnDrawGizmos()

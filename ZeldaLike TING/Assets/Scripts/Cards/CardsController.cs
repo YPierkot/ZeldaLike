@@ -332,7 +332,8 @@ public class CardsController : MonoBehaviour
                 Instantiate(enemyFreezeFX, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos.position, Quaternion.identity, ennemy.transform.GetComponent<AI.AbstractAI>().SpawnFXPos);
             }
             
-            if (ennemy.transform.CompareTag("Interactable")) ennemy.GetComponent<InteracteObject>().isFreeze = true;
+            //if (ennemy.transform.CompareTag("Interactable")) ennemy.GetComponent<InteracteObject>().isFreeze = true;
+            if (ennemy.transform.CompareTag("Interactable")) ennemy.GetComponent<InteracteObject>().Freeze(ennemy.transform.position);
         }
     }
 

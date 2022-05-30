@@ -19,6 +19,7 @@ namespace AI
         [SerializeField] private bool canMove;
         [Space(2)] [SerializeField] private Animator kamikazeAnimator;
         private float spriteDir;
+        [SerializeField] private GameObject fxExplode;
         #endregion
         
         protected override void Init()
@@ -29,6 +30,8 @@ namespace AI
             canMove = true;
         }
         
+        public float debugX;
+        public float debugZ;
         
         public override void ChangeState(AIStates aiState)
         {
@@ -75,15 +78,14 @@ namespace AI
                 if (!isAttacking)
                 {
                     transform.DOKill();
-                    transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
-                        e_speed * Time.deltaTime);
+                    GoToPlayer();
+                    
+                    kamikazeAnimator.SetBool("isWalk", true);
                     
                     RaycastHit groundHit;
                     if (Physics.Raycast(transform.position, Vector3.down, out groundHit, 0.2f, groundLayerMask)) transform.position = groundHit.point + new Vector3(0, 0.1f, 0);
                     else transform.position += new Vector3(0, -0.1f, 0);
                     Debug.DrawRay(transform.position, Vector3.down*1, Color.blue);
-                    
-                    kamikazeAnimator.SetBool("isWalk", true);
                 }
                 else
                 {
@@ -92,13 +94,60 @@ namespace AI
                 
                 spriteDir = playerTransform.position.x - transform.position.x;
 
-                if (spriteDir < 0)
-                    e_sprite.flipX = true;
-                else
-                    e_sprite.flipX = false;
+                if (spriteDir < 0) e_sprite.flipX = true;
+                else e_sprite.flipX = false;
             }
         }
 
+        private void GoToPlayer()
+        {
+            RaycastHit collisionHit;
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), out collisionHit, 
+                Vector3.Distance(playerTransform.position, transform.position), groundLayerMask))
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
+
+                float pointX = collisionHit.point.x;
+                float pointZ = collisionHit.point.z;
+                
+                debugX = (playerTransform.position.x - transform.position.x);
+                debugZ = (playerTransform.position.z - transform.position.z);
+
+                if (debugZ > 0) // Joueur au dessus
+                {
+                    if (debugX > 0) // Joueur à droite
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX - 2.5f, 0,pointZ + 1f),
+                            e_speed * Time.deltaTime);
+                    }
+                    else // Joueur à gauche
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ + 1f),
+                            e_speed * Time.deltaTime);
+                    }
+                }
+                else // Joueur en dessous
+                {
+                    if (debugX > 0) // Joueur à droite
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ - .7f),
+                            e_speed * Time.deltaTime);
+                    }
+                    else // Joueur à gauche
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - .7f),
+                            e_speed * Time.deltaTime);
+                    }
+                }
+            }
+            else
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.green);
+                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                    e_speed * Time.deltaTime);
+            }
+        }
+        
         private IEnumerator DoAttack()
         {
             e_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
@@ -106,9 +155,10 @@ namespace AI
             kamikazeAnimator.SetBool("isAttack", true);
             yield return new WaitForSeconds(1.05f);
             
+            Destroy(Instantiate(fxExplode, transform.position, Quaternion.identity), 1.3f);
             bool isPlayer = Physics.CheckSphere(transform.position, e_aoeRange, playerLayerMask);
             if (isPlayer && GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
-
+            
             yield return new WaitForSeconds(0.7f);
             Destroy(gameObject);
         }
