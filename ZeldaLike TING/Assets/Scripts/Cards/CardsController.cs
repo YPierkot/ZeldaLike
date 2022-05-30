@@ -68,6 +68,8 @@ public class CardsController : MonoBehaviour
     {
         Null = 0, Fire, Ice, Wall, Wind
     }
+
+    public LayerMask MaskForIce;
     #endregion
     
     public CardsState State = CardsState.Null;
@@ -322,7 +324,7 @@ public class CardsController : MonoBehaviour
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.iceRecto); 
         
         Collider[] cols = Physics.OverlapCapsule(new Vector3(GoDir.x, transform.position.y, GoDir.z * rangeStartIceShot), 
-            new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,Ennemy);
+            new Vector3(shootPointPos.x * rangeIceShot, controller.pointerPosition.y/2 + 2f, shootPointPos.z * rangeIceShot), radiusIceShot,MaskForIce);
         foreach (var ennemy in cols)
         {
             if (ennemy.CompareTag("Ennemy")) 

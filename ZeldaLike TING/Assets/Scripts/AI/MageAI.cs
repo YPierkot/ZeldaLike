@@ -146,10 +146,16 @@ namespace AI
          private void GoToPlayer()
         {
             RaycastHit collisionHit;
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), out collisionHit, 
-                Vector3.Distance(playerTransform.position, transform.position), groundLayerMask))
+            
+            Vector3 dir = new Vector3(playerTransform.position.x - transform.position.x, playerTransform.position.y - transform.position.y,
+                playerTransform.position.z - transform.position.z).normalized;
+            
+            Debug.DrawRay(transform.position, dir);
+            
+            if (Physics.Raycast(transform.position, dir, out collisionHit, Vector3.Distance(playerTransform.position, transform.position) * 1.5f, groundLayerMask))
             {
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+                    new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
 
                 float pointX = collisionHit.point.x;
                 float pointZ = collisionHit.point.z;
@@ -159,29 +165,13 @@ namespace AI
 
                 if (debugZ > 0) // Joueur au dessus
                 {
-                    if (debugX > 0) // Joueur à droite
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX - 2.5f, 0,pointZ + 1f),
-                            e_speed * Time.deltaTime);
-                    }
-                    else // Joueur à gauche
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ + 1f),
-                            e_speed * Time.deltaTime);
-                    }
+                    if (debugX > 0) transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, 0,pointZ + 3f),e_speed * Time.deltaTime);
+                    else transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
                 }
                 else // Joueur en dessous
                 {
-                    if (debugX > 0) // Joueur à droite
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 2f, 0,pointZ - .7f),
-                            e_speed * Time.deltaTime);
-                    }
-                    else // Joueur à gauche
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - .7f),
-                            e_speed * Time.deltaTime);
-                    }
+                    if (debugX > 0) transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
+                    else transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - 1f), e_speed * Time.deltaTime);
                 }
             }
             else
@@ -191,6 +181,7 @@ namespace AI
                     e_speed * Time.deltaTime);
             }
         }
+         
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;

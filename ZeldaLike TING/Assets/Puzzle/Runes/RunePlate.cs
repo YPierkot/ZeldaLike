@@ -38,7 +38,7 @@ public class RunePlate : MonoBehaviour {
 
     private void OnTriggerStay(Collider other) 
     {
-        Debug.Log("ok");
+        //Debug.Log("ok");
         if (other.GetComponent<pushBlock>() != null) {
             if (runeManager == null) return;
             
