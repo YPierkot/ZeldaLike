@@ -20,6 +20,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private Transform wideManaPoolCamera;
     [SerializeField] private GameObject barrier;
     [SerializeField] private AerynBehaviour aeryn;
+    [SerializeField] private TeleportationPortal portal;
     private bool goingToPortal;
     private bool enemiesSpawned;
     private bool freedAeryn;
@@ -179,7 +180,9 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator LeverCamera()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(3f);
+        iceCard.SetActive(false);
+        yield return new WaitForSeconds(12f);
         GameManager.Instance.cameraController.ChangePoint(leverCamera);
         yield return new WaitForSeconds(4f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
@@ -214,6 +217,8 @@ public class DungeonManager : MonoBehaviour
         GameManager.Instance.cameraController.ChangePoint(manaPoolCamera);
         yield return new WaitForSeconds(2.5f);
         GameManager.Instance.cameraController.ChangePoint(lastleverCamera);
+        portal.animator.SetTrigger("PortalOn");
+        portal.particleAnimator.SetTrigger("PortalOn");
         yield return new WaitForSeconds(3f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);

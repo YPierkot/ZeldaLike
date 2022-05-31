@@ -15,6 +15,7 @@ public class AerynBehaviour : MonoBehaviour
     [SerializeField] private float playerMinDistance;
     [SerializeField] private float maxSpeed;
     private float distancefromPlayer;
+    [SerializeField] private Transform firstDestination;
     public bool firstPath = true;
     public bool isThirdPath;
     [SerializeField] private PathCreator secondPath;
@@ -27,6 +28,13 @@ public class AerynBehaviour : MonoBehaviour
         if (isFreed && firstPath)
         {
             distancefromPlayer = Vector3.Distance(transform.position, Controller.instance.transform.position);
+            if (Vector3.Distance(transform.position, firstDestination.position) > Vector3.Distance(Controller.instance.transform.position, firstDestination.position))
+            {
+                path.enabled = true;
+                path.speed = maxSpeed;
+                transform.position = path.transform.position;
+                return;
+            }
             if (distancefromPlayer > playerMaxDistance)
             {
                 path.enabled = false;
