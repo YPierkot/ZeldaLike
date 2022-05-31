@@ -1406,6 +1406,7 @@ MonoBehaviour:
   canUseFireCard: 0
   fireCardUnlock: 0
   fireCardGrounded: {fileID: 0}
+  firecircleFx: {fileID: 0}
   fireRectoUse: 0
   canUseIceCard: 0
   iceCardUnlock: 0
@@ -1436,6 +1437,10 @@ MonoBehaviour:
   ShortIceFx: {fileID: 0}
   ShortWallFx: {fileID: 0}
   ShortWindFx: {fileID: 0}
+  MaskForIce:
+    serializedVersion: 2
+    m_Bits: 0
+  cardCooldown: 0
   State: 1
 --- !u!114 &7337217462935629413
 MonoBehaviour:

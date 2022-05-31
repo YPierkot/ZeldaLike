@@ -7,8 +7,10 @@ public class RunePuzzleManager : MonoBehaviour {
     [SerializeField] private pushBlock block;
     [SerializeField] private pushWayPoint startWaypoint;
     [SerializeField] private UnityEvent onFinishEvent;
-
+    [SerializeField] private Material iceDissolve;
+    [SerializeField] private Material fireDissolve;
     public List<RunePlate> runesList = new List<RunePlate>();
+    private float dissolveAmount;
 
     private void Start() => ResetRune();
     
@@ -46,5 +48,33 @@ public class RunePuzzleManager : MonoBehaviour {
 
         block.transform.position = startWaypoint.transform.position;
         block.currentWaypoint = startWaypoint;
+    }
+
+    public void PuzzleDisappear()
+    {
+        dissolveAmount = 19;
+        foreach (var rune in runesList)
+        {
+            if (rune.plateType == RunePlate.Element.Fire)
+            {
+                rune.mesh.material = fireDissolve;
+                rune.mesh.material.SetFloat("_CutoffHeight", dissolveAmount);
+            }
+            else
+            {
+                rune.mesh.material = iceDissolve;
+                rune.mesh.material.SetFloat("_CutoffHeight", dissolveAmount);
+            }
+        }
+    }
+
+    public void RunesDisappear()
+    {
+        foreach (var rune in runesList)
+        {
+            rune.mesh.material.SetFloat("_CutoffHeight", dissolveAmount);
+        }
+
+        dissolveAmount -= 0.01f;
     }
 }

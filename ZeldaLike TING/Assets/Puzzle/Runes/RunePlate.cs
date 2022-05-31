@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class RunePlate : MonoBehaviour {
-    private enum Element {
+    public enum Element {
         Fire,
         Ice,
         Ground,
@@ -15,12 +15,12 @@ public class RunePlate : MonoBehaviour {
 
     [SerializeField] private RunePuzzleManager runeManager = null;
     [Space]
-    [SerializeField] private Element plateType;
+    public Element plateType;
 
     [SerializeField] private bool isActivate;
     [SerializeField] private UnityEvent onActivation;
     [SerializeField] private UnityEvent onDeactivation;
-    private MeshRenderer mesh;
+    public MeshRenderer mesh;
     [ColorUsage(true, true)]
     [SerializeField] private Color fireColor;
     [ColorUsage(true, true)]

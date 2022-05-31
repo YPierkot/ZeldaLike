@@ -38,6 +38,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private PathFollower prisonParticle;
     [SerializeField] private CameraShakeScriptable breachCameraShake;
     [SerializeField] private CameraShakeScriptable enemiesCameraShake;
+    [SerializeField] private Animator mistMovement;
     
     [Header("Ennemies")]
     [SerializeField] private Transform ennemyParent;
@@ -120,6 +121,7 @@ public class TutorialManager : MonoBehaviour
         DialogueManager.Instance.mist.SetTrigger("Appear");
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         ithar.gameObject.SetActive(false);
+        mistMovement.Play("MistMovement");
         yield return new WaitForSeconds(26f);
         CameraShake.Instance.AddShakeEvent(enemiesCameraShake);
     }

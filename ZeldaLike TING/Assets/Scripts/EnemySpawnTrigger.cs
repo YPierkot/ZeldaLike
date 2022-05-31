@@ -10,7 +10,7 @@ public class EnemySpawnTrigger : MonoBehaviour
     
     public bool spawnOnEntry;
     public Transform enemiesParent;
-    [SerializeField] private GameObject barrier;
+    [SerializeField] public GameObject barrier;
     [SerializeField] private GameObject appearFX;
     [Space] [SerializeField] private float timeBetweenSpawn = 0.75f;
     

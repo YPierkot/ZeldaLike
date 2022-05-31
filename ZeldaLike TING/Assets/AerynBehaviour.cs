@@ -18,9 +18,11 @@ public class AerynBehaviour : MonoBehaviour
     [SerializeField] private Transform firstDestination;
     public bool firstPath = true;
     public bool isThirdPath;
-    [SerializeField] private PathCreator secondPath;
-    [SerializeField] private PathCreator thirdPath;
-    [SerializeField] private GameObject shield;
+    public bool isFourthPath;
+    [SerializeField] private PathFollower secondPath;
+    [SerializeField] private PathFollower thirdPath;
+    [SerializeField] private PathFollower fourthPath;
+    [SerializeField] public GameObject shield;
     private Vector3 lastPos;
 
     private void Update()
@@ -59,20 +61,24 @@ public class AerynBehaviour : MonoBehaviour
 
         if (isFreed && !firstPath && !isThirdPath)
         {
-            path.pathCreator = secondPath;
-            path.speed = 3;
-            path.enabled = true;
-            transform.position = path.transform.position;
+            secondPath.speed = 3;
+            secondPath.enabled = true;
+            transform.position = secondPath.transform.position;
         }
 
         if (isThirdPath)
         {
-            path.pathCreator = thirdPath;
-            path.speed = 3;
-            path.enabled = true;
-            transform.position = path.transform.position;
+            thirdPath.speed = 4.5f;
+            thirdPath.enabled = true;
+            transform.position = thirdPath.transform.position;
         }
-        
+
+        if (isFourthPath)
+        {
+            fourthPath.speed = 4.5f;
+            fourthPath.enabled = true;
+            transform.position = fourthPath.transform.position;
+        }
     }
 
     private void OnDrawGizmos()

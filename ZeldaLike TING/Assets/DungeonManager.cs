@@ -31,8 +31,15 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private GameObject iceCard;
     [SerializeField] private Animator puzzleBounds;
     [SerializeField] private bool puzzleFinished;
-    
-
+    [SerializeField] private RunePuzzleManager runePuzzleManager;
+    private bool puzzleDisappear;
+    [SerializeField] private DialogueScriptable underAttack;
+    [SerializeField] private EnemySpawnTrigger spawner;
+    [SerializeField] private EnemySpawnTrigger secondWave;
+    private bool secondWaveSpawned = true;
+    [SerializeField] private CameraShakeScriptable aeryngettingPowers;
+    [SerializeField] private Animator manaPool;
+ 
 
     private void Start()
     {
@@ -122,10 +129,19 @@ public class DungeonManager : MonoBehaviour
                 }
                 break;
             case 3 :
-                if (puzzleFinished)
+                if (puzzleFinished && !puzzleDisappear && runePuzzleManager.gameObject.activeSelf) 
                 {
-                    aeryn.isThirdPath = true;
                     StartCoroutine(PuzzleIsFinished());
+                }
+                if (spawner.enemiesParent.childCount == 4 && !secondWaveSpawned && puzzleFinished)
+                {
+                    secondWaveSpawned = true;
+                    secondWave.SpawnEnemies();
+                }
+                if (puzzleFinished && spawner.enemiesParent.childCount == 4 && secondWave.enemiesParent.childCount == 5 && !runePuzzleManager.gameObject.activeSelf)
+                {
+                    secondWave.barrier.SetActive(false);
+                    aeryn.isThirdPath = true;
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
                 break;
@@ -142,7 +158,11 @@ public class DungeonManager : MonoBehaviour
                 }
                     
                 break;
-
+                
+        }
+        if (puzzleDisappear)
+        {
+            runePuzzleManager.RunesDisappear();
         }
     }
 
@@ -192,7 +212,7 @@ public class DungeonManager : MonoBehaviour
     {
         Controller.instance.FreezePlayer(true);
         GameManager.Instance.cameraController.ChangePoint(puzzleCamera);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         Controller.instance.FreezePlayer(false);
         puzzleBounds.gameObject.SetActive(false);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
@@ -200,11 +220,19 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator PuzzleIsFinished()
     {
+        runePuzzleManager.PuzzleDisappear();
         Controller.instance.FreezePlayer(true);
-        GameManager.Instance.cameraController.ChangePoint(doorCameraPoint);
-        yield return new WaitForSeconds(5f);
+        GameManager.Instance.cameraController.ChangePoint(puzzleCamera);
+        puzzleDisappear = true;
+        yield return new WaitForSeconds(2f);
+        DialogueManager.Instance.AssignDialogue(underAttack.dialogue.ToList());
+        spawner.SpawnEnemies();
         Controller.instance.FreezePlayer(false);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+        yield return new WaitForSeconds(2f);
+        secondWaveSpawned = false;
+        puzzleDisappear = false;
+        runePuzzleManager.gameObject.SetActive(false);
     }
 
     private IEnumerator ManaPoolCinematic()
@@ -214,8 +242,14 @@ public class DungeonManager : MonoBehaviour
         DialogueManager.Instance.IsCinematic();
         DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
         yield return new WaitForSeconds(5f);
+        aeryn.isFourthPath = true;
         GameManager.Instance.cameraController.ChangePoint(manaPoolCamera);
         yield return new WaitForSeconds(2.5f);
+        CameraShake.Instance.AddShakeEvent(aeryngettingPowers);
+        manaPool.Play("ManaPool");
+        yield return new WaitForSeconds(3f);
+        aeryn.shield.SetActive(true);
+        yield return new WaitForSeconds(2f);
         GameManager.Instance.cameraController.ChangePoint(lastleverCamera);
         portal.animator.SetTrigger("PortalOn");
         portal.particleAnimator.SetTrigger("PortalOn");

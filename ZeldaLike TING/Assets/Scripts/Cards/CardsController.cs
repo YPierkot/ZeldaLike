@@ -70,6 +70,7 @@ public class CardsController : MonoBehaviour
     }
 
     public LayerMask MaskForIce;
+    public float cardCooldown;
     #endregion
     
     public CardsState State = CardsState.Null;
@@ -401,7 +402,7 @@ public class CardsController : MonoBehaviour
             default: break;
         }
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(cardCooldown);
         switch (cardType)
         {
             case 1: canUseFireCard = true; break;
