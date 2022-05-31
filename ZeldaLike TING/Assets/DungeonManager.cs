@@ -19,6 +19,8 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private Transform manaPoolCamera;
     [SerializeField] private Transform wideManaPoolCamera;
     [SerializeField] private GameObject barrier;
+    [SerializeField] private AerynBehaviour aeryn;
+    [SerializeField] private TeleportationPortal portal;
     private bool goingToPortal;
     private bool enemiesSpawned;
     private bool freedAeryn;
@@ -83,6 +85,7 @@ public class DungeonManager : MonoBehaviour
                     {
                         DialogueManager.Instance.IsCinematic();
                     }
+                    aeryn.isFreed = true;
                     Controller.instance.FreezePlayer(false);
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
@@ -114,12 +117,14 @@ public class DungeonManager : MonoBehaviour
             case 4 :
                 if (!puzzleBounds.gameObject.activeSelf)
                 {
+                    aeryn.firstPath = false;
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
                 break;
             case 3 :
                 if (puzzleFinished)
                 {
+                    aeryn.isThirdPath = true;
                     StartCoroutine(PuzzleIsFinished());
                     DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
                 }
@@ -175,7 +180,9 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator LeverCamera()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(3f);
+        iceCard.SetActive(false);
+        yield return new WaitForSeconds(12f);
         GameManager.Instance.cameraController.ChangePoint(leverCamera);
         yield return new WaitForSeconds(4f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
@@ -210,6 +217,8 @@ public class DungeonManager : MonoBehaviour
         GameManager.Instance.cameraController.ChangePoint(manaPoolCamera);
         yield return new WaitForSeconds(2.5f);
         GameManager.Instance.cameraController.ChangePoint(lastleverCamera);
+        portal.animator.SetTrigger("PortalOn");
+        portal.particleAnimator.SetTrigger("PortalOn");
         yield return new WaitForSeconds(3f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
