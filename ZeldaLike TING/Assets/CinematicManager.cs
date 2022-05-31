@@ -60,6 +60,7 @@ public class CinematicManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         UIManager.Instance.loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         DialogueManager.Instance.IsCinematic();
         SceneManager.LoadScene("_Scenes/Level Design/LD_DonjonPrinc");
     }
