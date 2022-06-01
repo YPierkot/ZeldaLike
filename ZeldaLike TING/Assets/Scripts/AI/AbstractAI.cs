@@ -20,6 +20,9 @@ namespace AI
         [SerializeField] public LayerMask playerLayerMask; // Player Layer
         [SerializeField] public LayerMask groundLayerMask; // Player Layer
         [SerializeField] private Transform spawnFXPos = null;
+        
+        [SerializeField] protected GameObject fxBomb;
+        
         public Transform SpawnFXPos => spawnFXPos;
         
         public enum AIStates
@@ -158,7 +161,6 @@ namespace AI
         
         private IEnumerator sE()
         {
-            Debug.Log("OUAIS çA FONCTIONNE LE SANG");
             e_speed /= 2;
             yield return new WaitForSeconds(4.5f);
             e_speed *= 2;
@@ -187,14 +189,12 @@ namespace AI
 
         private void HitStun()
         {
-            Debug.Log("Oui 2");
             if (e_hitStunCO == null) e_hitStunCO = StartCoroutine(EnemyStunCo());
             else { StopCoroutine(e_hitStunCO); e_hitStunCO = StartCoroutine(EnemyStunCo());}
         }
 
         private IEnumerator EnemyStunCo()
         {
-            Debug.Log("Oui 3");
             isHitStun = true;
             yield return new WaitForSeconds(e_hitStunTime);
             isHitStun = false;

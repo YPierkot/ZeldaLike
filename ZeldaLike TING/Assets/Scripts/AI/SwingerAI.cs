@@ -143,13 +143,29 @@ namespace AI
 
                 if (debugZ > 0) // Joueur au dessus
                 {
-                    if (debugX > 0) transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, 0,pointZ + 3f),e_speed * Time.deltaTime);
-                    else transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
+                    if (debugX > 0)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, 0,pointZ + 3f),e_speed * Time.deltaTime);
+                        //Debug.Log("Joueur en haut à droite");
+                    }
+                    else
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
+                        //Debug.Log("Joueur en haut à gauche");
+                    }
                 }
                 else // Joueur en dessous
                 {
-                    if (debugX > 0) transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
-                    else transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - 1f), e_speed * Time.deltaTime);
+                    if (debugX > 0)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
+                        //Debug.Log("Joueur en bas à droite");
+                    }
+                    else
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - 1f), e_speed * Time.deltaTime);
+                        //Debug.Log("Joueur en bas à gauche");
+                    }
                 }
             }
             else
