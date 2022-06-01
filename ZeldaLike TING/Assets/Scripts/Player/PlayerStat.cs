@@ -30,6 +30,9 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] public int swiftnessModuleComposant;
    [SerializeField] public int staminaModuleComposant;
 
+   [Header("Stats for modules")] 
+   public int money;
+   
    [Header("Stats for modules")]
    [SerializeField] public float toughnessValue = 0.3f; // Duration u can't take dmg
    [SerializeField] public int attackDamageValue = 1;
@@ -75,6 +78,12 @@ public class PlayerStat : MonoBehaviour
          UIManager.Instance.TakeDamageUI(life);
          CameraShake.Instance.AddShakeEvent(HitShake);
       }
+   }
+
+   public void ChangeMoney(int amount)
+   {
+      money += amount;
+      UIManager.Instance.moneyText.text = money.ToString();
    }
 
    private void PlayerDeath()
