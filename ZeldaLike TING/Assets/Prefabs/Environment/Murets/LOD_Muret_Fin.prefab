@@ -53,7 +53,7 @@ LODGroup:
   - screenRelativeHeight: 0.01
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 0}
+    - renderer: {fileID: 3600871569233531108}
   m_Enabled: 1
 --- !u!1 &4620234568197885461
 GameObject:
@@ -329,6 +329,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85a930da3e4903479f7410141ea39ae, type: 3}
+--- !u!23 &3600871569233531108 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3405182033790815940, guid: d85a930da3e4903479f7410141ea39ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 7009432147243885016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7407357175784375859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d85a930da3e4903479f7410141ea39ae,

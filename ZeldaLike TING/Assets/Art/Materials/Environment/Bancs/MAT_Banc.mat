@@ -7,14 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Iles_2b
-  m_Shader: {fileID: -6465566751694194690, guid: 2969e952b34f9d240b599ad8f409dab0,
+  m_Name: MAT_Banc
+  m_Shader: {fileID: -6465566751694194690, guid: c22c48d3a27caca458810524fa481e98,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 1900
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: cecb5529fde3c1c4980391b0944b9aba, type: 3}
+        m_Texture: {fileID: 2800000, guid: c3017d86d6589704ca6c6c16fbc2c79f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -105,7 +105,7 @@ Material:
     - LIGHTMAP: 0
     - Vector1_c572dc0cffd0432398e686a7d5485777: 256
     - Vector1_d15731b12819423486ba3c1e1839dfc4: 0
-    - Vector1_e26df100b03a47d7a6c886a1050c3c0a: 2.07
+    - Vector1_e26df100b03a47d7a6c886a1050c3c0a: 10
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -120,12 +120,12 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LightProbeContribution: 5
+    - _LightProbeContribution: 3
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OutlineDepthSensitivity: 0.2
+    - _OutlineDepthSensitivity: 0
     - _OutlineNormalsSensitivity: 1
-    - _OutlineThickness: 0
+    - _OutlineThickness: 5
     - _Parallax: 0.005
     - _QueueControl: 1
     - _QueueOffset: 0
@@ -147,6 +147,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5801866726714113679
 MonoBehaviour:
