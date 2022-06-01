@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
                   if (CardsController.instance.canUseFireCard)
                   {
                      cardHandle.image.color = Color.white;
-                     cardHandle.image.sprite = cardSprites.fireVerso;
+                     if(Controller.instance._controlType != Controller.ControlType.ChangeSideControl) cardHandle.image.sprite = cardSprites.fireVerso;
                   }
                   else if (CardsController.instance.fireRectoUse || !CardsController.isFireGround) 
                   {
@@ -132,7 +132,7 @@ public class UIManager : MonoBehaviour
                   if (CardsController.instance.canUseIceCard)
                   {
                      cardHandle.image.color = Color.white;
-                     cardHandle.image.sprite = cardSprites.iceVerso;
+                     if(Controller.instance._controlType != Controller.ControlType.ChangeSideControl) cardHandle.image.sprite = cardSprites.iceVerso;
                   }
                   else if (CardsController.instance.iceRectoUse || !CardsController.isIceGround)
                   {
@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour
                   if (CardsController.instance.canUseWallCard) 
                   {
                      cardHandle.image.color = Color.white;
-                     cardHandle.image.sprite = cardSprites.groundVerso;
+                     if(Controller.instance._controlType != Controller.ControlType.ChangeSideControl) cardHandle.image.sprite = cardSprites.groundVerso;
                   }
                   else
                   {
@@ -175,8 +175,8 @@ public class UIManager : MonoBehaviour
                   
                   if (CardsController.instance.canUseWindCard)
                   {
-                     cardHandle.image.sprite = cardSprites.windVerso;
                      cardHandle.image.color = Color.white;
+                     if(Controller.instance._controlType != Controller.ControlType.ChangeSideControl) cardHandle.image.sprite = cardSprites.windVerso;
                   }
                   else
                   {
