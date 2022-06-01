@@ -157,6 +157,7 @@ public class CardsController : MonoBehaviour
                 
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
                 fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                fireCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
                     shootPointPos * projectileSpeed;
                 isFireGround = true;
@@ -182,6 +183,7 @@ public class CardsController : MonoBehaviour
                 
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
                 iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                iceCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 iceCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos  * projectileSpeed;
                 isIceGround = true;
@@ -209,6 +211,7 @@ public class CardsController : MonoBehaviour
                     
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
                 wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                wallCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos * projectileSpeed;
                 isWallGround = true;
@@ -237,6 +240,7 @@ public class CardsController : MonoBehaviour
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
                 windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                windCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed;
                 isWindGround = true;
                 
