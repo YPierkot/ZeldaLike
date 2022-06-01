@@ -145,26 +145,26 @@ namespace AI
                 {
                     if (debugX > 0)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, 0,pointZ + 3f),e_speed * Time.deltaTime);
-                        //Debug.Log("Joueur en haut à droite");
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f),e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f), Color.yellow, .4f);
                     }
                     else
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
-                        //Debug.Log("Joueur en haut à gauche");
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, transform.position.y,pointZ + 0.3f), e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f), Color.yellow, .4f);
                     }
                 }
                 else // Joueur en dessous
                 {
                     if (debugX > 0)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, 0,pointZ + 0.3f), e_speed * Time.deltaTime);
-                        //Debug.Log("Joueur en bas à droite");
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.3f), e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.3f), Color.yellow, .4f);
                     }
                     else
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, 0,pointZ - 1f), e_speed * Time.deltaTime);
-                        //Debug.Log("Joueur en bas à gauche");
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, transform.position.y,pointZ - 3f), e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3(pointX - 2f, transform.position.y,pointZ - 3f), Color.yellow, .4f);
                     }
                 }
             }
