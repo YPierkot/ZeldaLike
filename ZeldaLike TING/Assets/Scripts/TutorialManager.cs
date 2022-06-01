@@ -75,10 +75,9 @@ public class TutorialManager : MonoBehaviour
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         Controller.instance.gameObject.SetActive(false);
-        DialogueManager.Instance.IsCinematic();
+        if (!DialogueManager.Instance.isCinematic) DialogueManager.Instance.IsCinematic();
         Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
-
     }
 
     private void Update()

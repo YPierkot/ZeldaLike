@@ -54,7 +54,7 @@ public class CinematicManager : MonoBehaviour
         yield return new WaitForSeconds(7.5f);
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         CameraShake.Instance.AddShakeEvent(cameraShake);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3F);
         GameManager.Instance.volumeManager.profile = transitionVolume;
         GameManager.Instance.VolumeTransition(hardTransition, hardCurve);
         yield return new WaitForSeconds(0.4f);
