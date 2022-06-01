@@ -19,11 +19,11 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "H\xE9 mais je le connais lui ! C'est Ailen !"
-      delay: 0
+      delay: 3
     - expressions: 2
       name: 
       line: "Ils ont fait une statue de lui? il ne le m\xE9ritait pas."
-      delay: 3.25
+      delay: 3.75
     voiceLine: {fileID: 8300000, guid: db496d25c380e364d9708db37dff5cc7, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -31,11 +31,11 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Tais toi Mist.
-      delay: 4.25
+      delay: 2
     - expressions: 0
       name: 
       line: "Bonjour, qui est repr\xE9sent\xE9 sur cette statue?"
-      delay: 4.25
+      delay: 2.5
     voiceLine: {fileID: 8300000, guid: adff272084259d245b3b5d1a16efd460, type: 3}
   - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
     startingDelay: 0
@@ -91,11 +91,11 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "lorsque les gens ont d\xE9cid\xE9 que les magies "
-      delay: 3.5
+      delay: 1.5
     - expressions: 0
       name: 
       line: " dangereuses devaient \xEAtre oubli\xE9es, "
-      delay: 2.75
+      delay: 2
     - expressions: 0
       name: 
       line: "quand Zenithia est tomb\xE9e et que tous quitt\xE8rent cette \xEEle"
@@ -114,9 +114,12 @@ MonoBehaviour:
       delay: 3
     - expressions: 0
       name: 
-      line: " et a fini par changer la nature du mana de la montagne elle m\xEAme
-        !"
-      delay: 2.75
+      line: ' et a fini par changer la nature du mana '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "de la montagne elle m\xEAme !"
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 21dfa044f3f3f444795b7a2664a26efd, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -147,9 +150,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Exactement, et le mana commen\xE7a \xE0 se canaliser en vent de lui
-        m\xEAme."
-      delay: 3.5
+      line: "Exactement, et le mana commen\xE7a "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "\xE0 se canaliser en vent de lui m\xEAme."
+      delay: 2
     - expressions: 0
       name: 
       line: "Le vent a souffl\xE9 sur les paysages rocheux "
@@ -202,11 +208,11 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Il a dit que j'\xE9tais perspicace, "
-      delay: 3
+      delay: 1.5
     - expressions: 0
       name: 
       line: 'je ne suis pas aussi stupide que tu ne le crois! '
-      delay: 3
+      delay: 2.5
     voiceLine: {fileID: 8300000, guid: c816bc9f7e5f82449aa96ad1cf177061, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
