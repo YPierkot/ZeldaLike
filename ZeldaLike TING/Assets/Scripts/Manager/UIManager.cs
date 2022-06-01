@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
    public int cardUnlock = 1;
    private int currentCard = 0;
    float cardYPos;
+   [SerializeField] private Animator cardsAnimator;
    
    
    [Header("--- LIFE & STAT")] 
@@ -310,5 +311,24 @@ public class UIManager : MonoBehaviour
 
          CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }
+
+   public void LaunchFireCardTween()
+   {
+      cardsAnimator.Play("TurnFireCard");
+   }
    
+   public void LaunchFireIceTween()
+   {
+      cardsAnimator.Play("UseIceCards");
+   }
+   
+   public void LaunchFireWallTween()
+   {
+      cardsAnimator.Play("UseWallCards");
+   }
+   
+   public void LaunchFireWindTween()
+   {
+      cardsAnimator.Play("UseWindCards");
+   }
 }

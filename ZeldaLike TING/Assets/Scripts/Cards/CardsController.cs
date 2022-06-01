@@ -149,6 +149,8 @@ public class CardsController : MonoBehaviour
         {
             if (!isFireGround)
             {
+                UIManager.Instance.LaunchFireCardTween();
+                
                 canUseFireCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -163,8 +165,7 @@ public class CardsController : MonoBehaviour
                 isFireGround = true;
             }
         }
-        else if (isFireGround) {fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI();
-        }
+        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI();
     }
     
     // Ice Card
@@ -174,8 +175,9 @@ public class CardsController : MonoBehaviour
         {
             if (!isIceGround)
             {
+                UIManager.Instance.LaunchFireIceTween();
+                
                 canUseIceCard = false;
-
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
                 else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
@@ -202,8 +204,9 @@ public class CardsController : MonoBehaviour
         {
             if (!isWallGround)
             {
-                canUseWallCard = false;
+                UIManager.Instance.LaunchFireWallTween();
                 
+                canUseWallCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
                 else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
@@ -231,8 +234,9 @@ public class CardsController : MonoBehaviour
         {
             if (!isWindGround)
             {
-                canUseWindCard = false;
+                UIManager.Instance.LaunchFireWindTween();
                 
+                canUseWindCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
                 else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
@@ -260,6 +264,7 @@ public class CardsController : MonoBehaviour
         if (canUseFireCard)
         {
             ActivateFireShortEffect();
+            UIManager.Instance.LaunchFireCardTween();
             StartCoroutine(LaunchCardCDCo(1));
         }
     }
@@ -270,6 +275,7 @@ public class CardsController : MonoBehaviour
         if (canUseIceCard)
         {
             ActivateIceGroundEffect();
+            UIManager.Instance.LaunchFireIceTween();
             StartCoroutine(LaunchCardCDCo(2));
         }   
     }
@@ -280,6 +286,7 @@ public class CardsController : MonoBehaviour
         if (canUseWallCard)
         {
             ActivateWallGroundEffect();
+            UIManager.Instance.LaunchFireWallTween();
             StartCoroutine(LaunchCardCDCo(3));
         }
     }
@@ -290,6 +297,7 @@ public class CardsController : MonoBehaviour
         if (canUseWindCard)
         {
             ActivateWindGroundEffect();
+            UIManager.Instance.LaunchFireWindTween();
             StartCoroutine(LaunchCardCDCo(4));
         }
     }
