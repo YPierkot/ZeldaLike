@@ -131,6 +131,11 @@ public class DialogueManager : MonoBehaviour
             EnqueuedDialogue.Clear();
             sentenceIndex = 0;
             dialogueDisplay.text = null;
+            if (isCinematic)
+            {
+                IsCinematic();
+            }
+            Controller.instance.FreezePlayer(false);
         }
     }
 

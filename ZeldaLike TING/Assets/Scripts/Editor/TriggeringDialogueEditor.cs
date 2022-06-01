@@ -21,6 +21,10 @@ public class TriggeringDialogueEditor : Editor
         {
             script.shortMonolithDialogue = (DialogueScriptable) EditorGUILayout.ObjectField("Short dialogue",
                 script.shortMonolithDialogue, typeof(DialogueScriptable), true);
+            script.mistMovement =
+                (Animator) EditorGUILayout.ObjectField("Mist Movement", script.mistMovement, typeof(Animator), true);
+            script.monolithFX = (Animator) EditorGUILayout.ObjectField("Monolith FX", script.monolithFX, typeof(Animator), true);
+            script.isEarthMonolith = EditorGUILayout.Toggle("Earth Monolith", script.isEarthMonolith);
         }
 
         if (script.isTutorial)
