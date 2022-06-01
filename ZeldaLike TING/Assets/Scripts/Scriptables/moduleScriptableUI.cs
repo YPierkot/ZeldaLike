@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[CreateAssetMenu(menuName = "Module UI", fileName = "New Module UI")]
 public class moduleScriptableUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum moduleType
     {
-        
+        Sharpness, LongSword, Thorn, Rock, Swiftness
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Sprite moduleSprite;
+    public moduleType _moduleType;
+    private int cost;
 }

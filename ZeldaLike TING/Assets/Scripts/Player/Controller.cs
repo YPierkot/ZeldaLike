@@ -173,6 +173,7 @@ public class
                 cardControl.rectoSide = !cardControl.rectoSide;
                if(!cardControl.rectoSide) cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = true;
                else cardControl.fireRectoUse = cardControl.iceRectoUse = cardControl.wallRectoUse = cardControl.windRectoUse = false;
+               UIManager.Instance.UpdateCardUI();
             };
 
             InputMap.ChangeSideControl.Shoot.performed += context =>
@@ -216,7 +217,6 @@ public class
     
     private void SwitchCard(InputAction.CallbackContext obj) 
     { 
-        Debug.Log("change card");
         if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1); 
         else UIManager.Instance.ChangeCard(1); 
     }
