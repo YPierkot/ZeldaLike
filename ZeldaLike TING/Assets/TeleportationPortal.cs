@@ -56,6 +56,7 @@ public class TeleportationPortal : MonoBehaviour
     {
         if (changeScene)
         {
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.portalAppear);
             teleportingShader.SetTrigger("TeleportIn");
             teleportingShader.gameObject.SetActive(true);
             StartCoroutine(PlayerTeleporting());

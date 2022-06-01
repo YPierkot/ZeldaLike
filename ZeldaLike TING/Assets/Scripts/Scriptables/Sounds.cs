@@ -38,11 +38,7 @@ public class Sounds : ScriptableObject
     public AudioClip click;
     public AudioClip buy;
 
-    [Header("--- MISC.")]
-
-    public AudioClip kellMind;
-    public AudioClip magicEffect;
-
+    
     [Header("--- AMBIANCE")]
     public AudioClip dungeon;
     public AudioClip forest;
@@ -51,4 +47,14 @@ public class Sounds : ScriptableObject
 
     [Header("---ENVIRO")] 
     public AudioClip burnVine;
+    public AudioClip runeActivation;
+    public AudioClip monolythActivation;
+    public AudioClip portalAppear;
+    public AudioClip blockFinish;
+    public AudioClip lever;
+    
+    [Header("--- MISC.")]
+    public AudioClip kellMind;
+    public AudioClip magicEffect;
+    public AudioClip gainCard;
 }

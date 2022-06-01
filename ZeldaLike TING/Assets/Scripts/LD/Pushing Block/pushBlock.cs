@@ -48,6 +48,7 @@ public class pushBlock : InteracteObject
                 pushWayPoint actualNewWaitpoint = newWaypoint;
                 newWaypoint = null;
                 actualNewWaitpoint.OnBlockEnter.Invoke();
+                SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.blockFinish);
                 return;
             }
             

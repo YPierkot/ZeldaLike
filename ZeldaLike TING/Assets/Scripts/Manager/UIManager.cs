@@ -41,7 +41,8 @@ public class UIManager : MonoBehaviour
    [SerializeField] private Animator KellHead;
    [Space]
    [SerializeField] private Animator[] dashHandles;
-   private Color dashColor= new Color(.5f, .2f, .5f, 1);
+   [Space]
+   public TextMeshProUGUI moneyText ;
    
    public GameObject loadingScreen;
    public TextMeshProUGUI playerLocation;

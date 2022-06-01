@@ -58,6 +58,7 @@ public class RunePlate : MonoBehaviour {
                     if (other.GetComponent<InteracteObject>().burning) {
                         if (!isActivate) {
                             isActivate = true;
+                            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.runeActivation);
                             onActivation.Invoke();
                             runeManager.CheckRunes();
                         }
@@ -74,6 +75,7 @@ public class RunePlate : MonoBehaviour {
                         if (!isActivate) {
                             onActivation.Invoke();
                             isActivate = true;
+                            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.runeActivation);
                             runeManager.CheckRunes();
                         }
                     }

@@ -61,6 +61,7 @@ public class TriggeringDialogue : MonoBehaviour
             }
             else if (isMonolith)
             {
+                SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.monolythActivation);
                 hasGivenDialogue = true;
                 if (GameManager.Instance.foundMonolith)
                 {
