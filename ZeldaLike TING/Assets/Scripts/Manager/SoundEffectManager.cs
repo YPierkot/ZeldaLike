@@ -34,7 +34,8 @@ public class SoundEffectManager : MonoBehaviour
        else if(!Controller.instance.moving && sources[sources.Length-1].isPlaying) sources[sources.Length-1].Stop();
     }
 
-    public void PlaySound(AudioClip clip, float pitchCoef = 0)
+    public void PlaySound(
+        AudioClip clip, float pitchCoef = 0, bool loop = false)
     {
         //Debug.Log($"Play {clip.name}");
         foreach (var source in sources)
@@ -46,10 +47,23 @@ public class SoundEffectManager : MonoBehaviour
                 if (pitch > 3f) pitch = 3f;
                 
                 source.pitch = pitch;
+                source.loop = loop;
                 source.Play();
                 return;
             }
         }
-        Debug.LogError("Not Enought Audio Pist");
+        Debug.LogError("Not Enought Audio Pist, don't play : " + clip.name);
+    }
+
+    public void StopSound(AudioClip clip)
+    {
+        foreach (var source in sources)
+        {
+            if (source.clip == clip)
+            {
+                source.Stop();
+                return;
+            }
+        }
     }
 }

@@ -14,6 +14,12 @@ public class Vine : InteracteObject
         animator = GetComponent<Animator>();
     }
 
+    public override void OnFireEffect()
+    {
+        base.OnFireEffect();
+        if(fireAffect)SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.burnVine);
+    }
+
     public void FixedUpdate()
     {
         if (burning)
@@ -45,4 +51,6 @@ public class Vine : InteracteObject
             } 
         }
     }
+    
+
 }

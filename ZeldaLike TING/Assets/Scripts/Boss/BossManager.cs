@@ -193,22 +193,24 @@ public class BossManager : MonoBehaviour
             /*laserPos = Vector3.Lerp(laserPos, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
             Vector3 rayDir = (laserPos - boss.position).normalized;
             rayDir = new Vector3(rayDir.x, 0, rayDir.z);*/
-            Vector3 rayDir = new Vector3(laser.forward.x, 0, laser.forward.z);
+            Vector3 rayDir = new Vector3(laser.forward.x, 1, laser.forward.z);
             if (!castingLaser)
             {
                 if (!laserStartThrow)
                 {
-                    SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossLaser);
+                    SoundEffectManager.Instance.StopSound(SoundEffectManager.Instance.sounds.bossLaserCast);
+                    SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossLaser, loop:true);
                     laserStartThrow = true;
                 }
-                if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, Mathf.Infinity, 15))
+                if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, Mathf.Infinity))
                     laserLine.SetPosition(1, hit.point);
-                else laserLine.SetPosition(1, rayDir*50);
+                else laserLine.SetPosition(1, new Vector3(rayDir.x*50, 1, rayDir.z*50));
                 _laserTimer -= Time.deltaTime;
             }
         }
         else
         {
+            SoundEffectManager.Instance.StopSound(SoundEffectManager.Instance.sounds.bossLaser);
             currentState = BossState.idle;
             laserStart = false;
             laserLine.enabled = false;

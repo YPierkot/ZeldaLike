@@ -49,6 +49,7 @@ public class RunePlate : MonoBehaviour {
                         if (!isActivate) {
                             GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             isActivate = true;
+                            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.runeActivation);
                             onActivation.Invoke();
                             runeManager.CheckRunes();
                         }
@@ -67,6 +68,7 @@ public class RunePlate : MonoBehaviour {
                             GetComponent<MeshRenderer>().material.color = GetComponent<MeshRenderer>().material.color + new Color(.2f, .2f, .2f);
                             onActivation.Invoke();
                             isActivate = true;
+                            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.runeActivation);
                             runeManager.CheckRunes();
                         }
                     }

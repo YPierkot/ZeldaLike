@@ -27,6 +27,7 @@ public class Switcher : InteracteObject
     public void Switch()
     {
         SwitchState = !SwitchState;
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.lever);
         if (SwitchState)
         {
             onEnable.Invoke();

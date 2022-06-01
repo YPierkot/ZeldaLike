@@ -63,6 +63,7 @@ public class GivePlayerCard : MonoBehaviour
                     CardsController.instance.windCardUnlock = true;
                     break;
             }
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.gainCard);
             UIManager.Instance.UpdateCardUI();
             UIManager.Instance.ChangeCard(0);
             isCardGiven = true;
