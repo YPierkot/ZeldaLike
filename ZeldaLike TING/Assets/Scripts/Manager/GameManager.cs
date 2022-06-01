@@ -109,4 +109,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
         _object.SetActive(true);
     }
+
+    public void SetSpawnPoint(Transform newSpawnPoint)
+    {
+        actualRespawnPoint = newSpawnPoint;
+    }
 }
