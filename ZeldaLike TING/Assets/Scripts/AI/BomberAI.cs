@@ -25,6 +25,7 @@ namespace AI
         
         public float debugX;
         public float debugZ;
+        
         #endregion
         
         protected override void Init()
@@ -107,17 +108,18 @@ namespace AI
         private IEnumerator DoDropBomb()
         {
             bomberAnimator.SetBool("isAttack", isAttacking);
-            yield return new WaitForSeconds(0.85f);
+            yield return new WaitForSeconds(0.8f);
             bomberAnimator.SetBool("isAttack", false);
             
-            yield return new WaitForSeconds(0.3f);
             if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead != null)
             {
-                Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.8f, transform.position.z);
+                Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.08f, transform.position.z);
                 var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
+                Destroy(Instantiate(fxBomb, bombPos, Quaternion.identity), 2f);
+                yield return new WaitForSeconds(0.94f);
                 bomb.GetComponent<Bomb>().ExploseBomb();
             }
-            yield return new WaitForSeconds(1.85f);
+            yield return new WaitForSeconds(1.7f);
             isAttacking = false;
         }
         

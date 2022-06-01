@@ -29,7 +29,7 @@ public class Vine : InteracteObject
                 lianaTouched = false;
                 animator.Play("LianaTouched");
             }
-            Debug.Log(mesh.name);
+            //Debug.Log(mesh.name);
 
             if (mesh != null)
             {

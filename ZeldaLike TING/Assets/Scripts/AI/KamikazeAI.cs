@@ -143,13 +143,15 @@ namespace AI
             e_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             
             kamikazeAnimator.SetBool("isAttack", true);
-            yield return new WaitForSeconds(1.05f);
+            yield return new WaitForSeconds(.11f);
             
-            Destroy(Instantiate(fxExplode, transform.position, Quaternion.identity), 1.3f);
+            Destroy(Instantiate(fxBomb, transform.position, Quaternion.identity), 1.3f);
+            
+            yield return new WaitForSeconds(0.94f);
             bool isPlayer = Physics.CheckSphere(transform.position, e_aoeRange, playerLayerMask);
             if (isPlayer && GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
             
-            yield return new WaitForSeconds(0.7f);
+            //yield return new WaitForSeconds(0.7f);
             Destroy(gameObject);
         }
         

@@ -167,7 +167,7 @@ public class HelpsManager : MonoBehaviour
     private void CheckLine(int line)
     {
         checks[line - 1].SetActive(true);
-        Debug.Log("Je check la condition " + currentHelp.helpIndex);
+        //Debug.Log("Je check la condition " + currentHelp.helpIndex);
         CheckIfHelpFinished();
     }
 
