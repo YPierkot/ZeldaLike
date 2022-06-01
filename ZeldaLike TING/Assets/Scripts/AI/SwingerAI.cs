@@ -158,12 +158,12 @@ namespace AI
                 {
                     if (debugX > 0)
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.3f), e_speed * Time.deltaTime);
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.4f), e_speed * Time.deltaTime);
                         Debug.DrawLine(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.3f), Color.yellow, .4f);
                     }
                     else
                     {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 2f, transform.position.y,pointZ - 3f), e_speed * Time.deltaTime);
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, transform.position.y,pointZ + .4f), e_speed * Time.deltaTime);
                         Debug.DrawLine(transform.position, new Vector3(pointX - 2f, transform.position.y,pointZ - 3f), Color.yellow, .4f);
                     }
                 }
