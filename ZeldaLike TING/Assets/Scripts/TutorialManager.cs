@@ -70,6 +70,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        mistMovement = GameManager.Instance.mistMovement;
         helpManager = GetComponent<HelpsManager>();
         StartCoroutine(PortalAppearance());
         UIManager.Instance.gameObject.SetActive(false);

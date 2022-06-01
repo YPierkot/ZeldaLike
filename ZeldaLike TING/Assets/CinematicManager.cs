@@ -51,17 +51,17 @@ public class CinematicManager : MonoBehaviour
         wizard.enabled = true;
         yield return new WaitForSeconds(3f);
         kellPath.enabled = true;
-        yield return new WaitForSeconds(7.5f);
+        yield return new WaitForSeconds(9f);
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         CameraShake.Instance.AddShakeEvent(cameraShake);
-        yield return new WaitForSeconds(3F);
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.volumeManager.profile = transitionVolume;
         GameManager.Instance.VolumeTransition(hardTransition, hardCurve);
         yield return new WaitForSeconds(0.4f);
         UIManager.Instance.loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        DialogueManager.Instance.IsCinematic();
+        //DialogueManager.Instance.IsCinematic();
         SceneManager.LoadScene("_Scenes/Level Design/LD_DonjonPrinc");
     }
 }

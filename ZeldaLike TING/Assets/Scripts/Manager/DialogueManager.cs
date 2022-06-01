@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour
             EnqueuedDialogue.Clear();
             sentenceIndex = 0;
             dialogueDisplay.text = null;
-            if (isCinematic)
+            if (isCinematic && !GameManager.Instance.isTutorial)
             {
                 IsCinematic();
             }

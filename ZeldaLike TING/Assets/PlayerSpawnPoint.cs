@@ -38,7 +38,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         {
             DialogueManager.Instance.IsCinematic();
         }
-        //StartCoroutine(SmallCinematic());
+        StartCoroutine(SmallCinematic());
     }
 
     private IEnumerator SmallCinematic()

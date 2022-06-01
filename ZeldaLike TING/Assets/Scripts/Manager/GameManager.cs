@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private bool isLoop;
     public bool foundMonolith;
     public bool isDungeonFinished;
+    public Animator mistMovement;
 
     public enum controller
     {
