@@ -19,7 +19,7 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Bonjour ! Vous devez \xEAtre un chercheur du temps?"
-      delay: 0
+      delay: 3
     voiceLine: {fileID: 8300000, guid: 0ad59bedc4d7c4d499daf69ef3137ab5, type: 3}
   - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
     startingDelay: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "a surtout pris place \xE0 Zenithia, maintenant appel\xE9e Bord de Vent"
-      delay: 0
+      delay: 3.5
     - expressions: 0
       name: 
       line: "Tout a commenc\xE9 lorsque les premiers hommes "
@@ -86,7 +86,11 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: et comprendre comment ils arrivaient et ce qu'ils voulaient dire.
+      line: 'et comprendre comment ils arrivaient '
+      delay: 0
+    - expressions: 0
+      name: 
+      line: et ce qu'ils voulaient dire.
       delay: 0
     voiceLine: {fileID: 8300000, guid: dd8af7eb06c4a5e4996389f4265f1730, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -94,7 +98,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Kell : C'\xE9tait de la magie ?\n"
+      line: "C'\xE9tait de la magie ?\n"
       delay: 0
     voiceLine: {fileID: 8300000, guid: dd2110c9bf25b034cb4eaeb16e84a7d9, type: 3}
   - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
@@ -103,15 +107,15 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: 'Oui, de la magie, dans les arbres, dans l''eau, dans l''air... '
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "Partout. Ces hommes furent appel\xE9s les Illumin\xE9s."
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "Ils se sont \xE9cart\xE9s des autres habitants pour \xE9tudier"
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: magie et la comprendre.
@@ -123,7 +127,7 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Et apparemment ils ont plut\xF4t bien r\xE9ussi."
-      delay: 0
+      delay: 3
     voiceLine: {fileID: 8300000, guid: e089024383cb94249910b3fb336435f5, type: 3}
   - character: {fileID: 11400000, guid: 9de33d469c92bc6409051c0af222d72c, type: 2}
     startingDelay: 0
@@ -131,19 +135,19 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Oui en effet. Et quand ils sont revenus avec la capacit\xE9"
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "de la contr\xF4ler, ils ont fascin\xE9 le peuple et ont d\xE9cid\xE9"
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "que tous devaient y avoir acc\xE8s. C'est l\xE0 qu'ils ont "
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: "fond\xE9 Z\xE9nithia, capitale de la magie."
-      delay: 0
+      delay: 3
     voiceLine: {fileID: 8300000, guid: c2ef8fb07b3ff804c848eb2c21be42a2, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -151,7 +155,7 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Wow, c'est impressionnant. Merci pour cette histoire.
-      delay: 0
+      delay: 3
     voiceLine: {fileID: 8300000, guid: e2257b73d67322647a38c7a7e1e7f700, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
@@ -167,7 +171,7 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Eh moi aussi je fais bien mon travail.
-      delay: 0
+      delay: 2.5
     voiceLine: {fileID: 8300000, guid: 0766fe27cf3fedc4bb5f8aa059ca6196, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
@@ -175,5 +179,5 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Tu voles, ce n'est pas ce que j'appelle un travail.
-      delay: 0
+      delay: 2.5
     voiceLine: {fileID: 8300000, guid: 6f182f8179ca8614cbb182d450cb7017, type: 3}

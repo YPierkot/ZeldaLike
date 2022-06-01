@@ -151,7 +151,11 @@ public class TriggeringDialogue : MonoBehaviour
         monolithFX.Play("WindMonolythFX");
         mistMovement.Play("WindMonolithMist");
     }
-    
+
+    public IEnumerator IceMonolithCinematic(float timer)
+    {
+        yield return null;
+    }
 #if UNITY_EDITOR
     private void OnDrawGizmos() {
         if (!CustomLDData.showGizmos || !CustomLDData.showGizmosDialogue) return;
