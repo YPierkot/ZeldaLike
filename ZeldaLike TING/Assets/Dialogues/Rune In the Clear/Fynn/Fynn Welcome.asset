@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Hello!
+      line: 'Bonjour ! '
       delay: 1
     voiceLine: {fileID: 8300000, guid: 36007a0e393d21046adeefff6c3c2559, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
@@ -26,7 +26,8 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Hi traveler! What brings you near the Zenith Rune?
+      line: "Bonjour voyageur ! Qu'est ce qui vous am\xE8ne \xE0 la rune du Zenith
+        ?\n"
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: d51d00fb721fa444eb3b2fb8dd8cadb9, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -34,15 +35,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh, so that's how it's called, my intel was incomplete.
+      line: "Oh, c'est donc comme \xE7a qu'elle s'appelle."
+      delay: 4
+    - expressions: 4
+      name: 
+      line: "Mes infos \xE9taient incompl\xE8tes..."
       delay: 4
     voiceLine: {fileID: 8300000, guid: d07d8be8a1123e941a41b6254dd14989, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
-      line: Don't get me angry human.
+      line: "Ne me met pas en col\xE8re humain."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 844b1ce5bb556ec4b902fb6546dafcaf, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -50,7 +55,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Anyway, we're... errr, I'm going to the Windy Moutain.
+      line: "Bref... On... Heu... Je me rends \xE0 la Montagne Venteuse."
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 8c4412592699603458e8cd83534a454a, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
@@ -58,15 +63,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh, you must be looking for the Wind's Edge, the famous hidden village!
+      line: "Oh, vous devez chercher Bord de Vent ! Le fameux village cach\xE9 !"
       delay: 3.25
     voiceLine: {fileID: 8300000, guid: 67c44240d81bedd488813d2f1ce039c8, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: Err, yes... Surely.
+      line: "Heu... Oui, s\xFBrement."
       delay: 0
     voiceLine: {fileID: 8300000, guid: 4874a538aadfb0c4192bf81cb043f6c0, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
@@ -74,19 +79,23 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, I've never found it myself, so I wish you luck!
-      delay: 3.5
+      line: Eh bien je vous souhaite bonne chance.
+      delay: 2
+    - expressions: 0
+      name: 
+      line: "Moi m\xEAme je ne l'ai jamais trouv\xE9 !"
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 6d0e5535997049443948878c26595712, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Thank you... Anyway, who are you, '
+      line: "Merci ! Et sinon, qui \xEAtes vous ?"
       delay: 3
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: You look like you're studying those drawings on the wall.
+      line: "Vous semblez \xE9tudier ces dessins sur le mur."
       delay: 3
     voiceLine: {fileID: 8300000, guid: b7cc1726dbab60e47a16e8bd5df1ccd8, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
@@ -94,43 +103,35 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: It's a fresco you uneducated traveler!
+      line: C'est une fresque, pas un dessin voyageur ignorant !
       delay: 3
     voiceLine: {fileID: 8300000, guid: 948463cda24fc72499af43743c3f3e2e, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 4
       name: 
-      line: See! Even he says it!
+      line: Tu vois ?! Lui aussi il le dit !
       delay: 0
     voiceLine: {fileID: 8300000, guid: 3b5fe54c2f748a940906e4899a01aed3, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I'll deal with you later.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 38f223b0c613b3146aeb3b13cd02a35c, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: I'm Fynn, a proud Ancient Seeker.
+      line: Je suis Fynn, un fier chercheur du temps,
       delay: 2.5
     - expressions: 0
       name: 
-      line: Me and my fellow colleagues explore the Zenith Island
+      line: "Moi et mes coll\xE8gues parcourons l'\xEEle du Z\xE9nith"
       delay: 3
     - expressions: 0
       name: 
-      line: To try and find memories of the past
+      line: "Afin de trouver des souvenirs du pass\xE9"
       delay: 1.5
     - expressions: 0
       name: 
-      line: 'So we shall never forget it! '
+      line: Afin de ne jamais l'oublier.
       delay: 1.5
     voiceLine: {fileID: 8300000, guid: 32558b4a2bb7cb34c8a2d4316c069202, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -138,7 +139,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Great! And what's that "fresco" about?
+      line: Super ! Et de quoi parle cette fresque ?
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 316cc979b84125d49838b85a015eadb5, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
@@ -146,11 +147,14 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Well, if you wanna know more about it
+      line: Eh bien si vous voulez en savoir plus,
       delay: 0
     - expressions: 0
       name: 
-      line: You should ask my colleague right here, he explains a lot better than
-        me.
-      delay: 4.25
+      line: "Je vous conseille de demander \xE0 mon coll\xE8gue,"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: ' il l''explique bien mieux que moi.'
+      delay: 2.25
     voiceLine: {fileID: 8300000, guid: eea9331bb5fa49e439cf393448a33979, type: 3}

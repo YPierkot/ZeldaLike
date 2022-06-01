@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 829341619}
   - component: {fileID: 829341621}
   - component: {fileID: 829341620}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3323,6 +3323,7 @@ GameObject:
   - component: {fileID: 4343442135751943174}
   - component: {fileID: 2367134456757324374}
   - component: {fileID: 3050104595289846240}
+  - component: {fileID: 8875741896836598233}
   m_Layer: 0
   m_Name: PlayerLocation
   m_TagString: Untagged
@@ -3448,6 +3449,26 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &8875741896836598233
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014402697632387808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f8cf01420e6c8c24dabbc6682722b0fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3129142818785335440
 GameObject:
   m_ObjectHideFlags: 0
@@ -10111,7 +10132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1145041873, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1145041875, guid: d9d30125b4f2a6c47bb999c02a3ff083, type: 3}
       propertyPath: m_UpdateMode

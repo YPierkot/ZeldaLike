@@ -18,118 +18,62 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: Hi! You're Gloria, right?
+      line: "Bonjour ! C'est Gloria c'est \xE7a ?"
       delay: 0
-    voiceLine: {fileID: 8300000, guid: d94cf3f81859c384d888f06b7548fe21, type: 3}
+    voiceLine: {fileID: 8300000, guid: 338c76139bdade449a8f6d135035deea, type: 3}
   - character: {fileID: 11400000, guid: d6f48da5c7933894980ef329679bf5ba, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 4
       name: 
-      line: Guilty!
+      line: Je plaide coupable !
       delay: 1
-    voiceLine: {fileID: 8300000, guid: 51c5535cbbd74ba4196667e5204d7cbb, type: 3}
+    voiceLine: {fileID: 8300000, guid: 2323a16e544286c46a2ea62e73e390b5, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 4
       name: 
-      line: Great, welcome to the village!
+      line: Super ! Bienvenue !
       delay: 0
-    voiceLine: {fileID: 8300000, guid: 096cdf67d1b99944dad33f99ccbcff0a, type: 3}
+    voiceLine: {fileID: 8300000, guid: 147a1649cae83d64f9b7aed3d9b9f96f, type: 3}
   - character: {fileID: 11400000, guid: d6f48da5c7933894980ef329679bf5ba, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Thank you so much! '
+      line: Merci beaucoup !
       delay: 1
     - expressions: 1
       name: 
-      line: You have all been so kind with me...
+      line: "Vous avez tous \xE9t\xE9 si gentils avec moi..."
       delay: 1.5
     - expressions: 1
       name: 
-      line: I had nowhere to go...
-      delay: 2.5
-    voiceLine: {fileID: 8300000, guid: 827eac05a012cfe4884bdb9a7af5a9bc, type: 3}
+      line: "Je n'avais nulle part o\xF9 aller..."
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 82b6ab0ed6f93b841830f08aa9c3e3f6, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: That's what we do.
+      line: C'est ce qu'on fait
       delay: 1.5
     - expressions: 0
       name: 
-      line: Welcome the lost and the castaways.
+      line: Recueillir les perdus et les bannis.
       delay: 0
     - expressions: 4
       name: 
-      line: Glad you like it here
+      line: 'Content que tu t''y plaises en tout cas ! '
       delay: 1.5
-    voiceLine: {fileID: 8300000, guid: df3d931d877500647b3870e3f8437527, type: 3}
-  - character: {fileID: 11400000, guid: d6f48da5c7933894980ef329679bf5ba, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I do.
-      delay: 0
-    - expressions: 0
-      name: 
-      line: The integration test is quite harsh tho,
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Having to build your own house...
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 643e12010113faa46aee2ccea42a975b, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: We've all been there.
-      delay: 1.5
-    - expressions: 0
-      name: 
-      line: You're gonna be fine.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: 05113b67addebf94baf7adeb1ffe3003, type: 3}
+    voiceLine: {fileID: 8300000, guid: a45eb669869d8e54cbbcb9651b117dfb, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Human small talk... Pathethic
+      line: "Pff.. Les banalit\xE9s humaines... Path\xE9tique."
       delay: 3.5
-    voiceLine: {fileID: 8300000, guid: 01b7fbdeb78513f459a3312c8a6baa8d, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: Don't complain, you chose to curse me
-      delay: 0
-    - expressions: 0
-      name: 
-      line: Now you're stuck with me
-      delay: 1.5
-    voiceLine: {fileID: 8300000, guid: 211b22cbf4f7d8a439c3293c560bf9af, type: 3}
-  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: I'm not complaing, I'm amused.
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: 4c3fed3863b20ab4cbf2377f188e526f, type: 3}
-  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
-    startingDelay: 0
-    dialogLines:
-    - expressions: 0
-      name: 
-      line: You're an odd being, that's for sure.
-      delay: 0
-    voiceLine: {fileID: 8300000, guid: d77cf3b1e58f09c459d768c9a45ee242, type: 3}
+    voiceLine: {fileID: 8300000, guid: 131ae91eae283ca42a30055bce2ac263, type: 3}

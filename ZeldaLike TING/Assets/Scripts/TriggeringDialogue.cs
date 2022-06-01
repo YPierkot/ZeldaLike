@@ -18,6 +18,9 @@ public class TriggeringDialogue : MonoBehaviour
     [HideInInspector] public Transform cameraPoint;
     [HideInInspector] public string zoneName;
     [HideInInspector] public bool isMonolith;
+    [HideInInspector] public bool isEarthMonolith;
+    [HideInInspector] public Animator mistMovement;
+    [HideInInspector] public Animator monolithFX;
     [HideInInspector] public DialogueScriptable shortMonolithDialogue;
 
     private Transform defaultCamera;
@@ -71,6 +74,15 @@ public class TriggeringDialogue : MonoBehaviour
                         cinematicTime = 8;
                         StartCoroutine(Cinematic(cinematicTime, cameraPoint));
                     }
+
+                    if (isEarthMonolith)
+                    {
+                        StartCoroutine(EarthMonolithCinematic(1));
+                    }
+                    else
+                    {
+                        StartCoroutine(WindMonolithCinematic(1));
+                    }
                 }
                 else
                 {
@@ -79,6 +91,14 @@ public class TriggeringDialogue : MonoBehaviour
                     if (isCinematic)
                     {
                         StartCoroutine(Cinematic(cinematicTime, cameraPoint));
+                    }
+                    if (isEarthMonolith)
+                    {
+                        StartCoroutine(EarthMonolithCinematic(22));
+                    }
+                    else
+                    {
+                        StartCoroutine(WindMonolithCinematic(22));
                     }
                 }
 
@@ -111,13 +131,31 @@ public class TriggeringDialogue : MonoBehaviour
         {
             GameManager.Instance.cameraController.ChangePoint(camera);
         }
-        //UIManager.Instance.playerLocationTween.Play("PlayerLocation");
+        UIManager.Instance.playerLocationTween.Play("PlayerLocation");
         UIManager.Instance.playerLocation.text = zoneName;
         yield return new WaitForSeconds(3.5f);
-        //UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
+        UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.playerLocation.text = null;
         StartCoroutine(DialogueManager.Instance.CinematicWait(timing - 4f));
+    }
+
+    private IEnumerator EarthMonolithCinematic(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        monolithFX.Play("EarthMonolithFX");
+        mistMovement.Play("EarthMonolithMist");
+    }
+    private IEnumerator WindMonolithCinematic(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        monolithFX.Play("WindMonolythFX");
+        mistMovement.Play("WindMonolithMist");
+    }
+
+    public IEnumerator IceMonolithCinematic(float timer)
+    {
+        yield return null;
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos() {

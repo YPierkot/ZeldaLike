@@ -7,28 +7,28 @@ using UnityEngine;
 public class DungeonManager : MonoBehaviour
 {
 
+    [Header("First Part")]
     [SerializeField] private Transform cameraPoint;
-
-    [SerializeField] private Transform aerynCameraPoint;
-    [SerializeField] private Transform doorCameraPoint;
-    [SerializeField] private Transform leverCamera;
-    [SerializeField] private Transform puzzleCamera;
+    [SerializeField] private DialogueScriptable entranceDialogue;
     [SerializeField] private GameObject puzzleCube;
+    
+    [Header("Aeryn")]
+    [SerializeField] private Transform aerynCameraPoint;
     [SerializeField] private Transform enemyParent;
-    [SerializeField] private Transform lastleverCamera;
-    [SerializeField] private Transform manaPoolCamera;
-    [SerializeField] private Transform wideManaPoolCamera;
-    [SerializeField] private GameObject barrier;
     [SerializeField] private AerynBehaviour aeryn;
-    [SerializeField] private TeleportationPortal portal;
-    private bool goingToPortal;
-    private bool enemiesSpawned;
+    [SerializeField] private GameObject barrier;
     private bool freedAeryn;
-    private bool enteredManaPool;
+    private bool enemiesSpawned;
     [SerializeField] private List<DialogueScriptable> aerynDialogues;
     private Queue<DialogueScriptable> dialogues;
+    
+    [Header("Ice Card")]
     public bool startIce;
     [SerializeField] private GameObject iceCard;
+    
+    [Header("Puzzle")]
+    [SerializeField] private Transform leverCamera;
+    [SerializeField] private Transform puzzleCamera;
     [SerializeField] private Animator puzzleBounds;
     [SerializeField] private bool puzzleFinished;
     [SerializeField] private RunePuzzleManager runePuzzleManager;
@@ -37,6 +37,15 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private EnemySpawnTrigger spawner;
     [SerializeField] private EnemySpawnTrigger secondWave;
     private bool secondWaveSpawned = true;
+    
+    [Header("ManaPool")]
+    private bool enteredManaPool;
+    [SerializeField] private Transform doorCameraPoint;
+    [SerializeField] private Transform lastleverCamera;
+    [SerializeField] private Transform manaPoolCamera;
+    [SerializeField] private Transform wideManaPoolCamera;
+    [SerializeField] private TeleportationPortal portal;
+    private bool goingToPortal;
     [SerializeField] private CameraShakeScriptable aeryngettingPowers;
     [SerializeField] private Animator manaPool;
  
@@ -55,6 +64,7 @@ public class DungeonManager : MonoBehaviour
         Controller.instance.FreezePlayer(true);
         DialogueManager.Instance.IsCinematic();
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
+        DialogueManager.Instance.AssignDialogue(entranceDialogue.dialogue.ToList());
         yield return new WaitForSeconds(3f);
         puzzleCube.SetActive(true);
         yield return new WaitForSeconds(2.5f);
@@ -168,7 +178,7 @@ public class DungeonManager : MonoBehaviour
 
     public void IceDialogue()
     {
-        startIce = true;
+        if(aeryn.isFreed) startIce = true;
     }
 
     public void ActivateLever()

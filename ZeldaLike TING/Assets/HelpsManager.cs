@@ -106,7 +106,7 @@ public class HelpsManager : MonoBehaviour
 
                     break;
                 case 6 :
-                    if (Input.GetKeyDown(KeyCode.T))
+                    if (Input.GetKeyDown(KeyCode.T) || !DialogueManager.Instance.isPlayingDialogue)
                     {
                         CheckLine(1);
                     }
