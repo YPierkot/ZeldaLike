@@ -34,6 +34,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         Controller.instance.transform.position = transform.position;
         GameManager.Instance.volumeManager.profile = forest;
         SoundManager.Instance.SetAmbiance(forestAmbiance);
+        GameManager.Instance.actualRespawnPoint = transform;
         if (DialogueManager.Instance.isCinematic)
         {
             DialogueManager.Instance.IsCinematic();

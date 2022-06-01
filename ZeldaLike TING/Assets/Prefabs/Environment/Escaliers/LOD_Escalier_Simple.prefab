@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Escalier_Simple_THD
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: a0a903d0d47d48f4a83f9d743cb44e57,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0a903d0d47d48f4a83f9d743cb44e57, type: 3}
 --- !u!4 &3201542021187504497 stripped
@@ -138,3 +143,23 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 3162812250409103002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6532527118386801426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: a0a903d0d47d48f4a83f9d743cb44e57,
+    type: 3}
+  m_PrefabInstance: {fileID: 3162812250409103002}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4429155735636060785
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6532527118386801426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: a0a903d0d47d48f4a83f9d743cb44e57, type: 3}
