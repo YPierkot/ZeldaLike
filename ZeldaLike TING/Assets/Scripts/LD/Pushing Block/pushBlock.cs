@@ -12,6 +12,7 @@ public class pushBlock : InteracteObject
     [SerializeField] private float speed;
     [SerializeField] private float distanceThreshold;
     private bool freezeCoroutine;
+    private pushWayPoint firstWaypoint;
 
     public Animator block;
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class pushBlock : InteracteObject
         base.Start();
         transform.position = currentWaypoint.transform.position;
         block = GetComponent<Animator>();
+        firstWaypoint = currentWaypoint;
     }
 
     // Update is called once per frame
@@ -135,6 +137,12 @@ public class pushBlock : InteracteObject
     {
         Animation();
         freezeCoroutine = true;
+    }
+
+    public void ResetBlock()
+    {
+        currentWaypoint = firstWaypoint;
+        transform.position = currentWaypoint.transform.position;
     }
 
     public void MoveWaytpointGravity() => MoveWaypoint(Side.bot);
