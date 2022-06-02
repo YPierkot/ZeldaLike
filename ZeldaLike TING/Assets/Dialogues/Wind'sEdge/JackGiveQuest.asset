@@ -42,8 +42,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Depuis que ces satan\xE9s esprits occupent la Montagne Venteuse,"
-      delay: 2.5
+      line: "Depuis que ces satan\xE9s esprits "
+      delay: 1
+    - expressions: 0
+      name: 
+      line: occupent la Montagne Venteuse,
+      delay: 1.5
     - expressions: 0
       name: 
       line: 'ils attaquent notre village ! '
@@ -82,8 +86,12 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "m\xEAme si je r\xEAve de mettre mon poing au milieu de leur visage."
-      delay: 2.5
+      line: "m\xEAme si je r\xEAve de mettre "
+      delay: 1
+    - expressions: 0
+      name: 
+      line: mon poing au milieu de leur visage.
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 8964ec4cdc0b7444695814db6493ab4e, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -138,12 +146,20 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Eh bien, si vous arrivez \xE0 le trouver et \xE0 me le ramener,"
-      delay: 0
+      line: "Eh bien, si vous arrivez \xE0 le trouver"
+      delay: 1.5
     - expressions: 0
       name: 
-      line: " peut-\xEAtre que je vous donnerai quelque chose en retour."
-      delay: 0
+      line: "et \xE0 me le ramener"
+      delay: 1
+    - expressions: 0
+      name: 
+      line: " peut-\xEAtre que je vous donnerai "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: quelque chose en retour.
+      delay: 1
     voiceLine: {fileID: 8300000, guid: f0c1868d5b922174b9ec85ac713a63dc, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0

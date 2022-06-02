@@ -30,16 +30,24 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh ! Monsieur je sais tout ne sait pas tout au final !
-      delay: 3
+      line: 'Oh ! Monsieur je sais tout '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: ne sait pas tout au final !
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: f9101b6dfa222f34eb581d23f9659120, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: "Tu es l'humain le plus \xE9nervant que j'ai jamais rencontr\xE9."
-      delay: 3
+      line: "Tu es l'humain le plus \xE9nervant "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "que j'ai jamais rencontr\xE9."
+      delay: 2.5
     - expressions: 0
       name: 
       line: "Ca a du \xEAtre construit apr\xE8s mon emprisonnement."

@@ -18,8 +18,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Oh, un visiteur, rares sont les gens qui osent gravir la montagne.
-      delay: 3
+      line: 'Oh, un visiteur, rares sont les gens '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: qui osent gravir la montagne.
+      delay: 0
     - expressions: 0
       name: 
       line: "Bienvenue \xE0 Bord de Vent."
@@ -46,8 +50,12 @@ MonoBehaviour:
       delay: 3
     - expressions: 0
       name: 
-      line: "De sa beaut\xE9 d'antan mais nous avons fait de notre mieux."
-      delay: 3
+      line: "De sa beaut\xE9 d'antan "
+      delay: 1
+    - expressions: 0
+      name: 
+      line: mais nous avons fait de notre mieux.
+      delay: 2
     voiceLine: {fileID: 8300000, guid: b4edae30085b2e249bb00802b2eac955, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -74,16 +82,24 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Ce sont des moulins \xE0 vent. Elles utilisent la force du vent"
-      delay: 3
+      line: "Ce sont des moulins \xE0 vent. "
+      delay: 1.5
     - expressions: 0
       name: 
-      line: "Qui souffle sur la montagne pour tourner et transf\xE9rer"
-      delay: 3
+      line: Elles utilisent la force du vent
+      delay: 1.5
     - expressions: 0
       name: 
-      line: "Sa rotation aux diff\xE9rents m\xE9canismes et runes du village."
-      delay: 3
+      line: 'Qui souffle sur la montagne pour tourner '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "et transf\xE9rer sa rotation aux diff\xE9rents"
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: " m\xE9canismes et runes du village."
+      delay: 2
     voiceLine: {fileID: 8300000, guid: 495747a3599cc53448bf93d8e310dc3b, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -102,8 +118,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Ils sont uniques sur cette \xEEle. Nous en sommes fiers, cela"
-      delay: 4
+      line: "Ils sont uniques sur cette \xEEle. "
+      delay: 2
+    - expressions: 0
+      name: 
+      line: Nous en sommes fiers, cela
+      delay: 2
     - expressions: 0
       name: 
       line: 'Montre ce dont nous, habitants de Bord de vent '
@@ -126,11 +146,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Ce que je trouve fascinant c'est les mani\xE8res que vous"
-      delay: 3
+      line: 'Ce que je trouve fascinant '
+      delay: 1.5
     - expressions: 0
       name: 
-      line: Les humains avez pour contourner votre impuissance.
+      line: "c'est les mani\xE8res que vous les humains"
+      delay: 2
+    - expressions: 0
+      name: 
+      line: ' avez pour contourner votre impuissance.'
       delay: 0
     voiceLine: {fileID: 8300000, guid: 1dbd9b2e9acd4444cbd744da15181871, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}

@@ -50,18 +50,10 @@ public class GivePlayerCard : MonoBehaviour
             CardsController.instance.canUseCards = true;
             switch (_cardToGive)
             {
-                case CardToGive.fire :
-                    CardsController.instance.fireCardUnlock = true;
-                    break;
-                case CardToGive.ice :
-                    CardsController.instance.iceCardUnlock = true;
-                    break;
-                case CardToGive.wall :
-                    CardsController.instance.wallCardUnlock = true;
-                    break;
-                case CardToGive.wind :
-                    CardsController.instance.windCardUnlock = true;
-                    break;
+                case CardToGive.fire : CardsController.instance.fireCardUnlock = true; CardsController.instance.canUseCards = true; break;
+                case CardToGive.ice : CardsController.instance.iceCardUnlock = true; break;
+                case CardToGive.wall : CardsController.instance.wallCardUnlock = true; break;
+                case CardToGive.wind : CardsController.instance.windCardUnlock = true; break;
             }
             SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.gainCard);
             UIManager.Instance.UpdateCardUI();

@@ -18,16 +18,24 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Bonjour voyageur, que faites vous dans ces terres en ruine ?
-      delay: 0
+      line: 'Bonjour voyageur, '
+      delay: 1
+    - expressions: 0
+      name: 
+      line: que faites vous dans ces terres en ruine ?
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 802dcc7ea9e1e8b4fbdeee81ed40bb09, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: J'essaie d'en apprendre sur cet endroit, Bord de Vent.
-      delay: 3.5
+      line: 'J''essaie d''en apprendre sur cet endroit, '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: Bord de Vent.
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 963ebcbd470fc3140993df8092862ad1, type: 3}
   - character: {fileID: 11400000, guid: 004b332a1be346842ba2cc9d782a4431, type: 2}
     startingDelay: 0
@@ -54,8 +62,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Cet endroit a une histoire et une signification magnifique.
+      line: 'Cet endroit a une histoire et '
       delay: 3
+    - expressions: 0
+      name: 
+      line: une signification magnifique.
+      delay: 1.5
     - expressions: 0
       name: 
       line: "Avant, ce lieu s'appelait Zenithia et \xE9tait"
@@ -114,19 +126,27 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: " Les Illumin\xE9s ont inspir\xE9 les autres \xE0 \xE9tudier la magie."
+      line: " Les Illumin\xE9s ont inspir\xE9 "
       delay: 3
     - expressions: 0
       name: 
-      line: "Ils ont ainsi cr\xE9\xE9 l'institut de recherche dans lequel"
-      delay: 3
+      line: "les autres \xE0 \xE9tudier la magie."
+      delay: 1.5
     - expressions: 0
       name: 
-      line: 'tout magicien pouvait venir rapporter ses trouvailles '
+      line: "Ils ont ainsi cr\xE9\xE9 l'institut de recherche "
+      delay: 2
+    - expressions: 0
+      name: 
+      line: 'dans lequel tout magicien pouvait venir '
       delay: 0
     - expressions: 0
       name: 
-      line: et son savoir afin de faire progresser le savoir commun.
+      line: 'rapporter ses trouvailles et son savoir '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: afin de faire progresser le savoir commun.
       delay: 3
     voiceLine: {fileID: 8300000, guid: bd5f691d520a54b4fb84ed225f1e0988, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -134,8 +154,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: " C'est incroyable, ils \xE9taient vraiment un peuple uni."
-      delay: 3.5
+      line: ' C''est incroyable,'
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: " ils \xE9taient vraiment un peuple uni."
+      delay: 2
     voiceLine: {fileID: 8300000, guid: 396e48fd48dc1ea4d9c50b205f161289, type: 3}
   - character: {fileID: 11400000, guid: 004b332a1be346842ba2cc9d782a4431, type: 2}
     startingDelay: 0
@@ -158,16 +182,24 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "H\xE9 Mist, le Grand Age de la Magie avait l'air fascinant!"
-      delay: 4.5
+      line: "H\xE9 Mist, "
+      delay: 1
+    - expressions: 0
+      name: 
+      line: le Grand Age de la Magie avait l'air fascinant!
+      delay: 3.5
     voiceLine: {fileID: 8300000, guid: 13032a8c2a3f53d49b2ea520b7bb8893, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: "C'\xE9tait en effet bien plus int\xE9ressant que votre \xE8re ennuyeuse."
-      delay: 3.5
+      line: "C'\xE9tait en effet bien plus int\xE9ressant "
+      delay: 2
+    - expressions: 0
+      name: 
+      line: "que votre \xE8re ennuyeuse."
+      delay: 1.5
     - expressions: 0
       name: 
       line: "D'ailleurs, je suis surpris de ta curiosit\xE9, humain."
@@ -178,6 +210,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Je suppose que j'ai \xE9t\xE9 happ\xE9 par toutes ces histoires. "
-      delay: 3
+      line: "Je suppose que j'ai \xE9t\xE9 happ\xE9  "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: par toutes ces histoires.
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 6e6904b4ca1d16a4fa1495577f9eedfb, type: 3}

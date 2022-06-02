@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class DialogueManager : MonoBehaviour
     public Animator mist;
     public bool isCursed;
     public bool isCinematic = false;
+    private bool dialogueMoved;
+    [SerializeField] private Image gray;
 
     [Header("Enqueued Dialogue Management")]
     
@@ -59,6 +62,25 @@ public class DialogueManager : MonoBehaviour
     {
         SkipDialogue();
         AutomaticDialogues();
+        if (!dialogueMoved && !isCinematic)
+        {
+            gray.enabled = true;
+            dialogueMoved = true;
+            characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
+            maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
+            dialogueDisplay.alignment = TextAlignmentOptions.Left;
+            dialogueDisplay.margin = new Vector4(-467, 0, -456, -60);
+        }
+
+        if (isCinematic)
+        {
+            gray.enabled = false;
+            characterEmotion.rectTransform.anchoredPosition = new Vector2(-954, -338);
+            maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -411);
+            dialogueDisplay.alignment = TextAlignmentOptions.Midline;
+            dialogueDisplay.margin = new Vector4(-638, 0, -648, -60);
+            dialogueMoved = false;
+        }
     }
 
     public void AssignDialogue(List<DialogueLine> dialogue)
@@ -74,6 +96,10 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(DialogueLine dialogueLine)
     {
+        if (dialogueMoved)
+        {
+            gray.enabled = true;
+        }
         characterEmotion.gameObject.SetActive(true);
         if(isCursed) mist.SetTrigger("Appear");
         sentenceIndex = 0;
@@ -135,6 +161,8 @@ public class DialogueManager : MonoBehaviour
             {
                 IsCinematic();
             }
+
+            gray.enabled = false;
             Controller.instance.FreezePlayer(false);
         }
     }
@@ -262,17 +290,18 @@ public class DialogueManager : MonoBehaviour
     }
     public IEnumerator CinematicWait(float duration)
     {
-        Debug.Log("J'attends");
         yield return new WaitForSeconds(duration);
         if (skip)
         {
-            Debug.Log("La cinématique a été skip");
             skip = false;
         }
         else
         {
-            Debug.Log("La cinématique continue");
-            IsCinematic();
+            if (isCinematic)
+            {
+                IsCinematic();
+                
+            }
             UIManager.Instance.playerLocation.text = null;
             GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
             Controller.instance.FreezePlayer(false);

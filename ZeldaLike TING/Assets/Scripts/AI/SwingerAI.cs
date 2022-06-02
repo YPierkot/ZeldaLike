@@ -30,9 +30,6 @@ namespace AI
         public GameObject DebugSphere;
         [Range(0.2f, 5)] public float anchorDst = 1f;
         [Range(0.2f, 10)] public float f = 1f;
-
-        public float debugX;
-        public float debugZ;
         
         protected override void Init()
         {
@@ -121,60 +118,6 @@ namespace AI
             }
         }
 
-        private void GoToPlayer()
-        {
-            RaycastHit collisionHit;
-            
-            Vector3 dir = new Vector3(playerTransform.position.x - transform.position.x, playerTransform.position.y - transform.position.y,
-                playerTransform.position.z - transform.position.z).normalized;
-            
-            Debug.DrawRay(transform.position, dir);
-            
-            if (Physics.Raycast(transform.position, dir, out collisionHit, Vector3.Distance(playerTransform.position, transform.position) * 1.5f, groundLayerMask))
-            {
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-                    new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
-
-                float pointX = collisionHit.point.x;
-                float pointZ = collisionHit.point.z;
-                
-                debugX = (playerTransform.position.x - transform.position.x);
-                debugZ = (playerTransform.position.z - transform.position.z);
-
-                if (debugZ > 0) // Joueur au dessus
-                {
-                    if (debugX > 0)
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f),e_speed * Time.deltaTime);
-                        Debug.DrawLine(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f), Color.yellow, .4f);
-                    }
-                    else
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, transform.position.y,pointZ + 0.3f), e_speed * Time.deltaTime);
-                        Debug.DrawLine(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f), Color.yellow, .4f);
-                    }
-                }
-                else // Joueur en dessous
-                {
-                    if (debugX > 0)
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.4f), e_speed * Time.deltaTime);
-                        Debug.DrawLine(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.3f), Color.yellow, .4f);
-                    }
-                    else
-                    {
-                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, transform.position.y,pointZ + .4f), e_speed * Time.deltaTime);
-                        Debug.DrawLine(transform.position, new Vector3(pointX - 2f, transform.position.y,pointZ - 3f), Color.yellow, .4f);
-                    }
-                }
-            }
-            else
-            {
-                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.green);
-                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
-                    e_speed * Time.deltaTime);
-            }
-        }
         
         private const float radiusShootPoint = 1.9f;
         private IEnumerator DoAttack()
@@ -188,8 +131,8 @@ namespace AI
                 e_sprite.flipX = true;
             else
                 e_sprite.flipX = false;
-            
-            e_animator.SetBool("isAttack", true);
+
+            if (!isHitStun) e_animator.SetBool("isAttack", true); 
             
             yield return new WaitForSeconds(.40f); // Temps de l'animation avant hit & recast dmg point
             
@@ -198,7 +141,7 @@ namespace AI
             yield return new WaitForSeconds(.10f);
 
             Collider[] playercol = Physics.OverlapSphere(transform.position + dir * radiusShootPoint, e_aoeRange, playerLayerMask);
-            foreach (var player in playercol) { if (e_currentAiState != AIStates.dead || !isFreeze) PlayerStat.instance.TakeDamage(); }
+            foreach (var player in playercol) { if (e_currentAiState != AIStates.dead || !isFreeze || !isHitStun) PlayerStat.instance.TakeDamage(); }
 
             yield return new WaitForSeconds(1.2f); // Anim fini 
             e_animator.SetBool("isAttack", false);

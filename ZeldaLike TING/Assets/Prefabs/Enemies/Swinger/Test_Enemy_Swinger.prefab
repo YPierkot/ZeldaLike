@@ -143,6 +143,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   spawnFXPos: {fileID: 1086540471}
+  fxBomb: {fileID: 0}
+  hitStunStr: Swinger_HitStun
   e_currentAiState: 0
   isHitStun: 0
   e_rangeWander: 2.4
@@ -154,6 +156,8 @@ MonoBehaviour:
     type: 3}
   anchorDst: 1.3
   f: 3
+  debugX: 0
+  debugZ: 0
 --- !u!65 &8446749621590671362
 BoxCollider:
   m_ObjectHideFlags: 0

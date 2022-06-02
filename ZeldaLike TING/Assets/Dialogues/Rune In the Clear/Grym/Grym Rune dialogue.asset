@@ -34,8 +34,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Enfin Mist, tu ne fais que te plaindre que je sois ignorant.
-      delay: 3.5
+      line: 'Enfin Mist, tu ne fais que te plaindre '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: que je sois ignorant.
+      delay: 1.5
     - expressions: 0
       name: 
       line: Laisse moi apprendre des choses !
@@ -74,8 +78,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Alors, cette fresque parle de la Rune du Z\xE9nith et de "
-      delay: 3
+      line: 'Alors, cette fresque parle '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "de la Rune du Z\xE9nith et de "
+      delay: 1.5
     - expressions: 0
       name: 
       line: "Comment cette derni\xE8re fut utilis\xE9e"
@@ -130,8 +138,12 @@ MonoBehaviour:
       delay: 2
     - expressions: 0
       name: 
-      line: "La Rune du Z\xE9nith ou les Monolithes, quand tout le monde"
-      delay: 3.5
+      line: "La Rune du Z\xE9nith ou les Monolithes, "
+      delay: 2
+    - expressions: 0
+      name: 
+      line: quand tout le monde
+      delay: 1.5
     - expressions: 0
       name: 
       line: "Pouvait lancer d'\xE9normes sorts !"
@@ -142,8 +154,12 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "Enfin bref, dans tous les cas si vous allez \xE0 la Montagne Venteuse"
-      delay: 3
+      line: 'Enfin bref, dans tous les cas '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "si vous allez \xE0 la Montagne Venteuse"
+      delay: 1.5
     - expressions: 0
       name: 
       line: "Vous passerez \xE0 travers les ruines de Zenithia"
@@ -162,8 +178,12 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: Je vous souhaite bonne chance dans vos recherches !
+      line: Je vous souhaite bonne chance
       delay: 0
+    - expressions: 0
+      name: 
+      line: ' dans vos recherches !'
+      delay: 1
     - expressions: 0
       name: 
       line: "Eh Mist ? C'est de cette \xE9poque que tu me parles ?"
@@ -198,10 +218,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: 'Non... Mais je suis sur qu''un de ces '
+      line: "Non... Mais je suis sur qu'un de ces int\xE9ressants"
       delay: 0
     - expressions: 0
       name: 
-      line: "Int\xE9ressants petits humains te le dira avec le sourire."
+      line: ' petits humains te le dira avec le sourire.'
       delay: 3.5
     voiceLine: {fileID: 8300000, guid: 540d1f39383d924418e09b4777604bd1, type: 3}
