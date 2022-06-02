@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Transform equippedPanel;
     private BuyableModule[] buyableModules = new BuyableModule[3];
     private Image[] equippedModules = new Image[3];
-    [SerializeField] private moduleScriptableUI[] buyModules = new moduleScriptableUI[3];
+    private moduleScriptableUI[] buyModules = new moduleScriptableUI[3];
     [SerializeField] private moduleScriptableUI[] modulesList;
     private moduleScriptableUI[] _moduleList;
 

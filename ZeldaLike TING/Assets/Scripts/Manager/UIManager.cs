@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
    [Space] public Image moneyImage;
    public TextMeshProUGUI moneyText ;
    private int moneyUI;
-   public bool changingMoney;
+   [HideInInspector] public bool changingMoney;
    private int moneyAlpha;
    
    public GameObject loadingScreen;
