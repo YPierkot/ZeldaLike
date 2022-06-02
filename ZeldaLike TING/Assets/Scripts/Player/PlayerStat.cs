@@ -30,6 +30,8 @@ public class PlayerStat : MonoBehaviour
    [SerializeField] public int swiftnessModuleComposant;
    [SerializeField] public int staminaModuleComposant;
 
+   [HideInInspector] public moduleScriptableUI[] equippedModules;
+
    [Header("Stats for modules")] 
    public int money;
    
@@ -56,6 +58,7 @@ public class PlayerStat : MonoBehaviour
    private void Start()
    {
       UIManager.Instance.InitLife(life);
+      equippedModules = new moduleScriptableUI[3];
    }
 
    private void Update()
@@ -93,7 +96,7 @@ public class PlayerStat : MonoBehaviour
    public void ChangeMoney(int amount)
    {
       money += amount;
-      UIManager.Instance.moneyText.text = money.ToString();
+      UIManager.Instance.changingMoney = true;
    }
 
    private void PlayerDeath()
@@ -151,6 +154,8 @@ public class PlayerStat : MonoBehaviour
       Debug.Log("Toughness just got upgraded");
       switch (level)
       {
+         case 0: toughnessValue = 0f;
+            break;
          case 1: toughnessValue = 1f;
             break;
          case 2: toughnessValue = 2f;
@@ -167,6 +172,8 @@ public class PlayerStat : MonoBehaviour
       Debug.Log("Enemy knockback just got upgraded");
       switch (level)
       {
+         case 0: enemyKBForce = 0f;
+            break;
          case 1: enemyKBForce = 9f;
             break;
          case 2: enemyKBForce = 17f;
@@ -185,6 +192,8 @@ public class PlayerStat : MonoBehaviour
       Debug.Log("Sharpness just got upgraded");
       switch (level)
       {
+         case 0: attackDamageValue = 0;
+            break;
          case 1: attackDamageValue = 1;
             break;
          case 2: attackDamageValue = 2;
@@ -203,6 +212,8 @@ public class PlayerStat : MonoBehaviour
       Debug.Log("Swiftness just got upgraded");
       switch (level)
       {
+         case 0: moveSpeedValue = 0;
+            break;
          case 1: moveSpeedValue = 100;
             break;
          case 2: moveSpeedValue = 120;
@@ -220,6 +231,8 @@ public class PlayerStat : MonoBehaviour
       Debug.Log("Rockness just got upgraded");
       switch (level)
       {
+         case 0: repulseForce = 0;
+            break;
          case 1: repulseForce = 17;
             break;
          case 2: repulseForce = 9;

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Module UI", fileName = "New Module UI")]
-public class moduleScriptableUI : MonoBehaviour
+[CreateAssetMenu(menuName = "Module", fileName = "New Module")]
+public class moduleScriptableUI : ScriptableObject
 {
     public enum moduleType
     {
-        Sharpness, LongSword, Thorn, Rock, Swiftness
+        Sharpness, LongSword, Thorn, Rock, Swiftness, Toughness
     }
 
     public Sprite moduleSprite;
     public moduleType _moduleType;
-    private int cost;
+    public int moduleLevel = 1;
 }

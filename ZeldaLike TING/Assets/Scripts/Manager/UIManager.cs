@@ -8,13 +8,15 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
    #region INSTANCE
-      public static UIManager Instance;
 
-      private void Awake()
-      {
-         Instance = this;
-         initCardUI();
-      }
+   public static UIManager Instance;
+
+   private void Awake()
+   {
+      Instance = this;
+      initCardUI();
+   }
+
    #endregion
 
    [System.Serializable]
@@ -23,9 +25,16 @@ public class UIManager : MonoBehaviour
       public Transform Handle;
       public TextMeshProUGUI sideText;
       public CardsController.CardsState card;
-      [HideInInspector]public Image image;
+      [HideInInspector] public Image image;
    }
 
+   private bool inShop;
+
+   [Header("--- CANVAS")]
+   Transform ShopCanvas;
+   Transform StatsCanvas;
+   
+   
    [Header("--- CARDS")] 
    [SerializeField] private CardUIScriptable cardSprites;
    [SerializeField] HandleRef[] cardHandlesReference;
@@ -42,8 +51,12 @@ public class UIManager : MonoBehaviour
    [SerializeField] private Animator KellHead;
    [Space]
    [SerializeField] private Animator[] dashHandles;
-   [Space]
+
+   [Space] public Image moneyImage;
    public TextMeshProUGUI moneyText ;
+   private int moneyUI;
+   public bool changingMoney;
+   private int moneyAlpha;
    
    public GameObject loadingScreen;
    public TextMeshProUGUI playerLocation;
@@ -59,6 +72,47 @@ public class UIManager : MonoBehaviour
       ChangeCard(0);
       UIManager.Instance.UpdateCardUI();
 
+   }
+
+   private void Update()
+   {
+      if (Input.GetKeyDown(KeyCode.H))
+      {
+         if (!inShop)
+         {
+            
+         }
+      }
+
+      if (changingMoney)
+      {
+         moneyImage.gameObject.SetActive(true);
+         moneyText.gameObject.SetActive(true);
+         if      (moneyUI > PlayerStat.instance.money) moneyUI--;
+         else if (moneyUI > PlayerStat.instance.money) moneyUI++;
+         else
+         {
+            changingMoney = false;
+            moneyAlpha = 350;
+         }
+         moneyText.text = moneyUI.ToString();
+      }
+      else if (moneyAlpha >= 0)
+      {
+         if (moneyAlpha <= 255)
+         {
+            moneyImage.color = new Color(moneyImage.color.r, moneyImage.color.g, moneyImage.color.b, moneyAlpha);
+            moneyText.color = new Color(moneyText.color.r, moneyText.color.g, moneyText.color.b, moneyAlpha); 
+         }
+         else if (moneyAlpha == 0)
+         {
+            moneyImage.gameObject.SetActive(false); 
+            moneyText.gameObject.SetActive(false); 
+            moneyImage.color = new Color(moneyImage.color.r, moneyImage.color.g, moneyImage.color.b, 255); 
+            moneyText.color = new Color(moneyText.color.r, moneyText.color.g, moneyText.color.b, 255);
+         }
+         moneyAlpha--;
+      }
    }
 
    void initCardUI()
