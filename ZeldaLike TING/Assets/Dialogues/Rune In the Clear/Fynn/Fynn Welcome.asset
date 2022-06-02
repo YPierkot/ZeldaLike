@@ -26,9 +26,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Bonjour voyageur ! Qu'est ce qui vous am\xE8ne \xE0 la rune du Zenith
-        ?\n"
-      delay: 3.5
+      line: "Bonjour voyageur ! \n"
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Qu'est ce qui vous am\xE8ne \xE0 la rune du Zenith ?"
+      delay: 0
     voiceLine: {fileID: 8300000, guid: d51d00fb721fa444eb3b2fb8dd8cadb9, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -55,16 +58,24 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Bref... On... Heu... Je me rends \xE0 la Montagne Venteuse."
-      delay: 3.5
+      line: 'Bref... On... Heu... '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Je me rends \xE0 la Montagne Venteuse."
+      delay: 0
     voiceLine: {fileID: 8300000, guid: 8c4412592699603458e8cd83534a454a, type: 3}
   - character: {fileID: 11400000, guid: 06fabb718db640943b2861f61a63e113, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: "Oh, vous devez chercher Bord de Vent ! Le fameux village cach\xE9 !"
-      delay: 3.25
+      line: 'Oh, vous devez chercher Bord de Vent ! '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: "Le fameux village cach\xE9 !"
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 67c44240d81bedd488813d2f1ce039c8, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0

@@ -290,17 +290,18 @@ public class DialogueManager : MonoBehaviour
     }
     public IEnumerator CinematicWait(float duration)
     {
-        Debug.Log("J'attends");
         yield return new WaitForSeconds(duration);
         if (skip)
         {
-            Debug.Log("La cinématique a été skip");
             skip = false;
         }
         else
         {
-            Debug.Log("La cinématique continue");
-            IsCinematic();
+            if (isCinematic)
+            {
+                IsCinematic();
+                
+            }
             UIManager.Instance.playerLocation.text = null;
             GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
             Controller.instance.FreezePlayer(false);

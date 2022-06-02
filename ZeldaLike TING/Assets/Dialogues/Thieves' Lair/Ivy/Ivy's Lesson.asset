@@ -50,11 +50,11 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "Mais ne t'inqui\xE8te pas, \xE7a viendra avant que tu n'aies "
+      line: "Mais ne t'inqui\xE8te pas, \xE7a viendra avant "
       delay: 0
     - expressions: 0
       name: 
-      line: Le temps de dire ouf.
+      line: Que tu n'aies le temps de dire ouf.
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 48ee6c10de687614db2126cc59d2c3a7, type: 2}
@@ -78,8 +78,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Les enfants sont tellement plus amusants que les adultes.
-      delay: 0
+      line: 'Les enfants sont tellement plus amusants '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: que les adultes.
+      delay: 1
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
