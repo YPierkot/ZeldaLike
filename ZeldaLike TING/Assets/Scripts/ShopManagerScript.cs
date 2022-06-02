@@ -44,7 +44,7 @@ public class ShopManagerScript : MonoBehaviour
     private void Start()
     {
         _controller = Controller.instance.GetComponent<PlayerStat>();
-        ShopUI.SetActive(false);
+        //ShopUI.SetActive(false);
     }
     
     public void BuySharpnessModule()
