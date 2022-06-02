@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 3
       name: 
-      line: Hey, Kell! Kell! Kell!
+      line: "H\xE9 Kell ! Kell ! Kell !"
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I heard you Ivy.
+      line: Je t'ai entendu Ivy...
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 48ee6c10de687614db2126cc59d2c3a7, type: 2}
@@ -34,13 +34,11 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: When are you going to give me my lesson?
+      line: Quand est-ce-que tu me donnes mes cours ?
       delay: 0
     - expressions: 0
       name: 
-      line: 'I''m waiting, I want it, I want it, I want it!
-
-'
+      line: J'atteeeeends. Je les veux, je les veux, je les veux.
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -48,11 +46,15 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: No need to be so loud Ivy, I get it.
+      line: "Pas besoin de crier Ivy j'ai compris. Je suis d\xE9sol\xE9."
       delay: 0
     - expressions: 0
       name: 
-      line: Don't worry, it'll come quicker than you can blink
+      line: "Mais ne t'inqui\xE8te pas, \xE7a viendra avant "
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Que tu n'aies le temps de dire ouf.
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 48ee6c10de687614db2126cc59d2c3a7, type: 2}
@@ -60,7 +62,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: I blinked. I blinked again. And again.
+      line: Ouf, ouf et encore ouf...
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -68,7 +70,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: You tire me Ivy.
+      line: Tu me fatigues Ivy.
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -76,15 +78,19 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Children are so much more amusing than you adults.
-      delay: 0
+      line: 'Les enfants sont tellement plus amusants '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: que les adultes.
+      delay: 1
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: If you're not happy with me, curse her.
+      line: "Si t'es pas content t'as qu'\xE0 la maudire elle."
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -92,7 +98,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: That's very cruel Kell.
+      line: "C'est tr\xE8s cruel Kell."
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
@@ -100,11 +106,7 @@ MonoBehaviour:
     dialogLines:
     - expressions: 2
       name: 
-      line: Hey... Wait...I did...
-      delay: 0
-    - expressions: 2
-      name: 
-      line: I didn't mean it like that
+      line: "Heu attends... Je... Je voulais pas dire \xE7a."
       delay: 0
     voiceLine: {fileID: 0}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
@@ -112,10 +114,6 @@ MonoBehaviour:
     dialogLines:
     - expressions: 4
       name: 
-      line: 
-      delay: 0
-    - expressions: 2
-      name: 
-      line: I didn't mean it like that
+      line: Hahaha
       delay: 0
     voiceLine: {fileID: 0}

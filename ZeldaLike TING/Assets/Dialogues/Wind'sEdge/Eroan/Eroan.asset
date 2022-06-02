@@ -50,8 +50,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Pourquoi avoir construit une statue en son honneur ?
-      delay: 3
+      line: 'Pourquoi avoir construit '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: une statue en son honneur ?
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 6362cfc7138df8c4db40e0e59ae7083d, type: 3}
   - character: {fileID: 11400000, guid: cce8893c594ca114aa1442c05392ed8e, type: 2}
     startingDelay: 0
@@ -66,8 +70,12 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "Vous voyez tout cela autour de vous? C'est gr\xE2ce \xE0 lui."
-      delay: 3
+      line: 'Vous voyez tout cela autour de vous? '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "C'est gr\xE2ce \xE0 lui."
+      delay: 1.5
     - expressions: 0
       name: 
       line: ' Ce vent infini, ces maisons...'
@@ -98,12 +106,20 @@ MonoBehaviour:
       delay: 2
     - expressions: 0
       name: 
-      line: "quand Zenithia est tomb\xE9e et que tous quitt\xE8rent cette \xEEle"
-      delay: 3
+      line: "quand Zenithia est tomb\xE9e "
+      delay: 1.5
     - expressions: 0
       name: 
-      line: "Ailen lui, d\xE9cida de rester avec ceux qui ne pouvaient pas partir."
-      delay: 3.5
+      line: "et que tous quitt\xE8rent cette \xEEle"
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Ailen lui, d\xE9cida de rester "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: avec ceux qui ne pouvaient pas partir.
+      delay: 2
     - expressions: 0
       name: 
       line: Il a pris soin d'eux et pendant son temps libre,
@@ -132,10 +148,14 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 4
       name: 
-      line: 'Wow, tu comprends les choses maintenant ? Incroyable ! '
-      delay: 3.5
+      line: 'Wow, tu comprends les choses maintenant ? '
+      delay: 2.5
+    - expressions: 4
+      name: 
+      line: 'Incroyable ! '
+      delay: 1
     voiceLine: {fileID: 8300000, guid: be11f7006df7bfc469014e355ebe2993, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -170,8 +190,12 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "et les derni\xE8res ruines de Zenithia commenc\xE8rent \xE0 disparaitre. "
-      delay: 3
+      line: "et les derni\xE8res ruines de Zenithia "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "commenc\xE8rent \xE0 disparaitre. "
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 421d5521070f69b4aa36d193370bd66f, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
@@ -190,9 +214,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Vous \xEAtes plut\xF4t perspicace, oui, c'est ce qui c'est pass\xE9
-        ! "
-      delay: 3.5
+      line: "Vous \xEAtes plut\xF4t perspicace, "
+      delay: 2
+    - expressions: 0
+      name: 
+      line: "oui, c'est ce qui c'est pass\xE9 ! "
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: ebcfe04b4257f3440a4f7ab89b73e923, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0

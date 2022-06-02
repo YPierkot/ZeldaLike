@@ -54,8 +54,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Peut-\xEAtre que je pourrais le trouver ? Tu l'as perdu o\xF9?"
-      delay: 3
+      line: "Peut-\xEAtre que je pourrais le trouver ? "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Tu l'as perdu o\xF9?"
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: 8d69e9f9141f66142b9b25361cb3ebb2, type: 3}
   - character: {fileID: 11400000, guid: 5e6327c43e706f546a67d902fca19bab, type: 2}
     startingDelay: 0
