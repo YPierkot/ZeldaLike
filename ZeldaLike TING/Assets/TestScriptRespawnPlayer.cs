@@ -6,7 +6,7 @@ public class TestScriptRespawnPlayer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.position = GameManager.Instance.actualRespawnPoint.position;
+            StartCoroutine(PlayerStat.instance.PlayerDeath());
         }
     }
 }

@@ -82,7 +82,7 @@ public class PlayerStat : MonoBehaviour
          life -= damage;
 
          if (life <= 0) 
-            PlayerDeath();
+            StartCoroutine(PlayerDeath());
          else
          {
             StartCoroutine(TakeDamageCD());
@@ -99,14 +99,19 @@ public class PlayerStat : MonoBehaviour
       UIManager.Instance.changingMoney = true;
    }
 
-   private void PlayerDeath()
+   public IEnumerator PlayerDeath()
    {
       UIManager.Instance.TakeDamageUI(life);
-      Time.timeScale = 0f;
+      //Time.timeScale = 0f;
       _control.animatorPlayer.SetBool("isDead", true);
       CardsController.instance.canUseCards = false;
-      _control.canMove = false;
-      _control.canDash = false;
+      _control.FreezePlayer(true);
+      yield return new WaitForSeconds(3f);
+      Controller.instance.transform.position = GameManager.Instance.actualRespawnPoint.position;
+      _control.animatorPlayer.SetBool("isDead", false);
+      CardsController.instance.canUseCards = true;
+      _control.FreezePlayer(false);
+      life = lifeMax;
    }
 
    private void PlayerRespawn()
