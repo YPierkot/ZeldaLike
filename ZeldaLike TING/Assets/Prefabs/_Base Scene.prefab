@@ -5924,6 +5924,7 @@ GameObject:
   - component: {fileID: 8070015815526220847}
   - component: {fileID: 8184777279574306135}
   - component: {fileID: 3923136471716148680}
+  - component: {fileID: 7872888133124637303}
   m_Layer: 5
   m_Name: Ice Card
   m_TagString: Untagged
@@ -5989,6 +5990,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7872888133124637303
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634292633166775252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: feb2a920c9a2e894bb535a20ae07f082, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6667375179874255423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6000,6 +6021,7 @@ GameObject:
   - component: {fileID: 839723355162386942}
   - component: {fileID: 2332700983591796129}
   - component: {fileID: 5185974502652187397}
+  - component: {fileID: 5017145890487642893}
   m_Layer: 5
   m_Name: Wall Card
   m_TagString: Untagged
@@ -6065,6 +6087,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5017145890487642893
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6667375179874255423}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: feb2a920c9a2e894bb535a20ae07f082, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6799201922958508912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6716,6 +6758,7 @@ GameObject:
   - component: {fileID: 3545406009621369294}
   - component: {fileID: 2713722022050889632}
   - component: {fileID: 4043149047639870031}
+  - component: {fileID: 1268096694936545733}
   m_Layer: 5
   m_Name: Wind Card
   m_TagString: Untagged
@@ -6781,6 +6824,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1268096694936545733
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115513078581963860}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: feb2a920c9a2e894bb535a20ae07f082, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7351953019688265054
 GameObject:
   m_ObjectHideFlags: 0
@@ -7017,6 +7080,7 @@ GameObject:
   - component: {fileID: 3453756642744160009}
   - component: {fileID: 7552470230020909763}
   - component: {fileID: 829069130991494789}
+  - component: {fileID: 8996797465285678046}
   m_Layer: 5
   m_Name: Graph
   m_TagString: Untagged
@@ -7038,10 +7102,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 9034928196453101185}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -360, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 65.84839, y: -94.42426}
+  m_AnchoredPosition: {x: 141.78662, y: -71.64155}
   m_SizeDelta: {x: 53, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7552470230020909763
@@ -7082,6 +7146,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &8996797465285678046
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720447037757760943}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: feb2a920c9a2e894bb535a20ae07f082, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7790234934382510417
 GameObject:
   m_ObjectHideFlags: 0
@@ -7613,19 +7697,19 @@ MonoBehaviour:
   cardSprites: {fileID: 11400000, guid: 8e0553251e803754eb1b9ffc8e33e744, type: 2}
   cardHandlesReference:
   - Handle: {fileID: 3453756642744160009}
-    animator: {fileID: 0}
+    animator: {fileID: 8996797465285678046}
     card: 1
     image: {fileID: 0}
   - Handle: {fileID: 8070015815526220847}
-    animator: {fileID: 0}
+    animator: {fileID: 7872888133124637303}
     card: 2
     image: {fileID: 0}
   - Handle: {fileID: 839723355162386942}
-    animator: {fileID: 0}
+    animator: {fileID: 5017145890487642893}
     card: 3
     image: {fileID: 0}
   - Handle: {fileID: 3545406009621369294}
-    animator: {fileID: 0}
+    animator: {fileID: 1268096694936545733}
     card: 4
     image: {fileID: 0}
   cardUnlock: 4

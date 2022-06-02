@@ -38,6 +38,7 @@ public class BossManager : MonoBehaviour
     [Header("---LASER")] 
     [SerializeField] private float laserTimer = 5;
     public float laserSpeed;
+    [SerializeField] private float laserLenght =1f;
 
     private Transform laser;
     private LineRenderer laserLine;
@@ -111,7 +112,7 @@ public class BossManager : MonoBehaviour
 
     public void EndIdle()
     {
-        if (currentState == BossState.idle)
+        if (currentState == BossState.idle && !stayIdle)
         {
             if (tpNext) currentState = BossState.Tp;
             else if (idleCount == 3) currentState = BossState.Tp;
@@ -185,15 +186,16 @@ public class BossManager : MonoBehaviour
             Debug.Log(Controller.instance.transform.position);
             laserPos = Controller.instance.transform.position;
             laser.rotation = Quaternion.LookRotation(Controller.instance.transform.position-boss.position);
-            laserLine.SetPosition(0, boss.position);
-            laserLine.SetPosition(1, boss.position);
+            laserLine.SetPosition(0, laser.position);
+            laserLine.SetPosition(1, laser.position);
         }
         else if (_laserTimer >= 0)
         {
             /*laserPos = Vector3.Lerp(laserPos, Controller.instance.transform.position, laserSpeed / Vector3.Distance(laserPos, Controller.instance.transform.position));
             Vector3 rayDir = (laserPos - boss.position).normalized;
             rayDir = new Vector3(rayDir.x, 0, rayDir.z);*/
-            Vector3 rayDir = new Vector3(laser.forward.x, 1, laser.forward.z);
+            Vector3 rayDir = laser.forward;//new Vector3(laser.forward.x, 1, laser.forward.z);
+            //Vector3 rayDir = new Vector3(laser.forward.x, laser.forward.y, laser.forward.z);
             if (!castingLaser)
             {
                 if (!laserStartThrow)
@@ -204,7 +206,11 @@ public class BossManager : MonoBehaviour
                 }
                 if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, Mathf.Infinity))
                     laserLine.SetPosition(1, hit.point);
-                else laserLine.SetPosition(1, new Vector3(rayDir.x*50, 1, rayDir.z*50));
+                else
+                {
+                    Debug.Log($"{laser.position} + {laser.forward} = {laser.position + laser.forward} => x50 : {(laser.position + laser.forward)*50}");
+                    laserLine.SetPosition(1, (laser.position +laser.forward)*laserLenght);
+                }
                 _laserTimer -= Time.deltaTime;
             }
         }
@@ -278,7 +284,9 @@ public class BossManager : MonoBehaviour
     {
         if (DebugTP_Zone && TransformTP_Zone != null) Gizmos.DrawWireCube(TransformTP_Zone.position, new Vector3(sizeTP_Zone.x, 0, sizeTP_Zone.y) * 2);
 
-        if (boss != null) Gizmos.DrawLine(boss.position, laserPos);
+        //if (boss != null) Gizmos.DrawLine(boss.position, laserPos);
+        Gizmos.color = Color.red;
+        if(laser != null) Gizmos.DrawRay(laser.position, laser.forward);
     }
 
     public void Freeze()
