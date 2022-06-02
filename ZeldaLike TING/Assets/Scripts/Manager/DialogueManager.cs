@@ -69,6 +69,7 @@ public class DialogueManager : MonoBehaviour
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
             dialogueDisplay.alignment = TextAlignmentOptions.Left;
+            dialogueDisplay.margin = new Vector4(-467, 0, -456, -60);
         }
 
         if (isCinematic)
@@ -77,6 +78,7 @@ public class DialogueManager : MonoBehaviour
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-954, -338);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -411);
             dialogueDisplay.alignment = TextAlignmentOptions.Midline;
+            dialogueDisplay.margin = new Vector4(-638, 0, -648, -60);
             dialogueMoved = false;
         }
     }
@@ -94,6 +96,10 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(DialogueLine dialogueLine)
     {
+        if (dialogueMoved)
+        {
+            gray.enabled = true;
+        }
         characterEmotion.gameObject.SetActive(true);
         if(isCursed) mist.SetTrigger("Appear");
         sentenceIndex = 0;
