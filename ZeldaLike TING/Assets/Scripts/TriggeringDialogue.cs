@@ -28,6 +28,7 @@ public class TriggeringDialogue : MonoBehaviour
     private void Start()
     {
         defaultCamera = Controller.instance.PlayerCameraPoint;
+        mistMovement = GameManager.Instance.mistMovement;
     }
 
     private void OnTriggerEnter(Collider other)

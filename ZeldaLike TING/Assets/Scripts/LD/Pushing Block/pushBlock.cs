@@ -13,6 +13,7 @@ public class pushBlock : InteracteObject
     [SerializeField] private float distanceThreshold;
     private bool freezeCoroutine;
     private pushWayPoint firstWaypoint;
+    [SerializeField] private CameraShakeScriptable onEntrance;
 
     public Animator block;
     // Start is called before the first frame update
@@ -48,6 +49,7 @@ public class pushBlock : InteracteObject
                 transform.position = newWaypoint.transform.position;
                 currentWaypoint = newWaypoint;
                 pushWayPoint actualNewWaitpoint = newWaypoint;
+                CameraShakeEntry();
                 newWaypoint = null;
                 actualNewWaitpoint.OnBlockEnter.Invoke();
                 SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.blockFinish);
@@ -143,6 +145,11 @@ public class pushBlock : InteracteObject
     {
         currentWaypoint = firstWaypoint;
         transform.position = currentWaypoint.transform.position;
+    }
+
+    private void CameraShakeEntry()
+    {
+        CameraShake.Instance.AddShakeEvent(onEntrance);
     }
 
     public void MoveWaytpointGravity() => MoveWaypoint(Side.bot);
