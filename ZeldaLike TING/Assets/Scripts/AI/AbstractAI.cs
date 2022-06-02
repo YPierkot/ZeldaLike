@@ -22,7 +22,7 @@ namespace AI
         [SerializeField] private Transform spawnFXPos = null;
         
         [SerializeField] protected GameObject fxBomb;
-        
+        [SerializeField] private string hitStunStr;
         public Transform SpawnFXPos => spawnFXPos;
         
         public enum AIStates
@@ -141,7 +141,8 @@ namespace AI
             else
             {
                 StartCoroutine(FlashRed());
-
+                HitStun();
+                transform.DOScale(new Vector3(1.3f,1.3f,1.3f), 0.25F).OnComplete(() => transform.DOScale(new Vector3(1,1,1), 0.25F));
                 if(e_currentAiState == walking)
                     ChangeState(attacking);
             }
@@ -189,13 +190,17 @@ namespace AI
 
         private void HitStun()
         {
-            if (e_hitStunCO == null) e_hitStunCO = StartCoroutine(EnemyStunCo());
-            else { StopCoroutine(e_hitStunCO); e_hitStunCO = StartCoroutine(EnemyStunCo());}
+            //if (e_hitStunCO == null) e_hitStunCO = StartCoroutine(EnemyStunCo());
+            //else { StopCoroutine(e_hitStunCO); e_hitStunCO = StartCoroutine(EnemyStunCo());}
+            
+            if (e_hitStunCO != null) {StopCoroutine(e_hitStunCO); e_hitStunCO = StartCoroutine(EnemyStunCo());}
+            else e_hitStunCO = StartCoroutine(EnemyStunCo());
         }
 
         private IEnumerator EnemyStunCo()
         {
             isHitStun = true;
+            e_animator.Play(hitStunStr);
             yield return new WaitForSeconds(e_hitStunTime);
             isHitStun = false;
             ChangeState(attacking);
@@ -214,6 +219,61 @@ namespace AI
             Gizmos.DrawWireSphere(transform.position, e_rangeSight);
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, e_rangeAttack);
+        }
+        
+        protected void GoToPlayer()
+        {
+            RaycastHit collisionHit;
+            
+            Vector3 dir = new Vector3(playerTransform.position.x - transform.position.x, playerTransform.position.y - transform.position.y,
+                playerTransform.position.z - transform.position.z).normalized;
+            
+            Debug.DrawRay(transform.position, dir);
+            
+            if (Physics.Raycast(transform.position, dir, out collisionHit, Vector3.Distance(playerTransform.position, transform.position) * 1.5f, groundLayerMask))
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+                    new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.red);
+
+                float pointX = collisionHit.point.x;
+                float pointZ = collisionHit.point.z;
+
+                var debugX = (playerTransform.position.x - transform.position.x);
+                var debugZ = (playerTransform.position.z - transform.position.z);
+
+                if (debugZ > 0) // Joueur au dessus
+                {
+                    if (debugX > 0)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f),e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f), Color.yellow, .4f);
+                    }
+                    else
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, transform.position.y,pointZ + 0.3f), e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3( pointX + 0.3f, transform.position.y,pointZ + 3f), Color.yellow, .4f);
+                    }
+                }
+                else // Joueur en dessous
+                {
+                    if (debugX > 0)
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.4f), e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3(pointX + 3f, transform.position.y,pointZ + 0.3f), Color.yellow, .4f);
+                    }
+                    else
+                    {
+                        transform.position = Vector3.MoveTowards(transform.position, new Vector3(pointX - 3f, transform.position.y,pointZ + .4f), e_speed * Time.deltaTime);
+                        Debug.DrawLine(transform.position, new Vector3(pointX - 2f, transform.position.y,pointZ - 3f), Color.yellow, .4f);
+                    }
+                }
+            }
+            else
+            {
+                Debug.DrawLine(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z), Color.green);
+                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position,
+                    e_speed * Time.deltaTime);
+            }
         }
     }
 }

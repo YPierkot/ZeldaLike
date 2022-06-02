@@ -64,21 +64,31 @@ public class PlayerStat : MonoBehaviour
       if (Input.GetKeyDown(KeyCode.R)) PlayerRespawn();
    }
 
+   
    public void TakeDamage(int damage = 1)
    {
-      if (isImmune && _control.dashing && life < 0) return;
-      
-      life -= damage;
+      StartCoroutine(TakeDamageCo(damage));
+   }
+   
+   public IEnumerator TakeDamageCo(int damage)
+   {
+      yield return new WaitForSeconds(0.25f);
 
-      if (life <= 0) 
-         PlayerDeath();
-      else
+      if (!isImmune && !_control.dashing && life > 0)
       {
-         StartCoroutine(TakeDamageCD());
-         UIManager.Instance.TakeDamageUI(life);
-         CameraShake.Instance.AddShakeEvent(HitShake);
+         life -= damage;
+
+         if (life <= 0) 
+            PlayerDeath();
+         else
+         {
+            StartCoroutine(TakeDamageCD());
+            UIManager.Instance.TakeDamageUI(life);
+            CameraShake.Instance.AddShakeEvent(HitShake);
+         }
       }
    }
+   
 
    public void ChangeMoney(int amount)
    {

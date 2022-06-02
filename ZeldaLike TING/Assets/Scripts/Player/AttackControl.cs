@@ -25,9 +25,6 @@ public class AttackControl : MonoBehaviour
             // Apply Damage && Hit Stun
             abstractAI.LooseHp(playerDamage);
             Destroy(Instantiate(hitFx, (other.GetComponent<Collider>().ClosestPoint(transform.position)), Quaternion.identity), 0.6f);
-            if (abstractAI.isHitStun) abstractAI.isHitStun = false;
-            abstractAI.ChangeState(AbstractAI.AIStates.hit);
-            
         }
         else if (other.transform.CompareTag("Crates"))
         {
