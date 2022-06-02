@@ -46,6 +46,10 @@ public class TriggeringDialogue : MonoBehaviour
                     if (enemiesParent.childCount == 0)
                     {
                         hasGivenDialogue = true;
+                        if (GetComponent<GivePlayerCard>() != null)
+                        {
+                            GetComponent<GivePlayerCard>().enabled = true;
+                        }
                         tutorialManager.EnqueueDialogue();
                         if (isCinematic)
                         {

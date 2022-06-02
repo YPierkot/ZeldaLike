@@ -126,7 +126,7 @@ public class HelpsManager : MonoBehaviour
     public IEnumerator DisplayHelp()
     {
         helpTextAnimator.ResetTrigger("IsOn");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         helpTextAnimator.SetTrigger("IsOn");
         helpFrame.SetTrigger("IsOn");
         done = false;

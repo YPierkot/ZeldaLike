@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class DialogueManager : MonoBehaviour
     public Animator mist;
     public bool isCursed;
     public bool isCinematic = false;
+    private bool dialogueMoved;
+    [SerializeField] private Image gray;
 
     [Header("Enqueued Dialogue Management")]
     
@@ -59,6 +62,23 @@ public class DialogueManager : MonoBehaviour
     {
         SkipDialogue();
         AutomaticDialogues();
+        if (!dialogueMoved && !isCinematic)
+        {
+            gray.enabled = true;
+            dialogueMoved = true;
+            characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
+            maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
+            dialogueDisplay.alignment = TextAlignmentOptions.Left;
+        }
+
+        if (isCinematic)
+        {
+            gray.enabled = false;
+            characterEmotion.rectTransform.anchoredPosition = new Vector2(-954, -338);
+            maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -411);
+            dialogueDisplay.alignment = TextAlignmentOptions.Midline;
+            dialogueMoved = false;
+        }
     }
 
     public void AssignDialogue(List<DialogueLine> dialogue)
@@ -135,6 +155,8 @@ public class DialogueManager : MonoBehaviour
             {
                 IsCinematic();
             }
+
+            gray.enabled = false;
             Controller.instance.FreezePlayer(false);
         }
     }
