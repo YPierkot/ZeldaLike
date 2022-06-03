@@ -2,12 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class BossManager : MonoBehaviour
 {
+
+    class BallSets
+    {
+        public GameObject ball;
+        public Vector3 pos;
+        public GameObject warning;
+    }
     public enum BossState
     {
         idle,
@@ -26,7 +34,7 @@ public class BossManager : MonoBehaviour
     [HideInInspector] public Transform TransformTP_Zone;
 
     private bool idleStart;
-    private int idleCount = 0;
+    [SerializeField] private int idleCount = 0;
     public bool isFreeze;
     [SerializeField] private bool castAttack;
     private bool tpNext;
@@ -49,25 +57,41 @@ public class BossManager : MonoBehaviour
     private float _laserTimer;
     
     [Header("---BALL")]
+    [SerializeField] float ballSpeed;
     [SerializeField] private Vector2 ballAmountRange;
+    private int ballsAmount;
+    [SerializeField] private float warningTimerCD = .5f;
     [SerializeField] private float ballThrowTimer;
     [Space]
     [SerializeField] private GameObject[] balls;
+    [SerializeField] GameObject attackWarning;
+    [SerializeField] private GameObject[] warnings;
     private bool ballStart;
+    private bool ballCastFinish;
+    private bool warningCD;
+    
+    private Queue<BallSets> ballQueue;
+    
+    [HideInInspector] public bool canThrow;
 
     [Header("---SHIELD")] 
     private MeshRenderer shieldMesh;
     [SerializeField] Color destroyableColor ;
     [SerializeField] Color invincibleColor ;
     
-    private Queue<GameObject> ballQueue;
-    [HideInInspector] public bool canThrow;
 
     //Animation
     private Animator animator;
 
     void Start()
     {
+        warnings = new GameObject[(int)ballAmountRange.y];
+        for (int i = 0; i < warnings.Length; i++)
+        {
+            warnings[i] = Instantiate(attackWarning, transform);
+            warnings[i].SetActive(false);
+        }
+        
         life = maxLife;
         UIManager.Instance.BosslifeBar.maxValue = maxLife;
         animator = GetComponentInChildren<Animator>();
@@ -115,7 +139,7 @@ public class BossManager : MonoBehaviour
         if (currentState == BossState.idle && !stayIdle)
         {
             if (tpNext) currentState = BossState.Tp;
-            else if (idleCount == 3) currentState = BossState.Tp;
+            else if (idleCount >= 3) currentState = BossState.Tp;
             else if (castAttack) RandomAttack();
             else if (DialogueManager.Instance != null)
             {
@@ -136,6 +160,7 @@ public class BossManager : MonoBehaviour
     
     private void LaunchTeleport()
     {
+        Debug.Log("TP");
         idleCount = 0;
         tpNext = false;
         shield.gameObject.SetActive(false);
@@ -204,13 +229,14 @@ public class BossManager : MonoBehaviour
                     SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossLaser, loop:true);
                     laserStartThrow = true;
                 }
+
                 if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, Mathf.Infinity))
-                    laserLine.SetPosition(1, hit.point);
-                else
                 {
-                    Debug.Log($"{laser.position} + {laser.forward} = {laser.position + laser.forward} => x50 : {(laser.position + laser.forward)*50}");
-                    laserLine.SetPosition(1, (laser.position +laser.forward)*laserLenght);
+                    if (hit.transform.CompareTag("Player")) PlayerStat.instance.TakeDamage();
+                    else laserLine.SetPosition(1, hit.point);
                 }
+                else laserLine.SetPosition(1, (laser.position +laser.forward*laserLenght));
+                
                 _laserTimer -= Time.deltaTime;
             }
         }
@@ -234,30 +260,58 @@ public class BossManager : MonoBehaviour
         {
             Debug.Log("Ball Start");
             idleCount = 0;
-            ballStart = true;
+            ballCastFinish = false;
+            warningCD = false;
+            canThrow = true;
             animator.SetTrigger("BallAttack");
-            int ballsAmount = Random.Range((int)ballAmountRange.x, ((int)ballAmountRange.y + 1));
-            ballQueue = new Queue<GameObject>();
-            for (int i = 0; i < ballsAmount; i++)
+            ballsAmount = Random.Range((int)ballAmountRange.x, ((int)ballAmountRange.y + 1));
+            ballQueue = new Queue<BallSets>();
+            
+            ballStart = true;
+        }
+        else if( !ballCastFinish)
+        {
+            if (!warningCD)
             {
+                if (ballQueue.Count == ballsAmount) 
+                {
+                    ballCastFinish = true;
+                    animator.SetTrigger("BallThrow");
+                    Debug.Log("ballQueue Size : " + ballQueue.Count);
+                    return;
+                }
+                
+                BallSets newBall = new BallSets();
+            
                 int index = Random.Range(0,balls.Length);
-                ballQueue.Enqueue(balls[index]);
+                
+                newBall.ball = balls[index];
+                newBall.pos = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), 1, Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
+                newBall.warning = warnings[ballQueue.Count];
+                
+                newBall.warning.SetActive(true);
+                newBall.warning.transform.position = newBall.pos;
+                
+                ballQueue.Enqueue(newBall);
+                
+                Debug.Log($"Generate ball n°{ballQueue.Count} at {newBall.pos}");
+                    warningCD = true; 
+                    StartCoroutine(warningCoolDown());
+                
             }
         }
         else if (ballQueue.Count != 0)
         {
-            
             if (canThrow)
             {
                 Debug.Log("Throw");
-                GameObject newBall = Instantiate(ballQueue.Dequeue(), new Vector3(boss.position.x, 0, boss.position.z), Quaternion.identity);
+                BallSets ballSet = ballQueue.Dequeue();
+                GameObject newBall = Instantiate(ballSet.ball, new Vector3(boss.position.x, 0, boss.position.z), Quaternion.identity);
                 SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossProjectilShoot);
-                Vector3 rdm = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), 1, Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
-                newBall.GetComponent<BossBall>().LaunchBall(TransformTP_Zone.position + rdm);
+                newBall.GetComponent<BossBall>().LaunchBall(TransformTP_Zone.position + ballSet.pos, ballSpeed, ballSet.warning);
                 canThrow = false;
                 StartCoroutine(ballThrowCD());
             }
-            else Debug.Log("Ball Queue");
         }
         else
         {
@@ -276,7 +330,7 @@ public class BossManager : MonoBehaviour
         idleStart = false;
         shieldMesh.material.color = invincibleColor;
         if (Random.value <= 0.5f) currentState = BossState.lasetAttack;
-        else currentState = BossState.lasetAttack;
+        else currentState = BossState.ballAttack;
         castAttack = false;
     }
 
@@ -302,7 +356,7 @@ public class BossManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Damage Boss");
+        //Debug.Log("Damage Boss");
         if (isFreeze)
         {
             life -= damage;
@@ -323,12 +377,18 @@ public class BossManager : MonoBehaviour
         animator.speed /= 2;
         yield return new WaitForSeconds(5f);
         isFreeze = false;
-        if (currentState == BossState.idle) tpNext = true;
+        if (currentState == BossState.idle) currentState = BossState.Tp;
         animator.speed *= 2;
         shield.gameObject.SetActive(true);
 
     }
 
+    IEnumerator warningCoolDown()
+    {
+        yield return new WaitForSeconds(warningTimerCD);
+        warningCD = false;
+    }
+    
     IEnumerator ballThrowCD()
     {
         yield return new WaitForSeconds(ballThrowTimer);

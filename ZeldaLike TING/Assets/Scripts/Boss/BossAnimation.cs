@@ -32,8 +32,4 @@ public class BossAnimation : MonoBehaviour
       script.EndIdle();
    }
 
-   public void CanThrowBool()
-   {
-      script.canThrow = true;
-   }
 }
