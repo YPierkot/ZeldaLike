@@ -218,6 +218,7 @@ public class DialogueManager : MonoBehaviour
         {
             skip = true;
             CancelInvoke("DisplayNextSentence");
+            gray.enabled = false;
             SoundManager.Instance.Interrupt();
             characterEmotion.gameObject.SetActive(false);
             if(isCursed) mist.ResetTrigger("Appear");
