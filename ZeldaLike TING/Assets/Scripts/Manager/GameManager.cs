@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -35,7 +33,7 @@ public class GameManager : MonoBehaviour
     public bool foundMonolith;
     public bool isDungeonFinished;
     public Animator mistMovement;
-
+    
     public enum controller
     {
         Keybord,
@@ -114,4 +112,6 @@ public class GameManager : MonoBehaviour
     {
         actualRespawnPoint = newSpawnPoint;
     }
+
+    
 }

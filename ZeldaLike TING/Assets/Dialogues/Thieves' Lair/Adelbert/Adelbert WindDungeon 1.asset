@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df4230d22177bf44a7a35b15fe44399, type: 3}
+  m_Name: Adelbert WindDungeon 1
+  m_EditorClassIdentifier: 
+  dialogue:
+  - character: {fileID: 11400000, guid: 5e6327c43e706f546a67d902fca19bab, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Kell !? Pourquoi y a-t-il deux toi ?
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 17779360e8720dc4d890c5e6d9e03e38, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Tu es saoul Adelbert.
+      delay: 0
+    voiceLine: {fileID: 0}
+  - character: {fileID: 11400000, guid: 5e6327c43e706f546a67d902fca19bab, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Ceci explique cela. Alors ? Tu as trouv\xE9 mon tr\xE9sor."
+      delay: 5.5
+    voiceLine: {fileID: 8300000, guid: dd2770333761c24449c55d73e6fe6cb6, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: J'ai...
+      delay: 0.5
+    voiceLine: {fileID: 8300000, guid: eef331c651886b14599291e3617b28a4, type: 3}
+  - character: {fileID: 11400000, guid: 5e6327c43e706f546a67d902fca19bab, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Tais toi ! Regarde ! Mon tr\xE9so... Ah non... Oublie."
+      delay: 5.5
+    voiceLine: {fileID: 8300000, guid: 3c8cfcff93fa7024a99c31044f76ccd0, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Ce vieil homme est compl\xE8tement s\xE9nile."
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 0738b6d64d1dfa4428d76b26fde1218c, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: "Il a v\xE9cu certaines choses."
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 99269f9402da54942bf761587b05c575, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Je comprends pas pourquoi vous les humains
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Essayez d'oublier certaines choses.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 2a18c0ae33548bf4bb8836c24db89e96, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: Car certaines choses font mal quand on s'en souvient
+      delay: 0
+    - expressions: 0
+      name: 
+      line: "Mais \xE7a tu peux pas le savoir,"
+      delay: 0
+    - expressions: 0
+      name: 
+      line: Tu ressens rien.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: 2ad3add5094bcd94cbe943bdb8c8258b, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
+    startingDelay: 0
+    dialogLines:
+    - expressions: 0
+      name: 
+      line: En effet, et j'en suis bien content.
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: d3da8e4e96c6e3344be02dc746f01901, type: 3}
