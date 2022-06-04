@@ -8,8 +8,7 @@ public class BossLaser : MonoBehaviour
 {
     private void Start()
     {
-        transform.position = new Vector3(transform.position.x, Controller.instance.transform.position.y,
-            transform.position.z);
+        ///transform.position = new Vector3(transform.position.x, Controller.instance.transform.position.y, transform.position.z);
     }
 
     private float speed ;
@@ -23,7 +22,7 @@ public class BossLaser : MonoBehaviour
     {
         //if(Controller.instance != null)transform.LookAt(Controller.instance.transform);
         //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((Controller.instance.transform.position - transform.position).normalized, transform.up), speed/Vector3.Angle(transform.forward, (Controller.instance.transform.position - transform.position).normalized));
-        transform.rotation =Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Controller.instance.transform.position - transform.position), speed);
+          transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Controller.instance.transform.position - transform.position), speed/Vector3.Angle(transform.forward,(Controller.instance.transform.position - transform.position).normalized) );
     }
 
     private void OnDrawGizmos()

@@ -49,6 +49,7 @@ public class
    // --- STATES ---
    public bool moving;
    public bool dashing;
+   [HideInInspector] public bool isSlow; 
    [SerializeField] public bool inAttack;
    [SerializeField] private bool launchAttack;
    [SerializeField] private bool inAttackAnim;
@@ -106,7 +107,7 @@ public class
     [SerializeField] private AnimationCurve dashCurve;
     public int maxDash; 
     [SerializeField] private float dashCD = 2f;
-    
+
     [Header("--- DEBUG ---")] 
     [SerializeField] private TMPro.TextMeshProUGUI Debugger;
     [SerializeField] private Transform transformDebugger;
@@ -365,7 +366,8 @@ public class
         if (angleView < 0) anglePlayerView += 360 ; 
         movePlayerTransform.rotation = Quaternion.Euler(0, anglePlayerView-90, 0); 
         
-        rb.AddForce(dir * moveSpeed);
+        if(!isSlow)rb.AddForce(dir * moveSpeed);
+        else rb.AddForce(dir * moveSpeed/2);
     }
 
     public void ForceMove(Vector3 target)
