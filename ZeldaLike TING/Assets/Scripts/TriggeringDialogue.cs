@@ -61,7 +61,6 @@ public class TriggeringDialogue : MonoBehaviour
                 {
                     hasGivenDialogue = true;
                     tutorialManager.EnqueueDialogue();
-                    
                 }
             }
             else if (isMonolith)

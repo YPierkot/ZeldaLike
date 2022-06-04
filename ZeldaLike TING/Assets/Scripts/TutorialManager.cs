@@ -160,10 +160,10 @@ public class TutorialManager : MonoBehaviour
                         UIManager.Instance.gameObject.SetActive(true);
                         enemyBreach.SetActive(false);
                         StartCoroutine(SpawnEnnemiesCo());
-                        _controller.FreezePlayer(false);
                         DialogueManager.Instance.IsCinematic(false);
                         ResetCamera();
-                        _controller.FreezePlayer(false);
+                        Controller.instance.FreezePlayer(false);
+                        CardsController.instance.canUseCards = false;
                     }
                     if (ennemyParent.childCount == 0)
                     {
