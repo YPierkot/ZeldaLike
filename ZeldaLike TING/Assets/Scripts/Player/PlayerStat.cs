@@ -109,9 +109,10 @@ public class PlayerStat : MonoBehaviour
       yield return new WaitForSeconds(3f);
       Controller.instance.transform.position = GameManager.Instance.actualRespawnPoint.position;
       _control.animatorPlayer.SetBool("isDead", false);
+      life = lifeMax;
+      UIManager.Instance.InitLife(life);
       CardsController.instance.canUseCards = true;
       _control.FreezePlayer(false);
-      life = lifeMax;
    }
 
    private void PlayerRespawn()

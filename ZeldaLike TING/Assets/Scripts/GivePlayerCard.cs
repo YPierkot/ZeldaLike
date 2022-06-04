@@ -47,13 +47,13 @@ public class GivePlayerCard : MonoBehaviour
         if (!isCardGiven && canGiveCard && !DialogueManager.Instance.isPlayingDialogue)
         {
             Debug.Log("je donne la carte " + _cardToGive);
-            CardsController.instance.canUseCards = true;
+            CardsController CC = CardsController.instance;
             switch (_cardToGive)
             {
-                case CardToGive.fire : CardsController.instance.fireCardUnlock = true; CardsController.instance.canUseCards = true; break;
-                case CardToGive.ice : CardsController.instance.iceCardUnlock = true; break;
-                case CardToGive.wall : CardsController.instance.wallCardUnlock = true; break;
-                case CardToGive.wind : CardsController.instance.windCardUnlock = true; break;
+                case CardToGive.fire : CC.fireCardUnlock = true; CC.canUseCards = true; CC.canUseFireCard = true; break;
+                case CardToGive.ice : CC.iceCardUnlock = true; CC.canUseIceCard = true; break;
+                case CardToGive.wall : CC.wallCardUnlock = true; CC.canUseWallCard = true; break;
+                case CardToGive.wind : CC.windCardUnlock = true; CC.canUseWindCard = true; break;
             }
             SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.gainCard);
             UIManager.Instance.UpdateCardUI();

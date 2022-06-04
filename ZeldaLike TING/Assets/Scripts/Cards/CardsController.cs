@@ -86,8 +86,8 @@ public class CardsController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Controller>();
-        //canUseCards = false;
-        canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = true;
+        canUseCards = false;
+        canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = false;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
         //fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
         UIManager.Instance.UpdateCardUI();
