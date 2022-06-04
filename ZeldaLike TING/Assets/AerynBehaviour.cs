@@ -23,7 +23,14 @@ public class AerynBehaviour : MonoBehaviour
     [SerializeField] private PathFollower thirdPath;
     [SerializeField] private PathFollower fourthPath;
     [SerializeField] public GameObject shield;
+    private Animator anim;
     private Vector3 lastPos;
+
+
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
 
     private void Update()
     {
@@ -79,6 +86,30 @@ public class AerynBehaviour : MonoBehaviour
             fourthPath.enabled = true;
             transform.position = fourthPath.transform.position;
         }
+
+        Debug.Log(transform.position-lastPos);
+        Vector3 posDiff = lastPos = transform.position;
+        
+        if (posDiff.z <= -0.01f)
+        {
+            anim.Play("AerynMovingDown");
+        }
+        else if (posDiff.x >= 0.01f)
+        {
+            anim.Play("AerynMovingRight");
+        }
+
+        else if (posDiff.x <= -0.01f)
+        {
+            anim.Play("AerynMovingLeft");
+        }
+
+        else if (posDiff.z >= 0.01f)
+        {
+            anim.Play("AerynMovingUp");
+        }
+
+        
     }
 
     private void OnDrawGizmos()
