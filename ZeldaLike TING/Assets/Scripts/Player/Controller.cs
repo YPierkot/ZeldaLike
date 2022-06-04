@@ -411,7 +411,6 @@ public class
                 inAttack = true;
 
                 CancelInvoke("ComboWait");
-                
             }
         }
     }
@@ -434,89 +433,81 @@ public class
     
     private void Animations()
     {
-            Vector3 animDir;
-            if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
-            else animDir = -movePlayerTransform.forward ;
+        if (DialogueManager.Instance.isCinematic) return;
 
-            animatorPlayer.SetInteger("attackCounter", attackCounter);
-            animatorPlayer.SetBool("isAttack", launchAttack);
-            animatorPlayerHand.SetInteger("attackCounter", attackCounter);
-            animatorPlayerHand.SetBool("isAttack", launchAttack);
+        Vector3 animDir;
+        if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
+        else animDir = -movePlayerTransform.forward ;
+
+        animatorPlayer.SetInteger("attackCounter", attackCounter); 
+        animatorPlayer.SetBool("isAttack", launchAttack); 
+        animatorPlayerHand.SetInteger("attackCounter", attackCounter); 
+        animatorPlayerHand.SetBool("isAttack", launchAttack);
+        
+        AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
+        if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
+        {
+            foreach (var zone in keybordAttackZones   ) zone.SetActive(false); 
+            foreach (var zone in controllerAttackZones) zone.SetActive(false);
             
-            AnimatorClipInfo animInfo = animatorPlayer.GetCurrentAnimatorClipInfo(0)[0];
-            if ((animInfo.clip.name.Contains("Idle") || animInfo.clip.name.Contains("Run")) && inAttackAnim)
+            inAttack = false; 
+            inAttackAnim = false; 
+            canMove = true; 
+            Invoke("ComboWait", 1f);
+        }
+        else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
+        {
+            if (!inAttackAnim)
             {
-                foreach (var zone in keybordAttackZones   ) zone.SetActive(false);
-                foreach (var zone in controllerAttackZones) zone.SetActive(false);
-                
-                
-                inAttack = false;
-                inAttackAnim = false;
-                canMove = true;
-                Invoke("ComboWait", 1f);
-            }
-            else if((animInfo.clip.name.Contains("SLASH") || animInfo.clip.name.Contains("SPIN")))
-            {
-                if (!inAttackAnim)
+                switch (attackCounter)
                 {
-                    switch (attackCounter)
-                    {
-                        case 1: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack1);
-                            break;
-                        case 2: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack2);
-                            break;
-                        case 3: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack3);
-                            break;
-                    }
-                    if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
-                    {
-                        rb.AddForce(moveCardTransform.forward * -500);
-                        keybordAttackZones[attackCounter-1].SetActive(true);
-                    }
-                    else
-                    {
-                        rb.AddForce(movePlayerTransform.forward * -500);
-                        controllerAttackZones[attackCounter-1].SetActive(true);
-                    }
+                    case 1: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack1); break;
+                    case 2: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack2); break;
+                    case 3: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack3); break;
                 }
-                launchAttack = false;
-                inAttackAnim = true;
-                
-            }
-            if (!inAttack && canMove && moving)
-            {
-                animatorPlayer.SetFloat("X-Axis", lastDir.x);
-                animatorPlayer.SetFloat("Z-Axis", lastDir.z);
-
-                if (!DialogueManager.Instance.isCinematic)
-                {	
-                    animatorPlayer.SetBool("isRun", moving);
-					animatorPlayerHand.SetBool("isRun", moving);
-                    animatorMovePlayer.SetBool("isWalk", moving);
-                } // Il est différent donc repoussé par la société
-            }
-            else
-            {
-                if (moving)
+                if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
                 {
-                    if (dashing)
-                    {
-                        animatorPlayer.SetFloat("X-Axis", lastDir.x);
-                        animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
-                    }
-                    else
-                    {
-                        animatorPlayer.SetFloat("X-Axis", animDir.x);
-                        animatorPlayer.SetFloat("Z-Axis", animDir.z);
-                    }
+                    rb.AddForce(moveCardTransform.forward * -500);
+                    keybordAttackZones[attackCounter-1].SetActive(true);
                 }
-
-                if (!DialogueManager.Instance.isCinematic)
-				{
-					animatorPlayer.SetBool("isRun", moving);
-					animatorPlayerHand.SetBool("isRun", moving);
-				}
+                else
+                {
+                    rb.AddForce(movePlayerTransform.forward * -500);
+                    controllerAttackZones[attackCounter-1].SetActive(true);
+                }
             }
+            launchAttack = false;
+            inAttackAnim = true;
+                
+        }
+        if (!inAttack && canMove && moving)
+        {
+            animatorPlayer.SetFloat("X-Axis", lastDir.x);
+            animatorPlayer.SetFloat("Z-Axis", lastDir.z);
+
+            animatorPlayer.SetBool("isRun", moving); 
+            animatorPlayerHand.SetBool("isRun", moving);
+            animatorMovePlayer.SetBool("isWalk", moving);
+        }
+        else
+        {
+            if (moving)
+            { 
+                if (dashing)
+                {
+                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
+                }
+                else
+                {
+                    animatorPlayer.SetFloat("X-Axis", animDir.x);
+                    animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                }
+            }
+            
+            animatorPlayer.SetBool("isRun", moving);
+            animatorPlayerHand.SetBool("isRun", moving);
+        }
     }
 
     void DesactiveAttackZone()

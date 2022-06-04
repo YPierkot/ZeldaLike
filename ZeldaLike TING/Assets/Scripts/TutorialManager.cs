@@ -130,19 +130,19 @@ public class TutorialManager : MonoBehaviour
     {
         if (DialogueManager.Instance.isPlayingDialogue == false && playerAppeared)
         {
+            Controller _controller = Controller.instance;
             remainingDialogues = dialogueQueue.Count;
             switch (remainingDialogues)
             {
                 case 6 : //Après le tout premier dialogue
-                    Controller.instance.FreezePlayer(true);
+                    _controller.FreezePlayer(true);
                     GameManager.Instance.cameraController.ChangePoint(cameraPoint);
                     EnqueueDialogue();
                     Invoke("ResetCamera", 6);
                     break;
                 case 5 : //Après avoir vu l'objet magique
-                    Controller.instance.FreezePlayer(false);
-                    Controller.instance.FreezePlayer(true, "Cards");
-                    Controller.instance.FreezePlayer(true, "Attack");
+                    _controller.FreezePlayer(false);
+                    _controller.FreezePlayer(true, "Attack");
                     UIManager.Instance.gameObject.SetActive(true);
                     if (setHelp)
                     {
@@ -159,13 +159,10 @@ public class TutorialManager : MonoBehaviour
                         UIManager.Instance.gameObject.SetActive(true);
                         enemyBreach.SetActive(false);
                         StartCoroutine(SpawnEnnemiesCo());
-                        
-                        Controller.instance.FreezePlayer(false);
-                        Controller.instance.FreezePlayer(true, "Cards");
+                        _controller.FreezePlayer(false);
                         DialogueManager.Instance.IsCinematic(false);
                         ResetCamera();
                     }
-
                     if (ennemyParent.childCount == 0)
                     {
                         EnqueueDialogue();
@@ -184,12 +181,12 @@ public class TutorialManager : MonoBehaviour
                         setHelp = false;
                         StartCoroutine(helpManager.DisplayHelp());
                     }
-                    Controller.instance.FreezePlayer(false);
+                    _controller.FreezePlayer(false);
                     if (CardsController.instance.fireCardUnlock)
                     {
                         DialogueManager.Instance.IsCinematic(false);
                         UIManager.Instance.gameObject.SetActive(true);
-                        Controller.instance.FreezePlayer(true, "Cards");
+                        _controller.FreezePlayer(true, "Cards");
                         GameManager.Instance.TutorialWorld();
                         GameManager.Instance.VolumeTransition(GameManager.Instance.tutorialTransition, GameManager.Instance.cardTutorialCurve);
                         EnqueueDialogue();
@@ -207,13 +204,12 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
                 case 0 : //Une fois le deal passé
-                    Controller.instance.FreezePlayer(false);
+                    _controller.FreezePlayer(false);
                     Debug.Log("J'ai capté que le dialogue était fini");
                     if (GameManager.Instance.isTutorial && DialogueManager.Instance.isCinematic)
                     {
                         DialogueManager.Instance.IsCinematic(false);
                     }
-                    
                     UIManager.Instance.gameObject.SetActive(true);
                     gameObject.SetActive(false);
                     break;

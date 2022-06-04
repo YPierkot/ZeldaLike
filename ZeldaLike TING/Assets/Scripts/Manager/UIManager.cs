@@ -304,6 +304,7 @@ public class UIManager : MonoBehaviour
 
    public void ChangeCard(int changeInt)
    {
+      if (!CardsController.instance.canUseCards) return;
       //Debug.Log($"change card {changeInt}");
       if (changeInt != 0)
       {
