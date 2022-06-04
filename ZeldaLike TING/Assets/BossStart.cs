@@ -24,7 +24,7 @@ public class BossStart : MonoBehaviour
 
     private IEnumerator BossCinematic()
     {
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(true);
         Controller.instance.FreezePlayer(true);
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         yield return new WaitForSeconds(2f);

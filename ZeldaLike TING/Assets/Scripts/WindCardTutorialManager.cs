@@ -65,7 +65,7 @@ public class WindCardTutorialManager : MonoBehaviour
                 case 5 :
                     barrier.SetActive(true);
                     DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
-                    DialogueManager.Instance.IsCinematic();
+                    DialogueManager.Instance.IsCinematic(true);
                     StartCoroutine(DialogueManager.Instance.CinematicWait(14));
                     Controller.instance.FreezePlayer(true);
                     break;

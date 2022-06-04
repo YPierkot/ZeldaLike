@@ -62,7 +62,7 @@ public class DungeonManager : MonoBehaviour
     private IEnumerator OnEntrance()
     {
         Controller.instance.FreezePlayer(true);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(true);
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         DialogueManager.Instance.AssignDialogue(entranceDialogue.dialogue.ToList());
         yield return new WaitForSeconds(3f);
@@ -70,7 +70,7 @@ public class DungeonManager : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,7 +85,7 @@ public class DungeonManager : MonoBehaviour
     {
         GameManager.Instance.cameraController.ChangePoint(aerynCameraPoint);
         DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(true);
         Controller.instance.FreezePlayer(true);
         freedAeryn = true;
     }
@@ -100,7 +100,7 @@ public class DungeonManager : MonoBehaviour
                     GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
                     if (DialogueManager.Instance.isCinematic)
                     {
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(false);
                     }
                     aeryn.isFreed = true;
                     Controller.instance.FreezePlayer(false);
@@ -200,12 +200,12 @@ public class DungeonManager : MonoBehaviour
     private IEnumerator GiveIceCard()
     {
         Controller.instance.FreezePlayer(true);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(true);
         GameManager.Instance.cameraController.ChangePoint(doorCameraPoint);
         yield return new WaitForSeconds(5f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(false);
     }
 
     private IEnumerator LeverCamera()
@@ -249,7 +249,7 @@ public class DungeonManager : MonoBehaviour
     {
         Controller.instance.FreezePlayer(true);
         GameManager.Instance.cameraController.ChangePoint(wideManaPoolCamera);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(true);
         DialogueManager.Instance.AssignDialogue(dialogues.Dequeue().dialogue.ToList());
         yield return new WaitForSeconds(5f);
         aeryn.isFourthPath = true;
@@ -266,6 +266,6 @@ public class DungeonManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(false);
     }
 }

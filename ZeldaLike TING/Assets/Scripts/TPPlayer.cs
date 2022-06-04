@@ -14,7 +14,7 @@ public class TPPlayer : MonoBehaviour
         if (DialogueManager.Instance.isPlayingDialogue && other.transform.CompareTag("Player"))
         {
             UIManager.Instance.gameObject.SetActive(false);
-            DialogueManager.Instance.IsCinematic();
+            DialogueManager.Instance.IsCinematic(true);
             Controller.instance.FreezePlayer(true);
         }
     }
