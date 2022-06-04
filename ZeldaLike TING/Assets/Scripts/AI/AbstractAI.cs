@@ -13,6 +13,7 @@ namespace AI
         [SerializeField] private int e_hp = 1; // Enemy Health Points
         [SerializeField] public float e_rangeSight = 10f; // Enemy Detect Range
         [SerializeField] public float e_rangeAttack = 10f; // Enemy Attack Range
+        [SerializeField] public float e_rangeUnfollow = 25f; // Enemy Unlock Player Range
         [SerializeField] private float e_hitStunTime = 3f;
         [SerializeField] protected float e_speed = 10; // Enemy Speed
         [SerializeField] protected Animator e_animator; // Enemy Speed
@@ -113,7 +114,8 @@ namespace AI
 
         protected virtual void Attack() 
         {
-            
+            if (Vector3.Distance(playerTransform.position, e_transform.position) > e_rangeUnfollow)
+                ChangeState(walking);
         }
 
         private IEnumerator waitDieAnim()
@@ -142,7 +144,7 @@ namespace AI
             {
                 StartCoroutine(FlashRed());
                 HitStun();
-                transform.DOScale(new Vector3(1.3f,1.3f,1.3f), 0.25F).OnComplete(() => transform.DOScale(new Vector3(1,1,1), 0.25F));
+                transform.GetChild(0).DOScale(new Vector3(1.17f,1.17f,1.17f), 0.25F).OnComplete(() => transform.DOScale(new Vector3(1,1,1), 0.25F));
                 if(e_currentAiState == walking)
                     ChangeState(attacking);
             }
@@ -219,6 +221,7 @@ namespace AI
             Gizmos.DrawWireSphere(transform.position, e_rangeSight);
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, e_rangeAttack);
+            
         }
         
         protected void GoToPlayer()

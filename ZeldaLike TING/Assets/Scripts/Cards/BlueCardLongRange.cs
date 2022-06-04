@@ -13,7 +13,7 @@ public class BlueCardLongRange : MonoBehaviour
     public void IceCardLongEffet()
     {
         //Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity), 2f);
-        Destroy(Instantiate(iceFX, transform.position + new Vector3(0,-.9f,0), Quaternion.identity),6f);
+        Destroy(Instantiate(iceFX, transform.position + new Vector3(0,-1.03f,0), Quaternion.identity),6f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         
         Collider[] colliders = Physics.OverlapSphere(transform.position, effectRadius);

@@ -163,6 +163,8 @@ namespace AI
             Gizmos.DrawWireSphere(transform.position, radiusShootPoint); // Zone de spawn de l'aoe
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position + dir * radiusShootPoint, e_aoeRange); // Zone aoe
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, e_rangeUnfollow);
         }
 
         private void CanMove()
