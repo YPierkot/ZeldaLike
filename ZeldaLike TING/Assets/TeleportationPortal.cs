@@ -43,7 +43,7 @@ public class TeleportationPortal : MonoBehaviour
             playerIn = false;
             playerWaiting = true;
             Controller.instance.FreezePlayer(true);
-            DialogueManager.Instance.IsCinematic();
+            DialogueManager.Instance.IsCinematic(true);
             
         }
         if (!DialogueManager.Instance.isPlayingDialogue && DialogueManager.Instance.isCinematic && GameManager.Instance.isTutorial && playerWaiting)

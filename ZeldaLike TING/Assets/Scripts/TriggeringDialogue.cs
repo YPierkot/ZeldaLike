@@ -130,7 +130,7 @@ public class TriggeringDialogue : MonoBehaviour
 
     IEnumerator Cinematic(float timing, Transform camera = null)
     {
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(true);
         Controller.instance.FreezePlayer(true);
         if (camera != null)
         {

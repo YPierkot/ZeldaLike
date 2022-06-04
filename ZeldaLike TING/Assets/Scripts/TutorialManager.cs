@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         Controller.instance.gameObject.SetActive(false);
-        if (!DialogueManager.Instance.isCinematic) DialogueManager.Instance.IsCinematic();
+        if (!DialogueManager.Instance.isCinematic) DialogueManager.Instance.IsCinematic(true);
         Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
     }
@@ -146,7 +146,7 @@ public class TutorialManager : MonoBehaviour
                     UIManager.Instance.gameObject.SetActive(true);
                     if (setHelp)
                     {
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(false);
                         setHelp = false;
                         StartCoroutine(helpManager.DisplayHelp());
                     }
@@ -162,7 +162,7 @@ public class TutorialManager : MonoBehaviour
                         
                         Controller.instance.FreezePlayer(false);
                         Controller.instance.FreezePlayer(true, "Cards");
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(false);
                         ResetCamera();
                     }
 
@@ -187,7 +187,7 @@ public class TutorialManager : MonoBehaviour
                     Controller.instance.FreezePlayer(false);
                     if (CardsController.instance.fireCardUnlock)
                     {
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(false);
                         UIManager.Instance.gameObject.SetActive(true);
                         Controller.instance.FreezePlayer(true, "Cards");
                         GameManager.Instance.TutorialWorld();
@@ -211,7 +211,7 @@ public class TutorialManager : MonoBehaviour
                     Debug.Log("J'ai capté que le dialogue était fini");
                     if (GameManager.Instance.isTutorial && DialogueManager.Instance.isCinematic)
                     {
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(false);
                     }
                     
                     UIManager.Instance.gameObject.SetActive(true);
@@ -244,7 +244,7 @@ public class TutorialManager : MonoBehaviour
                     }
                     if (!itharStarted)
                     {
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(true);
                         itharStarted = true;
                         StartCoroutine(ManageIthar());
                     }
@@ -255,7 +255,7 @@ public class TutorialManager : MonoBehaviour
                     if (fireCardCinematic)
                     {
                         fireCardCinematic = false;
-                        DialogueManager.Instance.IsCinematic();
+                        DialogueManager.Instance.IsCinematic(true);
                     }
                     
                     UIManager.Instance.gameObject.SetActive(false);

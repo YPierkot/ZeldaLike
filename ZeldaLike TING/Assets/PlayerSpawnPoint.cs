@@ -37,7 +37,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         GameManager.Instance.actualRespawnPoint = transform;
         if (DialogueManager.Instance.isCinematic)
         {
-            DialogueManager.Instance.IsCinematic();
+            DialogueManager.Instance.IsCinematic(false);
         }
         StartCoroutine(SmallCinematic());
     }
@@ -48,7 +48,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         {
             Controller.instance.FreezePlayer(true);
             Controller.instance.gameObject.SetActive(true);
-            DialogueManager.Instance.IsCinematic();
+            DialogueManager.Instance.IsCinematic(true);
             UIManager.Instance.playerLocationTween.Play("PlayerLocation");
             UIManager.Instance.playerLocation.text = location;
             GameManager.Instance.cameraController.ChangePoint(cameraPoint);
@@ -73,7 +73,7 @@ public class PlayerSpawnPoint : MonoBehaviour
             Controller.instance.transform.position = dungeonSpawnPoint.position;
             Controller.instance.gameObject.SetActive(false);
             aeryn.SetActive(true);
-            DialogueManager.Instance.IsCinematic();
+            DialogueManager.Instance.IsCinematic(true);
             StartCoroutine(ThePlan());
         }
     }
@@ -91,6 +91,6 @@ public class PlayerSpawnPoint : MonoBehaviour
         yield return new WaitForSeconds(8f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
-        DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(false);
     }
 }

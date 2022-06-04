@@ -18,20 +18,20 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Cette mal\xE9diction... Cela vous est arriv\xE9 quand "
+      line: "Cela vous est arriv\xE9 quand "
       delay: 0
     - expressions: 0
       name: 
       line: "Vous avez lib\xE9r\xE9 Ithar ?"
       delay: 0
-    voiceLine: {fileID: 8300000, guid: 48a8d9cd9ec39624b90647cc36107a19, type: 3}
+    voiceLine: {fileID: 8300000, guid: d6c6ff78efcf112428d4ba38026499cf, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Comment ?? Oui... Vous l'avez vu ?
-      delay: 3
+      delay: 4
     voiceLine: {fileID: 8300000, guid: 03a6a06c72488944bb1e505db573343a, type: 3}
   - character: {fileID: 11400000, guid: 300e3e19750b78340a63f80893afcc33, type: 2}
     startingDelay: 0
@@ -42,8 +42,12 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "Ce donjon est mon rep\xE8re, Ithar me l'a vol\xE9 pour mener"
-      delay: 3
+      line: "Ce donjon est mon rep\xE8re, "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "Ithar me l'a vol\xE9 pour mener"
+      delay: 1.75
     - expressions: 0
       name: 
       line: "A bien ses petites exp\xE9riences."
@@ -70,6 +74,10 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Vous ne connaissez vraiment rien de l'histoire de notre \xEEle. "
+      line: 'Vous ne connaissez vraiment rien '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "de l'histoire de notre \xEEle."
       delay: 0
-    voiceLine: {fileID: 8300000, guid: e9e149e1dd63a394493db0c99d25d9e7, type: 3}
+    voiceLine: {fileID: 8300000, guid: 817b701440609734caafedbaae3ff712, type: 3}
