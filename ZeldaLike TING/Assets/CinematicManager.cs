@@ -31,6 +31,7 @@ public class CinematicManager : MonoBehaviour
 
     private void Start()
     {
+        DialogueManager.Instance.IsCinematic(true);
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         DialogueManager.Instance.AssignDialogue(dialogue.dialogue.ToList());
         UIManager.Instance.gameObject.SetActive(false);
@@ -61,7 +62,7 @@ public class CinematicManager : MonoBehaviour
         UIManager.Instance.loadingScreen.SetActive(true);
         yield return new WaitForSeconds(2f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
-        //DialogueManager.Instance.IsCinematic();
+        DialogueManager.Instance.IsCinematic(false);
         SceneManager.LoadScene("_Scenes/Level Design/LD_DonjonPrinc");
     }
 }

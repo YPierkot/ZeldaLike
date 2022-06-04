@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
     public Animator mist;
     public bool isCursed;
     public bool isCinematic = false;
-    private bool dialogueMoved;
+    public bool dialogueMoved;
     [SerializeField] private Image gray;
 
     [Header("Enqueued Dialogue Management")]
@@ -61,10 +61,9 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         SkipDialogue();
-        AutomaticDialogues();
         if (!dialogueMoved && !isCinematic)
         {
-            gray.enabled = true;
+            Debug.Log("Non si senior " + isCinematic);
             dialogueMoved = true;
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
@@ -74,6 +73,7 @@ public class DialogueManager : MonoBehaviour
 
         if (isCinematic)
         {
+            Debug.Log("Oui si senior " + isCinematic);
             gray.enabled = false;
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-954, -338);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -411);

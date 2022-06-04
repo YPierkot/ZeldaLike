@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         Controller.instance.gameObject.SetActive(false);
-        if (!DialogueManager.Instance.isCinematic) DialogueManager.Instance.IsCinematic(true);
+        DialogueManager.Instance.IsCinematic(true);
         Controller.instance.transform.position = spawnPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
     }
@@ -139,6 +139,7 @@ public class TutorialManager : MonoBehaviour
                     GameManager.Instance.cameraController.ChangePoint(cameraPoint);
                     EnqueueDialogue();
                     Invoke("ResetCamera", 6);
+                    DialogueManager.Instance.dialogueMoved = false;
                     break;
                 case 5 : //Après avoir vu l'objet magique
                     _controller.FreezePlayer(false);
@@ -162,6 +163,7 @@ public class TutorialManager : MonoBehaviour
                         _controller.FreezePlayer(false);
                         DialogueManager.Instance.IsCinematic(false);
                         ResetCamera();
+                        _controller.FreezePlayer(false);
                     }
                     if (ennemyParent.childCount == 0)
                     {

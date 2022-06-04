@@ -61,10 +61,7 @@ public class TriggeringDialogue : MonoBehaviour
                 {
                     hasGivenDialogue = true;
                     tutorialManager.EnqueueDialogue();
-                    if (isCinematic)
-                    {
-                        StartCoroutine(Cinematic(cinematicTime, cameraPoint));
-                    }
+                    
                 }
             }
             else if (isMonolith)
