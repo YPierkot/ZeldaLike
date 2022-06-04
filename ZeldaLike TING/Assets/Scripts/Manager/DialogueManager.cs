@@ -159,7 +159,7 @@ public class DialogueManager : MonoBehaviour
             dialogueDisplay.text = null;
             if (isCinematic && !GameManager.Instance.isTutorial)
             {
-                IsCinematic();
+                IsCinematic(false);
             }
 
             gray.enabled = false;
@@ -235,21 +235,21 @@ public class DialogueManager : MonoBehaviour
             if (isCinematic)
             {
                 UIManager.Instance.playerLocation.text = null;
-                IsCinematic();
+                IsCinematic(false);
                 GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
                 Controller.instance.FreezePlayer(false);
             }
         }
     }
 
-    public void IsCinematic()
+    public void IsCinematic(bool cinematic)
     {
-        if (isCinematic)
+        if (!cinematic)
         {
             UIManager.Instance.gameObject.SetActive(true);
             cinematicMode.ResetTrigger("IsCinematic");
         }
-        else if (!isCinematic)
+        else
         {   
             UIManager.Instance.gameObject.SetActive(false);
             cinematicMode.SetTrigger("IsCinematic");
@@ -300,8 +300,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (isCinematic)
             {
-                IsCinematic();
-                
+                IsCinematic(false);
             }
             UIManager.Instance.playerLocation.text = null;
             GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
