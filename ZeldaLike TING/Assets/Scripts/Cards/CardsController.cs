@@ -158,7 +158,7 @@ public class CardsController : MonoBehaviour
                 else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 fireCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fireCard);
-                fireCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                fireCardGrounded.transform.position = transform.position + new Vector3(shootPointPos.x, 0, shootPointPos.y) * radiusShootPoint;
                 fireCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 fireCardGrounded.GetComponent<Rigidbody>().velocity =
                     shootPointPos * projectileSpeed;
@@ -184,7 +184,7 @@ public class CardsController : MonoBehaviour
                 else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 iceCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.iceCard);
-                iceCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                iceCardGrounded.transform.position = transform.position + new Vector3(shootPointPos.x, 0, shootPointPos.y) * radiusShootPoint;
                 iceCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 iceCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos  * projectileSpeed;
@@ -213,7 +213,7 @@ public class CardsController : MonoBehaviour
                 else shootPointPos =-controller.movePlayerTransform.forward ;
                     
                 wallCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.wallCard);
-                wallCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                wallCardGrounded.transform.position = transform.position + new Vector3(shootPointPos.x, 0, shootPointPos.y) * radiusShootPoint;
                 wallCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 wallCardGrounded.GetComponent<Rigidbody>().velocity = 
                     shootPointPos * projectileSpeed;
@@ -243,7 +243,7 @@ public class CardsController : MonoBehaviour
                 else shootPointPos =-controller.movePlayerTransform.forward ;
                 
                 windCardGrounded = PoolManager.Instance.PoolInstantiate(PoolManager.Object.windCard);
-                windCardGrounded.transform.position = transform.position + shootPointPos * radiusShootPoint;
+                windCardGrounded.transform.position = transform.position + new Vector3(shootPointPos.x, 0, shootPointPos.y) * radiusShootPoint;
                 windCardGrounded.transform.rotation = Quaternion.Euler(0, Controller.instance.angleView - 90f + 180, 0);
                 windCardGrounded.GetComponent<Rigidbody>().velocity = shootPointPos * projectileSpeed;
                 isWindGround = true;
@@ -362,7 +362,7 @@ public class CardsController : MonoBehaviour
         Destroy(Instantiate(ShortWallFx, transform.position + new Vector3(0, -1,0), Quaternion.identity), 3f);
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.groundPeak); 
         GameObject wall = Instantiate(WallSR, new Vector3(xTransform, yTransform - 2.9f, zTransform), Quaternion.identity);
-        wall.transform.DOMove(new Vector3(xTransform, yTransform, zTransform), 1.5f);
+        wall.transform.DOMove(new Vector3(xTransform, yTransform + .3f, zTransform), 1.5f);
         wall.GetComponent<WallDeseapear>().WallDeseapearFct();
     }
     

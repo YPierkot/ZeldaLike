@@ -19,7 +19,7 @@ public class FireCardLongRange : MonoBehaviour
     
     private IEnumerator FireCardLongEffectCo()
     {
-        Destroy(Instantiate(fireFX, transform.position, Quaternion.identity), 3.4f);
+        Destroy(Instantiate(fireFX, transform.position + new Vector3(0, -.5f,0), Quaternion.identity), 3.4f);
         yield return new WaitForSeconds(.22f);
         //Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity),1f);
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
