@@ -19,30 +19,42 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: Pendant que tu cherches la solution, je vais te
-      delay: 0
+      delay: 2
     - expressions: 0
       name: 
       line: "Raconter l'histoire de notre \xEEle."
-      delay: 3.5
+      delay: 2
+    voiceLine: {fileID: 8300000, guid: 592da939ef16d6b4b8293b28c60c7790, type: 3}
+  - character: {fileID: 11400000, guid: 300e3e19750b78340a63f80893afcc33, type: 2}
+    startingDelay: 0
+    dialogLines:
     - expressions: 0
       name: 
-      line: Pendant le Grand Age de la Magie, Ithar connaissait
-      delay: 3
+      line: 'Pendant le Grand Age de la Magie, '
+      delay: 1.5
     - expressions: 0
       name: 
-      line: " et avait cr\xE9\xE9 tous les sorts possibles et imaginables,"
-      delay: 3
+      line: "Ithar connaissait et avait cr\xE9\xE9"
+      delay: 2
+    - expressions: 0
+      name: 
+      line: ' tous les sorts possibles et imaginables,'
+      delay: 2.5
     - expressions: 0
       name: 
       line: "aussi dangereux ou inutiles qu'ils puissent-\xEAtre."
       delay: 0
     - expressions: 0
       name: 
-      line: "Les autres magiciens en \xE9taient amus\xE9s et le laissaient"
-      delay: 3
+      line: "Les autres magiciens en \xE9taient "
+      delay: 1.5
     - expressions: 0
       name: 
-      line: tranquille, ils ne le voyaient pas comme une menace,
+      line: "amus\xE9s et le laissaient tranquille, "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: ils ne le voyaient pas comme une menace,
       delay: 2.5
     - expressions: 0
       name: 
@@ -58,17 +70,21 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: " Les magiciens entr\xE8rent alors en guerre contre lui."
+      line: " Les magiciens entr\xE8rent alors en guerre "
       delay: 0
     - expressions: 0
       name: 
-      line: et finirent par l'emprisonner dans la prison de laquelle
-      delay: 3
+      line: 'contre lui et finirent par l''emprisonner '
+      delay: 1.5
     - expressions: 0
       name: 
-      line: " tu l'as lib\xE9r\xE9, prison que je gardais ici, dans mon donjon."
+      line: "dans la prison de laquelle tu l'as lib\xE9r\xE9"
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: prison que je gardais ici, dans mon donjon.
       delay: 3.5
-    voiceLine: {fileID: 8300000, guid: e9e149e1dd63a394493db0c99d25d9e7, type: 3}
+    voiceLine: {fileID: 8300000, guid: 5bcef11b348cd52408e8fef8c04dc02e, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -86,12 +102,16 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: des Monolithes et de la Rune du Zenith pour lancer
+      line: 'des Monolithes et de la Rune du Zenith '
       delay: 2.5
     - expressions: 0
       name: 
-      line: "un sort \xE0 l'\xE9chelle de l'\xEEle enti\xE8re pour faire oublier"
-      delay: 2.5
+      line: "pour lancer un sort \xE0 l'\xE9chelle de l'\xEEle "
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "enti\xE8re pour faire oublier"
+      delay: 1.5
     - expressions: 0
       name: 
       line: "\xE0 tout humain l'usage de la magie dangereuse"
@@ -102,18 +122,26 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: " Mes ma\xEEtres aussi ont tout oubli\xE9, donc je ne peux pas "
-      delay: 0
+      line: "Mes ma\xEEtres aussi ont tout oubli\xE9,"
+      delay: 1.5
     - expressions: 0
       name: 
-      line: "plus t'en parler, mais si Ithar a activ\xE9 les Monolithes,"
-      delay: 0
+      line: 'donc je ne peux pas plus t''en parler, '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "mais si Ithar a activ\xE9 les Monolithes,"
+      delay: 1.5
     - expressions: 0
       name: 
       line: "c'est qu'il veut lancer un sort \xE0 l'\xE9chelle de l'\xEEle,"
-      delay: 3.5
+      delay: 2
     - expressions: 0
       name: 
-      line: "et comme tu peux le comprendre, \xE7a n'est pas bon du tout."
-      delay: 3
+      line: 'et comme tu peux le comprendre, '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "\xE7a n'est pas bon du tout."
+      delay: 2
     voiceLine: {fileID: 8300000, guid: 48a8d9cd9ec39624b90647cc36107a19, type: 3}
