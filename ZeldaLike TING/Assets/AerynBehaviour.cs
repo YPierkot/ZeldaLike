@@ -88,25 +88,42 @@ public class AerynBehaviour : MonoBehaviour
         }
 
         Debug.Log(transform.position-lastPos);
-        Vector3 posDiff = lastPos = transform.position;
+        Vector3 posDiff = transform.position - lastPos;
+        lastPos = transform.position;
         
-        if (posDiff.z <= -0.01f)
+        if (posDiff.z <= -0.01f && posDiff.z != 0)
         {
-            anim.Play("AerynMovingDown");
+            anim.ResetTrigger("AerynSide");
+            anim.ResetTrigger("AerynUp");
+            anim.SetTrigger("AerynDown");
         }
-        else if (posDiff.x >= 0.01f)
+        else if (posDiff.x >= 0.01f && posDiff.x != 0)
         {
-            anim.Play("AerynMovingRight");
+            anim.ResetTrigger("AerynUp");
+            anim.ResetTrigger("AerynDown");
+            anim.SetTrigger("AerynSide");
+            anim.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        else if (posDiff.x <= -0.01f)
+        else if (posDiff.x <= -0.01f && posDiff.x != 0)
         {
-            anim.Play("AerynMovingLeft");
+            anim.GetComponent<SpriteRenderer>().flipX = false;
+            anim.ResetTrigger("AerynUp");
+            anim.ResetTrigger("AerynDown");
+            anim.SetTrigger("AerynSide");
         }
 
-        else if (posDiff.z >= 0.01f)
+        else if (posDiff.z >= 0.01f && posDiff.z != 0)
         {
-            anim.Play("AerynMovingUp");
+            anim.ResetTrigger("AerynSide");
+            anim.ResetTrigger("AerynDown");
+            anim.SetTrigger("AerynUp");
+        }
+        else
+        {
+            anim.ResetTrigger("AerynSide");
+            anim.ResetTrigger("AerynUp");
+            anim.SetTrigger("AerynDown");
         }
 
         
