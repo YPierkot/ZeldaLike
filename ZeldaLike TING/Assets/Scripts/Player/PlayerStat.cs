@@ -70,6 +70,7 @@ public class PlayerStat : MonoBehaviour
    
    public void TakeDamage(int damage = 1)
    {
+      Debug.Log("Damage");
       StartCoroutine(TakeDamageCo(damage));
    }
    

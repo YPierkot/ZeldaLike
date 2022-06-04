@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
    class HandleRef
    {
       public Transform Handle;
-      public TextMeshProUGUI sideText;
+      public Animator animator;
       public CardsController.CardsState card;
       [HideInInspector] public Image image;
    }
@@ -308,8 +308,9 @@ public class UIManager : MonoBehaviour
       //Debug.Log($"change card {changeInt}");
       if (changeInt != 0)
       {
-         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);
-
+         //cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);
+         cardsDictionary[cardHandles[currentCard]].animator.SetTrigger("StopUseCard");
+         
          Transform newCard = null;
          int antiWhile = 0;
          while (newCard == null)
@@ -352,17 +353,18 @@ public class UIManager : MonoBehaviour
             antiWhile++;
             if (antiWhile == 5)
             {
-               //Debug.Log("Anti-While break");
+               //Debug.LogError("Anti-While break");
                break;
             }
          }
+         cardsAnimator.SetInteger("CurrentCard", currentCard);
       }
       else
       {
          currentCard = 0;
       }
       
-         cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos +55,cardHandles[currentCard].position.z);
+        cardsDictionary[cardHandles[currentCard]].animator.SetTrigger("UseCard");
 
          CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }
