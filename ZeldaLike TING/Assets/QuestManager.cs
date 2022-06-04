@@ -21,6 +21,8 @@ public class QuestManager : MonoBehaviour
     [Header("Adelbert")]
     
     [SerializeField] private bool treasureFound;
+
+    private bool givenQuest;
     [SerializeField] private string adelbertQuestText;
     [SerializeField] private string foundAdelbertTreasure;
     [SerializeField] private NPCDialogue adelbert;
@@ -50,30 +52,34 @@ public class QuestManager : MonoBehaviour
         questFrame.ResetTrigger("IsOn");
         questTextAnimator.ResetTrigger("IsOn");
         questText.text = null;
-        jack.dialogues.Insert(0, jackDialogue);
+        jack.dialogues.Insert(1, jackDialogue);
     }
 
     public IEnumerator AdelbertGiveQuest()
     {
-        yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
-        questText.text = adelbertQuestText;
-        treasureFound = true;
-        questFrame.SetTrigger("IsOn");
-        questTextAnimator.SetTrigger("IsOn");
-        yield return new WaitForSeconds(4f);
-        adelbert.dialogues.Add(adelbertNotFoundDialogue);
-        questFrame.ResetTrigger("IsOn");
-        questTextAnimator.ResetTrigger("IsOn");
-        questText.text = null;
+        if (!givenQuest)
+        {
+            givenQuest = true;
+            yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
+            questText.text = adelbertQuestText;
+            questFrame.SetTrigger("IsOn");
+            questTextAnimator.SetTrigger("IsOn");
+            yield return new WaitForSeconds(4f);
+            adelbert.dialogues.Add(adelbertNotFoundDialogue);
+            questFrame.ResetTrigger("IsOn");
+            questTextAnimator.ResetTrigger("IsOn");
+            questText.text = null;
+        }
     }
 
     public IEnumerator FindingTreasure()
     {
+        treasureFound = true;
         questText.text = foundAdelbertTreasure;
         questFrame.SetTrigger("IsOn");
         questTextAnimator.SetTrigger("IsOn");
         yield return new WaitForSeconds(4f);
-        adelbert.dialogues.Insert(0, adelbertDialogue);
+        adelbert.dialogues.Insert(1, adelbertDialogue);
         questFrame.ResetTrigger("IsOn");
         questTextAnimator.ResetTrigger("IsOn");
         questText.text = null;
