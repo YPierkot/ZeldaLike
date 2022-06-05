@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 8446749621590671360}
   - component: {fileID: 8446749621590671363}
   - component: {fileID: 8446749621590671362}
+  - component: {fileID: -1999381594321039514}
   m_Layer: 6
   m_Name: Test_Enemy_Swinger
   m_TagString: Ennemy
@@ -132,6 +133,7 @@ MonoBehaviour:
   e_hp: 6
   e_rangeSight: 9
   e_rangeAttack: 2.7
+  e_rangeUnfollow: 25
   e_hitStunTime: 1
   e_speed: 3
   e_animator: {fileID: 0}
@@ -156,8 +158,6 @@ MonoBehaviour:
     type: 3}
   anchorDst: 1.3
   f: 3
-  debugX: 0
-  debugZ: 0
 --- !u!65 &8446749621590671362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -171,6 +171,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0055132, y: 1.44, z: 0.7516786}
   m_Center: {x: 0.06832293, y: 0.95000005, z: 0.10158163}
+--- !u!114 &-1999381594321039514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8446749621590671367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ef98430a6d61b418bf863c2ac5e274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loots:
+  - Item: {fileID: 6621041328935053992, guid: fe1a9e03b75c587428be99b74dccaf34, type: 3}
+    dropRate: 50
+  - Item: {fileID: 6621041328935053992, guid: b531a73f3fbc6004b898d8805bceeaaf, type: 3}
+    dropRate: 35
+  - Item: {fileID: 6621041328935053992, guid: c5f57e239d13d7443ba53cc3091e4985, type: 3}
+    dropRate: 15
+  lootItem: 1
 --- !u!1 &8446749621666262004
 GameObject:
   m_ObjectHideFlags: 0

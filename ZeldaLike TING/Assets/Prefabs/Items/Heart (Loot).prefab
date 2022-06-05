@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3963169842796613471}
-  - component: {fileID: 6288536761011153786}
   - component: {fileID: 1533655004397241176}
   - component: {fileID: 4263014262519331974}
+  - component: {fileID: 6288536761011153786}
   m_Layer: 0
   m_Name: Heart (Loot)
   m_TagString: Untagged
@@ -34,21 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
---- !u!114 &6288536761011153786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797547979386916489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da37c07dae734db4cb21d0c338500767, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootType: 2
-  amount: 0
-  _moduleType: 0
 --- !u!212 &1533655004397241176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,3 +99,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.22916667
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6288536761011153786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797547979386916489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da37c07dae734db4cb21d0c338500767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootType: 2
+  amount: 0
+  _moduleType: 0

@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 757930090915126993}
   - component: {fileID: 757930090915126994}
   - component: {fileID: 1396968076946365519}
+  - component: {fileID: 5710853842400311395}
   m_Layer: 6
   m_Name: Test_Enemy_Kamikaze
   m_TagString: Ennemy
@@ -203,6 +204,7 @@ MonoBehaviour:
   e_hp: 2
   e_rangeSight: 10
   e_rangeAttack: 2.5
+  e_rangeUnfollow: 25
   e_hitStunTime: 1
   e_speed: 6
   e_animator: {fileID: 0}
@@ -241,3 +243,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.6266427, z: 1.2437783}
   m_Center: {x: 0, y: 1.2188699, z: 0.12188929}
+--- !u!114 &5710853842400311395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757930090915126991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ef98430a6d61b418bf863c2ac5e274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loots:
+  - Item: {fileID: 6621041328935053992, guid: fe1a9e03b75c587428be99b74dccaf34, type: 3}
+    dropRate: 50
+  - Item: {fileID: 6621041328935053992, guid: b531a73f3fbc6004b898d8805bceeaaf, type: 3}
+    dropRate: 35
+  - Item: {fileID: 6621041328935053992, guid: c5f57e239d13d7443ba53cc3091e4985, type: 3}
+    dropRate: 15
+  lootItem: 1

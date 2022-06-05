@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 3913864873762027155}
   - component: {fileID: 3913864873762027159}
   - component: {fileID: 3913864873762027158}
+  - component: {fileID: 6738351171234285792}
   m_Layer: 6
   m_Name: Test_Enemy_Mage
   m_TagString: Ennemy
@@ -131,6 +132,7 @@ MonoBehaviour:
   e_hp: 4
   e_rangeSight: 11.655
   e_rangeAttack: 8.97
+  e_rangeUnfollow: 25
   e_hitStunTime: 1
   e_speed: 2.07
   e_animator: {fileID: 0}
@@ -142,6 +144,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   spawnFXPos: {fileID: 1749064543}
+  fxBomb: {fileID: 0}
+  hitStunStr: 
   e_currentAiState: 0
   isHitStun: 0
   e_rangeWander: 3
@@ -154,6 +158,8 @@ MonoBehaviour:
     type: 3}
   eyeCounter: 3
   isPanic: 0
+  debugX: 0
+  debugZ: 0
 --- !u!65 &3913864873762027158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,6 +173,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.54, y: 1.28, z: 0.952676}
   m_Center: {x: -0.010569572, y: 1.43, z: 0.17604509}
+--- !u!114 &6738351171234285792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913864873762027154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ef98430a6d61b418bf863c2ac5e274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loots:
+  - Item: {fileID: 6621041328935053992, guid: fe1a9e03b75c587428be99b74dccaf34, type: 3}
+    dropRate: 50
+  - Item: {fileID: 6621041328935053992, guid: b531a73f3fbc6004b898d8805bceeaaf, type: 3}
+    dropRate: 35
+  - Item: {fileID: 6621041328935053992, guid: c5f57e239d13d7443ba53cc3091e4985, type: 3}
+    dropRate: 15
+  lootItem: 1
 --- !u!1 &3913864874311594117
 GameObject:
   m_ObjectHideFlags: 0

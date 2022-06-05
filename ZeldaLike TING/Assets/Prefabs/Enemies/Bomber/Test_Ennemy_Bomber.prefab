@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 2642377945956058367}
   - component: {fileID: 2642377945956058304}
   - component: {fileID: 2642377945956058305}
+  - component: {fileID: 7835395422845574558}
   m_Layer: 6
   m_Name: Test_Ennemy_Bomber
   m_TagString: Ennemy
@@ -592,6 +593,7 @@ MonoBehaviour:
   e_hp: 5
   e_rangeSight: 7
   e_rangeAttack: 2.5
+  e_rangeUnfollow: 25
   e_hitStunTime: 1
   e_speed: 3
   e_animator: {fileID: 0}
@@ -617,3 +619,23 @@ MonoBehaviour:
   isAttacking: 0
   debugX: 0
   debugZ: 0
+--- !u!114 &7835395422845574558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642377945956058364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64ef98430a6d61b418bf863c2ac5e274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loots:
+  - Item: {fileID: 6621041328935053992, guid: fe1a9e03b75c587428be99b74dccaf34, type: 3}
+    dropRate: 50
+  - Item: {fileID: 6621041328935053992, guid: b531a73f3fbc6004b898d8805bceeaaf, type: 3}
+    dropRate: 35
+  - Item: {fileID: 6621041328935053992, guid: c5f57e239d13d7443ba53cc3091e4985, type: 3}
+    dropRate: 15
+  lootItem: 1
