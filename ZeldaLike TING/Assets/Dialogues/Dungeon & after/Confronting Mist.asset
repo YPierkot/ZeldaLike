@@ -13,43 +13,47 @@ MonoBehaviour:
   m_Name: Confronting Mist
   m_EditorClassIdentifier: 
   dialogue:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
       line: "Mist, tu n'aurais pas quelque chose \xE0 me dire ?"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: 4ebdd5c7a37707d42863da1d148006d8, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
       line: "Comment \xE7a humain?"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 5e8661cbffe34b142b55f4356a5df23d, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
-      line: "Je t'ai trouv\xE9 bien silencieux pendant ma conversation "
-      delay: 0
-    - expressions: 0
+      line: "Je t'ai trouv\xE9 bien silencieux "
+      delay: 1.5
+    - expressions: 3
       name: 
-      line: avec Aeryn, toi qui es pourtant si bavard.
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      line: 'pendant ma conversation avec Aeryn, '
+      delay: 1.5
+    - expressions: 3
+      name: 
+      line: toi qui es pourtant si bavard.
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 738aa27adddad2d4e9712811c62f0060, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
       line: Ou veux tu en venir ?
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 99781a7697e6ca4419717e1501674364, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -60,72 +64,64 @@ MonoBehaviour:
       name: 
       line: 'Tu sais ce qu''Ithar cherche pas vrai ? '
       delay: 0
-    - expressions: 0
-      name: 
-      line: Tu sais que si tu me le dis, alors Ithar pourra l'extraire
-      delay: 0
-    - expressions: 0
-      name: 
-      line: "de ma m\xE9moire et mener son plan \xE0 bien?"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: f453fe00920b6f74ca2b8267377f9e44, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 4
       name: 
       line: "Tu as r\xE9ussi \xE0 r\xE9fl\xE9chir \xE0 tout \xE7a tout seul ?"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 5799bf5f682dc3d46ae846123b4a5132, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
       line: "Pas le temps pour les blagues Mist, r\xE9ponds moi."
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 12f0edb5ff8f1114fafc0c9a37e99de3, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: ' Oui, je sais ce qu''Ithar veut faire.'
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: bf939ba8e8a70e1478095d7a47d720f8, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
       line: ' Il serait temps de me mettre au courant '
-      delay: 0
-    - expressions: 0
+      delay: 1.5
+    - expressions: 3
       name: 
       line: tu ne penses pas ? Je met ma vie en danger
       delay: 0
-    - expressions: 0
+    - expressions: 3
       name: 
-      line: " j'estime le m\xE9riter."
+      line: "\xE0 chaque seconde j'estime le m\xE9riter."
       delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: f8c339b72d119c64b953350df6048ca1, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Je ne suis pas oblig...
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 46f0279964c5bd941b03677f191f7110, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
       line: ' MIST !'
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 1
+    voiceLine: {fileID: 8300000, guid: 185f5937e3325de4aa12a13e973c6df4, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -135,23 +131,27 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Ithar veut lancer un sort \xE0 l'\xE9chelle de l'\xEEle."
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3.5
+    voiceLine: {fileID: 8300000, guid: 44f018d8a7c7bae44b77d095f052f7fd, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 3
       name: 
       line: Eh bah enfin ! Quel sort ?
       delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 11650f7d37d775b47bf16a04ee300ed7, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: "Ithar n'a jamais visit\xE9 les autres \xEEles, mais la technologie"
+      line: "Ithar n'a jamais visit\xE9 les autres \xEEles, "
       delay: 0
+    - expressions: 0
+      name: 
+      line: mais la technologie
+      delay: 1
     - expressions: 0
       name: 
       line: des dirigeables est perdue depuis longtemps.
@@ -159,21 +159,21 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: 'Alors il veut utiliser la seule autre chose '
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: ' qui peut voler pour s''y rendre.'
       delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: ad1dbbdf2498d134f9575567c5ea7d18, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
       line: "L'\xEEle enti\xE8re ???"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: 4435dfa32605a8341abf7c625fff2ea2, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -183,29 +183,33 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "transport, mais cela met en danger l'int\xE9grit\xE9 "
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
-      line: "structurelle de l'\xEEle,  il va consommer \xE9norm\xE9ment de"
-      delay: 0
+      line: "structurelle de l'\xEEle, "
+      delay: 1.5
     - expressions: 0
       name: 
-      line: "mana de celle-ci. Il y a peu de chance que \xE7a marche"
-      delay: 0
+      line: " il va consommer \xE9norm\xE9ment de mana de celle-ci."
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: " Il y a peu de chance que \xE7a marche"
+      delay: 3
     - expressions: 0
       name: 
       line: "mais de grandes chances qu'il d\xE9truise l'\xEEle."
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 3a51d0a5199d4ff4590eb3050c48e125, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
-    - expressions: 0
+    - expressions: 2
       name: 
-      line: "Mais il doit pourtant \xEAtre courant des risques ??"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      line: "Mais il doit \xEAtre courant des risques ??"
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: af06e2c059e66c94ea2b28d30724a7e4, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -216,28 +220,28 @@ MonoBehaviour:
       name: 
       line: "tant qu'il peut \xE9tendre son savoir."
       delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: efa5d86dde36c634490013cb5278a85a, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: " Tu aurais pu me le dire d\xE8s le d\xE9but."
       delay: 0
-    - expressions: 0
+    - expressions: 2
       name: 
       line: "C'est pour \xE7a que tu t'es cach\xE9 d'Ithar pendant"
       delay: 0
-    - expressions: 0
+    - expressions: 2
       name: 
       line: votre emprisonnement ?
       delay: 0
-    - expressions: 0
+    - expressions: 2
       name: 
       line: "Pour pas qu'il d\xE9couvre que tu connais ce sort?"
       delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 2aceaaa9a6f5dd14488d908e5d270bd0, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -247,25 +251,29 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "c'est pour \xE7a qu'il ouvre de nombreuses br\xE8ches. "
-      delay: 0
+      delay: 2.5
     - expressions: 0
       name: 
       line: "Je n'ai jamais voulu tout \xE7a moi. "
       delay: 0
     - expressions: 0
       name: 
-      line: Je voulais juste vivre une vie tranquille ! Comme avant !
+      line: 'Je voulais juste vivre une vie tranquille ! '
+      delay: 2.5
+    - expressions: 0
+      name: 
+      line: Comme avant !
       delay: 0
     - expressions: 0
       name: 
       line: " N'emb\xEAter personne, ne parler \xE0 personne,"
-      delay: 0
+      delay: 3
     - expressions: 0
       name: 
       line: ' juste flotter dans les airs et me laisser porter...'
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: e5012154350658a49a0829762769a931, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
@@ -278,6 +286,6 @@ MonoBehaviour:
       delay: 0
     - expressions: 0
       name: 
-      line: "Allez, trouvons Ithar, plus de temps \xE0 perdre."
+      line: "Allez, trouvons le, plus de temps \xE0 perdre."
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 6314ae8e62224d14d9acedc13a6b39ad, type: 3}

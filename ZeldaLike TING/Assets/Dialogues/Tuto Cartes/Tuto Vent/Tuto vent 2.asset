@@ -23,16 +23,20 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: "Maintenant, essaie le verso, lorsque tu r\xE9actives"
-      delay: 0
+      delay: 2.5
     - expressions: 0
       name: 
       line: Cela attire tous les ennemis vers la carte
       delay: 0
     - expressions: 0
       name: 
-      line: Tiens, essaie d'envoyer ce mannequin dans les flammes.
+      line: 'Tiens, essaie d''envoyer ce '
       delay: 0
-    voiceLine: {fileID: 8300000, guid: 221c2dfdd1cc34640a5557703b7ba782, type: 3}
+    - expressions: 0
+      name: 
+      line: mannequin dans les flammes.
+      delay: 0
+    voiceLine: {fileID: 8300000, guid: ad37d29ee15b2d948a5d1a204ccd2ba1, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -40,7 +44,7 @@ MonoBehaviour:
       name: 
       line: "J'ai l'impression d'\xEAtre trait\xE9 comme un enfant."
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: f57108dfd5679904099261f9f0e9f109, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -48,4 +52,4 @@ MonoBehaviour:
       name: 
       line: Tu n'es pas plus intelligent qu'un enfant.
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: 0fe842f7ee9793a448e0710dbbd5a9e6, type: 3}
