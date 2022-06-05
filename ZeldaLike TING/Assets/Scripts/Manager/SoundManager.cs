@@ -5,6 +5,10 @@ public class SoundManager : MonoBehaviour
     private AudioSource _audioSource;
     public static SoundManager Instance;
     public AudioSource ambianceSource;
+    public AudioSource musicSource;
+    public AudioClip dungeonMusic;
+    public AudioClip exploMusic;
+    public AudioClip bossMusic; 
     
 
     private void Awake()

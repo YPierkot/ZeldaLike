@@ -426,7 +426,6 @@ public class
         if (!inAttack)
         {
             if (DialogueManager.Instance.isCinematic) lastDir = new Vector3(rotation.x, 0, rotation.y);
-            Debug.Log("si sinior");
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
             if (Debugger != null) Debugger.text = angleView.ToString();

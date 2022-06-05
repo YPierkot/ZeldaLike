@@ -86,8 +86,7 @@ public class AerynBehaviour : MonoBehaviour
             fourthPath.enabled = true;
             transform.position = fourthPath.transform.position;
         }
-
-        Debug.Log(transform.position-lastPos);
+        
         Vector3 posDiff = transform.position - lastPos;
         lastPos = transform.position;
         
