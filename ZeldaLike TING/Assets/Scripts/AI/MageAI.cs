@@ -34,6 +34,7 @@ namespace AI
             basePosition = transform.position;
             isAttacking = false;
             eyeCounter = 3;
+            e_animator.SetInteger("EyesCount", eyeCounter);
         }
 
         public override void ChangeState(AIStates aiState)
@@ -112,6 +113,7 @@ namespace AI
             isPanic = false;
             mageAnimator.SetBool("isPanic", isPanic);
             eyeCounter = 3;
+            e_animator.SetInteger("EyesCount", eyeCounter);
         }
 
         private IEnumerator DoAttack()
@@ -139,6 +141,7 @@ namespace AI
             }
 
             eyeCounter -= 1;
+            e_animator.SetInteger("EyesCount", eyeCounter);
             yield return new WaitForSeconds(2f);
             isAttacking = false;
         }

@@ -131,6 +131,7 @@ MonoBehaviour:
   e_hp: 4
   e_rangeSight: 11.655
   e_rangeAttack: 8.97
+  e_rangeUnfollow: 15
   e_hitStunTime: 1
   e_speed: 2.07
   e_animator: {fileID: 0}
@@ -142,6 +143,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   spawnFXPos: {fileID: 1749064543}
+  fxBomb: {fileID: 0}
+  hitStunStr: 
   e_currentAiState: 0
   isHitStun: 0
   e_rangeWander: 3
@@ -154,6 +157,8 @@ MonoBehaviour:
     type: 3}
   eyeCounter: 3
   isPanic: 0
+  debugX: 0
+  debugZ: 0
 --- !u!65 &3913864873762027158
 BoxCollider:
   m_ObjectHideFlags: 0
