@@ -435,7 +435,7 @@ public class
     
     private void Animations()
     {
-        if (DialogueManager.Instance.isCinematic) return;
+        if (DialogueManager.Instance.isCinematic && !DialogueManager.Instance.isCursed) return;
 
         Vector3 animDir;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;

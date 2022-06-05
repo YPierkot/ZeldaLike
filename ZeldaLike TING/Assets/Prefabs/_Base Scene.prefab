@@ -6914,6 +6914,7 @@ MonoBehaviour:
   mist: {fileID: 829341620}
   isCursed: 0
   isCinematic: 0
+  dialogueMoved: 0
   gray: {fileID: 2885600334560105767}
   EnqueuedDialogue: []
   FirstExploration: []
@@ -7948,19 +7949,19 @@ MonoBehaviour:
   cardSprites: {fileID: 11400000, guid: 8e0553251e803754eb1b9ffc8e33e744, type: 2}
   cardHandlesReference:
   - Handle: {fileID: 3453756642744160009}
-    sideText: {fileID: 0}
+    animator: {fileID: 0}
     card: 1
     image: {fileID: 0}
   - Handle: {fileID: 8070015815526220847}
-    sideText: {fileID: 0}
+    animator: {fileID: 0}
     card: 2
     image: {fileID: 0}
   - Handle: {fileID: 839723355162386942}
-    sideText: {fileID: 0}
+    animator: {fileID: 0}
     card: 3
     image: {fileID: 0}
   - Handle: {fileID: 3545406009621369294}
-    sideText: {fileID: 0}
+    animator: {fileID: 0}
     card: 4
     image: {fileID: 0}
   cardUnlock: 4
@@ -8742,7 +8743,7 @@ PrefabInstance:
     - target: {fileID: 3356898156903606529, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.15686275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3421201290825428774, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
@@ -8757,7 +8758,7 @@ PrefabInstance:
     - target: {fileID: 4017157162480331156, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.15686275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4079399207936563425, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
@@ -8772,7 +8773,7 @@ PrefabInstance:
     - target: {fileID: 5214362071009611454, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.15686275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5607359522157237992, guid: d9d30125b4f2a6c47bb999c02a3ff083,
         type: 3}
