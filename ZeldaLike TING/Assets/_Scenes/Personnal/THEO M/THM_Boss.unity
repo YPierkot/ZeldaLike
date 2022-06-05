@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14514603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: -100, z: 0.47}
+  m_LocalPosition: {x: 0, y: -100, z: 0}
   m_LocalScale: {x: 46.132427, y: 200, z: 46.132427}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -354,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451372039}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.19, y: -1.93, z: 0}
+  m_LocalPosition: {x: 0, y: -1.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1843,6 +1843,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
         type: 3}
+      propertyPath: canUseCards
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187803163383812494, guid: 04d5dd494f81cd245a3a98f68ff6149d,
+        type: 3}
       propertyPath: canUseIceCard
       value: 1
       objectReference: {fileID: 0}
@@ -2331,7 +2336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 4.711, y: 0}
+  m_AnchoredPosition: {x: 4.7109985, y: 0}
   m_SizeDelta: {x: -0.476, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1983301308
@@ -2371,6 +2376,7 @@ MonoBehaviour:
   TransformTP_Zone: {fileID: 451372040}
   sizeAttackZone: {x: 21, y: 21}
   distanceFromPlayer: {x: 5, y: 5}
+  runes: []
   isFreeze: 0
   sizeTP_Zone: {x: 15, y: 15}
   DebugTP_Zone: 1
@@ -2389,11 +2395,12 @@ MonoBehaviour:
   - {fileID: 4648553558050901911, guid: 58ba683132cf57042a15e4fa2a7c5c49, type: 3}
   - {fileID: 2093334426422481771, guid: bc5f08cff5fde0d4e95b62e9dce05ca5, type: 3}
   - {fileID: 5072661074551464793, guid: dc456394ce7545c4cae250d0aed32689, type: 3}
+  ballPosList: []
   attackWarning: {fileID: 2616307969954926803, guid: a512e531b950d3a4fb7e44125552ddd8,
     type: 3}
   warnings: []
-  warningTimerCD: 0.05
-  ballThrowTimer: 0.3
+  warningTimerCD: 0.4
+  ballThrowTimer: 0.7
   canThrow: 0
   destroyableColor: {r: 0.5424528, g: 0.792024, b: 1, a: 0}
   invincibleColor: {r: 0.9056604, g: 0, b: 0.609112, a: 0}

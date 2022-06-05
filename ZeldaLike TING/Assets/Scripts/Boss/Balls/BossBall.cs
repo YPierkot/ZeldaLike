@@ -139,6 +139,7 @@ public class BossBall : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         if (slowPlayer) Controller.instance.isSlow = false;
+        
         Destroy(gameObject);
     }
 
@@ -178,5 +179,14 @@ public class BossBall : MonoBehaviour
         damage = false;
         slowPlayer = false;
         Controller.instance.isSlow = false;
+    }
+
+
+    IEnumerator SetupBall(Vector3 _target,float speed, GameObject warner, float timer = 1.5f)
+    {
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(timer);
+        gameObject.SetActive(true);
+        LaunchBall(_target, speed, warner);
     }
 }
