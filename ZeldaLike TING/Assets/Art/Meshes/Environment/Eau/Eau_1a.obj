@@ -1,53 +1,96 @@
-# Blender v3.0.0 OBJ File: 'Iles.blend'
-# www.blender.org
-o Plane.001
+#File written by RizomUV 2022.0.11.g5424fda. Compilation :Nov 24 2021,04:16:21
+mtllib 
+#begin vertices
 v 8.158348 -1.982715 -2.132796
 v -1.695612 -1.982715 5.056045
-v 9.597395 -1.982715 -0.012560
-v 1.086590 -1.982715 7.542055
+v 9.597395 -1.982715 -0.01256
+v 1.08659 -1.982715 7.542055
 v -0.450505 -1.982715 1.195504
-v 6.573889 -64.946739 6.819713
-v 6.573890 -3.778677 6.819713
+v 6.573889 -64.94674 6.819713
+v 6.57389 -3.778677 6.819713
 v 5.152287 -1.982715 6.224306
-v 6.311910 -2.880694 6.803257
-v 5.716330 -2.223327 6.569665
+v 6.31191 -2.880694 6.803257
+v 5.71633 -2.223327 6.569665
 v 3.855305 -1.982715 -1.915096
-v 8.535350 -64.946739 4.923409
-v 8.535350 -3.778677 4.923408
+v 8.53535 -64.94674 4.923409
+v 8.53535 -3.778677 4.923408
 v 8.394387 -2.880694 4.789957
 v 7.926295 -2.223327 4.433202
 v 7.414815 -1.982715 3.948759
-vt 0.522682 0.000000
-vt 1.000000 0.000000
-vt 1.000000 1.000000
-vt 0.511657 1.000000
-vt 0.261341 0.000000
-vt 0.274427 1.000000
-vt 0.246752 1.000000
-vt 0.470646 1.000000
-vt 0.522682 1.000000
-vt 0.261341 1.000000
-vt 0.488849 1.000000
-vt 0.259944 1.000000
-vt 0.470944 1.000000
-vt 0.246411 1.000000
-vt 0.000000 0.000000
-vt 0.037196 1.000000
-vn 0.0000 1.0000 0.0000
+#end vertices
+
+#begin 16 textures vertices 
+vt 0.7412199 0.9723635 0
+vt 0.2326323 0.9787034 0
+vt 0.7423769 0.6984305 0
+vt 0.2337893 0.6929006 0
+vt 0.3880949 0.992594 0
+vt 0.3167358 1.086375e-16 0
+vt 0.3167358 0.651679 0
+vt 0.3066385 0.6864727 0
+vt 0.3167358 0.6615163 0
+vt 0.3167358 0.671058 0
+vt 0.6101471 0.9930859 0
+vt 0.6460816 1.086375e-16 0
+vt 0.6460816 0.651679 0
+vt 0.6460816 0.6615163 0
+vt 0.6460816 0.671058 0
+vt 0.661807 0.6873969 0
+#end 16 textures vertices 
+
+#begin 10 normals 
+vn 0 1 0
 vn 0.0806 0.9934 0.0817
 vn 0.0857 0.9925 0.0869
 vn 0.6912 0.1058 0.7149
 vn 0.6907 0.1122 0.7144
-vn 0.6951 0.0000 0.7189
+vn 0.6951 0 0.7189
 vn 0.3651 0.8522 0.3747
 vn 0.3972 0.8218 0.4085
 vn 0.6074 0.4861 0.6283
-vn 0.6230 0.4432 0.6445
+vn 0.623 0.4432 0.6445
+#end 10 normals 
+
+#begin 7 faces
+o Plane:001
 s 1
-f 5/1/1 2/2/1 4/3/1 8/4/2
-f 11/5/1 5/1/1 8/4/2 16/6/3
-f 13/7/4 7/8/5 6/9/6 12/10/6
-f 10/11/7 15/12/8 16/6/3 8/4/2
-f 9/13/9 14/14/10 15/12/8 10/11/7
-f 7/8/5 13/7/4 14/14/10 9/13/9
-f 1/15/1 11/5/1 16/6/3 3/16/1
+f 5/5/1 2/2/1 4/4/1 8/8/2 
+f 11/11/1 5/5/1 8/8/2 16/16/3 
+f 13/13/4 7/7/5 6/6/6 12/12/6 
+f 10/10/7 15/15/8 16/16/3 8/8/2 
+f 9/9/9 14/14/10 15/15/8 10/10/7 
+f 7/7/5 13/13/4 14/14/10 9/9/9 
+f 1/1/1 11/11/1 16/16/3 3/3/1 
+#end 7 faces
+
+#ZOMPROPERTIES_04{
+#ZOMPROPERTIES_04 table {Mesh table {SymPlane table {Point vector3d 0 0 0 Normal vector3d 1 0 0 Threshold double 0.01 
+#ZOMPROPERTIES_04 Enabled bool false EdgeID int -1 SymEdgeID int -1 UPos double 0.5 LocalMode bool false } RootGroup C
+#ZOMPROPERTIES_04 SubMeshGroup {Children table {Tile_0_0 CSubMeshGroup {Children table {} BBoxUV box3d 0 0 0 0 0 0 BBo
+#ZOMPROPERTIES_04 x3D box3d 0 0 0 0 0 0 Area3D double 0 AreaUV double 0.378896 IsRoot bool false TopoStable table {Sel
+#ZOMPROPERTIES_04 ected bool false Box box3d 0 1 0 1 0 1 U int 0 V int 0 NU int 0 NV int 0 Tiling vector3d 1 1 1 TileR
+#ZOMPROPERTIES_04 atioMode string "1:1" Pack table {BoxFrameLocked bool false BoxFrameEdit bool false } } IsTile bool 
+#ZOMPROPERTIES_04 true PolyIDs ints { 0 1 6 3 4 5 2 } } } BBoxUV box3d 0 0 0 0 0 0 BBox3D box3d 0 0 0 0 0 0 Area3D dou
+#ZOMPROPERTIES_04 ble 0 AreaUV double 0 IsRoot bool true TopoStable table {Selected bool false Box box3d 0 1 0 1 0 1 U
+#ZOMPROPERTIES_04  int 0 V int 0 NU int 1 NV int 1 Tiling vector3d 1 1 1 TileRatioMode string "1:1" Pack table {Rotate
+#ZOMPROPERTIES_04  table {Mode int 2 Min double 0 Max double 90 Step double 0 } PaddingSize double 0.0078125 MarginSiz
+#ZOMPROPERTIES_04 e double 0.00390625 Resolution int 256 MapResolution int 2048 Scaling table {TexelDensity double 102
+#ZOMPROPERTIES_04 4 Mode int 0 } LayoutScalingMode int 2 MaxMutations int 1 } } IsTile bool false PolyIDs ints { } } M
+#ZOMPROPERTIES_04 aps table {Density table {PrimType string "Polygon" Size int 1 DefaultValue double 1 ScaleType strin
+#ZOMPROPERTIES_04 g "Log" MergeMode string "Average" MinValue double 0.1 MaxValue double 4 Data doubles { r 7 1 } } Pi
+#ZOMPROPERTIES_04 n table {PrimType string "Vertex" Size int 1 DefaultValue double 0 ScaleType string "Normalized" Mer
+#ZOMPROPERTIES_04 geMode string "Max" MinValue double 0 MaxValue double 1 Data doubles { r 16 0 } } Protect table {Pri
+#ZOMPROPERTIES_04 mType string "Vertex" Size int 1 DefaultValue double 0 ScaleType string "Normalized" MergeMode strin
+#ZOMPROPERTIES_04 g "Average" MinValue double -1 MaxValue double 1 Data doubles { r 16 0 } } } } }
+#ZOMPROPERTIES_04}
+
+
+#ZOMSCENE_01{
+#ZOMSCENE_01 CScene {Settings table {AxisSystem table {UpVector string "y" } Unit string "cm" } }
+#ZOMSCENE_01}
+
+#begin 0 fatal error vertex (that RizomUV cannot handle)
+#end 0 fatal error vertex (that RizomUV cannot handle)
+
+#begin 0 error vertex
+#end 0 error vertex

@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 0610e71b5acdd0c4ca55604689086d42
+guid: 68f0d56d31b37fc4f9c34aff7450aa63
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: 6e6b25f4ee106b94b96139021ec5ef13, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -37,7 +42,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
