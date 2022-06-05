@@ -46,9 +46,11 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         if (!GameManager.Instance.isDungeonFinished)
         {
+            
             Controller.instance.FreezePlayer(true);
             Controller.instance.gameObject.SetActive(true);
             DialogueManager.Instance.IsCinematic(true);
+            Controller.instance.Rotate(new Vector3(1, 1));
             UIManager.Instance.playerLocationTween.Play("PlayerLocation");
             UIManager.Instance.playerLocation.text = location;
             GameManager.Instance.cameraController.ChangePoint(cameraPoint);

@@ -251,6 +251,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {   
+            Controller.instance.animatorPlayer.Play("idle");
             UIManager.Instance.gameObject.SetActive(false);
             cinematicMode.SetTrigger("IsCinematic");
         }

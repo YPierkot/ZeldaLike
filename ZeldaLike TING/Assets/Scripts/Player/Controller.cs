@@ -223,7 +223,7 @@ public class
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
     {
-        if (DialogueManager.Instance.isCinematic && Vector2.Distance(Vector2.zero,obj.ReadValue<Vector2>()) > joystickDeadZone)
+        if (!DialogueManager.Instance.isCinematic && Vector2.Distance(Vector2.zero,obj.ReadValue<Vector2>()) > joystickDeadZone)
         {
           Vector2 rotation = obj.ReadValue<Vector2>().normalized;
           Rotate(rotation);  
@@ -310,8 +310,14 @@ public class
     
     private void FixedUpdate()
     {
-        Vector3 dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
-        lastDir = dir;
+        Vector3 dir = Vector3.zero;
+        if (!DialogueManager.Instance.isCinematic)
+        {
+            dir = new Vector3(InputMap.Movement.Position.ReadValue<Vector2>().x, 0, InputMap.Movement.Position.ReadValue<Vector2>().y).normalized;
+            lastDir = dir;
+            
+        }
+        
         
         if (canMove)
         {
@@ -415,10 +421,12 @@ public class
             }
         }
     }
-    void Rotate(Vector2 rotation)
+    public void Rotate(Vector2 rotation)
     {
         if (!inAttack)
         {
+            if (DialogueManager.Instance.isCinematic) lastDir = new Vector3(rotation.x, 0, rotation.y);
+            Debug.Log("si sinior");
             angleView = -(Mathf.Atan2(rotation.y, rotation.x)*Mathf.Rad2Deg);
             if (angleView < 0) angleView = 360 + angleView;
             if (Debugger != null) Debugger.text = angleView.ToString();
@@ -497,9 +505,14 @@ public class
             }
             else
             {
-                if (moving)
+                if (DialogueManager.Instance.isCinematic)
                 {
-                    if (dashing)
+                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
+                }
+                if (moving )
+                {
+                    if (dashing || DialogueManager.Instance.isCinematic)
                     {
                         animatorPlayer.SetFloat("X-Axis", lastDir.x);
                         animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
