@@ -103,43 +103,28 @@ public class PlayerStat : MonoBehaviour
    public IEnumerator PlayerDeath()
    {
       UIManager.Instance.TakeDamageUI(life);
-      //Time.timeScale = 0f;
       _control.animatorPlayer.SetBool("isDead", true);
       CardsController.instance.canUseCards = false;
       _control.FreezePlayer(true);
+      
+      Time.timeScale = 0f;
       yield return new WaitForSeconds(3f);
-      Controller.instance.transform.position = GameManager.Instance.actualRespawnPoint.position;
-      _control.animatorPlayer.SetBool("isDead", false);
-      life = lifeMax;
-      UIManager.Instance.InitLife(life);
-      CardsController.instance.canUseCards = true;
-      _control.FreezePlayer(false);
+      
+      PlayerRespawn();
    }
 
    private void PlayerRespawn()
    {
-      CardsController.instance.canUseCards = true;
-      _control.canMove = true;
-      _control.canDash = true;
-      //if (GameManager.Instance.actualRespawnPoint.position != null) _control.transform.position = GameManager.Instance.actualRespawnPoint.position;
-      _control.animatorPlayer.SetBool("isDead", false);
+      SaveManager _saveManager = SaveManager.instance;
       Time.timeScale = 1f;
-      UIManager.Instance.InitLife(lifeMax);
+      Controller.instance.transform.position = _saveManager.spawnPointSave.position;
+      _control.animatorPlayer.SetBool("isDead", false);
+      life = _saveManager.lifeSave;
+      UIManager.Instance.InitLife(life);
+      money = _saveManager.moneySave;
+      _control.FreezePlayer(false);
    }
    
-   /*private void OnCollisionEnter(Collision other)
-   {
-      if (other.transform.CompareTag("Ennemy")) 
-      {
-         TakeDamage();
-         StartCoroutine(HitCD());
-         _control.canMove = false;
-         Vector3 repulse = (transform.position - other.contacts[0].point).normalized * repulseForce;
-         _control.rb.velocity = repulse;
-      }
-   }
-   */
-
    IEnumerator HitCD()
    {
       _control.canMove = false;

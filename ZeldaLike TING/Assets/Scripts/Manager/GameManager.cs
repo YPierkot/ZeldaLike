@@ -91,10 +91,8 @@ public class GameManager : MonoBehaviour
                         volumeTransition.profile = null;
                         break;
                 }
-                
             }
         }
-
     }
 
     public void Disable(GameObject objectToDisable)
@@ -111,7 +109,8 @@ public class GameManager : MonoBehaviour
     public void SetSpawnPoint(Transform newSpawnPoint)
     {
         actualRespawnPoint = newSpawnPoint;
+        int actualMoneyAmount = PlayerStat.instance.money;
+        int actualLifeMaxAmount = PlayerStat.instance.lifeMax;
+        SaveManager.instance.SetSave(actualLifeMaxAmount, actualMoneyAmount, actualRespawnPoint);
     }
-
-    
 }

@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static SaveManager instance;
+    private void Awake()
     {
-        
+        if (instance != null)
+            instance = this;
+        else 
+            instance = this;
     }
+    
+    public int lifeSave;
+    public int moneySave;
+    public Transform spawnPointSave;
 
-    // Update is called once per frame
-    void Update()
+    public void SetSave(int liveAmount, int moneyAmount, Transform spawnSaveTransform)
     {
-        
+        lifeSave = liveAmount;
+        moneySave = moneyAmount;
+        spawnPointSave = spawnSaveTransform;
     }
 }
