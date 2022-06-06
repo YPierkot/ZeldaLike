@@ -169,6 +169,12 @@ public class InteracteObject : MonoBehaviour
         }
     }
 
+    public void ResetEffect()
+    {
+        burning = false;
+        isFreeze = false;
+    }
+
     virtual public IEnumerator FreezeTimer()
     {
         yield return new WaitForSeconds(freezeTime);

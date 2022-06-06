@@ -257,6 +257,7 @@ public class BossManager : MonoBehaviour
             teleporting = false;
             castAttack = true;
             currentState = BossState.idle;
+            SetupRune();
         }
     }
 
@@ -486,15 +487,20 @@ public class BossManager : MonoBehaviour
 
     void SetupRune()
     {
-        int i = Random.Range(0, 3);
+        Debug.Log("Setup Tunes");
+        int i = Random.Range(0, runes.Length);
         for (int j = 0; j < runes.Length; j++)
         {
             if (i != j)
             {
                 GameObject currentRune = runes[j].rune;
                 activeRune.Add(currentRune);
-                Vector3 vec = new Vector3(Random.Range(0f, 7f), _groundY-boss.position.y, Random.Range(0f, 7f));
+                Vector3 vec = new Vector3(Random.Range(2f, 5f), _groundY-boss.position.y, Random.Range(2f, 5f));
                 currentRune.transform.position = vec + boss.position;
+                LineRenderer line = currentRune.GetComponent<LineRenderer>();
+                line.SetPosition(0,currentRune.transform.position);
+                line.SetPosition(1,boss.position);
+                currentRune.SetActive(true);
             }
         }
     }
@@ -502,6 +508,7 @@ public class BossManager : MonoBehaviour
     public void RuneDestroy(GameObject rune)
     {
         activeRune.Remove(rune);
+        rune.SetActive(false);
         if (activeRune.Count == 0)
         {
             onShield = false;
