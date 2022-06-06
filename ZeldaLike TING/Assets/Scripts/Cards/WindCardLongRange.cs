@@ -10,14 +10,11 @@ public class WindCardLongRange : MonoBehaviour
 {
     private BoxCollider collider;
     [HideInInspector] public Vector3 velocity;
-    
     [SerializeField] private LayerMask interactMask;
     [SerializeField] private Vector3 attractivePoint;
     [SerializeField] private float attractiveRadius = 4.7f;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private GameObject windFX;
-    
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, attractiveRadius);
@@ -27,7 +24,8 @@ public class WindCardLongRange : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         attractivePoint = transform.position;
         
-        Destroy(Instantiate(windFX, attractivePoint, Quaternion.identity),3f);
+        var windFX = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxLongWindCard);
+        windFX.transform.position = attractivePoint;
         
         Collider[] colliders = Physics.OverlapSphere(attractivePoint, attractiveRadius, interactMask);
         foreach (var col in colliders)

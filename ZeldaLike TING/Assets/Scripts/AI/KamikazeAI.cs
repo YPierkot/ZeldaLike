@@ -144,14 +144,14 @@ namespace AI
             
             kamikazeAnimator.SetBool("isAttack", true);
             yield return new WaitForSeconds(.11f);
+
+            var fxKamikaze = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxKamikaze);
+            fxKamikaze.transform.position = transform.position;
             
-            Destroy(Instantiate(fxBomb, transform.position, Quaternion.identity), 1.3f);
-            
-            yield return new WaitForSeconds(0.94f);
+            yield return new WaitForSeconds(0.72f);
             bool isPlayer = Physics.CheckSphere(transform.position, e_aoeRange, playerLayerMask);
             if (isPlayer && GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead) PlayerStat.instance.TakeDamage();
             
-            //yield return new WaitForSeconds(0.7f);
             Destroy(gameObject);
         }
         

@@ -7,15 +7,13 @@ public class BlueCardLongRange : MonoBehaviour
     public LayerMask enemyLayerMask;
     public LayerMask groundMask;
     public float effectRadius = 4f;
-    //public GameObject DebugSphere;
-    public GameObject iceFX;
-    
+
     public void IceCardLongEffet()
     {
-        //Destroy(Instantiate(DebugSphere, transform.position, Quaternion.identity), 2f);
-        Destroy(Instantiate(iceFX, transform.position + new Vector3(0,-1.03f,0), Quaternion.identity),6f);
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        var iceFX= PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxLongIceCard);
+        iceFX.transform.position = transform.position + new Vector3(0, -1.03f, 0);
         
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Collider[] colliders = Physics.OverlapSphere(transform.position, effectRadius);
         foreach (var col in colliders)
         {
@@ -35,7 +33,6 @@ public class BlueCardLongRange : MonoBehaviour
         }
     }
     
-
     private void OnDestroy()
     {
         CardsController.isIceGround = false;

@@ -114,9 +114,12 @@ namespace AI
             if (GetComponent<AI.AbstractAI>().e_currentAiState != AIStates.dead != null)
             {
                 Vector3 bombPos = new Vector3(transform.position.x, transform.position.y - 0.08f, transform.position.z);
-                var bomb = Instantiate(bombPrefab, bombPos, Quaternion.identity);
-                Destroy(Instantiate(fxBomb, bombPos, Quaternion.identity), 2f);
-                yield return new WaitForSeconds(0.94f);
+                var bomb = PoolManager.Instance.PoolInstantiate(PoolManager.Object.bomb);
+                bomb.transform.position = bombPos;
+                var fx = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxBomber);
+                fx.transform.position = bombPos;
+                
+                yield return new WaitForSeconds(0.72f);
                 bomb.GetComponent<Bomb>().ExploseBomb();
             }
             yield return new WaitForSeconds(1.7f);
@@ -183,6 +186,10 @@ namespace AI
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, e_fliRange); // Zone of the flie range
         }
-        
+        private IEnumerator disableFx(GameObject fx)
+        {
+            yield return new WaitForSeconds(3f);
+            fx.SetActive(false);
+        }
     }
 }
