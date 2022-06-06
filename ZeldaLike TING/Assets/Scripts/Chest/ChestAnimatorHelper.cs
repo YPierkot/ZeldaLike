@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Android;
 
 public class ChestAnimatorHelper : MonoBehaviour {
     [SerializeField] private GameObject chestFX = null;

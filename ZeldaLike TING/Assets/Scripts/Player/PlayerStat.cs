@@ -70,14 +70,6 @@ public class PlayerStat : MonoBehaviour
    
    public void TakeDamage(int damage = 1)
    {
-      Debug.Log("Damage");
-      StartCoroutine(TakeDamageCo(damage));
-   }
-   
-   public IEnumerator TakeDamageCo(int damage)
-   {
-      yield return new WaitForSeconds(0.25f);
-
       if (!isImmune && !_control.dashing && life > 0)
       {
          life -= damage;
@@ -116,13 +108,14 @@ public class PlayerStat : MonoBehaviour
    private void PlayerRespawn()
    {
       SaveManager _saveManager = SaveManager.instance;
-      Time.timeScale = 1f;
       Controller.instance.transform.position = _saveManager.spawnPointSave.position;
       _control.animatorPlayer.SetBool("isDead", false);
       life = _saveManager.lifeSave;
-      UIManager.Instance.InitLife(life);
       money = _saveManager.moneySave;
       _control.FreezePlayer(false);
+      Time.timeScale = 1f;
+      UIManager.Instance.InitLife(life);
+      //UIManager.Instance.RecoverAllLife(life);
    }
    
    IEnumerator HitCD()

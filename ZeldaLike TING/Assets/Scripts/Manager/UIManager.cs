@@ -48,6 +48,8 @@ public class UIManager : MonoBehaviour
    
    [Header("--- LIFE & STAT")] 
    [SerializeField] private Animator[] lifeArray;
+   [SerializeField] private Sprite leftHeart;
+   [SerializeField] private Sprite rightHeart;
    [SerializeField] private Animator KellHead;
    [Space]
    [SerializeField] private Animator[] dashHandles;
@@ -264,6 +266,24 @@ public class UIManager : MonoBehaviour
       {
          if (i >= life)lifeArray[i].gameObject.SetActive(false);
          else lifeArray[i].gameObject.SetActive(true);
+      }
+   }
+
+   public void RecoverAllLife(int life)
+   {
+      bool isLeft = true;
+      for (int i = 0; i < life; i++)
+      {
+         if (isLeft)
+         {
+            lifeArray[i].gameObject.GetComponent<Image>().sprite = leftHeart;
+            isLeft = false;
+         }
+         else
+         {
+            lifeArray[i].gameObject.GetComponent<Image>().sprite = rightHeart;
+            isLeft = true;
+         }
       }
    }
 
