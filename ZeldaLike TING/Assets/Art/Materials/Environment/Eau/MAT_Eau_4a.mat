@@ -48,6 +48,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _DeapthDistance: 10
+    - _Depth: 0.1
     - _FadeIn: 0
     - _FadeOffset: 2.83
     - _FadeOut: -50
@@ -68,8 +69,9 @@ Material:
     m_Colors:
     - _BaseWater: {r: 0, g: 0, b: 0, a: 0}
     - _DeepWater: {r: 0, g: 0, b: 0, a: 0}
-    - _Ripple_Color: {r: 0.004538993, g: 0.65460116, b: 0.9622642, a: 0}
+    - _Ripple_Color: {r: 0.2251691, g: 0.66245353, b: 0.8679245, a: 1}
     - _Ripple_Speed: {r: 0, g: 0.1, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _rippleColor: {r: 0.33490568, g: 0.7509211, b: 1, a: 1}
     - _waveColor: {r: 0, g: 0.62185353, b: 1, a: 0}
   m_BuildTextureStacks: []
