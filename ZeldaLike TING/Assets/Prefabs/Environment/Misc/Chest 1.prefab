@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3796999084781178024}
   - component: {fileID: 6387802285228445698}
+  - component: {fileID: 129848401411831583}
   m_Layer: 0
   m_Name: Box101
   m_TagString: Untagged
@@ -114,7 +115,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77082efe1b8b88845aacf5279d050b37, type: 2}
+  - {fileID: 2100000, guid: 8225831336054af418faa1eae18bfb45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,6 +152,26 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.34880656, y: -0.0072975755, z: -0.008802861}
     m_Extent: {x: 0.2305081, y: 0.5379132, z: 0.3993852}
   m_DirtyAABB: 0
+--- !u!114 &129848401411831583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767572985395155383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33975daf3992b7342a258e3a77dc232f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 8225831336054af418faa1eae18bfb45, type: 2}
+  yValue: 0
+  startYValue: 0
+  noiseScale: 50
+  noiseStrength: 1
+  appearSpeed: 0.04
+  maxY: 0
+  appear: 0
 --- !u!1 &818650191528595606
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9005762100096856602}
   - component: {fileID: 5917974432417518330}
+  - component: {fileID: 3375121815695331391}
   m_Layer: 0
   m_Name: Object001
   m_TagString: Untagged
@@ -235,7 +257,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77082efe1b8b88845aacf5279d050b37, type: 2}
+  - {fileID: 2100000, guid: 8225831336054af418faa1eae18bfb45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,6 +294,26 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.07605119, y: -0.0073206425, z: -0.008666575}
     m_Extent: {x: 0.19521396, y: 0.53794, z: 0.39962885}
   m_DirtyAABB: 0
+--- !u!114 &3375121815695331391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913343538919619042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33975daf3992b7342a258e3a77dc232f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 8225831336054af418faa1eae18bfb45, type: 2}
+  yValue: 0
+  startYValue: 0
+  noiseScale: 50
+  noiseStrength: 1
+  appearSpeed: 0.04
+  maxY: 0
+  appear: 0
 --- !u!1 &4318172085069173882
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +420,7 @@ MonoBehaviour:
   chestFXSpawn: {fileID: 1334880432}
   chestDrop: {fileID: 4735250745404963608, guid: d41b12bbfcf2825468490399240efc6a,
     type: 3}
-  dropNumber: 5
+  dropRange: {x: 1, y: 1}
   throwForce: 35
   throwRangeDistance: 10
 --- !u!1 &6442669408957251834

@@ -122,6 +122,7 @@ namespace AI
         {
             GetComponentInChildren<Animator>().SetBool("isDead", true);
             yield return new WaitForSeconds(0.75f);
+            if(GetComponent<Dropper>() != null)GetComponent<Dropper>().Loot();
             Destroy(gameObject);
         }
         

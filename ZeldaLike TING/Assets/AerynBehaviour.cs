@@ -34,58 +34,62 @@ public class AerynBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (isFreed && firstPath)
+        if (!GameManager.Instance.isTutorial)
         {
-            distancefromPlayer = Vector3.Distance(transform.position, Controller.instance.transform.position);
-            if (Vector3.Distance(transform.position, firstDestination.position) > Vector3.Distance(Controller.instance.transform.position, firstDestination.position))
+            if (isFreed && firstPath)
             {
-                path.enabled = true;
-                path.speed = maxSpeed;
-                transform.position = path.transform.position;
-                return;
+                        distancefromPlayer = Vector3.Distance(transform.position, Controller.instance.transform.position);
+                        if (Vector3.Distance(transform.position, firstDestination.position) > Vector3.Distance(Controller.instance.transform.position, firstDestination.position))
+                        {
+                            path.enabled = true;
+                            path.speed = maxSpeed;
+                            transform.position = path.transform.position;
+                            return;
+                        }
+                        if (distancefromPlayer > playerMaxDistance)
+                        {
+                            path.enabled = false;
+                        }
+                        else if (distancefromPlayer > playerSlowDistance && distancefromPlayer < playerMaxDistance)
+                        {
+                            path.enabled = true;
+                            path.speed = slowSpeed;
+                        }
+                        else if(distancefromPlayer < playerSlowDistance && distancefromPlayer > playerMinDistance)
+                        {
+                            path.enabled = true;
+                            path.speed = normalSpeed;
+                        }
+                        else if(distancefromPlayer < playerMinDistance)
+                        {
+                            path.enabled = true;
+                            path.speed = maxSpeed;
+                        }
+                        transform.position = path.transform.position;
             }
-            if (distancefromPlayer > playerMaxDistance)
+            
+            if (isFreed && !firstPath && !isThirdPath)
             {
-                path.enabled = false;
+                secondPath.speed = 3;
+                secondPath.enabled = true;
+                transform.position = secondPath.transform.position;
             }
-            else if (distancefromPlayer > playerSlowDistance && distancefromPlayer < playerMaxDistance)
+            
+            if (isThirdPath)
             {
-                path.enabled = true;
-                path.speed = slowSpeed;
+                thirdPath.speed = 4.5f;
+                thirdPath.enabled = true;
+                transform.position = thirdPath.transform.position;
             }
-            else if(distancefromPlayer < playerSlowDistance && distancefromPlayer > playerMinDistance)
+            
+            if (isFourthPath)
             {
-                path.enabled = true;
-                path.speed = normalSpeed;
+                fourthPath.speed = 4.5f;
+                fourthPath.enabled = true;
+                transform.position = fourthPath.transform.position;
             }
-            else if(distancefromPlayer < playerMinDistance)
-            {
-                path.enabled = true;
-                path.speed = maxSpeed;
-            }
-            transform.position = path.transform.position;
         }
-
-        if (isFreed && !firstPath && !isThirdPath)
-        {
-            secondPath.speed = 3;
-            secondPath.enabled = true;
-            transform.position = secondPath.transform.position;
-        }
-
-        if (isThirdPath)
-        {
-            thirdPath.speed = 4.5f;
-            thirdPath.enabled = true;
-            transform.position = thirdPath.transform.position;
-        }
-
-        if (isFourthPath)
-        {
-            fourthPath.speed = 4.5f;
-            fourthPath.enabled = true;
-            transform.position = fourthPath.transform.position;
-        }
+        
         
         Vector3 posDiff = transform.position - lastPos;
         lastPos = transform.position;

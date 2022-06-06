@@ -24,7 +24,7 @@ public class ChestAnimatorHelper : MonoBehaviour {
         Dropper dropper = GetComponent<Dropper>();
         for (int i = 0; i < Random.Range((int)dropRange.x, (int)dropRange.y); i++) {
             GameObject ressource = Instantiate(dropper.Loots[0].Item, transform.position, Quaternion.identity);
-            if(dropper != null) dropper.Loot();
+            //if(dropper != null) dropper.Loot();
             if (ressource.GetComponent<Rigidbody>() == null) return;
             ressource.GetComponent<Rigidbody>().AddForce(Vector3.up * throwForce + GetPointOnCircle(Random.Range(0,360), Random.Range(0,360)), ForceMode.Impulse);
         }
