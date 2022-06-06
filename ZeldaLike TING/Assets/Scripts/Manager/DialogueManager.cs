@@ -244,7 +244,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (!cinematic)
         {
-            Debug.Log("Plus de cinématique");
             UIManager.Instance.gameObject.SetActive(true);
             cinematicMode.ResetTrigger("IsCinematic");
             isCinematic = false;
@@ -293,7 +292,7 @@ public class DialogueManager : MonoBehaviour
     }
     public IEnumerator CinematicWait()
     {
-        yield return new WaitWhile(()=> !isPlayingDialogue);
+        yield return new WaitWhile(()=> isPlayingDialogue);
         if (skip)
         {
             skip = false;
