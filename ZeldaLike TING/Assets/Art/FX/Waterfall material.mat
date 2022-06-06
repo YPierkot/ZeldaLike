@@ -47,14 +47,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Pixel: 64
+    - _DeapthDistance: 10
+    - _Pixel: 96.47
+    - _Posterize: 8
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ripple_ammount: 6.75
-    - _Vertex_offset: 2.36
-    - _Voronoi_scale: 22.99
+    - _Ripple_ammount: 4.8
+    - _Vertex_offset: 0
+    - _Voronoi_scale: 13.3
     - _Voronoi_speed: 2.91
+    - _WaveSpeed: 0.1
+    - _rippleDensity: 4.65
+    - _rippleSlimness: 3.5
+    - _rippleSpeed: 1
+    - _waveHeight: 0
     m_Colors:
-    - _Ripple_Color: {r: 0, g: 0.5853677, b: 0.85882354, a: 0}
+    - _BaseWater: {r: 0, g: 0, b: 0, a: 0}
+    - _DeepWater: {r: 0, g: 0, b: 0, a: 0}
+    - _Ripple_Color: {r: 0.21333212, g: 0.6715313, b: 0.8867924, a: 0}
     - _Ripple_Speed: {r: 0, g: 0.1, b: 0, a: 0}
+    - _rippleColor: {r: 0.33490568, g: 0.7509211, b: 1, a: 1}
+    - _waveColor: {r: 0, g: 0.62185353, b: 1, a: 0}
   m_BuildTextureStacks: []
