@@ -27,6 +27,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
+        
         musicMixer = (AudioMixer)Resources.Load("AudioMix/Music"); 
         EffectsMixer = (AudioMixer)Resources.Load("AudioMix/Effects"); 
         voicelinesMixer = (AudioMixer)Resources.Load("AudioMix/Voiceline");
