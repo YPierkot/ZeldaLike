@@ -223,30 +223,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""332030e1-728b-40e4-85d9-a93afcc6d63c"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keybord"",
-                    ""action"": ""shortCard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c0e1d293-5a07-412c-a9b2-74acf968f407"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keybord"",
-                    ""action"": ""longCard"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""31bfda7e-383b-4994-a42d-47f0714f019d"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keybord"",
@@ -275,6 +253,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""name"": ""CardMenu"",
                     ""type"": ""Button"",
                     ""id"": ""64339e01-92b9-4581-a93d-af0334cb9e1d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3c2745a-dc67-4516-b29b-8845bbdb00a4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -314,6 +301,28 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""CardMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1ce1aac-fc53-4fc6-9f32-95b694bde1be"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ac2535d-7021-4471-b348-66dc55815d22"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -481,6 +490,17 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""116d36a8-d45e-4747-b189-5852230d70a8"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""abb0f9cf-eb71-43bd-a8cb-4f1d92772b1c"",
                     ""path"": ""<XInputController>/rightTrigger"",
                     ""interactions"": """",
@@ -493,7 +513,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d0fd9636-1816-46e1-882a-b94af25a1ef8"",
-                    ""path"": ""<XInputController>/buttonEast"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Xbox"",
@@ -596,6 +616,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_CardMenu = m_Menu.FindAction("CardMenu", throwIfNotFound: true);
+        m_Menu_Pause = m_Menu.FindAction("Pause", throwIfNotFound: true);
         // MoveStopShoot
         m_MoveStopShoot = asset.FindActionMap("MoveStopShoot", throwIfNotFound: true);
         m_MoveStopShoot_holdForShoot = m_MoveStopShoot.FindAction("holdForShoot", throwIfNotFound: true);
@@ -779,11 +800,13 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_CardMenu;
+    private readonly InputAction m_Menu_Pause;
     public struct MenuActions
     {
         private @PlayerInputMap m_Wrapper;
         public MenuActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @CardMenu => m_Wrapper.m_Menu_CardMenu;
+        public InputAction @Pause => m_Wrapper.m_Menu_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -796,6 +819,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @CardMenu.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCardMenu;
                 @CardMenu.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCardMenu;
                 @CardMenu.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCardMenu;
+                @Pause.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -803,6 +829,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @CardMenu.started += instance.OnCardMenu;
                 @CardMenu.performed += instance.OnCardMenu;
                 @CardMenu.canceled += instance.OnCardMenu;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1013,6 +1042,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     public interface IMenuActions
     {
         void OnCardMenu(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IMoveStopShootActions
     {

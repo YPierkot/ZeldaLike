@@ -18,7 +18,6 @@ public class Loot : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Le player me rentre dedans");
             switch (lootType)
             {
                 case LootType.Coin : PlayerStat.instance.ChangeMoney(amount);
