@@ -145,7 +145,7 @@ namespace AI
             {
                 StartCoroutine(FlashRed());
                 HitStun();
-                transform.GetChild(0).DOScale(new Vector3(1.17f,1.17f,1.17f), 0.25F).OnComplete(() => transform.DOScale(new Vector3(1,1,1), 0.25F));
+                transform.GetChild(0).DOScale(new Vector3(1.17f,1.17f,1.17f), 0.2F).OnComplete(() => transform.GetChild(0).DOScale(new Vector3(1f,1f,1f), 0.2F));
                 if(e_currentAiState == walking)
                     ChangeState(attacking);
             }
@@ -193,9 +193,6 @@ namespace AI
 
         private void HitStun()
         {
-            //if (e_hitStunCO == null) e_hitStunCO = StartCoroutine(EnemyStunCo());
-            //else { StopCoroutine(e_hitStunCO); e_hitStunCO = StartCoroutine(EnemyStunCo());}
-            
             if (e_hitStunCO != null) {StopCoroutine(e_hitStunCO); e_hitStunCO = StartCoroutine(EnemyStunCo());}
             else e_hitStunCO = StartCoroutine(EnemyStunCo());
         }
@@ -204,7 +201,7 @@ namespace AI
         {
             isHitStun = true;
             e_animator.Play(hitStunStr);
-            yield return new WaitForSeconds(e_hitStunTime);
+            yield return new WaitForSeconds(0.33f);
             isHitStun = false;
             ChangeState(attacking);
         }
