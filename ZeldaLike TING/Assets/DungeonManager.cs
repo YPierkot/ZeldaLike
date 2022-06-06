@@ -61,6 +61,7 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator OnEntrance()
     {
+        GameManager.Instance.DungeonProfile();
         SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
         SoundManager.Instance.musicSource.Play();
         Controller.instance.FreezePlayer(true);

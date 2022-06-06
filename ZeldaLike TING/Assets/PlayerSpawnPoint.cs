@@ -25,6 +25,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     [SerializeField] private TeleportationPortal portal;
     private bool spawned;
     [SerializeField] private Transform islandCamera;
+    [SerializeField] private DialogueScriptable confrontingMist;
 
     void Start()
     {
@@ -46,7 +47,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         if (!GameManager.Instance.isDungeonFinished)
         {
-            SoundManager.Instance.musicSource.clip = SoundManager.Instance.exploMusic;
+            SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
             SoundManager.Instance.musicSource.Play();
             Controller.instance.FreezePlayer(true);
             Controller.instance.gameObject.SetActive(true);
@@ -65,6 +66,8 @@ public class PlayerSpawnPoint : MonoBehaviour
             DialogueManager.Instance.EnqueuedDialogue = importantInfo.dialogue.ToList();
             StartCoroutine(DialogueManager.Instance.CinematicWait());
             HelpsManager.ResetHelpText();
+            
+            
         }
     }
 
@@ -88,6 +91,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         StartCoroutine(portal.PlayerAppearing());
         yield return new WaitForSeconds(2f);
         Controller.instance.FreezePlayer(true);
+        aeryn.SetActive(true);
         DialogueManager.Instance.AssignDialogue(thePlan.dialogue.ToList());
         yield return new WaitForSeconds(6f);
         GameManager.Instance.cameraController.ChangePoint(monolithCamera);
@@ -97,5 +101,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         Controller.instance.FreezePlayer(false);
         DialogueManager.Instance.IsCinematic(false);
+        yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
+        DialogueManager.Instance.AssignDialogue(confrontingMist.dialogue.ToList());
     }
 }

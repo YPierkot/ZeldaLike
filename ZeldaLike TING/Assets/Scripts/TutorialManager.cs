@@ -72,9 +72,12 @@ public class TutorialManager : MonoBehaviour
     {
         mistMovement = GameManager.Instance.mistMovement;
         helpManager = GetComponent<HelpsManager>();
+        GameManager.Instance.DungeonProfile();
         StartCoroutine(PortalAppearance());
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.gameObject.SetActive(false);
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
+        SoundManager.Instance.musicSource.Play();
         DialogueManager.Instance.IsCinematic(true);
         Controller.instance.transform.position = spawnPoint.position;
         GameManager.Instance.cameraController.transform.position = Controller.instance.PlayerCameraPoint.position;
