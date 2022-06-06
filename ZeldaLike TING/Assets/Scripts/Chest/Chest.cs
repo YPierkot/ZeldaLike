@@ -41,6 +41,7 @@ public class Chest : MonoBehaviour {
         }
         Controller.instance.playerInteraction = null;
         enabled = false;
+        StartCoroutine(DelayDisappear());
     }
 
     private void Update()
@@ -68,5 +69,13 @@ public class Chest : MonoBehaviour {
         {
             WallCardTutorialManager.canStart = true;
         }
+    }
+
+    private IEnumerator DelayDisappear()
+    {
+        yield return new WaitForSeconds(2f);
+        GetComponent<BoxCollider>().enabled = false;
+        GameManager.Instance.Disable(gameObject);
+
     }
 }

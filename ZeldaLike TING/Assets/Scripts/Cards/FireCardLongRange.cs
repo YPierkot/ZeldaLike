@@ -26,6 +26,7 @@ public class FireCardLongRange : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, 2.5f, mask);
         foreach (var col in colliders)
         {
+            Debug.Log("Collide with " + col.name);
             switch (col.transform.tag)
             {
                 case "Interactable": col.GetComponent<InteracteObject>().OnFireEffect(); break;

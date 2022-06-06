@@ -86,9 +86,9 @@ public class CardsController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<Controller>();
-        canUseCards = false;
         
 #if !UNITY_EDITOR        
+        canUseCards = false;
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = false;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
 #endif

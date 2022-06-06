@@ -61,7 +61,7 @@ public class NPCDialogue : MonoBehaviour{
             else
             {
                 AssignDialogue(dialogues[currentDialogue]);
-                currentDialogue++;
+                dialogues.Clear();
             }
         
     }

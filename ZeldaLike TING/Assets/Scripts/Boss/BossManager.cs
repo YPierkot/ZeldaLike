@@ -228,6 +228,12 @@ public class BossManager : MonoBehaviour
     
     private void LaunchTeleport()
     {
+        if(activeRune.Count != 0)
+            foreach (var rune in activeRune)
+            {
+                rune.SetActive(false);
+            }
+        
         Debug.Log("TP");
         idleCount = 0;
         tpNext = false;
@@ -496,9 +502,20 @@ public class BossManager : MonoBehaviour
                 GameObject currentRune = runes[j].rune;
                 activeRune.Add(currentRune);
                 Vector3 vec = new Vector3(Random.Range(2f, 5f), _groundY-boss.position.y, Random.Range(2f, 5f));
+                if (activeRune.Count != 0)
+                {
+                    int breaker = 0;
+                    while (Vector3.Distance(activeRune[0].transform.position, vec) < 3f)
+                    {
+                        vec = new Vector3(Random.Range(2f, 5f), _groundY-boss.position.y, Random.Range(2f, 5f));
+                        
+                        breaker++;
+                        if (breaker == 50) break;
+                    }
+                }
                 currentRune.transform.position = vec + boss.position;
                 LineRenderer line = currentRune.GetComponent<LineRenderer>();
-                line.SetPosition(0,currentRune.transform.position);
+                line.SetPosition(0,currentRune.transform.GetChild(0).GetChild(0).position);
                 line.SetPosition(1,boss.position);
                 currentRune.SetActive(true);
             }

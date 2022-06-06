@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6363922996610493310}
   - component: {fileID: 8798222637980428153}
-  - component: {fileID: 6086745896037767335}
   - component: {fileID: 4040974731267575643}
   - component: {fileID: 8832039208318249165}
   - component: {fileID: 4045795544627898376}
+  - component: {fileID: 5120570536055520535}
   m_Layer: 0
   m_Name: Coin 3 (Loot)
   m_TagString: Untagged
@@ -88,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!135 &6086745896037767335
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6621041328935053992}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4040974731267575643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +117,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &4045795544627898376
 MonoBehaviour:
@@ -147,4 +134,17 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  groundCheckDistance: 0.16
+  groundCheckDistance: 0.3
+--- !u!135 &5120570536055520535
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6621041328935053992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.61
+  m_Center: {x: 0, y: 0, z: 0}
