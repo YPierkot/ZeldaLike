@@ -247,14 +247,15 @@ public class DialogueManager : MonoBehaviour
             Debug.Log("Plus de cinématique");
             UIManager.Instance.gameObject.SetActive(true);
             cinematicMode.ResetTrigger("IsCinematic");
-            isCinematic = true;
+            isCinematic = false;
+            Controller.instance.animatorPlayerHand.gameObject.SetActive(true);
         }
         else
         {   
             Controller.instance.animatorPlayer.Play("idle");
             UIManager.Instance.gameObject.SetActive(false);
             cinematicMode.SetTrigger("IsCinematic");
-            isCinematic = false;
+            isCinematic = true;
         }
     }
 
@@ -290,16 +291,16 @@ public class DialogueManager : MonoBehaviour
             
         }
     }
-    public IEnumerator CinematicWait(float duration)
+    public IEnumerator CinematicWait()
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitWhile(()=> !isPlayingDialogue);
         if (skip)
         {
             skip = false;
         }
         else
         {
-            if (isCinematic)
+            if (isCinematic && !GameManager.Instance.isTutorial)
             {
                 IsCinematic(false);
             }

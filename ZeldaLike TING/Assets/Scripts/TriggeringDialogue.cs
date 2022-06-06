@@ -127,6 +127,9 @@ public class TriggeringDialogue : MonoBehaviour
     IEnumerator Cinematic(float timing, Transform camera = null)
     {
         DialogueManager.Instance.IsCinematic(true);
+        DialogueManager.Instance.playerCanMove = false;
+        Controller.instance.animatorPlayer.SetBool("isRun", false);
+        Controller.instance.animatorPlayerHand.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
         if (camera != null)
         {
@@ -138,7 +141,7 @@ public class TriggeringDialogue : MonoBehaviour
         UIManager.Instance.playerLocationTween.Play("PlayerLocationOut");
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.playerLocation.text = null;
-        StartCoroutine(DialogueManager.Instance.CinematicWait(timing - 4f));
+        StartCoroutine(DialogueManager.Instance.CinematicWait());
     }
 
     private IEnumerator EarthMonolithCinematic(float timer)

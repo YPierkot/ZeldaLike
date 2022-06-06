@@ -191,7 +191,7 @@ public class TutorialManager : MonoBehaviour
                     _controller.FreezePlayer(false);
                     if (CardsController.instance.fireCardUnlock && !DialogueManager.Instance.isPlayingDialogue)
                     {
-                        Debug.Log("Plus de cinématique");
+                        Debug.Log("ya pu cinématique");
                         DialogueManager.Instance.IsCinematic(false);
                         UIManager.Instance.gameObject.SetActive(true);
                         _controller.FreezePlayer(true, "Cards");
