@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public bool foundMonolith;
     public bool isDungeonFinished;
     public Animator mistMovement;
+    public VolumeProfile dungeonProfile;
     
     public enum controller
     {
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
 
     public controller currentContorller;
 
+    public void DungeonProfile()
+    {
+        volumeManager.enabled = true;
+        volumeManager.profile = dungeonProfile;
+    }
     public void TutorialWorld()
     {
         volumeManager.enabled = true;
