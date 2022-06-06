@@ -61,6 +61,8 @@ public class DungeonManager : MonoBehaviour
 
     private IEnumerator OnEntrance()
     {
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
+        SoundManager.Instance.musicSource.Play();
         Controller.instance.FreezePlayer(true);
         DialogueManager.Instance.IsCinematic(true);
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);

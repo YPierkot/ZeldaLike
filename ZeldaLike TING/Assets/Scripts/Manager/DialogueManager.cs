@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -251,6 +250,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {   
+            Controller.instance.animatorPlayer.Play("idle");
             UIManager.Instance.gameObject.SetActive(false);
             cinematicMode.SetTrigger("IsCinematic");
         }

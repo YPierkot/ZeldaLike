@@ -18,8 +18,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Donc avec le recto de cette carte, tu peux repousser ces cubes.
-      delay: 3
+      line: 'Donc avec le recto de cette carte, '
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: tu peux repousser ces cubes.
+      delay: 1.5
     - expressions: 0
       name: 
       line: Essaie.
@@ -28,4 +32,4 @@ MonoBehaviour:
       name: 
       line: "Ca marche aussi avec les esprits \xE9videmment."
       delay: 3
-    voiceLine: {fileID: 8300000, guid: d4edb53f7907de942a3f98a7943256f4, type: 3}
+    voiceLine: {fileID: 8300000, guid: 0fd2673b5b866ca40a892afd98428f31, type: 3}

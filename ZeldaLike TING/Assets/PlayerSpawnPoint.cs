@@ -46,9 +46,12 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         if (!GameManager.Instance.isDungeonFinished)
         {
+            SoundManager.Instance.musicSource.clip = SoundManager.Instance.exploMusic;
+            SoundManager.Instance.musicSource.Play();
             Controller.instance.FreezePlayer(true);
             Controller.instance.gameObject.SetActive(true);
             DialogueManager.Instance.IsCinematic(true);
+            Controller.instance.Rotate(new Vector3(1, 1));
             UIManager.Instance.playerLocationTween.Play("PlayerLocation");
             UIManager.Instance.playerLocation.text = location;
             GameManager.Instance.cameraController.ChangePoint(cameraPoint);
@@ -80,6 +83,8 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     private IEnumerator ThePlan()
     {
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
+        SoundManager.Instance.musicSource.Play();
         StartCoroutine(portal.PlayerAppearing());
         yield return new WaitForSeconds(2f);
         Controller.instance.FreezePlayer(true);

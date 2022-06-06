@@ -20,7 +20,7 @@ MonoBehaviour:
       name: 
       line: Allez Mist, fais ton truc !
       delay: 4
-    voiceLine: {fileID: 8300000, guid: bafd6775513a7d144815bf67a69fa331, type: 3}
+    voiceLine: {fileID: 8300000, guid: 41b01918292aa5f489c136d4a534cac4, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
@@ -31,8 +31,8 @@ MonoBehaviour:
     - expressions: 0
       name: 
       line: 'Au Nord Ouest ! '
-      delay: 3
-    voiceLine: {fileID: 8300000, guid: c5f542e2afdda154e904d1f7ce28f2ef, type: 3}
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: ea03d4bea93e0b242bdc3ec40edf70c3, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
@@ -40,14 +40,18 @@ MonoBehaviour:
       name: 
       line: Je vais pouvoir ouvrir une collection...
       delay: 1.5
-    voiceLine: {fileID: 8300000, guid: 158fa9907f5f77f4cb6b5495fcab43d5, type: 3}
+    - expressions: 0
+      name: 
+      line: Avec toutes ces cartes...
+      delay: 1.5
+    voiceLine: {fileID: 8300000, guid: aeb63eea0fa2ae44bb83f92390ac8f87, type: 3}
   - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: Mmmh...
-      delay: 4
+      delay: 1.5
     - expressions: 0
       name: 
       line: "Ithar est d\xE9j\xE0 pass\xE9 par ici."
@@ -56,4 +60,4 @@ MonoBehaviour:
       name: 
       line: "Il faut se d\xE9p\xE9cher."
       delay: 0
-    voiceLine: {fileID: 8300000, guid: 2a38139c60c39cb4fa3fc88af9f0f236, type: 3}
+    voiceLine: {fileID: 8300000, guid: 8dafcf2ac0f5a784bb676796d3d22226, type: 3}

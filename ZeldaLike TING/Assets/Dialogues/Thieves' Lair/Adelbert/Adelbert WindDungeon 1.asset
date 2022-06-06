@@ -34,8 +34,12 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: "Ceci explique cela. Alors ? Tu as trouv\xE9 mon tr\xE9sor."
-      delay: 5.5
+      line: 'Ceci explique cela. '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: "Alors ? Tu as trouv\xE9 mon tr\xE9sor."
+      delay: 3.5
     voiceLine: {fileID: 8300000, guid: dd2770333761c24449c55d73e6fe6cb6, type: 3}
   - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
