@@ -16,7 +16,8 @@ public class PoolManager : MonoBehaviour
     
     public enum Object
     {
-        None, fireCard, iceCard, wallCard, windCard, fireBall
+        None, fireCard, iceCard, wallCard, windCard, fireBall, 
+        fxDestroyCrate, fxBomber, bomb, fxKamikaze, fxLongFireCard, fxLongWindCard, fxLongIceCard
     }
     
     [System.Serializable]

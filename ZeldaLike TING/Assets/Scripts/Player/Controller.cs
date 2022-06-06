@@ -443,6 +443,7 @@ public class
     
     private void Animations()
     {
+            DialogueManager _dialogueManager = DialogueManager.Instance;
             Vector3 animDir;
             if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) animDir = (pointerPosition - transform.position).normalized;
             else animDir = -movePlayerTransform.forward ;
@@ -468,13 +469,14 @@ public class
             {
                 if (!inAttackAnim)
                 {
+                    SoundEffectManager _soundEffectManager = SoundEffectManager.Instance;
                     switch (attackCounter)
                     {
-                        case 1: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack1);
+                        case 1: _soundEffectManager.PlaySound(_soundEffectManager.sounds.attack1);
                             break;
-                        case 2: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack2);
+                        case 2: _soundEffectManager.PlaySound(_soundEffectManager.sounds.attack2);
                             break;
-                        case 3: SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.attack3);
+                        case 3: _soundEffectManager.PlaySound(_soundEffectManager.sounds.attack3);
                             break;
                     }
                     if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
@@ -498,7 +500,7 @@ public class
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
 
-                if (!DialogueManager.Instance.isCinematic)
+                if (!_dialogueManager.isCinematic)
                 {
                     animatorPlayer.SetBool("isRun", moving);
 					animatorPlayerHand.SetBool("isRun", moving);
@@ -506,12 +508,12 @@ public class
                 } // Il est différent donc repoussé par la société
             }
 
-            if (DialogueManager.Instance.isCinematic)
+            if (_dialogueManager.isCinematic)
             {
                     animatorPlayer.SetFloat("X-Axis", lastDir.x);
                     animatorPlayer.SetFloat("Z-Axis", lastDir.z);
 
-                    if (moving && DialogueManager.Instance.playerCanMove)
+                    if (moving && _dialogueManager.playerCanMove)
                     {
                         Debug.Log("Set Run");
                         animatorPlayer.SetBool("isRun", moving);
@@ -524,14 +526,14 @@ public class
                 
                 if (moving)
                 {
-                    if (dashing || DialogueManager.Instance.isCinematic)
+                    if (dashing || _dialogueManager.isCinematic)
                     {
                         animatorPlayer.SetFloat("X-Axis", lastDir.x);
                         animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
                     }
                 }
 
-                if (!DialogueManager.Instance.isCinematic)
+                if (!_dialogueManager.isCinematic)
 				{
                     animatorPlayer.SetBool("isRun", moving);
 					animatorPlayerHand.SetBool("isRun", moving);
@@ -586,9 +588,12 @@ public class
 
     public void FreezePlayer(bool freeze, string toFreeze = "All")
     {
+        DialogueManager _dialogueManager = DialogueManager.Instance;
+        CardsController _cardsController = CardsController.instance;
+        
         if (freeze)
         {
-            DialogueManager.Instance.playerCanMove = false;
+            _dialogueManager.playerCanMove = false;
             switch (toFreeze)
             {
                 case "Dash":
@@ -602,11 +607,11 @@ public class
                     canMove = false;
                     inAttack = false;
                     canDash = false;
-                    CardsController.instance.canUseCards = false;
+                    _cardsController.canUseCards = false;
                     attackCounter = 3;
                     break;
                 case "Cards":
-                    CardsController.instance.canUseCards = false;
+                    _cardsController.canUseCards = false;
                     break;
                 case "DashAttack":
                     inAttack = false;
@@ -617,9 +622,9 @@ public class
         }
         else
         {
-            DialogueManager.Instance.playerCanMove = false;
+            _dialogueManager.playerCanMove = false;
             canMove = true;
-            CardsController.instance.canUseCards = true;
+            _cardsController.canUseCards = true;
             canDash = true;
             attackCounter = 0;
             inAttack = false;

@@ -9,6 +9,7 @@ public class DestroyCrate : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(Instantiate(fxDestroyCrate, transform.position + new Vector3(0,.4f,0), Quaternion.identity), 1f);
+        GameObject fxCrate = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxDestroyCrate);
+        fxCrate.transform.position = transform.position + new Vector3(0, .4f, 0);
     }
 }
