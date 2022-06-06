@@ -36,7 +36,9 @@ public class Dropper : MonoBehaviour
                     Instantiate(loot.Item, transform.position, quaternion.identity);
                     break;
                 }
-            } 
+            }
+
+            lootItem = false;
         }
     }
 }

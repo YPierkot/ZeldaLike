@@ -62,7 +62,6 @@ public class DialogueManager : MonoBehaviour
         SkipDialogue();
         if (!dialogueMoved && !isCinematic)
         {
-            Debug.Log("Non si senior " + isCinematic);
             dialogueMoved = true;
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
@@ -72,7 +71,6 @@ public class DialogueManager : MonoBehaviour
 
         if (isCinematic)
         {
-            Debug.Log("Oui si senior " + isCinematic);
             gray.enabled = false;
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-954, -338);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -411);

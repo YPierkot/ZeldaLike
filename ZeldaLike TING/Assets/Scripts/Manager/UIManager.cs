@@ -357,14 +357,14 @@ public class UIManager : MonoBehaviour
                break;
             }
          }
-         cardsAnimator.SetInteger("CurrentCard", currentCard);
+         //cardsAnimator.SetInteger("CurrentCard", currentCard);
       }
       else
       {
          currentCard = 0;
       }
       
-        cardsDictionary[cardHandles[currentCard]].animator.SetTrigger("UseCard");
+      cardsDictionary[cardHandles[currentCard]].animator.SetTrigger("UseCard");
 
          CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }
