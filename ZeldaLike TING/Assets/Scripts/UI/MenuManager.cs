@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private GameObject defautButton;
     private GameObject menuOption;
+    private GameObject openMenu;
+    private bool inMenu;
 
     private AudioMixer musicMixer;
     private AudioMixer EffectsMixer;
@@ -28,9 +30,13 @@ public class MenuManager : MonoBehaviour
         musicMixer = (AudioMixer)Resources.Load("AudioMix/Music"); 
         EffectsMixer = (AudioMixer)Resources.Load("AudioMix/Effects"); 
         voicelinesMixer = (AudioMixer)Resources.Load("AudioMix/Voiceline");
-        if(Instance != this) return;
-        if (defautButton != null) EventSystem.current.SetSelectedGameObject(defautButton);
         
+        // --- ONLY INSTANCE
+        if(Instance != this) return;
+        
+        if (defautButton != null) EventSystem.current.SetSelectedGameObject(defautButton);
+        if(Controller.instance != null) Controller.instance.pause += Back;
+
     }
 
     private void Update()
@@ -43,19 +49,81 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneIndex);
     }
 
+    public void Back()
+    {
+        if (MenuManager.Instance != this)
+        {
+            MenuManager.Instance.Back();
+            return;
+        }
+        Debug.Log("Menuuuu");
+        if (!inMenu)
+        {
+            OpenOptions();
+            
+        }
+        else
+        {
+           CloseMenu();
+        }
+    }
+
+    public void OpenMenu(GameObject menu)
+    {
+        if (this != Instance)
+        {
+            MenuManager.Instance.OpenMenu(menu);
+            return;
+        }
+        menu.SetActive(true);
+        openMenu = menu;
+        inMenu = true;
+        EventSystem.current.SetSelectedGameObject(menu.transform.GetChild(1).gameObject);
+        Debug.Log("Time Stop");
+        Time.timeScale = 0f;
+    }
+
+    public void CloseMenu()
+    {
+        if (openMenu == menuOption)
+        {
+            CloseOptionsButton();
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            Debug.Log("Time Play");
+            openMenu.SetActive(false);
+            inMenu = false; 
+        }
+    }
+
+    public void OpenShop()
+    {
+        MenuManager.Instance.OpenMenu(UIManager.Instance.ShopCanvas.gameObject);
+    }
+    
     public void OpenOptions()
     {
-        Debug.Log("Load Menu");
-        if (menuOption == null) menuOption = Instantiate((GameObject)Resources.Load("UI/Menu Options"));
+        if (menuOption == null) menuOption = Instantiate((GameObject)Resources.Load("UI/Menu Options"), transform);
         menuOption.SetActive(true);
+        openMenu = menuOption;
+        inMenu = true;
+        Debug.Log(menuOption);
+        Debug.Log(menuOption.transform.GetChild(1));
+        Debug.Log(menuOption.transform.GetChild(1).gameObject);
+        Debug.Log(EventSystem.current);
         EventSystem.current.SetSelectedGameObject(menuOption.transform.GetChild(1).gameObject);
+        Time.timeScale = 0f;
     }
 
     public void CloseOptionsButton()
     {
-        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        Debug.Log("Time Play");
+        menuOption.SetActive(false);
+        inMenu = false;
         if(MenuManager.Instance.defautButton != null)EventSystem.current.SetSelectedGameObject(MenuManager.Instance.defautButton);
-        
     }
 
     public void ChangeMusicVolume( Slider slider)

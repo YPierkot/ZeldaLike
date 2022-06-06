@@ -72,6 +72,7 @@ public class
     private PlayerInputMap InputMap;
     public delegate void Interaction();
     public Interaction playerInteraction;
+    public Interaction pause;
     
     
     [SerializeField] private LayerMask pointerMask;
@@ -190,6 +191,7 @@ public class
         }
         
         InputMap.Menu.CardMenu.performed += SwitchCard;
+        InputMap.Menu.Pause.performed += context => {if (pause != null) pause(); Debug.Log("Pause Press");};
     }
 
     private void InteractionPerformed(InputAction.CallbackContext obj)
@@ -367,7 +369,6 @@ public class
 
     void Move()
     {
-        Debug.Log("Le joueur bouge");
         Vector3 dir = lastDir;
         anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
         if (angleView < 0) anglePlayerView += 360 ; 
@@ -494,7 +495,6 @@ public class
             }
             if (!inAttack && canMove && moving)
             {
-                Debug.Log("Je bouge et je regarde");
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
 
