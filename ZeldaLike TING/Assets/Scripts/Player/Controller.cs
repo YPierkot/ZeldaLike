@@ -98,6 +98,7 @@ public class
     [SerializeField] public bool setNextCombo;
     [SerializeField] private GameObject[] keybordAttackZones;
     [SerializeField] private GameObject[] controllerAttackZones;
+    [SerializeField] private ParticleSystem[] attackFX;
 
     private bool comboWaiting;
 
@@ -471,11 +472,13 @@ public class
                 {
                     rb.AddForce(moveCardTransform.forward * -500);
                     keybordAttackZones[attackCounter-1].SetActive(true);
+                    keybordAttackZones[attackCounter-1].GetComponentInChildren<ParticleSystem>().Play();
                 }
                 else
                 {
                     rb.AddForce(movePlayerTransform.forward * -500);
                     controllerAttackZones[attackCounter-1].SetActive(true);
+                    controllerAttackZones[attackCounter-1].GetComponentInChildren<ParticleSystem>().Play();
                 }
             }
             launchAttack = false;

@@ -87,8 +87,11 @@ public class CardsController : MonoBehaviour
     {
         controller = GetComponent<Controller>();
         canUseCards = false;
+        
+#if !UNITY_EDITOR        
         canUseFireCard = canUseIceCard = canUseWallCard = canUseWindCard = false;
         isFireGround = isIceGround = isWallGround = isWindGround = false;
+#endif
         //fireCardUnlock = iceCardUnlock = wallCardUnlock = windCardUnlock = false;
         UIManager.Instance.UpdateCardUI();
     }

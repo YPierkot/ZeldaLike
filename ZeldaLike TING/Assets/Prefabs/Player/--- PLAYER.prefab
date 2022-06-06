@@ -1275,6 +1275,7 @@ MonoBehaviour:
   animatorMovePlayer: {fileID: 0}
   moving: 0
   dashing: 0
+  isSlow: 0
   inAttack: 0
   launchAttack: 0
   inAttackAnim: 0
@@ -1401,25 +1402,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a148e5886a85197479cc1a1442e2d5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canUseCards: 0
+  canUseCards: 1
   rectoSide: 0
-  canUseFireCard: 0
-  fireCardUnlock: 0
+  canUseFireCard: 1
+  fireCardUnlock: 1
   fireCardGrounded: {fileID: 0}
   firecircleFx: {fileID: 0}
   fireRectoUse: 0
-  canUseIceCard: 0
-  iceCardUnlock: 0
+  canUseIceCard: 1
+  iceCardUnlock: 1
   iceCardGrounded: {fileID: 0}
   enemyFreezeFX: {fileID: 0}
   iceRectoUse: 0
-  canUseWallCard: 0
-  wallCardUnlock: 0
+  canUseWallCard: 1
+  wallCardUnlock: 1
   wallCardGrounded: {fileID: 0}
   WallSR: {fileID: 0}
   wallRectoUse: 0
-  canUseWindCard: 0
-  windCardUnlock: 0
+  canUseWindCard: 1
+  windCardUnlock: 1
   windCardGrounded: {fileID: 0}
   interactMask:
     serializedVersion: 2
@@ -1468,6 +1469,8 @@ MonoBehaviour:
   rockModuleComposant: 0
   swiftnessModuleComposant: 0
   staminaModuleComposant: 0
+  equippedModules: []
+  money: 0
   toughnessValue: 0.3
   attackDamageValue: 1
   moveSpeedValue: 100
