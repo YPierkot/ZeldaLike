@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4235803785768350711}
   - component: {fileID: 8305223619518662997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coll (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4235803785768350711
 Transform:
@@ -55,12 +55,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1408311015723536884}
   - component: {fileID: 2875734195876191205}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coll (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1408311015723536884
 Transform:
@@ -100,12 +100,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2430985432509610292}
   - component: {fileID: 5370467478205592504}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2430985432509610292
 Transform:
@@ -114,14 +114,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951448863586907402}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.823, y: -2.375, z: 3.325}
+  m_LocalRotation: {x: 0.3008722, y: 0, z: 0, w: 0.95366454}
+  m_LocalPosition: {x: -2.82, y: -1.11, z: 4.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8712096690029221323}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 35.02, y: 0, z: 0}
 --- !u!65 &5370467478205592504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -133,7 +133,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.70263, y: 0.17241001, z: 0.39180756}
+  m_Size: {x: 5.70263, y: 1.78, z: 13.97}
   m_Center: {x: 0.0054302216, y: -2.3469782, z: 3.410222}
 --- !u!1 &7375645091733226632
 GameObject:
@@ -145,12 +145,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8712096690029221323}
   - component: {fileID: 690445828923147727}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LOD_Escalier_Droit_Pierre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8712096690029221323
 Transform:
@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 7375645091733226632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.88401335, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7048739563641768361}
@@ -197,6 +197,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8712096690029221323}
     m_Modifications:
+    - target: {fileID: -9179724558319205638, guid: 5e6d48a84f2d6474fbd594ae9e4226f3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9179724558319205638, guid: 5e6d48a84f2d6474fbd594ae9e4226f3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e6d48a84f2d6474fbd594ae9e4226f3,
         type: 3}
       propertyPath: m_RootOrder
@@ -261,6 +271,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Escalier_Droit_THD
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e6d48a84f2d6474fbd594ae9e4226f3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e6d48a84f2d6474fbd594ae9e4226f3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e6d48a84f2d6474fbd594ae9e4226f3, type: 3}
