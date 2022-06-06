@@ -93,6 +93,6 @@ public class CinematicManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         DialogueManager.Instance.IsCinematic(false);
-        SceneManager.LoadScene("_Scenes/Level Design/LD_DonjonPrinc");
+        SceneManager.LoadScene("_Scenes/SceneWorkflow/LD_DonjonPrinc");
     }
 }

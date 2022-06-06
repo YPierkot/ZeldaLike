@@ -531,6 +531,11 @@ public class
                         animatorPlayer.SetFloat("X-Axis", lastDir.x);
                         animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
                     }
+                    else
+                    {
+                        animatorPlayer.SetFloat("X-Axis", animDir.x);
+                        animatorPlayer.SetFloat("Z-Axis", animDir.z);
+                    }
                 }
 
                 if (!_dialogueManager.isCinematic)
