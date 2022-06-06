@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4547048303801235586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5393269853078121623}
+  - component: {fileID: 2854852757223922796}
+  m_Layer: 10
+  m_Name: Coll (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5393269853078121623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547048303801235586}
+  m_LocalRotation: {x: 0.185753, y: 0.68227255, z: -0.185753, w: 0.68227255}
+  m_LocalPosition: {x: 3.12, y: -2.3, z: 6.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8712096690029221323}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 30.46, y: 90, z: 0}
+--- !u!65 &2854852757223922796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547048303801235586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9007072, y: 1, z: 4.926133}
+  m_Center: {x: 4.0465283, y: -0.000011691835, z: -1.7977765}
 --- !u!1 &6793323349053290136
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8166197206626932883}
   - component: {fileID: 4123216290382183959}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coll (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8712096690029221323}
   - component: {fileID: 690445828923147727}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LOD_Escalier_Angle_Pierre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,6 +122,7 @@ Transform:
   - {fileID: 3207240768655163429}
   - {fileID: 242740784385202320}
   - {fileID: 8166197206626932883}
+  - {fileID: 5393269853078121623}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109,7 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 242740784385202320}
   - component: {fileID: 1885050064645082873}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,10 +252,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -245221291211963757, guid: 4499b78d361da9045a96207054006357,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4499b78d361da9045a96207054006357,
         type: 3}
       propertyPath: m_Name
       value: SM_Escalier_Angle_THD
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4499b78d361da9045a96207054006357,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5180299022070327756, guid: 4499b78d361da9045a96207054006357,
         type: 3}

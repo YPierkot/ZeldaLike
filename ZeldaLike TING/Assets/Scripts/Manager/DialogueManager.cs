@@ -63,6 +63,15 @@ public class DialogueManager : MonoBehaviour
         SkipDialogue();
         if (!dialogueMoved && !isCinematic)
         {
+            if (isPlayingDialogue)
+            {
+                gray.enabled = true;
+                
+            }
+            else
+            {
+                gray.enabled = false;
+            }
             dialogueMoved = true;
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
