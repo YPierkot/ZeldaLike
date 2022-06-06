@@ -68,12 +68,13 @@ public class InteracteObject : MonoBehaviour
         
         if (burning)
         {
+            
             if (isRune)
             {
-                Debug.Log("si senior");
                 mesh.material.SetColor("_Emission_Teinte", fireColor);
                 burning = false;
             }
+            Debug.Log("OnBurnEffect");
             onBurn.Invoke();
         }
     }
@@ -141,13 +142,18 @@ public class InteracteObject : MonoBehaviour
 
     virtual public void OnWindEffect(CardsController card)
     {
-        if(windAffect) onWind.Invoke();
+        if (windAffect)
+        {
+            Debug.Log("onWind Invoke");
+            onWind.Invoke();
+        }
     }
 
     virtual public void Freeze(Vector3 cardPos)
     {
         if (iceAffect)
         {
+            Debug.Log("OnFreeze Invoke");
             onFreeze.Invoke();
             isFreeze = true;
             burning = false;
