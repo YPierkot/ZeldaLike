@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Scripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
@@ -55,7 +56,7 @@ public class BossManager : MonoBehaviour
     [SerializeField] private Vector2 distanceFromPlayer;
     [Header("---RUNE")] 
     [SerializeField] private RuneDict[] runes;
-    private List<GameObject> activeRune;
+    public List<GameObject> activeRune;
 
     private bool idleStart;
     private int idleCount = 0;
@@ -114,7 +115,6 @@ public class BossManager : MonoBehaviour
 
     [Header("---SHIELD")] 
     private bool onShield;
-    private MeshRenderer shieldMesh;
     [SerializeField] Color destroyableColor ;
     [SerializeField] Color invincibleColor ;
     
@@ -125,14 +125,13 @@ public class BossManager : MonoBehaviour
     void Start()
     {
         life = maxLife;
+        onShield = true;
         _groundY = groundY();
-        UIManager.Instance.BosslifeBar.maxValue = maxLife;
+        UIManager.Instance.maxLife = maxLife;
         animator = GetComponentInChildren<Animator>();
         laserLine = GetComponentInChildren<ParticleSystem>();
         laserLineR = GetComponentInChildren<LineRenderer>();
         laser = laserLineR.transform;
-        shieldMesh = shield.GetComponent<MeshRenderer>();
-        invincibleColor = shieldMesh.material.color;
         
         laserLine.Stop();
 
@@ -197,7 +196,6 @@ public class BossManager : MonoBehaviour
     {
         if (!idleStart)
         {
-            shieldMesh.material.color = destroyableColor;
             idleStart = true;
         }
     }
@@ -233,8 +231,7 @@ public class BossManager : MonoBehaviour
             {
                 rune.SetActive(false);
             }
-        
-        Debug.Log("TP");
+        activeRune.Clear();
         idleCount = 0;
         tpNext = false;
         shield.gameObject.SetActive(false);
@@ -256,15 +253,18 @@ public class BossManager : MonoBehaviour
 
     public void EndTeleport()
     {
-        shield.gameObject.SetActive(true);
+        
         if (teleporting)
         {
+           
+            SetupRune();
+            
             TeleportAttack();
             teleporting = false;
             castAttack = true;
             currentState = BossState.idle;
-            SetupRune();
         }
+        else shield.gameObject.SetActive(true);
     }
 
     void TeleportAttack()
@@ -299,7 +299,6 @@ public class BossManager : MonoBehaviour
             laserLineR.enabled = true;
             laser.gameObject.SetActive(true);
             _laserTimer = laserTimer;
-            Debug.Log(Controller.instance.transform.position);
             laserPos = Controller.instance.transform.position;
             laser.rotation = Quaternion.LookRotation(Controller.instance.transform.position-boss.position);
             laserLineR.SetPosition(0, laser.position);
@@ -318,18 +317,20 @@ public class BossManager : MonoBehaviour
                     laserLine.Play();
                     laserStartThrow = true;
                 }
+                
+                if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, laserLenght))
+                {
+                    if(hit.transform.CompareTag("Player")) PlayerStat.instance.TakeDamage();
+                    //else Debug.Log("Raycast hit " + hit.transform.name);
+                }
 
-                //laserLenght
+                laserLenght++;
                 
                 _laserTimer -= Time.deltaTime;
             }
             else
             {
-                if (Physics.Raycast(boss.position, rayDir, out RaycastHit hit, laserLenght))
-                {
-                    if(hit.transform.CompareTag("Player"))laserLineR.SetPosition(1, hit.point);
-                }
-                else laserLineR.SetPosition(1, (laser.position + laser.forward*50));
+                laserLineR.SetPosition(1, (laser.position + laser.forward*50));
 
                 if (!waitLaserState)
                 {
@@ -355,7 +356,6 @@ public class BossManager : MonoBehaviour
 
     private void BallAttackStart()
     {
-       Debug.Log("Ball Start");
         idleCount = 0;
         ballCastFinish = false; 
         warningCD = false; 
@@ -379,7 +379,6 @@ public class BossManager : MonoBehaviour
                 {
                     ballCastFinish = true;
                     animator.SetTrigger("BallThrow");
-                    Debug.Log("ballQueue Size : " + ballQueue.Count);
                     return;
                 }
                 
@@ -449,7 +448,6 @@ public class BossManager : MonoBehaviour
         }*/
         else
         {
-            Debug.Log("Ball End");
             animator.SetTrigger("BallEnd");
             currentState = BossState.idle;
             ballStart = false;
@@ -462,7 +460,6 @@ public class BossManager : MonoBehaviour
     {
         if(stayIdle) return;
         idleStart = false;
-        shieldMesh.material.color = invincibleColor;
         if (Random.value <= 0.5f) currentState = BossState.lasetAttack;
         else currentState = BossState.ballAttack;
         castAttack = false;
@@ -482,10 +479,8 @@ public class BossManager : MonoBehaviour
 
     public void Freeze()
     {
-        Debug.Log("FreezeAffect");
         if (!onShield)
         {
-            Debug.Log("Freeze");
             //shield.gameObject.SetActive(false);
             StartCoroutine(FreezeCD());
         }
@@ -493,22 +488,31 @@ public class BossManager : MonoBehaviour
 
     void SetupRune()
     {
-        Debug.Log("Setup Tunes");
+        onShield = true;
+        shield.gameObject.SetActive(true);
+        activeRune.Clear();
         int i = Random.Range(0, runes.Length);
         for (int j = 0; j < runes.Length; j++)
         {
             if (i != j)
             {
+                Debug.Log("Set " + j);
                 GameObject currentRune = runes[j].rune;
                 activeRune.Add(currentRune);
-                Vector3 vec = new Vector3(Random.Range(2f, 5f), _groundY-boss.position.y, Random.Range(2f, 5f));
+               
+                float xFactor = Random.value <= 0.5f ? -1 : 1;
+                float yFactor = Random.value <= 0.5f ? -1 : 1;
+                Vector3 vec = new Vector3(Random.Range(2f, 5f)*xFactor, _groundY-boss.position.y, Random.Range(2f, 5f)*yFactor);
                 if (activeRune.Count != 0)
                 {
                     int breaker = 0;
-                    while (Vector3.Distance(activeRune[0].transform.position, vec) < 3f)
+                    Debug.Log($"Pos1 : {activeRune[0].transform.position}, Pos 2 : {vec + boss.position}, Distance : {Vector3.Distance(activeRune[0].transform.position, vec+boss.position)}");
+                    while (Vector3.Distance(activeRune[0].transform.position, vec + boss.position) < 3f)
                     {
-                        vec = new Vector3(Random.Range(2f, 5f), _groundY-boss.position.y, Random.Range(2f, 5f));
-                        
+                        xFactor = Random.value <= 0.5f ? -1 : 1;
+                        yFactor = Random.value <= 0.5f ? -1 : 1;
+                        vec = new Vector3(Random.Range(2f, 5f)*xFactor, _groundY-boss.position.y, Random.Range(2f, 5f)*yFactor);
+                        Debug.Log("distance : " + Vector3.Distance(activeRune[0].transform.position, vec));
                         breaker++;
                         if (breaker == 50) break;
                     }
@@ -530,8 +534,8 @@ public class BossManager : MonoBehaviour
         {
             onShield = false;
             shield.gameObject.SetActive(false);
-            StartCoroutine(ShieldCD());
         }
+        else Debug.Log("Still " + activeRune[0].name);
     }
 
     public void TakeDamage(int damage)
@@ -562,14 +566,6 @@ public class BossManager : MonoBehaviour
 
     }
 
-    IEnumerator ShieldCD()
-    {
-        yield return new WaitForSeconds(5f);
-        if (currentState == BossState.idle) currentState = BossState.Tp;
-        onShield = true;
-        shield.gameObject.SetActive(true);
-
-    }
 
     IEnumerator laserState()
     {

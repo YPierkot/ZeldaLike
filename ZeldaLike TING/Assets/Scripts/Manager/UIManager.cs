@@ -63,7 +63,8 @@ public class UIManager : MonoBehaviour
    public Animator playerLocationTween;
 
    [Header("--- BOSS")]
-   public Slider BosslifeBar;
+   public Image BosslifeBar;
+   [HideInInspector] public float maxLife;
    
    private void Start()
    {
@@ -273,15 +274,13 @@ public class UIManager : MonoBehaviour
       {
          lifeArray[i].SetTrigger("TakeDamage");
       }
-      Debug.Log($"destroy {lifeArray[life]}");
       lifeArray[life].SetTrigger("Destroy");
       KellHead.SetTrigger("TakeDamage");
    }
    
-   public void BossLifeUpdate(int life)
+   public void BossLifeUpdate(float life)
    {
-      Debug.Log("Ui update " + life);
-      BosslifeBar.value = life;
+      BosslifeBar.fillAmount = life/maxLife;
    }
 
    public void UpdateDash(int dash = 3, bool add=false)

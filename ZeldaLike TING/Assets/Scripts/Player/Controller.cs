@@ -218,8 +218,8 @@ public class
     
     private void SwitchCard(InputAction.CallbackContext obj) 
     { 
-        if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(-1); 
-        else UIManager.Instance.ChangeCard(1); 
+        if(obj.ReadValue<float>() == -1) UIManager.Instance.ChangeCard(1); 
+        else UIManager.Instance.ChangeCard(-1); 
     }
 
     private void RotationOnperformed(InputAction.CallbackContext obj)
@@ -573,7 +573,6 @@ public class
         if (!inAttack)
         {
             attackCounter = 0;
-            Debug.Log($"Attack Finish");
             //canMove = true;
         }
     }

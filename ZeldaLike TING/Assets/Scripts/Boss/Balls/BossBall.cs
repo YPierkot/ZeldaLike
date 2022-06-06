@@ -83,7 +83,6 @@ public class BossBall : MonoBehaviour
 
     public void LaunchBall(Vector3 _target,float speed, GameObject warner)
     { 
-        Debug.Log("Ball Launch to " + _target);
         target = _target;
         startPosition = transform.position;
         targetPosition = _target - startPosition;
@@ -158,7 +157,6 @@ public class BossBall : MonoBehaviour
             case EffectType.Wind :
                 if (!repulse)
                 {
-                    Debug.Log("Repusle");
                     Vector3 dir = (other.transform.position - transform.position).normalized;
                     Controller.instance.rb.AddForce(dir*repulseForce);
                     repulse = true;

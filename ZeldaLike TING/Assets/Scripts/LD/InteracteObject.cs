@@ -74,7 +74,6 @@ public class InteracteObject : MonoBehaviour
                 mesh.material.SetColor("_Emission_Teinte", fireColor);
                 burning = false;
             }
-            Debug.Log("OnBurnEffect");
             onBurn.Invoke();
         }
     }
@@ -144,7 +143,6 @@ public class InteracteObject : MonoBehaviour
     {
         if (windAffect)
         {
-            Debug.Log("onWind Invoke");
             onWind.Invoke();
         }
     }
@@ -153,7 +151,6 @@ public class InteracteObject : MonoBehaviour
     {
         if (iceAffect)
         {
-            Debug.Log("OnFreeze Invoke");
             onFreeze.Invoke();
             isFreeze = true;
             burning = false;
