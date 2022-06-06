@@ -52,7 +52,7 @@ public class SoundEffectManager : MonoBehaviour
                 return;
             }
         }
-        Debug.LogError("Not Enought Audio Pist, don't play : " + clip.name);
+       // Debug.LogError("Not Enought Audio Pist, don't play : " + clip.name);
     }
 
     public void StopSound(AudioClip clip)

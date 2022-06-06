@@ -70,6 +70,12 @@ public class PlayerStat : MonoBehaviour
    
    public void TakeDamage(int damage = 1)
    {
+      StartCoroutine(TakeDamageCo(damage));
+   }
+   
+   public IEnumerator TakeDamageCo(int damage)
+   {
+      yield return new WaitForSeconds(0.25f);
       if (!isImmune && !_control.dashing && life > 0)
       {
          life -= damage;
