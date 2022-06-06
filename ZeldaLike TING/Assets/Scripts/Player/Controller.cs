@@ -49,6 +49,7 @@ public class
    // --- STATES ---
    public bool moving;
    public bool dashing;
+   public bool isSlow; 
    [SerializeField] public bool inAttack;
    [SerializeField] private bool launchAttack;
    [SerializeField] private bool inAttackAnim;
@@ -56,7 +57,7 @@ public class
    public bool canDash;
    
    private bool moveHoldCard;
-
+   
    private float dashTimer;
    private float holdTimer; 
    public int dashAvailable; 

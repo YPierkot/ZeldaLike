@@ -9,15 +9,15 @@ using Random = UnityEngine.Random;
 public class Dropper : MonoBehaviour
 {
     [Serializable]
-    class DropSettings
+    public class DropSettings
     {
         public GameObject Item;
         public float dropRate;
     }
 
-    [SerializeField] private DropSettings[] Loots;
+    public DropSettings[] Loots;
     public bool lootItem = true;
-    
+    [Space] [SerializeField] private Vector3 offset;
     private void OnDestroy()
     {
         Loot();
@@ -26,17 +26,17 @@ public class Dropper : MonoBehaviour
     public void Loot()
     {
         if (lootItem)
+        {
+            float rate = Random.Range(0f, 100f);
+            foreach (var loot in Loots)
+            {
+                rate -= loot.dropRate;
+                if (rate <= 0)
                 {
-                    float rate = Random.Range(0f, 100f);
-                    foreach (var loot in Loots)
-                    {
-                        rate -= loot.dropRate;
-                        if (rate <= 0)
-                        {
-                            Instantiate(loot.Item, transform.position, quaternion.identity);
-                            break;
-                        }
-                    }
+                    Instantiate(loot.Item, transform.position, quaternion.identity);
+                    break;
                 }
+            } 
+        }
     }
 }
