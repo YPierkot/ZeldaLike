@@ -5510,6 +5510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867707577996770434}
+  - component: {fileID: 2886136698158291130}
   m_Layer: 0
   m_Name: --- SAVE MANAGER
   m_TagString: Untagged
@@ -5532,6 +5533,21 @@ Transform:
   m_Father: {fileID: 1473772124928122709}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2886136698158291130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456101234700860080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa9482f55b57714c91f6120f71e857c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSave: 0
+  moneySave: 0
+  spawnPointSave: {fileID: 0}
 --- !u!1 &5525693295930136778
 GameObject:
   m_ObjectHideFlags: 0
@@ -8314,6 +8330,8 @@ MonoBehaviour:
   - {fileID: 4794751264583697015}
   - {fileID: 549495362081571883}
   - {fileID: 8819136172952779933}
+  leftHeart: {fileID: 0}
+  rightHeart: {fileID: 0}
   KellHead: {fileID: 6234997129014584233}
   dashHandles:
   - {fileID: 4949415363722003574}
