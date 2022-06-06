@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue Display")] [SerializeField]
     private TextMeshProUGUI dialogueDisplay;
 
+    public bool playerCanMove;
     [SerializeField] private UnityEngine.UI.Image characterEmotion;
     [SerializeField] private UnityEngine.UI.Image frame;
     [SerializeField] private Sprite[] frames;
@@ -243,16 +244,18 @@ public class DialogueManager : MonoBehaviour
     {
         if (!cinematic)
         {
+            Debug.Log("Plus de cinématique");
             UIManager.Instance.gameObject.SetActive(true);
             cinematicMode.ResetTrigger("IsCinematic");
+            isCinematic = true;
         }
         else
         {   
             Controller.instance.animatorPlayer.Play("idle");
             UIManager.Instance.gameObject.SetActive(false);
             cinematicMode.SetTrigger("IsCinematic");
+            isCinematic = false;
         }
-        isCinematic = !isCinematic;
     }
 
     private void AutomaticDialogues()

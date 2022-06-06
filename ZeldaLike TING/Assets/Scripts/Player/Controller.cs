@@ -39,7 +39,7 @@ public class
     public bool secondStick;
     private ControlType lastControlType;
     public Animator animatorPlayer;
-    [SerializeField] private Animator animatorPlayerHand;
+    [SerializeField] public Animator animatorPlayerHand;
     [SerializeField] private Animator animatorMovePlayer;
     
     private CardsController cardControl;
@@ -79,7 +79,7 @@ public class
     [SerializeField] private float groundDistance;
     public Transform moveCardTransform;
     public Transform movePlayerTransform;
-    private Vector3 lastDir;
+    public Vector3 lastDir;
     private float anglePlayerView;
     
     [Header("--- CAMERA ---")] 
@@ -367,6 +367,7 @@ public class
 
     void Move()
     {
+        Debug.Log("Le joueur bouge");
         Vector3 dir = lastDir;
         anglePlayerView = -(Mathf.Atan2(dir.z, dir.x)*Mathf.Rad2Deg); 
         if (angleView < 0) anglePlayerView += 360 ; 
@@ -493,40 +494,46 @@ public class
             }
             if (!inAttack && canMove && moving)
             {
+                Debug.Log("Je bouge et je regarde");
                 animatorPlayer.SetFloat("X-Axis", lastDir.x);
                 animatorPlayer.SetFloat("Z-Axis", lastDir.z);
 
                 if (!DialogueManager.Instance.isCinematic)
-                {	
+                {
                     animatorPlayer.SetBool("isRun", moving);
 					animatorPlayerHand.SetBool("isRun", moving);
                     animatorMovePlayer.SetBool("isWalk", moving);
                 } // Il est différent donc repoussé par la société
             }
+
+            if (DialogueManager.Instance.isCinematic)
+            {
+                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
+                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);
+
+                    if (moving && DialogueManager.Instance.playerCanMove)
+                    {
+                        Debug.Log("Set Run");
+                        animatorPlayer.SetBool("isRun", moving);
+                        animatorPlayerHand.SetBool("isRun", moving);
+                        animatorMovePlayer.SetBool("isWalk", moving);
+                    }
+            }
             else
             {
-                if (DialogueManager.Instance.isCinematic)
-                {
-                    animatorPlayer.SetFloat("X-Axis", lastDir.x);
-                    animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
-                }
-                if (moving )
+                
+                if (moving)
                 {
                     if (dashing || DialogueManager.Instance.isCinematic)
                     {
                         animatorPlayer.SetFloat("X-Axis", lastDir.x);
                         animatorPlayer.SetFloat("Z-Axis", lastDir.z);  
                     }
-                    else
-                    {
-                        animatorPlayer.SetFloat("X-Axis", animDir.x);
-                        animatorPlayer.SetFloat("Z-Axis", animDir.z);
-                    }
                 }
 
                 if (!DialogueManager.Instance.isCinematic)
 				{
-					animatorPlayer.SetBool("isRun", moving);
+                    animatorPlayer.SetBool("isRun", moving);
 					animatorPlayerHand.SetBool("isRun", moving);
 				}
             }
@@ -582,6 +589,7 @@ public class
     {
         if (freeze)
         {
+            DialogueManager.Instance.playerCanMove = false;
             switch (toFreeze)
             {
                 case "Dash":
@@ -610,6 +618,7 @@ public class
         }
         else
         {
+            DialogueManager.Instance.playerCanMove = false;
             canMove = true;
             CardsController.instance.canUseCards = true;
             canDash = true;

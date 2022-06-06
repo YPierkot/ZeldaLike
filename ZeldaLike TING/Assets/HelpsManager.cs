@@ -48,24 +48,9 @@ public class HelpsManager : MonoBehaviour
                 case 1:
                     if (GameManager.Instance.currentContorller == GameManager.controller.Keybord)
                     {
-                        if (Input.GetKey(KeyCode.Z))
+                        if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) ||Input.GetKey(KeyCode.Q))
                         {
                             CheckLine(1);
-                        }
-
-                        if (Input.GetKey(KeyCode.Q))
-                        {
-                            CheckLine(2);
-                        }
-
-                        if (Input.GetKey(KeyCode.S))
-                        {
-                            CheckLine(3);
-                        }
-
-                        if (Input.GetKey(KeyCode.D))
-                        {
-                            CheckLine(4);
                         }
                     }
                     else
@@ -73,9 +58,6 @@ public class HelpsManager : MonoBehaviour
                         if (Controller.instance.moving)
                         {
                             CheckLine(1);
-                            CheckLine(2);
-                            CheckLine(3);
-                            CheckLine(4);
                         }
                     }
                     break;

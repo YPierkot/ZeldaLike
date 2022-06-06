@@ -21,6 +21,7 @@ public class CinematicManager : MonoBehaviour
 
     [SerializeField] private Transform wizardTransform;
     [SerializeField] private PathFollower kellPath;
+    private bool kellMoving;
 
     [Header("PostProcess & GameFeel")]
     [SerializeField] private VolumeProfile transitionVolume;
@@ -32,10 +33,12 @@ public class CinematicManager : MonoBehaviour
     private void Start()
     {
         DialogueManager.Instance.IsCinematic(true);
+        Controller.instance.animatorPlayerHand.gameObject.SetActive(false);
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         DialogueManager.Instance.AssignDialogue(dialogue.dialogue.ToList());
         UIManager.Instance.gameObject.SetActive(false);
         Controller.instance.FreezePlayer(true);
+        Controller.instance.Rotate(new Vector2(0, 1));
         StartCoroutine(ObjectManagement());
     }
 
@@ -43,7 +46,15 @@ public class CinematicManager : MonoBehaviour
     {
         wizardTransform.position = wizard.transform.position;
         Controller.instance.transform.position = kellPath.transform.position;
-
+        if (kellMoving)
+        {
+            DialogueManager.Instance.playerCanMove = true;
+        }
+        else
+        {
+            DialogueManager.Instance.playerCanMove = false;
+            Controller.instance.animatorPlayer.SetBool("isRun", false);
+        }
     }
 
     private IEnumerator ObjectManagement()
@@ -52,8 +63,26 @@ public class CinematicManager : MonoBehaviour
         wizard.enabled = true;
         yield return new WaitForSeconds(3f);
         kellPath.enabled = true;
-        Controller.instance.animatorPlayer.SetBool("IsRun", true);
-        yield return new WaitForSeconds(9f);
+        kellMoving = true;
+        Controller.instance.animatorPlayer.SetTrigger("isRun");
+        Controller.instance.lastDir = new Vector3(-1, 0, 1);
+        Debug.Log("gauche");
+        yield return new WaitForSeconds(0.5f);
+        Controller.instance.lastDir = new Vector3(0, 0, 1);
+        Debug.Log("haut");
+        yield return new WaitForSeconds(0.4f);
+        Controller.instance.lastDir = new Vector3(1, 0, 1);
+        Debug.Log("droite");
+        yield return new WaitForSeconds(1.3f);
+        Controller.instance.lastDir = new Vector3(0, 0, 1);
+        Debug.Log("haut");
+        yield return new WaitForSeconds(0.35f);
+        Controller.instance.lastDir = new Vector3(-1, 0, 0);
+        Debug.Log("gauche");
+        yield return new WaitForSeconds(0.25f);
+        kellMoving = false;
+        Debug.Log("J'arrête le joueur");
+        yield return new WaitForSeconds(5f);
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         CameraShake.Instance.AddShakeEvent(cameraShake);
         yield return new WaitForSeconds(1f);

@@ -74,10 +74,10 @@ public class TutorialManager : MonoBehaviour
         helpManager = GetComponent<HelpsManager>();
         StartCoroutine(PortalAppearance());
         UIManager.Instance.gameObject.SetActive(false);
-        Controller.instance.FreezePlayer(true);
         Controller.instance.gameObject.SetActive(false);
         DialogueManager.Instance.IsCinematic(true);
         Controller.instance.transform.position = spawnPoint.position;
+        GameManager.Instance.cameraController.transform.position = Controller.instance.PlayerCameraPoint.position;
         UIManager.Instance.loadingScreen.SetActive(false);
     }
 
@@ -98,7 +98,10 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator ManageIthar()
     {
-        yield return new WaitForSeconds(4);
+        Controller.instance.animatorPlayerHand.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        Controller.instance.animatorPlayer.SetBool("isRun", false);
+        yield return new WaitForSeconds(3);
         CameraShake.Instance.AddShakeEvent(prisonShake);
         touchedPrison = true;
         prisonParticle.enabled = true;
@@ -140,6 +143,7 @@ public class TutorialManager : MonoBehaviour
                     EnqueueDialogue();
                     Invoke("ResetCamera", 6);
                     DialogueManager.Instance.dialogueMoved = false;
+                    Controller.instance.animatorPlayerHand.gameObject.SetActive(true);
                     break;
                 case 5 : //Après avoir vu l'objet magique
                     _controller.FreezePlayer(false);
@@ -155,6 +159,7 @@ public class TutorialManager : MonoBehaviour
                 case 4 : //Après avoir libéré Ithar
                     if (enemySpawn)
                     {
+                        Controller.instance.animatorPlayerHand.gameObject.SetActive(true);
                         StartCoroutine(helpManager.DisplayHelp());
                         enemySpawn = false;
                         UIManager.Instance.gameObject.SetActive(true);
@@ -184,8 +189,9 @@ public class TutorialManager : MonoBehaviour
                         StartCoroutine(helpManager.DisplayHelp());
                     }
                     _controller.FreezePlayer(false);
-                    if (CardsController.instance.fireCardUnlock)
+                    if (CardsController.instance.fireCardUnlock && !DialogueManager.Instance.isPlayingDialogue)
                     {
+                        Debug.Log("Plus de cinématique");
                         DialogueManager.Instance.IsCinematic(false);
                         UIManager.Instance.gameObject.SetActive(true);
                         _controller.FreezePlayer(true, "Cards");
@@ -273,6 +279,7 @@ public class TutorialManager : MonoBehaviour
         portal.ResetTrigger("PortalOn");
         portalDarkCircle.ResetTrigger("PortalOn");
         Controller.instance.gameObject.SetActive(true);
+        Controller.instance.FreezePlayer(true);
         playerAppeared = true;
         EnqueueDialogue();
         yield return new WaitForSeconds(0.5f);
