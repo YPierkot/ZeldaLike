@@ -52,6 +52,7 @@ public class CinematicManager : MonoBehaviour
         wizard.enabled = true;
         yield return new WaitForSeconds(3f);
         kellPath.enabled = true;
+        Controller.instance.animatorPlayer.SetBool("IsRun", true);
         yield return new WaitForSeconds(9f);
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         CameraShake.Instance.AddShakeEvent(cameraShake);

@@ -12,6 +12,8 @@ public class QuestManager : MonoBehaviour
     [Header("Jack")]
     
     [SerializeField] private bool foundArtifact;
+
+    [SerializeField] private bool jackGaveQuest;
     [SerializeField] private string foundArtifactText;
     [SerializeField] private string jackQuestText;
     [SerializeField] private NPCDialogue jack;
@@ -29,18 +31,31 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private DialogueScriptable adelbertDialogue;
     [SerializeField] private DialogueScriptable adelbertNotFoundDialogue;
 
+    [Header("Quest Rewards")] 
+    
+    [SerializeField] private float coinsNumber;
+    [SerializeField] private float throwForce = 1;
+    [SerializeField] private float throwRangeDistance = 4f;
+    [SerializeField] private GameObject chestFX;
 
     public IEnumerator JackGiveQuest()
     {
-        yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
-        questText.text = jackQuestText;
-        questFrame.SetTrigger("IsOn");
-        questTextAnimator.SetTrigger("IsOn");
-        yield return new WaitForSeconds(4f);
-        jack.dialogues.Add(jackNotFoundDialogue);
-        questFrame.ResetTrigger("IsOn");
-        questTextAnimator.ResetTrigger("IsOn");
-        questText.text = null;
+        if (!jackGaveQuest)
+        {
+            yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
+            questText.text = jackQuestText;
+            questFrame.SetTrigger("IsOn");
+            questTextAnimator.SetTrigger("IsOn");
+            yield return new WaitForSeconds(4f);
+            questFrame.ResetTrigger("IsOn");
+            questTextAnimator.ResetTrigger("IsOn");
+            questText.text = null;
+        }
+        else if(foundArtifact)
+        {
+            yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
+            SpawnObject(adelbert.transform.position);
+        }
     }
     public IEnumerator FoundArtifact()
     {
@@ -52,7 +67,7 @@ public class QuestManager : MonoBehaviour
         questFrame.ResetTrigger("IsOn");
         questTextAnimator.ResetTrigger("IsOn");
         questText.text = null;
-        jack.dialogues.Insert(1, jackDialogue);
+        jack.dialogues.Add(jackDialogue);
     }
 
     public IEnumerator AdelbertGiveQuest()
@@ -65,10 +80,14 @@ public class QuestManager : MonoBehaviour
             questFrame.SetTrigger("IsOn");
             questTextAnimator.SetTrigger("IsOn");
             yield return new WaitForSeconds(4f);
-            adelbert.dialogues.Add(adelbertNotFoundDialogue);
             questFrame.ResetTrigger("IsOn");
             questTextAnimator.ResetTrigger("IsOn");
             questText.text = null;
+        }
+        else if (treasureFound)
+        {
+            yield return new WaitUntil(() => !DialogueManager.Instance.isPlayingDialogue);
+            SpawnObject(adelbert.transform.position);
         }
     }
 
@@ -79,7 +98,7 @@ public class QuestManager : MonoBehaviour
         questFrame.SetTrigger("IsOn");
         questTextAnimator.SetTrigger("IsOn");
         yield return new WaitForSeconds(4f);
-        adelbert.dialogues.Insert(1, adelbertDialogue);
+        adelbert.dialogues.Add(adelbertDialogue);
         questFrame.ResetTrigger("IsOn");
         questTextAnimator.ResetTrigger("IsOn");
         questText.text = null;
@@ -104,4 +123,18 @@ public class QuestManager : MonoBehaviour
     {
         StartCoroutine(FindingTreasure());
     }
+    
+    public void SpawnObject(Vector3 position)
+    {
+        SpawnFX(position);
+        Dropper dropper = GetComponent<Dropper>();
+        for (int i = 0; i < coinsNumber; i++) {
+            GameObject ressource = Instantiate(dropper.Loots[0].Item, position, Quaternion.identity);
+            //if(dropper != null) dropper.Loot();
+            if (ressource.GetComponent<Rigidbody>() == null) return;
+            ressource.GetComponent<Rigidbody>().AddForce(Vector3.up * throwForce + GetPointOnCircle(Random.Range(0,360), Random.Range(0,360)), ForceMode.Impulse);
+        }
+    }
+    private Vector3 GetPointOnCircle(float rotationX, float rotationY) => new Vector3(throwRangeDistance * Mathf.Sin(rotationX), 0, throwRangeDistance * Mathf.Cos(rotationX));
+    public void SpawnFX(Vector3 position) => Instantiate(chestFX, position, Quaternion.identity);
 }

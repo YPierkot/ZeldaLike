@@ -18,11 +18,7 @@ public class Dropper : MonoBehaviour
     public DropSettings[] Loots;
     public bool lootItem = true;
     [Space] [SerializeField] private Vector3 offset;
-    private void OnDestroy()
-    {
-        Loot();
-    }
-
+    
     public void Loot()
     {
         if (lootItem)
