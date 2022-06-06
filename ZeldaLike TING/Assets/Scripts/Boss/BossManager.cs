@@ -16,6 +16,13 @@ public class BossManager : MonoBehaviour
         public Vector3 pos;
         public GameObject warning;
     }
+
+    [Serializable]class RuneDict
+    {
+        public runeType type;
+        public GameObject rune;
+    }
+    
     public enum BossState
     {
         idle,
@@ -24,6 +31,11 @@ public class BossManager : MonoBehaviour
         ballAttack
     }
 
+    enum runeType
+    {
+        fire, ice, wind
+    }
+    
     private Transform boss;
     public float groundY()
     {
@@ -41,6 +53,9 @@ public class BossManager : MonoBehaviour
     [Space]
     [SerializeField] private Vector2 sizeAttackZone;
     [SerializeField] private Vector2 distanceFromPlayer;
+    [Header("---RUNE")] 
+    [SerializeField] private RuneDict[] runes;
+    private List<GameObject> activeRune;
 
     private bool idleStart;
     private int idleCount = 0;
@@ -79,9 +94,11 @@ public class BossManager : MonoBehaviour
     [SerializeField] float ballSpeed;
     [SerializeField] private Vector2 ballAmountRange;
     private int ballsAmount;
+    private int ballCount;
     [Space]
     [SerializeField] private GameObject[] balls;
-    private List<Vector3> ballPosList;
+
+    public List<Vector3> ballPosList;
     [SerializeField] GameObject attackWarning;
     [SerializeField] private GameObject[] warnings;
     [Space]
@@ -96,6 +113,7 @@ public class BossManager : MonoBehaviour
     [HideInInspector] public bool canThrow;
 
     [Header("---SHIELD")] 
+    private bool onShield;
     private MeshRenderer shieldMesh;
     [SerializeField] Color destroyableColor ;
     [SerializeField] Color invincibleColor ;
@@ -124,7 +142,7 @@ public class BossManager : MonoBehaviour
         warnings = new GameObject[(int)ballAmountRange.y];
         for (int i = 0; i < warnings.Length; i++)
         {
-            warnings[i] = Instantiate(attackWarning, transform);
+            warnings[i] = Instantiate(attackWarning);
             warnings[i].SetActive(false);
         }
 
@@ -239,6 +257,7 @@ public class BossManager : MonoBehaviour
             teleporting = false;
             castAttack = true;
             currentState = BossState.idle;
+            SetupRune();
         }
     }
 
@@ -331,12 +350,13 @@ public class BossManager : MonoBehaviour
     private void BallAttackStart()
     {
        Debug.Log("Ball Start");
-        idleCount = 0; 
+        idleCount = 0;
         ballCastFinish = false; 
         warningCD = false; 
         canThrow = true;
         animator.SetTrigger("BallAttack"); 
-        ballsAmount = Random.Range((int)ballAmountRange.x, ((int)ballAmountRange.y + 1)); 
+        ballsAmount = Random.Range((int)ballAmountRange.x, ((int)ballAmountRange.y + 1));
+        ballCount = 0;
         ballQueue = new Queue<BallSets>(); 
         ballPosList = new List<Vector3>();
         ballStart = true; 
@@ -349,7 +369,7 @@ public class BossManager : MonoBehaviour
         {
             if (!warningCD)
             {
-                if (ballQueue.Count == ballsAmount) 
+                if (ballCount == ballsAmount) 
                 {
                     ballCastFinish = true;
                     animator.SetTrigger("BallThrow");
@@ -393,13 +413,13 @@ public class BossManager : MonoBehaviour
                 ballPosList.Add(newBallPos);
                 
                 newBall.ball = balls[index];
-                newBall.pos = newBallPos;
-                newBall.warning = warnings[ballQueue.Count];
+                newBall.pos = TransformTP_Zone.position + newBallPos ;
+                newBall.warning = warnings[ballCount];
+
+                ballCount++;
+                StartCoroutine(BallDelayLaunch(newBall, ballThrowTimer));
                 
-                newBall.warning.SetActive(true);
-                newBall.warning.transform.position = newBall.pos;
-                
-                ballQueue.Enqueue(newBall);
+                //ballQueue.Enqueue(newBall);
                 
                 //Debug.Log($"Generate ball n°{ballQueue.Count} at {newBall.pos}");
                 warningCD = true;
@@ -407,7 +427,7 @@ public class BossManager : MonoBehaviour
                 
             }
         }
-        else if (ballQueue.Count != 0)
+        /*else if (ballQueue.Count != 0)
         {
             if (canThrow)
             {
@@ -420,7 +440,7 @@ public class BossManager : MonoBehaviour
                 canThrow = false;
                 StartCoroutine(ballThrowCD());
             }
-        }
+        }*/
         else
         {
             Debug.Log("Ball End");
@@ -457,18 +477,50 @@ public class BossManager : MonoBehaviour
     public void Freeze()
     {
         Debug.Log("FreezeAffect");
-        if (currentState == BossState.idle)
+        if (!onShield)
         {
             Debug.Log("Freeze");
-            shield.gameObject.SetActive(false);
+            //shield.gameObject.SetActive(false);
             StartCoroutine(FreezeCD());
+        }
+    }
+
+    void SetupRune()
+    {
+        Debug.Log("Setup Tunes");
+        int i = Random.Range(0, runes.Length);
+        for (int j = 0; j < runes.Length; j++)
+        {
+            if (i != j)
+            {
+                GameObject currentRune = runes[j].rune;
+                activeRune.Add(currentRune);
+                Vector3 vec = new Vector3(Random.Range(2f, 5f), _groundY-boss.position.y, Random.Range(2f, 5f));
+                currentRune.transform.position = vec + boss.position;
+                LineRenderer line = currentRune.GetComponent<LineRenderer>();
+                line.SetPosition(0,currentRune.transform.position);
+                line.SetPosition(1,boss.position);
+                currentRune.SetActive(true);
+            }
+        }
+    }
+    
+    public void RuneDestroy(GameObject rune)
+    {
+        activeRune.Remove(rune);
+        rune.SetActive(false);
+        if (activeRune.Count == 0)
+        {
+            onShield = false;
+            shield.gameObject.SetActive(false);
+            StartCoroutine(ShieldCD());
         }
     }
 
     public void TakeDamage(int damage)
     {
         //Debug.Log("Damage Boss");
-        if (isFreeze)
+        if (!onShield)
         {
             life -= damage;
             UIManager.Instance.BossLifeUpdate(life);
@@ -490,6 +542,14 @@ public class BossManager : MonoBehaviour
         isFreeze = false;
         if (currentState == BossState.idle) currentState = BossState.Tp;
         animator.speed *= 2;
+
+    }
+
+    IEnumerator ShieldCD()
+    {
+        yield return new WaitForSeconds(5f);
+        if (currentState == BossState.idle) currentState = BossState.Tp;
+        onShield = true;
         shield.gameObject.SetActive(true);
 
     }
@@ -511,5 +571,17 @@ public class BossManager : MonoBehaviour
     {
         yield return new WaitForSeconds(ballThrowTimer);
         canThrow = true;
+    }
+
+    IEnumerator BallDelayLaunch(BallSets ballSet, float delayTime)
+    {
+        ballSet.warning.SetActive(true);
+        ballSet.warning.transform.position = ballSet.pos;
+        
+        yield return new WaitForSeconds(delayTime);
+        
+        GameObject newBall = Instantiate(ballSet.ball, new Vector3(boss.position.x, 0, boss.position.z), Quaternion.identity);
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossProjectilShoot);
+        newBall.GetComponent<BossBall>().LaunchBall(ballSet.pos, ballSpeed, ballSet.warning);
     }
 }
