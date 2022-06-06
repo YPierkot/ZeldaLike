@@ -63,6 +63,15 @@ public class DialogueManager : MonoBehaviour
         SkipDialogue();
         if (!dialogueMoved && !isCinematic)
         {
+            if (isPlayingDialogue)
+            {
+                gray.enabled = true;
+                
+            }
+            else
+            {
+                gray.enabled = false;
+            }
             dialogueMoved = true;
             characterEmotion.rectTransform.anchoredPosition = new Vector2(-1808, -417);
             maskAnimator.GetComponent<RectTransform>().anchoredPosition = new Vector2(-180, -385);
@@ -244,7 +253,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (!cinematic)
         {
-            Debug.Log("Plus de cinématique");
             UIManager.Instance.gameObject.SetActive(true);
             cinematicMode.ResetTrigger("IsCinematic");
             isCinematic = false;
@@ -293,7 +301,7 @@ public class DialogueManager : MonoBehaviour
     }
     public IEnumerator CinematicWait()
     {
-        yield return new WaitWhile(()=> !isPlayingDialogue);
+        yield return new WaitWhile(()=> isPlayingDialogue);
         if (skip)
         {
             skip = false;

@@ -34,20 +34,28 @@ MonoBehaviour:
     dialogLines:
     - expressions: 0
       name: 
-      line: Non bien sur que non. Tu vois ces cartes
-      delay: 3
+      line: 'Non bien sur que non. '
+      delay: 2
     - expressions: 0
       name: 
-      line: Ont deux faces, et chaque face contient un pouvoir.
-      delay: 3
-    - expressions: 0
-      name: 
-      line: Le recto de celle-ci contient la boule de feu mais avec le verso
-      delay: 3.5
-    - expressions: 0
-      name: 
-      line: 'Tu peux lancer la carte ou tu veux et la '
+      line: 'Tu vois ces cartes ont deux faces, '
       delay: 2.5
+    - expressions: 0
+      name: 
+      line: et chaque face contient un pouvoir.
+      delay: 0
+    - expressions: 0
+      name: 
+      line: 'Le recto de celle-ci contient la boule de feu '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: mais avec le verso
+      delay: 1.5
+    - expressions: 0
+      name: 
+      line: "R\xE9activer pour cr\xE9er une explosion !"
+      delay: 0
     - expressions: 0
       name: 
       line: "R\xE9activer pour cr\xE9er une explosion !"
@@ -70,6 +78,10 @@ MonoBehaviour:
       delay: 3
     - expressions: 0
       name: 
-      line: Allez, essaie d'atteindre ces lianes avec le pouvoir verso.
-      delay: 3.5
+      line: 'Allez, essaie d''atteindre ces lianes '
+      delay: 2
+    - expressions: 0
+      name: 
+      line: avec le pouvoir verso.
+      delay: 1.5
     voiceLine: {fileID: 8300000, guid: c007d2a68da4b054f948724479e9dfc4, type: 3}
