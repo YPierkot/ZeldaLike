@@ -59,6 +59,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8557527777888833858}
     m_Modifications:
+    - target: {fileID: -7136298665680540708, guid: 99a1c29442bfa404b8835ee6cdc72989,
+        type: 3}
+      propertyPath: m_TagString
+      value: Crates
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 99a1c29442bfa404b8835ee6cdc72989,
         type: 3}
       propertyPath: m_RootOrder
@@ -119,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tonneau_A_TBL
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 99a1c29442bfa404b8835ee6cdc72989,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99a1c29442bfa404b8835ee6cdc72989, type: 3}
 --- !u!4 &4236202026889342711 stripped
@@ -133,3 +143,50 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 9201055807962007021}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7153530051556453937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7136298665680540708, guid: 99a1c29442bfa404b8835ee6cdc72989,
+    type: 3}
+  m_PrefabInstance: {fileID: 9201055807962007021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2760327273665219696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153530051556453937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.981, y: 0.9236, z: 0.981}
+  m_Center: {x: 0, y: 0.4618, z: 0}
+--- !u!114 &316234264508972824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153530051556453937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd92546bae92fb0469b5ac41d6be654c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyObjectAfterHitting: 1
+  destroyAction:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6120515479125409290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7153530051556453937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf933a7c85ec3d241b4e39a5102e32ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

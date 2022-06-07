@@ -191,7 +191,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 26f77bc3608540747a2cfd2b79d54e45, type: 2}
+      objectReference: {fileID: 2100000, guid: 3f4a8924b5c939243b471e2a1d6173e4, type: 2}
     - target: {fileID: 919132149155446097, guid: fc486ab3fd518eb4e8c565b91a2a4785,
         type: 3}
       propertyPath: m_Name
@@ -221,8 +221,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8553632806182086940}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &630828098
-MeshCollider:
+--- !u!65 &3876725211562419760
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -231,10 +231,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1824870671384894608, guid: fc486ab3fd518eb4e8c565b91a2a4785, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.058812197, y: 0.08305495, z: 0.027123509}
+  m_Center: {x: -0.005837829, y: -0.006917597, z: 0.017156634}
 --- !u!95 &3094984691539800919
 Animator:
   serializedVersion: 4
@@ -267,17 +266,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1f024c7ef3a0b418737119da8ac17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRune: 0
   fireAffect: 1
   canBurn: 1
-  burnDestroy: 1
   burning: 0
-  burnAmount: 0
   onBurn:
     m_PersistentCalls:
       m_Calls: []
+  fireColor: {r: 0, g: 0, b: 0, a: 0}
   onBurnDestroy:
     m_PersistentCalls:
       m_Calls: []
+  lianaTouched: 0
   lianaBurning: {fileID: 0}
   windAffect: 0
   windThrough: 0
@@ -286,9 +286,14 @@ MonoBehaviour:
       m_Calls: []
   iceAffect: 0
   canFreeze: 0
+  barrier: 0
+  iceColor: {r: 0, g: 0, b: 0, a: 0}
   freezeCollider: {fileID: 0}
   freezeTime: 0
   isFreeze: 0
+  onFreeze:
+    m_PersistentCalls:
+      m_Calls: []
   moveRestricted: 0
   moveTop: 0
   moveLeft: 0
@@ -300,3 +305,23 @@ MonoBehaviour:
   lianaBurnMaterial: {fileID: 2100000, guid: 26f77bc3608540747a2cfd2b79d54e45, type: 2}
   burnAmount: 0
   sparks: {fileID: 6957926693540595480}
+--- !u!114 &5397772416844506750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824225565668103245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33975daf3992b7342a258e3a77dc232f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  yValue: 0
+  startYValue: 0
+  noiseScale: 50
+  noiseStrength: 1
+  appearSpeed: 0.1
+  maxY: 15
+  appear: 0

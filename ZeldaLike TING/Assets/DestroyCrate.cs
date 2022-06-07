@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class DestroyCrate : MonoBehaviour
 {
-    public GameObject fxDestroyCrate;
-
     private void OnDestroy()
     {
         GameObject fxCrate = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxDestroyCrate);

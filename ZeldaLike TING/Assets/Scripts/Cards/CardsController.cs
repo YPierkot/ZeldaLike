@@ -18,7 +18,7 @@ public class CardsController : MonoBehaviour
     public static bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
     public GameObject firecircleFx;
-    [HideInInspector] public bool fireRectoUse;
+     public bool fireRectoUse;
     
     // IceCard
     [Header("Ice Card")] 
@@ -27,7 +27,7 @@ public class CardsController : MonoBehaviour
     public static bool isIceGround;
     public GameObject iceCardGrounded;
     public GameObject enemyFreezeFX;
-    [HideInInspector] public bool iceRectoUse;
+     public bool iceRectoUse;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
@@ -36,7 +36,7 @@ public class CardsController : MonoBehaviour
     public static bool isWallGround;
     public GameObject wallCardGrounded;
     public GameObject WallSR;
-    [HideInInspector] public bool wallRectoUse;
+     public bool wallRectoUse;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
@@ -49,7 +49,7 @@ public class CardsController : MonoBehaviour
     [SerializeField] float repulsiveRadius = 4.5f;
     [SerializeField] Vector3 repulsivePoint;
     public GameObject DebugWindSphere;
-    [HideInInspector] public bool windRectoUse;
+     public bool windRectoUse;
     
     [Space(10)] // Wind Card
     [Header("Utilities")] 
@@ -103,10 +103,10 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: if(fireCardUnlock)fireRectoUse = true; FireballShortRange(); break;
-            case CardsState.Ice: iceRectoUse = true; IceShortRange(); break;
-            case CardsState.Wall: wallRectoUse = true; WallShortRange(); break;
-            case CardsState.Wind: windRectoUse = true; WindShortRange(); break;
+            case CardsState.Fire: FireballShortRange(); break;
+            case CardsState.Ice:  IceShortRange(); break;
+            case CardsState.Wall:  WallShortRange(); break;
+            case CardsState.Wind:  WindShortRange(); break;
         }
         UIManager.Instance.UpdateCardUI();
     }
@@ -118,10 +118,10 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: if(fireCardUnlock)fireRectoUse = false; FireballLongRange(); break;
-            case CardsState.Ice: iceRectoUse = false; IceLongRange(); break;
-            case CardsState.Wall: wallRectoUse = false; WallLongRange(); break;
-            case CardsState.Wind: windRectoUse = false; WindLongRange(); break;
+            case CardsState.Fire:  FireballLongRange(); break;
+            case CardsState.Ice:  IceLongRange(); break;
+            case CardsState.Wall:  WallLongRange(); break;
+            case CardsState.Wind: WindLongRange(); break;
         }
         UIManager.Instance.UpdateCardUI();
     }
@@ -153,7 +153,7 @@ public class CardsController : MonoBehaviour
             if (!isFireGround)
             {
                 //UIManager.Instance.LaunchFireCardTween();
-                
+                UIManager.Instance.cardHandlesReference[0].animator.SetTrigger("ActivatedCard");
                 canUseFireCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -168,7 +168,7 @@ public class CardsController : MonoBehaviour
                 isFireGround = true;
             }
         }
-        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI();
+        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.fireExplosion);
     }
     
     // Ice Card
@@ -179,7 +179,7 @@ public class CardsController : MonoBehaviour
             if (!isIceGround)
             {
                 //UIManager.Instance.LaunchFireIceTween();
-                
+                UIManager.Instance.cardHandlesReference[1].animator.SetTrigger("ActivatedCard");
                 canUseIceCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -196,7 +196,7 @@ public class CardsController : MonoBehaviour
                 UIManager.Instance.UpdateCardUI();
             }
         }
-        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet(); UIManager.Instance.UpdateCardUI();
+        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet(); UIManager.Instance.UpdateCardUI(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.iceVerso);
 
     }
     
@@ -208,7 +208,7 @@ public class CardsController : MonoBehaviour
             if (!isWallGround)
             {
                 //UIManager.Instance.LaunchFireWallTween();
-                
+                UIManager.Instance.cardHandlesReference[2].animator.SetTrigger("ActivatedCard");
                 canUseWallCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -227,7 +227,7 @@ public class CardsController : MonoBehaviour
                 UIManager.Instance.UpdateCardUI();
             }
         }
-        else if (isWallGround) wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect();
+        else if (isWallGround) wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.groundWall);
 
     }
     
@@ -238,7 +238,7 @@ public class CardsController : MonoBehaviour
             if (!isWindGround)
             {
                 //UIManager.Instance.LaunchFireWindTween();
-                
+                UIManager.Instance.cardHandlesReference[3].animator.SetTrigger("ActivatedCard");
                 canUseWindCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -254,7 +254,7 @@ public class CardsController : MonoBehaviour
                 UIManager.Instance.UpdateCardUI();
             }
         }
-        else if(isWindGround) windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect();
+        else if(isWindGround) windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.windAttract);
     }
     
     #endregion
@@ -309,6 +309,7 @@ public class CardsController : MonoBehaviour
     // EFFECTS CODE
     private void ActivateFireShortEffect() // OK
     {
+        UIManager.Instance.cardHandlesReference[0].animator.SetTrigger("ActivatedCard");
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
         else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
@@ -328,6 +329,7 @@ public class CardsController : MonoBehaviour
     private const float radiusIceShot = 2.5f;
     public void ActivateIceGroundEffect()
     {
+        UIManager.Instance.cardHandlesReference[1].animator.SetTrigger("ActivatedCard");
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
 
@@ -357,6 +359,7 @@ public class CardsController : MonoBehaviour
 
     public void ActivateWallGroundEffect() // C'est OK 
     {
+        UIManager.Instance.cardHandlesReference[2].animator.SetTrigger("ActivatedCard");
         float zTransform = transform.position.z;
         float xTransform = transform.position.x;
         float yTransform = transform.position.y;
@@ -372,6 +375,7 @@ public class CardsController : MonoBehaviour
     private const float forceModifier = 1.6f;
     public void ActivateWindGroundEffect() // OK
     {
+        UIManager.Instance.cardHandlesReference[3].animator.SetTrigger("ActivatedCard");
         Destroy(Instantiate(ShortWindFx, transform.position, Quaternion.identity), 3f);
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.WindThrow);
         repulsivePoint = transform.position;

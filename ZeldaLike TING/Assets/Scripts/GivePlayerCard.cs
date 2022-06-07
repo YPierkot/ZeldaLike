@@ -50,7 +50,8 @@ public class GivePlayerCard : MonoBehaviour
             CardsController CC = CardsController.instance;
             switch (_cardToGive)
             {
-                case CardToGive.fire : CC.fireCardUnlock = true; CC.canUseCards = true; CC.canUseFireCard = true; break;
+                case CardToGive.fire : CC.fireCardUnlock = true; CC.canUseCards = true; CC.canUseFireCard = true; 
+                    break;
                 case CardToGive.ice : CC.iceCardUnlock = true; CC.canUseIceCard = true; break;
                 case CardToGive.wall : CC.wallCardUnlock = true; CC.canUseWallCard = true; break;
                 case CardToGive.wind : CC.windCardUnlock = true; CC.canUseWindCard = true; break;

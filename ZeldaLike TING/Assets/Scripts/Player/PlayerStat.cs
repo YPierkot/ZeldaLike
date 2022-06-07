@@ -98,14 +98,13 @@ public class PlayerStat : MonoBehaviour
       UIManager.Instance.changingMoney = true;
    }
 
-   public IEnumerator PlayerDeath()
+   public IEnumerator PlayerDeath() 
    {
       UIManager.Instance.TakeDamageUI(life);
       _control.animatorPlayer.SetBool("isDead", true);
       CardsController.instance.canUseCards = false;
       _control.FreezePlayer(true);
       
-      Time.timeScale = 0f;
       yield return new WaitForSeconds(3f);
       
       PlayerRespawn();
