@@ -179,7 +179,7 @@ public class CardsController : MonoBehaviour
             if (!isIceGround)
             {
                 //UIManager.Instance.LaunchFireIceTween();
-                
+                UIManager.Instance.cardHandlesReference[1].animator.SetTrigger("ActivatedCard");
                 canUseIceCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -208,7 +208,7 @@ public class CardsController : MonoBehaviour
             if (!isWallGround)
             {
                 //UIManager.Instance.LaunchFireWallTween();
-                
+                UIManager.Instance.cardHandlesReference[2].animator.SetTrigger("ActivatedCard");
                 canUseWallCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -238,7 +238,7 @@ public class CardsController : MonoBehaviour
             if (!isWindGround)
             {
                 //UIManager.Instance.LaunchFireWindTween();
-                
+                UIManager.Instance.cardHandlesReference[3].animator.SetTrigger("ActivatedCard");
                 canUseWindCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
@@ -309,6 +309,7 @@ public class CardsController : MonoBehaviour
     // EFFECTS CODE
     private void ActivateFireShortEffect() // OK
     {
+        UIManager.Instance.cardHandlesReference[0].animator.SetTrigger("ActivatedCard");
         Vector3 shootPointPos;
         if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
         else if (controller.secondStick) shootPointPos =-controller.moveCardTransform.forward ;
@@ -328,6 +329,7 @@ public class CardsController : MonoBehaviour
     private const float radiusIceShot = 2.5f;
     public void ActivateIceGroundEffect()
     {
+        UIManager.Instance.cardHandlesReference[1].animator.SetTrigger("ActivatedCard");
         Vector3 shootPointPos = (controller.pointerPosition - transform.position);
         shootPointPos.Normalize();
 
@@ -357,6 +359,7 @@ public class CardsController : MonoBehaviour
 
     public void ActivateWallGroundEffect() // C'est OK 
     {
+        UIManager.Instance.cardHandlesReference[2].animator.SetTrigger("ActivatedCard");
         float zTransform = transform.position.z;
         float xTransform = transform.position.x;
         float yTransform = transform.position.y;
@@ -372,6 +375,7 @@ public class CardsController : MonoBehaviour
     private const float forceModifier = 1.6f;
     public void ActivateWindGroundEffect() // OK
     {
+        UIManager.Instance.cardHandlesReference[3].animator.SetTrigger("ActivatedCard");
         Destroy(Instantiate(ShortWindFx, transform.position, Quaternion.identity), 3f);
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.WindThrow);
         repulsivePoint = transform.position;
