@@ -330,7 +330,7 @@ public class UIManager : MonoBehaviour
       //Debug.Log($"change card {changeInt}");
       if (changeInt != 0)
       {
-         //cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, cardYPos,cardHandles[currentCard].position.z);
+         //cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, -71.64155f,cardHandles[currentCard].position.z);
          cardsDictionary[cardHandles[currentCard]].animator.SetTrigger("StopUseCard");
          
          Transform newCard = null;
