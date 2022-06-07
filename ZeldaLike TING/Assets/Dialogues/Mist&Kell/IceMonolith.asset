@@ -13,35 +13,35 @@ MonoBehaviour:
   m_Name: IceMonolith
   m_EditorClassIdentifier: 
   dialogue:
-  - character: {fileID: 0}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Encore un Monolithe, on se rapproche de plus en plus
+      line: Encore un Monolithe, on se rapproche
       delay: 0
     - expressions: 0
       name: 
-      line: Je le sens.
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      line: ' de plus en plus je le sens.'
+      delay: 2.5
+    voiceLine: {fileID: 8300000, guid: 59b02d6ab755a62469602fe7312893ca, type: 3}
+  - character: {fileID: 11400000, guid: 34b62f467344d6b4b98708ca1e13ca9e, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
       line: "O\xF9 se trouve l'art\xE9fact cette fois ?"
-      delay: 0
-    voiceLine: {fileID: 0}
-  - character: {fileID: 0}
+      delay: 3
+    voiceLine: {fileID: 8300000, guid: f245a73e0a6364445b6256fcf16db26b, type: 3}
+  - character: {fileID: 11400000, guid: 028d51600b7707c48964a837ca1e30f2, type: 2}
     startingDelay: 0
     dialogLines:
     - expressions: 0
       name: 
-      line: Mhhh...
+      line: "Tout droit, juste derri\xE8re la porte"
       delay: 0
     - expressions: 0
       name: 
-      line: "Tout droit, juste derri\xE8re la porte, on y est presque !"
+      line: On y est presque !
       delay: 0
-    voiceLine: {fileID: 0}
+    voiceLine: {fileID: 8300000, guid: fe0f2ea40086e98438691fdb2e3aa2da, type: 3}
