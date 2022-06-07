@@ -15,6 +15,7 @@ public class PlayerStat : MonoBehaviour
    public int life;
 
    [SerializeField] private bool isImmune;
+   private bool noDamage;
    
    [Header("Debug")]
    [SerializeField] private CameraShakeScriptable HitShake;
@@ -63,6 +64,7 @@ public class PlayerStat : MonoBehaviour
 
    private void Update()
    {
+      if (Input.GetKeyDown(KeyCode.O)) noDamage = !noDamage;
       if (Input.GetKeyDown(KeyCode.M)) TakeDamage();
       if (Input.GetKeyDown(KeyCode.R)) PlayerRespawn();
    }
@@ -70,7 +72,7 @@ public class PlayerStat : MonoBehaviour
    
    public void TakeDamage(int damage = 1)
    {
-      StartCoroutine(TakeDamageCo(damage));
+      if(!noDamage)StartCoroutine(TakeDamageCo(damage));
    }
    
    public IEnumerator TakeDamageCo(int damage)
@@ -95,6 +97,7 @@ public class PlayerStat : MonoBehaviour
    public void ChangeMoney(int amount)
    {
       money += amount;
+      Debug.Log("Change money");
       UIManager.Instance.changingMoney = true;
    }
 

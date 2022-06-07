@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
          moneyImage.gameObject.SetActive(true);
          moneyText.gameObject.SetActive(true);
          if      (moneyUI > PlayerStat.instance.money) moneyUI--;
-         else if (moneyUI > PlayerStat.instance.money) moneyUI++;
+         else if (moneyUI < PlayerStat.instance.money) moneyUI++;
          else
          {
             changingMoney = false;
@@ -103,10 +103,11 @@ public class UIManager : MonoBehaviour
       }
       else if (moneyAlpha >= 0)
       {
+         Debug.Log("Money Alpha:"+moneyAlpha);
          if (moneyAlpha <= 255)
          {
-            moneyImage.color = new Color(moneyImage.color.r, moneyImage.color.g, moneyImage.color.b, moneyAlpha);
-            moneyText.color = new Color(moneyText.color.r, moneyText.color.g, moneyText.color.b, moneyAlpha); 
+            moneyImage.color = new Color(moneyImage.color.r, moneyImage.color.g, moneyImage.color.b, moneyAlpha/255);
+            moneyText.color = new Color(moneyText.color.r, moneyText.color.g, moneyText.color.b, moneyAlpha/255); 
          }
          else if (moneyAlpha == 0)
          {
