@@ -37,6 +37,8 @@ public class CinematicManager : MonoBehaviour
         GameManager.Instance.cameraController.ChangePoint(cameraPoint);
         DialogueManager.Instance.AssignDialogue(dialogue.dialogue.ToList());
         UIManager.Instance.gameObject.SetActive(false);
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.exploMusic;
+        SoundManager.Instance.musicSource.Play();
         Controller.instance.FreezePlayer(true);
         Controller.instance.Rotate(new Vector2(0, 1));
         StartCoroutine(ObjectManagement());
@@ -85,6 +87,7 @@ public class CinematicManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         GameManager.Instance.VolumeTransition(transitionVolume, transitionCurve);
         CameraShake.Instance.AddShakeEvent(cameraShake);
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.portalAppear);
         yield return new WaitForSeconds(1f);
         GameManager.Instance.volumeManager.profile = transitionVolume;
         GameManager.Instance.VolumeTransition(hardTransition, hardCurve);
@@ -93,6 +96,6 @@ public class CinematicManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
         DialogueManager.Instance.IsCinematic(false);
-        SceneManager.LoadScene("_Scenes/Level Design/LD_DonjonPrinc");
+        SceneManager.LoadScene("_Scenes/SceneWorkflow/LD_DonjonPrinc");
     }
 }
