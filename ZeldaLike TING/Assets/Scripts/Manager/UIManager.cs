@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
    #endregion
 
    [System.Serializable]
-   class HandleRef
+   public class HandleRef
    {
       public Transform Handle;
       public Animator animator;
@@ -37,12 +37,13 @@ public class UIManager : MonoBehaviour
    
    [Header("--- CARDS")] 
    [SerializeField] private CardUIScriptable cardSprites;
-   [SerializeField] HandleRef[] cardHandlesReference;
+   public HandleRef[] cardHandlesReference;
    private Dictionary<Transform, HandleRef> cardsDictionary = new Dictionary<Transform, HandleRef>();
    private Transform[] cardHandles;
    public int cardUnlock = 1;
    private int currentCard = 0;
    float cardYPos;
+   private bool isRecto;
    [SerializeField] private Animator cardsAnimator;
    
    
@@ -153,9 +154,12 @@ public class UIManager : MonoBehaviour
 
    public void UpdateCardUI()
    {
+      bool switchCards = isRecto == CardsController.instance.fireRectoUse ? false : true;
+      isRecto = CardsController.instance.fireRectoUse;
       //Debug.Log("Update Card");
       foreach (var cardHandle in cardHandlesReference)
       {
+         if(switchCards) cardHandle.animator.Play("SwitchingFace");
          switch (cardHandle.card)
          {
             case CardsController.CardsState.Fire :
@@ -173,6 +177,7 @@ public class UIManager : MonoBehaviour
                   }
                   else if (CardsController.instance.fireRectoUse || !CardsController.isFireGround) 
                   {
+                     cardHandle.animator.SetTrigger("ActivateCard");
                      cardHandle.image.color = Color.grey;
                   }
                   
@@ -217,6 +222,7 @@ public class UIManager : MonoBehaviour
                   {
                      if (CardsController.instance.wallRectoUse || !CardsController.isWallGround)
                      {
+                        cardHandle.animator.SetTrigger("ActivateCard");
                         cardHandle.image.color = Color.grey;
                      }
                   }
@@ -240,6 +246,7 @@ public class UIManager : MonoBehaviour
                   {
                      if (CardsController.instance.windRectoUse || !CardsController.isWindGround)
                      {
+                        cardHandle.animator.SetTrigger("ActivateCard");
                         cardHandle.image.color = Color.grey;
                      }
                   }

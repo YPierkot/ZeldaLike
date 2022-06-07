@@ -153,7 +153,7 @@ public class CardsController : MonoBehaviour
             if (!isFireGround)
             {
                 //UIManager.Instance.LaunchFireCardTween();
-                
+                UIManager.Instance.cardHandlesReference[0].animator.SetTrigger("ActivatedCard");
                 canUseFireCard = false;
                 Vector3 shootPointPos;
                 if(GameManager.Instance.currentContorller == GameManager.controller.Keybord) shootPointPos = (controller.pointerPosition - transform.position).normalized;
