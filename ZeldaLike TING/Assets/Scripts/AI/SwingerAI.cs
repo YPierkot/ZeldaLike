@@ -132,7 +132,8 @@ namespace AI
             else
                 e_sprite.flipX = false;
 
-            if (!isHitStun) e_animator.SetBool("isAttack", true); 
+            if (!isHitStun) e_animator.SetBool("isAttack", true);
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.swingerAttack);
             
             yield return new WaitForSeconds(.40f); // Temps de l'animation avant hit & recast dmg point
             

@@ -6,6 +6,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float explosionRadius = 2;
     public void ExploseBomb()
     {
+        SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.boomerExplosion);
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerLayer);
         foreach (var player in colliders)
         {

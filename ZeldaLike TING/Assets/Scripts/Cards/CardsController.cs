@@ -168,7 +168,7 @@ public class CardsController : MonoBehaviour
                 isFireGround = true;
             }
         }
-        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI();
+        else if (isFireGround) fireCardGrounded.GetComponent<FireCardLongRange>().FireCardLongEffect(); UIManager.Instance.UpdateCardUI(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.fireExplosion);
     }
     
     // Ice Card
@@ -196,7 +196,7 @@ public class CardsController : MonoBehaviour
                 UIManager.Instance.UpdateCardUI();
             }
         }
-        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet(); UIManager.Instance.UpdateCardUI();
+        else if(isIceGround) iceCardGrounded.GetComponent<BlueCardLongRange>().IceCardLongEffet(); UIManager.Instance.UpdateCardUI(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.iceVerso);
 
     }
     
@@ -227,7 +227,7 @@ public class CardsController : MonoBehaviour
                 UIManager.Instance.UpdateCardUI();
             }
         }
-        else if (isWallGround) wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect();
+        else if (isWallGround) wallCardGrounded.GetComponent<WallCardLongRange>().WallCardLongEffect(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.groundWall);
 
     }
     
@@ -254,7 +254,7 @@ public class CardsController : MonoBehaviour
                 UIManager.Instance.UpdateCardUI();
             }
         }
-        else if(isWindGround) windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect();
+        else if(isWindGround) windCardGrounded.GetComponent<WindCardLongRange>().WindCardLongEffect(); SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.windAttract);
     }
     
     #endregion

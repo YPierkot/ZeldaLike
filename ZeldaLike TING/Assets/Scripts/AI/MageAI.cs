@@ -112,6 +112,7 @@ namespace AI
             yield return new WaitForSeconds(panicTime);
             isPanic = false;
             mageAnimator.SetBool("isPanic", isPanic);
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.mageRegen);
             eyeCounter = 3;
             e_animator.SetInteger("EyesCount", eyeCounter);
         }
@@ -119,6 +120,7 @@ namespace AI
         private IEnumerator DoAttack()
         {
             mageAnimator.SetBool("isAttack", true);
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.mageShoot);
             yield return new WaitForSeconds(1.75f); // Temps de l'anim
             mageAnimator.SetBool("isAttack", false);
             if (e_sprite.flipX == true)
