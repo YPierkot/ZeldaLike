@@ -54,6 +54,7 @@ public class BossManager : MonoBehaviour
     [Space]
     [SerializeField] private Vector2 sizeAttackZone;
     [SerializeField] private Vector2 distanceFromPlayer;
+    [SerializeField] private LastCinematicManager LastCinematicManager;
     [Header("---RUNE")] 
     [SerializeField] private RuneDict[] runes;
     public List<GameObject> activeRune;
@@ -126,7 +127,7 @@ public class BossManager : MonoBehaviour
     {
         life = maxLife;
         onShield = true;
-        _groundY = groundY();
+        _groundY = 0.95f;// groundY();
         UIManager.Instance.maxLife = maxLife;
         animator = GetComponentInChildren<Animator>();
         laserLine = GetComponentInChildren<ParticleSystem>();
@@ -155,6 +156,10 @@ public class BossManager : MonoBehaviour
 
     void Update()
     {
+        if ( 0 < life )
+        {
+            UIManager.Instance.BosslifeBar.transform.parent.gameObject.SetActive(true);
+        }
         if (moveProjTP)
         {
             
@@ -245,8 +250,7 @@ public class BossManager : MonoBehaviour
     {
         if (teleporting)
         {
-            Vector3 rdm = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), transform.position.y,
-                Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
+            Vector3 rdm = new Vector3(Random.Range(-sizeTP_Zone.x, sizeTP_Zone.x), 2f, Random.Range(-sizeTP_Zone.y, sizeTP_Zone.y));
             boss.position = TransformTP_Zone.position + rdm;
         }
     }
@@ -418,7 +422,7 @@ public class BossManager : MonoBehaviour
                 ballPosList.Add(newBallPos);
                 
                 newBall.ball = balls[index];
-                newBall.pos = TransformTP_Zone.position + newBallPos ;
+                newBall.pos = /*TransformTP_Zone.position +*/ newBallPos ;
                 newBall.warning = warnings[ballCount];
 
                 ballCount++;
@@ -502,7 +506,7 @@ public class BossManager : MonoBehaviour
                
                 float xFactor = Random.value <= 0.5f ? -1 : 1;
                 float yFactor = Random.value <= 0.5f ? -1 : 1;
-                Vector3 vec = new Vector3(Random.Range(2f, 5f)*xFactor, _groundY-boss.position.y, Random.Range(2f, 5f)*yFactor);
+                Vector3 vec = new Vector3(Random.Range(2f, 5f)*xFactor, TransformTP_Zone.position.y-boss.position.y, Random.Range(2f, 5f)*yFactor);
                 if (activeRune.Count != 0)
                 {
                     int breaker = 0;
@@ -511,7 +515,7 @@ public class BossManager : MonoBehaviour
                     {
                         xFactor = Random.value <= 0.5f ? -1 : 1;
                         yFactor = Random.value <= 0.5f ? -1 : 1;
-                        vec = new Vector3(Random.Range(2f, 5f)*xFactor, _groundY-boss.position.y, Random.Range(2f, 5f)*yFactor);
+                        vec = new Vector3(Random.Range(2f, 5f)*xFactor, TransformTP_Zone.position.y-boss.position.y, Random.Range(2f, 5f)*yFactor);
                         Debug.Log("distance : " + Vector3.Distance(activeRune[0].transform.position, vec));
                         breaker++;
                         if (breaker == 50) break;
@@ -552,7 +556,9 @@ public class BossManager : MonoBehaviour
 
     void Death()
     {
-        gameObject.SetActive(false);
+        Debug.Log("Dead");
+        LastCinematicManager.StartCoroutine(LastCinematicManager.LastCinematic());
+        enabled = false;
     }
 
     IEnumerator FreezeCD()
@@ -593,7 +599,7 @@ public class BossManager : MonoBehaviour
         
         yield return new WaitForSeconds(delayTime);
         
-        GameObject newBall = Instantiate(ballSet.ball, new Vector3(boss.position.x, 0, boss.position.z), Quaternion.identity);
+        GameObject newBall = Instantiate(ballSet.ball, new Vector3(boss.position.x, boss.position.y, boss.position.z), Quaternion.identity);
         SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.bossProjectilShoot);
         newBall.GetComponent<BossBall>().LaunchBall(ballSet.pos, ballSpeed, ballSet.warning);
     }

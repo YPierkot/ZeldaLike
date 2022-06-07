@@ -16,7 +16,18 @@ public class BossStart : MonoBehaviour
     [SerializeField] private AnimationCurve profileAnimationCurve;
     [SerializeField] private CameraShakeScriptable itharAppearCameraShake;
     [SerializeField] private Transform secondCameraPoint;
-
+    [SerializeField] private Transform thirdCameraPoint;
+    [SerializeField] private VolumeProfile itharTension;
+    [SerializeField] private AnimationCurve itharTensionCurve;
+    [SerializeField] private CameraShakeScriptable itharAngry;
+    [SerializeField] private Transform monolithCameraPoint;
+    [SerializeField] private Transform islandsCameraPoint;
+    [SerializeField] private CameraShakeScriptable itharScream;
+    [SerializeField] private Animator itharHands;
+    [SerializeField] private CameraShakeScriptable itharHandsShake;
+    [SerializeField] private GameObject tornado;
+    [SerializeField] private GameObject iceSpikes;
+    [SerializeField] private GameObject bossManager;
     public void StartBoss()
     {
         StartCoroutine(BossCinematic());
@@ -45,7 +56,53 @@ public class BossStart : MonoBehaviour
         Controller.instance.transform.position = teleportationPoint.position;
         GameManager.Instance.cameraController.ChangePoint(secondCameraPoint);
         yield return new WaitForSeconds(4f);
+        GameManager.Instance.VolumeTransition(itharTension, itharTensionCurve);
         Controller.instance.FreezePlayer(true);
+        Controller.instance.lastDir = new Vector3(1, 0, 0);
+        GameManager.Instance.cameraController.ChangePoint(thirdCameraPoint);
+        GameManager.Instance.mistMovement.Play("MistMovement");
         DialogueManager.Instance.AssignDialogue(itharMeetKell.dialogue.ToList());
+        yield return new WaitForSeconds(19f);
+        CameraShake.Instance.AddShakeEvent(itharAngry);
+        yield return new WaitForSeconds(11f);
+        GameManager.Instance.cameraController.ChangePoint(monolithCameraPoint);
+        yield return new WaitForSeconds(4f);
+        GameManager.Instance.cameraController.ChangePoint(islandsCameraPoint);
+        yield return new WaitForSeconds(6.5f);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+        yield return new WaitForSeconds(3.5f);
+        GameManager.Instance.cameraController.ChangePoint(thirdCameraPoint);
+        CameraShake.Instance.AddShakeEvent(itharScream);
+        yield return new WaitForSeconds(7f);
+        CameraShake.Instance.AddShakeEvent(itharHandsShake);
+        ithar.Play("ItharPower");
+        yield return new WaitForSeconds(1f);
+        itharHands.gameObject.SetActive(true);
+        GameManager.Instance.VolumeTransition(itharTension, itharTensionCurve);
+        yield return new WaitForSeconds(9f);
+        itharHands.GetComponent<SpriteRenderer>().enabled = true;
+        ithar.GetComponent<SpriteRenderer>().enabled = false;
+        itharHands.Play("Boss_BoolCast");
+        GameManager.Instance.cameraController.ChangePoint(secondCameraPoint);
+        SoundManager.Instance.musicSource.clip = SoundManager.Instance.bossMusic;
+        SoundManager.Instance.musicSource.Play();
+        yield return new WaitForSeconds(0.5f);
+        CameraShake.Instance.AddShakeEvent(itharScream);
+        tornado.SetActive(true);
+        iceSpikes.SetActive(true);
+        itharHands.Play("Boss_Idle");
+        yield return new WaitForSeconds(7f);
+        tornado.SetActive(false);
+        iceSpikes.SetActive(false);
+        itharHands.Play("Boss_TP");
+        yield return new WaitForSeconds(0.3f);
+        ithar.gameObject.SetActive(false);
+        itharHands.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        DialogueManager.Instance.IsCinematic(false);
+        GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint, true);
+        bossManager.SetActive(true);
+        this.enabled = false;
+        
     }
 }

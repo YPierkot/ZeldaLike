@@ -68,7 +68,7 @@ public class BossBall : MonoBehaviour
             {
                 float speed = maxSpeed*speedModifier;
                 currentDistance += speed;
-                Vector3 position = startPosition + new Vector3( targetPosition.x*currentDistance, Mathf.Cos((currentDistance - 0.5f)*Mathf.PI) * heightMultiplicator, targetPosition.z*currentDistance);
+                Vector3 position = startPosition + new Vector3( targetPosition.x*currentDistance, startPosition.y+(Mathf.Cos((currentDistance - 0.5f) * Mathf.PI) * heightMultiplicator), targetPosition.z*currentDistance);
                 transform.position = position;
             }
             else if(!impacted)

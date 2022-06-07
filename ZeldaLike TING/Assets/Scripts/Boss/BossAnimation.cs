@@ -14,22 +14,28 @@ public class BossAnimation : MonoBehaviour
 
    public void ChangePosition()
    {
-      script.Teleport();
+      if (!DialogueManager.Instance.isCinematic)
+      {
+         script.Teleport();
+      }
    }
 
    public void FinishTP()
    {
-      script.EndTeleport();
+      if (!DialogueManager.Instance.isCinematic)
+      {
+         script.EndTeleport();
+      }
    }
 
    public void EndLaserCast()
    {
-      script.castingLaser = false;
+      if (!DialogueManager.Instance.isCinematic) script.castingLaser = false;
    }
 
    public void EndIdle()
    {
-      script.EndIdle();
+      if (!DialogueManager.Instance.isCinematic) script.EndIdle();
    }
 
 }

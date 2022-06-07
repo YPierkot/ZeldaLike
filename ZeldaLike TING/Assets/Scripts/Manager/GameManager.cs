@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+
 public class GameManager : MonoBehaviour
 {
     #region Instance
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
     public bool isDungeonFinished;
     public Animator mistMovement;
     public VolumeProfile dungeonProfile;
-    
     public enum controller
     {
         Keybord,
@@ -119,4 +119,6 @@ public class GameManager : MonoBehaviour
         int actualLifeMaxAmount = PlayerStat.instance.lifeMax;
         SaveManager.instance.SetSave(actualLifeMaxAmount, actualMoneyAmount, actualRespawnPoint);
     }
+    
+    
 }
