@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -92,6 +91,8 @@ public class UIManager : MonoBehaviour
       {
          moneyImage.gameObject.SetActive(true);
          moneyText.gameObject.SetActive(true);
+         moneyImage.color = new Color(moneyImage.color.r, moneyImage.color.g, moneyImage.color.b, 255); 
+         moneyText.color = new Color(moneyText.color.r, moneyText.color.g, moneyText.color.b, 255);
          if      (moneyUI > PlayerStat.instance.money) moneyUI--;
          else if (moneyUI < PlayerStat.instance.money) moneyUI++;
          else
