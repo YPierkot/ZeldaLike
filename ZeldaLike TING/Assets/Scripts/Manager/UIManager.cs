@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
    public int cardUnlock = 1;
    private int currentCard = 0;
    float cardYPos;
+   private bool isRecto;
    [SerializeField] private Animator cardsAnimator;
    
    
@@ -153,9 +154,11 @@ public class UIManager : MonoBehaviour
 
    public void UpdateCardUI()
    {
+      bool switchFace = isRecto == CardsController.instance.fireRectoUse ? false : true;
       //Debug.Log("Update Card");
       foreach (var cardHandle in cardHandlesReference)
       {
+         if(switchFace) cardHandle.animator.SetTrigger("switchCards");
          switch (cardHandle.card)
          {
             case CardsController.CardsState.Fire :
@@ -384,6 +387,7 @@ public class UIManager : MonoBehaviour
       }
       
       cardsDictionary[cardHandles[currentCard]].animator.SetTrigger("UseCard");
+//      cardHandles[currentCard].position = new Vector3(cardHandles[currentCard].position.x, 11f, cardHandles[currentCard].position.z);
 
          CardsController.instance.State = cardsDictionary[cardHandles[currentCard]].card;
    }
