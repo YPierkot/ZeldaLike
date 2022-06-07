@@ -28,6 +28,8 @@ public class BossStart : MonoBehaviour
     [SerializeField] private GameObject tornado;
     [SerializeField] private GameObject iceSpikes;
     [SerializeField] private GameObject bossManager;
+    [SerializeField] private Material islandMaterial;
+    [SerializeField] private MeshRenderer islandMesh;
     public void StartBoss()
     {
         StartCoroutine(BossCinematic());
@@ -46,6 +48,7 @@ public class BossStart : MonoBehaviour
         ithar.gameObject.SetActive(true);
         ithar.Play("ItharAppear");
         monolith.SetActive(true);
+        islandMesh.material = islandMaterial;
         yield return new WaitForSeconds(3f);
         GameManager.Instance.cameraController.ChangePoint(Controller.instance.PlayerCameraPoint,true);
         Controller.instance.transform.position = portalFX.transform.position;

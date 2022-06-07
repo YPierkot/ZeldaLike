@@ -396,8 +396,7 @@ public class BossManager : MonoBehaviour
                 while (!canSpawn)
                 {
                     newBallPos = new Vector3(Random.Range(-(distanceFromPlayer.x), distanceFromPlayer.x), 0, Random.Range(-distanceFromPlayer.y, distanceFromPlayer.y)) + Controller.instance.transform.position;
-                    newBallPos.y = 0.1f;
-                    
+
                     /*if (newBallPos.x > sizeAttackZone.x) newBallPos.x = sizeAttackZone.x;
                     if (newBallPos.x < -sizeAttackZone.x) newBallPos.x = -sizeAttackZone.x;
                     if (newBallPos.z > sizeAttackZone.y) newBallPos.z = sizeAttackZone.y;

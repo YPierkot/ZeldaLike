@@ -40,7 +40,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         {
             DialogueManager.Instance.IsCinematic(false);
         }
-        //StartCoroutine(SmallCinematic());
+        StartCoroutine(SmallCinematic());
     }
 
     private IEnumerator SmallCinematic()
@@ -86,6 +86,7 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     private IEnumerator ThePlan()
     {
+        SoundManager.Instance.ambianceSource.Stop();
         SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
         SoundManager.Instance.musicSource.Play();
         StartCoroutine(portal.PlayerAppearing());
