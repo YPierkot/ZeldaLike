@@ -47,7 +47,7 @@ public class PlayerSpawnPoint : MonoBehaviour
     {
         if (!GameManager.Instance.isDungeonFinished)
         {
-            SoundManager.Instance.musicSource.clip = SoundManager.Instance.dungeonMusic;
+            SoundManager.Instance.musicSource.clip = SoundManager.Instance.exploMusic;
             SoundManager.Instance.musicSource.Play();
             Controller.instance.FreezePlayer(true);
             Controller.instance.gameObject.SetActive(true);

@@ -6801,6 +6801,7 @@ GameObject:
   - component: {fileID: 3923136471716148680}
   - component: {fileID: 2565478129397033346}
   - component: {fileID: 6415307853330077921}
+  - component: {fileID: 618126883165004105}
   m_Layer: 5
   m_Name: Graph
   m_TagString: Untagged
@@ -6900,6 +6901,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6151388a51224489a9e43064057e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &618126883165004105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634292633166775252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6151388a51224489a9e43064057e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6667375179874255423
 GameObject:
   m_ObjectHideFlags: 0
@@ -6912,6 +6925,7 @@ GameObject:
   - component: {fileID: 2332700983591796129}
   - component: {fileID: 5185974502652187397}
   - component: {fileID: 1904832191553007150}
+  - component: {fileID: 318764731380094239}
   m_Layer: 5
   m_Name: Graph
   m_TagString: Untagged
@@ -6999,6 +7013,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &318764731380094239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6667375179874255423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6151388a51224489a9e43064057e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6799201922958508912
 GameObject:
   m_ObjectHideFlags: 0
@@ -7700,6 +7726,7 @@ GameObject:
   - component: {fileID: 2713722022050889632}
   - component: {fileID: 4043149047639870031}
   - component: {fileID: 5535475561503309550}
+  - component: {fileID: 4266462440885757136}
   m_Layer: 5
   m_Name: Graph
   m_TagString: Untagged
@@ -7787,6 +7814,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4266462440885757136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7115513078581963860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6151388a51224489a9e43064057e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7365977110643685632
 GameObject:
   m_ObjectHideFlags: 0
@@ -8007,6 +8046,7 @@ GameObject:
   - component: {fileID: 7552470230020909763}
   - component: {fileID: 829069130991494789}
   - component: {fileID: 4437539012205573236}
+  - component: {fileID: 6407554036792143557}
   m_Layer: 5
   m_Name: Graph
   m_TagString: Untagged
@@ -8094,6 +8134,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6407554036792143557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720447037757760943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6151388a51224489a9e43064057e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7790234934382510417
 GameObject:
   m_ObjectHideFlags: 0
@@ -8739,19 +8791,19 @@ MonoBehaviour:
   cardSprites: {fileID: 11400000, guid: 8e0553251e803754eb1b9ffc8e33e744, type: 2}
   cardHandlesReference:
   - Handle: {fileID: 3453756642744160009}
-    animator: {fileID: 0}
+    animator: {fileID: 4437539012205573236}
     card: 1
     image: {fileID: 0}
   - Handle: {fileID: 8070015815526220847}
-    animator: {fileID: 0}
+    animator: {fileID: 2565478129397033346}
     card: 2
     image: {fileID: 0}
   - Handle: {fileID: 839723355162386942}
-    animator: {fileID: 0}
+    animator: {fileID: 1904832191553007150}
     card: 3
     image: {fileID: 0}
   - Handle: {fileID: 3545406009621369294}
-    animator: {fileID: 0}
+    animator: {fileID: 5535475561503309550}
     card: 4
     image: {fileID: 0}
   cardUnlock: 4
