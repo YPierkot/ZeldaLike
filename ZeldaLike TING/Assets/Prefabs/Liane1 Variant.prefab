@@ -191,7 +191,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3f4a8924b5c939243b471e2a1d6173e4, type: 2}
+      objectReference: {fileID: 2100000, guid: 26f77bc3608540747a2cfd2b79d54e45, type: 2}
     - target: {fileID: 919132149155446097, guid: fc486ab3fd518eb4e8c565b91a2a4785,
         type: 3}
       propertyPath: m_Name
@@ -305,23 +305,3 @@ MonoBehaviour:
   lianaBurnMaterial: {fileID: 2100000, guid: 26f77bc3608540747a2cfd2b79d54e45, type: 2}
   burnAmount: 0
   sparks: {fileID: 6957926693540595480}
---- !u!114 &5397772416844506750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8824225565668103245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33975daf3992b7342a258e3a77dc232f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 0}
-  yValue: 0
-  startYValue: 0
-  noiseScale: 50
-  noiseStrength: 1
-  appearSpeed: 0.1
-  maxY: 15
-  appear: 0
