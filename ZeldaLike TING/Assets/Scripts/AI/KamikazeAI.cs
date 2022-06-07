@@ -143,6 +143,7 @@ namespace AI
             e_rigidbody.constraints = RigidbodyConstraints.FreezeAll;
             
             kamikazeAnimator.SetBool("isAttack", true);
+            SoundEffectManager.Instance.PlaySound(SoundEffectManager.Instance.sounds.boomerExplosion);
             yield return new WaitForSeconds(.11f);
 
             var fxKamikaze = PoolManager.Instance.PoolInstantiate(PoolManager.Object.fxKamikaze);

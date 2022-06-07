@@ -28,6 +28,8 @@ public class FireCardTutorialManager : MonoBehaviour
     [Header("Second Challenge")]
     
     [SerializeField] private GameObject puzzle;
+    [SerializeField] private Material puzzleEM;
+    [SerializeField] private MeshRenderer puzzleMesh;
     
     [Header("Third Challenge")]
     [SerializeField] private EnemySpawnTrigger enemySpawner;
@@ -85,8 +87,9 @@ public class FireCardTutorialManager : MonoBehaviour
                     {
                         puzzle.SetActive(true);
                         StartCoroutine(HelpsManager.DisplayHelp());
+                        StartCoroutine(DelayMat());
                     }
-                    if (puzzle.transform.childCount == 4)
+                    if (puzzle.transform.childCount == 5)
                     {
                         puzzle.SetActive(false);
                         DialogueManager.Instance.AssignDialogue(dialogueQueue.Dequeue().dialogue.ToList());
@@ -111,9 +114,13 @@ public class FireCardTutorialManager : MonoBehaviour
                         gameObject.SetActive(false);
                     }
                     break;
-
-                    
             }
         }
+    }
+
+    private IEnumerator DelayMat()
+    {
+        yield return new WaitForSeconds(2f);
+        puzzleMesh.material = puzzleEM;
     }
 }

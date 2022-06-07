@@ -133,8 +133,7 @@ public class UIManager : MonoBehaviour
          int index = 0;
          switch (cardHandle.card)
          {
-            case CardsController.CardsState.Fire: index = 0;
-               break;
+            case CardsController.CardsState.Fire: index = 0; break;
             
             case CardsController.CardsState.Ice:  index = 1;
                break;
@@ -163,8 +162,9 @@ public class UIManager : MonoBehaviour
                if (CardsController.instance.fireCardUnlock)
                {
                   cardHandle.Handle.gameObject.SetActive(true);
-                  if(CardsController.instance.fireRectoUse)cardHandle.image.sprite = cardSprites.fireVerso;
-                  else cardHandle.image.sprite = cardSprites.fireRecto;
+                  
+                  if(CardsController.instance.fireRectoUse)cardHandle.image.sprite = cardSprites.fireRecto;
+                  else cardHandle.image.sprite = cardSprites.fireVerso;
                   
                   if (CardsController.instance.canUseFireCard)
                   {
@@ -183,10 +183,11 @@ public class UIManager : MonoBehaviour
             case CardsController.CardsState.Ice :
                if (CardsController.instance.iceCardUnlock)
                {
-                  if (CardsController.instance.iceRectoUse) cardHandle.image.sprite = cardSprites.iceVerso;
-                  else cardHandle.image.sprite = cardSprites.iceRecto;
-                  
                   cardHandle.Handle.gameObject.SetActive(true);
+                  
+                  if (CardsController.instance.iceRectoUse) cardHandle.image.sprite = cardSprites.iceRecto;
+                  else cardHandle.image.sprite = cardSprites.iceVerso;
+                  
                   if (CardsController.instance.canUseIceCard)
                   {
                      cardHandle.image.color = Color.white;
@@ -205,8 +206,8 @@ public class UIManager : MonoBehaviour
                {
                   cardHandle.Handle.gameObject.SetActive(true);
 
-                  if (CardsController.instance.wallRectoUse) cardHandle.image.sprite = cardSprites.groundVerso;
-                  else cardHandle.image.sprite = cardSprites.groundRecto;
+                  if (CardsController.instance.wallRectoUse) cardHandle.image.sprite = cardSprites.groundRecto;
+                  else cardHandle.image.sprite = cardSprites.groundVerso;
                   
                   if (CardsController.instance.canUseWallCard) 
                   {
@@ -228,8 +229,8 @@ public class UIManager : MonoBehaviour
                {
                   cardHandle.Handle.gameObject.SetActive(true);
 
-                  if (CardsController.instance.windRectoUse) cardHandle.image.sprite = cardSprites.windVerso;
-                  else cardHandle.image.sprite = cardSprites.windRecto;
+                  if (CardsController.instance.windRectoUse) cardHandle.image.sprite = cardSprites.windRecto;
+                  else cardHandle.image.sprite = cardSprites.windVerso;
                   
                   if (CardsController.instance.canUseWindCard)
                   {

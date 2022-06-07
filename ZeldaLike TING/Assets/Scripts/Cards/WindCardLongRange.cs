@@ -70,6 +70,7 @@ public class WindCardLongRange : MonoBehaviour
         if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
         {
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     

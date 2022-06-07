@@ -48,6 +48,7 @@ public class FireCardLongRange : MonoBehaviour
         if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
         {
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 

@@ -27,6 +27,7 @@ public class WallCardLongRange : MonoBehaviour
         if (!other.GetComponentInParent<Transform>().CompareTag("Player") && !other.isTrigger)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     

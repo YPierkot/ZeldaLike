@@ -119,6 +119,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Tonneau_B_ROY
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 96f322e8b8ca3e84ca0f2cf6e49e2a7b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Crates
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96f322e8b8ca3e84ca0f2cf6e49e2a7b, type: 3}
 --- !u!23 &2492496782669383828 stripped
@@ -133,3 +138,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3791811725664273401}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5031535208316208753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 96f322e8b8ca3e84ca0f2cf6e49e2a7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3791811725664273401}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6441670030326614110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031535208316208753}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.170934, y: 1.205878, z: 1.170934}
+  m_Center: {x: 0, y: 0.602939, z: 0}
+--- !u!114 &685911811903534818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031535208316208753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd92546bae92fb0469b5ac41d6be654c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyObjectAfterHitting: 1
+  destroyAction:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8995752764394849613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031535208316208753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf933a7c85ec3d241b4e39a5102e32ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
