@@ -18,7 +18,7 @@ public class CardsController : MonoBehaviour
     public static bool isFireGround;
     [SerializeField] GameObject fireCardGrounded;
     public GameObject firecircleFx;
-    [HideInInspector] public bool fireRectoUse;
+     public bool fireRectoUse;
     
     // IceCard
     [Header("Ice Card")] 
@@ -27,7 +27,7 @@ public class CardsController : MonoBehaviour
     public static bool isIceGround;
     public GameObject iceCardGrounded;
     public GameObject enemyFreezeFX;
-    [HideInInspector] public bool iceRectoUse;
+     public bool iceRectoUse;
     
     [Space(10)]
     [Header("Wall Card")] // Wall Card
@@ -36,7 +36,7 @@ public class CardsController : MonoBehaviour
     public static bool isWallGround;
     public GameObject wallCardGrounded;
     public GameObject WallSR;
-    [HideInInspector] public bool wallRectoUse;
+     public bool wallRectoUse;
     
     [Space(10)] // Wind Card
     [Header("Wind Card")] [SerializeField]
@@ -49,7 +49,7 @@ public class CardsController : MonoBehaviour
     [SerializeField] float repulsiveRadius = 4.5f;
     [SerializeField] Vector3 repulsivePoint;
     public GameObject DebugWindSphere;
-    [HideInInspector] public bool windRectoUse;
+     public bool windRectoUse;
     
     [Space(10)] // Wind Card
     [Header("Utilities")] 
@@ -103,10 +103,10 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: if(fireCardUnlock)fireRectoUse = true; FireballShortRange(); break;
-            case CardsState.Ice: iceRectoUse = true; IceShortRange(); break;
-            case CardsState.Wall: wallRectoUse = true; WallShortRange(); break;
-            case CardsState.Wind: windRectoUse = true; WindShortRange(); break;
+            case CardsState.Fire: FireballShortRange(); break;
+            case CardsState.Ice:  IceShortRange(); break;
+            case CardsState.Wall:  WallShortRange(); break;
+            case CardsState.Wind:  WindShortRange(); break;
         }
         UIManager.Instance.UpdateCardUI();
     }
@@ -118,10 +118,10 @@ public class CardsController : MonoBehaviour
         switch(State)
         {
             case CardsState.Null: break;
-            case CardsState.Fire: if(fireCardUnlock)fireRectoUse = false; FireballLongRange(); break;
-            case CardsState.Ice: iceRectoUse = false; IceLongRange(); break;
-            case CardsState.Wall: wallRectoUse = false; WallLongRange(); break;
-            case CardsState.Wind: windRectoUse = false; WindLongRange(); break;
+            case CardsState.Fire:  FireballLongRange(); break;
+            case CardsState.Ice:  IceLongRange(); break;
+            case CardsState.Wall:  WallLongRange(); break;
+            case CardsState.Wind: WindLongRange(); break;
         }
         UIManager.Instance.UpdateCardUI();
     }
